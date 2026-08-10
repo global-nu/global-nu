@@ -76,17 +76,18 @@ Table I of <a href="https://doi.org/10.1103/PhysRevD.111.093006">Phys. Rev. D
 <article class="tile">
 <div class="stamp stamp--no">arXiv digest · daily</div>
 <h3>Today on arXiv</h3>
-<p class="small muted">Experimental and theoretical preprints of the day,
-sorted by relevance and summarised. The automation starts with Phase 3; until
-then this tile is empty by design rather than filled with invented items.</p>
+<p class="small muted">Experimental and theoretical preprints of the day, kept
+in two streams and ranked by a stated keyword score — no model decides what
+appears there.</p>
 <a class="more" href="digest.html">The full digest →</a>
 </article>
 
 <article class="tile">
 <div class="stamp">News</div>
 <h3>What is happening</h3>
-<p class="small muted">Experiments, results, milestones — published only when
-there is something to report, never on a schedule.</p>
+<p class="small muted">Experiments, results and milestones, written from
+fetched sources: every claim on that page carries the link it came from, and
+an item whose citation cannot be resolved is dropped before publication.</p>
 <a class="more" href="news.html">More news →</a>
 </article>
 
@@ -94,7 +95,8 @@ there is something to report, never on a schedule.</p>
 <div class="stamp stamp--no">Conferences</div>
 <h3>Where the field meets</h3>
 <p class="small muted">Upcoming and recent meetings with dates, venues and
-links, refreshed daily from the conference indexers.</p>
+links, rebuilt each day from the conference indexers rather than kept by
+hand.</p>
 <a class="more" href="conferences.html">The calendar →</a>
 </article>
 

@@ -1,0 +1,321 @@
+# ---------------------------------------------------------------------------
+# global-nu — the one configuration file for the daily pipeline.
+#
+# Ported from the pipeline of home.ba.infn.it/~marrone. No secrets here, ever:
+# this site publishes to GitHub Pages and the run needs no credential at all
+# until Phase 4 adds the push.
+# ---------------------------------------------------------------------------
+
+# Daily run time, used to write the LaunchAgent (install-launchagents.sh reads
+# it). Changing it here and re-running the installer is the supported way.
+schedule:
+  hour: 7
+  minute: 30
+
+# ---------------------------------------------------------------------- arXiv
+# Feeds the compact digest section. Deterministic: query the API, score by
+# keyword, keep the top `max_items`. No AI involved in this section.
+arxiv:
+  enabled: true
+  # NOTE: comments placed after this list, rather than on a scalar, are lost
+  # when the dashboard rewrites the list. Keep explanations on the keys.
+  categories:
+    - hep-ph
+    - hep-ex
+    - nucl-ex
+    - astro-ph.HE
+  window_hours: 168       # 168 h, not 24: arXiv does not announce at weekends,
+                          # so a shorter window is empty every Sunday and
+                          # Monday. The /arxiv digest uses the same 7 days.
+  max_fetch: 400          # records pulled from the API before scoring
+  max_items: 16           # entries shown on the digest page (two streams)
+  # Scoring: a title hit is worth 3, an abstract hit 1. Ordering matters only
+  # through the totals, so keep the strong terms in `high`.
+  keywords:
+    high:
+      - neutrino
+      - neutrinos
+      - oscillation
+      - neutrinoless
+      - double beta
+      - leptogenesis
+      - seesaw
+      - sterile
+      - mass ordering
+      - mass hierarchy
+    low:
+      - flavour symmetry
+      - flavor symmetry
+      - modular
+      - grand unification
+      - leptonic CP
+      - non-standard interaction
+      - reactor
+      - long-baseline
+      - supernova
+
+# ------------------------------------------------------------------- INSPIRE
+# Two distinct endpoints. `literature` feeds Theory highlights and is
+# restricted to PUBLISHED papers (a journal reference is required, so every
+# entry can carry arXiv + INSPIRE + DOI as the brief demands).
+# `conferences` feeds the Conferences section.
+inspire:
+  enabled: true
+  literature:
+    # INSPIRE query syntax. `tc p` = published in a journal.
+    query: 't neutrino and tc p'
+    window_days: 120
+    max_fetch: 120
+    max_items: 8
+  conferences:
+    query: 'neutrino'
+    upcoming_months: 14      # look this far ahead
+    recent_months: 5         # and this far back, for "recently concluded"
+    max_items: 20
+    # Conference series worth surfacing even when the title match is weak.
+    series_hints:
+      - Neutrino
+      - NuFact
+      - TAUP
+      - ICHEP
+      - Moriond
+      - NOW
+      - Lepton Photon
+      - NuPhys
+      - Magellan
+
+    # The wider particle-physics calendar, for the second block of the
+    # Conferences section. The query casts a wide net and `series_hints` is
+    # what makes it mean something: only the named series are kept, so the
+    # block stays a list of the meetings the field actually plans around
+    # rather than every workshop with "particle physics" in its title.
+    #
+    # INSPIRE wants OR in CAPITALS. Written `a or b` it returns zero hits
+    # instead of an error, which reads like "nothing matched".
+    general:
+      enabled: true
+      query: >-
+        ichep OR moriond OR "lepton photon" OR lhcp OR "eps-hep" OR susy
+        OR "quark matter" OR "deep inelastic scattering" OR panic
+        OR "higgs hunting" OR "physics in collision"
+        OR "hadron collider physics" OR blois OR pheno OR "linear collider"
+        OR confinement OR "strangeness in quark matter"
+      max_fetch: 300
+      upcoming_months: 18      # 2027 editions are what is ahead of us now
+      recent_months: 5
+      max_items: 10
+      series_hints:
+        - ICHEP
+        - Moriond
+        - Lepton Photon
+        - LHCP
+        - Large Hadron Collider Physics
+        - EPS-HEP
+        - SUSY
+        - Supersymmetry
+        - Quark Matter
+        - Deep Inelastic Scattering
+        - PANIC
+        - Higgs Hunting
+        - Physics in Collision
+        - Blois
+        - Pheno
+        - Phenomenology
+        - Linear Collider
+        - Confinement
+        - Strangeness in Quark Matter
+
+# ------------------------------------------------- conferences: Neutrino Unbound
+# The curated conference list of the field, maintained at INFN Torino
+# (nu.to.infn.it/conf/). INSPIRE knew about 3 upcoming neutrino conferences
+# when this was added; this list knew about 30, NuFact and the Erice school
+# among them. Fetched conditionally (ETag / If-Modified-Since), so the usual
+# answer is a 304 with no body rather than 800 kB every morning.
+conferences_nu_unbound:
+  enabled: true
+  timeout: 60
+  upcoming_months: 18
+  recent_months: 5
+
+# --------------------------------------------------------------------- feeds
+# Laboratory and experiment news. Every URL here is verified at fetch time;
+# one that stops responding is skipped with a WARNING and the run continues.
+# `weight` only breaks ties when trimming to max_items.
+feeds:
+  enabled: true
+  max_items: 10
+  per_feed_max: 6
+  window_days: 45
+  timeout: 20
+  sources:
+    - name: Fermilab News
+      url: https://news.fnal.gov/feed/
+      enabled: true
+      weight: 3
+    - name: Symmetry Magazine
+      url: https://www.symmetrymagazine.org/feed
+      # The URL is right, the door is shut: Cloudflare answers 403 "Just a
+      # moment…" to every non-browser client (verified 9 Aug 2026 with both
+      # the pipeline User-Agent and a browser one, over HTTP/1.1 and HTTP/2).
+      # The old FeedBurner mirror still responds but stopped in Jan 2026.
+      enabled: false
+      weight: 3
+    - name: CERN News
+      url: https://home.cern/feed/          # /api/news/news/feed is a 404
+      enabled: true
+      weight: 2
+    - name: Interactions.org
+      # /press-release/feed is a 404; rss.xml is the site feed. Low traffic:
+      # nothing published since Nov 2025, so it usually contributes nothing.
+      url: https://www.interactions.org/rss.xml
+      enabled: true
+      weight: 2
+    - name: Brookhaven Lab
+      url: https://www.bnl.gov/newsroom/feed/
+      # No RSS or Atom anywhere on bnl.gov (checked /newsroom/, news.php,
+      # rss.xml, rss.php, atom.xml and the autodiscovery <link>s, 9 Aug 2026).
+      # The URL above answers 200 but with a bespoke <summaries><record>
+      # dialect this parser deliberately does not speak.
+      enabled: false
+      weight: 1
+    - name: SLAC
+      # www6…/news/rss.xml is a 404; /rss.xml is the site-wide news feed. The
+      # per-topic feed /taxonomy/term/183/feed ("Neutrino physics") is more
+      # targeted but has not been updated since Nov 2024.
+      url: https://www6.slac.stanford.edu/rss.xml
+      enabled: true
+      weight: 1
+    - name: DUNE / LBNF
+      url: https://news.fnal.gov/tag/dune/feed/
+      enabled: true
+      weight: 2
+    - name: IceCube
+      url: https://icecube.wisc.edu/feed/
+      enabled: true
+      weight: 2
+    - name: KM3NeT
+      url: https://www.km3net.org/feed/
+      enabled: true
+      weight: 1
+    - name: Nature Physics
+      url: https://www.nature.com/nphys.rss
+      enabled: false          # mostly paywalled, off by default
+      weight: 1
+  # An item must mention one of these to be considered neutrino-adjacent.
+  keywords:
+    - neutrino
+    - neutrinos
+    - dune
+    - juno
+    - hyper-kamiokande
+    - hyper-k
+    - super-kamiokande
+    - icecube
+    - km3net
+    - katrin
+    - kamland
+    - legend
+    - nexo
+    - t2k
+    - nova
+    - sbn
+    - microboone
+    - icarus
+    - borexino
+    - snolab
+    - double beta
+    - oscillation
+
+# ----------------------------------------------------------------- synthesis
+# One AI call per day, no more. The model receives compacted records and must
+# answer with JSON citing record ids; it never emits a URL. See synthesize.py.
+synthesis:
+  enabled: true
+  model: sonnet
+  timeout: 300
+  abstract_chars: 700       # per-record truncation in the prompt
+  max_records: 90           # hard cap on records sent, keeps the call cheap
+  max_experiments: 10
+  max_theory: 6
+
+# ---------------------------------------------------------------- link check
+linkcheck:
+  enabled: true
+  timeout: 15
+  workers: 8
+  # Hosts that answer HEAD with 403 for any non-browser client. They are
+  # checked with a ranged GET instead of being trusted blindly.
+  get_only_hosts:
+    - www.nature.com
+    - link.springer.com
+    - journals.aps.org
+    - www.sciencedirect.com
+
+# -------------------------------------------------------------------- deploy
+# Deliberately absent. This site is built locally and published to GitHub
+# Pages at launch (Phase 4); the push is added to pipeline.py then, and to
+# nothing else. Until that day a run cannot reach the network to publish,
+# which is a structural guarantee rather than a promise.
+# ----------------------------------------------------------------- dashboard
+dashboard:
+  host: 127.0.0.1
+  port: 8787
+# ----------------------------------------- conferences: Indico
+# Indico's documented HTTP export API. The best DATES of any source:
+# exact ISO start and end with a timezone. No country, though — its
+# `location` is free text and mostly empty, so these events are listed
+# but do not appear on the map rather than being placed by guesswork.
+
+# The window must be ISO dates: `to=today+30d` answers HTTP 400.
+# Root categories carry seminars and standing series, hence the type
+# filter, the span cap and the keyword requirement.
+
+# Indico's robots.txt disallows /export/. That directive is aimed at
+# search-engine crawlers, not at clients of a documented API, but it is
+# real: one request per host per run, identified User-Agent, no retries.
+# Set enabled: false to stop entirely.
+conferences_indico:
+  enabled: true
+  timeout: 60
+  upcoming_months: 18
+  recent_months: 5
+  max_span_days: 60
+  sources:
+    - name: CERN — Conferences, Workshops and Events
+      host: indico.cern.ch
+      category: 6741
+      scope: neutrino
+      enabled: true
+    - name: indico.global — root category
+      host: indico.global
+      category: 0
+      scope: neutrino
+      enabled: true
+  keywords:
+    - neutrino
+    - neutrinos
+    - neutrinoless
+    - oscillation
+    - double beta
+    - sterile
+    - DUNE
+    - JUNO
+    - IceCube
+    - KM3NeT
+    - T2K
+    - Hyper-Kamiokande
+    - KATRIN
+    - leptogenesis
+# ------------------------------------------- curated arXiv digest
+# The /arxiv skill writes its digest to `dir`; this folds anything
+# newer than the last entry of site-src/data/highlights.json into the
+# site. It used to be a manual step, and the page went stale for days
+# without anything reporting it.
+
+# A digest that reads as Italian is NOT ingested: the site is English
+# throughout. Set allow_italian: true to publish one anyway.
+arxiv_digest:
+  enabled: true
+  dir: ~/Desktop/arxiv-digest
+  italian_threshold: 8
+  allow_italian: false

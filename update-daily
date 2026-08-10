@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+#
+# update-daily — refresh the automated pages of global-nu.
+#
+#   ./update-daily --dry-run     fetch and check; write nothing
+#   ./update-daily --no-ai       skip the synthesis call, keep the last narrative
+#   ./update-daily               full run: fetch, synthesise, render, build
+#
+# A thin wrapper. All the behaviour lives in tools/news/pipeline.py, so the
+# daily LaunchAgent and this command cannot drift apart: the agent runs the
+# same module with the same flags.
+#
+# Nothing here publishes. The site goes to GitHub Pages at launch (Phase 4),
+# and the push will be added to the pipeline, not to this script.
+#
+# Logs:  var/news/logs/news.log
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [ -x "$ROOT/.venv/bin/python3" ]; then
+  PYTHON="$ROOT/.venv/bin/python3"
+else
+  PYTHON="python3"
+  echo "note: project virtualenv not found, using system python3 (./setup-venv.sh)" >&2
+fi
+
+cd "$ROOT"
+exec "$PYTHON" -m tools.news.pipeline "$@"

@@ -490,3 +490,15 @@ table.data--refs td{white-space:normal;font-family:var(--body)}
 table.data--refs td.ref{min-width:20rem;color:var(--text)}
 .ref__meta{display:block;font-family:var(--mono);font-size:.72rem;
   color:var(--text-mute);margin-top:.2rem}
+
+/* ---------- automated pages: citations under an item ---------- */
+.list--news li{padding:.75rem 0}
+.list--news b{margin-bottom:.15rem}
+.cites{display:flex;flex-wrap:wrap;gap:.35rem .9rem;margin-top:.4rem;
+  font-family:var(--mono);font-size:.72rem;color:var(--text-mute)}
+.cites a{color:var(--no)}
+.cites a:hover{color:var(--text)}
+.cite{display:inline-flex;gap:.4rem;flex-wrap:wrap}
+.tile .cites{margin-top:.7rem;padding-top:.7rem;border-top:1px solid var(--line)}
+.tile p{margin:0;color:var(--text-soft);font-size:.92rem}
+.list--news li > p{margin:0 0 .1rem;color:var(--text-soft)}
