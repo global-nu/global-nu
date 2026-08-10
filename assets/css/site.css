@@ -51,8 +51,13 @@
   --text-soft:#b9c0cd;
   --text-mute:#8d95a4;
 
-  --no:#39c2ff;            /* normal ordering — used for data, never decoration */
-  --io:#c084fc;            /* inverted ordering */
+  /* Data colours. These two encode the mass ordering everywhere on the site,
+     so they are chosen by the validator, not by eye: cyan/violet failed CVD
+     separation (deutan ΔE 4.8 — a deuteranope could not tell NO from IO).
+     This pair passes every check in scripts/validate_palette.js. */
+  --no:#1f9fd4;            /* normal ordering */
+  --io:#c67f28;            /* inverted ordering */
+  /* Brand and decoration only — never used to encode a value. */
   --accent:#39c2ff;
   --accent-2:#c084fc;
   --warn:#f0a44a;          /* "generated automatically" notices */
@@ -80,7 +85,7 @@
   --text-mute:#5c6472;
 
   --no:#0b62a4;
-  --io:#6d28d9;
+  --io:#96590a;
   --accent:#0b62a4;
   --accent-2:#6d28d9;
   --warn:#8a4b06;
@@ -103,7 +108,7 @@
     --text-soft:#39414f;
     --text-mute:#5c6472;
     --no:#0b62a4;
-    --io:#6d28d9;
+    --io:#96590a;
     --accent:#0b62a4;
     --accent-2:#6d28d9;
     --warn:#8a4b06;
@@ -148,7 +153,7 @@ h1{font-weight:800;font-size:clamp(2.2rem,5.6vw,4rem);line-height:1.03}
 h2{font-weight:800;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.12}
 h3{font-weight:700;font-size:1.1rem;letter-spacing:-.02em}
 h4{font-weight:700;font-size:.98rem}
-.grad{background:linear-gradient(92deg,var(--no),var(--io));
+.grad{background:linear-gradient(92deg,var(--accent),var(--accent-2));
   -webkit-background-clip:text;background-clip:text;color:transparent}
 
 /* ---------- header ---------- */
@@ -161,7 +166,7 @@ h4{font-weight:700;font-size:.98rem}
   letter-spacing:-.035em;color:var(--text);display:flex;flex-direction:column;
   line-height:1.15}
 .brand:hover{text-decoration:none}
-.brand i{font-style:normal;background:linear-gradient(92deg,var(--no),var(--io));
+.brand i{font-style:normal;background:linear-gradient(92deg,var(--accent),var(--accent-2));
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .brand span{font-family:var(--body);font-size:.68rem;font-weight:400;
   letter-spacing:0;color:var(--text-mute)}
@@ -189,7 +194,7 @@ h4{font-weight:700;font-size:.98rem}
 /* ---------- page head / hero ---------- */
 .hero{border-bottom:1px solid var(--line);background:
   radial-gradient(80rem 30rem at 15% -10%,color-mix(in srgb,var(--no) 13%,transparent),transparent 65%),
-  radial-gradient(60rem 26rem at 85% 0%,color-mix(in srgb,var(--io) 12%,transparent),transparent 60%),
+  radial-gradient(60rem 26rem at 85% 0%,color-mix(in srgb,var(--accent-2) 12%,transparent),transparent 60%),
   var(--bg-deep)}
 .hero__in{padding-block:clamp(2.6rem,6vw,4.5rem)}
 .hero--split .hero__in{display:grid;gap:2.4rem;
@@ -249,7 +254,7 @@ h4{font-weight:700;font-size:.98rem}
   padding:1.1rem 1.2rem;position:relative;overflow:hidden}
 .section--alt .stat{background:var(--surface-2)}
 .stat::after{content:"";position:absolute;inset:auto 0 0 0;height:3px;
-  background:linear-gradient(90deg,var(--no),var(--io));opacity:.65}
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));opacity:.65}
 .stat .k{font-family:var(--mono);font-size:.75rem;color:var(--text-mute);
   display:block;margin-bottom:.45rem}
 .stat .v{font-family:var(--display);font-weight:800;font-size:2rem;
@@ -263,7 +268,7 @@ h4{font-weight:700;font-size:.98rem}
   padding:1.25rem 1.3rem}
 .section--alt .tile{background:var(--surface-2)}
 .tile .stamp{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--io);margin-bottom:.55rem;font-weight:600}
+  text-transform:uppercase;color:var(--accent-2);margin-bottom:.55rem;font-weight:600}
 .tile .stamp--no{color:var(--no)}
 .tile h3{margin:0 0 .8rem}
 .list{list-style:none;margin:0;padding:0;font-size:.9rem}
@@ -409,8 +414,8 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
 .lit-bucket--exact{border-left-color:var(--accent)}
 .lit-bucket--authors{border-left-color:var(--no)}
 .lit-bucket--authors .lit-group{color:var(--no)}
-.lit-bucket--some{border-left-color:var(--io)}
-.lit-bucket--some .lit-group{color:var(--io)}
+.lit-bucket--some{border-left-color:var(--accent-2)}
+.lit-bucket--some .lit-group{color:var(--accent-2)}
 .lit-bucket--topic{border-left-color:var(--line-strong)}
 .lit-bucket--topic .lit-group{color:var(--text-soft)}
 @media (max-width:600px){.lit-bucket{padding-left:.75rem}}
@@ -422,7 +427,7 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
   border:1px solid var(--line-strong);color:var(--text-mute)}
 .src--inspire{color:var(--no);border-color:color-mix(in srgb,var(--no) 40%,transparent)}
 .src--crossref{color:var(--src-3);border-color:color-mix(in srgb,var(--src-3) 40%,transparent)}
-.src--openalex{color:var(--io);border-color:color-mix(in srgb,var(--io) 40%,transparent)}
+.src--openalex{color:var(--accent-2);border-color:color-mix(in srgb,var(--accent-2) 40%,transparent)}
 .spin{width:.95rem;height:.95rem;border:2px solid var(--line-strong);
   border-top-color:var(--accent);border-radius:50%;display:inline-block;
   animation:spin .7s linear infinite;flex:none}
@@ -458,3 +463,16 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
   .nav a[aria-current="page"]{box-shadow:none;color:var(--accent)}
   .nav-toggle{display:block}
 }
+
+/* ---------- parameter-history panels ---------- */
+.panels{display:grid;gap:1.2rem;margin-top:1.6rem;
+  grid-template-columns:repeat(auto-fit,minmax(20rem,1fr))}
+.panels .figure{color:var(--text-soft)}          /* axes inherit currentColor */
+.figure__unit{font-family:var(--mono);font-size:.68rem;color:var(--text-mute);
+  text-transform:none;letter-spacing:0}
+.legend--chart{gap:1.4rem;font-size:.78rem}
+.legend .k-any{background:var(--text-soft)}
+table.data--refs td{white-space:normal;font-family:var(--body)}
+table.data--refs td.ref{min-width:20rem;color:var(--text)}
+.ref__meta{display:block;font-family:var(--mono);font-size:.72rem;
+  color:var(--text-mute);margin-top:.2rem}
