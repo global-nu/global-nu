@@ -60,7 +60,8 @@ const PAIRS = [
   ['--io', '--bg', 3],
   ['--io', '--surface', 3],
   ['--io', '--surface-2', 3],
-  ['--accent-2', '--bg', 3],
+  ['--accent-2', '--bg', 4.5],
+  ['--accent-2', '--surface', 4.5],
 ];
 
 function parseVars(block) {
