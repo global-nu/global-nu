@@ -17,9 +17,11 @@
   function current() {
     var explicit = root.getAttribute("data-theme");
     if (explicit === "light" || explicit === "dark") return explicit;
-    return window.matchMedia("(prefers-color-scheme: light)").matches
-      ? "light"
-      : "dark";
+    // No saved choice: fall back to the operating system. Guarded because a
+    // browser without matchMedia would otherwise throw here and take the whole
+    // toggle down with it — the theme is decorative, the button must not be.
+    var mq = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)");
+    return mq && mq.matches ? "light" : "dark";
   }
 
   function label(btn, theme) {
