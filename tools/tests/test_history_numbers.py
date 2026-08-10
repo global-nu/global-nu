@@ -39,7 +39,12 @@ def pdf_text(path: Path) -> str:
     raw = "".join((p.extract_text() or "") for p in PdfReader(str(path)).pages)
     raw = re.sub(r"(?<=\d)\s+(?=[.,]\d)", "", raw)
     raw = re.sub(r"(?<=[.,])\s+(?=\d)", "", raw)
-    return raw
+    # Papers set the minus sign as U+2212 (and sometimes an en dash); the
+    # values in history.yaml carry a plain hyphen.
+    raw = raw.replace("\u2212", "-")
+    # …and the sign is often separated from its digits by the line break the
+    # extractor turns into a space: "-2.413" is printed as "- 2.413".
+    return re.sub(r"-\s+(?=\d)", "-", raw)
 
 
 def forms(value: float, unit: str) -> list[str]:
@@ -57,6 +62,7 @@ def forms(value: float, unit: str) -> list[str]:
 def main() -> None:
     doc = yaml.safe_load(DATA.read_text(encoding="utf-8"))
     units = {k: v["unit"] for k, v in doc["meta"]["parameters"].items()}
+    units.update({k: v["unit"] for k, v in doc["meta"].get("reported", {}).items()})
 
     total = found = skipped = 0
     problems: list[str] = []

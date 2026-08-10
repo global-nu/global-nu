@@ -26,6 +26,10 @@ meta:
     sin2_th13: {label: "sin²θ₁₃",  unit: "1e-2"}
     sin2_th23: {label: "sin²θ₂₃",  unit: "1e-1"}
     delta_pi:  {label: "δ/π",      unit: "1"}
+  # As reported by the other groups, before conversion to our Dm2.
+  reported:
+    Dm2_3l:     {label: "Δm²₃ℓ",   unit: "1e-3 eV²"}
+    abs_Dm2_31: {label: "|Δm²₃₁|", unit: "1e-3 eV²"}
 
 releases:
 
@@ -253,3 +257,153 @@ releases:
     values:
       dm2:       {"any": {best: 7.48,  s1: [7.39, 7.58],   s3: [7.21, 7.78]}}
       sin2_th12: {"any": {best: 3.085, s1: [3.010, 3.156], s3: [2.866, 3.303]}}
+
+  # ------------------------------------------------------------------ NuFit --
+  # NuFit quotes Dm2_3l, defined as Dm2_31 > 0 for NO and Dm2_32 < 0 for IO,
+  # and prints delta_CP in degrees only, so delta is not recorded for these
+  # entries. Where the fit comes in variants, the one including Super-K
+  # atmospheric data is taken, because that is what our own analysis includes.
+  # Values below are as published; the conversion to our Dm2 is done by
+  # tools/make_history.py and stated on the page.
+
+  - group: nufit
+    year: 2012
+    arxiv: "1209.3023"
+    journal: "JHEP 12 (2012) 123"
+    title: "Global fit to three neutrino mixing: critical look at present precision"
+    convention: "Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)"
+    reported_splitting: Dm2_3l
+    variant: "Free Fluxes + RSBL"
+    table: "Table 1, first column"
+    note: >-
+      The sin²θ₂₃ fit is bimodal in this release: the table gives minima at
+      4.13 and 5.94 (in units of 1e-1). The first is recorded here; the 3σ
+      range spans both.
+    values:
+      dm2:       {"any": {best: 7.50, s3: [7.00, 8.09]}}
+      sin2_th12: {"any": {best: 3.02, s3: [2.67, 3.44]}}
+      sin2_th13: {"any": {best: 2.27, s3: [1.56, 2.99]}}
+      sin2_th23: {"any": {best: 4.13, s3: [3.42, 6.67]}}
+      Dm2_3l:
+        "no": {best: 2.473, s3: [2.276, 2.695]}
+        "io": {best: -2.427, s3: [-2.649, -2.242]}
+
+  - group: nufit
+    year: 2018
+    arxiv: "1811.05487"
+    journal: "JHEP 01 (2019) 106"
+    title: "Global analysis of three-flavour neutrino oscillations: synergies and tensions"
+    convention: "Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)"
+    reported_splitting: Dm2_3l
+    variant: "with SK-atm"
+    table: "Table 1, lower block"
+    values:
+      dm2:       {"any": {best: 7.39, s3: [6.79, 8.01]}}
+      sin2_th12: {"any": {best: 3.10, s3: [2.75, 3.50]}}
+      sin2_th13:
+        "no": {best: 2.240, s3: [2.044, 2.437]}
+        "io": {best: 2.263, s3: [2.067, 2.461]}
+      sin2_th23:
+        "no": {best: 5.82, s3: [4.28, 6.24]}
+        "io": {best: 5.82, s3: [4.33, 6.23]}
+      Dm2_3l:
+        "no": {best: 2.525, s3: [2.431, 2.622]}
+        "io": {best: -2.512, s3: [-2.606, -2.413]}
+
+  - group: nufit
+    year: 2020
+    arxiv: "2007.14792"
+    journal: "JHEP 09 (2020) 178"
+    title: "The fate of hints: updated global analysis of three-flavor neutrino oscillations"
+    convention: "Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)"
+    reported_splitting: Dm2_3l
+    variant: "with SK atmospheric data"
+    table: "Table 3, lower block"
+    values:
+      dm2:       {"any": {best: 7.42, s3: [6.82, 8.04]}}
+      sin2_th12: {"any": {best: 3.04, s3: [2.69, 3.43]}}
+      sin2_th13:
+        "no": {best: 2.219, s3: [2.032, 2.410]}
+        "io": {best: 2.238, s3: [2.052, 2.428]}
+      sin2_th23:
+        "no": {best: 5.73, s3: [4.15, 6.16]}
+        "io": {best: 5.75, s3: [4.19, 6.17]}
+      Dm2_3l:
+        "no": {best: 2.517, s3: [2.435, 2.598]}
+        "io": {best: -2.498, s3: [-2.581, -2.414]}
+
+  - group: nufit
+    year: 2024
+    arxiv: "2410.05380"
+    journal: "JHEP 12 (2024) 216"
+    title: "NuFit-6.0: updated global analysis of three-flavor neutrino oscillations"
+    convention: "Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)"
+    reported_splitting: Dm2_3l
+    variant: "IC24, with SK atmospheric data"
+    table: "Table 1, lower block"
+    values:
+      dm2:       {"any": {best: 7.49, s3: [6.92, 8.05]}}
+      sin2_th12: {"any": {best: 3.08, s3: [2.75, 3.45]}}
+      sin2_th13:
+        "no": {best: 2.215, s3: [2.030, 2.388]}
+        "io": {best: 2.231, s3: [2.060, 2.409]}
+      sin2_th23:
+        "no": {best: 4.70, s3: [4.35, 5.85]}
+        "io": {best: 5.50, s3: [4.40, 5.84]}
+      Dm2_3l:
+        "no": {best: 2.513, s3: [2.451, 2.578]}
+        "io": {best: -2.484, s3: [-2.547, -2.421]}
+
+  # --------------------------------------------------------------- Valencia --
+  # Valencia quotes |Dm2_31| for BOTH orderings — not Dm2_32 for IO as NuFit
+  # does. The conversion to our Dm2 therefore carries the opposite sign in the
+  # inverted case; that difference is the reason this file records what each
+  # paper printed rather than a number already converted by hand.
+
+  - group: valencia
+    year: 2018
+    arxiv: "1708.01186"
+    journal: "Phys. Lett. B 782, 633 (2018)"
+    title: "Status of neutrino oscillations 2018: 3σ hint for normal mass ordering and improved CP sensitivity"
+    convention: "|Dm2_31| quoted for both orderings"
+    reported_splitting: abs_Dm2_31
+    table: "Table I"
+    values:
+      dm2:       {"any": {best: 7.55, s3: [7.05, 8.14]}}
+      sin2_th12: {"any": {best: 3.20, s3: [2.73, 3.79]}}
+      sin2_th13:
+        "no": {best: 2.160, s3: [1.96, 2.41]}
+        "io": {best: 2.220, s3: [1.99, 2.44]}
+      sin2_th23:
+        "no": {best: 5.47, s3: [4.45, 5.99]}
+        "io": {best: 5.51, s3: [4.53, 5.98]}
+      delta_pi:
+        "no": {best: 1.21, s3: [0.87, 1.94]}
+        "io": {best: 1.56, s3: [1.12, 1.94]}
+      abs_Dm2_31:
+        "no": {best: 2.50, s3: [2.41, 2.60]}
+        "io": {best: 2.42, s3: [2.31, 2.51]}
+
+  - group: valencia
+    year: 2020
+    arxiv: "2006.11237"
+    journal: "JHEP 02 (2021) 071"
+    title: "2020 global reassessment of the neutrino oscillation picture"
+    convention: "|Dm2_31| quoted for both orderings"
+    reported_splitting: abs_Dm2_31
+    table: "Table III"
+    values:
+      dm2:       {"any": {best: 7.50, s3: [6.94, 8.14]}}
+      sin2_th12: {"any": {best: 3.18, s3: [2.71, 3.69]}}
+      sin2_th13:
+        "no": {best: 2.200, s3: [2.000, 2.405]}
+        "io": {best: 2.225, s3: [2.018, 2.424]}
+      sin2_th23:
+        "no": {best: 5.74, s3: [4.34, 6.10]}
+        "io": {best: 5.78, s3: [4.33, 6.08]}
+      delta_pi:
+        "no": {best: 1.08, s3: [0.71, 1.99]}
+        "io": {best: 1.58, s3: [1.11, 1.96]}
+      abs_Dm2_31:
+        "no": {best: 2.55, s3: [2.47, 2.63]}
+        "io": {best: 2.45, s3: [2.37, 2.53]}

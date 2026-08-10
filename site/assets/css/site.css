@@ -57,6 +57,11 @@
      This pair passes every check in scripts/validate_palette.js. */
   --no:#1f9fd4;            /* normal ordering */
   --io:#c67f28;            /* inverted ordering */
+  /* Groups, on the comparison panels: a different job from the orderings
+     above, so a different set of tokens. Validated as a categorical trio. */
+  --grp-bari:#1f9fd4;
+  --grp-nufit:#c67f28;
+  --grp-valencia:#b06fc4;
   /* Brand and decoration only — never used to encode a value. */
   --accent:#39c2ff;
   --accent-2:#c084fc;
@@ -86,6 +91,9 @@
 
   --no:#0b62a4;
   --io:#96590a;
+  --grp-bari:#0b62a4;
+  --grp-nufit:#96590a;
+  --grp-valencia:#5b53b8;
   --accent:#0b62a4;
   --accent-2:#6d28d9;
   --warn:#8a4b06;
@@ -109,6 +117,9 @@
     --text-mute:#5c6472;
     --no:#0b62a4;
     --io:#96590a;
+    --grp-bari:#0b62a4;
+    --grp-nufit:#96590a;
+    --grp-valencia:#5b53b8;
     --accent:#0b62a4;
     --accent-2:#6d28d9;
     --warn:#8a4b06;
@@ -472,6 +483,9 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
   text-transform:none;letter-spacing:0}
 .legend--chart{gap:1.4rem;font-size:.78rem}
 .legend .k-any{background:var(--text-soft)}
+.legend .k-bari{background:var(--grp-bari)}
+.legend .k-nufit{background:var(--grp-nufit)}
+.legend .k-valencia{background:var(--grp-valencia)}
 table.data--refs td{white-space:normal;font-family:var(--body)}
 table.data--refs td.ref{min-width:20rem;color:var(--text)}
 .ref__meta{display:block;font-family:var(--mono);font-size:.72rem;
