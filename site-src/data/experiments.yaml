@@ -1,0 +1,110 @@
+# The experiments shown on the world map.
+#
+# Each entry names the place in words; the coordinates are NOT typed here.
+# tools/make_map.py resolves each `city`/`country` pair through OpenStreetMap
+# and records what came back — the returned display name and the coordinates —
+# in var/news/geocache.json, so every dot on the map can be traced to a lookup
+# rather than to somebody's recollection. An entry that cannot be located is
+# left off the map instead of being placed approximately.
+#
+# `kind` picks the colour, and matches the grouping used on the resources page.
+# `url` must be the same link the resources page uses, so the two cannot drift.
+
+experiments:
+  - name: JUNO
+    kind: reactor
+    city: Jiangmen
+    country: CN
+    note: medium-baseline reactor
+    url: https://juno.ihep.cas.cn/
+
+  - name: Double Chooz
+    kind: reactor
+    city: Chooz
+    country: FR
+    note: short-baseline reactor
+    url: https://www.dchooz.org/
+
+  - name: SNO+
+    kind: reactor
+    city: Sudbury
+    country: CA
+    note: reactor and 0νββ, at SNOLAB
+    url: https://snoplus.phy.queensu.ca/
+
+  - name: DUNE
+    kind: accelerator
+    city: Lead
+    country: US
+    note: far detector at SURF, beam from Fermilab
+    url: https://www.dunescience.org/
+
+  - name: Hyper-Kamiokande
+    kind: accelerator
+    city: Hida
+    country: JP
+    note: beam from J-PARC
+    url: https://hyperk.org/
+
+  - name: T2K
+    kind: accelerator
+    city: Tokai
+    country: JP
+    note: beam source, far detector at Kamioka
+    url: https://t2k-experiment.org/
+
+  - name: NOvA
+    kind: accelerator
+    city: Ash River
+    country: US
+    note: far detector, beam from Fermilab
+    url: https://novaexperiment.fnal.gov/
+
+  - name: Super-Kamiokande
+    kind: natural
+    city: Hida
+    country: JP
+    note: atmospheric and solar
+    url: https://www-sk.icrr.u-tokyo.ac.jp/en/sk/
+
+  - name: IceCube
+    kind: natural
+    city: South Pole
+    country: AQ
+    note: atmospheric and astrophysical
+    url: https://icecube.wisc.edu/
+
+  - name: KM3NeT
+    kind: natural
+    city: Toulon
+    country: FR
+    note: ORCA site; ARCA off Sicily
+    url: https://www.km3net.org/
+
+  - name: Borexino
+    kind: natural
+    city: Assergi
+    country: IT
+    note: solar, at Gran Sasso
+    url: https://borex.lngs.infn.it/
+
+  - name: KATRIN
+    kind: mass
+    city: Karlsruhe
+    country: DE
+    note: β-decay endpoint
+    url: https://www.katrin.kit.edu/
+
+  - name: LEGEND
+    kind: mass
+    city: Assergi
+    country: IT
+    note: 0νββ in ⁷⁶Ge, at Gran Sasso
+    url: https://legend-exp.org/
+
+  - name: nEXO
+    kind: mass
+    city: Sudbury
+    country: CA
+    note: 0νββ in ¹³⁶Xe, at SNOLAB
+    url: https://nexo.llnl.gov/

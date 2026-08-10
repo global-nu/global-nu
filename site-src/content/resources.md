@@ -17,9 +17,23 @@ katex: false
   </div>
 </section>
 
-::: section
+::: section glow
 
 <div class="section-head"><h2>Experiments</h2><p>oscillation, mass and 0νββ</p></div>
+
+<figure class="figure figure--wide reveal" style="margin-bottom:2rem">
+<div class="figure__head">
+  <h3>Where they are</h3>
+  <p>13 sites · hover a marker for the place</p>
+</div>
+<!--include:map-experiments-->
+<!--include:map-experiments-legend-->
+<p class="cap">Coastlines from Natural Earth (public domain). Each marker is
+placed by looking its site up in OpenStreetMap, never by a typed coordinate; a
+site that cannot be resolved is left off rather than approximated. IceCube is
+not shown: it sits at the South Pole, below the frame this projection can
+usefully draw.</p>
+</figure>
 
 <div class="tiles reveal">
 

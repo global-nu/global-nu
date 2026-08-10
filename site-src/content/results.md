@@ -89,6 +89,35 @@ published table; nothing on this page is estimated or rounded further.</caption>
 
 <figure class="figure figure--wide reveal" style="margin-top:2rem">
 <div class="figure__head">
+  <h3>Δχ² projections, all data included</h3>
+  <p>Fig. 3 of the paper · NO in blue, IO in red</p>
+</div>
+<img src="images/prd111-093006-fig3-global-projections.png" alt="Six panels
+showing Nσ as a function of δm², |Δm²|, δ/π, sin²θ₁₂, sin²θ₁₃ and sin²θ₂₃, for
+normal and inverted ordering, with all oscillation data included." loading="lazy">
+<p class="cap">Figure 3 from F. Capozzi, W. Giarè, E. Lisi, A. Marrone,
+A. Melchiorri and A. Palazzo, <em>Neutrino masses and mixing: Entering the era
+of subpercent precision</em>, Phys. Rev. D <strong>111</strong>, 093006 (2025),
+<a href="https://doi.org/10.1103/PhysRevD.111.093006">doi:10.1103/PhysRevD.111.093006</a>.
+Published by the American Physical Society under the terms of the
+<a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons
+Attribution 4.0 International</a> license; reproduced here under those terms.</p>
+</figure>
+
+<figure class="figure figure--wide reveal" style="margin-top:1.6rem">
+<div class="figure__head">
+  <h3>Where θ₂₃ and θ₁₃ meet</h3>
+  <p>Fig. 4 of the paper · increasingly rich datasets</p>
+</div>
+<img src="images/prd111-093006-fig4-th23-th13.png" alt="Regions allowed in the
+sin²θ₂₃–sin²θ₁₃ plane for increasingly rich datasets, in normal ordering (top)
+and inverted ordering (bottom)." loading="lazy">
+<p class="cap">Figure 4 from the same paper, same citation and licence as
+above.</p>
+</figure>
+
+<figure class="figure figure--wide reveal" style="margin-top:1.6rem">
+<div class="figure__head">
   <h3>The same table, seen at a glance</h3>
   <p>best fit · 1σ · 3σ · each row on its own scale</p>
 </div>
