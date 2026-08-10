@@ -641,3 +641,21 @@ a.card:hover .card__go{color:var(--text)}
   .card,.tile,.strip a{transition:none}
   a.card:hover,.tile:hover,.strip a:hover{transform:none}
 }
+
+/* ---------- photograph gallery ---------- */
+.shots{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));
+  margin-top:1.6rem}
+.shot{margin:0;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);
+  display:flex;flex-direction:column}
+.section--alt .shot{background:var(--bg)}
+.shot img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;
+  background:var(--surface-2)}
+.shot figcaption{padding:.85rem 1rem 1rem;font-size:.86rem;color:var(--text-soft)}
+.shot figcaption b{display:block;color:var(--text);font-family:var(--display);
+  letter-spacing:-.01em;margin-bottom:.15rem}
+.shot__credit{display:block;margin-top:.55rem;padding-top:.55rem;
+  border-top:1px solid var(--line);font-family:var(--mono);font-size:.68rem;
+  color:var(--text-mute);line-height:1.5}
+.shot__credit a{color:var(--text-mute);text-decoration:underline}
+.shot__credit a:hover{color:var(--accent)}

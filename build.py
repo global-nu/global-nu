@@ -425,7 +425,10 @@ def build_pages(cfg: dict) -> list[str]:
         # Markdown: the SVG is built from the data files by
         # tools/make_figures.py, so a page can never drift from the numbers.
         def _include(m: re.Match) -> str:
-            src = SRC / "data" / "figures" / f"{m.group(1)}.svg"
+            base = SRC / "data" / "figures" / m.group(1)
+            src = next((p for p in (base.with_suffix(".svg"),
+                                    base.with_suffix(".html")) if p.exists()),
+                       base.with_suffix(".svg"))
             if not src.exists():
                 print(f"    ! missing figure: {src.name} (run tools/make_figures.py)")
                 return ""

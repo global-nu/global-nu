@@ -35,6 +35,18 @@ not shown: it sits at the South Pole, below the frame this projection can
 usefully draw.</p>
 </figure>
 
+<figure class="figure figure--wide reveal" style="margin-bottom:2rem;padding-bottom:1.4rem">
+<div class="figure__head">
+  <h3>What they look like</h3>
+  <p>freely licensed photographs · credit under each</p>
+</div>
+<!--include:gallery-->
+<p class="cap">Only images whose licence permits reuse are shown, and each
+carries its author, its licence and a link to its page on Wikimedia Commons —
+the terms under which it may be here. Pictures whose licence could not be
+established were not downloaded.</p>
+</figure>
+
 <div class="tiles reveal">
 
 <article class="tile">

@@ -1,0 +1,411 @@
+# Photographs from Wikimedia Commons, with the provenance the credit line is
+# built from. Only licences permitting reuse are accepted, and that check
+# lives in tools/fetch_commons_images.py, not here.
+#
+# status: keep  looked at, depicts what it claims, published with its credit
+#         drop  looked at and rejected — the reason is recorded
+photos:
+- subject: JUNO
+  title: File:JUNO Detector with labels.jpg
+  page: https://commons.wikimedia.org/wiki/File%3AJUNO_Detector_with_labels.jpg
+  thumb: https://upload.wikimedia.org/wikipedia/commons/3/31/JUNO_Detector_with_labels.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
+  author: 'JUNO Collaboration: Angel Abusleme, Thomas Adam, Shakeel Ahmad, Rizwan Ahmed, Sebastiano Aiello,
+    Muhammad Akram, Abid Aleem, Tsagkarakis Alexandros, Fengpeng An, Qi An, Giuseppe Andronico, Nikolay
+    Anfimov, Vito Antonelli, Tatiana Antoshkina, Burin Asavapibhop, João Pedro Athayde Marcondes de André,
+    Didier Auguste, Weidong Bai, Nikita Balashov, Wander Baldini, Andrea Barresi, Davide Basilico, Eric
+    Baussan, Marco Bellato, Antonio Bergnoli, Thilo Birkenfeld, Sylvie Blin, David Blum, Simon Blyth,
+    Anastasia Bolshakova, Mathieu Bongrand, Clément Bordereau, Dominique Breton, Augusto Brigatti, Riccardo
+    Brugnera, Riccardo Bruno, Antonio Budano, Jose Busto, Ilya Butorov, Anatael Cabrera, Barbara Caccianiga,
+    Hao Cai, Xiao Cai, Yanke Cai, Zhiyan Cai, Riccardo Callegari, Antonio Cammi, Agustin Campeny, Chuanya
+    Cao, Guofu Cao, Jun Cao, Rossella Caruso, Cédric Cerna, Chi Chan, Jinfan Chang, Yun Chang, Guoming
+    Chen, Pingping Chen, Po-An Chen, Shaomin Chen, Xurong Chen, Yixue Chen, Yu Chen, Zhiyuan Chen, Zikang
+    Chen, Jie Cheng, Yaping Cheng, Yu Chin Cheng, Alexey Chetverikov, Davide Chiesa, Pietro Chimenti,
+    Artem Chukanov, Gérard Claverie, Catia Clementi, Barbara Clerbaux, Selma Conforti Di Lorenzo, Daniele
+    Corti, Flavio Dal Corso, Olivia Dalager, Christophe De La Taille, Zhi Deng, Ziyan Deng, Wilfried Depnering,
+    Marco Diaz, Xuefeng Ding, Yayun Ding, Bayu Dirgantara, Sergey Dmitrievsky, Tadeas Dohnal, Dmitry Dolzhikov,
+    Georgy Donchenko, Jianmeng Dong, Evgeny Doroshkevich, Marcos Dracos, Frédéric Druillole, Ran Du, Shuxian
+    Du, Stefano Dusini, Martin Dvorak , Timo Enqvist, Heike Enzmann, Andrea Fabbri, Donghua Fan, Lei Fan,
+    Jian Fang, Wenxing Fang, Marco Fargetta, Dmitry Fedoseev, Zhengyong Fei, Li-Cheng Feng, Qichun Feng,
+    Richard Ford, Amélie Fournier, Haonan Gan, Feng Gao, Alberto Garfagnini, Arsenii Gavrikov, Marco Giammarchi,
+    Nunzio Giudice, Maxim Gonchar, Guanghua Gong, Hui Gong, Yuri Gornushkin, Alexandre Göttel, Marco Grassi,
+    Vasily Gromov, Minghao Gu, Xiaofei Gu, Yu Gu, Mengyun Guan, Yuduo Guan, Nunzio Guardone, Cong Guo,
+    Jingyuan Guo, Wanlei Guo, Xinheng Guo, Yuhang Guo, Paul Hackspacher, Caren Hagner, Ran Han, Yang Han,
+    Miao He, Wei He, Tobias Heinz, Patrick Hellmuth, Yuekun Heng, Rafael Herrera, YuenKeung Hor, Shaojing
+    Hou, Yee Hsiung, Bei-Zhen Hu, Hang Hu, Jianrun Hu, Jun Hu, Shouyang Hu, Tao Hu, Yuxiang Hu, Zhuojun
+    Hu, Guihong Huang, Hanxiong Huang, Kaixuan Huang, Wenhao Huang, Xin Huang, Xingtao Huang, Yongbo Huang,
+    Jiaqi Hui, Lei Huo, Wenju Huo, Cédric Huss, Safeer Hussain, Ara Ioannisian, Roberto Isocrate, Beatrice
+    Jelmini, Ignacio Jeria, Xiaolu Ji, Huihui Jia, Junji Jia, Siyu Jian, Di Jiang, Wei Jiang, Xiaoshan
+    Jiang, Xiaoping Jing, Cécile Jollet, Jari Joutsenvaara, Leonidas Kalousis, Philipp Kampmann, Li Kang,
+    Rebin Karaparambil, Narine Kazarian, Amina Khatun, Khanchai Khosonthongkee, Denis Korablev, Konstantin
+    Kouzakov, Alexey Krasnoperov, Nikolay Kutovskiy, Pasi Kuusiniemi, Tobias Lachenmaier, Cecilia Landini,
+    Sébastien Leblanc, Victor Lebrin, Frederic Lefevre, Ruiting Lei, Rupert Leitner, Jason Leung, Daozheng
+    Li, Demin Li, Fei Li, Fule Li, Gaosong Li, Huiling Li, Mengzhao Li, Min Li, Nan Li, Nan Li, Qingjiang
+    Li, Ruhui Li, Rui Li, Shanfeng Li, Tao Li, Teng Li, Weidong Li, Weiguo Li, Xiaomei Li, Xiaonan Li,
+    Xinglong Li, Yi Li, Yichen Li, Yufeng Li, Zepeng Li, Zhaohan Li, Zhibing Li, Ziyuan Li, Zonghai Li,
+    Hao Liang, Hao Liang, Jiajun Liao, Ayut Limphirat, Guey-Lin Lin, Shengxin Lin, Tao Lin, Jiajie Ling,
+    Ivano Lippi, Fang Liu, Haidong Liu, Haotian Liu, Hongbang Liu, Hongjuan Liu, Hongtao Liu, Hui Liu,
+    Jianglai Liu, Jinchang Liu, Min Liu, Qian Liu, Qin Liu, Runxuan Liu, Shubin Liu, Shulin Liu, Xiaowei
+    Liu, Xiwen Liu, Yan Liu, Yunzhe Liu, Alexey Lokhov, Paolo Lombardi, Claudio Lombardo, Kai Loo, Chuan
+    Lu, Haoqi Lu, Jingbin Lu, Junguang Lu, Shuxiang Lu, Bayarto Lubsandorzhiev, Sultim Lubsandorzhiev,
+    Livia Ludhova, Arslan Lukanov, Daibin Luo, Fengjiao Luo, Guang Luo, Shu Luo, Wuming Luo, Xiaojie Luo,
+    Vladimir Lyashuk, Bangzheng Ma, Bing Ma, Qiumei Ma, Si Ma, Xiaoyan Ma, Xubo Ma, Jihane Maalmi, Jingyu
+    Mai, Yury Malyshkin, Roberto Carlos Mandujano, Fabio Mantovani, Francesco Manzali, Xin Mao, Yajun
+    Mao, Stefano M. Mari, Filippo Marini, Cristina Martellini, Gisele Martin-Chassard, Agnese Martini,
+    Matthias Mayer, Davit Mayilyan, Ints Mednieks, Artur Meinusch, Yue Meng, Anselmo Meregaglia, Emanuela
+    Meroni, David Meyhöfer, Mauro Mezzetto, Jonathan Miller, Lino Miramonti, Marta Colomer Molla, Paolo
+    Montini, Michele Montuschi, Axel Müller, Massimiliano Nastasi, Dmitry V. Naumov, Elena Naumova, Diana
+    Navas-Nicolas, Igor Nemchenok, Minh Thuan Nguyen Thi, Feipeng Ning, Zhe Ning, Hiroshi Nunokawa, Lothar
+    Oberauer, Juan Pedro Ochoa-Ricoux, Alexander Olshevskiy, Domizia Orestano, Fausto Ortica, Rainer Othegraven,
+    Alessandro Paoloni, Sergio Parmeggiano, Yatian Pei, Luca Pelicci, Nicomede Pelliccia, Anguo Peng,
+    Haiping Peng, Yu Peng, Zhaoyuan Peng, Frédéric Perrot, Pierre-Alexandre Petitjean, Fabrizio Petrucci,
+    Oliver Pilarczyk, Luis Felipe Piñeres Rico, Artyom Popov, Pascal Poussot, Ezio Previtali, Fazhi Qi,
+    Ming Qi, Sen Qian, Xiaohui Qian, Zhen Qian, Hao Qiao, Zhonghua Qin, Shoukang Qiu, Gioacchino Ranucci,
+    Neill Raper, Reem Rasheed, Alessandra Re, Henning Rebber, Abdel Rebii, Mariia Redchuk, Bin Ren, Jie
+    Ren, Barbara Ricci, Mariam Rifai, Mathieu Roche, Narongkiat Rodphai, Aldo Romani, Bedřich Roskovec,
+    Xichao Ruan, Arseniy Rybnikov, Andrey Sadovsky, Paolo Saggese, Simone Sanfilippo, Anut Sangka, Utane
+    Sawangwit, Julia Sawatzki, Michaela Schever, Cédric Schwab, Konstantin Schweizer, Alexandr Selyunin,
+    Andrea Serafini, Giulio Settanta, Mariangela Settimo, Zhuang Shao, Vladislav Sharov, Arina Shaydurova,
+    Jingyan Shi, Yanan Shi, Vitaly Shutov, Andrey Sidorenkov, Fedor Šimkovic, Chiara Sirignano, Jaruchit
+    Siripak, Monica Sisti, Maciej Slupecki, Mikhail Smirnov, Oleg Smirnov, Thiago Sogo-Bezerra, Sergey
+    Sokolov, Julanan Songwadhana, Boonrucksar Soonthornthum, Albert Sotnikov, Ondřej Šrámek, Warintorn
+    Sreethawong, Achim Stahl, Luca Stanco, Konstantin Stankevich, Dušan Štefánik, Hans Steiger, Jochen
+    Steinmann, Tobias Sterr, Matthias Raphael Stock, Virginia Strati, Alexander Studenikin, Jun Su, Shifeng
+    Sun, Xilei Sun, Yongjie Sun, Yongzhao Sun, Zhengyang Sun, Narumon Suwonjandee, Michal Szelezniak,
+    Jian Tang, Qiang Tang, Quan Tang, Xiao Tang, Vidhya Thara Hariharan, Eric Theisen, Alexander Tietzsch,
+    Igor Tkachev, Tomas Tmej, Marco Danilo Claudio Torri, Konstantin Treskov, Andrea Triossi, Giancarlo
+    Troni, Wladyslaw Trzaska, Cristina Tuve, Nikita Ushakov, Vadim Vedin, Giuseppe Verde, Maxim Vialkov,
+    Benoit Viaud, Cornelius Moritz Vollbrecht, Cristina Volpe, Katharina Von Sturm, Vit Vorobel, Dmitriy
+    Voronin, Lucia Votano, Pablo Walker, Caishen Wang, Chung-Hsiang Wang, En Wang, Guoli Wang, Jian Wang,
+    Jun Wang, Lu Wang, Meifen Wang, Meng Wang, Meng Wang, Ruiguang Wang, Siguang Wang, Wei Wang, Wei Wang,
+    Wenshuai Wang, Xi Wang, Xiangyue Wang, Yangfu Wang, Yaoguang Wang, Yi Wang, Yi Wang, Yifang Wang,
+    Yuanqing Wang, Yuman Wang, Zhe Wang, Zheng Wang, Zhimin Wang, Zongyi Wang, Apimook Watcharangkool,
+    Wei Wei, Wei Wei, Wenlu Wei, Yadong Wei, Kaile Wen, Liangjian Wen, Christopher Wiebusch, Steven Chan-Fai
+    Wong, Bjoern Wonsak, Diru Wu, Qun Wu, Zhi Wu, Michael Wurm, Jacques Wurtz, Christian Wysotzki, Yufei
+    Xi, Dongmei Xia, Xiang Xiao, Xiaochuan Xie, Yuguang Xie, Zhangquan Xie, Zhao Xin, Zhizhong Xing, Benda
+    Xu, Cheng Xu, Donglian Xu, Fanrong Xu, Hangkun Xu, Jilei Xu, Jing Xu, Meihang Xu, Yin Xu, Baojun Yan,
+    Taylor Yan, Wenqi Yan, Xiongbo Yan, Yupeng Yan, Changgen Yang, Chengfeng Yang, Huan Yang, Jie Yang,
+    Lei Yang, Xiaoyu Yang, Yifan Yang, Yifan Yang, Haifeng Yao, Jiaxuan Ye, Mei Ye, Ziping Ye, Frédéric
+    Yermia, Na Yin, Zhengyun You, Boxiang Yu, Chiye Yu, Chunxu Yu, Hongzhao Yu, Miao Yu, Xianghui Yu,
+    Zeyuan Yu, Zezhong Yu, Cenxi Yuan, Chengzhuo Yuan, Ying Yuan, Zhenxiong Yuan, Baobiao Yue, Noman Zafar,
+    Vitalii Zavadskyi, Shan Zeng, Tingxuan Zeng, Yuda Zeng, Liang Zhan, Aiqiang Zhang, Bin Zhang, Binting
+    Zhang, Feiyang Zhang, Guoqing Zhang, Honghao Zhang, Jialiang Zhang, Jiawen Zhang, Jie Zhang, Jin Zhang,
+    Jingbo Zhang, Jinnan Zhang, Mohan Zhang, Peng Zhang, Qingmin Zhang, Shiqi Zhang, Shu Zhang, Tao Zhang,
+    Xiaomei Zhang, Xin Zhang, Xuantong Zhang, Xueyao Zhang, Yinhong Zhang, Yiyu Zhang, Yongpeng Zhang,
+    Yu Zhang, Yuanyuan Zhang, Yumei Zhang, Zhenyu Zhang, Zhijian Zhang, Fengyi Zhao, Jie Zhao, Rong Zhao,
+    Runze Zhao, Shujun Zhao, Dongqin Zheng, Hua Zheng, Yangheng Zheng, Weirong Zhong, Jing Zhou, Li Zhou,
+    Nan Zhou, Shun Zhou, Tong Zhou, Xiang Zhou, Jiang Zhu, Jingsen Zhu, Kangfu Zhu, Kejun Zhu, Zhihang
+    Zhu, Bo Zhuang, Honglin Zhuang, Liang Zong, Jiaheng Zou'
+  credit: 'https://arxiv.org/abs/2204.13249: Sub-percent Precision Measurement of Neutrino Oscillation'
+  licence: CC BY 4.0
+  licence_url: https://creativecommons.org/licenses/by/4.0
+  accepted: true
+  reason: CC BY 4.0
+  status: keep
+  file: commons-juno-detector-with-labels.jpg
+  caption: The JUNO detector, labelled
+- subject: JUNO
+  title: File:Schematic of the main JUNO detector.png
+  page: https://commons.wikimedia.org/wiki/File%3ASchematic_of_the_main_JUNO_detector.png
+  thumb: https://upload.wikimedia.org/wikipedia/commons/0/03/Schematic_of_the_main_JUNO_detector.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
+  author: 'JUNO Collaboration: Angel Abusleme, Thomas Adam, Shakeel Ahmad, Rizwan Ahmed, Sebastiano Aiello,
+    Muhammad Akram, Abid Aleem, Tsagkarakis Alexandros, Fengpeng An, Qi An, Giuseppe Andronico, Nikolay
+    Anfimov, Vito Antonelli, Tatiana Antoshkina, Burin Asavapibhop, João Pedro Athayde Marcondes de André,
+    Didier Auguste, Weidong Bai, Nikita Balashov, Wander Baldini, Andrea Barresi, Davide Basilico, Eric
+    Baussan, Marco Bellato, Antonio Bergnoli, Thilo Birkenfeld, Sylvie Blin, David Blum, Simon Blyth,
+    Anastasia Bolshakova, Mathieu Bongrand, Clément Bordereau, Dominique Breton, Augusto Brigatti, Riccardo
+    Brugnera, Riccardo Bruno, Antonio Budano, Jose Busto, Ilya Butorov, Anatael Cabrera, Barbara Caccianiga,
+    Hao Cai, Xiao Cai, Yanke Cai, Zhiyan Cai, Riccardo Callegari, Antonio Cammi, Agustin Campeny, Chuanya
+    Cao, Guofu Cao, Jun Cao, Rossella Caruso, Cédric Cerna, Chi Chan, Jinfan Chang, Yun Chang, Guoming
+    Chen, Pingping Chen, Po-An Chen, Shaomin Chen, Xurong Chen, Yixue Chen, Yu Chen, Zhiyuan Chen, Zikang
+    Chen, Jie Cheng, Yaping Cheng, Yu Chin Cheng, Alexey Chetverikov, Davide Chiesa, Pietro Chimenti,
+    Artem Chukanov, Gérard Claverie, Catia Clementi, Barbara Clerbaux, Selma Conforti Di Lorenzo, Daniele
+    Corti, Flavio Dal Corso, Olivia Dalager, Christophe De La Taille, Zhi Deng, Ziyan Deng, Wilfried Depnering,
+    Marco Diaz, Xuefeng Ding, Yayun Ding, Bayu Dirgantara, Sergey Dmitrievsky, Tadeas Dohnal, Dmitry Dolzhikov,
+    Georgy Donchenko, Jianmeng Dong, Evgeny Doroshkevich, Marcos Dracos, Frédéric Druillole, Ran Du, Shuxian
+    Du, Stefano Dusini, Martin Dvorak et al. (506 additional authors not shown)'
+  credit: https://arxiv.org/abs/2204.13249
+  licence: CC BY 4.0
+  licence_url: https://creativecommons.org/licenses/by/4.0
+  accepted: true
+  reason: CC BY 4.0
+  status: drop
+  file: commons-schematic-of-the-main-juno-detector.jpg
+  drop_reason: not a picture of the thing it was searched for
+- subject: DUNE
+  title: File:Deep Underground Neutrino Experiment Crew.jpg
+  page: https://commons.wikimedia.org/wiki/File%3ADeep_Underground_Neutrino_Experiment_Crew.jpg
+  thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Deep_Underground_Neutrino_Experiment_Crew.jpg/1920px-Deep_Underground_Neutrino_Experiment_Crew.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+  author: U.S. Department of Energy
+  credit: https://www.flickr.com/photos/departmentofenergy/49838399857/
+  licence: Public domain
+  licence_url: ''
+  accepted: true
+  reason: Public domain
+  status: drop
+  file: commons-deep-underground-neutrino-experiment-crew.jpg
+  drop_reason: not a picture of the thing it was searched for
+- subject: DUNE
+  title: File:Longitudinal section of the LBNE Beamline facility in the MI-10, Shallow beamline configuration.png
+  page: https://commons.wikimedia.org/wiki/File%3ALongitudinal_section_of_the_LBNE_Beamline_facility_in_the_MI-10%2C_Shallow_beamline_configuration.png
+  thumb: https://upload.wikimedia.org/wikipedia/commons/b/b6/Longitudinal_section_of_the_LBNE_Beamline_facility_in_the_MI-10%2C_Shallow_beamline_configuration.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
+  author: V. Papadimitriou, R. Andrews, M. Campbell, A. Chen, S. Childress, C. D. Moore, Fermilab, Batavia,
+    IL 60510, USA
+  credit: http://accelconf.web.cern.ch/Accelconf/IPAC2012/papers/moppd039.pdf
+  licence: CC BY 3.0
+  licence_url: https://creativecommons.org/licenses/by/3.0
+  accepted: true
+  reason: CC BY 3.0
+  status: drop
+  file: commons-longitudinal-section-of-the-lbne-beamline-facility-in-the-mi.jpg
+  drop_reason: not a picture of the thing it was searched for
+- subject: DUNE
+  title: File:ProtoDUNE-VD walls.png
+  page: https://commons.wikimedia.org/wiki/File%3AProtoDUNE-VD_walls.png
+  thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/ProtoDUNE-VD_walls.png/1920px-ProtoDUNE-VD_walls.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+  author: Abitowlish
+  credit: Own work
+  licence: CC BY-SA 4.0
+  licence_url: https://creativecommons.org/licenses/by-sa/4.0
+  accepted: true
+  reason: CC BY-SA 4.0
+  status: keep
+  file: commons-protodune-vd-walls.jpg
+  caption: Field cage of a DUNE prototype at CERN
+- subject: Super-Kamiokande
+  title: File:Neutrino detector - National Museum of Nature and Science, Tokyo - DSC07824.JPG
+  page: https://commons.wikimedia.org/wiki/File%3ANeutrino_detector_-_National_Museum_of_Nature_and_Science%2C_Tokyo_-_DSC07824.JPG
+  thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Neutrino_detector_-_National_Museum_of_Nature_and_Science%2C_Tokyo_-_DSC07824.JPG/1920px-Neutrino_detector_-_National_Museum_of_Nature_and_Science%2C_Tokyo_-_DSC07824.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+  author: Daderot
+  credit: Own work
+  licence: CC0
+  licence_url: http://creativecommons.org/publicdomain/zero/1.0/deed.en
+  accepted: true
+  reason: CC0
+  status: drop
+  file: commons-neutrino-detector-national-museum-of-nature-and-science-toky.jpg
+  drop_reason: not a picture of the thing it was searched for
+- subject: Super-Kamiokande
+  title: File:Neutrino detector - National Museum of Nature and Science, Tokyo - DSC07827.JPG
+  page: https://commons.wikimedia.org/wiki/File%3ANeutrino_detector_-_National_Museum_of_Nature_and_Science%2C_Tokyo_-_DSC07827.JPG
+  thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Neutrino_detector_-_National_Museum_of_Nature_and_Science%2C_Tokyo_-_DSC07827.JPG/1920px-Neutrino_detector_-_National_Museum_of_Nature_and_Science%2C_Tokyo_-_DSC07827.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+  author: Daderot
+  credit: Own work
+  licence: CC0
+  licence_url: http://creativecommons.org/publicdomain/zero/1.0/deed.en
+  accepted: true
+  reason: CC0
+  status: drop
+  file: commons-neutrino-detector-national-museum-of-nature-and-science-toky.jpg
+  drop_reason: not a picture of the thing it was searched for
+- subject: Super-Kamiokande
+  title: File:Super Kamiokande, 1 to 135th.jpg
+  page: https://commons.wikimedia.org/wiki/File%3ASuper_Kamiokande%2C_1_to_135th.jpg
+  thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Super_Kamiokande%2C_1_to_135th.jpg/1920px-Super_Kamiokande%2C_1_to_135th.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+  author: Motokoka
+  credit: Own work
+  licence: CC BY-SA 4.0
+  licence_url: https://creativecommons.org/licenses/by-sa/4.0
+  accepted: true
+  reason: CC BY-SA 4.0
+  status: drop
+  file: commons-super-kamiokande-1-to-135th.jpg
+  drop_reason: not a picture of the thing it was searched for
+- subject: IceCube
+  title: File:IceCube Neutrino Observatory in 2023 02.jpg
+  page: https://commons.wikimedia.org/wiki/File%3AIceCube_Neutrino_Observatory_in_2023_02.jpg
+  thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IceCube_Neutrino_Observatory_in_2023_02.jpg/1920px-IceCube_Neutrino_Observatory_in_2023_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+  author: Christopher Michel
+  credit: Own work
+  licence: CC BY-SA 4.0
+  licence_url: https://creativecommons.org/licenses/by-sa/4.0
+  accepted: true
+  reason: CC BY-SA 4.0
+  status: keep
+  file: commons-icecube-neutrino-observatory-in-2023-02.jpg
+  caption: The IceCube Lab at the South Pole
+- subject: IceCube
+  title: File:The ICL at Dawn.jpg
+  page: https://commons.wikimedia.org/wiki/File%3AThe_ICL_at_Dawn.jpg
+  thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/The_ICL_at_Dawn.jpg/1920px-The_ICL_at_Dawn.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+  author: John Hardin
+  credit: Own work
+  licence: CC BY 4.0
+  licence_url: https://creativecommons.org/licenses/by/4.0
+  accepted: true
+  reason: CC BY 4.0
+  status: drop
+  file: commons-the-icl-at-dawn.jpg
+  drop_reason: not a picture of the thing it was searched for
+- subject: IceCube
+  title: File:The ICL at Night.jpg
+  page: https://commons.wikimedia.org/wiki/File%3AThe_ICL_at_Night.jpg
+  thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/The_ICL_at_Night.jpg/1920px-The_ICL_at_Night.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+  author: John Hardin
+  credit: Own work
+  licence: CC BY 4.0
+  licence_url: https://creativecommons.org/licenses/by/4.0
+  accepted: true
+  reason: CC BY 4.0
+  status: drop
+  file: commons-the-icl-at-night.jpg
+  drop_reason: not a picture of the thing it was searched for
+- subject: KATRIN
+  title: File:Annurev-nucl-101920-113013.pdf
+  page: https://commons.wikimedia.org/wiki/File%3AAnnurev-nucl-101920-113013.pdf
+  thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Annurev-nucl-101920-113013.pdf/page1-960px-Annurev-nucl-101920-113013.pdf.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+  author: Alexey Lokhov, Susanne Mertens, Diana S. Parno, Magnus Schlösser, and Kathrin Valerius
+  credit: https://www.annualreviews.org/doi/abs/10.1146/annurev-nucl-101920-113013 https://doi.org/10.1146/annurev-nucl-101920-113013
+  licence: CC BY 4.0
+  licence_url: https://creativecommons.org/licenses/by/4.0
+  accepted: true
+  reason: CC BY 4.0
+  status: drop
+  file: commons-annurev-nucl-101920-113013.jpg
+  drop_reason: a rendered PDF page, not a photograph
+- subject: KATRIN
+  title: File:S41567-021-01463-1.pdf
+  page: https://commons.wikimedia.org/wiki/File%3AS41567-021-01463-1.pdf
+  thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/S41567-021-01463-1.pdf/page1-960px-S41567-021-01463-1.pdf.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+  author: The KATRIN Collaboration
+  credit: https://www.nature.com/articles/s41567-021-01463-1 https://doi.org/10.1038/s41567-021-01463-1
+  licence: CC BY 4.0
+  licence_url: https://creativecommons.org/licenses/by/4.0
+  accepted: true
+  reason: CC BY 4.0
+  status: drop
+  file: commons-s41567-021-01463-1.jpg
+  drop_reason: a rendered PDF page, not a photograph
+- subject: Gran Sasso
+  title: File:PhysRevD.101.012009.pdf
+  page: https://commons.wikimedia.org/wiki/File%3APhysRevD.101.012009.pdf
+  thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/PhysRevD.101.012009.pdf/page1-960px-PhysRevD.101.012009.pdf.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+  author: M. Agostini et al. (Borexino Collaboration)
+  credit: https://journals.aps.org/prd/abstract/10.1103/PhysRevD.101.012009 https://doi.org/10.1103/PhysRevD.101.012009
+  licence: CC BY 4.0
+  licence_url: https://creativecommons.org/licenses/by/4.0
+  accepted: true
+  reason: CC BY 4.0
+  status: drop
+  file: commons-physrevd-101-012009.jpg
+  drop_reason: a rendered PDF page, not a photograph
+- subject: Gran Sasso
+  title: File:Printed Copy of the Treaty Between the United States of America and the Tabeguache, Muache
+    (Moache), Capote, Weeminuche (Wiminuche), Yampa, Grand River, and Uintah (Uinta) Bands of - DPLA -
+    4548c9bb995fa431afec3cdf30607e6b (page 2).tiff
+  page: https://commons.wikimedia.org/wiki/File%3APrinted_Copy_of_the_Treaty_Between_the_United_States_of_America_and_the_Tabeguache%2C_Muache_%28Moache%29%2C_Capote%2C_Weeminuche_%28Wiminuche%29%2C_Yampa%2C_Grand_River%2C_and_Uintah_%28Uinta%29_Bands_of_-_DPLA_-_4548c9bb995fa431afec3cdf30607e6b_%28page_2%29.tiff
+  thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Printed_Copy_of_the_Treaty_Between_the_United_States_of_America_and_the_Tabeguache%2C_Muache_%28Moache%29%2C_Capote%2C_Weeminuche_%28Wiminuche%29%2C_Yampa%2C_Grand_River%2C_and_Uintah_%28Uinta%29_Bands_of_-_DPLA_-_4548c9bb995fa431afec3cdf30607e6b_%28page_2%29.tiff/lossy-page1-1920px-thumbnail.tiff.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+  author: U.S. Government. 3/4/1789
+  credit: File URL Catalog record
+  licence: Public domain
+  licence_url: ''
+  accepted: true
+  reason: Public domain
+  status: drop
+  file: commons-printed-copy-of-the-treaty-between-the-united-states-of-amer.jpg
+  drop_reason: not a picture of the thing it was searched for
+- subject: Gran Sasso
+  title: File:Printed Copy of the Treaty Between the United States of America and the Tabeguache, Muache
+    (Moache), Capote, Weeminuche (Wiminuche), Yampa, Grand River, and Uintah (Uinta) Bands of - DPLA -
+    4548c9bb995fa431afec3cdf30607e6b (page 6).jpg
+  page: https://commons.wikimedia.org/wiki/File%3APrinted_Copy_of_the_Treaty_Between_the_United_States_of_America_and_the_Tabeguache%2C_Muache_%28Moache%29%2C_Capote%2C_Weeminuche_%28Wiminuche%29%2C_Yampa%2C_Grand_River%2C_and_Uintah_%28Uinta%29_Bands_of_-_DPLA_-_4548c9bb995fa431afec3cdf30607e6b_%28page_6%29.jpg
+  thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Printed_Copy_of_the_Treaty_Between_the_United_States_of_America_and_the_Tabeguache%2C_Muache_%28Moache%29%2C_Capote%2C_Weeminuche_%28Wiminuche%29%2C_Yampa%2C_Grand_River%2C_and_Uintah_%28Uinta%29_Bands_of_-_DPLA_-_4548c9bb995fa431afec3cdf30607e6b_%28page_6%29.jpg/1920px-thumbnail.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+  author: U.S. Government. 3/4/1789
+  credit: File URL Catalog record
+  licence: Public domain
+  licence_url: ''
+  accepted: true
+  reason: Public domain
+  status: drop
+  file: commons-printed-copy-of-the-treaty-between-the-united-states-of-amer.jpg
+  drop_reason: not a picture of the thing it was searched for
+- subject: SNOLAB
+  title: File:PhysRevLett.120.072701.pdf
+  page: https://commons.wikimedia.org/wiki/File%3APhysRevLett.120.072701.pdf
+  thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/PhysRevLett.120.072701.pdf/page1-960px-PhysRevLett.120.072701.pdf.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+  author: J. B. Albert et al. (EXO-200 Collaboration)
+  credit: https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.120.072701 https://doi.org/10.1103/PhysRevLett.120.072701
+  licence: CC BY 4.0
+  licence_url: https://creativecommons.org/licenses/by/4.0
+  accepted: true
+  reason: CC BY 4.0
+  status: drop
+  file: commons-physrevlett-120-072701.jpg
+  drop_reason: a rendered PDF page, not a photograph
+- subject: Fermilab
+  title: File:Aerial view of Wilson Hall, Fermilab.jpg
+  page: https://commons.wikimedia.org/wiki/File%3AAerial_view_of_Wilson_Hall%2C_Fermilab.jpg
+  thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Aerial_view_of_Wilson_Hall%2C_Fermilab.jpg/1920px-Aerial_view_of_Wilson_Hall%2C_Fermilab.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+  author: Fermilab, Reidar Hahn
+  credit: http://vms.fnal.gov/asset/detail?recid=1701638
+  licence: Public domain
+  licence_url: ''
+  accepted: true
+  reason: Public domain
+  status: keep
+  file: commons-aerial-view-of-wilson-hall-fermilab.jpg
+  caption: Fermilab, where the DUNE and NOvA beams begin
+- subject: Fermilab
+  title: File:Fermilab Robert Rathbun Wilson Hall 2011.jpg
+  page: https://commons.wikimedia.org/wiki/File%3AFermilab_Robert_Rathbun_Wilson_Hall_2011.jpg
+  thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Fermilab_Robert_Rathbun_Wilson_Hall_2011.jpg/1920px-Fermilab_Robert_Rathbun_Wilson_Hall_2011.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+  author: CramBetter.com
+  credit: Own work
+  licence: CC BY 4.0
+  licence_url: https://creativecommons.org/licenses/by/4.0
+  accepted: true
+  reason: CC BY 4.0
+  status: drop
+  file: commons-fermilab-robert-rathbun-wilson-hall-2011.jpg
+  drop_reason: not a picture of the thing it was searched for
+- subject: Fermilab
+  title: File:Robert Rathbun Wilson Hall (Fermilab) (4121382648).jpg
+  page: https://commons.wikimedia.org/wiki/File%3ARobert_Rathbun_Wilson_Hall_%28Fermilab%29_%284121382648%29.jpg
+  thumb: https://upload.wikimedia.org/wikipedia/commons/7/77/Robert_Rathbun_Wilson_Hall_%28Fermilab%29_%284121382648%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
+  author: Dhilung Kirat from Santa Barbara, CA
+  credit: Robert Rathbun Wilson Hall (Fermilab)
+  licence: CC BY 2.0
+  licence_url: https://creativecommons.org/licenses/by/2.0
+  accepted: true
+  reason: CC BY 2.0
+  status: drop
+  file: commons-robert-rathbun-wilson-hall-fermilab-4121382648.jpg
+  drop_reason: not a picture of the thing it was searched for
+- subject: Borexino
+  title: File:Laboratori Nazionali del Gran Sasso, Borexino detector.png
+  page: https://commons.wikimedia.org/wiki/File%3ALaboratori_Nazionali_del_Gran_Sasso%2C_Borexino_detector.png
+  thumb: https://upload.wikimedia.org/wikipedia/commons/5/5f/Laboratori_Nazionali_del_Gran_Sasso%2C_Borexino_detector.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
+  author: Borexino Collaboration
+  credit: Report photography
+  licence: Public domain
+  licence_url: ''
+  accepted: true
+  reason: Public domain
+  status: keep
+  file: commons-laboratori-nazionali-del-gran-sasso-borexino-detector.jpg
+  caption: The Borexino detector at Gran Sasso
+- subject: Borexino
+  title: File:PhysRevD.101.012009.pdf
+  page: https://commons.wikimedia.org/wiki/File%3APhysRevD.101.012009.pdf
+  thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/PhysRevD.101.012009.pdf/page1-960px-PhysRevD.101.012009.pdf.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+  author: M. Agostini et al. (Borexino Collaboration)
+  credit: https://journals.aps.org/prd/abstract/10.1103/PhysRevD.101.012009 https://doi.org/10.1103/PhysRevD.101.012009
+  licence: CC BY 4.0
+  licence_url: https://creativecommons.org/licenses/by/4.0
+  accepted: true
+  reason: CC BY 4.0
+  status: drop
+  file: commons-physrevd-101-012009.jpg
+  drop_reason: a rendered PDF page, not a photograph
+- subject: Borexino
+  title: File:Vivier 2016 J. Phys. Conf. Ser. 718 062066.pdf
+  page: https://commons.wikimedia.org/wiki/File%3AVivier_2016_J._Phys._Conf._Ser._718_062066.pdf
+  thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Vivier_2016_J._Phys._Conf._Ser._718_062066.pdf/page1-960px-Vivier_2016_J._Phys._Conf._Ser._718_062066.pdf.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+  author: M Vivier et al.
+  credit: https://iopscience.iop.org/article/10.1088/1742-6596/718/6/062066/meta https://doi.org/10.1088/1742-6596/718/6/062066
+  licence: CC BY 3.0
+  licence_url: https://creativecommons.org/licenses/by/3.0
+  accepted: true
+  reason: CC BY 3.0
+  status: drop
+  file: commons-vivier-2016-j-phys-conf-ser-718-062066.jpg
+  drop_reason: a rendered PDF page, not a photograph
