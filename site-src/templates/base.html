@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}} — global-nu</title>
+<meta name="description" content="{{description}}">
+<link rel="canonical" href="{{site_url}}/{{url}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{title}} — global-nu">
+<meta property="og:description" content="{{description}}">
+<meta property="og:url" content="{{site_url}}/{{url}}">
+<link rel="icon" href="{{base}}assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="{{base}}assets/css/site.css">
+<script>
+/* Apply the saved theme before the first paint. Inline and blocking on
+   purpose: a deferred script runs after the page is drawn, and a reader who
+   chose light would see a flash of dark on every navigation. try/catch
+   because localStorage throws outright in Safari's private mode. */
+(function(){try{var t=localStorage.getItem("gnu-theme");
+if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
+</script>
+{{katex_head}}
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="{{base}}index.html">global-nu<span>Neutrino global analyses · Bari</span></a>
+    <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme" title="Switch theme">
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.4"/>
+        <path d="M12 2.6v2.4M12 19v2.4M2.6 12h2.4M19 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7" stroke-linecap="round"/>
+      </svg>
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.5 14.6A8.6 8.6 0 1 1 9.4 3.5a6.9 6.9 0 0 0 11.1 11.1Z" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="Main">
+{{nav}}
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+{{content}}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__inner">
+      <div>
+        <h4>global-nu</h4>
+        <p>Global analyses of neutrino oscillation data by the Bari group.<br>
+        Dipartimento Interateneo di Fisica, Università degli Studi di Bari
+        “Aldo Moro” &amp; INFN Sezione di Bari.</p>
+      </div>
+      <div>
+        <h4>Navigate</h4>
+        <ul>
+{{footer_nav}}
+        </ul>
+      </div>
+    </div>
+    <p class="site-footer__base">© {{year}} the Bari group.</p>
+  </div>
+</footer>
+
+<script src="{{base}}assets/js/site.js" defer></script>
+{{scripts}}
+{{katex_body}}
+</body>
+</html>

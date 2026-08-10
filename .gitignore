@@ -1,0 +1,11 @@
+# Build caches and local noise — never the site output: site/ is what
+# GitHub Pages will serve.
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+var/
+*.log
+.mypy_cache/
+node_modules/

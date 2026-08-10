@@ -1,0 +1,113 @@
+/* ============================================================
+   global-nu — PLACEHOLDER STYLESHEET
+   The real stylesheet arrives with the approved homepage mockup
+   (see mockups/). Until then this file only proves the pipeline:
+   two themes driven entirely by the tokens below, no colour
+   hard-coded anywhere after this block.
+   ============================================================ */
+
+:root{
+  --body:ui-sans-serif,system-ui,"Segoe UI",Roboto,sans-serif;
+  --display:var(--body);
+  --wide:74rem;
+  --measure:38rem;
+  --gutter:clamp(1.15rem,4.5vw,3rem);
+  --sec-y:clamp(3rem,8vw,6rem);
+  --r:14px;
+}
+
+/* ---------- dark (default) ---------- */
+:root,
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0f1620;
+  --surface:#17202c;
+  --line:rgba(255,255,255,.10);
+  --text:#e8edf4;
+  --text-soft:#b3bdca;
+  --text-mute:#93a0b0;
+  --accent:#3fd0c9;
+  --on-accent:#08121a;
+}
+
+/* ---------- light ---------- */
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#f7f9fb;
+  --surface:#ffffff;
+  --line:rgba(12,20,30,.12);
+  --text:#101823;
+  --text-soft:#3a4553;
+  --text-mute:#5d6875;
+  --accent:#0a6f6a;
+  --on-accent:#ffffff;
+}
+
+/* Readers who expressed no preference follow their operating system. The
+   attribute selectors above always win, so an explicit choice sticks. */
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    color-scheme:light;
+    --bg:#f7f9fb;
+    --surface:#ffffff;
+    --line:rgba(12,20,30,.12);
+    --text:#101823;
+    --text-soft:#3a4553;
+    --text-mute:#5d6875;
+    --accent:#0a6f6a;
+    --on-accent:#ffffff;
+  }
+}
+
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--body);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent)}
+.wrap{width:min(100% - 2*var(--gutter),var(--wide));margin-inline:auto}
+.prose{max-width:var(--measure)}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:var(--gutter);top:.5rem;z-index:10;background:var(--surface);
+  color:var(--text);padding:.5rem .9rem;border-radius:var(--r)}
+
+.site-header{border-bottom:1px solid var(--line);background:var(--surface)}
+.site-header__inner{display:flex;align-items:center;gap:1rem;
+  padding-block:.9rem;flex-wrap:wrap}
+.brand{font-weight:700;text-decoration:none;color:var(--text);
+  font-family:var(--display);display:flex;flex-direction:column;line-height:1.2}
+.brand span{font-size:.72rem;font-weight:400;color:var(--text-mute)}
+.nav{display:flex;gap:1rem;flex-wrap:wrap;margin-left:auto}
+.nav a{color:var(--text-soft);text-decoration:none;font-size:.92rem}
+.nav a[aria-current="page"]{color:var(--accent)}
+.theme-toggle,.nav-toggle{background:none;border:1px solid var(--line);
+  border-radius:999px;width:2.1rem;height:2.1rem;padding:.35rem;cursor:pointer;
+  color:var(--text-soft)}
+.theme-toggle svg,.nav-toggle svg{width:100%;height:100%;fill:none;
+  stroke:currentColor;stroke-width:1.7}
+.theme-toggle__moon{display:none}
+:root[data-theme="light"] .theme-toggle__sun{display:none}
+:root[data-theme="light"] .theme-toggle__moon{display:block}
+.nav-toggle{display:none}
+
+.section{padding-block:var(--sec-y)}
+.section--white,.section--ink{background:var(--surface)}
+
+.site-footer{border-top:1px solid var(--line);background:var(--surface);
+  padding-block:2.5rem;color:var(--text-soft);font-size:.9rem}
+.site-footer__inner{display:grid;gap:2rem;
+  grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
+.site-footer h4{font-family:var(--display);color:var(--text);margin:0 0 .5rem}
+.site-footer ul{list-style:none;margin:0;padding:0}
+.site-footer a{color:var(--text-soft)}
+.site-footer__base{margin-top:2rem;color:var(--text-mute)}
+
+@media (max-width:48rem){
+  .nav{display:none;width:100%;flex-direction:column;gap:.4rem}
+  .nav.is-open{display:flex}
+  .nav-toggle{display:block;margin-left:auto}
+}

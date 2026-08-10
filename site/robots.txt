@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://global-nu.org/sitemap.xml

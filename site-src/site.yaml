@@ -1,0 +1,30 @@
+# Global site configuration. Edit here, never in site/.
+site_name: "global-nu"
+site_url: "https://global-nu.org"
+tagline: "Global analyses of neutrino oscillation data — Bari group"
+
+# Navigation order. Each entry must match the `url` of a content file.
+nav:
+  - url: index.html
+    label: Home
+  - url: results.html
+    label: Results
+  - url: history.html
+    label: Parameter history
+  - url: digest.html
+    label: arXiv digest
+  - url: news.html
+    label: News
+  - url: conferences.html
+    label: Conferences
+  - url: resources.html
+    label: Resources
+  - url: search.html
+    label: Search
+  - url: about.html
+    label: About
+
+# Image pipeline (site-src/images-src/ -> site/images/)
+images:
+  max_side: 1600
+  quality: 82
