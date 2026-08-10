@@ -13,3 +13,9 @@ node_modules/
 package-lock.json
 preview/
 var/photo-candidates/
+
+# Unpublished releases and anything built from them. Neither may ever reach
+# the public repository: the site is built from site/, and a draft build goes
+# somewhere else on purpose.
+drafts/
+site-draft/

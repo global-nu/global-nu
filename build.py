@@ -52,6 +52,13 @@ IMAGES_SRC = SRC / "images-src"
 DATA_EXPORTS = ROOT / "data-exports"
 OUT = ROOT / "site"
 
+# Unpublished work. drafts/ holds content and data for a release that is not
+# out yet; it is git-ignored, and a normal build cannot reach it — --drafts
+# builds to a DIFFERENT directory, so there is no flag that could quietly put
+# an embargoed result into the tree that gets published.
+DRAFTS = ROOT / "drafts"
+OUT_DRAFT = ROOT / "site-draft"
+
 MD_EXTENSIONS = ["extra", "attr_list", "md_in_html", "tables", "sane_lists", "footnotes"]
 
 
@@ -379,7 +386,14 @@ def version_assets(page: str, versions: dict[str, str]) -> str:
     return _ASSET_REF.sub(sub, page)
 
 
-def build_pages(cfg: dict) -> list[str]:
+def content_dirs(with_drafts: bool) -> list[Path]:
+    dirs = [CONTENT]
+    if with_drafts and (DRAFTS / "content").is_dir():
+        dirs.append(DRAFTS / "content")
+    return dirs
+
+
+def build_pages(cfg: dict, with_drafts: bool = False) -> list[str]:
     tpl_cache: dict[str, str] = {}
     written = []
     year = _dt.date.today().year
@@ -394,10 +408,11 @@ def build_pages(cfg: dict) -> list[str]:
         'async src="https://gc.zgo.at/count.js"></script>'
     ) if gc_code else ""
 
-    for path in sorted(CONTENT.rglob("*.md")):
+    pages = [(d, p) for d in content_dirs(with_drafts) for p in sorted(d.rglob("*.md"))]
+    for base_dir, path in pages:
         raw = path.read_text(encoding="utf-8")
         fm, body = split_frontmatter(raw)
-        rel = path.relative_to(CONTENT).with_suffix(".html")
+        rel = path.relative_to(base_dir).with_suffix(".html")
         url = fm.get("url") or rel.as_posix()
 
         # Relative prefix so pages in sub-directories still resolve assets and
@@ -425,7 +440,13 @@ def build_pages(cfg: dict) -> list[str]:
         # Markdown: the SVG is built from the data files by
         # tools/make_figures.py, so a page can never drift from the numbers.
         def _include(m: re.Match) -> str:
-            base = SRC / "data" / "figures" / m.group(1)
+            roots = [SRC / "data" / "figures"]
+            if with_drafts:
+                roots.insert(0, DRAFTS / "figures")
+            base = next((r / m.group(1) for r in roots
+                         if (r / m.group(1)).with_suffix(".svg").exists()
+                         or (r / m.group(1)).with_suffix(".html").exists()),
+                        roots[-1] / m.group(1))
             src = next((p for p in (base.with_suffix(".svg"),
                                     base.with_suffix(".html")) if p.exists()),
                        base.with_suffix(".svg"))
@@ -531,9 +552,16 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Build global-nu.org")
     ap.add_argument("--clean", action="store_true", help="remove site/ first")
     ap.add_argument("--no-images", action="store_true", help="skip image pipeline")
+    ap.add_argument("--drafts", action="store_true",
+                    help="include drafts/ and build to site-draft/ (never published)")
     args = ap.parse_args()
 
     cfg = load_config()
+
+    global OUT
+    if args.drafts:
+        OUT = OUT_DRAFT
+        print("DRAFT BUILD — includes unpublished material, never deploy this tree")
 
     if args.clean and OUT.exists():
         shutil.rmtree(OUT)
@@ -551,7 +579,11 @@ def main() -> None:
     if not args.no_images:
         build_images(cfg)
 
-    written = build_pages(cfg)
+    if args.drafts:
+        n = copy_tree(DRAFTS / "data", OUT / "data")
+        print(f"  drafts: {n} data files copied")
+
+    written = build_pages(cfg, with_drafts=args.drafts)
     (OUT / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\nSitemap: {cfg['site_url']}/sitemap.xml\n",
         encoding="utf-8")

@@ -131,6 +131,18 @@ for (const k of lightKeys) {
   }
 }
 
+/* The icon rules must out-specify `.theme-toggle svg`, which sets
+   display:block. A bare `.theme-toggle__moon{display:none}` loses to it and
+   both icons render at once — that shipped once and was only caught by
+   looking at the page. */
+if (/(^|[^ ])\.theme-toggle__moon\s*\{[^}]*display\s*:\s*none/m.test(css)) {
+  bad('the moon icon is hidden by a rule that loses to `.theme-toggle svg`');
+} else if (/\.theme-toggle\s+\.theme-toggle__moon\s*\{[^}]*display\s*:\s*none/.test(css)) {
+  ok('the theme icons are hidden by rules that out-specify `.theme-toggle svg`');
+} else {
+  bad('no rule hides the inactive theme icon');
+}
+
 /* --------------------------------------------------------- behaviour --- */
 
 console.log('behaviour');
