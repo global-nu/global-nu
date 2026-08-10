@@ -195,7 +195,9 @@ h2{font-weight:800;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.12}
 h3{font-weight:700;font-size:1.1rem;letter-spacing:-.02em}
 h4{font-weight:700;font-size:.98rem}
 .grad{background:linear-gradient(92deg,var(--accent),var(--accent-2));
-  -webkit-background-clip:text;background-clip:text;color:transparent}
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  /* an italic word clipped its final letter against the text box */
+  padding-right:.08em;margin-right:-.08em}
 
 /* ---------- header ---------- */
 .site-header{position:sticky;top:0;z-index:10;
@@ -223,12 +225,16 @@ h4{font-weight:700;font-size:.98rem}
 .theme-toggle:hover,.nav-toggle:hover{border-color:var(--accent);color:var(--text)}
 .theme-toggle svg,.nav-toggle svg{width:100%;height:100%;fill:none;
   stroke:currentColor;stroke-width:1.7;display:block}
-.theme-toggle__moon{display:none}
-:root[data-theme="light"] .theme-toggle__sun{display:none}
-:root[data-theme="light"] .theme-toggle__moon{display:block}
+/* Scoped under .theme-toggle on purpose. `.theme-toggle svg` above is
+   (0,1,1) and a bare `.theme-toggle__moon` is (0,1,0), so the display:block
+   won whatever the order and BOTH icons showed at once — the moon spilling
+   out of the round button. These are (0,2,0) and win properly. */
+.theme-toggle .theme-toggle__moon{display:none}
+:root[data-theme="light"] .theme-toggle .theme-toggle__sun{display:none}
+:root[data-theme="light"] .theme-toggle .theme-toggle__moon{display:block}
 @media (prefers-color-scheme:light){
-  :root:not([data-theme="dark"]) .theme-toggle__sun{display:none}
-  :root:not([data-theme="dark"]) .theme-toggle__moon{display:block}
+  :root:not([data-theme="dark"]) .theme-toggle .theme-toggle__sun{display:none}
+  :root:not([data-theme="dark"]) .theme-toggle .theme-toggle__moon{display:block}
 }
 .nav-toggle{display:none}
 
@@ -659,3 +665,23 @@ a.card:hover .card__go{color:var(--text)}
   color:var(--text-mute);line-height:1.5}
 .shot__credit a{color:var(--text-mute);text-decoration:underline}
 .shot__credit a:hover{color:var(--accent)}
+
+/* ---------- Δχ² explorer ---------- */
+.chi2__bar{display:flex;flex-wrap:wrap;gap:.7rem 1.4rem;align-items:center;
+  margin-bottom:1.1rem}
+.chi2__group{display:flex;flex-wrap:wrap;gap:.4rem}
+.chi2__chip{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;
+  border:1px solid var(--line-strong);background:var(--bg);color:var(--text-soft);
+  border-radius:999px;padding:.3rem .8rem;cursor:pointer}
+.section--alt .chi2__chip{background:var(--surface-2)}
+.chi2__chip:hover{border-color:var(--accent);color:var(--text)}
+.chi2__chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);
+  color:var(--on-accent)}
+.chi2__switch{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;
+  color:var(--text-soft);cursor:pointer}
+.chi2__switch input{accent-color:var(--accent);width:1rem;height:1rem}
+.chi2__plot{color:var(--text-soft)}
+.chi2__svg{width:100%;height:auto;display:block}
+.chi2__readout{font-family:var(--mono);font-size:.78rem;color:var(--text);
+  background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-sm);
+  padding:.55rem .8rem;margin:.9rem 0 0;min-height:1.2rem}
