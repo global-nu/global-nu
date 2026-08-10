@@ -32,7 +32,7 @@ analyses, it states the conversion it applied.</p>
 
 :::
 
-::: section alt #nu2025
+::: section alt glow #nu2025
 
 <div class="release">
 
@@ -87,6 +87,18 @@ published table; nothing on this page is estimated or rounded further.</caption>
 </table>
 </div>
 
+<figure class="figure figure--wide reveal" style="margin-top:2rem">
+<div class="figure__head">
+  <h3>The same table, seen at a glance</h3>
+  <p>best fit · 1σ · 3σ · each row on its own scale</p>
+</div>
+<!--include:ranges-->
+<p class="cap">Every row is drawn on its own axis, so the widths compare
+precision rather than magnitude. Values are those of Table I above; the figure
+is generated from them by <code>tools/make_figures.py</code>, not drawn by
+hand.</p>
+</figure>
+
 <div class="split" style="margin-top:2rem">
 <div>
 <h3>What changed</h3>
@@ -134,7 +146,7 @@ material is prepared, and a link that does not resolve is worse than no link.</p
 
 ::: section alt
 
-<div class="strip">
+<div class="strip reveal">
   <a href="history.html"><span class="t">Parameter history</span><span class="d">How these numbers moved over a quarter century, and how other groups’ compare</span></a>
   <a href="about.html#cite"><span class="t">How to cite</span><span class="d">BibTeX for this release and the ones before it</span></a>
   <a href="resources.html"><span class="t">Resources</span><span class="d">The experiments and data releases that feed a global analysis</span></a>

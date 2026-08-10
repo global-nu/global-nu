@@ -171,7 +171,7 @@ def compare_panel(pname: str, meta: dict, releases: list[dict]) -> str:
 
     conv = ("  Values of other groups converted to our convention."
             if pname == "Dm2" else "")
-    return f"""<figure class="figure">
+    return f"""<figure class="figure reveal">
 <h4>{label} <span class="figure__unit">/ {unit} · normal ordering</span></h4>
 <svg viewBox="0 0 {W} {H}" role="img" aria-label="{label} in normal ordering, compared across the Bari, NuFit and Valencia global analyses">
 {chr(10).join(out)}
@@ -251,7 +251,7 @@ def panel(pname: str, meta: dict, releases: list[dict]) -> str:
                               f"{name}, {yr}: {label} = {e['best']:g}{span} ({unit})"))
 
     body = "\n".join(out)
-    return f"""<figure class="figure">
+    return f"""<figure class="figure reveal">
 <h4>{label} <span class="figure__unit">/ {unit}</span></h4>
 <svg viewBox="0 0 {W} {H}" role="img" aria-label="{label} best-fit values and 3σ ranges by publication year, for the two mass orderings">
 {body}
@@ -367,7 +367,7 @@ here: adding them means converting first, and stating the conversion.</p>
 
 :::
 
-::: section alt
+::: section alt glow
 
 <div class="section-head">
   <h2>The releases</h2>

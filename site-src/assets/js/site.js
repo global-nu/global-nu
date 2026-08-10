@@ -45,6 +45,41 @@
     });
   }
 
+  /* Reveal on scroll. Progressive: without IntersectionObserver, or with
+     reduced motion asked for, everything is simply shown at once — the class
+     is only ever added, never used to hide something that JS might fail to
+     un-hide. */
+  var reduced = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var targets = document.querySelectorAll(".reveal");
+  if (!targets.length) {
+    /* nothing to do */
+  } else if (reduced || !("IntersectionObserver" in window)) {
+    for (var i = 0; i < targets.length; i++) targets[i].classList.add("is-in");
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-in");
+          io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.06 });
+    for (var j = 0; j < targets.length; j++) io.observe(targets[j]);
+  }
+
+  var toTop = document.querySelector(".to-top");
+  if (toTop) {
+    var onScroll = function () {
+      toTop.classList.toggle("is-on", window.scrollY > 700);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    toTop.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+    });
+  }
+
   var navToggle = document.querySelector(".nav-toggle");
   var nav = document.getElementById("nav");
   if (navToggle && nav) {

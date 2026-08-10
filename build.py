@@ -164,9 +164,14 @@ def expand_fences(body: str) -> tuple[str, dict[str, str]]:
             inner = "wrap prose" if "narrow" in extra else "wrap"
             extra = [w for w in extra if w != "narrow"]
             sid = next((w[1:] for w in extra if w.startswith("#")), None)
-            klass = " ".join(w for w in extra if not w.startswith("#"))
+            # Every remaining word is a section modifier and gets the block
+            # prefix. Emitting it bare — which is what this did — produced
+            # class="section section--paper alt" while the stylesheet was
+            # waiting for .section--alt, so the alternating backgrounds were
+            # silently absent from the whole site.
+            mods = " ".join(f"section--{w}" for w in extra if not w.startswith("#"))
             attrs = f' id="{sid}"' if sid else ""
-            cls = f"section section--{tone}" + (f" {klass}" if klass else "")
+            cls = f"section section--{tone}" + (f" {mods}" if mods else "")
             emit(f'<section class="{cls}"{attrs}><div class="{inner}">')
             stack.append("</div></section>")
         else:
@@ -415,6 +420,19 @@ def build_pages(cfg: dict) -> list[str]:
             safe = html.escape(formula, quote=False)
             content_html = content_html.replace(f"<p>{tok}</p>", safe)
             content_html = content_html.replace(tok, safe)
+
+        # Generated figures are pulled in here rather than pasted into the
+        # Markdown: the SVG is built from the data files by
+        # tools/make_figures.py, so a page can never drift from the numbers.
+        def _include(m: re.Match) -> str:
+            src = SRC / "data" / "figures" / f"{m.group(1)}.svg"
+            if not src.exists():
+                print(f"    ! missing figure: {src.name} (run tools/make_figures.py)")
+                return ""
+            return src.read_text(encoding="utf-8")
+
+        content_html = re.sub(r"<!--\s*include:([a-z0-9_-]+)\s*-->", _include,
+                              content_html)
 
         tpl_name = fm.get("template", "base") + ".html"
         if tpl_name not in tpl_cache:

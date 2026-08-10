@@ -21,7 +21,7 @@ katex: false
 
 <div class="section-head"><h2>Experiments</h2><p>oscillation, mass and 0νββ</p></div>
 
-<div class="tiles">
+<div class="tiles reveal">
 
 <article class="tile">
 <div class="stamp stamp--no">Reactor</div>
@@ -69,7 +69,7 @@ katex: false
 
 :::
 
-::: section alt
+::: section alt glow
 
 <div class="split">
 

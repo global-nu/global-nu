@@ -53,13 +53,13 @@ katex: false
   <a class="more" href="results.html">Full tables and ranges →</a>
 </div>
 
-<div class="stats">
-  <div class="stat"><span class="k">sin²θ₁₂</span><span class="v">0.303</span><span class="u">1σ accuracy 4.5%</span></div>
-  <div class="stat"><span class="k">sin²θ₁₃</span><span class="v">0.0223</span><span class="u">1σ accuracy 2.4%</span></div>
-  <div class="stat"><span class="k">sin²θ₂₃</span><span class="v">0.473</span><span class="u">1σ accuracy 5.1%</span></div>
-  <div class="stat"><span class="k">δm² / 10⁻⁵ eV²</span><span class="v">7.37</span><span class="u">m₂² − m₁² &gt; 0</span></div>
-  <div class="stat"><span class="k">|Δm²| / 10⁻³ eV²</span><span class="v">2.495</span><span class="u">m₃² − (m₁²+m₂²)/2</span></div>
-  <div class="stat"><span class="k">δ/π</span><span class="v">1.20</span><span class="u">CP phase, cyclic mod 2</span></div>
+<div class="stats reveal">
+  <div class="stat"><span class="k">sin²θ₁₂</span><span class="v">0.303</span><span class="u">1σ accuracy 4.5%</span><!--include:spark-sin2_th12--></div>
+  <div class="stat"><span class="k">sin²θ₁₃</span><span class="v">0.0223</span><span class="u">1σ accuracy 2.4%</span><!--include:spark-sin2_th13--></div>
+  <div class="stat"><span class="k">sin²θ₂₃</span><span class="v">0.473</span><span class="u">1σ accuracy 5.1%</span><!--include:spark-sin2_th23--></div>
+  <div class="stat"><span class="k">δm² / 10⁻⁵ eV²</span><span class="v">7.37</span><span class="u">m₂² − m₁² &gt; 0</span><!--include:spark-dm2--></div>
+  <div class="stat"><span class="k">|Δm²| / 10⁻³ eV²</span><span class="v">2.495</span><span class="u">m₃² − (m₁²+m₂²)/2</span><!--include:spark-Dm2--></div>
+  <div class="stat"><span class="k">δ/π</span><span class="v">1.20</span><span class="u">CP phase, cyclic mod 2</span><!--include:spark-delta_pi--></div>
 </div>
 
 <p class="small muted" style="margin-top:1.1rem">Normal ordering is favoured at
@@ -69,36 +69,36 @@ Table I of <a href="https://doi.org/10.1103/PhysRevD.111.093006">Phys. Rev. D
 
 :::
 
-::: section alt
+::: section alt glow
 
-<div class="tiles">
+<div class="cards reveal">
 
-<article class="tile">
-<div class="stamp stamp--no">arXiv digest · daily</div>
+<a class="card card--2" href="digest.html">
+<span class="card__tag">Updated daily</span>
 <h3>Today on arXiv</h3>
 <p class="small muted">Experimental and theoretical preprints of the day, kept
 in two streams and ranked by a stated keyword score — no model decides what
 appears there.</p>
-<a class="more" href="digest.html">The full digest →</a>
-</article>
+<span class="card__go">The full digest →</span>
+</a>
 
-<article class="tile">
-<div class="stamp">News</div>
+<a class="card card--3" href="news.html">
+<span class="card__tag">News</span>
 <h3>What is happening</h3>
 <p class="small muted">Experiments, results and milestones, written from
 fetched sources: every claim on that page carries the link it came from, and
 an item whose citation cannot be resolved is dropped before publication.</p>
-<a class="more" href="news.html">More news →</a>
-</article>
+<span class="card__go">More news →</span>
+</a>
 
-<article class="tile">
-<div class="stamp stamp--no">Conferences</div>
+<a class="card card--5" href="conferences.html">
+<span class="card__tag">Conferences</span>
 <h3>Where the field meets</h3>
 <p class="small muted">Upcoming and recent meetings with dates, venues and
 links, rebuilt each day from the conference indexers rather than kept by
 hand.</p>
-<a class="more" href="conferences.html">The calendar →</a>
-</article>
+<span class="card__go">The calendar →</span>
+</a>
 
 </div>
 
@@ -106,7 +106,22 @@ hand.</p>
 
 ::: section
 
-<div class="strip">
+<figure class="figure figure--wide reveal">
+<div class="figure__head">
+  <h3>A quarter century of sharpening</h3>
+  <p>formal 1σ accuracy · logarithmic scale</p>
+</div>
+<!--include:precision-->
+<p class="cap">Each line is one parameter’s formal 1σ accuracy — a sixth of its
+3σ range over its best fit — as published in each release. Computed from the
+same tables the <a href="history.html">parameter history</a> is built on.</p>
+</figure>
+
+:::
+
+::: section alt glow
+
+<div class="strip reveal">
   <a href="history.html"><span class="t">Parameter history</span><span class="d">A quarter century of global fits — Bari, Valencia, NuFit — each point traced to its paper</span></a>
   <a href="results.html#data"><span class="t">Machine-readable data</span><span class="d">Stable URLs and a documented schema, built to be scripted against</span></a>
   <a href="resources.html"><span class="t">Resources</span><span class="d">Experiments, data releases, databases and reviews, in one curated place</span></a>

@@ -92,7 +92,7 @@ there is transcribed from a published table by hand.</p>
 
 :::
 
-::: section alt
+::: section alt glow
 
 <div class="split">
 <div class="prose">

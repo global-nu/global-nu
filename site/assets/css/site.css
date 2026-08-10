@@ -62,6 +62,18 @@
   --grp-bari:#1f9fd4;
   --grp-nufit:#c67f28;
   --grp-valencia:#b06fc4;
+  /* Decoration only — card rules, tags, section accents. These never encode
+     a value, so telling two of them apart is never load-bearing; they are
+     still validated as a categorical set, in this order. */
+  --dec-1:#b8862c;
+  --dec-2:#1f9fd4;
+  --dec-3:#d1614a;
+  --dec-4:#8c63c9;
+  --dec-5:#5f9e35;
+  --shadow:0 18px 48px -24px rgba(0,0,0,.75);
+  --shadow-strong:0 26px 60px -28px rgba(0,0,0,.9);
+  --glow-1:rgba(31,159,212,.13);
+  --glow-2:rgba(140,99,201,.12);
   /* Brand and decoration only — never used to encode a value. */
   --accent:#39c2ff;
   --accent-2:#c084fc;
@@ -94,6 +106,15 @@
   --grp-bari:#0b62a4;
   --grp-nufit:#96590a;
   --grp-valencia:#5b53b8;
+  --dec-1:#8a5a0d;
+  --dec-2:#0b62a4;
+  --dec-3:#b0432c;
+  --dec-4:#6d28d9;
+  --dec-5:#3f6b14;
+  --shadow:0 18px 44px -26px rgba(16,20,28,.24);
+  --shadow-strong:0 26px 56px -30px rgba(16,20,28,.32);
+  --glow-1:rgba(11,98,164,.09);
+  --glow-2:rgba(109,40,217,.08);
   --accent:#0b62a4;
   --accent-2:#6d28d9;
   --warn:#8a4b06;
@@ -120,6 +141,15 @@
     --grp-bari:#0b62a4;
     --grp-nufit:#96590a;
     --grp-valencia:#5b53b8;
+  --dec-1:#8a5a0d;
+    --dec-2:#0b62a4;
+    --dec-3:#b0432c;
+    --dec-4:#6d28d9;
+    --dec-5:#3f6b14;
+    --shadow:0 18px 44px -26px rgba(16,20,28,.24);
+    --shadow-strong:0 26px 56px -30px rgba(16,20,28,.32);
+    --glow-1:rgba(11,98,164,.09);
+    --glow-2:rgba(109,40,217,.08);
     --accent:#0b62a4;
     --accent-2:#6d28d9;
     --warn:#8a4b06;
@@ -203,11 +233,14 @@ h4{font-weight:700;font-size:.98rem}
 .nav-toggle{display:none}
 
 /* ---------- page head / hero ---------- */
-.hero{border-bottom:1px solid var(--line);background:
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:
   radial-gradient(80rem 30rem at 15% -10%,color-mix(in srgb,var(--no) 13%,transparent),transparent 65%),
   radial-gradient(60rem 26rem at 85% 0%,color-mix(in srgb,var(--accent-2) 12%,transparent),transparent 60%),
   var(--bg-deep)}
-.hero__in{padding-block:clamp(2.6rem,6vw,4.5rem)}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:2px;
+  background:linear-gradient(90deg,var(--dec-1),var(--dec-2),var(--dec-4),var(--dec-3));
+  opacity:.8}
+.hero__in{position:relative;z-index:1;padding-block:clamp(2.8rem,6.5vw,5rem)}
 .hero--split .hero__in{display:grid;gap:2.4rem;
   grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:center}
 .kicker{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);
@@ -502,3 +535,109 @@ table.data--refs td.ref{min-width:20rem;color:var(--text)}
 .tile .cites{margin-top:.7rem;padding-top:.7rem;border-top:1px solid var(--line)}
 .tile p{margin:0;color:var(--text-soft);font-size:.92rem}
 .list--news li > p{margin:0 0 .1rem;color:var(--text-soft)}
+
+/* ============================================================
+   Richer surfaces
+   Sections carry a faint field of light rather than a flat
+   colour, cards a coloured rule and a lift on hover, interior
+   pages a proper header. Nothing here encodes a value: the
+   decorative accents cycle for rhythm, and every card also
+   carries a written label.
+   ============================================================ */
+
+/* ---------- sections with a field of light ---------- */
+.section{position:relative;overflow:hidden}
+.section--glow::before{content:"";position:absolute;inset:-30% -10% auto -10%;
+  height:70%;pointer-events:none;z-index:0;
+  background:radial-gradient(58% 60% at 22% 0%,var(--glow-1),transparent 70%),
+             radial-gradient(50% 55% at 82% 8%,var(--glow-2),transparent 72%)}
+.section > .wrap{position:relative;z-index:1}
+
+
+/* ---------- cards ---------- */
+.cards{display:grid;gap:clamp(1.1rem,2.2vw,1.7rem);
+  grid-template-columns:repeat(auto-fit,minmax(17.5rem,1fr))}
+.cards--2{grid-template-columns:repeat(auto-fit,minmax(21rem,1fr))}
+.card{position:relative;display:flex;flex-direction:column;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r);
+  padding:clamp(1.4rem,2.6vw,1.9rem);overflow:hidden;box-shadow:var(--shadow);
+  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+.section--alt .card{background:var(--bg)}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--dec-1);opacity:.9}
+.card--2::before{background:var(--dec-2)}
+.card--3::before{background:var(--dec-3)}
+.card--4::before{background:var(--dec-4)}
+.card--5::before{background:var(--dec-5)}
+a.card:hover{transform:translateY(-5px);border-color:var(--line-strong);
+  box-shadow:var(--shadow-strong);text-decoration:none}
+.card__tag{display:inline-block;font-family:var(--mono);font-size:.64rem;font-weight:600;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--text-mute);
+  background:var(--surface-2);border:1px solid var(--line);border-radius:999px;
+  padding:.28rem .7rem;margin-bottom:.9rem;align-self:flex-start}
+.card h3{color:var(--dec-1);margin-bottom:.5rem}
+.card--2 h3{color:var(--dec-2)}
+.card--3 h3{color:var(--dec-3)}
+.card--4 h3{color:var(--dec-4)}
+.card--5 h3{color:var(--dec-5)}
+.card p{color:var(--text-soft);font-size:.95rem;margin:0 0 1.1rem}
+.card__list{list-style:none;padding:0;margin:0 0 1.2rem;font-size:.9rem}
+.card__list li{display:flex;gap:.6rem;align-items:flex-start;margin-bottom:.5rem;
+  color:var(--text-soft)}
+.card__list li::before{content:"→";color:var(--dec-1);flex:none;line-height:1.6}
+.card--2 .card__list li::before{color:var(--dec-2)}
+.card--3 .card__list li::before{color:var(--dec-3)}
+.card--4 .card__list li::before{color:var(--dec-4)}
+.card--5 .card__list li::before{color:var(--dec-5)}
+.card__go{margin-top:auto;font-family:var(--mono);font-size:.72rem;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--dec-1)}
+.card--2 .card__go{color:var(--dec-2)}
+.card--3 .card__go{color:var(--dec-3)}
+.card--4 .card__go{color:var(--dec-4)}
+.card--5 .card__go{color:var(--dec-5)}
+a.card:hover .card__go{color:var(--text)}
+
+/* tiles and stat cards join the same family */
+.tile{box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
+.tile:hover{transform:translateY(-3px);box-shadow:var(--shadow-strong)}
+.stat{box-shadow:var(--shadow)}
+.strip a{box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease,
+  border-color .25s ease}
+.strip a:hover{transform:translateY(-4px);box-shadow:var(--shadow-strong)}
+.figure{box-shadow:var(--shadow)}
+
+/* ---------- a sparkline inside a stat card ---------- */
+.stat__spark{margin-top:.75rem;display:block;width:100%;height:2.4rem}
+.stat__spark .line{fill:none;stroke:var(--no);stroke-width:2;stroke-linejoin:round;
+  stroke-linecap:round}
+.stat__spark .band{fill:var(--no);opacity:.14}
+.stat__spark .dot{fill:var(--no)}
+.stat__sparklabel{font-family:var(--mono);font-size:.64rem;color:var(--text-mute);
+  display:block;margin-top:.25rem}
+
+/* ---------- wide figure band ---------- */
+.figure--wide{padding:clamp(1.2rem,2.6vw,1.8rem)}
+.figure--wide svg{max-height:26rem}
+.figure__head{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap;margin-bottom:.9rem}
+.figure__head h3{margin:0}
+.figure__head p{margin:0;font-family:var(--mono);font-size:.72rem;color:var(--text-mute)}
+
+/* ---------- back to top ---------- */
+.to-top{position:fixed;right:1.1rem;bottom:1.1rem;z-index:15;width:2.6rem;height:2.6rem;
+  border-radius:50%;border:1px solid var(--line-strong);background:var(--surface);
+  color:var(--text-soft);cursor:pointer;padding:.6rem;opacity:0;visibility:hidden;
+  transform:translateY(8px);transition:opacity .22s ease,transform .22s ease,
+  visibility .22s ease;box-shadow:var(--shadow)}
+.to-top.is-on{opacity:1;visibility:visible;transform:none}
+.to-top:hover{color:var(--text);border-color:var(--accent)}
+.to-top svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2}
+
+/* ---------- scroll reveal ---------- */
+.reveal{opacity:0;transform:translateY(14px);
+  transition:opacity .55s ease,transform .55s ease}
+.reveal.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .card,.tile,.strip a{transition:none}
+  a.card:hover,.tile:hover,.strip a:hover{transform:none}
+}
