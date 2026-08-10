@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — global-nu</title>
+<meta name="description" content="Who publishes global-nu.org, what a global analysis is, and how to cite the releases.">
+<link rel="canonical" href="https://global-nu.org/about.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="global-nu">
+<meta property="og:title" content="About — global-nu">
+<meta property="og:description" content="Who publishes global-nu.org, what a global analysis is, and how to cite the releases.">
+<meta property="og:url" content="https://global-nu.org/about.html">
+<meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/archivo-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css?v=15fe2d1b">
+<script>
+/* Apply the saved theme before the first paint. Inline and blocking on
+   purpose: a deferred script runs after the page is drawn, and a reader who
+   chose light would see a flash of dark on every navigation. try/catch
+   because localStorage throws outright in Safari's private mode rather than
+   returning null. */
+(function(){try{var t=localStorage.getItem("gnu-theme");
+if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
+</script>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html">global<i>-nu</i><span>Neutrino oscillation global analyses · Bari</span></a>
+    <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme" title="Switch theme">
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.4"/>
+        <path d="M12 2.6v2.4M12 19v2.4M2.6 12h2.4M19 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7" stroke-linecap="round"/>
+      </svg>
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.5 14.6A8.6 8.6 0 1 1 9.4 3.5a6.9 6.9 0 0 0 11.1 11.1Z" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="results.html">Results</a>
+      <a href="history.html">Parameter history</a>
+      <a href="digest.html">arXiv digest</a>
+      <a href="news.html">News</a>
+      <a href="conferences.html">Conferences</a>
+      <a href="resources.html">Resources</a>
+      <a href="search.html">Search</a>
+      <a href="about.html" aria-current="page">About</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero">
+  <div class="wrap hero__in">
+    <p class="kicker">About</p>
+    <h1>Who is behind <i class="grad">global-nu</i></h1>
+    <p class="lede">A site of the Bari group, built to put our global analyses
+    of neutrino oscillation data — and the material around them — where the
+    community can actually use them.</p>
+  </div>
+</section>
+
+<section class="section section--paper"><div class="wrap">
+<div class="split">
+
+<div class="prose">
+
+## The group
+
+The global analyses published here are the work of a collaboration centred on
+Bari. The most recent release,
+<a href="https://doi.org/10.1103/PhysRevD.111.093006" rel="noopener noreferrer" target="_blank">Phys. Rev. D 111, 093006
+(2025)</a>, is by <strong>Francesco Capozzi</strong> (L’Aquila and INFN LNGS),
+<strong>William Giarè</strong> (Sheffield), <strong>Eligio Lisi</strong> (INFN
+Bari), <strong>Antonio Marrone</strong> (Università di Bari and INFN Bari),
+<strong>Alessandro Melchiorri</strong> (Roma “La Sapienza” and INFN Roma I) and
+<strong>Antonio Palazzo</strong> (Università di Bari and INFN Bari).
+
+The series of analyses it belongs to goes back to the early 2000s; the
+[parameter history](history.html) page traces it release by release.
+
+## What a global analysis is
+
+Every oscillation experiment measures a projection of the same six-parameter
+space, and each is blind to directions the others constrain. A global analysis
+combines them into a single χ² — solar, atmospheric, reactor and accelerator
+data, with cosmological constraints where relevant — and reports the parameters
+with the correlations intact. That combination is what this site publishes.
+
+</div>
+
+<div>
+
+<div class="callout" id="cite">
+<h4>How to cite</h4>
+<p>If you use the numbers or the files from the 2025 release, please cite the
+paper:</p>
+<pre style="overflow-x:auto;font-family:var(--mono);font-size:.78rem;line-height:1.5;margin:.6rem 0 0"><code>@article{Capozzi:2025wgt,
+  author  = {Capozzi, Francesco and Giar\`e, William
+             and Lisi, Eligio and Marrone, Antonio
+             and Melchiorri, Alessandro and Palazzo, Antonio},
+  title   = {{Neutrino masses and mixing:
+             Entering the era of subpercent precision}},
+  journal = {Phys. Rev. D},
+  volume  = {111},
+  number  = {9},
+  pages   = {093006},
+  year    = {2025},
+  doi     = {10.1103/PhysRevD.111.093006},
+  eprint  = {2503.07752},
+  archivePrefix = {arXiv},
+  primaryClass  = {hep-ph}
+}</code></pre>
+<p class="small" style="margin-top:.7rem">The INSPIRE record carries the
+authoritative key and an always-current BibTeX entry:
+<a href="https://inspirehep.net/literature?q=arxiv:2503.07752" rel="noopener noreferrer" target="_blank">look it up on
+INSPIRE</a>.</p>
+</div>
+
+<div class="callout" style="margin-top:1.3rem">
+<h4>Automatically generated pages</h4>
+<p>The <a href="digest.html">arXiv digest</a>, the <a href="news.html">news</a>
+and the <a href="conferences.html">conference calendar</a> are produced daily
+with AI assistance and are marked as such at the top of each page. They may
+contain errors, and they are not a substitute for the sources they link to.</p>
+<p>The <a href="results.html">results</a> and the
+<a href="history.html">parameter history</a> are not automated: every number
+there is transcribed from a published table by hand.</p>
+</div>
+
+</div>
+
+</div>
+
+</div></section>
+<section class="section section--paper alt"><div class="wrap">
+<div class="split">
+<div class="prose">
+
+## Contact
+
+Dipartimento Interateneo di Fisica “Michelangelo Merlin”, Via Amendola 173,
+70126 Bari, Italy — Università degli Studi di Bari “Aldo Moro” and INFN Sezione
+di Bari.
+
+Write to <a href="mailto:antonio.marrone@ba.infn.it">antonio.marrone@ba.infn.it</a>.
+
+</div>
+<div class="prose">
+
+## About this site
+
+Static pages, no server-side code, no cookies. The literature
+[search](search.html) runs entirely in your browser: what you type goes
+directly from you to the databases, and never to this site.
+
+Visits are counted with GoatCounter, which records a pageview without cookies
+and without tracking individuals.
+
+</div>
+</div>
+
+</div></section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__inner">
+      <div>
+        <h4>global-nu</h4>
+        <p>Global analyses of neutrino oscillation data by the Bari group.<br>
+        Dipartimento Interateneo di Fisica “Michelangelo Merlin” &amp;
+        INFN Sezione di Bari, Via Amendola 173, 70126 Bari, Italy.</p>
+      </div>
+      <div>
+        <h4>The data</h4>
+        <ul>
+          <li><a href="results.html">Releases and tables</a></li>
+          <li><a href="history.html">Parameter history</a></li>
+          <li><a href="about.html#cite">How to cite</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Every day</h4>
+        <ul>
+          <li><a href="digest.html">arXiv digest</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="conferences.html">Conferences</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="results.html">Results</a></li>
+          <li><a href="history.html">Parameter history</a></li>
+          <li><a href="digest.html">arXiv digest</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="conferences.html">Conferences</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="site-footer__base">© 2026 the Bari group · Content is published
+    under the terms stated on each release page. Pages marked as automatically
+    generated are produced with AI assistance and may contain errors.</p>
+  </div>
+</footer>
+
+<script src="assets/js/site.js?v=a2882646" defer></script>
+
+<script data-goatcounter="https://antoniomarrone.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parameter history — global-nu</title>
+<meta name="description" content="How the neutrino oscillation parameters moved from 2000 to today, across the Bari, Valencia and NuFit global analyses — every point traced to the paper it came from.">
+<link rel="canonical" href="https://global-nu.org/history.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="global-nu">
+<meta property="og:title" content="Parameter history — global-nu">
+<meta property="og:description" content="How the neutrino oscillation parameters moved from 2000 to today, across the Bari, Valencia and NuFit global analyses — every point traced to the paper it came from.">
+<meta property="og:url" content="https://global-nu.org/history.html">
+<meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/archivo-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css?v=15fe2d1b">
+<script>
+/* Apply the saved theme before the first paint. Inline and blocking on
+   purpose: a deferred script runs after the page is drawn, and a reader who
+   chose light would see a flash of dark on every navigation. try/catch
+   because localStorage throws outright in Safari's private mode rather than
+   returning null. */
+(function(){try{var t=localStorage.getItem("gnu-theme");
+if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
+</script>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html">global<i>-nu</i><span>Neutrino oscillation global analyses · Bari</span></a>
+    <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme" title="Switch theme">
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.4"/>
+        <path d="M12 2.6v2.4M12 19v2.4M2.6 12h2.4M19 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7" stroke-linecap="round"/>
+      </svg>
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.5 14.6A8.6 8.6 0 1 1 9.4 3.5a6.9 6.9 0 0 0 11.1 11.1Z" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="results.html">Results</a>
+      <a href="history.html" aria-current="page">Parameter history</a>
+      <a href="digest.html">arXiv digest</a>
+      <a href="news.html">News</a>
+      <a href="conferences.html">Conferences</a>
+      <a href="resources.html">Resources</a>
+      <a href="search.html">Search</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero">
+  <div class="wrap hero__in">
+    <p class="kicker">In preparation</p>
+    <h1>A quarter century of <i class="grad">global fits</i></h1>
+    <p class="lede">Where the six oscillation parameters stood at each step
+    since 2000, for the three groups that have published global analyses
+    continuously — and how much the precision improved along the way.</p>
+  </div>
+</section>
+
+<section class="section section--paper"><div class="wrap">
+<div class="prose">
+
+## What this page will contain
+
+For each parameter — δm², Δm², sin²θ₁₂, sin²θ₁₃, sin²θ₂₃ and δ — a timeline of
+best-fit values and allowed ranges as published by:
+
+- the **Bari group**, from 2000 to the present;
+- the **Valencia group** (de Salas, Forero, Tórtola, Valle and predecessors);
+- **NuFit** (Esteban, González-García, Maltoni, Schwetz and predecessors).
+
+Two things make this harder than plotting numbers, and both are the reason the
+page is worth building:
+
+1. **The conventions differ.** We use Δm² = m₃² − ½(m₁² + m₂²); the other
+   groups quote Δm²₃₁ or Δm²₂₃. A timeline that overlays them without saying so
+   would be quietly wrong. Every point here will carry the convention it was
+   published in, and every conversion will be stated.
+2. **The data behind each point differs.** A 2008 range and a 2025 range are
+   not the same measurement made twice; they are different datasets. The page
+   will say what entered each analysis.
+
+## How the numbers get here
+
+From the published papers, and from nowhere else. For each entry: the arXiv
+identifier, the table it came from, and the convention it uses, recorded in a
+plain, checkable file (`site-src/data/history.yaml`) that anyone can read
+against the sources.
+
+The χ² files of the older analyses no longer exist, so there is no shortcut:
+the values are read from the paper tables one by one. A point that cannot be
+verified against its source is left out — never interpolated, never
+reconstructed from a figure.
+
+</div>
+
+<div class="callout" style="margin-top:2rem">
+<h4>Status</h4>
+<p>Awaiting the list of papers. The list of Bari analyses to include is being
+settled first, together with the corresponding Valencia and NuFit releases;
+only then does the transcription start. Nothing is shown on this page until it
+has a source behind it.</p>
+</div>
+
+</div></section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__inner">
+      <div>
+        <h4>global-nu</h4>
+        <p>Global analyses of neutrino oscillation data by the Bari group.<br>
+        Dipartimento Interateneo di Fisica “Michelangelo Merlin” &amp;
+        INFN Sezione di Bari, Via Amendola 173, 70126 Bari, Italy.</p>
+      </div>
+      <div>
+        <h4>The data</h4>
+        <ul>
+          <li><a href="results.html">Releases and tables</a></li>
+          <li><a href="history.html">Parameter history</a></li>
+          <li><a href="about.html#cite">How to cite</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Every day</h4>
+        <ul>
+          <li><a href="digest.html">arXiv digest</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="conferences.html">Conferences</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="results.html">Results</a></li>
+          <li><a href="history.html">Parameter history</a></li>
+          <li><a href="digest.html">arXiv digest</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="conferences.html">Conferences</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="site-footer__base">© 2026 the Bari group · Content is published
+    under the terms stated on each release page. Pages marked as automatically
+    generated are produced with AI assistance and may contain errors.</p>
+  </div>
+</footer>
+
+<script src="assets/js/site.js?v=a2882646" defer></script>
+
+<script data-goatcounter="https://antoniomarrone.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
+</body>
+</html>

@@ -9,3 +9,5 @@ var/
 *.log
 .mypy_cache/
 node_modules/
+node_modules/
+package-lock.json

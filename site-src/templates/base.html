@@ -7,16 +7,22 @@
 <meta name="description" content="{{description}}">
 <link rel="canonical" href="{{site_url}}/{{url}}">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="global-nu">
 <meta property="og:title" content="{{title}} — global-nu">
 <meta property="og:description" content="{{description}}">
 <meta property="og:url" content="{{site_url}}/{{url}}">
+<meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <link rel="icon" href="{{base}}assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="{{base}}assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{base}}assets/fonts/archivo-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{{base}}assets/css/site.css">
 <script>
 /* Apply the saved theme before the first paint. Inline and blocking on
    purpose: a deferred script runs after the page is drawn, and a reader who
    chose light would see a flash of dark on every navigation. try/catch
-   because localStorage throws outright in Safari's private mode. */
+   because localStorage throws outright in Safari's private mode rather than
+   returning null. */
 (function(){try{var t=localStorage.getItem("gnu-theme");
 if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
 </script>
@@ -27,7 +33,7 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
 
 <header class="site-header">
   <div class="wrap site-header__inner">
-    <a class="brand" href="{{base}}index.html">global-nu<span>Neutrino global analyses · Bari</span></a>
+    <a class="brand" href="{{base}}index.html">global<i>-nu</i><span>Neutrino oscillation global analyses · Bari</span></a>
     <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme" title="Switch theme">
       <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true">
         <circle cx="12" cy="12" r="4.4"/>
@@ -56,8 +62,24 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
       <div>
         <h4>global-nu</h4>
         <p>Global analyses of neutrino oscillation data by the Bari group.<br>
-        Dipartimento Interateneo di Fisica, Università degli Studi di Bari
-        “Aldo Moro” &amp; INFN Sezione di Bari.</p>
+        Dipartimento Interateneo di Fisica “Michelangelo Merlin” &amp;
+        INFN Sezione di Bari, Via Amendola 173, 70126 Bari, Italy.</p>
+      </div>
+      <div>
+        <h4>The data</h4>
+        <ul>
+          <li><a href="{{base}}results.html">Releases and tables</a></li>
+          <li><a href="{{base}}history.html">Parameter history</a></li>
+          <li><a href="{{base}}about.html#cite">How to cite</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Every day</h4>
+        <ul>
+          <li><a href="{{base}}digest.html">arXiv digest</a></li>
+          <li><a href="{{base}}news.html">News</a></li>
+          <li><a href="{{base}}conferences.html">Conferences</a></li>
+        </ul>
       </div>
       <div>
         <h4>Navigate</h4>
@@ -66,12 +88,15 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
         </ul>
       </div>
     </div>
-    <p class="site-footer__base">© {{year}} the Bari group.</p>
+    <p class="site-footer__base">© {{year}} the Bari group · Content is published
+    under the terms stated on each release page. Pages marked as automatically
+    generated are produced with AI assistance and may contain errors.</p>
   </div>
 </footer>
 
 <script src="{{base}}assets/js/site.js" defer></script>
 {{scripts}}
+{{analytics}}
 {{katex_body}}
 </body>
 </html>

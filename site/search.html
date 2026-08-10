@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Search — global-nu</title>
+<meta name="description" content="A free-form search across INSPIRE-HEP, arXiv, Crossref and OpenAlex. Type an author, a title, a topic and a date range in plain language; the correct query is built for each database and the results are shown here.">
+<link rel="canonical" href="https://global-nu.org/search.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="global-nu">
+<meta property="og:title" content="Search — global-nu">
+<meta property="og:description" content="A free-form search across INSPIRE-HEP, arXiv, Crossref and OpenAlex. Type an author, a title, a topic and a date range in plain language; the correct query is built for each database and the results are shown here.">
+<meta property="og:url" content="https://global-nu.org/search.html">
+<meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/archivo-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css?v=15fe2d1b">
+<script>
+/* Apply the saved theme before the first paint. Inline and blocking on
+   purpose: a deferred script runs after the page is drawn, and a reader who
+   chose light would see a flash of dark on every navigation. try/catch
+   because localStorage throws outright in Safari's private mode rather than
+   returning null. */
+(function(){try{var t=localStorage.getItem("gnu-theme");
+if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
+</script>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html">global<i>-nu</i><span>Neutrino oscillation global analyses · Bari</span></a>
+    <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme" title="Switch theme">
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.4"/>
+        <path d="M12 2.6v2.4M12 19v2.4M2.6 12h2.4M19 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7" stroke-linecap="round"/>
+      </svg>
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.5 14.6A8.6 8.6 0 1 1 9.4 3.5a6.9 6.9 0 0 0 11.1 11.1Z" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="results.html">Results</a>
+      <a href="history.html">Parameter history</a>
+      <a href="digest.html">arXiv digest</a>
+      <a href="news.html">News</a>
+      <a href="conferences.html">Conferences</a>
+      <a href="resources.html">Resources</a>
+      <a href="search.html" aria-current="page">Search</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero">
+  <div class="wrap hero__in">
+    <p class="kicker">Tools</p>
+    <h1>Literature <i class="grad">search</i></h1>
+    <p class="lede">Type a query the way you would say it — an author, a few
+    words of the title, a topic, a year or a range. The right query is built for
+    each database and the results appear below, on this page.</p>
+  </div>
+</section>
+
+<section class="section section--paper"><div class="wrap">
+<form id="lit-form" class="lit" autocomplete="off">
+
+  <div class="lit__main">
+    <label class="lit__label" for="q-free">Your query</label>
+    <input id="q-free" class="lit__free" type="search" name="q"
+           placeholder="e.g. Lisi Marrone modular symmetry 2023-2025"
+           aria-describedby="lit-chips">
+  </div>
+
+  <p class="lit__hint">Recognised automatically: surnames, quoted titles,
+  experiment names, arXiv identifiers, and dates written as
+  <code>2019-2023</code>, <code>2019-&gt;2023</code>, <code>since 2020</code>, <code>before 2015</code>,
+  <code>last 3 years</code>, <code>March 2024</code>. You can also be explicit
+  with <code>a:Lisi</code>, <code>t:"neutrino masses"</code>, and
+  <code>c:T2K</code> for papers <em>signed by</em> a collaboration rather than
+  about it.</p>
+
+  <div id="lit-chips" class="lit__chips" aria-live="polite"></div>
+
+  <details class="acc lit__acc">
+    <summary>Refine the interpreted fields</summary>
+    <div class="acc__body">
+      <div class="lit__grid">
+        <div>
+          <label class="lit__label" for="q-author">Author(s)</label>
+          <input id="q-author" type="text" placeholder="Lisi; Marrone">
+          <span class="lit__note">Separate several with a semicolon.</span>
+        </div>
+        <div>
+          <label class="lit__label" for="q-title">Title contains</label>
+          <input id="q-title" type="text" placeholder="neutrino masses and mixing">
+        </div>
+        <div>
+          <label class="lit__label" for="q-topic">Topic / keywords</label>
+          <input id="q-topic" type="text" placeholder="seesaw leptogenesis">
+        </div>
+        <div>
+          <label class="lit__label" for="q-collab">Signed by collaboration</label>
+          <input id="q-collab" type="text" placeholder="T2K">
+          <span class="lit__note">Membership, not subject. An experiment name
+          typed in the box above is treated as a topic instead — use
+          <code>c:T2K</code> to force this field.</span>
+        </div>
+        <div>
+          <label class="lit__label" for="q-from">From</label>
+          <input id="q-from" type="text" inputmode="numeric" placeholder="2019">
+        </div>
+        <div>
+          <label class="lit__label" for="q-to">To</label>
+          <input id="q-to" type="text" inputmode="numeric" placeholder="2025">
+        </div>
+        <div>
+          <label class="lit__label" for="q-sort">Sort by</label>
+          <select id="q-sort">
+            <option value="date" selected>Most recent first</option>
+            <option value="relevance">Relevance / citations</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <fieldset class="lit__sources">
+    <legend class="lit__label">Search in</legend>
+    <label class="lit__check"><input type="checkbox" id="src-inspire" checked> INSPIRE-HEP</label>
+    <label class="lit__check"><input type="checkbox" id="src-crossref" checked> Crossref</label>
+    <label class="lit__check"><input type="checkbox" id="src-openalex"> OpenAlex</label>
+    <label class="lit__check"><input type="checkbox" id="src-arxiv" checked> arXiv</label>
+  </fieldset>
+
+  <div class="btn-row">
+    <button class="btn btn--solid" type="submit">Search</button>
+    <button class="btn btn--ghost" type="button" id="lit-clear">Clear</button>
+  </div>
+
+</form>
+
+<p class="lit__label" style="margin-top:2rem">Also open this query in</p>
+<div id="lit-outbound" class="btn-row"></div>
+
+<p class="lit__hint">Try:
+  <a href="#" data-example='Lisi Marrone modular symmetry 2023-2025'>Lisi Marrone modular symmetry 2023-2025</a> ·
+  <a href="#" data-example='t:"neutrinoless double beta decay" since 2022'>neutrinoless double beta decay since 2022</a> ·
+  <a href="#" data-example='T2K oscillation last 2 years'>T2K oscillation last 2 years</a> ·
+  <a href="#" data-example='Feruglio modular forms flavour'>Feruglio modular forms flavour</a>
+</p>
+
+</div></section>
+<section class="section section--paper alt" id="lit-pane"><div class="wrap">
+<p id="lit-status" class="lit__status" aria-live="polite"></p>
+<div id="lit-results" class="lit__results"></div>
+
+</div></section>
+<section class="section section--paper"><div class="wrap">
+<div class="section-head">
+  <h2>How it works</h2>
+</div>
+
+<div class="prose">
+<p>The query you type is parsed in your browser into structured fields — author,
+title, topic, collaboration, date range — which are shown as chips so you can see
+exactly how the sentence was understood, and corrected by hand if the guess was
+wrong. Each database then receives a query in its own syntax: INSPIRE's
+<code>a Lisi and t "modular" and de 2023-&gt;2025</code>, Crossref's <code>query.author</code> with
+<code>from-pub-date</code> filters, OpenAlex's <code>filter=</code> expressions.</p>
+<p>Everything happens in your browser. This site runs no server-side code, so the
+requests go directly from you to the databases: nothing you type is sent to,
+logged by, or stored on <code>global-nu.org</code>.</p>
+<p><strong>How arXiv is reached.</strong> A browser may read a remote API only if that API sends
+the appropriate CORS header, and <code>export.arxiv.org</code> does not — a direct call
+from this page would be refused by the browser before you saw anything. But
+arXiv registers a DOI for every preprint with DataCite, under the
+<code>10.48550/arXiv.*</code> prefix, and DataCite's API does send CORS and needs no key.
+So the arXiv results here are arXiv's own metadata, deposited by arXiv, fetched
+from the one place a browser is allowed to read it.</p>
+<p><strong>Why not NASA ADS.</strong> It requires a personal token, which would have to be
+published in the page source to work — so for ADS the parsed query is turned
+into a correct search URL and offered as a button instead.</p>
+<p>Results are capped at 20 per database, and every outbound link opens in a new
+tab, so you never lose your place here.</p>
+</div>
+</div></section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__inner">
+      <div>
+        <h4>global-nu</h4>
+        <p>Global analyses of neutrino oscillation data by the Bari group.<br>
+        Dipartimento Interateneo di Fisica “Michelangelo Merlin” &amp;
+        INFN Sezione di Bari, Via Amendola 173, 70126 Bari, Italy.</p>
+      </div>
+      <div>
+        <h4>The data</h4>
+        <ul>
+          <li><a href="results.html">Releases and tables</a></li>
+          <li><a href="history.html">Parameter history</a></li>
+          <li><a href="about.html#cite">How to cite</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Every day</h4>
+        <ul>
+          <li><a href="digest.html">arXiv digest</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="conferences.html">Conferences</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="results.html">Results</a></li>
+          <li><a href="history.html">Parameter history</a></li>
+          <li><a href="digest.html">arXiv digest</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="conferences.html">Conferences</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="site-footer__base">© 2026 the Bari group · Content is published
+    under the terms stated on each release page. Pages marked as automatically
+    generated are produced with AI assistance and may contain errors.</p>
+  </div>
+</footer>
+
+<script src="assets/js/site.js?v=a2882646" defer></script>
+<script src="assets/js/search.js?v=fb292f60" defer></script>
+<script data-goatcounter="https://antoniomarrone.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
+</body>
+</html>

@@ -380,6 +380,15 @@ def build_pages(cfg: dict) -> list[str]:
     year = _dt.date.today().year
     versions = asset_versions()
 
+    # GoatCounter counts pageviews without cookies, so no consent banner is
+    # needed. An empty code in site.yaml must produce NO script tag: the
+    # placeholder collapses and the built site carries no trace of analytics.
+    gc_code = (cfg.get("goatcounter") or "").strip()
+    analytics = (
+        f'<script data-goatcounter="https://{gc_code}.goatcounter.com/count" '
+        'async src="https://gc.zgo.at/count.js"></script>'
+    ) if gc_code else ""
+
     for path in sorted(CONTENT.rglob("*.md")):
         raw = path.read_text(encoding="utf-8")
         fm, body = split_frontmatter(raw)
@@ -436,6 +445,7 @@ def build_pages(cfg: dict) -> list[str]:
             "katex_head": KATEX_HEAD.replace("{{base}}", base) if use_katex else "",
             "katex_body": KATEX_BODY.replace("{{base}}", base) if use_katex else "",
             "scripts": scripts,
+            "analytics": analytics,
         })
         page = externalize_links(page, cfg)
         page = version_assets(page, versions)
