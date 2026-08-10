@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup A — Observatory — global-nu</title>
+<style>
+/* ============================================================
+   MOCKUP A — "Observatory"
+   Dark-first. Deep ink surfaces, one luminous accent, hairline
+   rules, data set in a monospaced grid. The reference is a
+   detector control room: instrument, not brochure.
+
+   Typefaces here are system stacks so the file is self-contained.
+   In the real site: display = IBM Plex Sans / Space Mono for data,
+   both self-hosted as woff2.
+   ============================================================ */
+
+:root{
+  --display:ui-sans-serif,system-ui,"Segoe UI",Roboto,sans-serif;
+  --body:ui-sans-serif,system-ui,"Segoe UI",Roboto,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --wide:78rem;
+  --gutter:clamp(1.15rem,4.5vw,3rem);
+  --sec-y:clamp(3rem,7vw,5.5rem);
+  --r:10px;
+}
+
+/* dark (default) */
+:root,:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0b1119;
+  --bg-deep:#070c12;
+  --surface:#111a25;
+  --surface-2:#16212e;
+  --line:rgba(140,180,210,.16);
+  --line-strong:rgba(140,180,210,.30);
+  --text:#e6eef6;
+  --text-soft:#a9bccd;
+  --text-mute:#8497a9;
+  --accent:#35d6c5;
+  --accent-dim:#1f9d90;
+  --accent-2:#7aa7ff;
+  --on-accent:#04141a;
+  --grid:rgba(120,170,200,.09);
+}
+/* light */
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#f4f7fa;
+  --bg-deep:#e8eef4;
+  --surface:#ffffff;
+  --surface-2:#eef3f8;
+  --line:rgba(16,40,60,.14);
+  --line-strong:rgba(16,40,60,.28);
+  --text:#0c1620;
+  --text-soft:#33475a;
+  --text-mute:#556b7e;
+  --accent:#0a7a70;
+  --accent-dim:#075f57;
+  --accent-2:#2b4fb8;
+  --on-accent:#ffffff;
+  --grid:rgba(16,60,90,.07);
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    color-scheme:light;
+    --bg:#f4f7fa;--bg-deep:#e8eef4;--surface:#ffffff;--surface-2:#eef3f8;
+    --line:rgba(16,40,60,.14);--line-strong:rgba(16,40,60,.28);
+    --text:#0c1620;--text-soft:#33475a;--text-mute:#556b7e;
+    --accent:#0a7a70;--accent-dim:#075f57;--accent-2:#2b4fb8;
+    --on-accent:#ffffff;--grid:rgba(16,60,90,.07);
+  }
+}
+
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);
+  line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{width:min(100% - 2*var(--gutter),var(--wide));margin-inline:auto}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- notice ---- */
+.notice{background:var(--surface-2);border-bottom:1px solid var(--line);
+  font-size:.78rem;color:var(--text-mute);padding:.5rem 0;text-align:center}
+.notice b{color:var(--text-soft);font-weight:600}
+
+/* ---- header ---- */
+header.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top__in{display:flex;align-items:center;gap:1.2rem;padding-block:.8rem;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:700;letter-spacing:-.02em;
+  font-size:1.06rem;color:var(--text);display:flex;align-items:center;gap:.55rem}
+.brand .dot{width:.62rem;height:.62rem;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%,transparent)}
+nav.main{display:flex;gap:1.05rem;margin-left:auto;flex-wrap:wrap;font-size:.86rem}
+nav.main a{color:var(--text-soft)}
+nav.main a.on{color:var(--accent)}
+.tbtn{background:none;border:1px solid var(--line);color:var(--text-soft);
+  border-radius:999px;padding:.22rem .7rem;font-size:.74rem;cursor:pointer;
+  font-family:var(--body)}
+
+/* ---- hero ---- */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);
+  background:
+    linear-gradient(to bottom,color-mix(in srgb,var(--accent) 6%,transparent),transparent 60%),
+    repeating-linear-gradient(to right,var(--grid) 0 1px,transparent 1px 64px),
+    repeating-linear-gradient(to bottom,var(--grid) 0 1px,transparent 1px 64px),
+    var(--bg-deep)}
+.hero__in{padding-block:clamp(3rem,8vw,6rem);position:relative;z-index:1}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--accent);margin:0 0 1rem}
+h1{font-family:var(--display);font-size:clamp(2.5rem,6.4vw,4.6rem);line-height:1.02;
+  letter-spacing:-.035em;margin:0 0 1rem;font-weight:700}
+h1 em{font-style:normal;color:var(--accent)}
+.lede{max-width:44rem;font-size:clamp(1rem,1.7vw,1.15rem);color:var(--text-soft);margin:0}
+.btns{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:2rem}
+.btn{border-radius:var(--r);padding:.62rem 1.1rem;font-size:.9rem;font-weight:600;
+  background:var(--accent);color:var(--on-accent);border:1px solid var(--accent)}
+.btn:hover{text-decoration:none;background:var(--accent-dim);border-color:var(--accent-dim)}
+.btn--ghost{background:transparent;color:var(--text);border-color:var(--line-strong)}
+.btn--ghost:hover{background:var(--surface);border-color:var(--accent)}
+.wave{position:absolute;inset:auto 0 -1px 0;width:100%;height:120px;opacity:.5}
+
+/* ---- readout ---- */
+.section{padding-block:var(--sec-y)}
+.section--alt{background:var(--surface);border-block:1px solid var(--line)}
+.head{display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:1.6rem}
+.head h2{font-family:var(--display);font-size:clamp(1.3rem,2.4vw,1.75rem);
+  letter-spacing:-.02em;margin:0}
+.head .meta{font-family:var(--mono);font-size:.76rem;color:var(--text-mute)}
+.head .more{margin-left:auto;font-size:.85rem}
+
+.readout{display:grid;gap:1px;background:var(--line);
+  grid-template-columns:repeat(auto-fit,minmax(13.5rem,1fr));
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.cell{background:var(--surface);padding:1.05rem 1.15rem}
+.cell .k{font-family:var(--mono);font-size:.74rem;color:var(--text-mute);
+  letter-spacing:.04em;display:block;margin-bottom:.5rem}
+.cell .v{font-family:var(--mono);font-size:1.5rem;font-weight:600;color:var(--text);
+  letter-spacing:-.02em;display:block}
+.cell .u{font-family:var(--mono);font-size:.72rem;color:var(--text-mute);
+  display:block;margin-top:.3rem}
+.cell .bar{height:3px;background:var(--surface-2);border-radius:2px;margin-top:.8rem;
+  position:relative;overflow:hidden}
+.cell .bar i{position:absolute;inset:0 auto 0 22%;width:34%;background:var(--accent);
+  border-radius:2px;opacity:.75}
+.ph{color:var(--text-mute)!important;font-weight:400}
+
+.rel{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.2rem;font-size:.8rem;
+  font-family:var(--mono);color:var(--text-mute)}
+.tag{border:1px solid var(--line);border-radius:999px;padding:.18rem .65rem}
+
+/* ---- three columns ---- */
+.cols{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:1.3rem 1.35rem;position:relative}
+.card::before{content:"";position:absolute;inset:0 auto 0 0;width:2px;
+  background:var(--accent);border-radius:var(--r) 0 0 var(--r);opacity:.85}
+.card h3{font-family:var(--display);font-size:1.02rem;margin:0 0 .2rem;letter-spacing:-.01em}
+.card .stamp{font-family:var(--mono);font-size:.7rem;color:var(--text-mute);
+  text-transform:uppercase;letter-spacing:.1em;margin-bottom:.9rem}
+.list{list-style:none;margin:0;padding:0;font-size:.9rem}
+.list li{padding:.5rem 0;border-top:1px solid var(--line);color:var(--text-soft)}
+.list li:first-child{border-top:0}
+.list b{color:var(--text);font-weight:600;display:block;font-size:.92rem}
+.list span{font-family:var(--mono);font-size:.72rem;color:var(--text-mute)}
+
+/* ---- strip ---- */
+.strip{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
+  border-radius:var(--r);overflow:hidden;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr))}
+.strip a{background:var(--surface);padding:1.1rem 1.2rem;display:block;color:var(--text)}
+.strip a:hover{background:var(--surface-2);text-decoration:none}
+.strip .t{font-family:var(--display);font-weight:600;display:block;margin-bottom:.15rem}
+.strip .d{font-size:.84rem;color:var(--text-mute)}
+
+footer.bot{border-top:1px solid var(--line);background:var(--bg-deep);
+  padding-block:2.4rem;font-size:.85rem;color:var(--text-mute)}
+</style>
+</head>
+<body>
+
+<div class="notice"><b>Mockup A — “Observatory”.</b> Layout only: every number on this page is a
+placeholder (—), never an invented value. Real figures come from the paper tables in Phase 2.</div>
+
+<header class="top"><div class="wrap top__in">
+  <span class="brand"><span class="dot"></span>global-nu</span>
+  <nav class="main">
+    <a class="on" href="#">Home</a><a href="#">Results</a><a href="#">History</a>
+    <a href="#">Digest</a><a href="#">News</a><a href="#">Conferences</a>
+    <a href="#">Resources</a><a href="#">Search</a>
+  </nav>
+  <button class="tbtn" onclick="tt()">theme</button>
+</div></header>
+
+<section class="hero">
+  <div class="wrap hero__in">
+    <p class="eyebrow">Bari group · global analysis</p>
+    <h1>The oscillation<br>parameters, <em>measured</em>.</h1>
+    <p class="lede">Three-flavour global analyses of solar, atmospheric, reactor and
+    accelerator data, combined with cosmology. Best fits, allowed ranges, χ² maps and
+    machine-readable data — one entry per release, with the paper beside it.</p>
+    <div class="btns">
+      <a class="btn" href="#">Latest release</a>
+      <a class="btn btn--ghost" href="#">Download the data</a>
+      <a class="btn btn--ghost" href="#">How to cite</a>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 80 C 100 20 200 20 300 80 S 500 140 600 80 S 800 20 900 80 S 1100 140 1200 80"
+          fill="none" stroke="var(--accent)" stroke-width="2" opacity=".55"/>
+    <path d="M0 90 C 150 40 250 130 400 90 S 650 30 800 90 S 1050 130 1200 90"
+          fill="none" stroke="var(--accent-2)" stroke-width="2" opacity=".4"/>
+  </svg>
+</section>
+
+<section class="section section--alt"><div class="wrap">
+  <div class="head">
+    <h2>Latest release</h2>
+    <span class="meta">March 2025 · arXiv:2503.07752 · PRD 111, 093006</span>
+    <a class="more" href="#">All releases →</a>
+  </div>
+  <div class="readout">
+    <div class="cell"><span class="k">sin²θ₁₂</span><span class="v ph">—.———</span>
+      <span class="u">1σ range —</span><div class="bar"><i></i></div></div>
+    <div class="cell"><span class="k">sin²θ₁₃</span><span class="v ph">—.———</span>
+      <span class="u">1σ range —</span><div class="bar"><i></i></div></div>
+    <div class="cell"><span class="k">sin²θ₂₃</span><span class="v ph">—.———</span>
+      <span class="u">1σ range —</span><div class="bar"><i></i></div></div>
+    <div class="cell"><span class="k">δm² / 10⁻⁵ eV²</span><span class="v ph">—.——</span>
+      <span class="u">m₂² − m₁² &gt; 0</span><div class="bar"><i></i></div></div>
+    <div class="cell"><span class="k">Δm² / 10⁻³ eV²</span><span class="v ph">—.———</span>
+      <span class="u">m₃² − (m₁²+m₂²)/2</span><div class="bar"><i></i></div></div>
+    <div class="cell"><span class="k">δ/π</span><span class="v ph">—.——</span>
+      <span class="u">CP phase</span><div class="bar"><i></i></div></div>
+  </div>
+  <div class="rel">
+    <span class="tag">normal ordering</span><span class="tag">inverted ordering</span>
+    <span class="tag">χ² maps</span><span class="tag">JSON · CSV</span>
+    <span class="tag">our conventions, stated</span>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="cols">
+    <article class="card">
+      <div class="stamp">arXiv digest · updated daily</div>
+      <h3>Today on arXiv</h3>
+      <ul class="list">
+        <li><b>Experimental — title placeholder</b><span>arXiv:—— · hep-ex</span></li>
+        <li><b>Theory — title placeholder</b><span>arXiv:—— · hep-ph</span></li>
+        <li><b>Theory — title placeholder</b><span>arXiv:—— · hep-ph</span></li>
+      </ul>
+    </article>
+    <article class="card">
+      <div class="stamp">News · when there is something</div>
+      <h3>What is happening</h3>
+      <ul class="list">
+        <li><b>Experiment milestone placeholder</b><span>— · collaboration</span></li>
+        <li><b>Result placeholder</b><span>— · journal</span></li>
+        <li><b>Project placeholder</b><span>— · laboratory</span></li>
+      </ul>
+    </article>
+    <article class="card">
+      <div class="stamp">Conferences · next up</div>
+      <h3>Where the field meets</h3>
+      <ul class="list">
+        <li><b>Conference placeholder</b><span>— · venue</span></li>
+        <li><b>Workshop placeholder</b><span>— · venue</span></li>
+        <li><b>School placeholder</b><span>— · venue</span></li>
+      </ul>
+    </article>
+  </div>
+</div></section>
+
+<section class="section section--alt"><div class="wrap">
+  <div class="strip">
+    <a href="#"><span class="t">Parameter history</span><span class="d">Twenty-five years of global fits — us, Valencia, NuFit</span></a>
+    <a href="#"><span class="t">Machine-readable data</span><span class="d">Stable URLs, documented schema, made to be scripted</span></a>
+    <a href="#"><span class="t">Methodology</span><span class="d">How a global analysis is actually built</span></a>
+  </div>
+</div></section>
+
+<footer class="bot"><div class="wrap">
+  global-nu · Bari group · Dipartimento Interateneo di Fisica, Università di Bari “Aldo Moro” &amp; INFN Sezione di Bari
+</div></footer>
+
+<script>
+function tt(){var r=document.documentElement;
+var cur=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+r.setAttribute('data-theme',cur==='dark'?'light':'dark');}
+</script>
+</body>
+</html>
