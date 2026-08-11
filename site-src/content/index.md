@@ -12,7 +12,7 @@ katex: false
   <div class="wrap hero__in">
     <div>
       <p class="kicker"><b>●</b> Release March 2025 · PRD 111, 093006</p>
-      <h1>Every parameter,<br>every <i class="grad">release</i>.</h1>
+      <h1>Global analyses of neutrino<br>oscillation data</h1>
       <p class="lede">The Bari global analysis of neutrino oscillation data,
       published openly: best fits, allowed ranges, both mass orderings, and
       files you can compute with.</p>

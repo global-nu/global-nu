@@ -143,6 +143,15 @@ if (/(^|[^ ])\.theme-toggle__moon\s*\{[^}]*display\s*:\s*none/m.test(css)) {
   bad('no rule hides the inactive theme icon');
 }
 
+/* Text filled with a gradient puts part of every word at a lower contrast
+   than the rest, and reads as advertising on a university page. It was on the
+   headlines once; it does not come back. */
+if (/background-clip\s*:\s*text/.test(css)) {
+  bad('some text is filled with a gradient (background-clip:text)');
+} else {
+  ok('no text is filled with a gradient');
+}
+
 /* --------------------------------------------------------- behaviour --- */
 
 console.log('behaviour');

@@ -13,7 +13,7 @@ scripts:
 <section class="hero">
   <div class="wrap hero__in">
     <p class="kicker">Tools</p>
-    <h1>Literature <i class="grad">search</i></h1>
+    <h1>Literature search</h1>
     <p class="lede">Type a query the way you would say it — an author, a few
     words of the title, a topic, a year or a range. The right query is built for
     each database and the results appear below, on this page.</p>

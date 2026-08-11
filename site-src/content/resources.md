@@ -10,7 +10,7 @@ katex: false
 <section class="hero">
   <div class="wrap hero__in">
     <p class="kicker">Curated</p>
-    <h1>Where to <i class="grad">look</i></h1>
+    <h1>Experiments, data and literature</h1>
     <p class="lede">The places a global analysis draws on, and the places to
     start from if you are new to the field. Every link here was checked before
     publication; the list is curated by hand, not scraped.</p>

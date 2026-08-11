@@ -10,7 +10,7 @@ katex: false
 <section class="hero">
   <div class="wrap hero__in">
     <p class="kicker">Refreshed daily</p>
-    <h1>Where the field <i class="grad">meets</i></h1>
+    <h1>Conferences and workshops</h1>
     <p class="lede">Conferences, workshops and schools in neutrino physics:
     what is coming, and what has just happened.</p>
   </div>

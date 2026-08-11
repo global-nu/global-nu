@@ -10,7 +10,7 @@ katex: false
 <section class="hero">
   <div class="wrap hero__in">
     <p class="kicker">About</p>
-    <h1>Who is behind <i class="grad">global-nu</i></h1>
+    <h1>About this site</h1>
     <p class="lede">A site of the Bari group, built to put our global analyses
     of neutrino oscillation data — and the material around them — where the
     community can actually use them.</p>

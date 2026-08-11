@@ -10,7 +10,7 @@ katex: false
 <section class="hero">
   <div class="wrap hero__in">
     <p class="kicker">Neutrino news</p>
-    <h1>What is happening in <i class="grad">neutrino physics</i></h1>
+    <h1>News from the field</h1>
     <p class="lede">This week's news is dominated by construction and technology milestones — DUNE's high-voltage prototype testing and the first PIP-II beamline installation, and KM3NeT's expansion of the ORCA telescope — alongside new results from KM3NeT's diffuse-flux search and NOvA's magnetic-monopole search. On the theory side, published work spans neutrinoless double-beta decay limits, decoherence in long-baseline oscillations, cross-section modelling for argon-based detectors, and the interpretation of KM3NeT's record-energy event.</p>
   </div>
 </section>

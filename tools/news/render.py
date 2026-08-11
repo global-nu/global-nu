@@ -101,7 +101,7 @@ def news(narrative: dict | None, known: dict[str, dict], log: logging.Logger,
     body = [f"""<section class="hero">
   <div class="wrap hero__in">
     <p class="kicker">Neutrino news</p>
-    <h1>What is happening in <i class="grad">neutrino physics</i></h1>
+    <h1>News from the field</h1>
     <p class="lede">{_esc(narrative.get("overview") or
       "Experiments, results and recently published work from across the field.")}</p>
   </div>
@@ -189,7 +189,7 @@ def digest(records: list[dict], log: logging.Logger, stamp: str | None = None) -
     body = f"""<section class="hero">
   <div class="wrap hero__in">
     <p class="kicker">Updated daily</p>
-    <h1>Today on <i class="grad">arXiv</i></h1>
+    <h1>The day's preprints on arXiv</h1>
     <p class="lede">Neutrino preprints ranked by relevance to the field, with
     experimental and theoretical work kept apart.</p>
   </div>
@@ -264,7 +264,7 @@ def conferences(records: list[dict], log: logging.Logger,
     body = f"""<section class="hero">
   <div class="wrap hero__in">
     <p class="kicker">Refreshed daily</p>
-    <h1>Where the field <i class="grad">meets</i></h1>
+    <h1>Conferences and workshops</h1>
     <p class="lede">Conferences, workshops and schools in neutrino physics:
     what is coming, and what has just happened.</p>
   </div>

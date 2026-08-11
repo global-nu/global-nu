@@ -189,15 +189,16 @@ a:hover{text-decoration:underline}
   color:var(--text);padding:.55rem 1rem;border-radius:var(--r-sm);
   border:1px solid var(--line-strong)}
 
-h1,h2,h3,h4{font-family:var(--display);letter-spacing:-.03em;margin:0}
-h1{font-weight:800;font-size:clamp(2.2rem,5.6vw,4rem);line-height:1.03}
-h2{font-weight:800;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.12}
+h1,h2,h3,h4{font-family:var(--display);letter-spacing:-.015em;margin:0}
+/* An academic page, not a poster: the display sizes are a step down from
+   where they started, and the tracking is looser, so a heading reads as a
+   heading rather than as a slogan. */
+h1{font-weight:700;font-size:clamp(1.9rem,3.4vw,2.75rem);line-height:1.12;
+  letter-spacing:-.02em}
+h2{font-weight:700;font-size:clamp(1.35rem,2.2vw,1.8rem);line-height:1.2;
+  letter-spacing:-.015em}
 h3{font-weight:700;font-size:1.1rem;letter-spacing:-.02em}
 h4{font-weight:700;font-size:.98rem}
-.grad{background:linear-gradient(92deg,var(--accent),var(--accent-2));
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  /* an italic word clipped its final letter against the text box */
-  padding-right:.08em;margin-right:-.08em}
 
 /* ---------- header ---------- */
 .site-header{position:sticky;top:0;z-index:10;
@@ -209,8 +210,7 @@ h4{font-weight:700;font-size:.98rem}
   letter-spacing:-.035em;color:var(--text);display:flex;flex-direction:column;
   line-height:1.15}
 .brand:hover{text-decoration:none}
-.brand i{font-style:normal;background:linear-gradient(92deg,var(--accent),var(--accent-2));
-  -webkit-background-clip:text;background-clip:text;color:transparent}
+.brand i{font-style:normal;color:var(--accent)}
 .brand span{font-family:var(--body);font-size:.68rem;font-weight:400;
   letter-spacing:0;color:var(--text-mute)}
 .nav{display:flex;gap:1rem;margin-left:auto;flex-wrap:wrap;
@@ -254,7 +254,7 @@ h4{font-weight:700;font-size:.98rem}
   color:var(--text-mute);border:1px solid var(--line);border-radius:999px;
   padding:.28rem .8rem;margin:0 0 1.3rem}
 .kicker b{color:var(--no);font-weight:700}
-.lede{color:var(--text-soft);font-size:clamp(1rem,1.6vw,1.12rem);
+.lede{color:var(--text-soft);font-size:clamp(1rem,1.4vw,1.08rem);
   margin:1.1rem 0 0;max-width:38rem}
 .btn-row{display:flex;gap:.65rem;flex-wrap:wrap;margin-top:1.8rem}
 .btn{border-radius:999px;padding:.6rem 1.15rem;font-size:.88rem;font-weight:600;

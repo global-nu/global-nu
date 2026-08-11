@@ -14,7 +14,7 @@ katex: false
 <section class="hero">
   <div class="wrap hero__in">
     <p class="kicker">Parameter history</p>
-    <h1>From a hint of θ₁₃ to <i class="grad">subpercent precision</i></h1>
+    <h1>A quarter century of global fits</h1>
     <p class="lede">Every published update of the Bari global analysis, plotted
     as it was published: best fit and 3σ range, for both mass orderings. No
     point is interpolated, rescaled or read off a figure.</p>

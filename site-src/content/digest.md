@@ -10,7 +10,7 @@ katex: false
 <section class="hero">
   <div class="wrap hero__in">
     <p class="kicker">Updated daily</p>
-    <h1>Today on <i class="grad">arXiv</i></h1>
+    <h1>The day's preprints on arXiv</h1>
     <p class="lede">Neutrino preprints ranked by relevance to the field, with
     experimental and theoretical work kept apart.</p>
   </div>

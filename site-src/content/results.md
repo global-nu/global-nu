@@ -11,7 +11,7 @@ katex: false
 <section class="hero">
   <div class="wrap hero__in">
     <p class="kicker">Results</p>
-    <h1>Global <i class="grad">3ν</i> analyses</h1>
+    <h1>Results, release by release</h1>
     <p class="lede">One entry per release: best-fit values and allowed ranges
     for the six oscillation parameters, in both mass orderings, with the paper
     and the downloadable files beside them.</p>
