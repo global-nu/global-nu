@@ -39,6 +39,27 @@
 
   /* ---------------------------------------------------------------- data -- */
   function load() {
+    // A self-contained copy carries the data in a <script type=application/json>
+    // instead of a file to fetch: fetch() is blocked on file:// URLs, which is
+    // exactly where an offline preview is opened.
+    var inlineId = root.getAttribute("data-chi2-inline");
+    if (inlineId) {
+      var node = document.getElementById(inlineId);
+      if (node) {
+        try {
+          var doc = JSON.parse(node.textContent);
+          state.data = doc;
+          state.set = Object.keys(doc.datasets)[0];
+          state.param = Object.keys(doc.datasets[state.set].params)[0];
+          build();
+          return;
+        } catch (e) {
+          root.innerHTML = '<p class="small muted">The embedded Δχ² data could ' +
+            "not be read (" + String(e.message) + ").</p>";
+          return;
+        }
+      }
+    }
     var url = root.getAttribute("data-chi2");
     fetch(url, { cache: "no-cache" })
       .then(function (r) {
