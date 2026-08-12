@@ -42,12 +42,22 @@
     jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12
   };
 
-  // Words that are never author surnames even when capitalised.
-  var STOP = new Set((
+  // Words that are never author surnames even when capitalised. Two fates:
+  // DROP is search grammar that carries no meaning for any database; KIND is
+  // the document type the reader is after ("lecture notes", "review") — it
+  // used to be dropped with the grammar, which silently turned "lecture
+  // notes string theory" into a bare "string theory" search. KIND words are
+  // real query terms: they go to the topic, just never to an author guess.
+  var DROP = new Set((
     "a an an the of in on for with without from to by as at or not new " +
-    "review lecture notes thesis paper papers preprint about search find " +
+    "paper papers preprint about search find " +
     "all any between since after before during last recent latest recently " +
     "year years month months day days week weeks and et al"
+  ).split(" "));
+  var KIND = new Set((
+    "review reviews lecture lectures notes note thesis theses " +
+    "introduction introductory course courses primer textbook textbooks " +
+    "pedagogical school schools"
   ).split(" "));
 
   // Subject vocabulary. A leftover word that appears here is a topic; anything
@@ -195,7 +205,8 @@
       var clean = w.replace(/^[.,;("']+|[.,;)"']+$/g, "");
       if (!clean) return;
       var lower = clean.toLowerCase();
-      if (STOP.has(lower)) return;
+      if (DROP.has(lower)) return;
+      if (KIND.has(lower)) { out.topic.push(lower); return; }
       if (PHYS.has(lower)) { out.topic.push(clean); return; }
 
       // Purely alphabetic word of decent length, not a known subject term:
@@ -294,7 +305,15 @@
     f.author.forEach(function (a) { parts.push("a " + a); });
     if (f.title) parts.push('t "' + f.title + '"');
     if (f.collab) parts.push("cn " + f.collab);
-    if (f.topic) parts.push("ft " + f.topic);
+    // Topic terms: BARE when they are the whole query, `ft` otherwise.
+    // Verified live, both ways: "lecture notes string theory" bare returns
+    // the Les Houches notes ranked by true relevance, while the ft version
+    // matches any long review that cites lecture notes and, sorted by
+    // citations, buried the target under Quantum Entanglement; but
+    // "a Feruglio and modular forms" bare (or with abs/parentheses) is 0
+    // hits — with an author clause only `ft` combines. Date clauses chain
+    // fine with bare terms (also verified).
+    if (f.topic) parts.push(parts.length ? "ft " + f.topic : f.topic);
     if (f.from && f.to) parts.push("de " + yearOf(f.from) + "->" + yearOf(f.to));
     else if (f.from) parts.push("de > " + yearOf(f.from));
     else if (f.to) parts.push("de < " + yearOf(f.to));
@@ -328,13 +347,19 @@
     var p = new URLSearchParams();
     var search = [f.title, f.topic, f.collab].filter(Boolean).join(" ");
     if (search) p.set("search", search);
-    var filt = [];
+    // Physical Sciences only (domain 3 in OpenAlex's topic hierarchy —
+    // verified live: "string theory" drops from every field of knowledge to
+    // 367k physics records). OpenAlex indexes everything; this page is on a
+    // physics site and marketing papers matching the word "theory" are how
+    // a search for lecture notes once returned the Theory of Planned
+    // Behaviour.
+    var filt = ["primary_topic.domain.id:3"];
     if (f.author.length) {
       filt.push("raw_author_name.search:" + f.author.join(" "));
     }
     if (f.from) filt.push("from_publication_date:" + padDate(f.from, true));
     if (f.to) filt.push("to_publication_date:" + padDate(f.to, false));
-    if (filt.length) p.set("filter", filt.join(","));
+    p.set("filter", filt.join(","));
     p.set("per-page", "20");
     p.set("sort", f.sort === "date" ? "publication_date:desc" : "relevance_score:desc");
     p.set("mailto", "antonio.marrone@ba.infn.it");
@@ -470,10 +495,14 @@
     if (!q) return Promise.resolve([]);
     var p = new URLSearchParams({
       q: q, size: "20", page: "1",
-      sort: f.sort === "date" ? "mostrecent" : "mostcited",
       fields: "titles,authors,arxiv_eprints,publication_info,earliest_date," +
               "dois,citation_count,control_number"
     });
+    // Relevance mode leaves INSPIRE's own ranking alone: sort=mostcited
+    // turned every topic search into "the most cited papers that mention
+    // these words", which for "lecture notes string theory" was Quantum
+    // Entanglement and the PDG Review.
+    if (f.sort === "date") p.set("sort", "mostrecent");
     return getJSON("https://inspirehep.net/api/literature?" + p.toString())
       .then(function (d) {
         return (d.hits && d.hits.hits ? d.hits.hits : []).map(function (h) {
@@ -556,7 +585,89 @@
     });
   }
 
+  /* Semantic Scholar, keyless Graph API with fieldsOfStudy=Physics. The
+     shared anonymous pool rate-limits aggressively (HTTP 429); the failure
+     is reported like any other source and the search still answers from the
+     rest. */
+  function s2Url(f) {
+    var q = [f.title, f.topic, f.collab].filter(Boolean).join(" ");
+    if (f.author.length) q = (q ? q + " " : "") + f.author.join(" ");
+    var p = new URLSearchParams();
+    p.set("query", q || "neutrino");
+    p.set("fieldsOfStudy", "Physics");
+    p.set("fields", "paperId,title,authors,year,publicationDate,venue," +
+                    "externalIds,citationCount");
+    p.set("limit", "20");
+    if (yearOf(f.from) || yearOf(f.to)) {
+      p.set("year", (yearOf(f.from) || "") + "-" + (yearOf(f.to) || ""));
+    }
+    return "https://api.semanticscholar.org/graph/v1/paper/search?" + p.toString();
+  }
+
+  function fromS2(f) {
+    return getJSON(s2Url(f)).then(function (d) {
+      return (d.data || []).map(function (w) {
+        var ext = w.externalIds || {};
+        return {
+          source: "Semantic Scholar",
+          date: w.publicationDate || (w.year ? w.year + "-01-01" : ""),
+          title: w.title || "(untitled)",
+          authors: (w.authors || []).slice(0, 6).map(function (a) { return a.name; }),
+          more: (w.authors || []).length > 6,
+          year: w.year || "",
+          journal: w.venue || "",
+          citations: w.citationCount,
+          links: compact([
+            ext.ArXiv && { label: "arXiv", href: "https://arxiv.org/abs/" + ext.ArXiv },
+            ext.DOI && { label: "DOI", href: "https://doi.org/" + ext.DOI },
+            w.paperId && { label: "Semantic Scholar",
+                           href: "https://www.semanticscholar.org/paper/" + w.paperId }
+          ])
+        };
+      });
+    });
+  }
+
   function compact(a) { return a.filter(Boolean); }
+
+  /* ---------------------------------------------------------------
+     Sanity filters on what the databases return
+     --------------------------------------------------------------- */
+
+  // Crossref carries records "issued" in 2114. With the date sort those
+  // float above every real paper, so an implausible year loses its date and
+  // sinks instead.
+  var THIS_YEAR = new Date().getFullYear();
+  function plausibleYear(y) {
+    y = parseInt(y, 10);
+    return y >= 1800 && y <= THIS_YEAR + 1;
+  }
+  function saneDates(r) {
+    if (r.date && !plausibleYear(r.date.slice(0, 4))) r.date = "";
+    if (r.year && !plausibleYear(r.year)) r.year = "";
+    return r;
+  }
+
+  // INSPIRE and arXiv are physics by construction; Crossref and OpenAlex
+  // index every field of knowledge and their relevance ranking returns
+  // anything containing one query word ("theory" -> Theory of Planned
+  // Behaviour). A record that ONLY generic databases returned must show the
+  // substantive query terms in its title or venue: all of them for short
+  // queries, all but one when four or more.
+  var PHYSICS_NATIVE = { "INSPIRE-HEP": 1, "arXiv": 1, "Semantic Scholar": 1 };
+  function passesTermGate(r, terms) {
+    if (!terms.length) return true;
+    var hay = " " + normTitle(r.title + " " + (r.journal || "")) + " ";
+    var hit = terms.filter(function (t) {
+      return hay.indexOf(" " + t + " ") > -1 || hay.indexOf(t) > -1;
+    }).length;
+    var need = terms.length >= 4 ? terms.length - 1 : terms.length;
+    return hit >= need;
+  }
+  function gateTerms(f) {
+    return normTitle(f.topic + " " + f.title).split(" ")
+      .filter(function (t) { return t.length >= 3 && !DROP.has(t); });
+  }
 
   // Newest first. APIs are asked to sort already, but they disagree on what
   // "date" means (INSPIRE: earliest announcement, Crossref: issued, OpenAlex:
@@ -730,7 +841,8 @@
   var SRC_CLASS = {
     "INSPIRE-HEP": "src--inspire",
     "Crossref": "src--crossref",
-    "OpenAlex": "src--openalex"
+    "OpenAlex": "src--openalex",
+    "Semantic Scholar": "src--s2"
   };
 
   function renderItem(r) {
@@ -845,6 +957,7 @@
     if ($("#src-crossref").checked) wanted.push(["Crossref", fromCrossref(f)]);
     if ($("#src-openalex").checked) wanted.push(["OpenAlex", fromOpenAlex(f)]);
     if ($("#src-arxiv") && $("#src-arxiv").checked) wanted.push(["arXiv", fromArxiv(f)]);
+    if ($("#src-s2") && $("#src-s2").checked) wanted.push(["Semantic Scholar", fromS2(f)]);
 
     if (!wanted.length) {
       elStatus.textContent = "Select at least one database.";
@@ -865,7 +978,17 @@
                            .map(function (g) { return { name: g.name, err: g.err }; });
       var ok = groups.filter(function (g) { return !g.err; });
 
+      ok.forEach(function (g) { g.rows.forEach(saneDates); });
       var rows = mergeAll(ok);
+
+      var terms = gateTerms(f);
+      rows = rows.filter(function (r) {
+        var physicsNative = (r.sources || [r.source]).some(function (s) {
+          return PHYSICS_NATIVE[s];
+        });
+        return physicsNative || passesTermGate(r, terms);
+      });
+
       rows.forEach(function (r) { r.bucket = classify(r, f); });
       if (f.sort === "date") rows = byDateDesc(rows);
 

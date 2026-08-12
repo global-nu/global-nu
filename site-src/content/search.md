@@ -2,9 +2,10 @@
 title: Search
 url: search.html
 description: >-
-  A free-form search across INSPIRE-HEP, arXiv, Crossref and OpenAlex. Type an
-  author, a title, a topic and a date range in plain language; the correct query
-  is built for each database and the results are shown here.
+  A free-form physics literature search across INSPIRE-HEP, arXiv, Semantic
+  Scholar, Crossref and OpenAlex. Type an author, a title, a topic and a date
+  range in plain language; the right query is built for each database and the
+  results are shown here.
 katex: false
 scripts:
   - assets/js/search.js
@@ -76,8 +77,8 @@ scripts:
         <div>
           <label class="lit__label" for="q-sort">Sort by</label>
           <select id="q-sort">
-            <option value="date" selected>Most recent first</option>
-            <option value="relevance">Relevance / citations</option>
+            <option value="relevance" selected>Relevance / citations</option>
+            <option value="date">Most recent first</option>
           </select>
         </div>
       </div>
@@ -88,9 +89,15 @@ scripts:
     <legend class="lit__label">Search in</legend>
     <label class="lit__check"><input type="checkbox" id="src-inspire" checked> INSPIRE-HEP</label>
     <label class="lit__check"><input type="checkbox" id="src-crossref" checked> Crossref</label>
-    <label class="lit__check"><input type="checkbox" id="src-openalex"> OpenAlex</label>
+    <label class="lit__check"><input type="checkbox" id="src-openalex" checked> OpenAlex</label>
     <label class="lit__check"><input type="checkbox" id="src-arxiv" checked> arXiv</label>
+    <label class="lit__check"><input type="checkbox" id="src-s2" checked> Semantic Scholar</label>
   </fieldset>
+  <p class="lit__note">Results are filtered to physics: OpenAlex is asked for
+  Physical Sciences only, Semantic Scholar for Physics, and a record found
+  only by the generic databases must actually contain your query terms.
+  Google Scholar and NASA ADS have no public search API — use the buttons
+  below to open the same query there.</p>
 
   <div class="btn-row">
     <button class="btn btn--solid" type="submit">Search</button>
