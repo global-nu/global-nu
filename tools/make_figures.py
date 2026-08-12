@@ -96,6 +96,7 @@ def precision_svg(meta: dict, bari: list[dict]) -> str:
         out.append(f'<text x="{sx(y):.1f}" y="{H-B+18}" text-anchor="middle" font-size="11" '
                    f'fill="currentColor" opacity=".62">{y}</text>')
 
+    ends = []
     for pname, label, pts, colour in series:
         d = " ".join(f'{"M" if i == 0 else "L"}{sx(y):.1f} {sy(v):.1f}'
                      for i, (y, v) in enumerate(pts))
@@ -106,7 +107,22 @@ def precision_svg(meta: dict, bari: list[dict]) -> str:
                        f'stroke="var(--bg)" stroke-width="1.6" paint-order="stroke">'
                        f'<title>{label}, {y}: 1σ accuracy {v:.2g}%</title></circle>')
         ly, lv = pts[-1]
-        out.append(f'<text x="{sx(ly)+10:.1f}" y="{sy(lv)+4:.1f}" font-size="12" '
+        ends.append([sx(ly), sy(lv), label, colour])
+
+    # Direct labels live in a fixed column in the right margin, pushed apart
+    # until none overlaps, with a leader line back to the curve's end. Placing
+    # each at its own curve's end looked fine until two curves ended at the
+    # same height — sin²θ₁₃ and sin²θ₁₂ printed on top of each other.
+    ends.sort(key=lambda e: e[1])
+    MIN_GAP = 16
+    for i in range(1, len(ends)):
+        if ends[i][1] - ends[i - 1][1] < MIN_GAP:
+            ends[i][1] = ends[i - 1][1] + MIN_GAP
+    lx = W - R + 26
+    for ex, ey, label, colour in ends:
+        out.append(f'<line x1="{ex + 6:.1f}" y1="{ey:.1f}" x2="{lx - 6:.1f}" y2="{ey:.1f}" '
+                   f'stroke="{colour}" stroke-width="1" opacity=".45"/>')
+        out.append(f'<text x="{lx:.1f}" y="{ey + 4:.1f}" font-size="12" '
                    f'font-weight="600" fill="{colour}">{label}</text>')
 
     body = "\n".join(out)

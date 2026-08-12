@@ -301,7 +301,7 @@ h4{font-weight:700;font-size:.98rem}
 /* ---------- stat grid ---------- */
 .stats{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr))}
 .stat{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);
-  padding:1.1rem 1.2rem;position:relative;overflow:hidden}
+  padding:1.1rem 1.2rem;position:relative;overflow:hidden;box-shadow:var(--shadow)}
 .section--alt .stat{background:var(--surface-2)}
 .stat::after{content:"";position:absolute;inset:auto 0 0 0;height:3px;
   background:linear-gradient(90deg,var(--accent),var(--accent-2));opacity:.65}
@@ -331,9 +331,12 @@ h4{font-weight:700;font-size:.98rem}
 /* ---------- link strip ---------- */
 .strip{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
 .strip a{display:block;background:var(--bg);border:1px solid var(--line);
-  border-radius:var(--r);padding:1.2rem 1.3rem;color:var(--text)}
+  border-radius:var(--r);padding:1.2rem 1.3rem;color:var(--text);
+  box-shadow:var(--shadow);
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
 .section--alt .strip a{background:var(--surface-2)}
-.strip a:hover{text-decoration:none;border-color:var(--accent)}
+.strip a:hover{text-decoration:none;border-color:var(--accent);
+  transform:translateY(-4px);box-shadow:var(--shadow-strong)}
 .strip .t{font-family:var(--display);font-weight:700;display:block;
   margin-bottom:.2rem;letter-spacing:-.02em}
 .strip .d{font-size:.85rem;color:var(--text-mute)}
@@ -606,10 +609,6 @@ a.card:hover .card__go{color:var(--text)}
 /* tiles and stat cards join the same family */
 .tile{box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
 .tile:hover{transform:translateY(-3px);box-shadow:var(--shadow-strong)}
-.stat{box-shadow:var(--shadow)}
-.strip a{box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease,
-  border-color .25s ease}
-.strip a:hover{transform:translateY(-4px);box-shadow:var(--shadow-strong)}
 .figure{box-shadow:var(--shadow)}
 
 /* ---------- a sparkline inside a stat card ---------- */

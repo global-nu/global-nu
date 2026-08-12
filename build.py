@@ -455,8 +455,21 @@ def build_pages(cfg: dict, with_drafts: bool = False) -> list[str]:
                 return ""
             return src.read_text(encoding="utf-8")
 
-        content_html = re.sub(r"<!--\s*include:([a-z0-9_-]+)\s*-->", _include,
+        # Case-sensitive names: the first regex was lowercase-only, so
+        # <!--include:spark-Dm2--> silently failed to resolve and the home
+        # page shipped a stat card with no sparkline and a comment in its
+        # place. Uppercase is legal in a figure name.
+        content_html = re.sub(r"<!--\s*include:([A-Za-z0-9_-]+)\s*-->", _include,
                               content_html)
+
+        # What remains as an HTML comment is working-notes — generator
+        # provenance, editor hints — and none of it belongs on a public page:
+        # a comment naming site-src/ paths shipped on history.html. An
+        # include that failed to resolve is left VISIBLE by this (the regex
+        # above consumed the well-formed ones), which is the point: a missing
+        # figure should be seen, not hidden.
+        content_html = re.sub(r"<!--(?!\s*include:).*?-->", "", content_html,
+                              flags=re.S)
 
         tpl_name = fm.get("template", "base") + ".html"
         if tpl_name not in tpl_cache:
