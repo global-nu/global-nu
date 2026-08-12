@@ -47,51 +47,12 @@ the terms under which it may be here. Pictures whose licence could not be
 established were not downloaded.</p>
 </figure>
 
-<div class="tiles reveal">
+<!--include:experiments-tiles-->
 
-<article class="tile">
-<div class="stamp stamp--no">Reactor</div>
-<h3>Reactor antineutrinos</h3>
-<ul class="list">
-<li><b><a href="https://juno.ihep.cas.cn/">JUNO</a></b><span>Jiangmen, China · medium baseline</span></li>
-<li><b><a href="https://www.dchooz.org/">Double Chooz</a></b><span>Chooz, France</span></li>
-<li><b><a href="https://snoplus.phy.queensu.ca/">SNO+</a></b><span>Sudbury, Canada · also 0νββ</span></li>
-</ul>
-</article>
-
-<article class="tile">
-<div class="stamp">Accelerator</div>
-<h3>Long-baseline beams</h3>
-<ul class="list">
-<li><b><a href="https://www.dunescience.org/">DUNE</a></b><span>Fermilab → Sanford, USA</span></li>
-<li><b><a href="https://hyperk.org/">Hyper-Kamiokande</a></b><span>Kamioka, Japan</span></li>
-<li><b><a href="https://t2k-experiment.org/">T2K</a></b><span>J-PARC → Kamioka, Japan</span></li>
-<li><b><a href="https://novaexperiment.fnal.gov/">NOvA</a></b><span>Fermilab → Ash River, USA</span></li>
-</ul>
-</article>
-
-<article class="tile">
-<div class="stamp stamp--no">Atmospheric &amp; solar</div>
-<h3>Natural sources</h3>
-<ul class="list">
-<li><b><a href="https://www-sk.icrr.u-tokyo.ac.jp/en/sk/">Super-Kamiokande</a></b><span>Kamioka, Japan</span></li>
-<li><b><a href="https://icecube.wisc.edu/">IceCube</a></b><span>South Pole · IceCube Upgrade</span></li>
-<li><b><a href="https://www.km3net.org/">KM3NeT</a></b><span>Mediterranean · ORCA and ARCA</span></li>
-<li><b><a href="https://borex.lngs.infn.it/">Borexino</a></b><span>Gran Sasso, Italy · solar</span></li>
-</ul>
-</article>
-
-<article class="tile">
-<div class="stamp">Mass</div>
-<h3>Absolute mass and 0νββ</h3>
-<ul class="list">
-<li><b><a href="https://www.katrin.kit.edu/">KATRIN</a></b><span>Karlsruhe, Germany · β decay</span></li>
-<li><b><a href="https://legend-exp.org/">LEGEND</a></b><span>Gran Sasso, Italy · ⁷⁶Ge</span></li>
-<li><b><a href="https://nexo.llnl.gov/">nEXO</a></b><span>SNOLAB, Canada · ¹³⁶Xe</span></li>
-</ul>
-</article>
-
-</div>
+<p class="small muted" style="margin-top:1.4rem">Grouped by what each
+experiment constrains, and ordered within a group by its weight in the
+current global fit. Status is taken from each collaboration's own pages;
+where it could not be established, none is shown.</p>
 
 :::
 

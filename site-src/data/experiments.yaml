@@ -9,6 +9,18 @@
 #
 # `kind` picks the colour, and matches the grouping used on the resources page.
 # `url` must be the same link the resources page uses, so the two cannot drift.
+#
+# Ordering. Entries are grouped by `role` — what the experiment constrains in
+# a global fit — and ranked within a group by its weight in the current fit:
+# the datasets that dominate a constraint come first. `rank` records that
+# position so the order is a claim on the page rather than a preference in
+# somebody's head.
+#
+# `status` is a statement of fact about a real collaboration and follows the
+# project's first rule: it is taken from the source named in `source` — the
+# collaboration's own page, or the paper of its final dataset — and never from
+# recollection. An experiment whose status cannot be established carries no
+# `status` field, and the page then prints nothing rather than a guess.
 
 experiments:
   - name: JUNO
@@ -17,6 +29,10 @@ experiments:
     country: CN
     note: medium-baseline reactor
     url: https://juno.ihep.cas.cn/
+    role: theta12_dm2
+    status: running
+    rank: 1
+    source: https://juno.ihep.cas.cn/
 
   - name: Double Chooz
     kind: reactor
@@ -24,6 +40,9 @@ experiments:
     country: FR
     note: short-baseline reactor
     url: https://www.dchooz.org/
+    role: theta13
+    rank: 1
+    source: https://www.dchooz.org/
 
   - name: SNO+
     kind: reactor
@@ -31,6 +50,10 @@ experiments:
     country: CA
     note: reactor and 0νββ, at SNOLAB
     url: https://snoplus.phy.queensu.ca/
+    role: 0nubb
+    status: running
+    rank: 2
+    source: https://snoplus.phy.queensu.ca/about.html
 
   - name: DUNE
     kind: accelerator
@@ -38,6 +61,10 @@ experiments:
     country: US
     note: far detector at SURF, beam from Fermilab
     url: https://www.dunescience.org/
+    role: lbl
+    status: construction
+    rank: 3
+    source: https://news.fnal.gov/2025/06/precision-and-ingenuity-drive-construction-of-dune-detector-components/
 
   - name: Hyper-Kamiokande
     kind: accelerator
@@ -45,6 +72,10 @@ experiments:
     country: JP
     note: beam from J-PARC
     url: https://hyperk.org/
+    role: lbl
+    status: construction
+    rank: 4
+    source: https://www-sk.icrr.u-tokyo.ac.jp/hk/
 
   - name: T2K
     kind: accelerator
@@ -52,6 +83,10 @@ experiments:
     country: JP
     note: beam source, far detector at Kamioka
     url: https://t2k-experiment.org/
+    role: lbl
+    status: running
+    rank: 1
+    source: https://t2k-experiment.org/
 
   - name: NOvA
     kind: accelerator
@@ -59,6 +94,9 @@ experiments:
     country: US
     note: far detector, beam from Fermilab
     url: https://novaexperiment.fnal.gov/
+    role: lbl
+    rank: 2
+    source: https://novaexperiment.fnal.gov/
 
   - name: Super-Kamiokande
     kind: natural
@@ -66,6 +104,10 @@ experiments:
     country: JP
     note: atmospheric and solar
     url: https://www-sk.icrr.u-tokyo.ac.jp/en/sk/
+    role: atmospheric
+    status: running
+    rank: 1
+    source: https://www-sk.icrr.u-tokyo.ac.jp/en/sk/news/
 
   - name: IceCube
     kind: natural
@@ -73,6 +115,10 @@ experiments:
     country: AQ
     note: atmospheric and astrophysical
     url: https://icecube.wisc.edu/
+    role: atmospheric
+    status: running
+    rank: 2
+    source: https://icecube.wisc.edu/about/
 
   - name: KM3NeT
     kind: natural
@@ -80,6 +126,10 @@ experiments:
     country: FR
     note: ORCA site; ARCA off Sicily
     url: https://www.km3net.org/
+    role: atmospheric
+    status: construction
+    rank: 3
+    source: https://www.km3net.org/
 
   - name: Borexino
     kind: natural
@@ -87,6 +137,10 @@ experiments:
     country: IT
     note: solar, at Gran Sasso
     url: https://borex.lngs.infn.it/
+    role: solar
+    status: completed
+    rank: 1
+    source: https://borex.lngs.infn.it/news/end-of-borexino-daq/
 
   - name: KATRIN
     kind: mass
@@ -94,6 +148,10 @@ experiments:
     country: DE
     note: β-decay endpoint
     url: https://www.katrin.kit.edu/
+    role: mass
+    status: running
+    rank: 1
+    source: https://www.katrin.kit.edu/
 
   - name: LEGEND
     kind: mass
@@ -101,6 +159,10 @@ experiments:
     country: IT
     note: 0νββ in ⁷⁶Ge, at Gran Sasso
     url: https://legend-exp.org/
+    role: 0nubb
+    status: running
+    rank: 1
+    source: https://legend-exp.org/
 
   - name: nEXO
     kind: mass
@@ -108,3 +170,7 @@ experiments:
     country: CA
     note: 0νββ in ¹³⁶Xe, at SNOLAB
     url: https://nexo.llnl.gov/
+    role: 0nubb
+    status: proposed
+    rank: 3
+    source: https://nexo.llnl.gov/

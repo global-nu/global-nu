@@ -23,15 +23,13 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-import yaml
-
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from tools.news import geocode                      # noqa: E402
-from tools.news import worldmap as wm               # noqa: E402
+from tools import experiments                        # noqa: E402
+from tools.news import geocode                        # noqa: E402
+from tools.news import worldmap as wm                 # noqa: E402
 
-DATA = ROOT / "site-src" / "data" / "experiments.yaml"
 OUT = ROOT / "site-src" / "data" / "figures" / "map-experiments.svg"
 
 KINDS = [
@@ -44,7 +42,7 @@ COLOUR = {k: c for k, _, c in KINDS}
 
 
 def main() -> None:
-    entries = yaml.safe_load(DATA.read_text(encoding="utf-8"))["experiments"]
+    entries = experiments.load()
 
     placed, missing = [], []
     for e in entries:
