@@ -75,6 +75,28 @@ def clean(value: str) -> str:
     return " ".join(text.split())
 
 
+def short_author(value: str) -> str:
+    """Credit the source, not the roster.
+
+    Commons' Artist field is free text. For a collaboration upload it is
+    routinely the paper's entire author list — seven hundred names for JUNO,
+    which is what shipped under the photograph. CC BY asks for attribution
+    "in a reasonable manner for the medium"; naming the collaboration and
+    linking the file's page on Commons is the reasonable manner for a caption,
+    and photos.yaml keeps the field intact.
+    """
+    text = (value or "").strip()
+    if not text:
+        return ""
+    head = text.split(":", 1)[0].strip()
+    if head.lower().endswith(("collaboration", "collaborations")):
+        return head
+    names = [n.strip() for n in text.split(",") if n.strip()]
+    if len(names) > 3:
+        return f"{names[0]} et al."
+    return text
+
+
 def licence_ok(short: str, name: str) -> tuple[bool, str]:
     s = (short or "").lower()
     if not s:
@@ -106,6 +128,7 @@ def search(term: str, query: str, limit: int = 3) -> list[dict]:
                     f"{urllib.parse.quote(page.get('title','').replace(' ', '_'))}",
             "thumb": info.get("thumburl", ""),
             "author": clean((meta.get("Artist") or {}).get("value", "")),
+            "author_short": short_author(clean((meta.get("Artist") or {}).get("value", ""))),
             "credit": clean((meta.get("Credit") or {}).get("value", "")),
             "licence": short,
             "licence_url": clean((meta.get("LicenseUrl") or {}).get("value", "")),

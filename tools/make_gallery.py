@@ -54,7 +54,7 @@ def main() -> None:
 
         # images-src/x.png is published as images/x.png by build.py's pipeline
         name = Path(p["file"]).stem + (".png" if p["file"].lower().endswith(".png") else ".jpg")
-        author = p.get("author") or "unknown author"
+        author = p.get("author_short") or p.get("author") or "unknown author"
         lic, lic_url = p["licence"], p.get("licence_url")
         lic_html = (f'<a href="{esc(lic_url)}">{esc(lic)}</a>' if lic_url else esc(lic))
         cards.append(
