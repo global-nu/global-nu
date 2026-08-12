@@ -21,9 +21,12 @@ sys.path.insert(0, str(ROOT))
 from tools.fetch_commons_images import short_author   # noqa: E402
 
 fail: list[str] = []
+checks = 0
 
 
 def check(label: str, got: str, want: str) -> None:
+    global checks
+    checks += 1
     if got == want:
         print(f"  ok   {label}")
     else:
@@ -48,6 +51,10 @@ check("two names are left alone",
       short_author("Fermilab, Reidar Hahn"),
       "Fermilab, Reidar Hahn")
 
+check("exactly three names are left alone",
+      short_author("Ann Alpha, Ben Beta, Carl Gamma"),
+      "Ann Alpha, Ben Beta, Carl Gamma")
+
 check("more than three names collapse to the first",
       short_author("Ann Alpha, Ben Beta, Carl Gamma, Dana Delta"),
       "Ann Alpha et al.")
@@ -60,4 +67,4 @@ print()
 if fail:
     print(f"{len(fail)} check(s) failed")
     sys.exit(1)
-print(f"all {6} checks pass — credits name a source, not a roster")
+print(f"all {checks} checks pass — credits name a source, not a roster")
