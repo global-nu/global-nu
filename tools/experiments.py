@@ -45,15 +45,48 @@ STATUS_LABEL = {
 }
 
 
+_ROLE_KEYS = {k for k, _ in ROLES}
+
+
+def _validate(records: list[dict]) -> None:
+    """Raise SystemExit naming the record and what's wrong, on any breach.
+
+    A record must have a name, a role drawn from ROLES, a url, a source, and
+    an integer rank. status is optional, but if present must be one of
+    STATUSES — a typo'd role (theta_13 for theta13) is exactly the kind of
+    mistake that would otherwise make a record vanish from the tiles (which
+    group by role) while it kept appearing on the map (which does not), the
+    drift this module exists to prevent, reappearing through a different
+    door.
+    """
+    for r in records:
+        name = r.get("name") or "<unnamed record>"
+        problems = []
+        if not r.get("name"):
+            problems.append("no name")
+        if r.get("role") not in _ROLE_KEYS:
+            problems.append(f"role {r.get('role')!r} is not one of "
+                             f"{sorted(_ROLE_KEYS)}")
+        if not r.get("url"):
+            problems.append("no url")
+        if not r.get("source"):
+            problems.append("no source recorded for its status")
+        if not isinstance(r.get("rank"), int):
+            problems.append(f"rank {r.get('rank')!r} is not an integer")
+        if "status" in r and r["status"] not in STATUSES:
+            problems.append(f"status {r['status']!r} is not one of {STATUSES}")
+        if problems:
+            sys.exit(f"{DATA}: {name}: " + "; ".join(problems))
+
+
 def load() -> list[dict]:
-    """Every record in the file. Raises SystemExit on a malformed file."""
+    """Every record in the file, validated. Raises SystemExit naming the
+    record and the field on a schema breach — see _validate."""
     raw = yaml.safe_load(DATA.read_text(encoding="utf-8"))
     records = (raw or {}).get("experiments")
     if not records:
         sys.exit(f"{DATA} holds no experiments")
-    for r in records:
-        if not r.get("name"):
-            sys.exit(f"{DATA}: a record has no name")
+    _validate(records)
     return records
 
 
@@ -62,8 +95,10 @@ def ordered() -> list[tuple[str, str, list[dict]]]:
     out = []
     records = load()
     for key, heading in ROLES:
+        # load() has already required rank to be an int on every record, so
+        # this sort cannot meet a str/int mismatch.
         group = sorted((r for r in records if r.get("role") == key),
-                       key=lambda r: (r.get("rank", 10_000), r["name"]))
+                       key=lambda r: (r["rank"], r["name"]))
         if group:
             out.append((key, heading, group))
     return out

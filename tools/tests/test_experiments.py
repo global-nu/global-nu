@@ -44,24 +44,34 @@ def check(label: str, ok: bool, detail: str = "") -> None:
         print(f"  FAIL {label}" + (f"\n         {detail}" if detail else ""))
 
 
-records = experiments.load()
+# 1. schema — load() validates the real file, and rejects a malformed record.
+# Built here rather than by mutating the real YAML.
+try:
+    records = experiments.load()
+    check("load() accepts the real experiments.yaml", True)
+except SystemExit as e:
+    records = []
+    check("load() accepts the real experiments.yaml", False, str(e))
 
-# 1. schema
-roles = {k for k, _ in experiments.ROLES}
-bad = [f'{r.get("name", "?")}: {why}'
-       for r in records
-       for why in [
-           None if r.get("role") in roles else f'unknown role {r.get("role")!r}',
-           # A record may carry no status at all — that is the honest outcome
-           # when a collaboration's own page does not state one. What it must
-           # not carry is a status outside the controlled vocabulary.
-           None if "status" not in r or r.get("status") in experiments.STATUSES
-           else f'unknown status {r.get("status")!r}',
-           None if isinstance(r.get("rank"), int) else "rank is not an integer",
-           None if r.get("url") else "no url",
-           None if r.get("source") else "no source recorded for its status",
-       ] if why]
-check("every record satisfies the schema", not bad, "; ".join(bad[:5]))
+bad_role = [{"name": "Bad Test Experiment", "role": "theta_13",
+             "url": "https://example.invalid/", "source": "https://example.invalid/",
+             "rank": 1}]
+try:
+    experiments._validate(bad_role)
+    check("a record with an unknown role is rejected", False,
+          "a typo'd role like theta_13 (for theta13) was silently accepted")
+except SystemExit:
+    check("a record with an unknown role is rejected", True)
+
+bad_rank = [{"name": "Bad Test Experiment", "role": "mass",
+             "url": "https://example.invalid/", "source": "https://example.invalid/",
+             "rank": "one"}]
+try:
+    experiments._validate(bad_rank)
+    check("a record with a non-integer rank is rejected", False,
+          "a string rank was silently accepted")
+except SystemExit:
+    check("a record with a non-integer rank is rejected", True)
 
 # 2. rank unique within a role
 dupes = []

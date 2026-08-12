@@ -62,9 +62,8 @@ experiments:
     note: far detector at SURF, beam from Fermilab
     url: https://www.dunescience.org/
     role: lbl
-    status: construction
     rank: 3
-    source: https://news.fnal.gov/2025/06/precision-and-ingenuity-drive-construction-of-dune-detector-components/
+    source: https://www.dunescience.org/
 
   - name: Hyper-Kamiokande
     kind: accelerator
