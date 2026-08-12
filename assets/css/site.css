@@ -481,6 +481,7 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
 .src--inspire{color:var(--no);border-color:color-mix(in srgb,var(--no) 40%,transparent)}
 .src--crossref{color:var(--src-3);border-color:color-mix(in srgb,var(--src-3) 40%,transparent)}
 .src--openalex{color:var(--accent-2);border-color:color-mix(in srgb,var(--accent-2) 40%,transparent)}
+.src--s2{color:var(--dec-1);border-color:color-mix(in srgb,var(--dec-1) 40%,transparent)}
 .spin{width:.95rem;height:.95rem;border:2px solid var(--line-strong);
   border-top-color:var(--accent);border-radius:50%;display:inline-block;
   animation:spin .7s linear infinite;flex:none}

@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Search — global-nu</title>
-<meta name="description" content="A free-form search across INSPIRE-HEP, arXiv, Crossref and OpenAlex. Type an author, a title, a topic and a date range in plain language; the correct query is built for each database and the results are shown here.">
+<meta name="description" content="A free-form physics literature search across INSPIRE-HEP, arXiv, Semantic Scholar, Crossref and OpenAlex. Type an author, a title, a topic and a date range in plain language; the right query is built for each database and the results are shown here.">
 <link rel="canonical" href="https://global-nu.org/search.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="global-nu">
 <meta property="og:title" content="Search — global-nu">
-<meta property="og:description" content="A free-form search across INSPIRE-HEP, arXiv, Crossref and OpenAlex. Type an author, a title, a topic and a date range in plain language; the correct query is built for each database and the results are shown here.">
+<meta property="og:description" content="A free-form physics literature search across INSPIRE-HEP, arXiv, Semantic Scholar, Crossref and OpenAlex. Type an author, a title, a topic and a date range in plain language; the right query is built for each database and the results are shown here.">
 <meta property="og:url" content="https://global-nu.org/search.html">
 <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/archivo-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css?v=a73c15e8">
+<link rel="stylesheet" href="assets/css/site.css?v=a07c3290">
 <script>
 /* Apply the saved theme before the first paint. Inline and blocking on
    purpose: a deferred script runs after the page is drawn, and a reader who
@@ -126,8 +126,8 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
         <div>
           <label class="lit__label" for="q-sort">Sort by</label>
           <select id="q-sort">
-            <option value="date" selected>Most recent first</option>
-            <option value="relevance">Relevance / citations</option>
+            <option value="relevance" selected>Relevance / citations</option>
+            <option value="date">Most recent first</option>
           </select>
         </div>
       </div>
@@ -138,9 +138,15 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
     <legend class="lit__label">Search in</legend>
     <label class="lit__check"><input type="checkbox" id="src-inspire" checked> INSPIRE-HEP</label>
     <label class="lit__check"><input type="checkbox" id="src-crossref" checked> Crossref</label>
-    <label class="lit__check"><input type="checkbox" id="src-openalex"> OpenAlex</label>
+    <label class="lit__check"><input type="checkbox" id="src-openalex" checked> OpenAlex</label>
     <label class="lit__check"><input type="checkbox" id="src-arxiv" checked> arXiv</label>
+    <label class="lit__check"><input type="checkbox" id="src-s2" checked> Semantic Scholar</label>
   </fieldset>
+  <p class="lit__note">Results are filtered to physics: OpenAlex is asked for
+  Physical Sciences only, Semantic Scholar for Physics, and a record found
+  only by the generic databases must actually contain your query terms.
+  Google Scholar and NASA ADS have no public search API — use the buttons
+  below to open the same query there.</p>
 
   <div class="btn-row">
     <button class="btn btn--solid" type="submit">Search</button>
@@ -248,7 +254,7 @@ tab, so you never lose your place here.</p>
 </button>
 
 <script src="assets/js/site.js?v=215a304f" defer></script>
-<script src="assets/js/search.js?v=fb292f60" defer></script>
+<script src="assets/js/search.js?v=6869fecf" defer></script>
 <script data-goatcounter="https://antoniomarrone.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 
 </body>
