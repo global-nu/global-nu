@@ -428,7 +428,7 @@ the same care.</p>
 
 <div class="section-head">
   <h2>Compared with the other groups</h2>
-  <p>normal ordering · 6 releases from NuFit and Valencia</p>
+  <p>normal ordering · 7 releases from NuFit and Valencia</p>
 </div>
 
 <div class="callout">
@@ -813,6 +813,7 @@ each one publishes in. Their values are stored exactly as printed and converted
 only at rendering time.</caption>
 <thead><tr><th scope="col">Year</th><th scope="col">Paper</th><th scope="col">Preprint</th><th scope="col">Source</th><th scope="col">Convention</th></tr></thead>
 <tbody>
+<tr><th scope="row">2001</th><td class="ref">Nufit — Global three-neutrino oscillation analysis of neutrino data<span class="ref__meta">Phys. Rev. D 63, 033005 (2001)</span></td><td><a href="https://arxiv.org/abs/hep-ph/0009350">arXiv:hep-ph/0009350</a></td><td>Table V/VI, "Solar + ALL-ATM. + CHOOZ" (global combined analysis)</td><td class="mono small">tan2(theta), not sin2(theta), for every mixing angle; Dm2_32 = m3^2-m2^2 reported without a normal/inverted split</td></tr>
 <tr><th scope="row">2012</th><td class="ref">Nufit — Global fit to three neutrino mixing: critical look at present precision<span class="ref__meta">JHEP 12 (2012) 123</span></td><td><a href="https://arxiv.org/abs/1209.3023">arXiv:1209.3023</a></td><td>Table 1, first column<br>Free Fluxes + RSBL</td><td class="mono small">Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)</td></tr>
 <tr><th scope="row">2018</th><td class="ref">Nufit — Global analysis of three-flavour neutrino oscillations: synergies and tensions<span class="ref__meta">JHEP 01 (2019) 106</span></td><td><a href="https://arxiv.org/abs/1811.05487">arXiv:1811.05487</a></td><td>Table 1, lower block<br>with SK-atm</td><td class="mono small">Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)</td></tr>
 <tr><th scope="row">2018</th><td class="ref">Valencia — Status of neutrino oscillations 2018: 3σ hint for normal mass ordering and improved CP sensitivity<span class="ref__meta">Phys. Lett. B 782, 633 (2018)</span></td><td><a href="https://arxiv.org/abs/1708.01186">arXiv:1708.01186</a></td><td>Table I</td><td class="mono small">|Dm2_31| quoted for both orderings</td></tr>

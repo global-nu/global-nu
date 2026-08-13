@@ -291,6 +291,44 @@ releases:
   # atmospheric data is taken, because that is what our own analysis includes.
   # Values below are as published; the conversion to our Dm2 is done by
   # tools/make_history.py and stated on the page.
+  #
+  # The two predecessor entries below (2001, 2004) are earlier IFIC-Valencia
+  # global fits by the same lineage of authors, recorded as "nufit" per this
+  # file's existing convention for predecessors. Their own conventions differ
+  # from the pattern above and from each other, and are stated per-release:
+  # the 2001 paper quotes tan^2(theta) rather than sin^2(theta) throughout and
+  # does not fit an inverted ordering, and the 2004 paper quotes Dm2_31 > 0
+  # with no inverted-ordering fit either (Dm2_3l as a NO-only quantity).
+
+  - group: nufit
+    year: 2001
+    arxiv: "hep-ph/0009350"
+    journal: "Phys. Rev. D 63, 033005 (2001)"
+    title: "Global three-neutrino oscillation analysis of neutrino data"
+    convention: "tan2(theta), not sin2(theta), for every mixing angle; Dm2_32 = m3^2-m2^2 reported without a normal/inverted split"
+    table: "Table V/VI, \"Solar + ALL-ATM. + CHOOZ\" (global combined analysis)"
+    note: >-
+      No value from this paper could be safely recorded. Every mixing angle
+      is quoted as tan2(theta), never sin2(theta) (Tables II-VI and the p.28
+      summary, Eq. 37 area); our sin2_th12/13/23 fields specifically mean
+      sin2(theta). Converting is a well-defined identity
+      (sin2 = tan2/(1+tan2)), but there is no reported/converted mechanism for
+      mixing angles in this codebase (unlike Dm2_3l/abs_Dm2_31 for the larger
+      mass splitting), so it is left undone rather than hand-computed and
+      passed off as printed. The atmospheric-type splitting Dm2_32 = m3^2-m2^2
+      is reported without distinguishing normal from inverted ordering, so it
+      does not match either branch of the later NuFit Dm2_3l convention
+      (Dm2_31 for NO, Dm2_32 for IO) without imposing a hierarchy the paper
+      itself never claims. Even dm2 (Dm2_21 = 3.3e-5 eV2, "Solar+ALL-ATM.
+      +CHOOZ, Unconst=LMA" row of Table V), whose definition is unambiguous
+      across every convention, cannot be verified against the cached PDF text:
+      this paper typesets that decimal with a space on both sides of the
+      point ("3 . 3") everywhere it is printed, and
+      tools/tests/test_history_numbers.py's space-normalisation only closes
+      the trailing side, leaving "3 .3" -- not a literal match for "3.3". For
+      the record, the paper's global (Solar+ALL-ATM+CHOOZ) bound is
+      tan2(theta13) < 0.055 (90% CL), < 0.085 (99% CL) -- both found cleanly
+      in the text -- but tan2(theta13) is not sin2(theta13).
 
   - group: nufit
     year: 2012

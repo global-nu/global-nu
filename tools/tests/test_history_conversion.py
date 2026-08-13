@@ -30,18 +30,30 @@ def expected(rel: dict, ordering: str) -> float | None:
     Splittings are in 1e-3 eV², δm² in 1e-5 eV², so δm²/2 is dm2/200 here.
     """
     v = rel.get("values") or {}
-    dm2_half = v["dm2"]["any"]["best"] / 200.0
     kind = rel.get("reported_splitting")
+    if kind not in ("Dm2_3l", "abs_Dm2_31"):
+        # Nothing to convert — e.g. hep-ph/0009350, which reports no Dm2 of
+        # any kind (see that release's own "note" field). dm2 itself may be
+        # absent too in that case, so it must not be looked up below.
+        return None
+    dm2_half = v["dm2"]["any"]["best"] / 200.0
 
     if kind == "Dm2_3l":
         # Dm2_31 (>0) for NO; Dm2_32 (<0) for IO, and Dm2_31 = Dm2_32 + dm2.
-        e = v["Dm2_3l"][ordering]["best"]
-        signed = (e - dm2_half) if ordering == "no" else (e + dm2_half)
+        # Some predecessor releases (e.g. hep-ph/0405172) fit only NO, so the
+        # requested ordering may simply be absent — that is not a conversion
+        # error, just nothing to compare for this release.
+        entry = v.get("Dm2_3l", {}).get(ordering)
+        if entry is None:
+            return None
+        signed = (entry["best"] - dm2_half) if ordering == "no" else (entry["best"] + dm2_half)
         return abs(signed)
     if kind == "abs_Dm2_31":
         # |Dm2_31| for both orderings: signed value is -|Dm2_31| in IO.
-        e = v["abs_Dm2_31"][ordering]["best"]
-        return (e - dm2_half) if ordering == "no" else (e + dm2_half)
+        entry = v.get("abs_Dm2_31", {}).get(ordering)
+        if entry is None:
+            return None
+        return (entry["best"] - dm2_half) if ordering == "no" else (entry["best"] + dm2_half)
     return None
 
 
