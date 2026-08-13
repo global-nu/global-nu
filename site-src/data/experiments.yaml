@@ -22,6 +22,15 @@
 # recollection. An experiment whose status cannot be established carries no
 # `status` field, and the page then prints nothing rather than a guess.
 #
+# `source_quote` is the sentence from `source` that says it, copied verbatim.
+# Four statuses have now been withdrawn for citing a page that never stated
+# one — Homestake and SAGE, then KATRIN and Project 8 — every time because a
+# plausible-looking source was recorded without the sentence being read out of
+# it. A status is not sourced until the sentence can be written down here, and
+# tools/experiments.py enforces that for every record except the named backlog
+# in STATUS_QUOTE_BACKLOG. The quote is data, not display: nothing renders it,
+# it exists so the next reader can check the claim without refetching.
+#
 # The same `name` may appear more than once, under different `role`s — see
 # Super-Kamiokande, which constrains both `solar` and `atmospheric`. That is
 # not a duplicate to merge: an experiment can constrain more than one thing,
@@ -82,6 +91,11 @@ experiments:
     rank: 2
     source: https://arxiv.org/abs/2412.18711
 
+  # `url` is the collaboration's total-neutron-capture measurement; the
+  # collaboration's own site (doublechooz.in2p3.fr) no longer answers. The
+  # status is sourced separately, from the detector paper that states the end
+  # of data taking — the measurement paper never does, and citing it for the
+  # status was the mistake this record was corrected for.
   - name: Double Chooz
     kind: reactor
     city: Chooz
@@ -91,7 +105,10 @@ experiments:
     role: theta13
     status: completed
     rank: 3
-    source: https://arxiv.org/abs/1901.09445
+    source: https://arxiv.org/abs/2201.13285
+    source_quote: >-
+      Both detectors ran in parallel for about three years, until the end of
+      2017, when neutrino data taking was stopped.
 
   - name: SNO+
     kind: mass
@@ -167,7 +184,15 @@ experiments:
     role: lbl
     status: completed
     rank: 4
-    source: https://neutrino.kek.jp/
+    # The KEK page was last touched in 2005 and only announces that a final
+    # result was published; the final-dataset paper it announces is what
+    # actually delimits the data — the run began in June 1999 and there is
+    # none after November 2004.
+    source: https://arxiv.org/abs/hep-ex/0606032
+    source_quote: >-
+      In this paper, all data taken in K2K between June 1999 and November 2004
+      are used to measure the suppression of events and energy distortion and
+      to measure the parameters of oscillation.
 
   - name: OPERA
     kind: accelerator
@@ -222,7 +247,13 @@ experiments:
     role: atmospheric
     status: running
     rank: 2
-    source: https://icecube.wisc.edu/about/
+    # /about/ redirected to an overview page that describes the detector but
+    # never says it is operating. The quick-facts page does, in the only terms
+    # that settle it: data leaving the Pole, by the terabyte, every day.
+    source: https://icecube.wisc.edu/about-us/facts/
+    source_quote: >-
+      One terabyte of unfiltered data is collected daily and about 100
+      gigabytes are sent over satellite for analysis.
     photo: IceCube
 
   - name: KM3NeT
@@ -301,6 +332,20 @@ experiments:
     rank: 6
     source: https://arxiv.org/abs/0901.2200
 
+  # No status on purpose, and it should not be restored without a source that
+  # says more than katrin.kit.edu does. That site carries mission copy ("is
+  # currently performed on the Campus North") and news of results, and never
+  # states whether the experiment is operating; the same generic present tense
+  # already cost Homestake and SAGE their statuses. What a source does state,
+  # in the review below by the experiment's own leaders, is that phase 1 — the
+  # tritium endpoint campaign this record's `mass` role is about — reached its
+  # 1000-day goal and ended in 2025: "In 2025 the KATRIN experiment is coming
+  # to the end of its phase 1 after having collected 1000 measurement days of
+  # tritium endpoint data in the search for the neutrino mass." Phase 2 is the
+  # TRISTAN focal-plane upgrade, agreed to run "up to 2028", so the experiment
+  # is neither completed nor, on any source found, currently taking data. None
+  # of the four values in STATUSES names a detector between campaigns, so the
+  # page prints nothing here rather than pick the closest wrong one.
   - name: KATRIN
     kind: mass
     city: Karlsruhe
@@ -308,10 +353,14 @@ experiments:
     note: β-decay endpoint
     url: https://www.katrin.kit.edu/
     role: mass
-    status: running
     rank: 1
-    source: https://www.katrin.kit.edu/
+    source: https://arxiv.org/abs/2601.00248
 
+  # No status on purpose. The cited page describes R&D, not a build: "Currently,
+  # efforts are focused on Phase III. We are developing demonstrators of various
+  # technologies and working on our detector simulations and event analysis."
+  # `construction` claimed a detector going up that the collaboration does not
+  # claim, and no value in STATUSES names a demonstrator programme.
   - name: Project 8
     kind: mass
     city: Seattle
@@ -319,7 +368,6 @@ experiments:
     note: cyclotron radiation emission spectroscopy, tritium endpoint
     url: https://www.project8.org/
     role: mass
-    status: construction
     rank: 2
     source: https://www.project8.org/about
 
@@ -420,6 +468,14 @@ experiments:
     rank: 9
     source: https://next-experiment.org/
 
+  # This record is at Yemilab, which is AMoRE-II — not the AMoRE-Pilot that the
+  # collaboration's status page still describes in the present tense (that ran
+  # at Yangyang, 2015-2017, and AMoRE-I after it, December 2020 to May 2023).
+  # `running` came from that stale page. The collaboration's own AMoRE-II paper
+  # places the experiment under installation, and its July 2026 paper on ⁴⁰Ca
+  # (arXiv:2607.08039) still has it ahead: "As the collaboration prepares for
+  # the AMoRE-II experiment, which will soon become operational employing 90 kg
+  # of 100Mo, most of the detector array will consist of LMO crystals."
   - name: AMoRE
     kind: mass
     city: Jeongseon
@@ -427,9 +483,13 @@ experiments:
     note: 0νββ in ¹⁰⁰Mo, at Yemilab
     url: https://amore.ibs.re.kr/
     role: 0nubb
-    status: running
+    status: construction
     rank: 10
-    source: https://amore.ibs.re.kr/about/status/
+    source: https://arxiv.org/abs/2406.09698
+    source_quote: >-
+      AMoRE-II is the main phase of AMoRE and is currently being installed at
+      the Yemi Underground Laboratory (Yemilab), located approximately 1000
+      meters deep in Jeongseon, Korea.
 
   - name: ANTARES
     kind: natural
@@ -447,11 +507,18 @@ experiments:
     city: Hida
     country: JP
     note: predecessor to Super-Kamiokande, at Kamioka
-    url: https://arxiv.org/abs/1409.4515
+    # `url` is Kamiokande's own paper — the link a reader clicking the name
+    # expects. `source` is the KamLAND review that states the dismantling, and
+    # is about a different experiment: right for the status, wrong as the
+    # destination of the name, which is why the two fields differ here.
+    url: https://doi.org/10.1103/PhysRevLett.77.1683
     role: atmospheric
     status: completed
     rank: 5
     source: https://arxiv.org/abs/1409.4515
+    source_quote: >-
+      After dismantling the Kamiokande detector, the rock cavity was enlarged
+      to be 20 m in diameter and 20 m in height.
 
   - name: MicroBooNE
     kind: accelerator

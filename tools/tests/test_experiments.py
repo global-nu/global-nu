@@ -8,8 +8,10 @@ once as hand-written tiles in resources.md. The YAML's header asked the two to
 agree; nothing made them, and they drifted into thirteen entries with Daya Bay
 and RENO missing while Double Chooz was present.
 
-Five checks:
-  1. every record satisfies the schema
+The checks:
+  1. every record satisfies the schema, including that a status brings the
+     sentence that states it and that the backlog excusing the records written
+     before that rule has not gone stale
   2. rank is unique within a role, so the order is total and not accidental
   3. every name in the YAML reaches the built resources.html
   4. every experiment name on the built page comes from the YAML
@@ -84,6 +86,38 @@ try:
           "a string rank was silently accepted")
 except SystemExit:
     check("a record with a non-integer rank is rejected", True)
+
+# 1b. a status must bring the sentence that states it. The backlog in
+# experiments.py grandfathers the records written before source_quote existed;
+# a record outside it — which is every new or rewritten one — must carry a
+# quote. This is the check that would have caught Double Chooz citing a "first
+# measurement" paper for a completed status, four times over.
+no_quote = [{"name": "Bad Test Experiment", "role": "mass",
+             "url": "https://example.invalid/", "source": "https://example.invalid/",
+             "rank": 1, "status": "running"}]
+try:
+    experiments._validate(no_quote)
+    check("a status with no source_quote is rejected", False,
+          "a status was accepted with nothing but a link behind it")
+except SystemExit:
+    check("a status with no source_quote is rejected", True)
+
+quoted = dict(no_quote[0], source_quote="It has been running since 1999.")
+try:
+    experiments._validate([quoted])
+    check("a status with a source_quote is accepted", True)
+except SystemExit as e:
+    check("a status with a source_quote is accepted", False, str(e))
+
+# The backlog must not outlive the records it names: an entry whose record has
+# gained a quote, lost its status or vanished would otherwise sit there quietly
+# excusing a record that no longer exists.
+owed = {(r.get("name"), r.get("role")) for r in records
+        if "status" in r and not r.get("source_quote")}
+stale = sorted(experiments.STATUS_QUOTE_BACKLOG - owed)
+check("every entry in STATUS_QUOTE_BACKLOG still owes a quote", not stale,
+      "no longer owed, delete from the list: "
+      + ", ".join(f"{n} ({role})" for n, role in stale[:8]))
 
 # 2. rank unique within a role
 dupes = []
