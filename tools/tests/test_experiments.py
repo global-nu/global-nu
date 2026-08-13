@@ -13,18 +13,25 @@ Five checks:
   2. rank is unique within a role, so the order is total and not accidental
   3. every name in the YAML reaches the built resources.html
   4. every experiment name on the built page comes from the YAML
-  5. every name in the YAML has a marker in the generated map SVG
+  5. every name in the YAML has a marker on the map, once per distinct site
 Checks 3 and 4 are the same check in both directions on purpose: one catches a
 name that was never rendered, the other catches a name hand-typed onto the
-page. Check 5 is the map's own version of that drift test: tools/make_map.py
-buckets co-located experiments and fans a shared marker out into one
-<g class="map-exp"> per experiment, and a name could go missing from that
-bucketing the same way one once went missing from resources.md.
+page. Check 5 is the map's own version of that drift test, but a plain set
+comparison isn't enough for it: tools/make_map.py buckets co-located
+experiments and fans a shared marker out into one <g class="map-exp"> per
+experiment, and the same name can legitimately mark two different real
+places — ICARUS ran at both Gran Sasso (Assergi, IT) and Fermilab (Batavia,
+US), and both belong on the map. A set of names would still contain "ICARUS"
+if one of those two vanished, so check 5 counts, per name, how many distinct
+(city, country) pairs the YAML claims and how many map-exp markers the SVG
+actually carries, and compares the two.
 """
 from __future__ import annotations
 
+import html
 import re
 import sys
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -92,8 +99,8 @@ check("rank is unique within each role", not dupes, "; ".join(dupes[:5]))
 if not PAGE.exists():
     check("resources.html exists", False, "run ./.venv/bin/python3 build.py first")
 else:
-    html = PAGE.read_text(encoding="utf-8")
-    tiles = re.findall(r'data-experiment="([^"]+)"', html)
+    page_html = PAGE.read_text(encoding="utf-8")
+    tiles = re.findall(r'data-experiment="([^"]+)"', page_html)
     from_yaml = {r["name"] for r in records}
     on_page = set(tiles)
 
@@ -105,17 +112,34 @@ else:
     check("every experiment on the page comes from the YAML", not extra,
           f"on the page but not in the YAML: {', '.join(extra[:8])}")
 
-# 5. the map SVG names every experiment somewhere — a top-level marker or a
-# fanned-out child of one — the same set-comparison shape as 3 and 4.
+# 5. the map SVG carries the right *number* of markers per name — not just
+# the name at all. A record's expected marker count is how many distinct
+# (city, country) pairs it holds across the YAML: 1 for Super-Kamiokande,
+# whose two role-records name the same place, 2 for ICARUS, whose two
+# role-records name different ones. Dropping one of ICARUS's two markers
+# would still leave "ICARUS" in a set of names, which is why check 4/5's
+# shape (sets, "3 & 4" above) isn't reused here.
 if not MAP.exists():
     check("map-experiments.svg exists", False, "run ./.venv/bin/python3 tools/make_map.py first")
 else:
     svg = MAP.read_text(encoding="utf-8")
-    on_map = set(re.findall(r'data-experiment="([^"]+)"', svg))
+    on_map = Counter(html.unescape(n) for n in re.findall(r'data-experiment="([^"]+)"', svg))
 
-    missing_from_map = sorted(from_yaml - on_map)
-    check("every experiment in the YAML has a marker on the map", not missing_from_map,
-          f"absent from map-experiments.svg: {', '.join(missing_from_map[:8])}")
+    expected_sites: dict[str, set[tuple[str, str]]] = {}
+    for r in records:
+        expected_sites.setdefault(r["name"], set()).add((r.get("city"), r.get("country")))
+    expected_counts = {name: len(sites) for name, sites in expected_sites.items()}
+
+    drifted = sorted(
+        name for name, want in expected_counts.items()
+        if on_map.get(name, 0) != want
+    )
+    detail = ", ".join(
+        f'{name} (want {expected_counts[name]}, got {on_map.get(name, 0)})'
+        for name in drifted[:8]
+    )
+    check("every experiment's distinct sites each have a marker on the map",
+          not drifted, detail)
 
 print()
 if problems:

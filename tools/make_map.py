@@ -86,6 +86,22 @@ CLUSTER_R = 5.4
 # current data ends up a comfortable 7.5 units apart. This never changes what
 # a marker claims: each experiment keeps its own looked-up city in its own
 # <title>; only which markers share one pin depends on it.
+#
+# The merge below is single-linkage (union-find): it chains through
+# intermediaries rather than bounding a cluster's overall spread. Tokai and
+# Tsukuba are themselves 6.7 units apart — over MERGE_DIST — and end up in
+# Kamioka's bucket anyway, each separately close enough to Hida. On today's
+# data that's harmless (5 of the 7 members sit exactly at Hida, so the
+# centroid lands under a unit away from it), but nothing here stops a longer
+# chain from dragging a future centroid noticeably away from every member it
+# claims to represent. A complete-linkage rule — only merge when *every*
+# pairwise distance in the resulting cluster stays within MERGE_DIST — would
+# close that gap, at the cost of turning this back into a real clustering
+# algorithm instead of one loop; it would also, on today's data, pull K2K
+# back out of the Kamioka bucket into a lone marker sitting 5.8 units from
+# a much larger one, which is close to the original overlap this constant
+# exists to fix. Left as single-linkage deliberately; revisit if the roster
+# grows enough for a chain to actually misplace a centroid.
 MERGE_DIST = 2 * DOT_R
 
 # The main frame stops here: an equirectangular Antarctica south of this

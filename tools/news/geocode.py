@@ -13,6 +13,16 @@ provides: city name and country code, no coordinates.
 
 To fix a wrong entry, delete its line from geocache.json (or edit the
 coordinates in place, lon/lat) and re-run; only missing keys are queried.
+
+Every lookup is scoped to its country via Nominatim's countrycodes filter —
+deliberately, so a wrong answer fails closed to "not found" rather than
+landing in the right country by luck. locate() carries exactly one narrow
+exception to that: country code "AQ" (Antarctica), which OpenStreetMap has
+no administrative boundary for at all, so a countrycodes=aq query can never
+return anything, for any Antarctic venue. That one code retries unscoped and
+then checks the answer is actually south of 60°S before trusting it. This is
+not licence to drop scoping elsewhere — every other country code does have a
+boundary Nominatim can filter against, and should keep using it.
 """
 
 from __future__ import annotations
@@ -92,16 +102,30 @@ def locate(city: str, country_code: str) -> tuple[float, float] | None:
             time.sleep(PAUSE_S)
             rows = _query({"q": city, "countrycodes": code.lower()})
         if not rows and code == "AQ":
-            # Antarctica carries no sovereign administrative boundary under
-            # the Antarctic Treaty, so OpenStreetMap has no "AQ" polygon for
-            # Nominatim's countrycodes filter to match against — every
-            # country-scoped query on an Antarctic venue returns empty,
-            # confirmed against Nominatim directly (McMurdo Station and
-            # Amundsen-Scott both fail the same way). Retried once, free-text
-            # and country-unscoped, which is the only way an Antarctic venue
-            # can ever be found through this endpoint.
+            # Deliberate, narrow exception to the countrycodes scoping
+            # above: Antarctica carries no sovereign administrative boundary
+            # under the Antarctic Treaty, so OpenStreetMap has no "AQ"
+            # polygon for Nominatim's countrycodes filter to match against —
+            # every country-scoped query on an Antarctic venue returns
+            # empty, confirmed against Nominatim directly (McMurdo Station
+            # and Amundsen-Scott both fail the same way). Retried once,
+            # free-text and country-unscoped, which is the only way an
+            # Antarctic venue can ever be found through this endpoint. This
+            # is the one place a result is accepted without a country to
+            # check it against, which is why the result is still required to
+            # actually be in Antarctica (see the latitude check below)
+            # before it's trusted — do not lift the countrycodes scoping for
+            # any other country on this same reasoning; every other country
+            # does have a boundary Nominatim can filter against.
             time.sleep(PAUSE_S)
             rows = _query({"q": city})
+            if rows and float(rows[0]["lat"]) > -60.0:
+                # An unscoped free-text query can match anywhere on Earth;
+                # without a country polygon to confirm against, the only
+                # check left is that the answer is actually far enough
+                # south to be Antarctica. A hit north of that fails closed
+                # rather than caching a dot in the wrong hemisphere.
+                rows = []
     except OSError:
         return None                      # transient: retry on the next run
 
