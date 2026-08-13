@@ -134,12 +134,46 @@ def precision_svg(meta: dict, bari: list[dict]) -> str:
 # --------------------------------------------------------------------------- #
 # 2. the current ranges, one row per parameter
 # --------------------------------------------------------------------------- #
+SUPERSCRIPT = str.maketrans("-0123456789", "⁻⁰¹²³⁴⁵⁶⁷⁸⁹")
+
+
+def unit_suffix(unit: str | None) -> str:
+    """" / 10⁻⁵ eV²" for the "1e-5 eV²" of history.yaml, "" for none.
+
+    The papers quote each parameter in a normalisation printed at the head of
+    its table — 7.37 means 7.37×10⁻⁵ eV², 3.03 means 0.303 — and history.yaml
+    keeps that normalisation in `unit` rather than converting. A figure that
+    prints the value without it prints a number that is wrong by a factor of
+    ten to a hundred thousand, which is what the home page did next to stat
+    cards giving the same parameters as plain decimals.
+
+    The written form is the stat cards' own: "δm² / 10⁻⁵ eV²". `unit: "1"` is
+    a dimensionless, unnormalised value (δ/π) and gets nothing. Anything not
+    of the form 1e<n> is passed through as written rather than reinterpreted.
+    """
+    if not unit or unit.strip() in ("", "1"):
+        return ""
+    head, _, rest = unit.strip().partition(" ")
+    if head.startswith("1e") and head[2:].lstrip("-").isdigit():
+        head = "10" + head[2:].translate(SUPERSCRIPT)
+    return f" / {head} {rest}".rstrip()
+
+
 def _range_row(y: float, label: str, tag: str, colour: str, e: dict,
                 L: float, R: float, W: float, *, font: float = 12.5,
-                value_font: float = 12) -> list[str]:
+                value_font: float = 12, unit: str | None = None) -> list[str]:
     """One row of a ranges figure: label, 3σ line, 1σ band, best-fit point,
     and the numeric best fit — each row scaled to its own axis, because the
     widths being compared are precision, not magnitude.
+
+    `unit` is the parameter's normalisation, written into the row label after
+    the parameter name, so the number at the end of the row can be read on its
+    own. Both figures pass it: the results-page one sits under Table I, whose
+    header carries the normalisation, but the figure is wide, captioned and
+    linked in its own right, and a rule with an exception is the kind that
+    stops being followed. The label is the only place it can go — the value
+    column is 48px wide in the hero — and it is the place the home page's stat
+    cards already put it.
 
     Shared by ranges_svg (results page) and hero_ranges_svg (home page) so
     the two figures draw from one place and cannot disagree about a number
@@ -155,7 +189,8 @@ def _range_row(y: float, label: str, tag: str, colour: str, e: dict,
 
     return [
         f'<text x="{L-12}" y="{y+4:.0f}" text-anchor="end" font-size="{font}" '
-        f'font-weight="600" fill="currentColor">{label}{tag}</text>',
+        f'font-weight="600" fill="currentColor">{label}{unit_suffix(unit)}{tag}'
+        f'</text>',
         f'<line x1="{sx(lo3):.1f}" y1="{y:.0f}" x2="{sx(hi3):.1f}" y2="{y:.0f}" '
         f'stroke="{colour}" stroke-width="3" stroke-linecap="round" opacity=".28">'
         f'<title>3σ: {lo3:g} – {hi3:g}</title></line>',
@@ -181,7 +216,9 @@ def ranges_svg(meta: dict, bari: list[dict]) -> str:
     W = 760
     ROW, TOP = 40, 26
     H = TOP + ROW * len(rows) + 16
-    L, R = 132, 74
+    # L holds the longest label — "|Δm²| / 10⁻³ eV² (NO)", 130px in Inter at
+    # 12.5px — plus its 12px gap and room for a wider fallback face.
+    L, R = 164, 74
 
     out = []
     for i, (pname, ordering, e) in enumerate(rows):
@@ -189,11 +226,13 @@ def ranges_svg(meta: dict, bari: list[dict]) -> str:
         label = meta[pname]["label"]
         colour = {"no": "var(--no)", "io": "var(--io)"}.get(ordering, "var(--accent)")
         tag = {"no": " (NO)", "io": " (IO)"}.get(ordering, "")
-        out.extend(_range_row(y, label, tag, colour, e, L, R, W))
+        out.extend(_range_row(y, label, tag, colour, e, L, R, W,
+                               unit=meta[pname].get("unit")))
 
     body = "\n".join(out)
     return (f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="Best fit with 1σ and 3σ '
-            'ranges for each oscillation parameter of the current release">\n'
+            'ranges for each oscillation parameter of the current release, each row '
+            'labelled with the parameter and the units its values are given in">\n'
             f'{body}\n</svg>')
 
 
@@ -206,21 +245,26 @@ def hero_ranges_svg(meta: dict, bari: list[dict]) -> str:
     W = 520
     ROW, TOP = 34, 20
     H = TOP + ROW * len(rows) + 26
-    L, R = 92, 58
+    # L holds the longest label — "|Δm²| / 10⁻³ eV²", 87px in Inter at 11.5px —
+    # plus its 12px gap and room for a wider fallback face.
+    L, R = 124, 58
 
     out = []
     for i, (pname, e) in enumerate(rows):
         y = TOP + i * ROW + ROW / 2
         label = meta[pname]["label"]
         out.extend(_range_row(y, label, "", "var(--no)", e, L, R, W,
-                               font=11.5, value_font=11))
+                               font=11.5, value_font=11,
+                               unit=meta[pname].get("unit")))
     out.append(f'<text x="{W-R}" y="{H-6:.0f}" text-anchor="end" font-size="9.5" '
                f'font-family="var(--mono)" fill="currentColor" opacity=".5">'
                f'arXiv:{rel["arxiv"]}</text>')
 
     body = "\n".join(out)
     return (f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="Best fit with 1σ and 3σ '
-            'ranges for each oscillation parameter, normal ordering, current release">\n'
+            'ranges for each oscillation parameter, normal ordering, current release, '
+            'each row labelled with the parameter and the units its values are given '
+            'in">\n'
             f'{body}\n</svg>')
 
 
