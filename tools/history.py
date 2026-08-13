@@ -31,7 +31,8 @@ LEVEL_TEXT = {"3sigma": "3σ", "2sigma": "2σ", "90%CL": "90% CL", "95%CL": "95%
 
 
 def kind_of(entry: dict) -> str:
-    """"measurement", "limit", or "" when the entry is neither."""
+    """Classify entry: "measurement", "limit", or "" when it is neither
+    (including when it is both — the caller distinguishes those cases)."""
     measured = "best" in entry
     bounded = "upper" in entry or "lower" in entry
     if measured and not bounded:
@@ -46,6 +47,10 @@ def validate_value(pname: str, ordering: str, entry: dict) -> None:
     where = f"{pname}/{ordering}"
     kind = kind_of(entry)
     if kind == "":
+        measured = "best" in entry
+        bounded = "upper" in entry or "lower" in entry
+        if measured and bounded:
+            sys.exit(f"{DATA.name}: {where} is both a measurement and a limit: {entry!r}")
         sys.exit(f"{DATA.name}: {where} is neither a measurement nor a limit: {entry!r}")
     if kind == "limit":
         level = entry.get("level")
@@ -57,7 +62,12 @@ def validate_value(pname: str, ordering: str, entry: dict) -> None:
 
 
 def limit_label(entry: dict) -> str:
-    """What a reader sees on the marker: the bound and the level it holds at."""
+    """What a reader sees on the marker: the bound and the level it holds at.
+
+    The bound is interpolated as written, not formatted with :g — :g rounds
+    to 6 significant figures and would silently drop a paper's digits, and it
+    strips trailing zeros, so the printed precision follows however the value
+    is spelled in history.yaml (5 vs. 5.0 render differently on purpose)."""
     level = LEVEL_TEXT.get(entry.get("level", ""), entry.get("level", ""))
     if "upper" in entry:
         return f"< {entry['upper']} ({level})"

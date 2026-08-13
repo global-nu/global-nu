@@ -54,6 +54,26 @@ def rejects(entry: dict) -> bool:
 check("a value that is both a measurement and a limit is rejected",
       rejects({"best": 2.2, "s3": [2.0, 2.4], "upper": 5.0, "level": "3sigma"}))
 check("a value that is neither is rejected", rejects({"note": "unclear"}))
+
+
+def message(entry: dict) -> str:
+    """The text of the SystemExit validate_value raises for entry."""
+    try:
+        history.validate_value("sin2_th13", "no", entry)
+        return ""
+    except SystemExit as exc:
+        return str(exc)
+
+
+# The two rejections above share a code path but must not share a sentence:
+# "is neither" would send a reader hunting for a missing field when the real
+# problem is an extra one.
+check("the 'both' rejection says so, not 'neither'",
+      "both a measurement and a limit"
+      in message({"best": 2.2, "s3": [2.0, 2.4], "upper": 5.0, "level": "3sigma"}))
+check("the 'neither' rejection says so, not 'both'",
+      "neither a measurement nor a limit" in message({"note": "unclear"}))
+
 check("a limit with no level is rejected", rejects({"upper": 5.0}))
 check("a limit with an unknown level is rejected",
       rejects({"upper": 5.0, "level": "eyeballed"}))
