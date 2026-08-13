@@ -344,3 +344,67 @@ experiments:
     status: completed
     rank: 5
     source: https://doi.org/10.1103/PhysRevLett.77.1683
+
+  - name: MicroBooNE
+    kind: accelerator
+    city: Batavia
+    country: US
+    note: liquid-argon TPC on the Booster beam, at Fermilab
+    url: https://microboone.fnal.gov/
+    role: sterile
+    rank: 1
+    source: https://microboone.fnal.gov/about-microboone/
+
+  - name: SBND
+    kind: accelerator
+    city: Batavia
+    country: US
+    note: near detector of the Short-Baseline Neutrino programme, at Fermilab
+    url: https://arxiv.org/abs/2504.00245
+    role: sterile
+    status: running
+    rank: 2
+    source: https://arxiv.org/abs/2504.00245
+
+  - name: ICARUS
+    kind: accelerator
+    city: Batavia
+    country: US
+    note: far detector of the Short-Baseline Neutrino programme, at Fermilab
+    url: https://icarus.fnal.gov/
+    role: sterile
+    status: running
+    rank: 3
+    source: https://doi.org/10.3390/particles8010018
+
+  - name: PROSPECT
+    kind: reactor
+    city: Oak Ridge
+    country: US
+    note: reactor antineutrino spectrum, at the High Flux Isotope Reactor
+    url: https://prospect.yale.edu/
+    role: sterile
+    rank: 4
+    source: https://www.ornl.gov/project/prospect
+
+  - name: STEREO
+    kind: reactor
+    city: Grenoble
+    country: FR
+    note: reactor antineutrino spectrum, at the ILL research reactor
+    url: https://arxiv.org/abs/2210.07664
+    role: sterile
+    status: completed
+    rank: 5
+    source: https://arxiv.org/abs/2210.07664
+
+  - name: BEST
+    kind: natural
+    city: Neutrino
+    country: RU
+    note: gallium radiochemical source experiment, at Baksan
+    url: https://arxiv.org/abs/2109.11482
+    role: sterile
+    status: completed
+    rank: 6
+    source: https://arxiv.org/abs/2109.11482
