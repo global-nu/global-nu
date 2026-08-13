@@ -12,6 +12,14 @@ row: the number as recorded (matching a table printed in units of 1e-1, 1e-2,
 …) and the same number scaled by that unit (matching a table printed in
 absolute values). Nothing else is accepted.
 
+A limit's `upper` (or `lower`) is checked exactly like a measurement's `best`
+— same forms(), same PDF search — and, when the record carries a
+`source_quote`, that sentence is independently checked to occur in the same
+paper's extracted text. Until this was added, a limit's bound, its level and
+its source_quote were verified by nothing at all: the register's first real
+limit (NuFit 2004's sin²θ₁₃, Table 1) was trust-only, one reviewer reading
+page 20 by hand.
+
     ./setup-venv.sh && ./.venv/bin/python3 tools/tests/test_history_numbers.py
 
 Needs the cached sources: python3 tools/fetch_history_sources.py
@@ -53,6 +61,28 @@ def pdf_text(path: Path) -> str:
     return re.sub(r"-\s+(?=\d)", "-", raw)
 
 
+# Typographic ligatures a PDF font substitutes for a plain letter sequence:
+# "fit" prints as "ﬁt", "flavour" as "ﬂavour". Word-search via forms() never
+# meets these (it looks for digits), but a source_quote is prose and does.
+LIGATURES = {"ﬀ": "ff", "ﬁ": "fi", "ﬂ": "fl",
+             "ﬃ": "ffi", "ﬄ": "ffl"}
+
+
+def normalize_for_quote(s: str) -> str:
+    """Fold a string down to a form tolerant of what PDF extraction does to a
+    quoted sentence: ligatures expanded to their letters, then every run of
+    whitespace removed entirely. Whitespace is not just collapsed to one
+    space because extraction does not merely widen it — it inserts space
+    inside words that have none in the paper and drops space that is there,
+    unpredictably around symbols like sigma ("2σ," in the source prints as
+    "2 σ ," in nufit-2004's extracted text). Nothing else is normalised:
+    wording, punctuation and digits still have to match exactly, so a quote
+    that misremembers the paper still fails this check."""
+    for lig, plain in LIGATURES.items():
+        s = s.replace(lig, plain)
+    return re.sub(r"\s+", "", s)
+
+
 def forms(value: float, unit: str) -> list[str]:
     """How this value may legitimately appear in the paper."""
     out = {f"{value:g}"}
@@ -91,6 +121,13 @@ def main() -> None:
                 for key in ("s1", "s2", "s3"):
                     for v in entry.get(key, []) or []:
                         items.append((key, v))
+                # A limit's bound is checked the same way as a measurement's
+                # best fit: same forms(), same PDF search. "upper" and
+                # "lower" are mutually exclusive (history.kind_of / the
+                # limit's own shape), so at most one of these ever fires.
+                for key in ("upper", "lower"):
+                    if key in entry:
+                        items.append((key, entry[key]))
                 for key, v in items:
                     # A value the paper states as central ± error is computed,
                     # not printed: the entry declares it and it is not searched.
@@ -106,6 +143,23 @@ def main() -> None:
                         problems.append(
                             f"{slug}  {pname} {ordering} {key}={v} "
                             f"(looked for {' or '.join(forms(v, unit))})")
+
+                # A limit's source_quote, when the record carries one, is a
+                # sentence from the paper naming what the bound's level is —
+                # checked here rather than trusted, the same principle as
+                # every number above.
+                quote = entry.get("source_quote")
+                if quote:
+                    total += 1
+                    if normalize_for_quote(quote) in normalize_for_quote(text):
+                        found += 1
+                        n_ok += 1
+                    else:
+                        n_bad += 1
+                        problems.append(
+                            f"{slug}  {pname} {ordering} source_quote={quote!r} "
+                            "not found in the source (after ligature and "
+                            "whitespace normalisation)")
         flag = "" if not n_bad else f"  <-- {n_bad} NOT FOUND"
         print(f"  {slug:<34} {n_ok:>3} values verified against {rel['table']}{flag}")
 

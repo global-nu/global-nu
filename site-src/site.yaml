@@ -11,6 +11,8 @@ nav:
     label: Results
   - url: history.html
     label: Parameter history
+  - url: history-schema.html
+    label: Data schema
   - url: digest.html
     label: arXiv digest
   - url: news.html
