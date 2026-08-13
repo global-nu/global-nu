@@ -21,11 +21,14 @@ Chart conventions (see the dataviz method):
 
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
-import yaml
-
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from tools import history                              # noqa: E402
+
 DATA = ROOT / "site-src" / "data" / "history.yaml"
 OUT = ROOT / "site-src" / "content" / "history.md"
 
@@ -262,7 +265,7 @@ sources in the table below.</p>
 
 
 def main() -> None:
-    doc = yaml.safe_load(DATA.read_text(encoding="utf-8"))
+    doc = history.load()
 
     # YAML 1.1 reads a bare `no` as the boolean False, which silently deletes
     # the whole normal-ordering series from every panel. The keys are quoted in
