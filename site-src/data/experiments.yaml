@@ -301,6 +301,17 @@ experiments:
     rank: 1
     source: https://www.katrin.kit.edu/
 
+  - name: Project 8
+    kind: mass
+    city: Seattle
+    country: US
+    note: cyclotron radiation emission spectroscopy, tritium endpoint
+    url: https://www.project8.org/
+    role: mass
+    status: construction
+    rank: 2
+    source: https://www.project8.org/about
+
   - name: LEGEND
     kind: mass
     city: Assergi
