@@ -166,6 +166,37 @@ check("compare_panel() keeps the limit's bound inside the plotted area",
       and make_history.PAD_T <= compare_y <= make_history.H - make_history.PAD_B,
       f"y={compare_y}, plotted area is [{make_history.PAD_T}, {make_history.H - make_history.PAD_B}]")
 
+# 7. the cited table exists in the cited paper
+sys.path.insert(0, str(ROOT / "tools" / "tests"))
+import test_history_numbers as thn                      # noqa: E402
+
+missing = []
+for rel in doc["releases"]:
+    pdf = thn.pdf_for(rel)
+    if pdf is None or not pdf.exists():
+        continue                       # absent cache is the numbers test's problem
+    text = thn.pdf_text(pdf)
+    field = rel.get("table", "")
+    ident = re.match(r"(Table\s+[IVXLC0-9]+)", field, re.I)
+    if not ident:
+        # Not every release quotes a table: bari 2008 is a focused analysis
+        # whose one quotable number is given in the text as Eq. (3), not in
+        # any table (see that release's own "note" field). This check is
+        # specifically about verifying a *table* citation, so a field that
+        # plainly names a different kind of source (an equation) is outside
+        # its scope rather than a citation error — skip it rather than fail.
+        # Anything else that fails to parse as "Table ..." is a real
+        # candidate for a mis-set field and does fail.
+        if re.match(r"eq\.?\s*\(", field, re.I):
+            continue
+        missing.append(f'{rel["group"]} {rel["year"]}: table field names no table')
+        continue
+    if ident.group(1).lower() not in text.lower():
+        missing.append(f'{rel["group"]} {rel["year"]}: {ident.group(1)} not found in the PDF')
+
+check("every cited table exists in the paper it is cited from", not missing,
+      "; ".join(missing[:5]))
+
 print()
 if problems:
     print(f"  ! {len(problems)} of {checks} checks failed")

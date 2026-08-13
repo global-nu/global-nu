@@ -33,6 +33,12 @@ CACHE = ROOT / "var" / "history-sources"
 UNIT_EXP = {"1e-1": -1, "1e-2": -2, "1e-3": -3, "1e-5": -5, "1": 0}
 
 
+def pdf_for(rel: dict) -> Path:
+    """The cached-PDF path a release's own group/year/arxiv fields point to."""
+    slug = f"{rel['group']}-{rel['year']}-{rel['arxiv'].replace('/', '_')}"
+    return CACHE / f"{slug}.pdf"
+
+
 def pdf_text(path: Path) -> str:
     """Full text with the spaces PDF extraction sprinkles inside numbers
     removed: "0. 016" and "2 .47" are the same number as "0.016" and "2.47"."""
@@ -68,8 +74,8 @@ def main() -> None:
     problems: list[str] = []
 
     for rel in doc["releases"]:
-        slug = f"{rel['group']}-{rel['year']}-{rel['arxiv'].replace('/', '_')}"
-        pdf = CACHE / f"{slug}.pdf"
+        pdf = pdf_for(rel)
+        slug = pdf.stem
         if not pdf.exists():
             problems.append(f"{slug}: source PDF not cached — run tools/fetch_history_sources.py")
             continue
