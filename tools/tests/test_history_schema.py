@@ -11,6 +11,7 @@ and never neither, and a limit names its level.
 """
 from __future__ import annotations
 
+import re
 import sys
 from pathlib import Path
 
@@ -97,6 +98,73 @@ check("a limit's marker is stroked and unfilled, unlike every filled shape",
       'fill="none"' in svg,
       f"got: {svg[:90]}")
 check("a limit's marker carries its label", "< 5.0 (3σ)" in svg)
+
+# 6. integration: the bound survives into compare_panel() and panel()
+#
+# marker() is unit-tested above in isolation. That proves the shape is right
+# but nothing above ever calls compare_panel() or panel() with a limit, so a
+# future edit that re-inlines e["best"] at any of the six call sites those
+# two functions touch (axis range, connecting line, marker placement — times
+# two functions) would go undetected here. The visible symptom of that bug is
+# not a crash: it is a limit drawn outside the panel, which looks like a
+# finished chart and is not. These checks parse the actual emitted SVG rather
+# than recomputing the expected position, so they fail if the geometry the
+# functions produce ever drifts from the geometry this file assumes.
+META = {"label": "Synthetic θ", "unit": "1"}
+
+# A bound far outside the surrounding measurements: if a call site drops the
+# bound from the values that set the panel's vertical range, the axis is
+# sized from the measurements alone and the arrow lands off the top of the
+# frame — exactly the failure this check exists to catch.
+PANEL_RELEASES = [
+    {"year": 2000, "values": {"synthetic_param": {"no": {"upper": 50.0, "level": "3sigma"}}}},
+    {"year": 2010, "values": {"synthetic_param": {"no": {"best": 5.0, "s3": [4.0, 6.0]}}}},
+    {"year": 2012, "values": {"synthetic_param": {"no": {"best": 5.2, "s3": [4.2, 6.2]}}}},
+]
+COMPARE_RELEASES = [
+    {"group": "bari", "year": 2000,
+     "values": {"synthetic_param": {"no": {"upper": 50.0, "level": "3sigma"}}}},
+    {"group": "nufit", "year": 2010,
+     "values": {"synthetic_param": {"any": {"best": 5.0, "s3": [4.0, 6.0]}}}},
+    {"group": "valencia", "year": 2012,
+     "values": {"synthetic_param": {"any": {"best": 5.2, "s3": [4.2, 6.2]}}}},
+]
+
+
+def limit_marker_y(svg_out: str, label: str) -> float | None:
+    """The y-coordinate of the arrow whose <title> is exactly label, parsed
+    out of the emitted path — not recomputed, so a broken call site shows up
+    here instead of being masked by re-deriving the same formula. Anchored on
+    the label text (unique per point) and on the shape's own structural
+    signature (unfilled, stroke-linecap="round", closes with </path> rather
+    than self-closing) so it cannot match the group's connecting line, which
+    is also an unfilled stroked <path> but self-closes with no <title>."""
+    pattern = re.compile(
+        r'<path d="M[-\d.]+ (-?[\d.]+)L[^"]*" fill="none" stroke="[^"]+" '
+        r'stroke-width="2" stroke-linecap="round">'
+        + re.escape(f"<title>{label}</title>") + r"</path>")
+    m = pattern.search(svg_out)
+    return float(m.group(1)) if m else None
+
+
+panel_svg = make_history.panel("synthetic_param", META, PANEL_RELEASES)
+panel_label = "Normal ordering, 2000: Synthetic θ < 50.0 (3σ) (1)"
+panel_y = limit_marker_y(panel_svg, panel_label)
+check("panel() draws the limit as its own unfilled, stroked arrow",
+      panel_y is not None, f"label not found as an arrow in: {panel_svg[:200]}")
+check("panel() keeps the limit's bound inside the plotted area",
+      panel_y is not None and make_history.PAD_T <= panel_y <= make_history.H - make_history.PAD_B,
+      f"y={panel_y}, plotted area is [{make_history.PAD_T}, {make_history.H - make_history.PAD_B}]")
+
+compare_svg = make_history.compare_panel("synthetic_param", META, COMPARE_RELEASES)
+compare_label = "Bari, 2000: Synthetic θ < 50.0 (3σ) (1)"
+compare_y = limit_marker_y(compare_svg, compare_label)
+check("compare_panel() draws the limit as its own unfilled, stroked arrow",
+      compare_y is not None, f"label not found as an arrow in: {compare_svg[:200]}")
+check("compare_panel() keeps the limit's bound inside the plotted area",
+      compare_y is not None
+      and make_history.PAD_T <= compare_y <= make_history.H - make_history.PAD_B,
+      f"y={compare_y}, plotted area is [{make_history.PAD_T}, {make_history.H - make_history.PAD_B}]")
 
 print()
 if problems:
