@@ -86,7 +86,7 @@ experiments:
     source: https://arxiv.org/abs/1901.09445
 
   - name: SNO+
-    kind: reactor
+    kind: mass
     city: Sudbury
     country: CA
     note: reactor and 0νββ, at SNOLAB
@@ -436,11 +436,11 @@ experiments:
     city: Hida
     country: JP
     note: predecessor to Super-Kamiokande, at Kamioka
-    url: https://doi.org/10.1103/PhysRevLett.77.1683
+    url: https://arxiv.org/abs/1409.4515
     role: atmospheric
     status: completed
     rank: 5
-    source: https://doi.org/10.1103/PhysRevLett.77.1683
+    source: https://arxiv.org/abs/1409.4515
 
   - name: MicroBooNE
     kind: accelerator
