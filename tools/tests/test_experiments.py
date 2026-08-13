@@ -8,14 +8,18 @@ once as hand-written tiles in resources.md. The YAML's header asked the two to
 agree; nothing made them, and they drifted into thirteen entries with Daya Bay
 and RENO missing while Double Chooz was present.
 
-Four checks:
+Five checks:
   1. every record satisfies the schema
   2. rank is unique within a role, so the order is total and not accidental
   3. every name in the YAML reaches the built resources.html
   4. every experiment name on the built page comes from the YAML
+  5. every name in the YAML has a marker in the generated map SVG
 Checks 3 and 4 are the same check in both directions on purpose: one catches a
 name that was never rendered, the other catches a name hand-typed onto the
-page.
+page. Check 5 is the map's own version of that drift test: tools/make_map.py
+buckets co-located experiments and fans a shared marker out into one
+<g class="map-exp"> per experiment, and a name could go missing from that
+bucketing the same way one once went missing from resources.md.
 """
 from __future__ import annotations
 
@@ -29,6 +33,7 @@ sys.path.insert(0, str(ROOT))
 from tools import experiments                        # noqa: E402
 
 PAGE = ROOT / "site" / "resources.html"
+MAP = ROOT / "site-src" / "data" / "figures" / "map-experiments.svg"
 
 problems: list[str] = []
 checks = 0
@@ -99,6 +104,18 @@ else:
     extra = sorted(on_page - from_yaml)
     check("every experiment on the page comes from the YAML", not extra,
           f"on the page but not in the YAML: {', '.join(extra[:8])}")
+
+# 5. the map SVG names every experiment somewhere — a top-level marker or a
+# fanned-out child of one — the same set-comparison shape as 3 and 4.
+if not MAP.exists():
+    check("map-experiments.svg exists", False, "run ./.venv/bin/python3 tools/make_map.py first")
+else:
+    svg = MAP.read_text(encoding="utf-8")
+    on_map = set(re.findall(r'data-experiment="([^"]+)"', svg))
+
+    missing_from_map = sorted(from_yaml - on_map)
+    check("every experiment in the YAML has a marker on the map", not missing_from_map,
+          f"absent from map-experiments.svg: {', '.join(missing_from_map[:8])}")
 
 print()
 if problems:

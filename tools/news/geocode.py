@@ -91,6 +91,17 @@ def locate(city: str, country_code: str) -> tuple[float, float] | None:
             # "CERN", "Otranto, Lecce", "University of California".
             time.sleep(PAUSE_S)
             rows = _query({"q": city, "countrycodes": code.lower()})
+        if not rows and code == "AQ":
+            # Antarctica carries no sovereign administrative boundary under
+            # the Antarctic Treaty, so OpenStreetMap has no "AQ" polygon for
+            # Nominatim's countrycodes filter to match against — every
+            # country-scoped query on an Antarctic venue returns empty,
+            # confirmed against Nominatim directly (McMurdo Station and
+            # Amundsen-Scott both fail the same way). Retried once, free-text
+            # and country-unscoped, which is the only way an Antarctic venue
+            # can ever be found through this endpoint.
+            time.sleep(PAUSE_S)
+            rows = _query({"q": city})
     except OSError:
         return None                      # transient: retry on the next run
 

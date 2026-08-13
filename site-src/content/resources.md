@@ -24,15 +24,17 @@ katex: false
 <figure class="figure figure--wide reveal" style="margin-bottom:2rem">
 <div class="figure__head">
   <h3>Where they are</h3>
-  <p>13 sites · hover a marker for the place</p>
+  <p>every experiment on this page · hover a marker for the place</p>
 </div>
 <!--include:map-experiments-->
 <!--include:map-experiments-legend-->
 <p class="cap">Coastlines from Natural Earth (public domain). Each marker is
 placed by looking its site up in OpenStreetMap, never by a typed coordinate; a
-site that cannot be resolved is left off rather than approximated. IceCube is
-not shown: it sits at the South Pole, below the frame this projection can
-usefully draw.</p>
+site that cannot be resolved is left off rather than approximated. A site
+hosting more than one experiment draws as a single numbered marker. IceCube
+sits at the South Pole, off the bottom of this projection, so it is drawn in
+the small inset instead — reprojected from the same coastline data, centred
+on the pole.</p>
 </figure>
 
 <figure class="figure figure--wide reveal" style="margin-bottom:2rem;padding-bottom:1.4rem">
