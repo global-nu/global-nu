@@ -57,7 +57,7 @@ NOTE = (
     "The Bari/NuFit/Valencia parameter-history register. value_as_published "
     "is exactly what the cited paper printed, in its own convention and "
     "normalisation (see the `convention` and `unit` fields of each row). "
-    "value_our_convention is the same quantity in this site's convention, "
+    "value_our_convention is the same quantity in this group's convention, "
     "delta m^2 = m2^2 - m1^2 > 0 and Dm2 = m3^2 - (m1^2 + m2^2)/2: identical "
     "to value_as_published for every parameter except Dm2, where NuFit and "
     "Valencia report a different quantity (Dm2_3l, |Dm2_31|) and the "

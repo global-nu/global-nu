@@ -15,10 +15,19 @@ absolute values). Nothing else is accepted.
 A limit's `upper` (or `lower`) is checked exactly like a measurement's `best`
 — same forms(), same PDF search — and, when the record carries a
 `source_quote`, that sentence is independently checked to occur in the same
-paper's extracted text. Until this was added, a limit's bound, its level and
-its source_quote were verified by nothing at all: the register's first real
-limit (NuFit 2004's sin²θ₁₃, Table 1) was trust-only, one reviewer reading
-page 20 by hand.
+paper's extracted text, AND to actually mention the level the record claims
+(a quote that occurs in the paper but never says "3σ" does not support a
+record claiming `level: 3sigma`). Until this was added, a limit's bound, its
+level and its source_quote were verified by nothing at all: the register's
+first real limit (NuFit 2004's sin²θ₁₃, Table 1) was trust-only, one reviewer
+reading page 20 by hand.
+
+The level-mention check is deliberately narrow: it does not prove the level
+is the *right* one for that value — nothing mechanical can tell "3σ" the
+column from "3σ" the neighbouring column in the same sentence — only that the
+quote is not silent about it. A caption quoting several levels at once (as
+NuFit 2004's does: "2σ, 3σ, and 4σ") will support any of the levels it lists;
+it will not support one it never mentions, which is the failure this closes.
 
     ./setup-venv.sh && ./.venv/bin/python3 tools/tests/test_history_numbers.py
 
@@ -35,6 +44,10 @@ import yaml
 from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
+
+from tools import history                              # noqa: E402
+
 DATA = ROOT / "site-src" / "data" / "history.yaml"
 CACHE = ROOT / "var" / "history-sources"
 
@@ -81,6 +94,27 @@ def normalize_for_quote(s: str) -> str:
     for lig, plain in LIGATURES.items():
         s = s.replace(lig, plain)
     return re.sub(r"\s+", "", s)
+
+
+def level_forms(level: str) -> list[str]:
+    """Acceptable renderings of a confidence level inside a quoted sentence.
+
+    A "Nsigma" level accepts three spellings: the sigma glyph the way
+    tools.history.LEVEL_TEXT renders it ("3σ"), and the two plain-ASCII
+    spellings a paper's own typesetting might use instead of the glyph
+    ("3 sigma", "3-sigma") — a paper sets its own captions, not ours, and
+    plenty of journals avoid non-ASCII symbols in running text. Matched
+    case-insensitively by the caller, so "Sigma" or "SIGMA" also count.
+
+    A "NN%CL" level accepts only tools.history.LEVEL_TEXT's own rendering
+    ("90% CL"), which is already plain ASCII — there is no glyph to spell out
+    an alternative for."""
+    text = history.LEVEL_TEXT.get(level, level)
+    m = re.match(r"(\d+)sigma$", level)
+    if not m:
+        return [text]
+    n = m.group(1)
+    return [text, f"{n} sigma", f"{n}-sigma"]
 
 
 def forms(value: float, unit: str) -> list[str]:
@@ -160,6 +194,26 @@ def main() -> None:
                             f"{slug}  {pname} {ordering} source_quote={quote!r} "
                             "not found in the source (after ligature and "
                             "whitespace normalisation)")
+
+                    # The quote occurring in the paper proves the SENTENCE is
+                    # real; it does not prove it supports THIS record's
+                    # level. A record claiming level: 2sigma whose quote only
+                    # ever says "3σ" would pass every check above — this one
+                    # exists to catch exactly that.
+                    level = entry.get("level")
+                    if level:
+                        total += 1
+                        wanted = level_forms(level)
+                        quote_l = quote.lower()
+                        if any(f.lower() in quote_l for f in wanted):
+                            found += 1
+                            n_ok += 1
+                        else:
+                            n_bad += 1
+                            problems.append(
+                                f"{slug}  {pname} {ordering} level={level!r} not "
+                                f"supported by source_quote={quote!r} "
+                                f"(looked for {' or '.join(wanted)})")
         flag = "" if not n_bad else f"  <-- {n_bad} NOT FOUND"
         print(f"  {slug:<34} {n_ok:>3} values verified against {rel['table']}{flag}")
 
