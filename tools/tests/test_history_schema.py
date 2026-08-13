@@ -170,6 +170,30 @@ check("compare_panel() keeps the limit's bound inside the plotted area",
 sys.path.insert(0, str(ROOT / "tools" / "tests"))
 import test_history_numbers as thn                      # noqa: E402
 
+
+def table_cited(ident: str, text: str) -> bool:
+    """Whether table identifier ident (e.g. "Table I") is really cited in
+    text — not merely a character prefix of a longer identifier that happens
+    to be printed there. Plain substring containment is unsound: "table i" is
+    a prefix of "table ii", "table iii", "table iv", "table ix", so a record
+    that wrongly cites Table I in a four-table paper would pass a substring
+    check even though its value actually belongs to Table II. Requiring that
+    nothing numeral-ish immediately follows the match closes that hole."""
+    return bool(re.search(rf"{re.escape(ident)}\b(?![ivxlc0-9])", text, re.I))
+
+
+# A low numeral must not be satisfied by a higher one that contains it as a
+# character prefix — this is exactly the failure mode a plain `in` check
+# missed: "Table I" would read as present in text that only ever prints
+# "Table II". Regression coverage for that, isolated from any real PDF.
+check("a low table numeral is not satisfied by a higher one containing it as a prefix",
+      not table_cited("Table I", "the results are shown in Table II below"))
+check("the identifier printed on its own is still found",
+      table_cited("Table II", "the results are shown in Table II below"))
+check("a numeral followed by punctuation or end of text is still found",
+      table_cited("Table I", "as reported in Table I.")
+      and table_cited("Table I", "as reported in Table I"))
+
 missing = []
 for rel in doc["releases"]:
     pdf = thn.pdf_for(rel)
@@ -191,7 +215,7 @@ for rel in doc["releases"]:
             continue
         missing.append(f'{rel["group"]} {rel["year"]}: table field names no table')
         continue
-    if ident.group(1).lower() not in text.lower():
+    if not table_cited(ident.group(1), text):
         missing.append(f'{rel["group"]} {rel["year"]}: {ident.group(1)} not found in the PDF')
 
 check("every cited table exists in the paper it is cited from", not missing,
