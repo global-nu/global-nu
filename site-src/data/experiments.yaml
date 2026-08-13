@@ -34,15 +34,38 @@ experiments:
     rank: 1
     source: https://juno.ihep.cas.cn/
 
+  - name: Daya Bay
+    kind: reactor
+    city: Shenzhen
+    country: CN
+    note: reactor θ13, near Hong Kong
+    url: http://dayabay.ihep.ac.cn/
+    role: theta13
+    status: completed
+    rank: 1
+    source: http://dayabay.ihep.ac.cn/twiki/bin/view/Public/
+
+  - name: RENO
+    kind: reactor
+    city: Yeonggwang
+    country: KR
+    note: reactor θ13, at the Hanbit nuclear power plant
+    url: https://arxiv.org/abs/2412.18711
+    role: theta13
+    status: completed
+    rank: 2
+    source: https://arxiv.org/abs/2412.18711
+
   - name: Double Chooz
     kind: reactor
     city: Chooz
     country: FR
     note: short-baseline reactor
-    url: https://www.dchooz.org/
+    url: https://arxiv.org/abs/1901.09445
     role: theta13
-    rank: 1
-    source: https://www.dchooz.org/
+    status: completed
+    rank: 3
+    source: https://arxiv.org/abs/1901.09445
 
   - name: SNO+
     kind: reactor
