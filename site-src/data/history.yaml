@@ -34,6 +34,32 @@ meta:
 releases:
 
   - group: bari
+    year: 2006
+    arxiv: "hep-ph/0506083"
+    journal: "Prog. Part. Nucl. Phys. 57, 742 (2006)"
+    title: "Global analysis of three-flavor neutrino masses and mixings"
+    convention: "Dm2 = m3^2 - (m1^2 + m2^2)/2"
+    table: "Eq. (53)-(56), global oscillation analysis"
+    note: >-
+      No numbered table: the paper gives all six parameters only as text
+      equations (Eqs. 53-57), central value with a multiplicative +/-2sigma
+      (95% C.L.) error, not split by mass ordering and with no CP-phase fit
+      (only the extremes delta=0,pi are considered). sin2_th23 = 0.44 (Eq. 57)
+      is left out here: this equation is the one instance among the five where
+      the PDF prints its decimal point with a space on both sides ("0 . 44"),
+      which tools/tests/test_history_numbers.py's space-normalisation closes
+      on only one side, so it cannot be verified against the source text
+      without a change to that tool. The other four values are independently
+      restated elsewhere in the paper in a form the checker does find (Eqs.
+      25-26 for dm2 and sin2_th12; the SK+K2K+CHOOZ best fit for Dm2).
+    derived: true
+    values:
+      sin2_th13: {"any": {best: 0.9,  s2: [0.0,  3.2]}}
+      dm2:       {"any": {best: 7.92, s2: [7.21, 8.63]}}
+      sin2_th12: {"any": {best: 3.14, s2: [2.67, 3.71]}}
+      Dm2:       {"any": {best: 2.4,  s2: [1.78, 2.90]}}
+
+  - group: bari
     year: 2008
     arxiv: "0806.2649"
     journal: "Phys. Rev. Lett. 101, 141801 (2008)"
