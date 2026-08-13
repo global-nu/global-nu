@@ -43,8 +43,8 @@ def pdf_text(path: Path) -> str:
     """Full text with the spaces PDF extraction sprinkles inside numbers
     removed: "0. 016" and "2 .47" are the same number as "0.016" and "2.47"."""
     raw = "".join((p.extract_text() or "") for p in PdfReader(str(path)).pages)
-    raw = re.sub(r"(?<=\d)\s+(?=[.,]\d)", "", raw)
     raw = re.sub(r"(?<=[.,])\s+(?=\d)", "", raw)
+    raw = re.sub(r"(?<=\d)\s+(?=[.,]\d)", "", raw)
     # Papers set the minus sign as U+2212 (and sometimes an en dash); the
     # values in history.yaml carry a plain hyphen.
     raw = raw.replace("\u2212", "-")

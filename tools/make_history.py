@@ -415,10 +415,10 @@ revise only part of the parameter set.</caption>
 </div>
 
 <div class="prose" style="margin-top:2rem">
-<p class="small muted">Earlier analyses of the series — the solar-sector papers
-of 2002–2003 and the first full three-flavour releases of 2005 — are not yet on
-this page: their tables are laid out differently and are being transcribed with
-the same care.</p>
+<p class="small muted">The solar-sector-only papers of 2002–2003 that precede this
+series are deliberately not on this page: none of them tabulates the full
+parameter set this page tracks. They are listed, with the reason, in the
+excluded section of the source data (site-src/data/history.yaml).</p>
 </div>
 
 :::
