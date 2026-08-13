@@ -81,6 +81,16 @@ one is not a datum. `tools/experiments.py`'s validation is the model: the loader
 raises rather than letting a malformed record reach a page, naming what is wrong
 with which entry.
 
+**Levels are heterogeneous and the schema must not pretend otherwise.** Older
+papers quote bounds at whatever level suited them — 90% CL, 95% CL, 2σ, 3σ. How
+mixed that landscape actually is will only be known once the five papers are
+read, so `level` is a string drawn from a documented set (`3sigma`, `2sigma`,
+`90%CL`, `95%CL`), extended when a paper demands it rather than decided in
+advance, and validated against that set. **The page prints the level beside every
+limit**, so two arrows at different levels are never silently compared. A limit
+whose level cannot be established from the paper is omitted, like any other
+value that cannot be sourced.
+
 ### 2. The exclusions are recorded, not remembered
 
 A new `excluded:` section in `history.yaml` lists every paper considered and
@@ -134,19 +144,37 @@ inside the field's than beside it.
 
 `data/history.json` and `data/history.csv` at stable URLs, with a page
 documenting every field. Each row carries group, year, arXiv identifier, source
-table, parameter, the original convention, and the value **as the paper printed
-it** — unconverted.
+table, parameter, and the original convention.
 
-The conversion stays in code and is documented on the page. Exporting converted
-values would publish our arithmetic as though it were the paper's number, which
-is the opposite of what the register is for.
+**Every row carries the value twice, under names that cannot be confused:**
+`value_as_published` — exactly what the paper printed, in the paper's own
+convention and normalisation — and `value_our_convention`, the same quantity
+converted by the rule in `tools/make_history.py`. Publishing only the first
+serves fidelity and fails anyone who downloads the file to compare groups;
+publishing only the second passes our arithmetic off as the paper's number.
+Publishing both, named for what they are, does neither. The conversion rule is
+documented in the schema page and the original convention is named in every row,
+so a reader can redo the arithmetic or reject it.
+
+Only Δm² is ever converted — the groups agree on δm², on the three mixing angles
+and on δ/π. For every other parameter the two columns hold the same number, and
+that is the correct output, not a redundancy to optimise away: a consumer reading
+`value_our_convention` gets a comparable column for all six parameters without
+having to know which one needed work.
 
 ## Verification
 
 - `tools/tests/test_history_numbers.py` covers the new values automatically.
 - A new check: every value is a measurement or a limit, never both and never
   neither.
-- A new check: every limit declares its confidence level.
+- A new check: every limit declares its confidence level, and that level is one
+  of the documented set.
+- A new check: **the table each record cites actually exists in the PDF it cites
+  it from.** This does not prove the right table was chosen — nothing mechanical
+  can — but it catches a record pointing at Table III of a paper with two tables,
+  which is the cheapest way to aim at the wrong target.
+- A new check: `value_our_convention` equals what the conversion rule produces
+  from `value_as_published`, so the two exported columns cannot drift apart.
 - A new check: the exported JSON and CSV contain exactly the points in the YAML,
   compared in both directions — one direction catches a point that failed to
   export, the other catches a row with no counterpart in the source.
