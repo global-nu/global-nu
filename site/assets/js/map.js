@@ -93,7 +93,7 @@
     wireInteractions(svg, zoomAt, centre, function (dx, dy) {
       tx += dx; ty += dy; clampPan(); render();
     }, drag);
-    wireCard(stage, svg, drag);
+    wireCard(stage, svg, pins, drag);
   }
 
   /* -------------------------------------------------------------- setup -- */
@@ -350,12 +350,27 @@
 
   /* ------------------------------------------------------------------ card -- */
 
-  function wireCard(fig, svg, drag) {
+  function wireCard(fig, svg, pins, drag) {
     var current = null;
+    // The element focus returns to when the card closes: whatever was
+    // focused at the moment THIS card opened, normally the marker itself —
+    // reached either by a mouse click (which focuses a tabindex'd element by
+    // default) or, for a keyboard user, by Tab landing on it beforehand.
+    var lastFocus = null;
 
-    function close() {
+    // Removes the DOM without touching focus, so open() can clear a
+    // previously-open card before showing a new one without a focus flicker
+    // back to whatever opened the old one.
+    function remove() {
       if (current && current.parentNode) current.parentNode.removeChild(current);
       current = null;
+    }
+
+    function close() {
+      if (!current) return;
+      remove();
+      if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+      lastFocus = null;
     }
 
     function reveal(pin) {
@@ -450,7 +465,8 @@
     }
 
     function open(pin) {
-      close();
+      remove();
+      lastFocus = document.activeElement;
       var names = (pin.getAttribute("data-names") || "").split("|");
       var exps = pin.querySelectorAll(".map-exp");
 
@@ -477,6 +493,41 @@
 
       fig.appendChild(card);
       current = card;
+      // A role="dialog" that never receives focus is announced as a dialog
+      // but does not behave like one; move focus onto its close button so a
+      // keyboard or screen-reader user lands inside it immediately, the same
+      // place Escape or the button itself will send an activation back out
+      // through close()'s focus restoration above.
+      closeBtn.focus();
+    }
+
+    function activate(pin) {
+      if (pin.hasAttribute("data-fan")) reveal(pin);
+      open(pin);
+    }
+
+    // Every marker becomes a keyboard target, mirroring the pattern
+    // wireLegend already uses for the legend entries: a marker is
+    // informational without JS (readable via its <title> on hover) and only
+    // becomes an operable control once this script actually runs, so the
+    // role/tabindex/keydown wiring belongs here rather than in make_map.py's
+    // static markup.
+    for (var pi = 0; pi < pins.length; pi++) {
+      var pinEl = pins[pi].el;
+      pinEl.setAttribute("role", "button");
+      if (!pinEl.hasAttribute("tabindex")) pinEl.setAttribute("tabindex", "0");
+      if (!pinEl.hasAttribute("aria-label")) {
+        var pinNames = (pinEl.getAttribute("data-names") || "").split("|").join(", ");
+        if (pinNames) pinEl.setAttribute("aria-label", pinNames);
+      }
+      pinEl.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+          // "Spacebar" is IE11's legacy key name; harmless to keep alongside
+          // " ", the modern one, since browsers only ever send one of them.
+          e.preventDefault();
+          activate(this);
+        }
+      });
     }
 
     svg.addEventListener("click", function (e) {
@@ -488,15 +539,35 @@
       var pin = e.target.closest(".map-pin");
       if (!pin) return;
       e.stopPropagation();
-      if (pin.hasAttribute("data-fan")) reveal(pin);
-      open(pin);
+      activate(pin);
     });
 
     document.addEventListener("click", function (e) {
       if (current && !current.contains(e.target)) close();
     });
+
+    // A minimal Tab trap: while the card is open, Tab and Shift+Tab cycle
+    // among its own focusable elements (the close button, and any
+    // experiment-name or credit links) instead of walking out into the rest
+    // of the page behind it.
+    function trapFocus(e) {
+      var focusable = current.querySelectorAll(
+        'button, a[href], [tabindex]:not([tabindex="-1"])');
+      if (!focusable.length) return;
+      var first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && current) close();
+      if (!current) return;
+      if (e.key === "Escape") { close(); return; }
+      if (e.key === "Tab") trapFocus(e);
     });
   }
 
