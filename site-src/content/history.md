@@ -428,7 +428,7 @@ the same care.</p>
 
 <div class="section-head">
   <h2>Compared with the other groups</h2>
-  <p>normal ordering · 7 releases from NuFit and Valencia</p>
+  <p>normal ordering · 8 releases from NuFit and Valencia</p>
 </div>
 
 <div class="callout">
@@ -468,59 +468,62 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 <line x1="54" y1="216" x2="506" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="16" x2="54" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="216.0" x2="506" y2="216.0" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="219.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">6.62</text>
+<text x="46" y="219.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">6.51</text>
 <line x1="54" y1="149.3" x2="506" y2="149.3" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="152.8" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">7.2</text>
+<text x="46" y="152.8" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">7.47</text>
 <line x1="54" y1="82.7" x2="506" y2="82.7" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="86.2" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">7.77</text>
+<text x="46" y="86.2" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">8.42</text>
 <line x1="54" y1="16.0" x2="506" y2="16.0" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="19.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">8.35</text>
-<text x="70.7" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">06</text>
-<text x="175.4" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">11</text>
-<text x="196.3" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">12</text>
-<text x="217.2" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">13</text>
-<text x="280.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">16</text>
-<text x="300.9" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">17</text>
-<text x="321.9" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">18</text>
-<text x="363.7" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">20</text>
-<text x="384.6" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">21</text>
-<text x="447.4" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">24</text>
-<text x="468.3" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">25</text>
-<text x="489.3" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">26</text>
-<line x1="172.0" y1="173.4" x2="172.0" y2="35.4" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="192.9" y1="173.4" x2="192.9" y2="35.4" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="213.8" y1="173.4" x2="213.8" y2="35.4" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="276.6" y1="180.4" x2="276.6" y2="59.7" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="297.5" y1="180.4" x2="297.5" y2="60.9" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="318.5" y1="181.6" x2="318.5" y2="66.7" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="381.2" y1="180.4" x2="381.2" y2="64.4" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="464.9" y1="180.4" x2="464.9" y2="64.4" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="485.9" y1="147.9" x2="485.9" y2="81.8" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<path d="M67.3 65.5 L172.0 105.0 L192.9 109.6 L213.8 109.6 L276.6 129.3 L297.5 129.3 L318.5 132.8 L381.2 130.5 L464.9 129.3 L485.9 116.6" fill="none" stroke="var(--grp-bari)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<circle cx="67.3" cy="65.5" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2006: δm² = 7.92 (1e-5 eV²)</title></circle>
-<circle cx="172.0" cy="105.0" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2011: δm² = 7.58, 3σ 6.99–8.18 (1e-5 eV²)</title></circle>
-<circle cx="192.9" cy="109.6" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2012: δm² = 7.54, 3σ 6.99–8.18 (1e-5 eV²)</title></circle>
-<circle cx="213.8" cy="109.6" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2013: δm² = 7.54, 3σ 6.99–8.18 (1e-5 eV²)</title></circle>
-<circle cx="276.6" cy="129.3" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2016: δm² = 7.37, 3σ 6.93–7.97 (1e-5 eV²)</title></circle>
-<circle cx="297.5" cy="129.3" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2017: δm² = 7.37, 3σ 6.93–7.96 (1e-5 eV²)</title></circle>
-<circle cx="318.5" cy="132.8" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2018: δm² = 7.34, 3σ 6.92–7.91 (1e-5 eV²)</title></circle>
-<circle cx="381.2" cy="130.5" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2021: δm² = 7.36, 3σ 6.93–7.93 (1e-5 eV²)</title></circle>
-<circle cx="464.9" cy="129.3" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2025: δm² = 7.37, 3σ 6.93–7.93 (1e-5 eV²)</title></circle>
-<circle cx="485.9" cy="116.6" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2026: δm² = 7.48, 3σ 7.21–7.78 (1e-5 eV²)</title></circle>
-<line x1="196.3" y1="172.3" x2="196.3" y2="45.8" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="321.9" y1="196.6" x2="321.9" y2="55.1" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="363.7" y1="193.2" x2="363.7" y2="51.6" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="447.4" y1="181.6" x2="447.4" y2="50.4" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<path d="M196.3 114.3 L321.9 127.0 L363.7 123.5 L447.4 115.4" fill="none" stroke="var(--grp-nufit)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<rect x="192.1" y="110.1" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2012: δm² = 7.5, 3σ 7–8.09 (1e-5 eV²)</title></rect>
-<rect x="317.7" y="122.8" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2018: δm² = 7.39, 3σ 6.79–8.01 (1e-5 eV²)</title></rect>
-<rect x="359.5" y="119.3" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2020: δm² = 7.42, 3σ 6.82–8.04 (1e-5 eV²)</title></rect>
-<rect x="443.2" y="111.2" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2024: δm² = 7.49, 3σ 6.92–8.05 (1e-5 eV²)</title></rect>
-<line x1="325.3" y1="166.5" x2="325.3" y2="40.0" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="367.1" y1="179.2" x2="367.1" y2="40.0" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<path d="M325.3 108.5 L367.1 114.3" fill="none" stroke="var(--grp-valencia)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<path d="M325.3 103.3L330.5 108.5L325.3 113.7L320.1 108.5Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2018: δm² = 7.55, 3σ 7.05–8.14 (1e-5 eV²)</title></path>
-<path d="M367.1 109.1L372.3 114.3L367.1 119.5L361.9 114.3Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2020: δm² = 7.5, 3σ 6.94–8.14 (1e-5 eV²)</title></path>
+<text x="46" y="19.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">9.38</text>
+<text x="69.3" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">04</text>
+<text x="107.6" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">06</text>
+<text x="203.4" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">11</text>
+<text x="222.5" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">12</text>
+<text x="241.7" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">13</text>
+<text x="299.2" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">16</text>
+<text x="318.3" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">17</text>
+<text x="337.5" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">18</text>
+<text x="375.8" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">20</text>
+<text x="394.9" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">21</text>
+<text x="452.4" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">24</text>
+<text x="471.5" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">25</text>
+<text x="490.7" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">26</text>
+<line x1="200.0" y1="182.7" x2="200.0" y2="99.6" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="219.1" y1="182.7" x2="219.1" y2="99.6" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="238.3" y1="182.7" x2="238.3" y2="99.6" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="295.8" y1="186.9" x2="295.8" y2="114.3" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="314.9" y1="186.9" x2="314.9" y2="115.0" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="334.1" y1="187.6" x2="334.1" y2="118.4" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="391.5" y1="186.9" x2="391.5" y2="117.0" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="468.1" y1="186.9" x2="468.1" y2="117.0" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="487.3" y1="167.3" x2="487.3" y2="127.5" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<path d="M104.2 117.7 L200.0 141.5 L219.1 144.3 L238.3 144.3 L295.8 156.1 L314.9 156.1 L334.1 158.2 L391.5 156.8 L468.1 156.1 L487.3 148.5" fill="none" stroke="var(--grp-bari)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
+<circle cx="104.2" cy="117.7" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2006: δm² = 7.92 (1e-5 eV²)</title></circle>
+<circle cx="200.0" cy="141.5" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2011: δm² = 7.58, 3σ 6.99–8.18 (1e-5 eV²)</title></circle>
+<circle cx="219.1" cy="144.3" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2012: δm² = 7.54, 3σ 6.99–8.18 (1e-5 eV²)</title></circle>
+<circle cx="238.3" cy="144.3" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2013: δm² = 7.54, 3σ 6.99–8.18 (1e-5 eV²)</title></circle>
+<circle cx="295.8" cy="156.1" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2016: δm² = 7.37, 3σ 6.93–7.97 (1e-5 eV²)</title></circle>
+<circle cx="314.9" cy="156.1" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2017: δm² = 7.37, 3σ 6.93–7.96 (1e-5 eV²)</title></circle>
+<circle cx="334.1" cy="158.2" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2018: δm² = 7.34, 3σ 6.92–7.91 (1e-5 eV²)</title></circle>
+<circle cx="391.5" cy="156.8" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2021: δm² = 7.36, 3σ 6.93–7.93 (1e-5 eV²)</title></circle>
+<circle cx="468.1" cy="156.1" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2025: δm² = 7.37, 3σ 6.93–7.93 (1e-5 eV²)</title></circle>
+<circle cx="487.3" cy="148.5" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2026: δm² = 7.48, 3σ 7.21–7.78 (1e-5 eV²)</title></circle>
+<line x1="69.3" y1="168.0" x2="69.3" y2="35.4" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="222.5" y1="182.0" x2="222.5" y2="105.9" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="337.5" y1="196.6" x2="337.5" y2="111.5" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="375.8" y1="194.6" x2="375.8" y2="109.4" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="452.4" y1="187.6" x2="452.4" y2="108.7" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<path d="M69.3 105.2 L222.5 147.1 L337.5 154.8 L375.8 152.7 L452.4 147.8" fill="none" stroke="var(--grp-nufit)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
+<rect x="65.1" y="101.0" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2004: δm² = 8.1, 3σ 7.2–9.1 (1e-5 eV²)</title></rect>
+<rect x="218.3" y="142.9" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2012: δm² = 7.5, 3σ 7–8.09 (1e-5 eV²)</title></rect>
+<rect x="333.3" y="150.6" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2018: δm² = 7.39, 3σ 6.79–8.01 (1e-5 eV²)</title></rect>
+<rect x="371.6" y="148.5" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2020: δm² = 7.42, 3σ 6.82–8.04 (1e-5 eV²)</title></rect>
+<rect x="448.2" y="143.6" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2024: δm² = 7.49, 3σ 6.92–8.05 (1e-5 eV²)</title></rect>
+<line x1="340.9" y1="178.5" x2="340.9" y2="102.4" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="379.2" y1="186.2" x2="379.2" y2="102.4" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<path d="M340.9 143.6 L379.2 147.1" fill="none" stroke="var(--grp-valencia)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
+<path d="M340.9 138.4L346.1 143.6L340.9 148.8L335.7 143.6Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2018: δm² = 7.55, 3σ 7.05–8.14 (1e-5 eV²)</title></path>
+<path d="M379.2 141.9L384.4 147.1L379.2 152.3L374.0 147.1Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2020: δm² = 7.5, 3σ 6.94–8.14 (1e-5 eV²)</title></path>
 </svg>
 <p class="cap">Best fit with its 3σ range, normal ordering.</p>
 </figure>
@@ -531,51 +534,54 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 <line x1="54" y1="216" x2="506" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="16" x2="54" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="216.0" x2="506" y2="216.0" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="219.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">2.13</text>
+<text x="46" y="219.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">1.13</text>
 <line x1="54" y1="149.3" x2="506" y2="149.3" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="152.8" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">2.33</text>
+<text x="46" y="152.8" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">1.92</text>
 <line x1="54" y1="82.7" x2="506" y2="82.7" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="86.2" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">2.52</text>
+<text x="46" y="86.2" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">2.7</text>
 <line x1="54" y1="16.0" x2="506" y2="16.0" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="19.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">2.71</text>
-<text x="78.8" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">12</text>
-<text x="109.7" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">13</text>
-<text x="202.6" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">16</text>
-<text x="233.6" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">17</text>
-<text x="264.5" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">18</text>
-<text x="326.4" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">20</text>
-<text x="357.4" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">21</text>
-<text x="450.3" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">24</text>
-<text x="481.2" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">25</text>
-<line x1="75.4" y1="196.6" x2="75.4" y2="48.3" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="106.3" y1="182.8" x2="106.3" y2="51.7" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="199.2" y1="134.5" x2="199.2" y2="44.8" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="230.2" y1="120.4" x2="230.2" y2="39.3" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="261.1" y1="139.7" x2="261.1" y2="70.0" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="354.0" y1="123.8" x2="354.0" y2="67.3" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="477.8" y1="112.8" x2="477.8" y2="69.7" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<path d="M75.4 113.8 L106.3 113.8 L199.2 89.7 L230.2 81.1 L261.1 105.2 L354.0 94.9 L477.8 91.4" fill="none" stroke="var(--grp-bari)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<circle cx="75.4" cy="113.8" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2012: |Δm²| = 2.43, 3σ 2.19–2.62 (1e-3 eV²)</title></circle>
-<circle cx="106.3" cy="113.8" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2013: |Δm²| = 2.43, 3σ 2.23–2.61 (1e-3 eV²)</title></circle>
-<circle cx="199.2" cy="89.7" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2016: |Δm²| = 2.5, 3σ 2.37–2.63 (1e-3 eV²)</title></circle>
-<circle cx="230.2" cy="81.1" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2017: |Δm²| = 2.525, 3σ 2.411–2.646 (1e-3 eV²)</title></circle>
-<circle cx="261.1" cy="105.2" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2018: |Δm²| = 2.455, 3σ 2.355–2.557 (1e-3 eV²)</title></circle>
-<circle cx="354.0" cy="94.9" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2021: |Δm²| = 2.485, 3σ 2.401–2.565 (1e-3 eV²)</title></circle>
-<circle cx="477.8" cy="91.4" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2025: |Δm²| = 2.495, 3σ 2.433–2.558 (1e-3 eV²)</title></circle>
-<line x1="78.8" y1="179.9" x2="78.8" y2="35.4" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="264.5" y1="126.2" x2="264.5" y2="60.4" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="326.4" y1="124.9" x2="326.4" y2="68.7" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="450.3" y1="119.5" x2="450.3" y2="75.7" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<path d="M78.8 111.9 L264.5 93.8 L326.4 96.6 L450.3 98.1" fill="none" stroke="var(--grp-nufit)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<rect x="74.6" y="107.7" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2012: |Δm²| = 2.435, 3σ 2.238–2.657 (1e-3 eV²)</title></rect>
-<rect x="260.3" y="89.6" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2018: |Δm²| = 2.488, 3σ 2.394–2.585 (1e-3 eV²)</title></rect>
-<rect x="322.2" y="92.4" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2020: |Δm²| = 2.48, 3σ 2.398–2.561 (1e-3 eV²)</title></rect>
-<rect x="446.1" y="93.9" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2024: |Δm²| = 2.476, 3σ 2.414–2.541 (1e-3 eV²)</title></rect>
-<line x1="267.9" y1="133.8" x2="267.9" y2="68.2" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="329.8" y1="113.0" x2="329.8" y2="57.8" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<path d="M267.9 102.7 L329.8 85.4" fill="none" stroke="var(--grp-valencia)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<path d="M267.9 97.5L273.1 102.7L267.9 107.9L262.7 102.7Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2018: |Δm²| = 2.462, 3σ 2.372–2.562 (1e-3 eV²)</title></path>
-<path d="M329.8 80.2L335.0 85.4L329.8 90.6L324.6 85.4Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2020: |Δm²| = 2.512, 3σ 2.433–2.592 (1e-3 eV²)</title></path>
+<text x="46" y="19.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">3.49</text>
+<text x="70.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">04</text>
+<text x="230.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">12</text>
+<text x="250.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">13</text>
+<text x="310.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">16</text>
+<text x="330.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">17</text>
+<text x="350.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">18</text>
+<text x="390.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">20</text>
+<text x="410.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">21</text>
+<text x="470.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">24</text>
+<text x="490.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">25</text>
+<line x1="226.6" y1="126.1" x2="226.6" y2="89.6" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="246.6" y1="122.7" x2="246.6" y2="90.5" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="306.6" y1="110.9" x2="306.6" y2="88.8" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="326.6" y1="107.4" x2="326.6" y2="87.4" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="346.6" y1="112.1" x2="346.6" y2="95.0" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="406.6" y1="108.2" x2="406.6" y2="94.3" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="486.6" y1="105.5" x2="486.6" y2="94.9" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<path d="M226.6 105.8 L246.6 105.8 L306.6 99.8 L326.6 97.7 L346.6 103.6 L406.6 101.1 L486.6 100.3" fill="none" stroke="var(--grp-bari)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
+<circle cx="226.6" cy="105.8" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2012: |Δm²| = 2.43, 3σ 2.19–2.62 (1e-3 eV²)</title></circle>
+<circle cx="246.6" cy="105.8" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2013: |Δm²| = 2.43, 3σ 2.23–2.61 (1e-3 eV²)</title></circle>
+<circle cx="306.6" cy="99.8" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2016: |Δm²| = 2.5, 3σ 2.37–2.63 (1e-3 eV²)</title></circle>
+<circle cx="326.6" cy="97.7" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2017: |Δm²| = 2.525, 3σ 2.411–2.646 (1e-3 eV²)</title></circle>
+<circle cx="346.6" cy="103.6" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2018: |Δm²| = 2.455, 3σ 2.355–2.557 (1e-3 eV²)</title></circle>
+<circle cx="406.6" cy="101.1" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2021: |Δm²| = 2.485, 3σ 2.401–2.565 (1e-3 eV²)</title></circle>
+<circle cx="486.6" cy="100.3" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2025: |Δm²| = 2.495, 3σ 2.433–2.558 (1e-3 eV²)</title></circle>
+<line x1="70.0" y1="196.6" x2="70.0" y2="35.4" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="230.0" y1="122.0" x2="230.0" y2="86.5" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="350.0" y1="108.8" x2="350.0" y2="92.6" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="390.0" y1="108.5" x2="390.0" y2="94.7" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="470.0" y1="107.2" x2="470.0" y2="96.4" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<path d="M70.0 128.7 L230.0 105.3 L350.0 100.8 L390.0 101.5 L470.0 101.9" fill="none" stroke="var(--grp-nufit)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
+<rect x="65.8" y="124.5" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2004: |Δm²| = 2.159, 3σ 1.359–3.259 (1e-3 eV²)</title></rect>
+<rect x="225.8" y="101.1" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2012: |Δm²| = 2.435, 3σ 2.238–2.657 (1e-3 eV²)</title></rect>
+<rect x="345.8" y="96.6" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2018: |Δm²| = 2.488, 3σ 2.394–2.585 (1e-3 eV²)</title></rect>
+<rect x="385.8" y="97.3" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2020: |Δm²| = 2.48, 3σ 2.398–2.561 (1e-3 eV²)</title></rect>
+<rect x="465.8" y="97.7" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2024: |Δm²| = 2.476, 3σ 2.414–2.541 (1e-3 eV²)</title></rect>
+<line x1="353.4" y1="110.7" x2="353.4" y2="94.5" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="393.4" y1="105.6" x2="393.4" y2="92.0" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<path d="M353.4 103.0 L393.4 98.8" fill="none" stroke="var(--grp-valencia)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
+<path d="M353.4 97.8L358.6 103.0L353.4 108.2L348.2 103.0Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2018: |Δm²| = 2.462, 3σ 2.372–2.562 (1e-3 eV²)</title></path>
+<path d="M393.4 93.6L398.6 98.8L393.4 104.0L388.2 98.8Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2020: |Δm²| = 2.512, 3σ 2.433–2.592 (1e-3 eV²)</title></path>
 </svg>
 <p class="cap">Best fit with its 3σ range, normal ordering.  Values of other groups converted to our convention.</p>
 </figure>
@@ -586,59 +592,62 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 <line x1="54" y1="216" x2="506" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="16" x2="54" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="216.0" x2="506" y2="216.0" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="219.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">2.35</text>
+<text x="46" y="219.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">2.12</text>
 <line x1="54" y1="149.3" x2="506" y2="149.3" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="152.8" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">2.88</text>
+<text x="46" y="152.8" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">2.74</text>
 <line x1="54" y1="82.7" x2="506" y2="82.7" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="86.2" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">3.41</text>
+<text x="46" y="86.2" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">3.36</text>
 <line x1="54" y1="16.0" x2="506" y2="16.0" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="19.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">3.94</text>
-<text x="70.7" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">06</text>
-<text x="175.4" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">11</text>
-<text x="196.3" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">12</text>
-<text x="217.2" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">13</text>
-<text x="280.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">16</text>
-<text x="300.9" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">17</text>
-<text x="321.9" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">18</text>
-<text x="363.7" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">20</text>
-<text x="384.6" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">21</text>
-<text x="447.4" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">24</text>
-<text x="468.3" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">25</text>
-<text x="489.3" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">26</text>
-<line x1="172.0" y1="185.4" x2="172.0" y2="60.4" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="192.9" y1="185.4" x2="192.9" y2="60.4" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="213.8" y1="185.4" x2="213.8" y2="60.4" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="276.6" y1="196.6" x2="276.6" y2="66.6" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="297.5" y1="196.6" x2="297.5" y2="66.6" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="318.5" y1="177.9" x2="318.5" y2="76.6" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="381.2" y1="180.4" x2="381.2" y2="77.9" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="464.9" y1="179.1" x2="464.9" y2="77.9" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="485.9" y1="150.9" x2="485.9" y2="96.2" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<path d="M67.3 116.6 L172.0 126.6 L192.9 125.4 L213.8 124.1 L276.6 137.9 L297.5 137.9 L318.5 129.1 L381.2 130.4 L464.9 130.4 L485.9 123.5" fill="none" stroke="var(--grp-bari)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<circle cx="67.3" cy="116.6" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2006: sin²θ₁₂ = 3.14 (1e-1)</title></circle>
-<circle cx="172.0" cy="126.6" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2011: sin²θ₁₂ = 3.06, 3σ 2.59–3.59 (1e-1)</title></circle>
-<circle cx="192.9" cy="125.4" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2012: sin²θ₁₂ = 3.07, 3σ 2.59–3.59 (1e-1)</title></circle>
-<circle cx="213.8" cy="124.1" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2013: sin²θ₁₂ = 3.08, 3σ 2.59–3.59 (1e-1)</title></circle>
-<circle cx="276.6" cy="137.9" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2016: sin²θ₁₂ = 2.97, 3σ 2.5–3.54 (1e-1)</title></circle>
-<circle cx="297.5" cy="137.9" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2017: sin²θ₁₂ = 2.97, 3σ 2.5–3.54 (1e-1)</title></circle>
-<circle cx="318.5" cy="129.1" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2018: sin²θ₁₂ = 3.04, 3σ 2.65–3.46 (1e-1)</title></circle>
-<circle cx="381.2" cy="130.4" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2021: sin²θ₁₂ = 3.03, 3σ 2.63–3.45 (1e-1)</title></circle>
-<circle cx="464.9" cy="130.4" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2025: sin²θ₁₂ = 3.03, 3σ 2.64–3.45 (1e-1)</title></circle>
-<circle cx="485.9" cy="123.5" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2026: sin²θ₁₂ = 3.085, 3σ 2.866–3.303 (1e-1)</title></circle>
-<line x1="196.3" y1="175.4" x2="196.3" y2="79.1" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="321.9" y1="165.4" x2="321.9" y2="71.6" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="363.7" y1="172.9" x2="363.7" y2="80.4" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="447.4" y1="165.4" x2="447.4" y2="77.9" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<path d="M196.3 131.6 L321.9 121.6 L363.7 129.1 L447.4 124.1" fill="none" stroke="var(--grp-nufit)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<rect x="192.1" y="127.4" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2012: sin²θ₁₂ = 3.02, 3σ 2.67–3.44 (1e-1)</title></rect>
-<rect x="317.7" y="117.4" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2018: sin²θ₁₂ = 3.1, 3σ 2.75–3.5 (1e-1)</title></rect>
-<rect x="359.5" y="124.9" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2020: sin²θ₁₂ = 3.04, 3σ 2.69–3.43 (1e-1)</title></rect>
-<rect x="443.2" y="119.9" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2024: sin²θ₁₂ = 3.08, 3σ 2.75–3.45 (1e-1)</title></rect>
-<line x1="325.3" y1="167.9" x2="325.3" y2="35.4" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="367.1" y1="170.4" x2="367.1" y2="47.9" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<path d="M325.3 109.1 L367.1 111.6" fill="none" stroke="var(--grp-valencia)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<path d="M325.3 103.9L330.5 109.1L325.3 114.3L320.1 109.1Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2018: sin²θ₁₂ = 3.2, 3σ 2.73–3.79 (1e-1)</title></path>
-<path d="M367.1 106.4L372.3 111.6L367.1 116.8L361.9 111.6Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2020: sin²θ₁₂ = 3.18, 3σ 2.71–3.69 (1e-1)</title></path>
+<text x="46" y="19.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">3.98</text>
+<text x="69.3" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">04</text>
+<text x="107.6" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">06</text>
+<text x="203.4" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">11</text>
+<text x="222.5" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">12</text>
+<text x="241.7" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">13</text>
+<text x="299.2" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">16</text>
+<text x="318.3" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">17</text>
+<text x="337.5" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">18</text>
+<text x="375.8" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">20</text>
+<text x="394.9" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">21</text>
+<text x="452.4" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">24</text>
+<text x="471.5" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">25</text>
+<text x="490.7" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">26</text>
+<line x1="200.0" y1="165.5" x2="200.0" y2="57.9" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="219.1" y1="165.5" x2="219.1" y2="57.9" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="238.3" y1="165.5" x2="238.3" y2="57.9" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="295.8" y1="175.1" x2="295.8" y2="63.3" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="314.9" y1="175.1" x2="314.9" y2="63.3" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="334.1" y1="159.0" x2="334.1" y2="71.9" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="391.5" y1="161.2" x2="391.5" y2="73.0" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="468.1" y1="160.1" x2="468.1" y2="73.0" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="487.3" y1="135.8" x2="487.3" y2="88.8" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<path d="M104.2 106.3 L200.0 114.9 L219.1 113.8 L238.3 112.8 L295.8 124.6 L314.9 124.6 L334.1 117.1 L391.5 118.2 L468.1 118.2 L487.3 112.2" fill="none" stroke="var(--grp-bari)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
+<circle cx="104.2" cy="106.3" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2006: sin²θ₁₂ = 3.14 (1e-1)</title></circle>
+<circle cx="200.0" cy="114.9" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2011: sin²θ₁₂ = 3.06, 3σ 2.59–3.59 (1e-1)</title></circle>
+<circle cx="219.1" cy="113.8" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2012: sin²θ₁₂ = 3.07, 3σ 2.59–3.59 (1e-1)</title></circle>
+<circle cx="238.3" cy="112.8" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2013: sin²θ₁₂ = 3.08, 3σ 2.59–3.59 (1e-1)</title></circle>
+<circle cx="295.8" cy="124.6" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2016: sin²θ₁₂ = 2.97, 3σ 2.5–3.54 (1e-1)</title></circle>
+<circle cx="314.9" cy="124.6" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2017: sin²θ₁₂ = 2.97, 3σ 2.5–3.54 (1e-1)</title></circle>
+<circle cx="334.1" cy="117.1" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2018: sin²θ₁₂ = 3.04, 3σ 2.65–3.46 (1e-1)</title></circle>
+<circle cx="391.5" cy="118.2" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2021: sin²θ₁₂ = 3.03, 3σ 2.63–3.45 (1e-1)</title></circle>
+<circle cx="468.1" cy="118.2" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2025: sin²θ₁₂ = 3.03, 3σ 2.64–3.45 (1e-1)</title></circle>
+<circle cx="487.3" cy="112.2" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2026: sin²θ₁₂ = 3.085, 3σ 2.866–3.303 (1e-1)</title></circle>
+<line x1="69.3" y1="196.6" x2="69.3" y2="35.4" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="222.5" y1="156.9" x2="222.5" y2="74.1" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="337.5" y1="148.3" x2="337.5" y2="67.6" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="375.8" y1="154.7" x2="375.8" y2="75.1" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="452.4" y1="148.3" x2="452.4" y2="73.0" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<path d="M69.3 121.4 L222.5 119.2 L337.5 110.6 L375.8 117.1 L452.4 112.8" fill="none" stroke="var(--grp-nufit)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
+<rect x="65.1" y="117.2" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2004: sin²θ₁₂ = 3, 3σ 2.3–3.8 (1e-1)</title></rect>
+<rect x="218.3" y="115.0" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2012: sin²θ₁₂ = 3.02, 3σ 2.67–3.44 (1e-1)</title></rect>
+<rect x="333.3" y="106.4" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2018: sin²θ₁₂ = 3.1, 3σ 2.75–3.5 (1e-1)</title></rect>
+<rect x="371.6" y="112.9" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2020: sin²θ₁₂ = 3.04, 3σ 2.69–3.43 (1e-1)</title></rect>
+<rect x="448.2" y="108.6" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2024: sin²θ₁₂ = 3.08, 3σ 2.75–3.45 (1e-1)</title></rect>
+<line x1="340.9" y1="150.4" x2="340.9" y2="36.4" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="379.2" y1="152.6" x2="379.2" y2="47.2" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<path d="M340.9 99.9 L379.2 102.0" fill="none" stroke="var(--grp-valencia)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
+<path d="M340.9 94.7L346.1 99.9L340.9 105.1L335.7 99.9Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2018: sin²θ₁₂ = 3.2, 3σ 2.73–3.79 (1e-1)</title></path>
+<path d="M379.2 96.8L384.4 102.0L379.2 107.2L374.0 102.0Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2020: sin²θ₁₂ = 3.18, 3σ 2.71–3.69 (1e-1)</title></path>
 </svg>
 <p class="cap">Best fit with its 3σ range, normal ordering.</p>
 </figure>
@@ -649,58 +658,61 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 <line x1="54" y1="216" x2="506" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="16" x2="54" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="216.0" x2="506" y2="216.0" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="219.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">-0.416</text>
+<text x="46" y="219.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">-0.564</text>
 <line x1="54" y1="149.3" x2="506" y2="149.3" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="152.8" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">1.36</text>
+<text x="46" y="152.8" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">1.38</text>
 <line x1="54" y1="82.7" x2="506" y2="82.7" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="86.2" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">3.14</text>
+<text x="46" y="86.2" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">3.32</text>
 <line x1="54" y1="16.0" x2="506" y2="16.0" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="19.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">4.92</text>
-<text x="71.6" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">06</text>
-<text x="115.4" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">08</text>
-<text x="181.3" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">11</text>
-<text x="203.2" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">12</text>
-<text x="225.1" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">13</text>
-<text x="291.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">16</text>
-<text x="312.9" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">17</text>
-<text x="334.9" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">18</text>
-<text x="378.7" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">20</text>
-<text x="400.7" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">21</text>
-<text x="466.5" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">24</text>
-<text x="488.4" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">25</text>
-<line x1="177.9" y1="196.6" x2="177.9" y2="35.4" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="199.8" y1="137.0" x2="199.8" y2="83.0" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="221.7" y1="134.4" x2="221.7" y2="89.7" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="287.6" y1="131.0" x2="287.6" y2="108.1" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="309.5" y1="129.1" x2="309.5" y2="110.4" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="331.5" y1="129.1" x2="331.5" y2="110.7" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="397.3" y1="123.9" x2="397.3" y2="108.9" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="485.0" y1="123.1" x2="485.0" y2="111.1" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<path d="M68.2 166.6 L112.0 140.4 L177.9 121.6 L199.8 110.0 L221.7 112.6 L287.6 120.1 L309.5 119.8 L331.5 120.1 L397.3 116.8 L485.0 116.8" fill="none" stroke="var(--grp-bari)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<circle cx="68.2" cy="166.6" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2006: sin²θ₁₃ = 0.9 (1e-2)</title></circle>
-<circle cx="112.0" cy="140.4" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2008: sin²θ₁₃ = 1.6 (1e-2)</title></circle>
-<circle cx="177.9" cy="121.6" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2011: sin²θ₁₃ = 2.1, 3σ 0.1–4.4 (1e-2)</title></circle>
-<circle cx="199.8" cy="110.0" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2012: sin²θ₁₃ = 2.41, 3σ 1.69–3.13 (1e-2)</title></circle>
-<circle cx="221.7" cy="112.6" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2013: sin²θ₁₃ = 2.34, 3σ 1.76–2.95 (1e-2)</title></circle>
-<circle cx="287.6" cy="120.1" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2016: sin²θ₁₃ = 2.14, 3σ 1.85–2.46 (1e-2)</title></circle>
-<circle cx="309.5" cy="119.8" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2017: sin²θ₁₃ = 2.15, 3σ 1.9–2.4 (1e-2)</title></circle>
-<circle cx="331.5" cy="120.1" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2018: sin²θ₁₃ = 2.14, 3σ 1.9–2.39 (1e-2)</title></circle>
-<circle cx="397.3" cy="116.8" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2021: sin²θ₁₃ = 2.23, 3σ 2.04–2.44 (1e-2)</title></circle>
-<circle cx="485.0" cy="116.8" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2025: sin²θ₁₃ = 2.23, 3σ 2.06–2.38 (1e-2)</title></circle>
-<line x1="203.2" y1="141.9" x2="203.2" y2="88.2" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="334.9" y1="123.7" x2="334.9" y2="109.0" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="378.7" y1="124.2" x2="378.7" y2="110.0" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="466.5" y1="124.3" x2="466.5" y2="110.8" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<path d="M203.2 115.2 L334.9 116.4 L378.7 117.2 L466.5 117.3" fill="none" stroke="var(--grp-nufit)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<rect x="199.0" y="111.0" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2012: sin²θ₁₃ = 2.27, 3σ 1.56–2.99 (1e-2)</title></rect>
-<rect x="330.7" y="112.2" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2018: sin²θ₁₃ = 2.24, 3σ 2.044–2.437 (1e-2)</title></rect>
-<rect x="374.5" y="113.0" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2020: sin²θ₁₃ = 2.219, 3σ 2.032–2.41 (1e-2)</title></rect>
-<rect x="462.3" y="113.1" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2024: sin²θ₁₃ = 2.215, 3σ 2.03–2.388 (1e-2)</title></rect>
-<line x1="338.3" y1="126.9" x2="338.3" y2="110.0" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="382.1" y1="125.4" x2="382.1" y2="110.2" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<path d="M338.3 119.4 L382.1 117.9" fill="none" stroke="var(--grp-valencia)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<path d="M338.3 114.2L343.5 119.4L338.3 124.6L333.1 119.4Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2018: sin²θ₁₃ = 2.16, 3σ 1.96–2.41 (1e-2)</title></path>
-<path d="M382.1 112.7L387.3 117.9L382.1 123.1L376.9 117.9Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2020: sin²θ₁₃ = 2.2, 3σ 2–2.405 (1e-2)</title></path>
+<text x="46" y="19.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">5.26</text>
+<text x="70.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">04</text>
+<text x="110.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">06</text>
+<text x="150.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">08</text>
+<text x="210.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">11</text>
+<text x="230.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">12</text>
+<text x="250.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">13</text>
+<text x="310.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">16</text>
+<text x="330.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">17</text>
+<text x="350.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">18</text>
+<text x="390.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">20</text>
+<text x="410.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">21</text>
+<text x="470.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">24</text>
+<text x="490.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">25</text>
+<line x1="206.6" y1="193.2" x2="206.6" y2="45.6" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="226.6" y1="138.6" x2="226.6" y2="89.2" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="246.6" y1="136.2" x2="246.6" y2="95.4" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="306.6" y1="133.2" x2="306.6" y2="112.2" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="326.6" y1="131.4" x2="326.6" y2="114.3" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="346.6" y1="131.4" x2="346.6" y2="114.6" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="406.6" y1="126.6" x2="406.6" y2="112.9" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="486.6" y1="126.0" x2="486.6" y2="115.0" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<path d="M106.6 165.8 L146.6 141.7 L206.6 124.6 L226.6 113.9 L246.6 116.3 L306.6 123.2 L326.6 122.9 L346.6 123.2 L406.6 120.1 L486.6 120.1" fill="none" stroke="var(--grp-bari)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
+<circle cx="106.6" cy="165.8" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2006: sin²θ₁₃ = 0.9 (1e-2)</title></circle>
+<circle cx="146.6" cy="141.7" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2008: sin²θ₁₃ = 1.6 (1e-2)</title></circle>
+<circle cx="206.6" cy="124.6" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2011: sin²θ₁₃ = 2.1, 3σ 0.1–4.4 (1e-2)</title></circle>
+<circle cx="226.6" cy="113.9" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2012: sin²θ₁₃ = 2.41, 3σ 1.69–3.13 (1e-2)</title></circle>
+<circle cx="246.6" cy="116.3" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2013: sin²θ₁₃ = 2.34, 3σ 1.76–2.95 (1e-2)</title></circle>
+<circle cx="306.6" cy="123.2" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2016: sin²θ₁₃ = 2.14, 3σ 1.85–2.46 (1e-2)</title></circle>
+<circle cx="326.6" cy="122.9" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2017: sin²θ₁₃ = 2.15, 3σ 1.9–2.4 (1e-2)</title></circle>
+<circle cx="346.6" cy="123.2" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2018: sin²θ₁₃ = 2.14, 3σ 1.9–2.39 (1e-2)</title></circle>
+<circle cx="406.6" cy="120.1" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2021: sin²θ₁₃ = 2.23, 3σ 2.04–2.44 (1e-2)</title></circle>
+<circle cx="486.6" cy="120.1" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2025: sin²θ₁₃ = 2.23, 3σ 2.06–2.38 (1e-2)</title></circle>
+<line x1="70.0" y1="196.6" x2="70.0" y2="35.4" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="230.0" y1="143.1" x2="230.0" y2="94.0" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="350.0" y1="126.5" x2="350.0" y2="113.0" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="390.0" y1="126.9" x2="390.0" y2="113.9" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="470.0" y1="127.0" x2="470.0" y2="114.7" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<path d="M70.0 196.6 L230.0 118.7 L350.0 119.8 L390.0 120.5 L470.0 120.6" fill="none" stroke="var(--grp-nufit)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
+<rect x="65.8" y="192.4" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2004: sin²θ₁₃ = 0, 3σ 0–4.7 (1e-2)</title></rect>
+<rect x="225.8" y="114.5" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2012: sin²θ₁₃ = 2.27, 3σ 1.56–2.99 (1e-2)</title></rect>
+<rect x="345.8" y="115.6" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2018: sin²θ₁₃ = 2.24, 3σ 2.044–2.437 (1e-2)</title></rect>
+<rect x="385.8" y="116.3" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2020: sin²θ₁₃ = 2.219, 3σ 2.032–2.41 (1e-2)</title></rect>
+<rect x="465.8" y="116.4" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2024: sin²θ₁₃ = 2.215, 3σ 2.03–2.388 (1e-2)</title></rect>
+<line x1="353.4" y1="129.4" x2="353.4" y2="113.9" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="393.4" y1="128.0" x2="393.4" y2="114.1" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<path d="M353.4 122.5 L393.4 121.1" fill="none" stroke="var(--grp-valencia)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
+<path d="M353.4 117.3L358.6 122.5L353.4 127.7L348.2 122.5Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2018: sin²θ₁₃ = 2.16, 3σ 1.96–2.41 (1e-2)</title></path>
+<path d="M393.4 115.9L398.6 121.1L393.4 126.3L388.2 121.1Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2020: sin²θ₁₃ = 2.2, 3σ 2–2.405 (1e-2)</title></path>
 </svg>
 <p class="cap">Best fit with its 3σ range, normal ordering.</p>
 </figure>
@@ -711,54 +723,57 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 <line x1="54" y1="216" x2="506" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="16" x2="54" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="216.0" x2="506" y2="216.0" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="219.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">2.91</text>
+<text x="46" y="219.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">2.89</text>
 <line x1="54" y1="149.3" x2="506" y2="149.3" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="152.8" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">4.3</text>
+<text x="46" y="152.8" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">4.33</text>
 <line x1="54" y1="82.7" x2="506" y2="82.7" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="86.2" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">5.68</text>
+<text x="46" y="86.2" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">5.78</text>
 <line x1="54" y1="16.0" x2="506" y2="16.0" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="46" y="19.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">7.07</text>
-<text x="77.2" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">11</text>
-<text x="106.2" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">12</text>
-<text x="135.1" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">13</text>
-<text x="222.1" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">16</text>
-<text x="251.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">17</text>
-<text x="280.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">18</text>
-<text x="337.9" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">20</text>
-<text x="366.9" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">21</text>
-<text x="453.8" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">24</text>
-<text x="482.8" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">25</text>
-<line x1="73.8" y1="192.3" x2="73.8" y2="48.3" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="102.8" y1="196.6" x2="102.8" y2="49.8" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="131.7" y1="176.0" x2="131.7" y2="55.0" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="218.7" y1="173.6" x2="218.7" y2="59.8" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="247.6" y1="172.6" x2="247.6" y2="60.3" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="276.6" y1="149.1" x2="276.6" y2="66.6" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="363.5" y1="155.8" x2="363.5" y2="68.0" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="479.4" y1="145.8" x2="479.4" y2="76.6" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<path d="M73.8 153.9 L102.8 170.2 L131.7 145.8 L218.7 145.8 L247.6 151.5 L276.6 91.0 L363.5 137.1 L479.4 128.5" fill="none" stroke="var(--grp-bari)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<circle cx="73.8" cy="153.9" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2011: sin²θ₂₃ = 4.2, 3σ 3.4–6.4 (1e-1)</title></circle>
-<circle cx="102.8" cy="170.2" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2012: sin²θ₂₃ = 3.86, 3σ 3.31–6.37 (1e-1)</title></circle>
-<circle cx="131.7" cy="145.8" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2013: sin²θ₂₃ = 4.37, 3σ 3.74–6.26 (1e-1)</title></circle>
-<circle cx="218.7" cy="145.8" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2016: sin²θ₂₃ = 4.37, 3σ 3.79–6.16 (1e-1)</title></circle>
-<circle cx="247.6" cy="151.5" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2017: sin²θ₂₃ = 4.25, 3σ 3.81–6.15 (1e-1)</title></circle>
-<circle cx="276.6" cy="91.0" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2018: sin²θ₂₃ = 5.51, 3σ 4.3–6.02 (1e-1)</title></circle>
-<circle cx="363.5" cy="137.1" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2021: sin²θ₂₃ = 4.55, 3σ 4.16–5.99 (1e-1)</title></circle>
-<circle cx="479.4" cy="128.5" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2025: sin²θ₂₃ = 4.73, 3σ 4.37–5.81 (1e-1)</title></circle>
-<line x1="106.2" y1="191.4" x2="106.2" y2="35.4" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="280.0" y1="150.1" x2="280.0" y2="56.0" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="337.9" y1="156.3" x2="337.9" y2="59.8" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="453.8" y1="146.7" x2="453.8" y2="74.7" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<path d="M106.2 157.3 L280.0 76.2 L337.9 80.5 L453.8 129.9" fill="none" stroke="var(--grp-nufit)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<rect x="102.0" y="153.1" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2012: sin²θ₂₃ = 4.13, 3σ 3.42–6.67 (1e-1)</title></rect>
-<rect x="275.8" y="72.0" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2018: sin²θ₂₃ = 5.82, 3σ 4.28–6.24 (1e-1)</title></rect>
-<rect x="333.7" y="76.3" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2020: sin²θ₂₃ = 5.73, 3σ 4.15–6.16 (1e-1)</title></rect>
-<rect x="449.6" y="125.7" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2024: sin²θ₂₃ = 4.7, 3σ 4.35–5.85 (1e-1)</title></rect>
-<line x1="283.4" y1="141.9" x2="283.4" y2="68.0" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<line x1="341.3" y1="147.2" x2="341.3" y2="62.7" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
-<path d="M283.4 93.0 L341.3 80.0" fill="none" stroke="var(--grp-valencia)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<path d="M283.4 87.8L288.6 93.0L283.4 98.2L278.2 93.0Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2018: sin²θ₂₃ = 5.47, 3σ 4.45–5.99 (1e-1)</title></path>
-<path d="M341.3 74.8L346.5 80.0L341.3 85.2L336.1 80.0Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2020: sin²θ₂₃ = 5.74, 3σ 4.34–6.1 (1e-1)</title></path>
+<text x="46" y="19.5" text-anchor="end" font-size="10.5" fill="currentColor" opacity=".62">7.22</text>
+<text x="70.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">04</text>
+<text x="210.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">11</text>
+<text x="230.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">12</text>
+<text x="250.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">13</text>
+<text x="310.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">16</text>
+<text x="330.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">17</text>
+<text x="350.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">18</text>
+<text x="390.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">20</text>
+<text x="410.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">21</text>
+<text x="470.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">24</text>
+<text x="490.0" y="234" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".62">25</text>
+<line x1="206.6" y1="192.5" x2="206.6" y2="53.8" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="226.6" y1="196.6" x2="226.6" y2="55.2" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="246.6" y1="176.8" x2="246.6" y2="60.3" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="306.6" y1="174.5" x2="306.6" y2="64.9" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="326.6" y1="173.5" x2="326.6" y2="65.4" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="346.6" y1="150.9" x2="346.6" y2="71.4" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="406.6" y1="157.4" x2="406.6" y2="72.8" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="486.6" y1="147.7" x2="486.6" y2="81.1" stroke="var(--grp-bari)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<path d="M206.6 155.5 L226.6 171.2 L246.6 147.7 L306.6 147.7 L326.6 153.2 L346.6 95.0 L406.6 139.3 L486.6 131.0" fill="none" stroke="var(--grp-bari)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
+<circle cx="206.6" cy="155.5" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2011: sin²θ₂₃ = 4.2, 3σ 3.4–6.4 (1e-1)</title></circle>
+<circle cx="226.6" cy="171.2" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2012: sin²θ₂₃ = 3.86, 3σ 3.31–6.37 (1e-1)</title></circle>
+<circle cx="246.6" cy="147.7" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2013: sin²θ₂₃ = 4.37, 3σ 3.74–6.26 (1e-1)</title></circle>
+<circle cx="306.6" cy="147.7" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2016: sin²θ₂₃ = 4.37, 3σ 3.79–6.16 (1e-1)</title></circle>
+<circle cx="326.6" cy="153.2" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2017: sin²θ₂₃ = 4.25, 3σ 3.81–6.15 (1e-1)</title></circle>
+<circle cx="346.6" cy="95.0" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2018: sin²θ₂₃ = 5.51, 3σ 4.3–6.02 (1e-1)</title></circle>
+<circle cx="406.6" cy="139.3" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2021: sin²θ₂₃ = 4.55, 3σ 4.16–5.99 (1e-1)</title></circle>
+<circle cx="486.6" cy="131.0" r="4.6" fill="var(--grp-bari)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Bari, 2025: sin²θ₂₃ = 4.73, 3σ 4.37–5.81 (1e-1)</title></circle>
+<line x1="70.0" y1="192.5" x2="70.0" y2="35.4" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="230.0" y1="191.6" x2="230.0" y2="41.4" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="350.0" y1="151.8" x2="350.0" y2="61.2" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="390.0" y1="157.8" x2="390.0" y2="64.9" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="470.0" y1="148.6" x2="470.0" y2="79.3" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<path d="M70.0 118.5 L230.0 158.7 L350.0 80.6 L390.0 84.8 L470.0 132.4" fill="none" stroke="var(--grp-nufit)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
+<rect x="65.8" y="114.3" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2004: sin²θ₂₃ = 5, 3σ 3.4–6.8 (1e-1)</title></rect>
+<rect x="225.8" y="154.5" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2012: sin²θ₂₃ = 4.13, 3σ 3.42–6.67 (1e-1)</title></rect>
+<rect x="345.8" y="76.4" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2018: sin²θ₂₃ = 5.82, 3σ 4.28–6.24 (1e-1)</title></rect>
+<rect x="385.8" y="80.6" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2020: sin²θ₂₃ = 5.73, 3σ 4.15–6.16 (1e-1)</title></rect>
+<rect x="465.8" y="128.2" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2024: sin²θ₂₃ = 4.7, 3σ 4.35–5.85 (1e-1)</title></rect>
+<line x1="353.4" y1="144.0" x2="353.4" y2="72.8" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<line x1="393.4" y1="149.0" x2="393.4" y2="67.7" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+<path d="M353.4 96.8 L393.4 84.3" fill="none" stroke="var(--grp-valencia)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
+<path d="M353.4 91.6L358.6 96.8L353.4 102.0L348.2 96.8Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2018: sin²θ₂₃ = 5.47, 3σ 4.45–5.99 (1e-1)</title></path>
+<path d="M393.4 79.1L398.6 84.3L393.4 89.5L388.2 84.3Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2020: sin²θ₂₃ = 5.74, 3σ 4.34–6.1 (1e-1)</title></path>
 </svg>
 <p class="cap">Best fit with its 3σ range, normal ordering.</p>
 </figure>
@@ -814,6 +829,7 @@ only at rendering time.</caption>
 <thead><tr><th scope="col">Year</th><th scope="col">Paper</th><th scope="col">Preprint</th><th scope="col">Source</th><th scope="col">Convention</th></tr></thead>
 <tbody>
 <tr><th scope="row">2001</th><td class="ref">Nufit — Global three-neutrino oscillation analysis of neutrino data<span class="ref__meta">Phys. Rev. D 63, 033005 (2001)</span></td><td><a href="https://arxiv.org/abs/hep-ph/0009350">arXiv:hep-ph/0009350</a></td><td>Table V/VI, "Solar + ALL-ATM. + CHOOZ" (global combined analysis)</td><td class="mono small">tan2(theta), not sin2(theta), for every mixing angle; Dm2_32 = m3^2-m2^2 reported without a normal/inverted split</td></tr>
+<tr><th scope="row">2004</th><td class="ref">Nufit — Status of global fits to neutrino oscillations<span class="ref__meta">New J. Phys. 6, 122 (2004)</span></td><td><a href="https://arxiv.org/abs/hep-ph/0405172">arXiv:hep-ph/0405172</a></td><td>Table 1</td><td class="mono small">Dm2_3l = Dm2_31 > 0; no inverted-ordering fit performed</td></tr>
 <tr><th scope="row">2012</th><td class="ref">Nufit — Global fit to three neutrino mixing: critical look at present precision<span class="ref__meta">JHEP 12 (2012) 123</span></td><td><a href="https://arxiv.org/abs/1209.3023">arXiv:1209.3023</a></td><td>Table 1, first column<br>Free Fluxes + RSBL</td><td class="mono small">Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)</td></tr>
 <tr><th scope="row">2018</th><td class="ref">Nufit — Global analysis of three-flavour neutrino oscillations: synergies and tensions<span class="ref__meta">JHEP 01 (2019) 106</span></td><td><a href="https://arxiv.org/abs/1811.05487">arXiv:1811.05487</a></td><td>Table 1, lower block<br>with SK-atm</td><td class="mono small">Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)</td></tr>
 <tr><th scope="row">2018</th><td class="ref">Valencia — Status of neutrino oscillations 2018: 3σ hint for normal mass ordering and improved CP sensitivity<span class="ref__meta">Phys. Lett. B 782, 633 (2018)</span></td><td><a href="https://arxiv.org/abs/1708.01186">arXiv:1708.01186</a></td><td>Table I</td><td class="mono small">|Dm2_31| quoted for both orderings</td></tr>

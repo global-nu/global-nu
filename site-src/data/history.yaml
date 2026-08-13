@@ -331,6 +331,31 @@ releases:
       in the text -- but tan2(theta13) is not sin2(theta13).
 
   - group: nufit
+    year: 2004
+    arxiv: "hep-ph/0405172"
+    journal: "New J. Phys. 6, 122 (2004)"
+    title: "Status of global fits to neutrino oscillations"
+    convention: "Dm2_3l = Dm2_31 > 0; no inverted-ordering fit performed"
+    reported_splitting: Dm2_3l
+    table: "Table 1"
+    note: >-
+      The paper's original 2004 Table 1 (this record's source). Later arXiv
+      revisions of this same preprint (v6, 2007) append updated Tables C1 and
+      D1 from 2006 and 2007 data respectively; those are not used here, since
+      this record is keyed to the 2004 journal publication (New J. Phys. 6,
+      122), which carries only the original Table 1. No inverted-ordering fit
+      is performed anywhere in the paper: Dm2_31 is given as a single positive
+      value, recorded here under "no" only. No CP phase is fit either (delta
+      is argued to be negligible for this analysis, Sec. 4.1).
+    values:
+      dm2:       {"any": {best: 8.1, s2: [7.5, 8.7], s3: [7.2, 9.1]}}
+      sin2_th12: {"any": {best: 3.0, s2: [2.5, 3.4], s3: [2.3, 3.8]}}
+      sin2_th13: {"any": {best: 0.0, s2: [0.0, 2.8], s3: [0.0, 4.7]}}
+      sin2_th23: {"any": {best: 5.0, s2: [3.8, 6.4], s3: [3.4, 6.8]}}
+      Dm2_3l:
+        "no": {best: 2.2, s2: [1.7, 2.9], s3: [1.4, 3.3]}
+
+  - group: nufit
     year: 2012
     arxiv: "1209.3023"
     journal: "JHEP 12 (2012) 123"
