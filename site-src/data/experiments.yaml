@@ -164,6 +164,28 @@ experiments:
     rank: 3
     source: https://www.km3net.org/
 
+  - name: SNO
+    kind: natural
+    city: Sudbury
+    country: CA
+    note: solar, at SNOLAB
+    url: https://sno.phy.queensu.ca/
+    role: solar
+    status: completed
+    rank: 1
+    source: https://sno.phy.queensu.ca/
+
+  - name: Super-Kamiokande
+    kind: natural
+    city: Hida
+    country: JP
+    note: atmospheric and solar
+    url: https://www-sk.icrr.u-tokyo.ac.jp/en/sk/
+    role: solar
+    status: running
+    rank: 2
+    source: https://www-sk.icrr.u-tokyo.ac.jp/en/sk/news/
+
   - name: Borexino
     kind: natural
     city: Assergi
@@ -172,8 +194,41 @@ experiments:
     url: https://borex.lngs.infn.it/
     role: solar
     status: completed
-    rank: 1
+    rank: 3
     source: https://borex.lngs.infn.it/news/end-of-borexino-daq/
+
+  - name: GALLEX/GNO
+    kind: natural
+    city: Assergi
+    country: IT
+    note: gallium solar, at Gran Sasso
+    url: https://arxiv.org/abs/hep-ex/0504037
+    role: solar
+    status: completed
+    rank: 4
+    source: https://arxiv.org/abs/hep-ex/0504037
+
+  - name: Homestake
+    kind: natural
+    city: Lead
+    country: US
+    note: chlorine solar, in the Homestake Mine
+    url: https://doi.org/10.1086/305343
+    role: solar
+    status: completed
+    rank: 5
+    source: https://doi.org/10.1086/305343
+
+  - name: SAGE
+    kind: natural
+    city: Neutrino
+    country: RU
+    note: gallium solar, at Baksan
+    url: https://arxiv.org/abs/0901.2200
+    role: solar
+    status: completed
+    rank: 6
+    source: https://arxiv.org/abs/0901.2200
 
   - name: KATRIN
     kind: mass
