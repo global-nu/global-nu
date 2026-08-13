@@ -93,7 +93,7 @@ experiments:
     url: https://snoplus.phy.queensu.ca/
     role: 0nubb
     status: running
-    rank: 2
+    rank: 11
     source: https://snoplus.phy.queensu.ca/about.html
 
   - name: DUNE
@@ -323,6 +323,48 @@ experiments:
     rank: 1
     source: https://legend-exp.org/
 
+  - name: GERDA
+    kind: mass
+    city: Assergi
+    country: IT
+    note: 0νββ in ⁷⁶Ge, at Gran Sasso, predecessor to LEGEND
+    url: https://www.mpp.mpg.de/en/research/gerda
+    role: 0nubb
+    status: completed
+    rank: 2
+    source: https://www.mpp.mpg.de/en/research/gerda
+
+  - name: KamLAND-Zen
+    kind: mass
+    city: Hida
+    country: JP
+    note: 0νββ in ¹³⁶Xe, at Kamioka
+    url: https://www.awa.tohoku.ac.jp/en/kamland/
+    role: 0nubb
+    status: completed
+    rank: 3
+    source: https://www.awa.tohoku.ac.jp/en/kamland/
+
+  - name: CUORE
+    kind: mass
+    city: Assergi
+    country: IT
+    note: 0νββ in ¹³⁰Te, at Gran Sasso
+    url: https://cuoreexperiment.org/
+    role: 0nubb
+    rank: 4
+    source: https://cuoreexperiment.org/results/
+
+  - name: CUPID
+    kind: mass
+    city: Assergi
+    country: IT
+    note: 0νββ in ¹⁰⁰Mo, successor to CUORE at Gran Sasso
+    url: https://cupidexperiment.org/
+    role: 0nubb
+    rank: 5
+    source: https://cupidexperiment.org/experiment/
+
   - name: nEXO
     kind: mass
     city: Sudbury
@@ -331,8 +373,52 @@ experiments:
     url: https://nexo.llnl.gov/
     role: 0nubb
     status: proposed
-    rank: 3
+    rank: 6
     source: https://nexo.llnl.gov/
+
+  - name: EXO-200
+    kind: mass
+    city: Carlsbad
+    country: US
+    note: 0νββ in ¹³⁶Xe, at WIPP, predecessor to nEXO
+    url: https://arxiv.org/abs/1906.02723
+    role: 0nubb
+    status: completed
+    rank: 7
+    source: https://arxiv.org/abs/1906.02723
+
+  - name: Majorana Demonstrator
+    kind: mass
+    city: Lead
+    country: US
+    note: 0νββ in ⁷⁶Ge, at SURF
+    url: https://arxiv.org/abs/2207.07638
+    role: 0nubb
+    status: completed
+    rank: 8
+    source: https://arxiv.org/abs/2207.07638
+
+  - name: NEXT
+    kind: mass
+    city: Canfranc
+    country: ES
+    note: 0νββ in ¹³⁶Xe, high-pressure xenon TPC
+    url: https://next-experiment.org/
+    role: 0nubb
+    status: running
+    rank: 9
+    source: https://next-experiment.org/
+
+  - name: AMoRE
+    kind: mass
+    city: Jeongseon
+    country: KR
+    note: 0νββ in ¹⁰⁰Mo, at Yemilab
+    url: https://amore.ibs.re.kr/
+    role: 0nubb
+    status: running
+    rank: 10
+    source: https://amore.ibs.re.kr/about/status/
 
   - name: ANTARES
     kind: natural
