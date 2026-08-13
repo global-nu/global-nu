@@ -166,6 +166,125 @@ check("compare_panel() keeps the limit's bound inside the plotted area",
       and make_history.PAD_T <= compare_y <= make_history.H - make_history.PAD_B,
       f"y={compare_y}, plotted area is [{make_history.PAD_T}, {make_history.H - make_history.PAD_B}]")
 
+# 6b. integration: OFF_SCALE_COMPARE excludes a point from the axis-range
+# calculation and from the connecting line, but never drops it — it is drawn
+# clamped to the panel floor, in a hollow variant of the group's own shape,
+# with its true value printed beside it and carried in its <title>. And a
+# listed point that also carries a 3σ range is refused outright, because the
+# floor-clamp has no drawing for a range and silently losing one is exactly
+# the failure this section exists to catch.
+#
+# Exercised through compare_panel() with OFF_SCALE_COMPARE temporarily
+# monkeypatched to a synthetic membership (saved and restored below), so
+# these checks do not depend on which point history.yaml happens to mark
+# off-scale today, the same way the synthetic releases above don't depend on
+# what's really in the register.
+OFFSCALE_RELEASES = [
+    {"group": "bari", "year": 1999,
+     "values": {"synthetic_param": {"any": {"best": 0.1}}}},          # off-scale
+    {"group": "bari", "year": 2011,
+     "values": {"synthetic_param": {"any": {"best": 5.1, "s3": [4.1, 6.1]}}}},
+    {"group": "bari", "year": 2020,
+     "values": {"synthetic_param": {"any": {"best": 5.3, "s3": [4.3, 6.3]}}}},
+    {"group": "nufit", "year": 2010,
+     "values": {"synthetic_param": {"any": {"best": 5.0, "s3": [4.0, 6.0]}}}},
+    {"group": "valencia", "year": 2012,
+     "values": {"synthetic_param": {"any": {"best": 5.2, "s3": [4.2, 6.2]}}}},
+]
+OFFSCALE_ENTRY = (1999, "bari", "synthetic_param")
+
+
+def y_axis_ticks(svg_out: str) -> list[float]:
+    """The four horizontal-guide labels, in the order drawn — index 0 is the
+    axis floor, y0. Picked out from the year labels below the axis by
+    text-anchor="end", which only the y-tick labels use (year labels use
+    text-anchor="middle")."""
+    return [float(v) for v in re.findall(r'text-anchor="end"[^>]*>(-?[\d.]+)<', svg_out)]
+
+
+def offscale_marker_y(svg_out: str, title: str) -> float | None:
+    """The y-coordinate of the hollow circle whose <title> is exactly title,
+    parsed from the emitted markup rather than recomputed — the same
+    approach as limit_marker_y above. fill="none" is baked into the pattern:
+    if a future edit stops passing hollow=True for the clamped marker, this
+    stops matching even though *a* circle with that title still exists."""
+    pattern = re.compile(
+        r'<circle cx="[-\d.]+" cy="(-?[\d.]+)" r="4.6" fill="none" stroke="[^"]+" '
+        r'stroke-width="1.8">' + re.escape(f"<title>{title}</title>") + r"</circle>")
+    m = pattern.search(svg_out)
+    return float(m.group(1)) if m else None
+
+
+_orig_off_scale = make_history.OFF_SCALE_COMPARE
+make_history.OFF_SCALE_COMPARE = {OFFSCALE_ENTRY}
+try:
+    offscale_svg = make_history.compare_panel("synthetic_param", META, OFFSCALE_RELEASES)
+finally:
+    make_history.OFF_SCALE_COMPARE = _orig_off_scale
+
+check("compare_panel() still draws a panel when a point is off-scale, not ''",
+      offscale_svg != "")
+
+ticks = y_axis_ticks(offscale_svg)
+expected_y0 = make_history.nice_bounds(4.0, 6.3)[0]     # driven by the on-scale values alone
+leaked_y0 = make_history.nice_bounds(0.1, 6.3)[0]       # what y0 would be if 0.1 leaked in
+check("the off-scale point is excluded from the axis-range calculation",
+      bool(ticks) and abs(ticks[0] - expected_y0) < 0.01 and abs(ticks[0] - leaked_y0) > 0.5,
+      f"ticks={ticks}, expected y0~{expected_y0:.3g} (would be ~{leaked_y0:.3g} if it leaked in)")
+
+line_m = re.search(
+    r'<path d="([^"]+)" fill="none" stroke="var\(--grp-bari\)" stroke-width="2" '
+    r'stroke-linejoin="round"', offscale_svg)
+check("the off-scale point is excluded from the connecting line",
+      line_m is not None and line_m.group(1).count("L") == 1,
+      f"bari path d={line_m.group(1) if line_m else None!r} "
+      "(expected one 'L', joining only the two on-scale points)")
+
+offscale_title = ("Bari, 1999: Synthetic θ = 0.1 (1) — below this panel's range, "
+                   "drawn at the floor, not to scale")
+offscale_y = offscale_marker_y(offscale_svg, offscale_title)
+expected_floor = make_history.H - make_history.PAD_B - make_history.OFF_SCALE_FLOOR_GAP
+check("the off-scale point is still drawn — clamped to the floor, in a hollow marker",
+      offscale_y is not None and abs(offscale_y - expected_floor) < 0.05,
+      f"y={offscale_y}, expected floor {expected_floor}")
+
+check("the true value is in the marker's <title>",
+      offscale_title in offscale_svg)
+
+numeral_y_text = f'{expected_floor + 3.5:.1f}'
+check("the inline numeral beside the clamped marker matches its true value",
+      f'y="{numeral_y_text}" font-size="9.5" fill="currentColor" opacity=".75">0.1<'
+      in offscale_svg,
+      offscale_svg[:400])
+
+
+def offscale_with_range_raises() -> bool:
+    """A listed OFF_SCALE_COMPARE point carrying an s3 range must be refused,
+    not silently drawn without its range: the floor-clamp branch has no
+    drawing for a range, so letting one through would lose it invisibly."""
+    releases = [
+        {"group": "bari", "year": 1999,
+         "values": {"synthetic_param": {"any": {"best": 0.1, "s3": [0.05, 0.15]}}}},
+        {"group": "nufit", "year": 2010,
+         "values": {"synthetic_param": {"any": {"best": 5.0, "s3": [4.0, 6.0]}}}},
+        {"group": "valencia", "year": 2012,
+         "values": {"synthetic_param": {"any": {"best": 5.2, "s3": [4.2, 6.2]}}}},
+    ]
+    orig = make_history.OFF_SCALE_COMPARE
+    make_history.OFF_SCALE_COMPARE = {OFFSCALE_ENTRY}
+    try:
+        make_history.compare_panel("synthetic_param", META, releases)
+        return False
+    except SystemExit:
+        return True
+    finally:
+        make_history.OFF_SCALE_COMPARE = orig
+
+
+check("an OFF_SCALE_COMPARE entry carrying a 3σ range is refused, not silently "
+      "drawn without it",
+      offscale_with_range_raises())
+
 # 7. the cited table exists in the cited paper
 sys.path.insert(0, str(ROOT / "tools" / "tests"))
 import test_history_numbers as thn                      # noqa: E402

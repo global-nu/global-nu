@@ -61,7 +61,24 @@ ORDERINGS = [
 # high 6s to low 9s. It is the single earliest record in the whole register
 # and the reason the axis would otherwise span roughly 2.6-9.8 instead of
 # roughly 6.6-9.3.
+#
+# The floor-clamp treatment below only ever draws e["best"]: it has no
+# rendering for a 3σ range, because a range that is itself off-scale can't be
+# clamped the way a single point can without implying a width it doesn't
+# have. An entry listed here that also carries "s3" is therefore refused at
+# render time (see compare_panel) rather than silently drawn without its
+# range — adding one has to be a decision, not a side effect of editing this
+# set.
 OFF_SCALE_COMPARE = {(2001, "nufit", "dm2")}
+
+# How far above the axis baseline the floor-clamped marker sits, in the same
+# SVG user units as W/H/PAD_*. Large enough that the dashed tail and the
+# marker read as sitting *on* the floor rather than *in* the data — a value
+# of 0 would put the marker on the axis line itself, indistinguishable from
+# a genuine point that happens to be low; 14 clears the axis line, the tick
+# labels below it, and leaves room for the tail to register as a tail rather
+# than a pixel-length smudge.
+OFF_SCALE_FLOOR_GAP = 14
 
 
 def nice_bounds(lo: float, hi: float) -> tuple[float, float]:
@@ -80,16 +97,25 @@ def bound_value(e: dict) -> float:
     return e["upper"] if history.kind_of(e) == "limit" else e["best"]
 
 
-def marker(kind: str, x: float, y: float, colour: str, label: str) -> str:
+def marker(kind: str, x: float, y: float, colour: str, label: str, hollow: bool = False) -> str:
     """Circle for NO, square for IO, diamond for “both”: shape carries the
-    same information as colour, for readers who cannot use the colour."""
+    same information as colour, for readers who cannot use the colour.
+
+    hollow draws the same shape unfilled, outlined in the group colour
+    instead of solid-filled with a background ring — used only for the
+    floor-clamped off-scale marker in compare_panel, so a clamped point
+    cannot be mistaken for a genuine plotted value at a glance: same shape
+    and colour encode the same group, but the missing fill is a second,
+    independent signal that this mark is not an ordinary point."""
     ring = ' stroke="var(--bg)" stroke-width="2" paint-order="stroke"'
+    fill = "none" if hollow else colour
+    outline = f' stroke="{colour}" stroke-width="1.8"' if hollow else ring
     t = f"<title>{label}</title>"
     if kind == "no":
-        return f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4.6" fill="{colour}"{ring}>{t}</circle>'
+        return f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4.6" fill="{fill}"{outline}>{t}</circle>'
     if kind == "io":
         return (f'<rect x="{x - 4.2:.1f}" y="{y - 4.2:.1f}" width="8.4" height="8.4" rx="1.2" '
-                f'fill="{colour}"{ring}>{t}</rect>')
+                f'fill="{fill}"{outline}>{t}</rect>')
     if kind == "limit-upper":
         # A downward arrow from the bound: the value lies below this line,
         # somewhere, and the drawing must not suggest a point estimate.
@@ -98,7 +124,7 @@ def marker(kind: str, x: float, y: float, colour: str, label: str) -> str:
                 f'L{x + 3.4:.1f} {y + 7:.1f}" fill="none" stroke="{colour}" '
                 f'stroke-width="2" stroke-linecap="round">{t}</path>')
     return (f'<path d="M{x:.1f} {y - 5.2:.1f}L{x + 5.2:.1f} {y:.1f}'
-            f'L{x:.1f} {y + 5.2:.1f}L{x - 5.2:.1f} {y:.1f}Z" fill="{colour}"{ring}>{t}</path>')
+            f'L{x:.1f} {y + 5.2:.1f}L{x - 5.2:.1f} {y:.1f}Z" fill="{fill}"{outline}>{t}</path>')
 
 
 def to_our_Dm2(rel: dict, ordering: str, value: float) -> float:
@@ -213,13 +239,20 @@ def compare_panel(pname: str, meta: dict, releases: list[dict]) -> str:
         for yr, e in pts_all:
             x = sx(yr) + dx[gid]
             if (yr, gid, pname) in OFF_SCALE_COMPARE:
+                if e.get("s3"):
+                    raise SystemExit(
+                        f"{pname}: OFF_SCALE_COMPARE entry ({yr}, {gid!r}) carries a 3σ "
+                        "range, which the floor-clamp treatment has no drawing for — it "
+                        "would be silently lost. Either add explicit handling for a "
+                        "ranged off-scale point, or drop it from OFF_SCALE_COMPARE.")
                 off_here.append((gname, yr, e))
-                y_floor = H - PAD_B - 14
+                y_floor = H - PAD_B - OFF_SCALE_FLOOR_GAP
                 out.append(f'<line x1="{x:.1f}" y1="{y_floor:.1f}" x2="{x:.1f}" y2="{H - PAD_B:.1f}" '
                            f'stroke="{colour}" stroke-width="1.4" stroke-dasharray="2 3" opacity=".6"/>')
                 out.append(marker(shape, x, y_floor, colour,
                                   f"{gname}, {yr}: {label} = {e['best']:.4g} ({unit}) — "
-                                  "below this panel's range, drawn at the floor, not to scale"))
+                                  "below this panel's range, drawn at the floor, not to scale",
+                                  hollow=True))
                 out.append(f'<text x="{x + 7:.1f}" y="{y_floor + 3.5:.1f}" font-size="9.5" '
                            f'fill="currentColor" opacity=".75">{e["best"]:.3g}</text>')
                 continue
@@ -407,9 +440,10 @@ katex: false
   <div class="wrap hero__in">
     <p class="kicker">Parameter history</p>
     <h1>Bari, NuFit and Valencia, on the same axes</h1>
-    <p class="lede">Every published update of the Bari global analysis, plotted
-    as it was published: best fit and 3σ range, for both mass orderings. No
-    point is interpolated, rescaled or read off a figure.</p>
+    <p class="lede">How the oscillation parameters have moved across three
+    independent global analyses, and, in finer grain, across every published
+    update of the Bari fit: best fit and 3σ range, for both mass orderings.
+    No point is interpolated, rescaled or read off a figure.</p>
   </div>
 </section>
 
