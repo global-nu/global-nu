@@ -96,7 +96,7 @@ experiments:
     note: far detector at SURF, beam from Fermilab
     url: https://www.dunescience.org/
     role: lbl
-    rank: 3
+    rank: 7
     source: https://www.dunescience.org/
 
   - name: Hyper-Kamiokande
@@ -107,7 +107,7 @@ experiments:
     url: https://hyperk.org/
     role: lbl
     status: construction
-    rank: 4
+    rank: 8
     source: https://www-sk.icrr.u-tokyo.ac.jp/hk/
 
   - name: T2K
@@ -130,6 +130,61 @@ experiments:
     role: lbl
     rank: 2
     source: https://novaexperiment.fnal.gov/
+
+  - name: MINOS+
+    kind: accelerator
+    city: Soudan
+    country: US
+    note: far detector at Soudan Mine, beam from Fermilab
+    url: https://arxiv.org/abs/2006.15208
+    role: lbl
+    status: completed
+    rank: 3
+    source: https://arxiv.org/abs/2006.15208
+
+  - name: K2K
+    kind: accelerator
+    city: Tsukuba
+    country: JP
+    note: beam source at KEK, far detector at Kamioka
+    url: https://neutrino.kek.jp/
+    role: lbl
+    status: completed
+    rank: 4
+    source: https://neutrino.kek.jp/
+
+  - name: OPERA
+    kind: accelerator
+    city: Assergi
+    country: IT
+    note: CNGS beam from CERN, at Gran Sasso
+    url: https://arxiv.org/abs/1804.04912
+    role: lbl
+    status: completed
+    rank: 5
+    source: https://arxiv.org/abs/1804.04912
+
+  - name: ICARUS
+    kind: accelerator
+    city: Assergi
+    country: IT
+    note: CNGS beam from CERN, at Gran Sasso, 2010-2013 run
+    url: https://icarus.fnal.gov/
+    role: lbl
+    status: completed
+    rank: 6
+    source: https://icarus.fnal.gov/about/
+
+  - name: ESSnuSB
+    kind: accelerator
+    city: Zinkgruvan
+    country: SE
+    note: far detector at Zinkgruvan mine, beam from ESS Lund
+    url: https://essnusb.eu/
+    role: lbl
+    status: proposed
+    rank: 9
+    source: https://essnusb.eu/
 
   - name: Super-Kamiokande
     kind: natural
