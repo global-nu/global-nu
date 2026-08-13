@@ -21,6 +21,13 @@
 # collaboration's own page, or the paper of its final dataset — and never from
 # recollection. An experiment whose status cannot be established carries no
 # `status` field, and the page then prints nothing rather than a guess.
+#
+# The same `name` may appear more than once, under different `role`s — see
+# Super-Kamiokande, which constrains both `solar` and `atmospheric`. That is
+# not a duplicate to merge: an experiment can constrain more than one thing,
+# and each constraint is its own record, with its own rank and, where they
+# differ, its own status and source. The tests compare the two files by the
+# *set* of names, so a repeated name causes no failure.
 
 experiments:
   - name: JUNO
@@ -270,7 +277,6 @@ experiments:
     note: chlorine solar, in the Homestake Mine
     url: https://doi.org/10.1086/305343
     role: solar
-    status: completed
     rank: 5
     source: https://doi.org/10.1086/305343
 
@@ -281,7 +287,6 @@ experiments:
     note: gallium solar, at Baksan
     url: https://arxiv.org/abs/0901.2200
     role: solar
-    status: completed
     rank: 6
     source: https://arxiv.org/abs/0901.2200
 
