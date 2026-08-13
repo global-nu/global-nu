@@ -457,6 +457,17 @@ releases:
     convention: "|Dm2_31| quoted for both orderings"
     reported_splitting: abs_Dm2_31
     table: "Table I"
+    note: >-
+      A second 2018 Valencia paper, arXiv:1806.11051 ("Neutrino Mass Ordering
+      from Oscillations and Beyond: 2018 Status and Future Prospects", Front.
+      Astron. Space Sci. 5, 36), reproduces this same fit as its own Table I —
+      every one of its ten entries (dm2, |Dm2_31| for both orderings,
+      sin2_th12, sin2_th13 and sin2_th23 for both orderings, delta_pi for both
+      orderings) is numerically identical, digit for digit, to the values
+      below. It is a broader review (mass ordering from oscillations, 0vbb and
+      cosmology combined) that carries this oscillation-only result forward
+      as an input, not a new analysis, so it is not recorded as a second
+      release; see the excluded section.
     values:
       dm2:       {"any": {best: 7.55, s3: [7.05, 8.14]}}
       sin2_th12: {"any": {best: 3.20, s3: [2.73, 3.79]}}
@@ -496,3 +507,49 @@ releases:
       abs_Dm2_31:
         "no": {best: 2.55, s3: [2.47, 2.63]}
         "io": {best: 2.45, s3: [2.37, 2.53]}
+
+# Papers considered for this register and not included, with the reason. Kept
+# here so a physicist who knows one of these papers finds the answer in the
+# file rather than wondering whether it was simply missed.
+excluded:
+  - arxiv: "hep-ph/0206162"
+    title: "Getting the most from the statistical analysis of solar neutrino oscillations"
+    reason: >-
+      Methodological: a study of statistical-analysis technique for the 2ν
+      solar sector, not a parameter release.
+
+  - arxiv: "hep-ph/0208026"
+    title: "Three-flavor solar neutrino oscillations with terrestrial neutrino constraints"
+    reason: >-
+      A solar analysis with terrestrial constraints whose only table is a 2ν
+      solar fit without CHOOZ — not a citable 3ν global-parameter table.
+
+  - arxiv: "hep-ph/0212127"
+    title: "Solar neutrino oscillation parameters after first KamLAND results"
+    reason: >-
+      Solar+CHOOZ+KamLAND analysis restricted to (δm², sin²θ₁₂, sin²θ₁₃);
+      its only formal table (Table I) covers the 2ν (δm², θ₁₂) sector. The 3ν
+      extension including θ₁₃ is shown solely in χ² contour figures (Figs.
+      5-7), never tabulated, and atmospheric data enter only enough to
+      marginalise Δm² away — no table quotes sin²θ₂₃ or a mass ordering.
+
+  - arxiv: "hep-ph/0308055"
+    title: "Addendum to: Solar neutrino oscillation parameters after first KamLAND results"
+    reason: >-
+      A 5-page addendum to hep-ph/0212127 updating the same restricted
+      (δm², θ₁₂, θ₁₃) analysis with new SNO salt-phase data. Contains no
+      table at all (checked programmatically against the cached PDF).
+
+  - arxiv: "2001–2004 conference proceedings"
+    title: "(various)"
+    reason: >-
+      Conference-proceedings write-ups from this period restate figures from
+      the papers above rather than presenting their own citable table, so
+      none is added as a separate point.
+
+  - arxiv: "1806.11051"
+    title: "Neutrino Mass Ordering from Oscillations and Beyond: 2018 Status and Future Prospects"
+    reason: >-
+      Its Table I is the same fit as arXiv:1708.01186, reproduced digit for
+      digit (see the note on the 1708.01186 release, above) as an input to a
+      broader mass-ordering review; not a second, independent analysis.
