@@ -49,10 +49,13 @@ import re
 import sys
 from pathlib import Path
 
+import yaml
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from tools import experiments                        # noqa: E402
+from tools.fetch_commons_images import short_author    # noqa: E402
 from tools.news import geocode                        # noqa: E402
 from tools.news import worldmap as wm                 # noqa: E402
 
@@ -66,6 +69,9 @@ KINDS = [
 ]
 COLOUR = {k: c for k, _, c in KINDS}
 KIND_ORDER = {k: i for i, (k, _, _) in enumerate(KINDS)}
+KIND_LABEL = {k: label for k, label, _ in KINDS}
+
+PHOTOS_FILE = ROOT / "site-src" / "data" / "photos.yaml"
 
 # Marker geometry, in viewBox units (the frame is 720 wide).
 HALO_R = 6.5
@@ -142,6 +148,63 @@ def _title(e: dict) -> str:
     return title
 
 
+def _load_photos() -> dict[str, dict]:
+    """Accepted photographs from photos.yaml, indexed by subject — only
+    entries marked `keep`, the same gate the (now-removed) gallery used, so a
+    picture that failed review there still cannot appear on the map's card.
+    Missing or unreadable is not fatal: the map is drawn either way, just
+    without pictures, which is the honest outcome when the manifest cannot
+    be trusted rather than a build that refuses to run."""
+    if not PHOTOS_FILE.exists():
+        return {}
+    doc = yaml.safe_load(PHOTOS_FILE.read_text(encoding="utf-8")) or {}
+    out: dict[str, dict] = {}
+    for p in doc.get("photos", []):
+        if p.get("status") == "keep" and p.get("subject") not in out:
+            out[p["subject"]] = p
+    return out
+
+
+PHOTOS = _load_photos()
+
+
+def _exp_attrs(e: dict) -> str:
+    """Extra data-* attributes on a <g class="map-exp">, everything map.js
+    needs to build the card without a second fetch: where the experiment is,
+    what it constrains, whether it is still running, a link out, and — for
+    the few experiments with an accepted photograph — the picture and its
+    credit. Kept apart from <title>, which exists for the no-JS/hover case
+    and is prose, not a record meant to be parsed back apart.
+
+    The credit is built from short_author(), not from photos.yaml's own
+    author_short field: that field was itself produced by short_author() at
+    fetch time, but computing it again here keeps the map's one and only
+    source of that logic in tools/fetch_commons_images.py rather than
+    trusting a value that could go stale if the manifest were hand-edited.
+    """
+    bits = [
+        f' data-kind-label="{_esc(KIND_LABEL.get(e["kind"], e["kind"]))}"',
+        f' data-place="{_esc(e["city"])}, {_esc(e["country"])}"',
+        f' data-url="{_esc(e["url"])}"',
+    ]
+    if e.get("note"):
+        bits.append(f' data-note="{_esc(e["note"])}"')
+    status = e.get("status")
+    if status:
+        bits.append(f' data-status="{_esc(experiments.STATUS_LABEL.get(status, status))}"')
+
+    p = PHOTOS.get(e.get("photo")) if e.get("photo") else None
+    if p and p.get("file") and p.get("page") and p.get("licence"):
+        author = short_author(p.get("author") or "") or "unknown author"
+        bits.append(f' data-photo="images/{_esc(p["file"])}"')
+        bits.append(f' data-photo-alt="{_esc(p.get("caption") or p["subject"])}"')
+        bits.append(f' data-photo-author="{_esc(author)}"')
+        bits.append(f' data-photo-licence="{_esc(p["licence"])}"')
+        bits.append(f' data-photo-licence-url="{_esc(p.get("licence_url") or "")}"')
+        bits.append(f' data-photo-page="{_esc(p["page"])}"')
+    return "".join(bits)
+
+
 def _marker(cx: float, cy: float, colour: str) -> str:
     """The halo-and-dot pair every experiment is drawn with."""
     return (
@@ -180,8 +243,8 @@ def _render_pin(cx: float, cy: float, group: list[dict]) -> str:
         return (
             f'<g class="map-pin" data-site="{site}" data-kinds="{" ".join(kinds)}" '
             f'data-names="{names}"><title>{_title(e)}</title>'
-            f'<g class="map-exp" data-experiment="{_esc(e["name"])}" data-kind="{e["kind"]}">'
-            f'<title>{_title(e)}</title>{_marker(cx, cy, colour)}</g></g>'
+            f'<g class="map-exp" data-experiment="{_esc(e["name"])}" data-kind="{e["kind"]}"'
+            f'{_exp_attrs(e)}><title>{_title(e)}</title>{_marker(cx, cy, colour)}</g></g>'
         )
 
     n = len(group)
@@ -204,8 +267,8 @@ def _render_pin(cx: float, cy: float, group: list[dict]) -> str:
         fy = cy + FAN_R * math.sin(angle)
         colour = COLOUR.get(e["kind"], "var(--accent)")
         parts.append(
-            f'<g class="map-exp" data-experiment="{_esc(e["name"])}" data-kind="{e["kind"]}" '
-            f'display="none"><title>{_title(e)}</title>{_marker(fx, fy, colour)}</g>'
+            f'<g class="map-exp" data-experiment="{_esc(e["name"])}" data-kind="{e["kind"]}"'
+            f'{_exp_attrs(e)} hidden=""><title>{_title(e)}</title>{_marker(fx, fy, colour)}</g>'
         )
     parts.append("</g>")
     return "".join(parts)
@@ -278,8 +341,8 @@ def _render_south_pole_inset(cx0: float, cy0: float, icecube: dict, lon: float, 
         'font-size="7" fill="var(--text-mute)">South Pole</text>',
         f'<g class="map-pin" data-site="south-pole" data-kinds="{icecube["kind"]}" '
         f'data-names="{_esc(icecube["name"])}"><title>{_title(icecube)}</title>'
-        f'<g class="map-exp" data-experiment="{_esc(icecube["name"])}" data-kind="{icecube["kind"]}">'
-        f'<title>{_title(icecube)}</title>{_marker(dx, dy, colour)}</g></g>',
+        f'<g class="map-exp" data-experiment="{_esc(icecube["name"])}" data-kind="{icecube["kind"]}"'
+        f'{_exp_attrs(icecube)}><title>{_title(icecube)}</title>{_marker(dx, dy, colour)}</g></g>',
         "</g>",
     ]
     return "".join(parts)
@@ -387,8 +450,8 @@ def main() -> None:
     for m in missing:
         print(f"  ! not located, left off the map: {m}")
 
-    legend = " ".join(f'<span><i style="background:{c}"></i>{label}</span>'
-                      for _, label, c in
+    legend = " ".join(f'<span data-filter="{k}"><i style="background:{c}"></i>{label}</span>'
+                      for k, label, c in
                       [(k, l, c) for k, l, c in KINDS
                        if any(e["kind"] == k for e, _, _ in all_placed)])
     (OUT.parent / "map-experiments-legend.svg").write_text(

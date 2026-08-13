@@ -28,6 +28,13 @@
 # and each constraint is its own record, with its own rank and, where they
 # differ, its own status and source. The tests compare the two files by the
 # *set* of names, so a repeated name causes no failure.
+#
+# `photo` is optional and names a `subject` in site-src/data/photos.yaml
+# whose status is `keep`. tools/make_map.py is the only reader; it looks the
+# subject up itself rather than trusting a path or credit typed here, so the
+# licence and author on the map's card always come from the one place that
+# checks them. Only four records carry it — most experiments have no accepted
+# photograph, and the card is written to be unembarrassing without one.
 
 experiments:
   - name: JUNO
@@ -40,6 +47,7 @@ experiments:
     status: running
     rank: 1
     source: https://juno.ihep.cas.cn/
+    photo: JUNO
 
   - name: KamLAND
     kind: reactor
@@ -105,6 +113,7 @@ experiments:
     role: lbl
     rank: 7
     source: https://www.dunescience.org/
+    photo: DUNE
 
   - name: Hyper-Kamiokande
     kind: accelerator
@@ -214,6 +223,7 @@ experiments:
     status: running
     rank: 2
     source: https://icecube.wisc.edu/about/
+    photo: IceCube
 
   - name: KM3NeT
     kind: natural
@@ -258,6 +268,7 @@ experiments:
     status: completed
     rank: 3
     source: https://borex.lngs.infn.it/news/end-of-borexino-daq/
+    photo: Borexino
 
   - name: GALLEX/GNO
     kind: natural

@@ -5,6 +5,8 @@ description: >-
   A starting point for navigating neutrino physics: experiments, global
   analyses, databases, laboratories and reviews.
 katex: false
+scripts:
+  - assets/js/map.js
 ---
 
 <section class="hero">
@@ -21,32 +23,22 @@ katex: false
 
 <div class="section-head"><h2>Experiments</h2><p>oscillation, mass and 0νββ</p></div>
 
-<figure class="figure figure--wide reveal" style="margin-bottom:2rem">
+<figure class="figure figure--wide reveal map-figure" style="margin-bottom:2rem">
 <div class="figure__head">
   <h3>Where they are</h3>
-  <p>every experiment on this page · hover a marker for the place</p>
+  <p>zoom, pan, filter by what it constrains · click a marker for the place, the status and — where one is on file — a photograph</p>
 </div>
 <!--include:map-experiments-->
 <!--include:map-experiments-legend-->
 <p class="cap">Coastlines from Natural Earth (public domain). Each marker is
 placed by looking its site up in OpenStreetMap, never by a typed coordinate; a
 site that cannot be resolved is left off rather than approximated. A site
-hosting more than one experiment draws as a single numbered marker. IceCube
-sits at the South Pole, off the bottom of this projection, so it is drawn in
-the small inset instead — reprojected from the same coastline data, centred
-on the pole.</p>
-</figure>
-
-<figure class="figure figure--wide reveal" style="margin-bottom:2rem;padding-bottom:1.4rem">
-<div class="figure__head">
-  <h3>What they look like</h3>
-  <p>freely licensed photographs · credit under each</p>
-</div>
-<!--include:gallery-->
-<p class="cap">Only images whose licence permits reuse are shown, and each
-carries its author, its licence and a link to its page on Wikimedia Commons —
-the terms under which it may be here. Pictures whose licence could not be
-established were not downloaded.</p>
+hosting more than one experiment draws as a single numbered marker; click it
+to fan the experiments out. IceCube sits at the South Pole, off the bottom of
+this projection, so it is drawn in the small inset instead — reprojected from
+the same coastline data, centred on the pole. Photographs shown in the card
+are freely licensed, and each carries its author, its licence and a link to
+its page on Wikimedia Commons — the terms under which it may be here.</p>
 </figure>
 
 <!--include:experiments-tiles-->
