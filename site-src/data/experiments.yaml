@@ -322,3 +322,25 @@ experiments:
     status: proposed
     rank: 3
     source: https://nexo.llnl.gov/
+
+  - name: ANTARES
+    kind: natural
+    city: Toulon
+    country: FR
+    note: undersea neutrino telescope, decommissioned 2022
+    url: https://antares.in2p3.fr/
+    role: atmospheric
+    status: completed
+    rank: 4
+    source: https://antares.in2p3.fr/antares-is-now-fully-dismantled/
+
+  - name: Kamiokande
+    kind: natural
+    city: Hida
+    country: JP
+    note: predecessor to Super-Kamiokande, at Kamioka
+    url: https://doi.org/10.1103/PhysRevLett.77.1683
+    role: atmospheric
+    status: completed
+    rank: 5
+    source: https://doi.org/10.1103/PhysRevLett.77.1683
