@@ -648,23 +648,59 @@ a.card:hover .card__go{color:var(--text)}
   a.card:hover,.tile:hover,.strip a:hover{transform:none}
 }
 
-/* ---------- photograph gallery ---------- */
-.shots{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));
-  margin-top:1.6rem}
-.shot{margin:0;background:var(--surface);border:1px solid var(--line);
-  border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);
-  display:flex;flex-direction:column}
-.section--alt .shot{background:var(--bg)}
-.shot img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;
-  background:var(--surface-2)}
-.shot figcaption{padding:.85rem 1rem 1rem;font-size:.86rem;color:var(--text-soft)}
-.shot figcaption b{display:block;color:var(--text);font-family:var(--display);
-  letter-spacing:-.01em;margin-bottom:.15rem}
-.shot__credit{display:block;margin-top:.55rem;padding-top:.55rem;
-  border-top:1px solid var(--line);font-family:var(--mono);font-size:.68rem;
-  color:var(--text-mute);line-height:1.5}
-.shot__credit a{color:var(--text-mute);text-decoration:underline}
-.shot__credit a:hover{color:var(--accent)}
+/* ---------- world map: pan, zoom, filter, card ----------
+   The photograph rules that used to style the standalone gallery (a grid of
+   <figure class="shot">) now style the map's card instead — the pictures
+   moved there, so the credit line and the image treatment moved with them,
+   under new selectors rather than a rewrite of the declarations themselves. */
+.map-stage{position:relative}
+.map-stage svg{cursor:grab;touch-action:none}
+.map-stage svg:active{cursor:grabbing}
+.map-pin{cursor:pointer}
+
+.legend--chart [data-filter]{cursor:pointer}
+.legend--chart [data-filter][aria-pressed="false"]{opacity:.4}
+
+.map-ctl{position:absolute;top:.8rem;right:.8rem;z-index:5;display:flex;
+  flex-direction:column;gap:.4rem}
+.map-ctl button{width:2rem;height:2rem;padding:0;display:flex;align-items:center;
+  justify-content:center;font-family:var(--mono);font-size:1rem;line-height:1;
+  border-radius:var(--r-sm);border:1px solid var(--line-strong);
+  background:var(--surface);color:var(--text-soft);cursor:pointer}
+.map-ctl button:hover{border-color:var(--accent);color:var(--text)}
+
+/* The card sits at bottom-LEFT and the toolbar stays top-right on purpose:
+   a fanned site's card can grow tall (Gran Sasso alone lists eight
+   experiments), and anchoring both to the same corner let a tall card's
+   higher z-index cover the zoom-out and reset buttons underneath it — silent
+   and only caught by clicking there. Opposite corners cannot overlap
+   regardless of how tall the card grows. */
+.map-card{position:absolute;z-index:6;left:.8rem;bottom:.8rem;
+  width:min(21rem,calc(100% - 1.6rem));max-height:min(75%,28rem);overflow-y:auto;
+  background:var(--bg);border:1px solid var(--line-strong);border-radius:var(--r);
+  box-shadow:var(--shadow-strong);padding:1rem 1.15rem}
+.map-card__close{position:absolute;top:.6rem;right:.6rem;width:1.6rem;height:1.6rem;
+  display:flex;align-items:center;justify-content:center;border:none;
+  background:transparent;color:var(--text-mute);font-size:1.1rem;line-height:1;
+  cursor:pointer}
+.map-card__close:hover{color:var(--text)}
+.map-card__title{margin:0 1.6rem .6rem 0;font-family:var(--display);
+  font-size:1.02rem;letter-spacing:-.01em;color:var(--text)}
+.map-card__exp{padding:.65rem 0}
+.map-card__exp + .map-card__exp{border-top:1px solid var(--line)}
+.map-card__name{margin:0;font-weight:600;color:var(--text)}
+.map-card__name a{color:var(--accent);text-decoration:none}
+.map-card__name a:hover{text-decoration:underline}
+.map-card__meta{margin:.2rem 0 0;font-family:var(--mono);font-size:.72rem;
+  color:var(--text-mute)}
+.map-card__note{margin:.3rem 0 0;font-size:.82rem;color:var(--text-soft)}
+.map-card__photo{margin:.7rem 0 0}
+.map-card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;
+  background:var(--surface-2);border-radius:var(--r-sm)}
+.map-card__credit{display:block;margin-top:.45rem;font-family:var(--mono);
+  font-size:.68rem;color:var(--text-mute);line-height:1.5}
+.map-card__credit a{color:var(--text-mute);text-decoration:underline}
+.map-card__credit a:hover{color:var(--accent)}
 
 /* ---------- Δχ² explorer ---------- */
 .chi2__bar{display:flex;flex-wrap:wrap;gap:.7rem 1.4rem;align-items:center;

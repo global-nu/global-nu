@@ -5,6 +5,8 @@ description: >-
   A starting point for navigating neutrino physics: experiments, global
   analyses, databases, laboratories and reviews.
 katex: false
+scripts:
+  - assets/js/map.js
 ---
 
 <section class="hero">
@@ -21,77 +23,30 @@ katex: false
 
 <div class="section-head"><h2>Experiments</h2><p>oscillation, mass and 0νββ</p></div>
 
-<figure class="figure figure--wide reveal" style="margin-bottom:2rem">
+<figure class="figure figure--wide reveal map-figure" style="margin-bottom:2rem">
 <div class="figure__head">
   <h3>Where they are</h3>
-  <p>13 sites · hover a marker for the place</p>
+  <p>zoom, pan, filter by what it constrains · click a marker for the place, the status and — where one is on file — a photograph</p>
 </div>
 <!--include:map-experiments-->
 <!--include:map-experiments-legend-->
 <p class="cap">Coastlines from Natural Earth (public domain). Each marker is
 placed by looking its site up in OpenStreetMap, never by a typed coordinate; a
-site that cannot be resolved is left off rather than approximated. IceCube is
-not shown: it sits at the South Pole, below the frame this projection can
-usefully draw.</p>
+site that cannot be resolved is left off rather than approximated. A site
+hosting more than one experiment draws as a single numbered marker; click it
+to fan the experiments out. IceCube sits at the South Pole, off the bottom of
+this projection, so it is drawn in the small inset instead — reprojected from
+the same coastline data, centred on the pole. Photographs shown in the card
+are freely licensed, and each carries its author, its licence and a link to
+its page on Wikimedia Commons — the terms under which it may be here.</p>
 </figure>
 
-<figure class="figure figure--wide reveal" style="margin-bottom:2rem;padding-bottom:1.4rem">
-<div class="figure__head">
-  <h3>What they look like</h3>
-  <p>freely licensed photographs · credit under each</p>
-</div>
-<!--include:gallery-->
-<p class="cap">Only images whose licence permits reuse are shown, and each
-carries its author, its licence and a link to its page on Wikimedia Commons —
-the terms under which it may be here. Pictures whose licence could not be
-established were not downloaded.</p>
-</figure>
+<!--include:experiments-tiles-->
 
-<div class="tiles reveal">
-
-<article class="tile">
-<div class="stamp stamp--no">Reactor</div>
-<h3>Reactor antineutrinos</h3>
-<ul class="list">
-<li><b><a href="https://juno.ihep.cas.cn/">JUNO</a></b><span>Jiangmen, China · medium baseline</span></li>
-<li><b><a href="https://www.dchooz.org/">Double Chooz</a></b><span>Chooz, France</span></li>
-<li><b><a href="https://snoplus.phy.queensu.ca/">SNO+</a></b><span>Sudbury, Canada · also 0νββ</span></li>
-</ul>
-</article>
-
-<article class="tile">
-<div class="stamp">Accelerator</div>
-<h3>Long-baseline beams</h3>
-<ul class="list">
-<li><b><a href="https://www.dunescience.org/">DUNE</a></b><span>Fermilab → Sanford, USA</span></li>
-<li><b><a href="https://hyperk.org/">Hyper-Kamiokande</a></b><span>Kamioka, Japan</span></li>
-<li><b><a href="https://t2k-experiment.org/">T2K</a></b><span>J-PARC → Kamioka, Japan</span></li>
-<li><b><a href="https://novaexperiment.fnal.gov/">NOvA</a></b><span>Fermilab → Ash River, USA</span></li>
-</ul>
-</article>
-
-<article class="tile">
-<div class="stamp stamp--no">Atmospheric &amp; solar</div>
-<h3>Natural sources</h3>
-<ul class="list">
-<li><b><a href="https://www-sk.icrr.u-tokyo.ac.jp/en/sk/">Super-Kamiokande</a></b><span>Kamioka, Japan</span></li>
-<li><b><a href="https://icecube.wisc.edu/">IceCube</a></b><span>South Pole · IceCube Upgrade</span></li>
-<li><b><a href="https://www.km3net.org/">KM3NeT</a></b><span>Mediterranean · ORCA and ARCA</span></li>
-<li><b><a href="https://borex.lngs.infn.it/">Borexino</a></b><span>Gran Sasso, Italy · solar</span></li>
-</ul>
-</article>
-
-<article class="tile">
-<div class="stamp">Mass</div>
-<h3>Absolute mass and 0νββ</h3>
-<ul class="list">
-<li><b><a href="https://www.katrin.kit.edu/">KATRIN</a></b><span>Karlsruhe, Germany · β decay</span></li>
-<li><b><a href="https://legend-exp.org/">LEGEND</a></b><span>Gran Sasso, Italy · ⁷⁶Ge</span></li>
-<li><b><a href="https://nexo.llnl.gov/">nEXO</a></b><span>SNOLAB, Canada · ¹³⁶Xe</span></li>
-</ul>
-</article>
-
-</div>
+<p class="small muted" style="margin-top:1.4rem">Grouped by what each
+experiment constrains, and ordered within a group by its weight in the
+current global fit. Status is taken from each collaboration's own pages;
+where it could not be established, none is shown.</p>
 
 :::
 

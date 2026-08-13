@@ -9,6 +9,41 @@
 #
 # `kind` picks the colour, and matches the grouping used on the resources page.
 # `url` must be the same link the resources page uses, so the two cannot drift.
+#
+# Ordering. Entries are grouped by `role` — what the experiment constrains in
+# a global fit — and ranked within a group by its weight in the current fit:
+# the datasets that dominate a constraint come first. `rank` records that
+# position so the order is a claim on the page rather than a preference in
+# somebody's head.
+#
+# `status` is a statement of fact about a real collaboration and follows the
+# project's first rule: it is taken from the source named in `source` — the
+# collaboration's own page, or the paper of its final dataset — and never from
+# recollection. An experiment whose status cannot be established carries no
+# `status` field, and the page then prints nothing rather than a guess.
+#
+# `source_quote` is the sentence from `source` that says it, copied verbatim.
+# Four statuses have now been withdrawn for citing a page that never stated
+# one — Homestake and SAGE, then KATRIN and Project 8 — every time because a
+# plausible-looking source was recorded without the sentence being read out of
+# it. A status is not sourced until the sentence can be written down here, and
+# tools/experiments.py enforces that for every record except the named backlog
+# in STATUS_QUOTE_BACKLOG. The quote is data, not display: nothing renders it,
+# it exists so the next reader can check the claim without refetching.
+#
+# The same `name` may appear more than once, under different `role`s — see
+# Super-Kamiokande, which constrains both `solar` and `atmospheric`. That is
+# not a duplicate to merge: an experiment can constrain more than one thing,
+# and each constraint is its own record, with its own rank and, where they
+# differ, its own status and source. The tests compare the two files by the
+# *set* of names, so a repeated name causes no failure.
+#
+# `photo` is optional and names a `subject` in site-src/data/photos.yaml
+# whose status is `keep`. tools/make_map.py is the only reader; it looks the
+# subject up itself rather than trusting a path or credit typed here, so the
+# licence and author on the map's card always come from the one place that
+# checks them. Only four records carry it — most experiments have no accepted
+# photograph, and the card is written to be unembarrassing without one.
 
 experiments:
   - name: JUNO
@@ -17,20 +52,74 @@ experiments:
     country: CN
     note: medium-baseline reactor
     url: https://juno.ihep.cas.cn/
+    role: theta12_dm2
+    status: running
+    rank: 1
+    source: https://juno.ihep.cas.cn/
+    photo: JUNO
 
+  - name: KamLAND
+    kind: reactor
+    city: Hida
+    country: JP
+    note: reactor θ12 and δm², at Kamioka
+    url: https://www.awa.tohoku.ac.jp/kamland/
+    role: theta12_dm2
+    status: completed
+    rank: 2
+    source: https://www.awa.tohoku.ac.jp/kamland/
+
+  - name: Daya Bay
+    kind: reactor
+    city: Shenzhen
+    country: CN
+    note: reactor θ13, near Hong Kong
+    url: http://dayabay.ihep.ac.cn/
+    role: theta13
+    status: completed
+    rank: 1
+    source: http://dayabay.ihep.ac.cn/twiki/bin/view/Public/
+
+  - name: RENO
+    kind: reactor
+    city: Yeonggwang
+    country: KR
+    note: reactor θ13, at the Hanbit nuclear power plant
+    url: https://arxiv.org/abs/2412.18711
+    role: theta13
+    status: completed
+    rank: 2
+    source: https://arxiv.org/abs/2412.18711
+
+  # `url` is the collaboration's total-neutron-capture measurement; the
+  # collaboration's own site (doublechooz.in2p3.fr) no longer answers. The
+  # status is sourced separately, from the detector paper that states the end
+  # of data taking — the measurement paper never does, and citing it for the
+  # status was the mistake this record was corrected for.
   - name: Double Chooz
     kind: reactor
     city: Chooz
     country: FR
     note: short-baseline reactor
-    url: https://www.dchooz.org/
+    url: https://arxiv.org/abs/1901.09445
+    role: theta13
+    status: completed
+    rank: 3
+    source: https://arxiv.org/abs/2201.13285
+    source_quote: >-
+      Both detectors ran in parallel for about three years, until the end of
+      2017, when neutrino data taking was stopped.
 
   - name: SNO+
-    kind: reactor
+    kind: mass
     city: Sudbury
     country: CA
     note: reactor and 0νββ, at SNOLAB
     url: https://snoplus.phy.queensu.ca/
+    role: 0nubb
+    status: running
+    rank: 11
+    source: https://snoplus.phy.queensu.ca/about.html
 
   - name: DUNE
     kind: accelerator
@@ -38,6 +127,10 @@ experiments:
     country: US
     note: far detector at SURF, beam from Fermilab
     url: https://www.dunescience.org/
+    role: lbl
+    rank: 7
+    source: https://www.dunescience.org/
+    photo: DUNE
 
   - name: Hyper-Kamiokande
     kind: accelerator
@@ -45,6 +138,10 @@ experiments:
     country: JP
     note: beam from J-PARC
     url: https://hyperk.org/
+    role: lbl
+    status: construction
+    rank: 8
+    source: https://www-sk.icrr.u-tokyo.ac.jp/hk/
 
   - name: T2K
     kind: accelerator
@@ -52,6 +149,10 @@ experiments:
     country: JP
     note: beam source, far detector at Kamioka
     url: https://t2k-experiment.org/
+    role: lbl
+    status: running
+    rank: 1
+    source: https://t2k-experiment.org/
 
   - name: NOvA
     kind: accelerator
@@ -59,6 +160,72 @@ experiments:
     country: US
     note: far detector, beam from Fermilab
     url: https://novaexperiment.fnal.gov/
+    role: lbl
+    rank: 2
+    source: https://novaexperiment.fnal.gov/
+
+  - name: MINOS+
+    kind: accelerator
+    city: Soudan
+    country: US
+    note: far detector at Soudan Mine, beam from Fermilab
+    url: https://arxiv.org/abs/2006.15208
+    role: lbl
+    status: completed
+    rank: 3
+    source: https://arxiv.org/abs/2006.15208
+
+  - name: K2K
+    kind: accelerator
+    city: Tsukuba
+    country: JP
+    note: beam source at KEK, far detector at Kamioka
+    url: https://neutrino.kek.jp/
+    role: lbl
+    status: completed
+    rank: 4
+    # The KEK page was last touched in 2005 and only announces that a final
+    # result was published; the final-dataset paper it announces is what
+    # actually delimits the data — the run began in June 1999 and there is
+    # none after November 2004.
+    source: https://arxiv.org/abs/hep-ex/0606032
+    source_quote: >-
+      In this paper, all data taken in K2K between June 1999 and November 2004
+      are used to measure the suppression of events and energy distortion and
+      to measure the parameters of oscillation.
+
+  - name: OPERA
+    kind: accelerator
+    city: Assergi
+    country: IT
+    note: CNGS beam from CERN, at Gran Sasso
+    url: https://arxiv.org/abs/1804.04912
+    role: lbl
+    status: completed
+    rank: 5
+    source: https://arxiv.org/abs/1804.04912
+
+  - name: ICARUS
+    kind: accelerator
+    city: Assergi
+    country: IT
+    note: CNGS beam from CERN, at Gran Sasso, 2010-2013 run
+    url: https://icarus.fnal.gov/
+    role: lbl
+    status: completed
+    rank: 6
+    source: https://icarus.fnal.gov/about/
+
+  - name: ESSnuSB
+    kind: accelerator
+    city: Zinkgruvan
+    country: SE
+    note: far detector at Zinkgruvan mine, beam from ESS Lund
+    url: https://essnusb.eu/
+    role: lbl
+    status: proposed
+    rank: 9
+    source: https://essnusb.eu/
 
   - name: Super-Kamiokande
     kind: natural
@@ -66,6 +233,10 @@ experiments:
     country: JP
     note: atmospheric and solar
     url: https://www-sk.icrr.u-tokyo.ac.jp/en/sk/
+    role: atmospheric
+    status: running
+    rank: 1
+    source: https://www-sk.icrr.u-tokyo.ac.jp/en/sk/news/
 
   - name: IceCube
     kind: natural
@@ -73,6 +244,17 @@ experiments:
     country: AQ
     note: atmospheric and astrophysical
     url: https://icecube.wisc.edu/
+    role: atmospheric
+    status: running
+    rank: 2
+    # /about/ redirected to an overview page that describes the detector but
+    # never says it is operating. The quick-facts page does, in the only terms
+    # that settle it: data leaving the Pole, by the terabyte, every day.
+    source: https://icecube.wisc.edu/about-us/facts/
+    source_quote: >-
+      One terabyte of unfiltered data is collected daily and about 100
+      gigabytes are sent over satellite for analysis.
+    photo: IceCube
 
   - name: KM3NeT
     kind: natural
@@ -80,6 +262,32 @@ experiments:
     country: FR
     note: ORCA site; ARCA off Sicily
     url: https://www.km3net.org/
+    role: atmospheric
+    status: construction
+    rank: 3
+    source: https://www.km3net.org/
+
+  - name: SNO
+    kind: natural
+    city: Sudbury
+    country: CA
+    note: solar, at SNOLAB
+    url: https://sno.phy.queensu.ca/
+    role: solar
+    status: completed
+    rank: 1
+    source: https://sno.phy.queensu.ca/
+
+  - name: Super-Kamiokande
+    kind: natural
+    city: Hida
+    country: JP
+    note: atmospheric and solar
+    url: https://www-sk.icrr.u-tokyo.ac.jp/en/sk/
+    role: solar
+    status: running
+    rank: 2
+    source: https://www-sk.icrr.u-tokyo.ac.jp/en/sk/news/
 
   - name: Borexino
     kind: natural
@@ -87,13 +295,81 @@ experiments:
     country: IT
     note: solar, at Gran Sasso
     url: https://borex.lngs.infn.it/
+    role: solar
+    status: completed
+    rank: 3
+    source: https://borex.lngs.infn.it/news/end-of-borexino-daq/
+    photo: Borexino
 
+  - name: GALLEX/GNO
+    kind: natural
+    city: Assergi
+    country: IT
+    note: gallium solar, at Gran Sasso
+    url: https://arxiv.org/abs/hep-ex/0504037
+    role: solar
+    status: completed
+    rank: 4
+    source: https://arxiv.org/abs/hep-ex/0504037
+
+  - name: Homestake
+    kind: natural
+    city: Lead
+    country: US
+    note: chlorine solar, in the Homestake Mine
+    url: https://doi.org/10.1086/305343
+    role: solar
+    rank: 5
+    source: https://doi.org/10.1086/305343
+
+  - name: SAGE
+    kind: natural
+    city: Neutrino
+    country: RU
+    note: gallium solar, at Baksan
+    url: https://arxiv.org/abs/0901.2200
+    role: solar
+    rank: 6
+    source: https://arxiv.org/abs/0901.2200
+
+  # No status on purpose, and it should not be restored without a source that
+  # says more than katrin.kit.edu does. That site carries mission copy ("is
+  # currently performed on the Campus North") and news of results, and never
+  # states whether the experiment is operating; the same generic present tense
+  # already cost Homestake and SAGE their statuses. What a source does state,
+  # in the review below by the experiment's own leaders, is that phase 1 — the
+  # tritium endpoint campaign this record's `mass` role is about — reached its
+  # 1000-day goal and ended in 2025: "In 2025 the KATRIN experiment is coming
+  # to the end of its phase 1 after having collected 1000 measurement days of
+  # tritium endpoint data in the search for the neutrino mass." Phase 2 is the
+  # TRISTAN focal-plane upgrade, agreed to run "up to 2028", so the experiment
+  # is neither completed nor, on any source found, currently taking data. None
+  # of the four values in STATUSES names a detector between campaigns, so the
+  # page prints nothing here rather than pick the closest wrong one.
   - name: KATRIN
     kind: mass
     city: Karlsruhe
     country: DE
     note: β-decay endpoint
     url: https://www.katrin.kit.edu/
+    role: mass
+    rank: 1
+    source: https://arxiv.org/abs/2601.00248
+
+  # No status on purpose. The cited page describes R&D, not a build: "Currently,
+  # efforts are focused on Phase III. We are developing demonstrators of various
+  # technologies and working on our detector simulations and event analysis."
+  # `construction` claimed a detector going up that the collaboration does not
+  # claim, and no value in STATUSES names a demonstrator programme.
+  - name: Project 8
+    kind: mass
+    city: Seattle
+    country: US
+    note: cyclotron radiation emission spectroscopy, tritium endpoint
+    url: https://www.project8.org/
+    role: mass
+    rank: 2
+    source: https://www.project8.org/about
 
   - name: LEGEND
     kind: mass
@@ -101,6 +377,52 @@ experiments:
     country: IT
     note: 0νββ in ⁷⁶Ge, at Gran Sasso
     url: https://legend-exp.org/
+    role: 0nubb
+    status: running
+    rank: 1
+    source: https://legend-exp.org/
+
+  - name: GERDA
+    kind: mass
+    city: Assergi
+    country: IT
+    note: 0νββ in ⁷⁶Ge, at Gran Sasso, predecessor to LEGEND
+    url: https://www.mpp.mpg.de/en/research/gerda
+    role: 0nubb
+    status: completed
+    rank: 2
+    source: https://www.mpp.mpg.de/en/research/gerda
+
+  - name: KamLAND-Zen
+    kind: mass
+    city: Hida
+    country: JP
+    note: 0νββ in ¹³⁶Xe, at Kamioka
+    url: https://www.awa.tohoku.ac.jp/en/kamland/
+    role: 0nubb
+    status: completed
+    rank: 3
+    source: https://www.awa.tohoku.ac.jp/en/kamland/
+
+  - name: CUORE
+    kind: mass
+    city: Assergi
+    country: IT
+    note: 0νββ in ¹³⁰Te, at Gran Sasso
+    url: https://cuoreexperiment.org/
+    role: 0nubb
+    rank: 4
+    source: https://cuoreexperiment.org/results/
+
+  - name: CUPID
+    kind: mass
+    city: Assergi
+    country: IT
+    note: 0νββ in ¹⁰⁰Mo, successor to CUORE at Gran Sasso
+    url: https://cupidexperiment.org/
+    role: 0nubb
+    rank: 5
+    source: https://cupidexperiment.org/experiment/
 
   - name: nEXO
     kind: mass
@@ -108,3 +430,156 @@ experiments:
     country: CA
     note: 0νββ in ¹³⁶Xe, at SNOLAB
     url: https://nexo.llnl.gov/
+    role: 0nubb
+    status: proposed
+    rank: 6
+    source: https://nexo.llnl.gov/
+
+  - name: EXO-200
+    kind: mass
+    city: Carlsbad
+    country: US
+    note: 0νββ in ¹³⁶Xe, at WIPP, predecessor to nEXO
+    url: https://arxiv.org/abs/1906.02723
+    role: 0nubb
+    status: completed
+    rank: 7
+    source: https://arxiv.org/abs/1906.02723
+
+  - name: Majorana Demonstrator
+    kind: mass
+    city: Lead
+    country: US
+    note: 0νββ in ⁷⁶Ge, at SURF
+    url: https://arxiv.org/abs/2207.07638
+    role: 0nubb
+    status: completed
+    rank: 8
+    source: https://arxiv.org/abs/2207.07638
+
+  - name: NEXT
+    kind: mass
+    city: Canfranc
+    country: ES
+    note: 0νββ in ¹³⁶Xe, high-pressure xenon TPC
+    url: https://next-experiment.org/
+    role: 0nubb
+    status: running
+    rank: 9
+    source: https://next-experiment.org/
+
+  # This record is at Yemilab, which is AMoRE-II — not the AMoRE-Pilot that the
+  # collaboration's status page still describes in the present tense (that ran
+  # at Yangyang, 2015-2017, and AMoRE-I after it, December 2020 to May 2023).
+  # `running` came from that stale page. The collaboration's own AMoRE-II paper
+  # places the experiment under installation, and its July 2026 paper on ⁴⁰Ca
+  # (arXiv:2607.08039) still has it ahead: "As the collaboration prepares for
+  # the AMoRE-II experiment, which will soon become operational employing 90 kg
+  # of 100Mo, most of the detector array will consist of LMO crystals."
+  - name: AMoRE
+    kind: mass
+    city: Jeongseon
+    country: KR
+    note: 0νββ in ¹⁰⁰Mo, at Yemilab
+    url: https://amore.ibs.re.kr/
+    role: 0nubb
+    status: construction
+    rank: 10
+    source: https://arxiv.org/abs/2406.09698
+    source_quote: >-
+      AMoRE-II is the main phase of AMoRE and is currently being installed at
+      the Yemi Underground Laboratory (Yemilab), located approximately 1000
+      meters deep in Jeongseon, Korea.
+
+  - name: ANTARES
+    kind: natural
+    city: Toulon
+    country: FR
+    note: undersea neutrino telescope, decommissioned 2022
+    url: https://antares.in2p3.fr/
+    role: atmospheric
+    status: completed
+    rank: 4
+    source: https://antares.in2p3.fr/antares-is-now-fully-dismantled/
+
+  - name: Kamiokande
+    kind: natural
+    city: Hida
+    country: JP
+    note: predecessor to Super-Kamiokande, at Kamioka
+    # `url` is Kamiokande's own paper — the link a reader clicking the name
+    # expects. `source` is the KamLAND review that states the dismantling, and
+    # is about a different experiment: right for the status, wrong as the
+    # destination of the name, which is why the two fields differ here.
+    url: https://doi.org/10.1103/PhysRevLett.77.1683
+    role: atmospheric
+    status: completed
+    rank: 5
+    source: https://arxiv.org/abs/1409.4515
+    source_quote: >-
+      After dismantling the Kamiokande detector, the rock cavity was enlarged
+      to be 20 m in diameter and 20 m in height.
+
+  - name: MicroBooNE
+    kind: accelerator
+    city: Batavia
+    country: US
+    note: liquid-argon TPC on the Booster beam, at Fermilab
+    url: https://microboone.fnal.gov/
+    role: sterile
+    rank: 1
+    source: https://microboone.fnal.gov/about-microboone/
+
+  - name: SBND
+    kind: accelerator
+    city: Batavia
+    country: US
+    note: near detector of the Short-Baseline Neutrino programme, at Fermilab
+    url: https://arxiv.org/abs/2504.00245
+    role: sterile
+    status: running
+    rank: 2
+    source: https://arxiv.org/abs/2504.00245
+
+  - name: ICARUS
+    kind: accelerator
+    city: Batavia
+    country: US
+    note: far detector of the Short-Baseline Neutrino programme, at Fermilab
+    url: https://icarus.fnal.gov/
+    role: sterile
+    status: running
+    rank: 3
+    source: https://doi.org/10.3390/particles8010018
+
+  - name: PROSPECT
+    kind: reactor
+    city: Oak Ridge
+    country: US
+    note: reactor antineutrino spectrum, at the High Flux Isotope Reactor
+    url: https://prospect.yale.edu/
+    role: sterile
+    rank: 4
+    source: https://www.ornl.gov/project/prospect
+
+  - name: STEREO
+    kind: reactor
+    city: Grenoble
+    country: FR
+    note: reactor antineutrino spectrum, at the ILL research reactor
+    url: https://arxiv.org/abs/2210.07664
+    role: sterile
+    status: completed
+    rank: 5
+    source: https://arxiv.org/abs/2210.07664
+
+  - name: BEST
+    kind: natural
+    city: Neutrino
+    country: RU
+    note: gallium radiochemical source experiment, at Baksan
+    url: https://arxiv.org/abs/2109.11482
+    role: sterile
+    status: completed
+    rank: 6
+    source: https://arxiv.org/abs/2109.11482

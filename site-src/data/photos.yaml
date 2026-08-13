@@ -95,6 +95,7 @@ photos:
     Runze Zhao, Shujun Zhao, Dongqin Zheng, Hua Zheng, Yangheng Zheng, Weirong Zhong, Jing Zhou, Li Zhou,
     Nan Zhou, Shun Zhou, Tong Zhou, Xiang Zhou, Jiang Zhu, Jingsen Zhu, Kangfu Zhu, Kejun Zhu, Zhihang
     Zhu, Bo Zhuang, Honglin Zhuang, Liang Zong, Jiaheng Zou'
+  author_short: JUNO Collaboration
   credit: 'https://arxiv.org/abs/2204.13249: Sub-percent Precision Measurement of Neutrino Oscillation'
   licence: CC BY 4.0
   licence_url: https://creativecommons.org/licenses/by/4.0
@@ -163,6 +164,7 @@ photos:
   page: https://commons.wikimedia.org/wiki/File%3AProtoDUNE-VD_walls.png
   thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/ProtoDUNE-VD_walls.png/1920px-ProtoDUNE-VD_walls.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
   author: Abitowlish
+  author_short: Abitowlish
   credit: Own work
   licence: CC BY-SA 4.0
   licence_url: https://creativecommons.org/licenses/by-sa/4.0
@@ -215,6 +217,7 @@ photos:
   page: https://commons.wikimedia.org/wiki/File%3AIceCube_Neutrino_Observatory_in_2023_02.jpg
   thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IceCube_Neutrino_Observatory_in_2023_02.jpg/1920px-IceCube_Neutrino_Observatory_in_2023_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
   author: Christopher Michel
+  author_short: Christopher Michel
   credit: Own work
   licence: CC BY-SA 4.0
   licence_url: https://creativecommons.org/licenses/by-sa/4.0
@@ -336,6 +339,7 @@ photos:
   page: https://commons.wikimedia.org/wiki/File%3AAerial_view_of_Wilson_Hall%2C_Fermilab.jpg
   thumb: https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Aerial_view_of_Wilson_Hall%2C_Fermilab.jpg/1920px-Aerial_view_of_Wilson_Hall%2C_Fermilab.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
   author: Fermilab, Reidar Hahn
+  author_short: Fermilab, Reidar Hahn
   credit: http://vms.fnal.gov/asset/detail?recid=1701638
   licence: Public domain
   licence_url: ''
@@ -375,6 +379,7 @@ photos:
   page: https://commons.wikimedia.org/wiki/File%3ALaboratori_Nazionali_del_Gran_Sasso%2C_Borexino_detector.png
   thumb: https://upload.wikimedia.org/wikipedia/commons/5/5f/Laboratori_Nazionali_del_Gran_Sasso%2C_Borexino_detector.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled
   author: Borexino Collaboration
+  author_short: Borexino Collaboration
   credit: Report photography
   licence: Public domain
   licence_url: ''
