@@ -57,6 +57,14 @@ def nice_bounds(lo: float, hi: float) -> tuple[float, float]:
     return lo - pad, hi + pad
 
 
+def bound_value(e: dict) -> float:
+    """The number that fixes a record's vertical position: the best fit for a
+    measurement, the printed bound for a limit. Used for the axis range, the
+    year-to-year connecting line, and placing the marker itself, so a limit
+    can never fall outside the area its own bound was used to compute."""
+    return e["upper"] if history.kind_of(e) == "limit" else e["best"]
+
+
 def marker(kind: str, x: float, y: float, colour: str, label: str) -> str:
     """Circle for NO, square for IO, diamond for “both”: shape carries the
     same information as colour, for readers who cannot use the colour."""
@@ -67,6 +75,13 @@ def marker(kind: str, x: float, y: float, colour: str, label: str) -> str:
     if kind == "io":
         return (f'<rect x="{x - 4.2:.1f}" y="{y - 4.2:.1f}" width="8.4" height="8.4" rx="1.2" '
                 f'fill="{colour}"{ring}>{t}</rect>')
+    if kind == "limit-upper":
+        # A downward arrow from the bound: the value lies below this line,
+        # somewhere, and the drawing must not suggest a point estimate.
+        return (f'<path d="M{x - 5:.1f} {y:.1f}L{x + 5:.1f} {y:.1f}M{x:.1f} {y:.1f}'
+                f'L{x:.1f} {y + 11:.1f}M{x - 3.4:.1f} {y + 7:.1f}L{x:.1f} {y + 11:.1f}'
+                f'L{x + 3.4:.1f} {y + 7:.1f}" fill="none" stroke="{colour}" '
+                f'stroke-width="2" stroke-linecap="round">{t}</path>')
     return (f'<path d="M{x:.1f} {y - 5.2:.1f}L{x + 5.2:.1f} {y:.1f}'
             f'L{x:.1f} {y + 5.2:.1f}L{x - 5.2:.1f} {y:.1f}Z" fill="{colour}"{ring}>{t}</path>')
 
@@ -128,7 +143,7 @@ def compare_panel(pname: str, meta: dict, releases: list[dict]) -> str:
     x0, x1 = min(years) - 0.8, max(years) + 0.8
     vals = []
     for _, e in points:
-        vals.append(e["best"])
+        vals.append(bound_value(e))
         vals += list(e.get("s3") or [])
     y0, y1 = nice_bounds(min(vals), max(vals))
     sx = lambda v: PAD_L + (v - x0) / (x1 - x0) * (W - PAD_L - PAD_R)
@@ -162,11 +177,15 @@ def compare_panel(pname: str, meta: dict, releases: list[dict]) -> str:
                            f'x2="{sx(yr) + dx[gid]:.1f}" y2="{sy(e["s3"][1]):.1f}" stroke="{colour}" '
                            'stroke-width="2" stroke-linecap="round" opacity=".34"/>')
         if len(pts) > 1:
-            d = " ".join(f'{"M" if i == 0 else "L"}{sx(y) + dx[gid]:.1f} {sy(e["best"]):.1f}'
+            d = " ".join(f'{"M" if i == 0 else "L"}{sx(y) + dx[gid]:.1f} {sy(bound_value(e)):.1f}'
                          for i, (y, e) in enumerate(pts))
             out.append(f'<path d="{d}" fill="none" stroke="{colour}" stroke-width="2" '
                        'stroke-linejoin="round" opacity=".5"/>')
         for yr, e in pts:
+            if history.kind_of(e) == "limit":
+                out.append(marker("limit-upper", sx(yr) + dx[gid], sy(e["upper"]), colour,
+                                  f"{gname}, {yr}: {label} {history.limit_label(e)} ({unit})"))
+                continue
             rng = e.get("s3")
             span = f', 3σ {rng[0]:.4g}–{rng[1]:.4g}' if rng else ""
             out.append(marker(shape, sx(yr) + dx[gid], sy(e["best"]), colour,
@@ -202,7 +221,7 @@ def panel(pname: str, meta: dict, releases: list[dict]) -> str:
     x0, x1 = min(years) - 0.8, max(years) + 0.8
     vals = []
     for _, e in points:
-        vals.append(e["best"])
+        vals.append(bound_value(e))
         vals += list(e.get("s3") or e.get("s1") or [])
     y0, y1 = nice_bounds(min(vals), max(vals))
 
@@ -243,11 +262,15 @@ def panel(pname: str, meta: dict, releases: list[dict]) -> str:
                            f'x2="{sx(yr):.1f}" y2="{sy(rng[1]):.1f}" stroke="{colour}" '
                            'stroke-width="2" stroke-linecap="round" opacity=".38"/>')
         if len(pts) > 1:
-            d = " ".join(f'{"M" if i == 0 else "L"}{sx(y):.1f} {sy(e["best"]):.1f}'
+            d = " ".join(f'{"M" if i == 0 else "L"}{sx(y):.1f} {sy(bound_value(e)):.1f}'
                          for i, (y, e) in enumerate(pts))
             out.append(f'<path d="{d}" fill="none" stroke="{colour}" stroke-width="2" '
                        'stroke-linejoin="round" opacity=".55"/>')
         for yr, e in pts:
+            if history.kind_of(e) == "limit":
+                out.append(marker("limit-upper", sx(yr), sy(e["upper"]), colour,
+                                  f"{name}, {yr}: {label} {history.limit_label(e)} ({unit})"))
+                continue
             rng = e.get("s3") or e.get("s1")
             span = f', 3σ {rng[0]:g}–{rng[1]:g}' if rng else ""
             out.append(marker(kind, sx(yr), sy(e["best"]), colour,
@@ -360,6 +383,7 @@ here: adding them means converting first, and stating the conversion.</p>
   <span><i class="k-no"></i>Normal ordering (circle)</span>
   <span><i class="k-io"></i>Inverted ordering (square)</span>
   <span><i class="k-any"></i>Quoted for both (diamond)</span>
+  <span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" style="vertical-align:middle;margin-right:.35rem"><path d="M2 2L12 2M7 2L7 12M3.6 8L7 12L10.4 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Upper limit, level printed on the marker</span>
 </div>
 
 <div class="panels">
@@ -432,6 +456,7 @@ the marker is the first one quoted and the 3σ range spans both.</p>
   <span><i class="k-bari"></i>Bari (circle)</span>
   <span><i class="k-nufit"></i>NuFit (square)</span>
   <span><i class="k-valencia"></i>Valencia (diamond)</span>
+  <span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" style="vertical-align:middle;margin-right:.35rem"><path d="M2 2L12 2M7 2L7 12M3.6 8L7 12L10.4 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Upper limit, level printed on the marker</span>
 </div>
 
 <div class="panels">

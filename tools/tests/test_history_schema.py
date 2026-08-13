@@ -84,6 +84,16 @@ check("a limit with a known level is accepted",
 check("a limit's label states the bound and the level",
       history.limit_label({"upper": 5.0, "level": "3sigma"}) == "< 5.0 (3σ)")
 
+# 5. rendering
+sys.path.insert(0, str(ROOT / "tools"))
+import make_history                                     # noqa: E402
+
+svg = make_history.marker("limit-upper", 100.0, 50.0, "var(--no)", "< 5.0 (3σ)")
+check("a limit renders as its own shape, not a measurement's",
+      "<circle" not in svg and "<rect" not in svg,
+      f"got: {svg[:80]}")
+check("a limit's marker carries its label", "< 5.0 (3σ)" in svg)
+
 print()
 if problems:
     print(f"  ! {len(problems)} of {checks} checks failed")

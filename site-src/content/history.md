@@ -38,6 +38,7 @@ here: adding them means converting first, and stating the conversion.</p>
   <span><i class="k-no"></i>Normal ordering (circle)</span>
   <span><i class="k-io"></i>Inverted ordering (square)</span>
   <span><i class="k-any"></i>Quoted for both (diamond)</span>
+  <span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" style="vertical-align:middle;margin-right:.35rem"><path d="M2 2L12 2M7 2L7 12M3.6 8L7 12L10.4 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Upper limit, level printed on the marker</span>
 </div>
 
 <div class="panels">
@@ -446,6 +447,7 @@ the marker is the first one quoted and the 3σ range spans both.</p>
   <span><i class="k-bari"></i>Bari (circle)</span>
   <span><i class="k-nufit"></i>NuFit (square)</span>
   <span><i class="k-valencia"></i>Valencia (diamond)</span>
+  <span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" style="vertical-align:middle;margin-right:.35rem"><path d="M2 2L12 2M7 2L7 12M3.6 8L7 12L10.4 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Upper limit, level printed on the marker</span>
 </div>
 
 <div class="panels">
