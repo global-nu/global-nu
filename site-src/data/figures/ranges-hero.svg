@@ -1,0 +1,33 @@
+<svg viewBox="0 0 520 250" role="img" aria-label="Best fit with 1σ and 3σ ranges for each oscillation parameter, normal ordering, current release">
+<text x="80" y="41" text-anchor="end" font-size="11.5" font-weight="600" fill="currentColor">δm²</text>
+<line x1="122.8" y1="37" x2="431.2" y2="37" stroke="var(--no)" stroke-width="3" stroke-linecap="round" opacity=".28"><title>3σ: 6.93 – 7.93</title></line>
+<line x1="209.2" y1="37" x2="304.7" y2="37" stroke="var(--no)" stroke-width="7" stroke-linecap="round" opacity=".55"><title>1σ: 7.21 – 7.52</title></line>
+<circle cx="258.5" cy="37" r="5" fill="var(--no)" stroke="var(--surface)" stroke-width="2" paint-order="stroke"><title>best fit 7.37</title></circle>
+<text x="472" y="41" font-size="11" font-family="var(--mono)" fill="currentColor" opacity=".75">7.37</text>
+<text x="80" y="75" text-anchor="end" font-size="11.5" font-weight="600" fill="currentColor">|Δm²|</text>
+<line x1="122.8" y1="71" x2="431.2" y2="71" stroke="var(--no)" stroke-width="3" stroke-linecap="round" opacity=".28"><title>3σ: 2.433 – 2.558</title></line>
+<line x1="226.4" y1="71" x2="325.1" y2="71" stroke="var(--no)" stroke-width="7" stroke-linecap="round" opacity=".55"><title>1σ: 2.475 – 2.515</title></line>
+<circle cx="275.8" cy="71" r="5" fill="var(--no)" stroke="var(--surface)" stroke-width="2" paint-order="stroke"><title>best fit 2.495</title></circle>
+<text x="472" y="75" font-size="11" font-family="var(--mono)" fill="currentColor" opacity=".75">2.495</text>
+<text x="80" y="109" text-anchor="end" font-size="11.5" font-weight="600" fill="currentColor">sin²θ₁₂</text>
+<line x1="122.8" y1="105" x2="431.2" y2="105" stroke="var(--no)" stroke-width="3" stroke-linecap="round" opacity=".28"><title>3σ: 2.64 – 3.45</title></line>
+<line x1="225.6" y1="105" x2="324.6" y2="105" stroke="var(--no)" stroke-width="7" stroke-linecap="round" opacity=".55"><title>1σ: 2.91 – 3.17</title></line>
+<circle cx="271.3" cy="105" r="5" fill="var(--no)" stroke="var(--surface)" stroke-width="2" paint-order="stroke"><title>best fit 3.03</title></circle>
+<text x="472" y="109" font-size="11" font-family="var(--mono)" fill="currentColor" opacity=".75">3.03</text>
+<text x="80" y="143" text-anchor="end" font-size="11.5" font-weight="600" fill="currentColor">sin²θ₁₃</text>
+<line x1="122.8" y1="139" x2="431.2" y2="139" stroke="var(--no)" stroke-width="3" stroke-linecap="round" opacity=".28"><title>3σ: 2.06 – 2.38</title></line>
+<line x1="228.8" y1="139" x2="325.2" y2="139" stroke="var(--no)" stroke-width="7" stroke-linecap="round" opacity=".55"><title>1σ: 2.17 – 2.27</title></line>
+<circle cx="286.6" cy="139" r="5" fill="var(--no)" stroke="var(--surface)" stroke-width="2" paint-order="stroke"><title>best fit 2.23</title></circle>
+<text x="472" y="143" font-size="11" font-family="var(--mono)" fill="currentColor" opacity=".75">2.23</text>
+<text x="80" y="177" text-anchor="end" font-size="11.5" font-weight="600" fill="currentColor">sin²θ₂₃</text>
+<line x1="122.8" y1="173" x2="431.2" y2="173" stroke="var(--no)" stroke-width="3" stroke-linecap="round" opacity=".28"><title>3σ: 4.37 – 5.81</title></line>
+<line x1="172.1" y1="173" x2="249.2" y2="173" stroke="var(--no)" stroke-width="7" stroke-linecap="round" opacity=".55"><title>1σ: 4.6 – 4.96</title></line>
+<circle cx="199.9" cy="173" r="5" fill="var(--no)" stroke="var(--surface)" stroke-width="2" paint-order="stroke"><title>best fit 4.73</title></circle>
+<text x="472" y="177" font-size="11" font-family="var(--mono)" fill="currentColor" opacity=".75">4.73</text>
+<text x="80" y="211" text-anchor="end" font-size="11.5" font-weight="600" fill="currentColor">δ/π</text>
+<line x1="122.8" y1="207" x2="431.2" y2="207" stroke="var(--no)" stroke-width="3" stroke-linecap="round" opacity=".28"><title>3σ: 0.73 – 2.03</title></line>
+<line x1="203.5" y1="207" x2="274.6" y2="207" stroke="var(--no)" stroke-width="7" stroke-linecap="round" opacity=".55"><title>1σ: 1.07 – 1.37</title></line>
+<circle cx="234.3" cy="207" r="5" fill="var(--no)" stroke="var(--surface)" stroke-width="2" paint-order="stroke"><title>best fit 1.2</title></circle>
+<text x="472" y="211" font-size="11" font-family="var(--mono)" fill="currentColor" opacity=".75">1.2</text>
+<text x="462" y="244" text-anchor="end" font-size="9.5" font-family="var(--mono)" fill="currentColor" opacity=".5">arXiv:2503.07752</text>
+</svg>

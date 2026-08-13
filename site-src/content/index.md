@@ -23,24 +23,12 @@ katex: false
     </div>
 
     <figure class="figure">
-      <h4>Three-flavour oscillation · schematic, not a fit</h4>
-      <svg viewBox="0 0 520 230" role="img" aria-label="Schematic oscillation probabilities for the two mass orderings">
-        <line x1="42" y1="196" x2="504" y2="196" stroke="currentColor" stroke-width="1" opacity=".35"/>
-        <line x1="42" y1="16" x2="42" y2="196" stroke="currentColor" stroke-width="1" opacity=".35"/>
-        <line x1="42" y1="150" x2="504" y2="150" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".22"/>
-        <line x1="42" y1="100" x2="504" y2="100" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".22"/>
-        <line x1="42" y1="50"  x2="504" y2="50"  stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".22"/>
-        <path d="M60 28 Q 205 246 250 196 Q 300 246 470 20"
-              fill="none" stroke="var(--no)" stroke-width="2.4" stroke-linecap="round"/>
-        <path d="M70 18 Q 250 232 300 180 Q 350 232 486 32"
-              fill="none" stroke="var(--io)" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="7 5"/>
-      </svg>
-      <div class="legend">
-        <span><i class="k-no"></i>normal ordering</span>
-        <span><i class="k-io"></i>inverted ordering</span>
-      </div>
-      <p class="cap">Illustrative. The release’s own Δχ² profiles, drawn from
-      the published files, live on the <a href="results.html">results page</a>.</p>
+      <h4>The six parameters, as measured</h4>
+      <!--include:ranges-hero-->
+      <p class="cap">Best fit with 1σ and 3σ ranges, normal ordering, from
+      Table I of <a href="https://doi.org/10.1103/PhysRevD.111.093006">Phys.
+      Rev. D 111, 093006 (2025)</a>. Full tables, both orderings and the
+      downloadable files are on the <a href="results.html">results page</a>.</p>
     </figure>
   </div>
 </section>
