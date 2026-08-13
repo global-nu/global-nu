@@ -89,9 +89,13 @@ sys.path.insert(0, str(ROOT / "tools"))
 import make_history                                     # noqa: E402
 
 svg = make_history.marker("limit-upper", 100.0, 50.0, "var(--no)", "< 5.0 (3σ)")
-check("a limit renders as its own shape, not a measurement's",
-      "<circle" not in svg and "<rect" not in svg,
-      f"got: {svg[:80]}")
+diamond = make_history.marker("any", 100.0, 50.0, "var(--no)", "< 5.0 (3σ)")
+check("a limit renders differently from the diamond fallback, same point",
+      svg != diamond,
+      f"limit:   {svg[:90]}\n         diamond: {diamond[:90]}")
+check("a limit's marker is stroked and unfilled, unlike every filled shape",
+      'fill="none"' in svg,
+      f"got: {svg[:90]}")
 check("a limit's marker carries its label", "< 5.0 (3σ)" in svg)
 
 print()
