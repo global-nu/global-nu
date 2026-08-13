@@ -34,6 +34,17 @@ experiments:
     rank: 1
     source: https://juno.ihep.cas.cn/
 
+  - name: KamLAND
+    kind: reactor
+    city: Hida
+    country: JP
+    note: reactor θ12 and δm², at Kamioka
+    url: https://www.awa.tohoku.ac.jp/kamland/
+    role: theta12_dm2
+    status: completed
+    rank: 2
+    source: https://www.awa.tohoku.ac.jp/kamland/
+
   - name: Daya Bay
     kind: reactor
     city: Shenzhen
