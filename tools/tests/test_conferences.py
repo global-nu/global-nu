@@ -151,10 +151,17 @@ def _counting_http_get(url, **kwargs):
 
 _orig_http_get = venue.http_get
 _orig_venue_cache = venue.VENUE_CACHE
+_orig_mem_cache = venue._cache
 venue.http_get = _counting_http_get
 venue.VENUE_CACHE = Path(tempfile.mkdtemp()) / "venuecache.json"
+venue._cache = None                  # do not inherit an earlier block's cache
 try:
     first = venue._from_page("https://dead.example.org/", _Log())
+    # Force the SECOND call to re-parse the JSON file rather than reuse the
+    # in-memory dict left by the first call — otherwise this only proves the
+    # in-memory short-circuit works, and never touches VENUE_CACHE.read_text
+    # at all, which is half of what "cached to disk" is supposed to mean.
+    venue._cache = None
     second = venue._from_page("https://dead.example.org/", _Log())
     check("a page yielding nothing is fetched once",
           len(_calls) == 1, f"http_get called {len(_calls)} times: {_calls}")
@@ -163,6 +170,7 @@ try:
 finally:
     venue.http_get = _orig_http_get
     venue.VENUE_CACHE = _orig_venue_cache
+    venue._cache = _orig_mem_cache
 
 
 # Indico's own JSON-LD literally says `"address":"No address set"` when an
@@ -187,8 +195,10 @@ def _placeholder_http_get(url, **kwargs):
 
 _orig_http_get = venue.http_get
 _orig_venue_cache = venue.VENUE_CACHE
+_orig_mem_cache = venue._cache
 venue.http_get = _placeholder_http_get
 venue.VENUE_CACHE = Path(tempfile.mkdtemp()) / "venuecache.json"
+venue._cache = None
 try:
     found = venue._from_page("https://indico.example.org/event/1/", _Log())
     check("Indico's 'No address set' placeholder is not mistaken for a real address",
@@ -196,6 +206,51 @@ try:
 finally:
     venue.http_get = _orig_http_get
     venue.VENUE_CACHE = _orig_venue_cache
+    venue._cache = _orig_mem_cache
+
+
+# The microdata fallback (schema.org itemprop=... without a JSON-LD script)
+# used to scan the whole page for each of the five address fields
+# independently, with no itemscope/itemtype boundary — so a page carrying
+# more than one microdata block (a footer Organization, then the actual
+# venue) would stitch the first streetAddress it found to the first
+# addressLocality it found to the first addressCountry it found, regardless
+# of which block each came from. That is exactly the "a dot in roughly the
+# right country is worse than no dot" failure this whole module exists to
+# avoid, so the fallback was removed rather than scoped: this project has no
+# HTML parser to track itemscope boundaries correctly, and JSON-LD (walked
+# with real @type/nesting checks, above) already covers the pages that
+# publish structured venue data properly.
+_two_block_html = (
+    '<div itemscope itemtype="http://schema.org/Organization">'
+    '  <span itemprop="streetAddress">1 Institute Ave</span>'
+    '  <span itemprop="addressCountry">Testland</span>'
+    '</div>'
+    '<div itemscope itemtype="http://schema.org/Place">'
+    '  <span itemprop="addressLocality">Realcity</span>'
+    '  <span itemprop="addressCountry">Otherland</span>'
+    '</div>')
+
+
+def _two_block_http_get(url, **kwargs):
+    return _FakeResponse(_two_block_html)
+
+
+_orig_http_get = venue.http_get
+_orig_venue_cache = venue.VENUE_CACHE
+_orig_mem_cache = venue._cache
+venue.http_get = _two_block_http_get
+venue.VENUE_CACHE = Path(tempfile.mkdtemp()) / "venuecache.json"
+venue._cache = None
+try:
+    found = venue._from_page("https://example.org/two-blocks/", _Log())
+    blended = found is not None and "Institute Ave" in found and "Realcity" in found
+    check("a page with two microdata blocks never blends fields across them",
+          not blended, f"got {found!r}")
+finally:
+    venue.http_get = _orig_http_get
+    venue.VENUE_CACHE = _orig_venue_cache
+    venue._cache = _orig_mem_cache
 
 # A trailing period after the country name — seen in a real record
 # ("Heidelberg, Germany.") — must not stop the country from being recognised.

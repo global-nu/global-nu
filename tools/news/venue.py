@@ -16,13 +16,16 @@ than something approximate.
                            a geocoder, which is why it is kept rather than
                            thrown away.
     4. the conference's own page, parsed for a structured address: schema.org
-       Event/Place JSON-LD first, a postal-address microdata pattern second.
-       This step is last on purpose: it is dozens of requests a day to other
-       people's servers, and every conference site is built differently, so
-       it is asked only once nothing better is available — and asked at most
-       once ever per URL, because every outcome (including "found nothing")
-       is cached in var/news/venuecache.json. A cache that only remembered
-       successes would re-fetch every dead page every morning.
+       Event/Place JSON-LD, walked for a node whose own @type is Event,
+       Place or PostalAddress and which carries a nested address — nothing
+       looser than that (see `_from_page`'s docstring for why a microdata
+       fallback was tried and removed). This step is last on purpose: it is
+       dozens of requests a day to other people's servers, and every
+       conference site is built differently, so it is asked only once
+       nothing better is available — and asked at most once ever per URL,
+       because every outcome (including "found nothing") is cached in
+       var/news/venuecache.json. A cache that only remembered successes
+       would re-fetch every dead page every morning.
     5. nothing. The conference keeps its place in the list and gets no
        marker.
 
@@ -34,11 +37,10 @@ from __future__ import annotations
 
 import json
 import re
-from html import unescape
 from pathlib import Path
 
 from . import geocode, worldmap
-from .common import USER_AGENT, http_get
+from .common import http_get
 
 VENUE_CACHE = Path(__file__).resolve().parents[2] / "var" / "news" / "venuecache.json"
 
@@ -77,14 +79,6 @@ _ADDRESS_FIELDS = (
     "streetAddress", "addressLocality", "addressRegion", "postalCode",
     "addressCountry",
 )
-
-_MICRODATA_RE = {
-    field: re.compile(
-        r'itemprop=["\']' + field + r'["\'][^>]*(?:content=["\']([^"\']+)["\']|>([^<]+)<)',
-        re.I)
-    for field in _ADDRESS_FIELDS
-}
-
 
 # Indico's own JSON-LD literally emits this string when the organiser never
 # set a venue — found on a real record while testing this cascade
@@ -154,21 +148,23 @@ def _address_from_jsonld(html: str) -> str | None:
     return None
 
 
-def _address_from_microdata(html: str) -> str | None:
-    """schema.org microdata (itemprop=...), the pattern sites use instead of
-    JSON-LD when they annotate the venue inline rather than in a script tag."""
-    parts = []
-    for field in _ADDRESS_FIELDS:
-        m = _MICRODATA_RE[field].search(html)
-        if m:
-            val = unescape((m.group(1) or m.group(2) or "")).strip()
-            if val:
-                parts.append(val)
-    return ", ".join(parts) if parts else None
-
-
 def _from_page(url: str, log) -> str | None:
     """The conference's own page, cached by URL — including its failures.
+
+    JSON-LD only. An earlier version also tried a schema.org microdata
+    fallback (`itemprop="streetAddress"` etc.), matched with an independent
+    regex search per field across the whole page. That is unsafe: without
+    itemscope/itemtype boundary tracking it will happily stitch the first
+    streetAddress on the page to the first addressLocality to the first
+    addressCountry, even when they come from three unrelated blocks — a
+    footer Organization, a sponsor listing, a second event on an aggregator.
+    A coordinate built from that blend is exactly the "dot in roughly the
+    right country" this whole module exists to refuse, and this project has
+    no HTML parser to scope it correctly. The JSON-LD walker above does not
+    have this problem — it only reads an `address` off a node whose own
+    `@type` is Event/Place/PostalAddress — so it is trusted alone; a page
+    without JSON-LD simply yields nothing here rather than a guess assembled
+    from unrelated parts of the page.
 
     Called at most once per URL, ever: a hit or a miss is written back before
     returning, so tomorrow's run finds the answer already in the cache and
@@ -179,14 +175,13 @@ def _from_page(url: str, log) -> str | None:
         return cache[url]
 
     address = None
-    r = http_get(url, timeout=PAGE_TIMEOUT_S,
-                headers={"User-Agent": USER_AGENT}, log=log)
+    r = http_get(url, timeout=PAGE_TIMEOUT_S, log=log)
     if r is not None:
         try:
             text = r.text
         except Exception:                 # pragma: no cover — defensive only
             text = ""
-        address = _address_from_jsonld(text) or _address_from_microdata(text)
+        address = _address_from_jsonld(text)
 
     cache[url] = address
     _cache_save()
