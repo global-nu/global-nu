@@ -30,7 +30,13 @@ from . import fetch_indico, fetch_inspire, linkcheck, render, state, synthesize
 from .common import ROOT, get_logger, load_config, now_iso
 from .lock import LockBusy, run_lock
 
-EXPERIMENTAL_CATS = ("hep-ex", "nucl-ex", "physics.ins-det", "astro-ph.HE")
+# What the Experiments narrative may be written from. Deliberately WIDER than
+# render.EXPERIMENTAL_CATS, which splits the digest's two streams: a result
+# worth writing about counts whichever list it was filed under, and
+# astro-ph.HE is where neutrino-telescope results appear. The two constants
+# used to be one, which is how every astro-ph.HE preprint — theory included —
+# ended up filed as "Experimental" on the digest page.
+EXPERIMENT_POOL_CATS = ("hep-ex", "nucl-ex", "physics.ins-det", "astro-ph.HE")
 
 
 def _safe(step: str, fn, log, default):
@@ -49,33 +55,50 @@ def _experiment_pool(feeds: list[dict], arxiv: list[dict]) -> list[dict]:
     # Deliberately "any category" here, unlike the digest's two streams: a
     # result worth writing about counts whichever list it was filed under.
     exp_arxiv = [r for r in arxiv
-                 if any(c.startswith(EXPERIMENTAL_CATS)
+                 if any(c.startswith(EXPERIMENT_POOL_CATS)
                         for c in (r.get("extra") or {}).get("categories", []))]
     return feeds + exp_arxiv
 
 
 def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
-        verbose: bool = True) -> int:
+        verbose: bool = True, from_cache: bool = False) -> int:
     log = get_logger("news", verbose=verbose)
     cfg = load_config()
     log.info("=" * 62)
-    log.info("run started (dry_run=%s, ai=%s, build=%s)", dry_run, use_ai, do_build)
+    log.info("run started (dry_run=%s, ai=%s, build=%s, from_cache=%s)",
+             dry_run, use_ai, do_build, from_cache)
 
     # ------------------------------------------------------------ 1. fetch --
-    arxiv = _safe("arxiv", lambda: fetch_arxiv.fetch(cfg, log), log, [])
-    feeds = _safe("feeds", lambda: fetch_feeds.fetch(cfg, log), log, [])
-    papers = _safe("inspire", lambda: fetch_inspire.fetch_literature(cfg, log), log, [])
-    events = _safe("indico", lambda: fetch_indico.fetch(cfg, log), log, [])
+    if from_cache:
+        # Re-render the three pages from the records already on disk, calling
+        # no API and no model. This exists because the pages are generated
+        # files: correcting how one of them is *written* means editing the
+        # renderer and regenerating, and a regeneration that had to re-fetch
+        # would change what the page says at the same time as how it says it,
+        # which makes the correction impossible to review.
+        day = cache.latest_day_with("arxiv")          # None means today
+        arxiv = cache.load_records("arxiv", day)
+        feeds = cache.load_records("feeds", day)
+        papers = cache.load_records("inspire", day)
+        events = cache.load_records("indico", day)
+        log.info("from cache (%s): %d arXiv, %d feed items, %d papers, %d events",
+                 day or "today", len(arxiv), len(feeds), len(papers), len(events))
+    else:
+        arxiv = _safe("arxiv", lambda: fetch_arxiv.fetch(cfg, log), log, [])
+        feeds = _safe("feeds", lambda: fetch_feeds.fetch(cfg, log), log, [])
+        papers = _safe("inspire",
+                       lambda: fetch_inspire.fetch_literature(cfg, log), log, [])
+        events = _safe("indico", lambda: fetch_indico.fetch(cfg, log), log, [])
 
-    if events:
-        events = conf_mod.sort_for_page(conf_mod.merge([events], log))
+        if events:
+            events = conf_mod.sort_for_page(conf_mod.merge([events], log))
 
-    for name, records in (("arxiv", arxiv), ("feeds", feeds),
-                          ("inspire", papers), ("indico", events)):
-        if records:
-            cache.store(name, records)
-    log.info("fetched: %d arXiv, %d feed items, %d papers, %d events",
-             len(arxiv), len(feeds), len(papers), len(events))
+        for name, records in (("arxiv", arxiv), ("feeds", feeds),
+                              ("inspire", papers), ("indico", events)):
+            if records:
+                cache.store(name, records)
+        log.info("fetched: %d arXiv, %d feed items, %d papers, %d events",
+                 len(arxiv), len(feeds), len(papers), len(events))
 
     # ------------------------------------------------------- 2. synthesise --
     narrative = None
@@ -98,11 +121,15 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
     # check — publishers answer 403 to anything that is not a browser — and
     # dropping a live DOI because a CDN was unfriendly would be worse than
     # leaving it in.
-    bad = _safe("linkcheck",
-                lambda: {u: v for u, v in
-                         linkcheck.check(linkcheck.urls_of(all_records), cfg, log).items()
-                         if v == "broken"},
-                log, {})
+    # Records read back from the cache were link-checked by the run that
+    # fetched them; re-checking them would put the network back in the path of
+    # a re-render that is supposed to touch nothing but the wording.
+    bad = {} if from_cache else _safe(
+        "linkcheck",
+        lambda: {u: v for u, v in
+                 linkcheck.check(linkcheck.urls_of(all_records), cfg, log).items()
+                 if v == "broken"},
+        log, {})
     alive = linkcheck.filter_records(all_records, bad, log) if bad else all_records
     alive_ids = {r["id"] for r in alive}
     arxiv = [r for r in arxiv if r["id"] in alive_ids]
@@ -205,13 +232,18 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--no-ai", action="store_true",
                     help="skip the synthesis call, keep the previous narrative")
     ap.add_argument("--no-build", action="store_true", help="skip build.py")
+    ap.add_argument("--from-cache", action="store_true",
+                    help="re-render from the last cached fetch: no API call, "
+                         "no model call, no link check")
     ap.add_argument("--quiet", action="store_true", help="log to file only")
     args = ap.parse_args(argv)
 
     try:
         with run_lock():
-            return run(dry_run=args.dry_run, use_ai=not args.no_ai,
-                       do_build=not args.no_build, verbose=not args.quiet)
+            return run(dry_run=args.dry_run,
+                       use_ai=not args.no_ai and not args.from_cache,
+                       do_build=not args.no_build, verbose=not args.quiet,
+                       from_cache=args.from_cache)
     except LockBusy as exc:
         print(f"another run is in progress ({exc}) — nothing done", file=sys.stderr)
         return 0

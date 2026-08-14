@@ -218,6 +218,60 @@ def truncate(text: str, limit: int) -> str:
     return cut + " …"
 
 
+# TeX that arrives inside a title. arXiv and INSPIRE both store titles as the
+# author typed them, so "$\bar\nu_\mu$" and "NO$\nu$A" reach us verbatim; a
+# page that prints them raw looks broken, and a page that strips the markup
+# blindly turns an antineutrino into a neutrino. So: known commands become the
+# character they mean, an unknown command keeps its argument and loses the
+# command, and nothing else is invented.
+_TEX_LITERAL = {
+    r"\nu": "ν", r"\mu": "μ", r"\tau": "τ", r"\alpha": "α", r"\beta": "β",
+    r"\gamma": "γ", r"\Gamma": "Γ", r"\delta": "δ", r"\Delta": "Δ",
+    r"\epsilon": "ε", r"\varepsilon": "ε", r"\Phi": "Φ", r"\Pi": "Π",
+    r"\Xi": "Ξ", r"\xi": "ξ", r"\kappa": "κ", r"\zeta": "ζ",
+    r"\theta": "θ", r"\Theta": "Θ", r"\lambda": "λ", r"\Lambda": "Λ",
+    r"\sigma": "σ", r"\Sigma": "Σ", r"\phi": "φ", r"\varphi": "φ",
+    r"\chi": "χ", r"\psi": "ψ", r"\Psi": "Ψ", r"\omega": "ω",
+    r"\Omega": "Ω", r"\pi": "π", r"\rho": "ρ", r"\eta": "η",
+    r"\times": "×", r"\to": "→", r"\rightarrow": "→", r"\pm": "±",
+    r"\ell": "ℓ", r"\infty": "∞", r"\approx": "≈", r"\sim": "∼",
+    r"\leq": "≤", r"\geq": "≥", r"\ll": "≪", r"\gg": "≫",
+}
+# The macron goes ON the letter it bars: "\bar\nu" must become "ν̄", never "ν".
+_COMBINING_MACRON = "\u0304"
+_BAR_RE = re.compile(r"\\(?:bar|overline)\s*\{?\s*([^\s{}$]+?)\s*\}?(?=[\s$_^{}]|$)")
+_CMD_ARG_RE = re.compile(r"\\[a-zA-Z]+\s*\{([^{}]*)\}")
+_CMD_RE = re.compile(r"\\[a-zA-Z]+\s*")
+
+# Numeric sub- and superscripts have real characters; letters mostly do not.
+# "^{40}Ca" becomes "⁴⁰Ca", while "_{CP}" is left as "_CP" rather than
+# half-translated into something that looks like a typo.
+_SCRIPT_RE = re.compile(r"([_^])\{?([0-9+\-()]+)\}?")
+_SUB = str.maketrans("0123456789+-()", "₀₁₂₃₄₅₆₇₈₉₊₋₍₎")
+_SUP = str.maketrans("0123456789+-()", "⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁽⁾")
+
+
+def detex(text: str | None) -> str:
+    """A title with its TeX rendered as text, for a page that has no KaTeX.
+
+    Not a TeX engine and not trying to be: it handles what actually turns up
+    in preprint titles. Anything it does not know it drops the command from
+    and keeps the argument, so no word is ever lost.
+    """
+    if not text:
+        return ""
+    out = _BAR_RE.sub(lambda m: m.group(1) + _COMBINING_MACRON, text)
+    for cmd, char in _TEX_LITERAL.items():
+        out = re.sub(re.escape(cmd) + r"(?![a-zA-Z])\s*", char, out)
+    out = _CMD_ARG_RE.sub(r"\1", out)
+    out = _CMD_RE.sub("", out)
+    out = _SCRIPT_RE.sub(
+        lambda m: m.group(2).translate(_SUB if m.group(1) == "_" else _SUP), out)
+    out = out.replace("$", "").replace("{", "").replace("}", "")
+    out = out.replace("\\,", " ").replace("\\;", " ").replace("\\ ", " ")
+    return _WS_RE.sub(" ", out).strip()
+
+
 def today() -> _dt.date:
     return _dt.date.today()
 
