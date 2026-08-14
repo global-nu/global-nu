@@ -53,6 +53,9 @@ STATUSES: tuple[str, ...] = ("running", "completed", "construction",
 #                         the status would hide a fact its laboratory states
 #                         plainly.
 #
+# Both were added during the pre-launch audit and kept on Antonio's decision of
+# 2026-08-14, so a later reader meets them as a choice rather than as drift.
+#
 # Both labels are only as good as the sentence in source_quote, like every
 # other status here.
 STATUS_LABEL = {

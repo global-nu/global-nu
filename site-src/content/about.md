@@ -104,6 +104,12 @@ there is transcribed from a published table by hand.</p>
 ## Contact
 
 Dipartimento Interateneo di Fisica “Michelangelo Merlin”, Via Amendola 173,
+<!-- Postcode 70126, confirmed by Antonio on 2026-08-14. A pre-launch audit
+     could not source it: UniBa serves crawlers a stub, INFN Bari publishes a
+     different street (Via Orabona 4, 70125), and OpenStreetMap returns 70121
+     and 74126 for Via Amendola. It is what the group's own papers print, and
+     it is the address of the person who works there. Do not "correct" it from
+     a web search. -->
 70126 Bari, Italy — Università degli Studi di Bari “Aldo Moro” and INFN Sezione
 di Bari.
 
