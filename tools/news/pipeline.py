@@ -224,6 +224,19 @@ def _push_generated(log) -> None:
         return
     log.info("publish: pushed the regenerated pages to origin/main")
 
+    # main is the repository; gh-pages is the site. GitHub Pages serves the
+    # root of a branch, and site/ is a subdirectory, so the built tree is
+    # published as a subtree. Pushing main alone would update the repo and
+    # leave the live site exactly as it was — the failure this whole step
+    # exists to prevent, wearing a different hat.
+    deploy = git("subtree", "push", "--prefix", "site", "origin", "gh-pages")
+    if deploy.returncode:
+        log.error("publish: the site was NOT deployed — main has the new pages "
+                  "but gh-pages does not:\n%s",
+                  (deploy.stdout + deploy.stderr)[-800:])
+        return
+    log.info("publish: deployed site/ to gh-pages — the live site is current")
+
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="global-nu daily update")

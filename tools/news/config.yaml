@@ -330,4 +330,4 @@ arxiv_digest:
 # pages, their built output and the sitemap, only on main, only when the build
 # succeeded, and never force-pushes.
 publish:
-  push: false
+  push: true
