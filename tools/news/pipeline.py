@@ -218,6 +218,23 @@ def _push_generated(log) -> None:
     if git("commit", "-m", msg).returncode:
         log.error("publish: commit failed")
         return
+
+    # The remote moves without us: GitHub's own settings UI commits a CNAME to
+    # the source branch when a custom domain is set, and that alone was enough
+    # to make the first real run fail with "fetch first". An unattended job
+    # that stops publishing because the remote is one commit ahead would go
+    # unnoticed for as long as nobody happened to look, so it rebases first.
+    # Generated pages rebase cleanly; anything that does not is a real conflict
+    # and is left alone for a person to resolve.
+    git("fetch", "origin", "main")
+    rebase = git("pull", "--rebase", "origin", "main")
+    if rebase.returncode:
+        git("rebase", "--abort")
+        log.error("publish: the remote has diverged and the rebase failed — "
+                  "nothing pushed, resolve by hand:\n%s",
+                  (rebase.stdout + rebase.stderr)[-800:])
+        return
+
     push = git("push", "origin", "main")
     if push.returncode:
         log.error("publish: push failed:\n%s", (push.stdout + push.stderr)[-800:])
