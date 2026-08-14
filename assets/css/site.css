@@ -714,6 +714,45 @@ a.card:hover .card__go{color:var(--text)}
 .map-card__credit a{color:var(--text-mute);text-decoration:underline}
 .map-card__credit a:hover{color:var(--accent)}
 
+/* ---------- conference map: a lighter card than the world map's ----------
+   No zoom, no pan, no legend, no fan-reveal: figures.conference_map already
+   clusters coincident cities into distinct, always-visible dots (see its
+   docstring), so confmap.js only ever needs a stage to anchor the card
+   against and a click handler — the reason this block is a fraction of the
+   size of the .map-* rules above rather than sharing their selectors: the
+   two cards differ enough (no photo, two named action links instead of a
+   per-experiment list) that reusing .map-card's classes would mean threading
+   this figure's assumptions back through code the resources-page map
+   depends on. */
+.confmap-stage{position:relative}
+.conf-pin{cursor:pointer}
+
+/* max-height is capped against the viewport, not the stage: .confmap-stage
+   wraps only the SVG, which is half the experiments map's height (see
+   figures.conference_map), so the percentage cap .map-card uses against ITS
+   (much taller) stage would leave this card only ~135px tall — enough to
+   clip a title mid-sentence and hide the dates, place and both action links
+   below it entirely. Found by opening the page, not by the jsdom suite. */
+.conf-card{position:absolute;z-index:6;left:.8rem;bottom:.8rem;
+  width:min(21rem,calc(100% - 1.6rem));max-height:min(60vh,20rem);overflow-y:auto;
+  background:var(--bg);border:1px solid var(--line-strong);border-radius:var(--r);
+  box-shadow:var(--shadow-strong);padding:1rem 1.15rem}
+.conf-card__close{position:absolute;top:.6rem;right:.6rem;width:1.6rem;height:1.6rem;
+  display:flex;align-items:center;justify-content:center;border:none;
+  background:transparent;color:var(--text-mute);font-size:1.1rem;line-height:1;
+  cursor:pointer}
+.conf-card__close:hover{color:var(--text)}
+.conf-card__title{margin:0 1.6rem .5rem 0;font-family:var(--display);
+  font-size:1.02rem;letter-spacing:-.01em;color:var(--text)}
+.conf-card__title a{color:var(--text);text-decoration:none}
+.conf-card__title a:hover{color:var(--accent);text-decoration:underline}
+.conf-card__meta{margin:0;font-family:var(--mono);font-size:.72rem;
+  color:var(--text-mute)}
+.conf-card__actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.75rem}
+.conf-card__actions a{font-size:.82rem;font-weight:600;color:var(--accent);
+  text-decoration:none}
+.conf-card__actions a:hover{text-decoration:underline}
+
 /* ---------- Δχ² explorer ---------- */
 .chi2__bar{display:flex;flex-wrap:wrap;gap:.7rem 1.4rem;align-items:center;
   margin-bottom:1.1rem}
