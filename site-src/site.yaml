@@ -11,8 +11,6 @@ nav:
     label: Results
   - url: history.html
     label: Parameter history
-  - url: history-schema.html
-    label: Data schema
   - url: digest.html
     label: arXiv digest
   - url: news.html
@@ -36,7 +34,7 @@ nav:
 # the same dashboard and their paths are interleaved. A second site under the
 # same GoatCounter account (e.g. "global-nu") would keep the two separate —
 # changing this one line is all it takes.
-goatcounter: "antoniomarrone"
+goatcounter: "global-nu"
 
 # Image pipeline (site-src/images-src/ -> site/images/)
 images:

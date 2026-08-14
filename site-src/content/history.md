@@ -855,3 +855,81 @@ excluded section of the source data (site-src/data/history.yaml).</p>
 </div>
 
 :::
+
+::: section alt #data
+
+<div class="section-head">
+  <h2>The register as data</h2>
+  <p>same rows, two formats, stable URLs</p>
+</div>
+
+<div class="table-scroll">
+<table class="data">
+<thead><tr><th scope="col">File</th><th scope="col">Format</th><th scope="col">URL</th></tr></thead>
+<tbody>
+<tr><td>Parameter history</td><td>JSON</td><td><a href="data/history.json">/data/history.json</a></td></tr>
+<tr><td>Parameter history</td><td>CSV</td><td><a href="data/history.csv">/data/history.csv</a></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="prose" style="margin-top:1.2rem">
+<p>Both files hold exactly the same rows and the same columns — CSV for a
+spreadsheet or a quick <code>pandas.read_csv</code>, JSON for a script. The
+URLs are stable: a regenerated release corrects rows in place, it does not move
+the file. They are written by <code>tools/make_history_data.py</code> from the
+same <code>history.yaml</code> this page is drawn from, so the page and the
+files cannot disagree — nothing is retyped between them.</p>
+
+<p>The JSON file is an <strong>object, not a bare array</strong>: the rows sit
+under a <code>rows</code> key, and beside them a <code>note</code> says in one
+sentence what the two value columns mean, so a copy that has been downloaded
+and passed on still carries its own reading instructions. The CSV has nowhere
+to put that note: its first line is the header of the 13 field names,
+and every line after it is one row, in the same order.</p>
+
+<h3>The two value columns</h3>
+
+<p>Every row carries the value <strong>twice</strong>, under names that cannot
+be confused. <code>value_as_published</code> is exactly what the paper printed,
+in the paper's own convention and normalisation.
+<code>value_our_convention</code> is the same quantity converted to ours:
+δm² = m₂² − m₁² &gt; 0 and Δm² = m₃² − (m₁² + m₂²)/2.</p>
+
+<p>Only <code>Dm2</code> is ever converted. NuFit reports Δm²₃ℓ and Valencia
+reports |Δm²₃₁| for <em>both</em> orderings — neither is our Δm², and the sign
+of the correction is not even the same for the two groups, as the note at the
+top of this page works through. The conversion lives in one function,
+<code>to_our_Dm2()</code> in <code>tools/make_history.py</code>, and nowhere
+else. For every other parameter, and for Bari's own <code>Dm2</code> which
+already is our convention, the two columns hold the identical number. That
+repetition is deliberate: a downloader gets one column that is directly
+comparable across all six parameters and all three groups, without first having
+to know which value needed the arithmetic.</p>
+</div>
+
+<div class="table-scroll" style="margin-top:1.4rem">
+<table class="data">
+<caption>13 columns, one row per (group, year, parameter, ordering)
+point. This table is generated from the exporter's own field list, so it cannot
+describe a column the files do not carry.</caption>
+<thead><tr><th scope="col">Field</th><th scope="col">Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>group</code></td><td><code>bari</code>, <code>nufit</code> or <code>valencia</code></td></tr>
+<tr><td><code>year</code></td><td>Publication year of the release, as used on this page</td></tr>
+<tr><td><code>arxiv</code></td><td>arXiv identifier of the source paper</td></tr>
+<tr><td><code>journal</code></td><td>Full journal citation</td></tr>
+<tr><td><code>table</code></td><td>The table or equation, inside that paper, the value is transcribed from and checked against</td></tr>
+<tr><td><code>parameter</code></td><td>One of <code>dm2</code> (δm²), <code>Dm2</code> (Δm²), <code>sin2_th12</code>, <code>sin2_th13</code>, <code>sin2_th23</code>, <code>delta_pi</code> (δ/π)</td></tr>
+<tr><td><code>ordering</code></td><td><code>no</code> (normal), <code>io</code> (inverted) or <code>any</code> (the paper quotes one value for both, or does not split by ordering)</td></tr>
+<tr><td><code>convention</code></td><td>The release's own stated mass-splitting convention, verbatim from <code>history.yaml</code></td></tr>
+<tr><td><code>kind</code></td><td><code>measurement</code> (a best fit) or <code>limit</code> (a bound with no measured central value)</td></tr>
+<tr><td><code>value_as_published</code></td><td>The number as printed in the paper — see the two value columns, above</td></tr>
+<tr><td><code>value_our_convention</code></td><td>The same quantity in this group's convention — see the two value columns, above</td></tr>
+<tr><td><code>unit</code></td><td>The normalisation the value is written in: <code>1e-2</code> means the printed digits are hundredths</td></tr>
+<tr><td><code>level</code></td><td>For a <code>limit</code> row only: the confidence level the bound holds at (<code>3sigma</code>, <code>2sigma</code>, <code>90%CL</code> or <code>95%CL</code>). A <code>measurement</code> row has none, and each format says so in its own way: <code>null</code> in JSON, an empty field in CSV</td></tr>
+</tbody>
+</table>
+</div>
+
+:::

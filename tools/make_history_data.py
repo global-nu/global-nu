@@ -53,6 +53,43 @@ FIELDS = ["group", "year", "arxiv", "journal", "table", "parameter", "ordering",
           "convention", "kind", "value_as_published", "value_our_convention",
           "unit", "level"]
 
+# The field documentation, kept here beside FIELDS so the published table and
+# the exported columns cannot drift apart — it used to live as hand-written
+# HTML on a separate page, where nothing checked it against this list.
+FIELD_DOCS = [
+    ("group", "<code>bari</code>, <code>nufit</code> or <code>valencia</code>"),
+    ("year", "Publication year of the release, as used on this page"),
+    ("arxiv", "arXiv identifier of the source paper"),
+    ("journal", "Full journal citation"),
+    ("table", "The table or equation, inside that paper, the value is "
+              "transcribed from and checked against"),
+    ("parameter", "One of <code>dm2</code> (δm²), <code>Dm2</code> (Δm²), "
+                  "<code>sin2_th12</code>, <code>sin2_th13</code>, "
+                  "<code>sin2_th23</code>, <code>delta_pi</code> (δ/π)"),
+    ("ordering", "<code>no</code> (normal), <code>io</code> (inverted) or "
+                 "<code>any</code> (the paper quotes one value for both, or "
+                 "does not split by ordering)"),
+    ("convention", "The release's own stated mass-splitting convention, "
+                   "verbatim from <code>history.yaml</code>"),
+    ("kind", "<code>measurement</code> (a best fit) or <code>limit</code> "
+             "(a bound with no measured central value)"),
+    ("value_as_published", "The number as printed in the paper — see the two "
+                           "value columns, above"),
+    ("value_our_convention", "The same quantity in this group's convention — "
+                             "see the two value columns, above"),
+    ("unit", "The normalisation the value is written in: <code>1e-2</code> "
+             "means the printed digits are hundredths"),
+    ("level", "For a <code>limit</code> row only: the confidence level the "
+              "bound holds at (<code>3sigma</code>, <code>2sigma</code>, "
+              "<code>90%CL</code> or <code>95%CL</code>). A "
+              "<code>measurement</code> row has none, and each format says so "
+              "in its own way: <code>null</code> in JSON, an empty field in CSV"),
+]
+
+assert [name for name, _ in FIELD_DOCS] == FIELDS, (
+    "FIELD_DOCS and FIELDS disagree — the published table would describe "
+    "columns the export does not emit, or miss ones it does")
+
 NOTE = (
     "The Bari/NuFit/Valencia parameter-history register. value_as_published "
     "is exactly what the cited paper printed, in its own convention and "
@@ -62,7 +99,7 @@ NOTE = (
     "to value_as_published for every parameter except Dm2, where NuFit and "
     "Valencia report a different quantity (Dm2_3l, |Dm2_31|) and the "
     "conversion is performed by tools/make_history.py's to_our_Dm2(). See "
-    "history-schema.html for the full field-by-field documentation."
+    "history.html#data for the full field-by-field documentation."
 )
 
 
