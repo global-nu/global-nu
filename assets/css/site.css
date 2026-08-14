@@ -295,6 +295,14 @@ h4{font-weight:700;font-size:.98rem}
   text-transform:uppercase;color:var(--text-mute);margin:0 0 .7rem;font-weight:600}
 .figure svg{width:100%;height:auto;display:block}
 .figure .cap{font-size:.74rem;color:var(--text-mute);margin:.5rem 0 0}
+/* The conference timeline: on a wide screen .figure svg above stretches it to
+   fill the card exactly as any other figure. Below ~460px that stretch would
+   shrink its row labels past legibility — the whole point of a Gantt strip is
+   reading which meeting is which — so past that point it stops shrinking and
+   scrolls horizontally instead, the same trade table.data makes with
+   .table-scroll for the same reason. */
+.figure .timeline-scroll{overflow-x:auto}
+.figure .timeline-scroll svg{width:100%;min-width:460px;height:auto;display:block}
 .legend{display:flex;gap:1.1rem;font-family:var(--mono);font-size:.72rem;
   color:var(--text-mute);margin-top:.7rem;flex-wrap:wrap}
 .legend i{display:inline-block;width:1.6rem;height:2px;vertical-align:middle;
