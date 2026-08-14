@@ -402,10 +402,24 @@ def build_pages(cfg: dict, with_drafts: bool = False) -> tuple[list[str], list[s
     # GoatCounter counts pageviews without cookies, so no consent banner is
     # needed. An empty code in site.yaml must produce NO script tag: the
     # placeholder collapses and the built site carries no trace of analytics.
+    #
+    # count.js is served from this site, not from gc.zgo.at. The project's
+    # founding rule is that no page loads anything from a third-party host,
+    # and a <script src> pointing at somebody's CDN broke it on every page —
+    # while the README claimed the opposite. The vendored copy is byte-for-byte
+    # what gc.zgo.at serves (site-src/assets/vendor/goatcounter/count.js, ISC
+    # licence, updated by re-fetching it). GoatCounter documents self-hosting:
+    # the script reads its endpoint from the data-goatcounter attribute and
+    # from nothing else.
+    #
+    # What remains, and cannot be removed without removing the analytics, is
+    # the counting request itself: one image request per pageview to
+    # <code>.goatcounter.com. Say that plainly wherever the site describes
+    # itself; do not write "no runtime request to anything".
     gc_code = (cfg.get("goatcounter") or "").strip()
-    analytics = (
+    analytics_tpl = (
         f'<script data-goatcounter="https://{gc_code}.goatcounter.com/count" '
-        'async src="https://gc.zgo.at/count.js"></script>'
+        'async src="{{base}}assets/vendor/goatcounter/count.js"></script>'
     ) if gc_code else ""
 
     pages = [(d, p) for d in content_dirs(with_drafts) for p in sorted(d.rglob("*.md"))]
@@ -500,7 +514,7 @@ def build_pages(cfg: dict, with_drafts: bool = False) -> tuple[list[str], list[s
             "katex_head": KATEX_HEAD.replace("{{base}}", base) if use_katex else "",
             "katex_body": KATEX_BODY.replace("{{base}}", base) if use_katex else "",
             "scripts": scripts,
-            "analytics": analytics,
+            "analytics": analytics_tpl.replace("{{base}}", base),
         })
         page = externalize_links(page, cfg)
         page = version_assets(page, versions)

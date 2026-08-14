@@ -4,16 +4,20 @@ The site of the Bari global analysis of neutrino oscillation data —
 [global-nu.org](https://global-nu.org).
 
 A static site: HTML, CSS and a little JavaScript, built by `build.py` from
-`site-src/`. No framework, no CDN, no runtime request to anything. Fonts, KaTeX
-and every script are served from the site itself.
+`site-src/`. No framework, no CDN, no third-party script: fonts, KaTeX and
+every script — including GoatCounter's `count.js`, vendored under
+`site-src/assets/vendor/` — are served from the site itself. One request does
+leave it: GoatCounter's counter sends a single cookieless pageview to
+`global-nu.goatcounter.com`. That is the analytics, and it is the only
+outbound request a page makes.
 
 ## What is here
 
-**Results** — the published releases of the global analysis: best fits and
+**Results** — the most recent full release of the global analysis: best fits and
 allowed ranges for the six oscillation parameters in our conventions, with the
-tables, the figures and the downloadable files.
+tables and the figures.
 
-**Parameter history** — how the parameters moved across twenty years of
+**Parameter history** — how the parameters moved across a quarter century of
 published global fits, and the only place we know of that puts Bari, NuFit and
 Valencia on the same axes. The three groups do not report the same quantity:
 we use Δm² = m₃² − ½(m₁²+m₂²), NuFit reports Δm²₃ℓ, Valencia reports |Δm²₃₁|
@@ -23,7 +27,10 @@ paper printed, unconverted, alongside it.
 
 **arXiv digest, News, Conferences** — regenerated every morning by a local job.
 Each is marked as automatically generated, with the timestamp of its last
-successful update.
+successful update. The digest and the conference calendar are built by script
+from the arXiv and Indico APIs with no model involved; only the news summaries
+are written by one, and every citation in them is checked against the fetched
+records before the page is written.
 
 **Search** — natural-language search across INSPIRE-HEP, arXiv, Crossref,
 OpenAlex and Semantic Scholar, running entirely in the reader's browser. What
