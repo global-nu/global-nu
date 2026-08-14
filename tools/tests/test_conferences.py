@@ -118,6 +118,91 @@ check("a record whose extra.scope is 'general' is not thereby treated as conclud
       "General Physics Meeting 2099" in up_block
       and "General Physics Meeting 2099" not in recent_block)
 
+from tools.news import venue                        # noqa: E402
+
+# The cascade prefers structured data and only then the conference's own page.
+r_clean = rec("NuFact 2026", "https://nufact.example.org/", "Shanghai", "CN",
+              "2026-08-31", "2026-09-05", "nu-unbound")
+check("a clean place string is used as-is",
+      venue.address_of(r_clean, _Log()) == "Shanghai, CN")
+
+r_indico = {"id": "x", "title": "Invisibles", "url": "https://ex.org/",
+            "extra": {"place": "", "city": "", "country_code": "",
+                      "address": "Sede Afundación, Cantón Grande 8, "
+                                 "A Coruña, 15003, Spain"}}
+check("Indico's verbose address is used when there is no clean place",
+      "A Coruña" in (venue.address_of(r_indico, _Log()) or ""))
+
+r_none = {"id": "y", "title": "Nowhere", "url": "", "extra": {}}
+check("a record with nothing to go on yields no address",
+      venue.address_of(r_none, _Log()) is None)
+check("and therefore no coordinates",
+      venue.locate_record(r_none, _Log()) is None)
+
+# The failure cache: a page that answers but carries nothing is fetched once,
+# never again. Monkeypatch venue.http_get to count calls.
+_calls = []
+
+
+def _counting_http_get(url, **kwargs):
+    _calls.append(url)
+    return None                          # "unreachable", same as a dead page
+
+
+_orig_http_get = venue.http_get
+_orig_venue_cache = venue.VENUE_CACHE
+venue.http_get = _counting_http_get
+venue.VENUE_CACHE = Path(tempfile.mkdtemp()) / "venuecache.json"
+try:
+    first = venue._from_page("https://dead.example.org/", _Log())
+    second = venue._from_page("https://dead.example.org/", _Log())
+    check("a page yielding nothing is fetched once",
+          len(_calls) == 1, f"http_get called {len(_calls)} times: {_calls}")
+    check("both calls agree it found nothing",
+          first is None and second is None)
+finally:
+    venue.http_get = _orig_http_get
+    venue.VENUE_CACHE = _orig_venue_cache
+
+
+# Indico's own JSON-LD literally says `"address":"No address set"` when an
+# organiser never filled the venue in (seen on a real record while building
+# this cascade: indico.cern.ch/event/1677041/). That string must not be
+# mistaken for a real address.
+class _FakeResponse:
+    def __init__(self, text):
+        self.text = text
+
+
+_placeholder_html = (
+    '<script type="application/ld+json">'
+    '{"@type": "Event", "name": "No location set",'
+    ' "location": {"@type": "Place", "address": "No address set"}}'
+    '</script>')
+
+
+def _placeholder_http_get(url, **kwargs):
+    return _FakeResponse(_placeholder_html)
+
+
+_orig_http_get = venue.http_get
+_orig_venue_cache = venue.VENUE_CACHE
+venue.http_get = _placeholder_http_get
+venue.VENUE_CACHE = Path(tempfile.mkdtemp()) / "venuecache.json"
+try:
+    found = venue._from_page("https://indico.example.org/event/1/", _Log())
+    check("Indico's 'No address set' placeholder is not mistaken for a real address",
+          found is None, f"got {found!r}")
+finally:
+    venue.http_get = _orig_http_get
+    venue.VENUE_CACHE = _orig_venue_cache
+
+# A trailing period after the country name — seen in a real record
+# ("Heidelberg, Germany.") — must not stop the country from being recognised.
+check("a trailing period after the country name does not break the split",
+      venue._split_country("Heidelberg, Germany.") == ("Heidelberg", "DE"),
+      f"got {venue._split_country('Heidelberg, Germany.')!r}")
+
 print()
 if problems:
     print(f"  ! {len(problems)} of {checks} checks failed")
