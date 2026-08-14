@@ -298,6 +298,100 @@ else:
     check("the alpha-composited file exists on disk", False, "dest2 never written")
 
 
+# --------------------------------------------------------------------- #
+# 6. two cities with the SAME NAME but different country codes must never
+#    collide — different files, different credits, and neither overwrites
+#    the other's file on disk or its cached answer.
+#
+#    Found by review, not by a test: the cache key was already (city,
+#    country_code), but _slug and the Commons query were both keyed by city
+#    alone. Cambridge, GB gets cached first, pointing at
+#    images/conf-cambridge.jpg with its own author/licence. Cambridge, US
+#    then correctly misses the cache (a different key), searches, downloads
+#    ITS OWN photo — and writes it to the SAME path, silently overwriting
+#    the GB file. The next run's disk-existence check (for_city's `if
+#    (IMAGES_SRC / Path(cached["file"]).name).exists(): return cached`)
+#    then finds the file still there and happily returns GB's cached
+#    author/licence over what is now the US photograph: a real photographer
+#    's name attached to someone else's work. This is that failure inverted
+#    — not an uncredited photograph, but a MIS-credited one.
+#
+#    _search_by_country below also proves the query is actually
+#    disambiguated (not just the cache key): it raises if for_city ever
+#    asks Commons for "Cambridge" without a country attached, and returns a
+#    different photograph for each of the two queries it does recognise.
+# --------------------------------------------------------------------- #
+_isolate()
+
+
+def _search_by_country(term, query, limit=5):
+    if "United Kingdom" in query:
+        return [_good_candidate(
+            title="File:Cambridge UK punting.jpg",
+            page="https://commons.wikimedia.org/wiki/File:Cambridge_UK_punting.jpg",
+            thumb="https://upload.wikimedia.org/fake/cambridge-uk.jpg",
+            author="Andrew Dunn", licence="CC BY-SA 2.0",
+            licence_url="https://creativecommons.org/licenses/by-sa/2.0")]
+    if "United States" in query:
+        return [_good_candidate(
+            title="File:Harvard Square Cambridge MA.jpg",
+            page="https://commons.wikimedia.org/wiki/File:Harvard_Square_Cambridge_MA.jpg",
+            thumb="https://upload.wikimedia.org/fake/cambridge-ma.jpg",
+            author="John Phelan", licence="CC BY 3.0",
+            licence_url="https://creativecommons.org/licenses/by/3.0")]
+    raise AssertionError(f"query not disambiguated by country: {query!r}")
+
+
+# Content, not just a path, is what a filename collision actually clobbers:
+# a fake _save_thumb that always writes the SAME placeholder bytes (like
+# _fake_save_thumb_ok elsewhere in this file) would make "both files exist
+# on disk" pass even when GB and US share one path, since the second write
+# just re-creates an identical-looking file at the identical path — that
+# would be a vacuous check of exactly the failure this section exists to
+# catch. This one tags each file with the URL it was fetched from, so the
+# check below can tell whether the byte on disk under GB's own name still
+# came from GB's own thumb URL after US has also been looked up.
+def _fake_save_thumb_tagged(url, dest, log):
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_bytes(f"photo-bytes-from:{url}".encode())
+    return True
+
+
+photos.search = _search_by_country
+photos._save_thumb = _fake_save_thumb_tagged
+try:
+    gb = photos.for_city("Cambridge", "GB", _Log())
+    us = photos.for_city("Cambridge", "US", _Log())
+    # A third call for GB, forcing a cold reload of the disk cache, proves
+    # US's later write never clobbered GB's own cached answer.
+    photos._cache = None
+    gb_again = photos.for_city("Cambridge", "GB", _Log())
+finally:
+    photos.search = _orig_search
+    photos._save_thumb = _orig_save_thumb
+
+check("Cambridge GB and Cambridge US resolve to different files",
+      gb is not None and us is not None and gb["file"] != us["file"],
+      (gb and gb.get("file"), us and us.get("file")))
+check("Cambridge GB and Cambridge US carry different credits",
+      gb is not None and us is not None and gb["author"] != us["author"],
+      (gb and gb.get("author"), us and us.get("author")))
+
+gb_bytes = (gb and (photos.IMAGES_SRC / Path(gb["file"]).name).read_bytes()) if gb else None
+us_bytes = (us and (photos.IMAGES_SRC / Path(us["file"]).name).read_bytes()) if us else None
+check("the file under GB's own name still holds GB's own photo bytes, "
+      "not US's (the file was not silently overwritten)",
+      gb_bytes is not None and b"cambridge-uk" in gb_bytes
+      and b"cambridge-ma" not in gb_bytes,
+      gb_bytes)
+check("the file under US's own name holds US's own photo bytes, not GB's",
+      us_bytes is not None and b"cambridge-ma" in us_bytes
+      and b"cambridge-uk" not in us_bytes,
+      us_bytes)
+check("Cambridge GB's cached answer survives Cambridge US being looked up later",
+      gb_again == gb, (gb, gb_again))
+
+
 print()
 if problems:
     print(f"  ! {len(problems)} of {checks} checks failed")

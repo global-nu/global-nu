@@ -15,17 +15,26 @@ see tools/tests/test_credits.py). No new licence rule is written here.
 
 City, not venue: the query is always the conference's *city* — "Shanghai",
 never "Sede Afundación" — because Commons has a good photograph of the
-former and essentially never of the latter. Cities repeat between
-conferences (two workshops in Trieste in the same year, say), so a result is
-cached by (city, country_code): the same city is looked up on Commons at
-most once per process (PHOTO_CACHE below is loaded lazily and updated in
-memory), AND, once written to disk, never looked up again on a later run
-either — the same idea as venue.py's VENUE_CACHE, and for the same two
-reasons: politeness to somebody else's API, and a daily job that should not
-re-download an unchanging photograph every morning. A negative result (no
-usable candidate) is cached too, exactly like venue.py's cache of a page
-that answered but carried nothing — a cache that only remembered successes
-would re-query every unphotographed city every morning.
+former and essentially never of the latter. It is also always the city
+*and its country*: "Cambridge" alone is dominated by Cambridge, UK on
+Commons, so a bare city name would make Cambridge, US either miss entirely
+or resolve to the wrong city's photograph. Cities repeat between
+conferences (two workshops in Trieste in the same year, say — or, across
+countries, two different Cambridges), so a result is cached by
+(city, country_code) at every granularity that matters: the in-memory/disk
+cache key (_key), the on-disk filename (_slug), AND the Commons query
+itself (_country_name) — all three, not just the cache, because a
+same-named different city sharing just one of those would still either
+collide on disk or be handed the wrong search results. The same city is
+looked up on Commons at most once per process (PHOTO_CACHE below is loaded
+lazily and updated in memory), AND, once written to disk, never looked up
+again on a later run either — the same idea as venue.py's VENUE_CACHE, and
+for the same two reasons: politeness to somebody else's API, and a daily
+job that should not re-download an unchanging photograph every morning. A
+negative result (no usable candidate) is cached too, exactly like venue.py's
+cache of a page that answered but carried nothing — a cache that only
+remembered successes would re-query every unphotographed city every
+morning.
 
 Every accepted image is resized to 640px on its long side — site.yaml's
 `images.max_side: 1600` is sized for a results-page figure, not a thumbnail
@@ -53,6 +62,8 @@ import urllib.request
 from pathlib import Path
 
 from tools.fetch_commons_images import UA, licence_ok, search, short_author
+
+from . import worldmap as wm
 
 ROOT = Path(__file__).resolve().parents[2]
 IMAGES_SRC = ROOT / "site-src" / "images-src"
@@ -90,6 +101,29 @@ def _looks_like_a_photograph(title: str) -> bool:
     return not name.startswith(_NON_PHOTO_PREFIXES)
 
 
+# worldmap.COUNTRY_BY_NAME maps many aliases (ISO2, ISO3, full and partial
+# names) onto one code each — inverted here once, at import time, keeping
+# the SHORTEST alias over 3 characters per code: "united kingdom" (14) over
+# "united kingdom of great britain and northern ireland" (54), while the
+# 2/3-letter code entries themselves (len <= 3) are excluded so GB does not
+# just map back to "gb". Used only to make the Commons *query* readable
+# ("Cambridge, United Kingdom" vs "Cambridge, United States") — the cache
+# key and the on-disk filename are both built from the raw code, which is
+# what actually has to be unambiguous; see _slug and _key below.
+_COUNTRY_NAME_BY_CODE: dict[str, str] = {}
+for _name, _code in wm.COUNTRY_BY_NAME.items():
+    if len(_name) <= 3:
+        continue
+    if _code not in _COUNTRY_NAME_BY_CODE or len(_name) < len(_COUNTRY_NAME_BY_CODE[_code]):
+        _COUNTRY_NAME_BY_CODE[_code] = _name
+del _name, _code
+
+
+def _country_name(code: str) -> str:
+    name = _COUNTRY_NAME_BY_CODE.get((code or "").strip().upper())
+    return name.title() if name else code
+
+
 _cache: dict[str, dict | None] | None = None
 
 
@@ -97,8 +131,17 @@ def _key(city: str, country_code: str) -> str:
     return f"{city.strip().lower()}|{(country_code or '').strip().upper()}"
 
 
-def _slug(city: str) -> str:
-    text = re.sub(r"[^a-z0-9]+", "-", city.strip().lower()).strip("-")
+def _slug(city: str, country_code: str) -> str:
+    """The on-disk filename stem — same (city, country_code) granularity as
+    _key, not city alone. Two same-named cities in different countries
+    (Cambridge GB / Cambridge US, Santiago CL / Santiago de Compostela ES)
+    must never share a path: a real bug found by review, not by a test —
+    city-only slugging let a later-processed Cambridge silently overwrite an
+    earlier one's file on disk, so the first city's cached author/licence
+    ended up captioning the second city's photograph. See
+    tools/tests/test_photos.py for the RED-proven regression check."""
+    parts = f"{city} {country_code or ''}".strip()
+    text = re.sub(r"[^a-z0-9]+", "-", parts.lower()).strip("-")
     return f"conf-{text or 'city'}"[:60]
 
 
@@ -208,8 +251,13 @@ def for_city(city: str, country_code: str, log: logging.Logger) -> dict | None:
         # else: the manifest remembers a file no longer on disk — fall
         # through and fetch again rather than emit a dangling <img src>.
 
+    # Disambiguated by country, not just city: "Cambridge" alone is
+    # dominated by Cambridge, UK on Commons, and two cities of the same name
+    # must not even be LIKELY to resolve to the same candidate — see _slug's
+    # docstring for what happens on disk when they collide.
+    query = f"{city}, {_country_name(country_code)}" if country_code else city
     try:
-        candidates = search(city, city, limit=CANDIDATES_PER_CITY)
+        candidates = search(city, query, limit=CANDIDATES_PER_CITY)
     except Exception as exc:                              # noqa: BLE001
         log.warning("photos: Commons search failed for %r (%s)",
                     city, exc.__class__.__name__)
@@ -233,7 +281,7 @@ def for_city(city: str, country_code: str, log: logging.Logger) -> dict | None:
             # — see the module docstring — so an incomplete one is skipped,
             # not published bare.
             continue
-        dest = IMAGES_SRC / f"{_slug(city)}.jpg"
+        dest = IMAGES_SRC / f"{_slug(city, country_code)}.jpg"
         if not _save_thumb(cand["thumb"], dest, log):
             continue
         result = {
