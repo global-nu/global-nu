@@ -393,9 +393,9 @@ def content_dirs(with_drafts: bool) -> list[Path]:
     return dirs
 
 
-def build_pages(cfg: dict, with_drafts: bool = False) -> list[str]:
+def build_pages(cfg: dict, with_drafts: bool = False) -> tuple[list[str], list[str]]:
     tpl_cache: dict[str, str] = {}
-    written = []
+    written, in_sitemap = [], []
     year = _dt.date.today().year
     versions = asset_versions()
 
@@ -507,8 +507,13 @@ def build_pages(cfg: dict, with_drafts: bool = False) -> list[str]:
         (OUT / url).parent.mkdir(parents=True, exist_ok=True)
         (OUT / url).write_text(page, encoding="utf-8")
         written.append(url)
+        # A page can ask to stay out of the sitemap. 404.html is the case
+        # this exists for: it must be built and its links must be checked,
+        # but announcing an error page to search engines is nonsense.
+        if fm.get("sitemap", True) is not False:
+            in_sitemap.append(url)
         print(f"    page {path.name} -> {url}")
-    return written
+    return written, in_sitemap
 
 
 def check_links(written: list[str]) -> None:
@@ -596,7 +601,7 @@ def main() -> None:
         n = copy_tree(DRAFTS / "data", OUT / "data")
         print(f"  drafts: {n} data files copied")
 
-    written = build_pages(cfg, with_drafts=args.drafts)
+    written, in_sitemap = build_pages(cfg, with_drafts=args.drafts)
     (OUT / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\nSitemap: {cfg['site_url']}/sitemap.xml\n",
         encoding="utf-8")
@@ -607,7 +612,7 @@ def main() -> None:
     now = _dt.date.today().isoformat()
     urls = "\n".join(
         f"  <url><loc>{cfg['site_url']}/{u}</loc><lastmod>{now}</lastmod></url>"
-        for u in written)
+        for u in in_sitemap)
     (OUT / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

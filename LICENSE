@@ -1,0 +1,58 @@
+# Licensing
+
+This repository holds three kinds of material, and they are not under the same
+terms. Read the section that covers what you want to use.
+
+## The data — CC BY 4.0
+
+**Everything under `data-exports/`, and the parameter register in
+`site-src/data/history.yaml`, is released under the Creative Commons
+Attribution 4.0 International licence (CC BY 4.0).**
+
+https://creativecommons.org/licenses/by/4.0/
+
+You may share and adapt it, including commercially, provided you give
+appropriate credit. That is what it is published for: the register exists so it
+can be downloaded, checked and cited.
+
+Attribution should name the Bari group and this site, and — when you use the
+numbers of a particular release — cite the paper that release came from. Every
+record in the register carries its own `arxiv`, `journal` and `table` fields
+naming its source; those are the papers to cite. The 2025 release is:
+
+> F. Capozzi, W. Giarè, E. Lisi, A. Marrone, A. Melchiorri, A. Palazzo,
+> *Neutrino masses and mixing: Entering the era of subpercent precision*,
+> Phys. Rev. D **111**, 093006 (2025), doi:10.1103/PhysRevD.111.093006
+
+A citation to this site is not a substitute for citing the paper a number came
+from.
+
+## The code and the prose — all rights reserved
+
+The build system, the generators and the tests (`build.py`, `tools/`), and the
+written content of the pages (`site-src/content/`, and the rendered pages under
+`site/`), are **© the authors, all rights reserved**.
+
+They are public so the site can be built, inspected and audited — the point of
+publishing the generators is that anyone can see how a number reaches a page —
+but no licence to reuse or redistribute them is granted here. If you want to
+reuse any of it, ask.
+
+## Third-party material — its own terms, as credited on the page
+
+Some material on this site belongs to other people and travels under its own
+licence, which this file does not and cannot override:
+
+- **Figures from published papers** are reproduced under the licence of the
+  paper they come from. The figures from Phys. Rev. D 111, 093006 (2025) are
+  used under CC BY 4.0, with the authors, title, journal and DOI credited
+  beside each one, as that licence requires.
+- **Photographs** come from Wikimedia Commons under CC BY 4.0, CC BY-SA 4.0 or
+  in the public domain. Each carries its author, its licence and a link to its
+  file page on Commons, in the card that shows it. A CC BY-SA photograph
+  remains CC BY-SA: reusing it obliges you to the same terms.
+- **Coastline geometry** in the world map derives from Natural Earth, which is
+  in the public domain.
+
+Where a page credits a source, that credit is the licence statement for that
+item. Removing it is not permitted for any of the above.

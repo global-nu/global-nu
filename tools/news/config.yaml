@@ -319,3 +319,15 @@ arxiv_digest:
   dir: ~/Desktop/arxiv-digest
   italian_threshold: 8
   allow_italian: false
+
+# Publishing. Until the site is live the daily run stops at the build and the
+# regenerated pages sit on this machine. Once GitHub Pages serves the domain, a
+# run that does not push means the published site freezes at whatever was there
+# on launch day while the digest keeps updating locally — a failure that is
+# silent and slow, which is the worst kind.
+#
+# Turn this on AT LAUNCH and not before. It commits only the three generated
+# pages, their built output and the sitemap, only on main, only when the build
+# succeeded, and never force-pushes.
+publish:
+  push: false
