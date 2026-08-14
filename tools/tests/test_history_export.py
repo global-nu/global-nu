@@ -15,6 +15,15 @@ Check 4 does not trust the exporter's own arithmetic: it recomputes
 value_our_convention independently by calling tools.make_history.to_our_Dm2()
 itself — the same interface the exporter is required to use — rather than
 re-reading the number the exporter already wrote.
+
+Checks 1-5 compare identities and recompute arithmetic, but every one of them
+reads the *committed* export's own numbers as its starting point, so none of
+them can see a stale file: correct a `best` in history.yaml, forget to re-run
+tools/make_history_data.py, and the old row stays perfectly self-consistent
+while the superseded number keeps shipping at a stable, citable URL. Check 6
+closes that by regenerating the rows from the current YAML in memory and
+demanding the committed file equal them, row for row and field for field —
+the drift check the rest of this file only looks like it is doing.
 """
 from __future__ import annotations
 
@@ -30,6 +39,7 @@ from tools import history                              # noqa: E402
 
 sys.path.insert(0, str(ROOT / "tools"))
 import make_history                                     # noqa: E402
+import make_history_data                                # noqa: E402
 
 JSON_PATH = ROOT / "data-exports" / "history.json"
 CSV_PATH = ROOT / "data-exports" / "history.csv"
@@ -128,6 +138,43 @@ bad_level = [
 ]
 check("level is present for every limit row and only for limit rows",
       not bad_level, "; ".join(bad_level[:8]))
+
+# 6. the committed export IS what the exporter produces from history.yaml as
+# it stands today. Every check above starts from the numbers already in the
+# file, so all of them pass on a stale export whose rows are internally
+# consistent but no longer match the source — the single failure mode that
+# matters here, because the file is published at a citable URL and a
+# corrected value that never reached it is a superseded number still being
+# handed out. Regenerated in memory; nothing is written.
+expected_rows = make_history_data.build_rows(doc)
+
+drift: list[str] = []
+if len(expected_rows) != len(rows):
+    drift.append(f"row count: committed {len(rows)}, regenerated {len(expected_rows)}")
+for got, want in zip(rows, expected_rows):
+    diffs = [f"{k}: committed {got.get(k)!r} vs current {want[k]!r}"
+             for k in want if got.get(k) != want[k]]
+    if diffs:
+        drift.append(f"{want['group']} {want['year']} {want['parameter']}/"
+                     f"{want['ordering']}: " + ", ".join(diffs))
+check("the committed JSON export is what history.yaml produces today "
+      "(re-run tools/make_history_data.py)", not drift, "; ".join(drift[:8]))
+
+# …and the CSV alongside it, which is written in the same run and can go
+# stale in exactly the same way. Compared as text, because that is what a CSV
+# holds: the exporter writes None as an empty field and everything else via
+# str(), so the expected text is built the same way.
+csv_drift: list[str] = []
+for got, want in zip(csv_rows, expected_rows):
+    want_text = {k: ("" if want[k] is None else str(want[k]))
+                 for k in make_history_data.FIELDS}
+    diffs = [f"{k}: committed {got.get(k)!r} vs current {want_text[k]!r}"
+             for k in want_text if got.get(k) != want_text[k]]
+    if diffs:
+        csv_drift.append(f"{want['group']} {want['year']} {want['parameter']}/"
+                         f"{want['ordering']}: " + ", ".join(diffs))
+check("the committed CSV export is what history.yaml produces today",
+      not csv_drift, "; ".join(csv_drift[:8]))
 
 print()
 if problems:

@@ -12,7 +12,7 @@ row: the number as recorded (matching a table printed in units of 1e-1, 1e-2,
 …) and the same number scaled by that unit (matching a table printed in
 absolute values). Nothing else is accepted.
 
-A limit's `upper` (or `lower`) is checked exactly like a measurement's `best`
+A limit's `upper` is checked exactly like a measurement's `best`
 — same forms(), same PDF search — and, when the record carries a
 `source_quote`, that sentence is independently checked to occur in the same
 paper's extracted text, AND to actually mention the level the record claims
@@ -60,10 +60,20 @@ def pdf_for(rel: dict) -> Path:
     return CACHE / f"{slug}.pdf"
 
 
-def pdf_text(path: Path) -> str:
-    """Full text with the spaces PDF extraction sprinkles inside numbers
-    removed: "0. 016" and "2 .47" are the same number as "0.016" and "2.47"."""
-    raw = "".join((p.extract_text() or "") for p in PdfReader(str(path)).pages)
+def normalize_numbers(raw: str) -> str:
+    """Remove the spaces PDF extraction sprinkles inside numbers: "0. 016" and
+    "2 .47" are the same number as "0.016" and "2.47".
+
+    THE ORDER OF THE FIRST TWO RULES IS LOAD-BEARING, and looks arbitrary,
+    which is why NORMALISER_CASES below pins it. Given "0 . 44" — a space on
+    both sides of the decimal point, which is what extraction does to Bari
+    2006's Eq. (57) — the point-then-space rule must run FIRST: the other
+    rule's lookahead needs "[.,]\\d" immediately, sees ". 4" and fails, so
+    with the two lines swapped the string is left as "0 .44", which is not a
+    literal match for the recorded 0.44. The value then reads as unverifiable
+    and drops out of the register — silently, because a number that cannot be
+    found in its source looks exactly like a number the paper never printed.
+    """
     raw = re.sub(r"(?<=[.,])\s+(?=\d)", "", raw)
     raw = re.sub(r"(?<=\d)\s+(?=[.,]\d)", "", raw)
     # Papers set the minus sign as U+2212 (and sometimes an en dash); the
@@ -72,6 +82,25 @@ def pdf_text(path: Path) -> str:
     # …and the sign is often separated from its digits by the line break the
     # extractor turns into a space: "-2.413" is printed as "- 2.413".
     return re.sub(r"-\s+(?=\d)", "-", raw)
+
+
+# Every shape of damage normalize_numbers() undoes, with the real value each
+# one was found on. The first case is the regression that matters: it is the
+# only one that fails if the two re.sub lines are put back into the order
+# that looks tidier, and that swap costs the register exactly one value.
+NORMALISER_CASES = [
+    ("0 . 44", "0.44"),          # bari 2006 Eq. (57), sin²θ₂₃ — pins the rule order
+    ("0. 016", "0.016"),         # space after the point
+    ("2 .47", "2.47"),           # space before the point
+    ("- 2.413", "-2.413"),       # sign parted from its digits by a line break
+    ("\u22122.413", "-2.413"),   # U+2212 minus, as the papers set it
+]
+
+
+def pdf_text(path: Path) -> str:
+    """The whole extracted text of a cached PDF, normalised."""
+    return normalize_numbers(
+        "".join((p.extract_text() or "") for p in PdfReader(str(path)).pages))
 
 
 # Typographic ligatures a PDF font substitutes for a plain letter sequence:
@@ -137,6 +166,18 @@ def main() -> None:
     total = found = skipped = 0
     problems: list[str] = []
 
+    # The normaliser before the values it is used on: every check below runs
+    # through it, so a normaliser that quietly stops undoing one of the shapes
+    # of PDF damage does not report itself — it reports a value that "cannot
+    # be found in its source", which reads like a transcription error in
+    # history.yaml and is not one.
+    bad_norm = [f"{raw!r} -> {normalize_numbers(raw)!r}, expected {want!r}"
+                for raw, want in NORMALISER_CASES if normalize_numbers(raw) != want]
+    problems += [f"normaliser: {b}" for b in bad_norm]
+    print(f"  {'the number normaliser':<34} {len(NORMALISER_CASES) - len(bad_norm)}"
+          f"/{len(NORMALISER_CASES)} extraction cases undone"
+          + ("" if not bad_norm else f"  <-- {len(bad_norm)} WRONG"))
+
     for rel in doc["releases"]:
         pdf = pdf_for(rel)
         slug = pdf.stem
@@ -156,9 +197,11 @@ def main() -> None:
                     for v in entry.get(key, []) or []:
                         items.append((key, v))
                 # A limit's bound is checked the same way as a measurement's
-                # best fit: same forms(), same PDF search. "upper" and
-                # "lower" are mutually exclusive (history.kind_of / the
-                # limit's own shape), so at most one of these ever fires.
+                # best fit: same forms(), same PDF search. Only "upper" can
+                # be recorded today — history.validate_value refuses a
+                # "lower" bound until there is a marker that can draw one —
+                # but the loop covers both, so the check is already in place
+                # on the day that changes.
                 for key in ("upper", "lower"):
                     if key in entry:
                         items.append((key, entry[key]))
