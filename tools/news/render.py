@@ -21,7 +21,7 @@ import html
 import logging
 from pathlib import Path
 
-from . import fetch_inspire
+from . import fetch_inspire, figures
 from .common import (CONFERENCES_PAGE, DIGEST_PAGE, NEWS_PAGE, detex,
                      load_config, truncate)
 
@@ -346,6 +346,36 @@ def conferences(records: list[dict], log: logging.Logger,
     # give the right answer and nothing noticed until a second source did.
     upcoming, recent = fetch_inspire.split(records)
 
+    # Drawn fresh from this morning's records, same as the lists below — never
+    # cached from a previous run, so the two can never show different dates.
+    # Rows fill from `upcoming` first (soonest at the top); `recent` only gets
+    # whatever room is left, which is usually none — see conference_timeline's
+    # docstring for why that is the right trade rather than an accident.
+    max_rows = 14
+    timeline = figures.conference_timeline(upcoming, recent, max_rows=max_rows)
+    timeline_block = ""
+    if timeline:
+        n_up = min(len(upcoming), max_rows)
+        n_rec = max(0, max_rows - len(upcoming))
+        n_rec = min(n_rec, len(recent))
+        caption = (f"The soonest {n_up} upcoming meeting{'' if n_up == 1 else 's'} "
+                  f"(blue, amber if running right now)")
+        if n_rec:
+            caption += (f" and the {n_rec} most recently concluded "
+                       f"(grey), filling the rows the upcoming ones leave")
+        caption += (f". {len(upcoming)} upcoming and {len(recent)} recent "
+                   f"meeting{'' if len(upcoming) + len(recent) == 1 else 's'} "
+                   f"are tracked in full below.")
+        timeline_block = f"""
+<figure class="figure">
+<h4>Timeline</h4>
+<div class="timeline-scroll">
+{timeline}
+</div>
+<p class="cap">{caption}</p>
+</figure>
+"""
+
     body = f"""<section class="hero">
   <div class="wrap hero__in">
     <p class="kicker">Refreshed daily</p>
@@ -359,6 +389,7 @@ def conferences(records: list[dict], log: logging.Logger,
 
 {AUTOGEN_SCRIPT.format(sources="conference indexers' APIs", stamp=stamp or _stamp())}
 
+{timeline_block}
 <div class="section-head"><h2>Upcoming</h2>
 <p>{len(upcoming)} meeting{"" if len(upcoming) == 1 else "s"}</p></div>
 

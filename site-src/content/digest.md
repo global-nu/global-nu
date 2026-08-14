@@ -22,7 +22,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 14 August 2026, 12:06 CEST</span></div>
+<span class="stamp">Last successful update: 14 August 2026, 15:28 CEST</span></div>
 </div>
 
 <div class="section-head"><h2>Experimental</h2>
@@ -43,7 +43,6 @@ and may contain errors. No model is involved.</b>
 
 <ul class="list list--news">
 <li><b>Archimedean Seesaw: Small Neutrino Masses and Large Lepton-number Violation</b><span>Tao Han, Alejandro Ibarra, Subhojit Roy et al. · hep-ph, hep-ex · 2026-08-10</span><span class="cites"><a href="https://arxiv.org/abs/2608.10062">arXiv</a></span></li>
-<li><b>Leptogenesis via Resonant Sequential Dominance and TBC3 Mixing in a Type-I Seesaw Model</b><span>Michael Fodroci, Teruyuki Kitabayashi · hep-ph · 2026-08-07</span><span class="cites"><a href="https://arxiv.org/abs/2608.06983">arXiv</a></span></li>
 <li><b>Impact of Neutrino Flavour Conversion on the Diffuse Neutrino Background from Neutrino-dominated Accretion Flows</b><span>Yun-Feng Wei, Tong Liu · astro-ph.HE · 2026-08-12</span><span class="cites"><a href="https://arxiv.org/abs/2608.12177">arXiv</a></span></li>
 <li><b>A Novel One-loop Model for Majorana Neutrino Mass and Dark Matter</b><span>Mohamed Belfkir, Mohamed Amin Loualidi, Salah Nasri · hep-ph · 2026-08-12</span><span class="cites"><a href="https://arxiv.org/abs/2608.12646">arXiv</a></span></li>
 <li><b>Spontaneous Scoto-leptogenesis</b><span>Arghyajit Datta, Hyun Min Lee, Jun-Ho Song · hep-ph, astro-ph.CO · 2026-08-12</span><span class="cites"><a href="https://arxiv.org/abs/2608.12497">arXiv</a></span></li>
@@ -53,9 +52,10 @@ and may contain errors. No model is involved.</b>
 <li><b>The Galactic Neutrino Sky: Predictions from Gamma-ray Source Populations</b><span>Leo Seen, Ke Fang · astro-ph.HE · 2026-08-10</span><span class="cites"><a href="https://arxiv.org/abs/2608.09849">arXiv</a></span></li>
 <li><b>Probing Memory-Burdened Primordial Black Holes with High-Energy Neutrinos</b><span>Arian Moradi Asl, Sandhya Choubey, Andreas Lund · hep-ph, astro-ph.HE · 2026-08-08</span><span class="cites"><a href="https://arxiv.org/abs/2608.08144">arXiv</a></span></li>
 <li><b>Neutrino Mass and its Impact on Gravitational Waves from Domain Wall Collision</b><span>Victoria Puyam, Mrinal Kumar Das · hep-ph · 2026-08-08</span><span class="cites"><a href="https://arxiv.org/abs/2608.08084">arXiv</a></span></li>
-<li><b>Enlightening dark moments of neutrino with superradiance</b><span>Indra Kumar Banerjee, Ujjal Kumar Dey, Anna John · hep-ph, astro-ph.HE, gr-qc · 2026-08-07</span><span class="cites"><a href="https://arxiv.org/abs/2608.07142">arXiv</a></span></li>
-<li><b>A Γ₃ modular symmetric approach for two-zero textures in left-right symmetric model</b><span>Ankita Kakoti, Happy Borgohain · hep-ph · 2026-08-07</span><span class="cites"><a href="https://arxiv.org/abs/2608.07623">arXiv</a></span></li>
 <li><b>Newtrinos.jl: A Julia Package for Global Analysis of Neutrino Data</b><span>Philipp Eller, David Schultheiß · hep-ph, hep-ex · 2026-08-13</span><span class="cites"><a href="https://arxiv.org/abs/2608.12940">arXiv</a></span></li>
+<li><b>Cross-spectral Analysis of the Type-C Quasi-periodic Oscillation Shoulder Component in GX 339-4</b><span>Haifan Zhu, Mariano Méndez, Pengcheng Yang et al. · astro-ph.HE · 2026-08-13</span><span class="cites"><a href="https://arxiv.org/abs/2608.12966">arXiv</a></span></li>
+<li><b>High-energy neutrino signatures of embedded GRB jets in AGN disks: a dynamic jet-propagation framework</b><span>Wei-Cheng Long, Yun-Wei Yu · astro-ph.HE · 2026-08-12</span><span class="cites"><a href="https://arxiv.org/abs/2608.12217">arXiv</a></span></li>
+<li><b>SPORE: An Event-Level Sampling Pipeline for Multi-Telescope Neutrino Astronomy</b><span>Jeffrey Lazar, Perrine Wilmet, Gwenhaël de Wasseige · astro-ph.IM, astro-ph.HE · 2026-08-12</span><span class="cites"><a href="https://arxiv.org/abs/2608.11862">arXiv</a></span></li>
 </ul>
 
 
