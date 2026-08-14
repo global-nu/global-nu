@@ -227,6 +227,12 @@ PUBLISHED_BY_JOB = [
 # commit would mean the map's photographs are drawn locally today and then
 # never reach the live site, since `git subtree push` only ever pushes what
 # was committed, not what merely exists in the working tree.
+#
+# These patterns are handed to `git add` as literal strings in
+# _push_generated below, not expanded against the filesystem first (see the
+# comment at that call site) — the same list, doing double duty as both a
+# Python glob (to check whether anything on disk matches) and a git
+# pathspec (to actually stage additions, modifications AND removals).
 PHOTO_GLOBS = ["site-src/images-src/conf-*.jpg", "site/images/conf-*.jpg"]
 
 
@@ -244,11 +250,45 @@ def _push_generated(log) -> None:
         return
 
     existing = [p for p in PUBLISHED_BY_JOB if (ROOT / p).exists()]
-    for pattern in PHOTO_GLOBS:
-        existing += [str(p.relative_to(ROOT)) for p in sorted(ROOT.glob(pattern))]
     if git("add", "--", *existing).returncode != 0:
         log.error("publish: git add failed")
         return
+
+    # PHOTO_GLOBS is staged separately, and NOT by expanding it with
+    # ROOT.glob() first the way the code above used to: Python's glob only
+    # ever sees files that still EXIST on disk, so a takedown (which, by
+    # definition, just removed a file from disk — see
+    # photos._delete_local_copies) vanishes from the add-list before git
+    # ever sees it, and the deletion never reaches the index. The 31
+    # conf-*.jpg files are git-tracked in both trees, so that silent gap
+    # meant the taken-down photograph's bytes kept being served from the
+    # already-committed tree, AND left the working tree dirty — which made
+    # the "git pull --rebase" a few lines down fail even when the remote had
+    # not diverged, halting every subsequent day's publish. See the finding:
+    # .superpowers/sdd/2026-08-14-conferences/progress.md, "FINAL FIX ROUND 2".
+    #
+    # Handing the raw PATTERN STRING to `git add` instead — not a Python-
+    # expanded list of paths — lets git do its own pathspec matching, which
+    # is checked against the INDEX as well as the working tree: a file git
+    # already tracks but that is now missing from disk is correctly staged
+    # as a deletion, with no `-A` needed. Deliberately not `git add -A`
+    # (repo-wide or otherwise): that would sweep in whatever else happens to
+    # be sitting dirty elsewhere in the tree, which is exactly the "narrow,
+    # not -A" contract PUBLISHED_BY_JOB above already keeps — a pathspec
+    # restricted to PHOTO_GLOBS's own two patterns stages only what those
+    # patterns match, nothing else in the repo.
+    #
+    # A pattern matching NOTHING at all — nothing tracked, nothing on disk —
+    # makes `git add -- <pattern>` itself fail ("did not match any files"),
+    # so each pattern is skipped when neither side has anything for it (a
+    # city photo set that happens to be genuinely empty, e.g. day one).
+    for pattern in PHOTO_GLOBS:
+        tracked = git("ls-files", "--", pattern).stdout.strip()
+        if not tracked and not any(ROOT.glob(pattern)):
+            continue
+        if git("add", "--", pattern).returncode != 0:
+            log.error("publish: git add failed for %s", pattern)
+            return
     # `git diff --cached --quiet` exits 0 when the index matches HEAD.
     if git("diff", "--cached", "--quiet").returncode == 0:
         log.info("publish: the regenerated pages are unchanged — nothing to push")

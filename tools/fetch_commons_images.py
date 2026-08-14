@@ -109,8 +109,16 @@ def licence_ok(short: str, name: str) -> tuple[bool, str]:
     # every non-alphanumeric run (spaces AND hyphens AND dots) tokenises
     # "cc by-nc 4.0" into ["cc", "by", "nc", "4", "0"], where "nc" is caught.
     tokens = re.split(r"[^a-z0-9]+", s)
-    if any(bad in tokens for bad in ("nc", "nd")) or \
-       any(bad in s for bad in ("fair use", "non-free", "noncommercial", "noderiv")):
+    # REFUSED itself, not a re-inlined copy of it: a short entry ("nc", "nd")
+    # must match as an isolated TOKEN (a substring check on "nc" would false-
+    # positive on ordinary words), while a longer phrase ("fair use", "non-
+    # free") can never appear as a single token in the first place, since the
+    # split above breaks on the space/hyphen inside it — so it is matched as
+    # a SUBSTRING of the whole string instead. Splitting REFUSED itself by
+    # length keeps this one list authoritative; a re-inlined ("nc", "nd")
+    # here previously let it drift from the module-level constant.
+    if any(bad in tokens for bad in REFUSED if len(bad) <= 2) or \
+       any(bad in s for bad in REFUSED if len(bad) > 2):
         return False, f"licence forbids reuse or derivatives: {short}"
     if any(good in s for good in ALLOWED):
         return True, short
