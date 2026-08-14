@@ -98,7 +98,7 @@ with the correlations intact. That combination is what this site publishes.</p>
 <h4>How to cite</h4>
 <p>If you use the numbers or the files from the 2025 release, please cite the
 paper:</p>
-<pre style="overflow-x:auto;font-family:var(--mono);font-size:.78rem;line-height:1.5;margin:.6rem 0 0"><code>@article{Capozzi:2025wgt,
+<pre style="overflow-x:auto;font-family:var(--mono);font-size:.78rem;line-height:1.5;margin:.6rem 0 0"><code>@article{Capozzi:2025wyn,
   author  = {Capozzi, Francesco and Giar\`e, William
              and Lisi, Eligio and Marrone, Antonio
              and Melchiorri, Alessandro and Palazzo, Antonio},
@@ -122,10 +122,14 @@ INSPIRE</a>.</p>
 
 <div class="callout" style="margin-top:1.3rem">
 <h4>Automatically generated pages</h4>
-<p>The <a href="digest.html">arXiv digest</a>, the <a href="news.html">news</a>
-and the <a href="conferences.html">conference calendar</a> are produced daily
-with AI assistance and are marked as such at the top of each page. They may
-contain errors, and they are not a substitute for the sources they link to.</p>
+<p>Three pages are rebuilt every morning by a job on our own machine, and each
+one carries a notice saying so. The <a href="digest.html">arXiv digest</a> and
+the <a href="conferences.html">conference calendar</a> are produced by a script
+from the arXiv and Indico APIs, with no model involved at any point. The
+<a href="news.html">news</a> page is different: its summaries are written by a
+language model from fetched records, and every citation in them is checked
+against those records before the page is written. All three may contain
+errors, and none is a substitute for the sources it links to.</p>
 <p>The <a href="results.html">results</a> and the
 <a href="history.html">parameter history</a> are not automated: every number
 there is transcribed from a published table by hand.</p>
@@ -145,12 +149,27 @@ di Bari.</p>
 <p>Write to <a href="mailto:antonio.marrone@ba.infn.it">antonio.marrone@ba.infn.it</a>.</p>
 </div>
 <div class="prose">
-<h2>About this site</h2>
-<p>Static pages, no server-side code, no cookies. The literature
-<a href="search.html">search</a> runs entirely in your browser: what you type goes
-directly from you to the databases, and never to this site.</p>
+<h2>How this site is built</h2>
+<p>Static pages, no server-side code, no cookies. Every font, stylesheet and
+script — including the counter's — is served from this domain: no page loads
+anything from a third-party host. The literature <a href="search.html">search</a> runs
+entirely in your browser: what you type goes directly from you to the
+databases, and never to this site.</p>
 <p>Visits are counted with GoatCounter, which records a pageview without cookies
-and without tracking individuals.</p>
+and without tracking individuals. That is the one request a page makes off this
+domain: one counting request per pageview, to
+<code>global-nu.goatcounter.com</code>.</p>
+<h2 id="licence">Licensing</h2>
+<p>Not one licence for everything. The parameter register and the data files it
+is exported to are published under
+<a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener noreferrer" target="_blank">CC BY 4.0</a>: use them,
+crediting this site and citing the paper each number came from. The text of
+these pages and the code that builds them are all rights reserved. Figures
+reproduced from published papers, and the photographs on the map, travel under
+their own terms, credited beside each one — a figure from
+<a href="https://doi.org/10.1103/PhysRevD.111.093006" rel="noopener noreferrer" target="_blank">Phys. Rev. D 111,
+093006</a> is here under the CC BY 4.0 licence of the paper, and a CC BY-SA
+photograph stays CC BY-SA.</p>
 </div>
 </div>
 </div></section>
@@ -196,9 +215,13 @@ and without tracking individuals.</p>
         </ul>
       </div>
     </div>
-    <p class="site-footer__base">© 2026 the Bari group · Content is published
-    under the terms stated on each release page. Pages marked as automatically
-    generated are produced with AI assistance and may contain errors.</p>
+    <p class="site-footer__base">© 2026 the Bari group · The parameter
+    register and the data files are CC BY 4.0; the text and the code are all
+    rights reserved; reproduced figures and photographs carry the terms
+    credited beside them — see the
+    <a href="about.html#licence">licence note</a>. Pages marked as automatically
+    generated may contain errors; of those, only the news page is written with
+    AI assistance.</p>
   </div>
 </footer>
 
@@ -210,7 +233,7 @@ and without tracking individuals.</p>
 <script src="assets/js/site.js?v=215a304f" defer></script>
 <script src="assets/js/figure.js?v=86661934" defer></script>
 
-<script data-goatcounter="https://global-nu.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://global-nu.goatcounter.com/count" async src="assets/vendor/goatcounter/count.js?v=185aa0b9"></script>
 
 </body>
 </html>

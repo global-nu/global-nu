@@ -145,8 +145,8 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
   <p class="lit__note">Results are filtered to physics: OpenAlex is asked for
   Physical Sciences only, Semantic Scholar for Physics, and a record found
   only by the generic databases must actually contain your query terms.
-  Google Scholar and NASA ADS have no public search API — use the buttons
-  below to open the same query there.</p>
+  Google Scholar has no public search API, and NASA ADS's requires a personal
+  token — use the buttons below to open the same query there.</p>
 
   <div class="btn-row">
     <button class="btn btn--solid" type="submit">Search</button>
@@ -193,9 +193,10 @@ arXiv registers a DOI for every preprint with DataCite, under the
 <code>10.48550/arXiv.*</code> prefix, and DataCite's API does send CORS and needs no key.
 So the arXiv results here are arXiv's own metadata, deposited by arXiv, fetched
 from the one place a browser is allowed to read it.</p>
-<p><strong>Why not NASA ADS.</strong> It requires a personal token, which would have to be
-published in the page source to work — so for ADS the parsed query is turned
-into a correct search URL and offered as a button instead.</p>
+<p><strong>Why not NASA ADS.</strong> Its search API is public and documented, but it requires
+a personal token, which would have to be published in the page source to work —
+so for ADS the parsed query is turned into a correct search URL and offered as
+a button instead.</p>
 <p>Results are capped at 20 per database, and every outbound link opens in a new
 tab, so you never lose your place here.</p>
 </div>
@@ -242,9 +243,13 @@ tab, so you never lose your place here.</p>
         </ul>
       </div>
     </div>
-    <p class="site-footer__base">© 2026 the Bari group · Content is published
-    under the terms stated on each release page. Pages marked as automatically
-    generated are produced with AI assistance and may contain errors.</p>
+    <p class="site-footer__base">© 2026 the Bari group · The parameter
+    register and the data files are CC BY 4.0; the text and the code are all
+    rights reserved; reproduced figures and photographs carry the terms
+    credited beside them — see the
+    <a href="about.html#licence">licence note</a>. Pages marked as automatically
+    generated may contain errors; of those, only the news page is written with
+    AI assistance.</p>
   </div>
 </footer>
 
@@ -256,7 +261,7 @@ tab, so you never lose your place here.</p>
 <script src="assets/js/site.js?v=215a304f" defer></script>
 <script src="assets/js/figure.js?v=86661934" defer></script>
 <script src="assets/js/search.js?v=6869fecf" defer></script>
-<script data-goatcounter="https://global-nu.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://global-nu.goatcounter.com/count" async src="assets/vendor/goatcounter/count.js?v=185aa0b9"></script>
 
 </body>
 </html>

@@ -3,7 +3,7 @@ title: Conferences
 url: conferences.html
 description: >-
   Upcoming and recent neutrino conferences, workshops and schools, with dates,
-  venues and links — refreshed daily.
+  links, and venues where the source publishes one — refreshed daily.
 katex: false
 ---
 
@@ -20,8 +20,9 @@ katex: false
 
 <div class="autogen">
 <span aria-hidden="true">⚠</span>
-<div><b>This page is generated automatically with AI and may contain errors.</b>
-<span class="stamp">Last successful update: 14 August 2026, 07:34</span></div>
+<div><b>This page is generated automatically by a script from the conference indexers' APIs,
+and may contain errors. No model is involved.</b>
+<span class="stamp">Last successful update: 14 August 2026, 10:58 CEST</span></div>
 </div>
 
 <div class="section-head"><h2>Upcoming</h2>
@@ -45,11 +46,13 @@ katex: false
 <div class="section-head"><h2>Recent</h2>
 <p>0 meetings</p></div>
 
-<p class="small muted">Nothing announced in this window.</p>
+<p class="small muted">No meeting in this window has ended yet.</p>
 
 
 <p class="small muted">The list is rebuilt each day from the conference
-indexers rather than maintained by hand. Where a date or a venue cannot be
-confirmed from the source, the entry is dropped rather than guessed.</p>
+indexers rather than maintained by hand. Where a date cannot be confirmed from
+the source, the entry is dropped rather than guessed; a venue is shown when the
+source publishes one, and left blank when it does not. A meeting stays under
+“Upcoming” until its last day is over.</p>
 
 :::

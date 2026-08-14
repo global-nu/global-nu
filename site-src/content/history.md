@@ -36,10 +36,15 @@ katex: false
 ordering and Δm²₃₂ &lt; 0 for inverted. Valencia reports |Δm²₃₁| for
 <em>both</em> orderings.</p>
 <p>From the identity Δm² = Δm²₃₁ − δm²/2, the correction is −δm²/2 for normal
-ordering in every case, but in inverted ordering it is +δm²/2 for NuFit and
-+δm²/2 applied to the modulus for Valencia — <strong>the sign of the shift is
-not the same for the two groups</strong>. That is why this site stores what
-each paper printed and converts in code, where the rule can be read:
+ordering in every case. In inverted ordering the two groups differ, and the
+difference is clearest stated on the modulus, which is what every number on
+this page is plotted as. NuFit publishes Δm²₃ℓ = Δm²₃₂ &lt; 0, and adding
+δm²/2 to a negative number makes its modulus <em>smaller</em>: the shift is
+<strong>−δm²/2 for NuFit</strong>. Valencia publishes |Δm²₃₁|, already a
+modulus, and the same addition makes it <em>larger</em>: the shift is
+<strong>+δm²/2 for Valencia</strong>. Same identity, opposite effect on the
+plotted number — which is why this site stores what each paper printed and
+converts in code, where the rule can be read:
 <code>tools/make_history.py</code>, function <code>to_our_Dm2</code>.</p>
 <p class="small muted">The 3σ ranges are shifted by the same constant as the
 best fit, computed with δm² at its own best fit. The papers do not publish the
@@ -424,21 +429,31 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 
 </div>
 
-<div class="table-scroll" style="margin-top:2rem">
+<div class="prose" style="margin-top:2rem">
+<p class="small muted">The 2001 and 2004 entries predate the NuFit name. They
+are earlier IFIC-Valencia global fits — Gonzalez-Garcia, Maltoni, Peña-Garay
+and Valle in 2001; Maltoni, Schwetz, Tórtola and Valle in 2004 — grouped here
+with the later NuFit papers for continuity of lineage, and marked as
+predecessors rather than presented as NuFit releases. Two of those authors
+also appear on the Valencia papers listed below, so the three series are less
+separate before 2012 than three columns suggest.</p>
+</div>
+
+<div class="table-scroll" style="margin-top:1.2rem">
 <table class="data data--refs">
 <caption>The releases of the other groups included above, with the convention
 each one publishes in. Their values are stored exactly as printed and converted
 only at rendering time.</caption>
 <thead><tr><th scope="col">Year</th><th scope="col">Paper</th><th scope="col">Preprint</th><th scope="col">Source</th><th scope="col">Convention</th></tr></thead>
 <tbody>
-<tr><th scope="row">2001</th><td class="ref">Nufit — Global three-neutrino oscillation analysis of neutrino data<span class="ref__meta">Phys. Rev. D 63, 033005 (2001)</span></td><td><a href="https://arxiv.org/abs/hep-ph/0009350">arXiv:hep-ph/0009350</a></td><td>Table V/VI, "Solar + ALL-ATM. + CHOOZ" (global combined analysis)</td><td class="mono small">tan2(theta), not sin2(theta), for every mixing angle; Dm2_32 = m3^2-m2^2 reported without a normal/inverted split</td></tr>
-<tr><th scope="row">2004</th><td class="ref">Nufit — Status of global fits to neutrino oscillations<span class="ref__meta">New J. Phys. 6, 122 (2004)</span></td><td><a href="https://arxiv.org/abs/hep-ph/0405172">arXiv:hep-ph/0405172</a></td><td>Table 1</td><td class="mono small">Dm2_3l = Dm2_31 > 0; no inverted-ordering fit performed</td></tr>
-<tr><th scope="row">2012</th><td class="ref">Nufit — Global fit to three neutrino mixing: critical look at present precision<span class="ref__meta">JHEP 12 (2012) 123</span></td><td><a href="https://arxiv.org/abs/1209.3023">arXiv:1209.3023</a></td><td>Table 1, first column<br>Free Fluxes + RSBL</td><td class="mono small">Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)</td></tr>
-<tr><th scope="row">2018</th><td class="ref">Nufit — Global analysis of three-flavour neutrino oscillations: synergies and tensions<span class="ref__meta">JHEP 01 (2019) 106</span></td><td><a href="https://arxiv.org/abs/1811.05487">arXiv:1811.05487</a></td><td>Table 1, lower block<br>with SK-atm</td><td class="mono small">Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)</td></tr>
+<tr><th scope="row">2001</th><td class="ref">NuFit (predecessor) — Global three-neutrino oscillation analysis of neutrino data<span class="ref__meta">Phys. Rev. D 63, 033005 (2001)</span></td><td><a href="https://arxiv.org/abs/hep-ph/0009350">arXiv:hep-ph/0009350</a></td><td>Table V/VI, "Solar + ALL-ATM. + CHOOZ" (global combined analysis)</td><td class="mono small">tan2(theta), not sin2(theta), for every mixing angle; Dm2_32 = m3^2-m2^2 reported without a normal/inverted split</td></tr>
+<tr><th scope="row">2004</th><td class="ref">NuFit (predecessor) — Status of global fits to neutrino oscillations<span class="ref__meta">New J. Phys. 6, 122 (2004)</span></td><td><a href="https://arxiv.org/abs/hep-ph/0405172">arXiv:hep-ph/0405172</a></td><td>Table 1</td><td class="mono small">Dm2_3l = Dm2_31 > 0; no inverted-ordering fit performed</td></tr>
+<tr><th scope="row">2012</th><td class="ref">NuFit — Global fit to three neutrino mixing: critical look at present precision<span class="ref__meta">JHEP 12 (2012) 123</span></td><td><a href="https://arxiv.org/abs/1209.3023">arXiv:1209.3023</a></td><td>Table 1, first column<br>Free Fluxes + RSBL</td><td class="mono small">Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)</td></tr>
+<tr><th scope="row">2018</th><td class="ref">NuFit — Global analysis of three-flavour neutrino oscillations: synergies and tensions in the determination of θ₂₃, δCP, and the mass ordering<span class="ref__meta">JHEP 01 (2019) 106</span></td><td><a href="https://arxiv.org/abs/1811.05487">arXiv:1811.05487</a></td><td>Table 1, lower block<br>with SK-atm</td><td class="mono small">Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)</td></tr>
 <tr><th scope="row">2018</th><td class="ref">Valencia — Status of neutrino oscillations 2018: 3σ hint for normal mass ordering and improved CP sensitivity<span class="ref__meta">Phys. Lett. B 782, 633 (2018)</span></td><td><a href="https://arxiv.org/abs/1708.01186">arXiv:1708.01186</a></td><td>Table I</td><td class="mono small">|Dm2_31| quoted for both orderings</td></tr>
-<tr><th scope="row">2020</th><td class="ref">Nufit — The fate of hints: updated global analysis of three-flavor neutrino oscillations<span class="ref__meta">JHEP 09 (2020) 178</span></td><td><a href="https://arxiv.org/abs/2007.14792">arXiv:2007.14792</a></td><td>Table 3, lower block<br>with SK atmospheric data</td><td class="mono small">Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)</td></tr>
+<tr><th scope="row">2020</th><td class="ref">NuFit — The fate of hints: updated global analysis of three-flavor neutrino oscillations<span class="ref__meta">JHEP 09 (2020) 178</span></td><td><a href="https://arxiv.org/abs/2007.14792">arXiv:2007.14792</a></td><td>Table 3, lower block<br>with SK atmospheric data</td><td class="mono small">Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)</td></tr>
 <tr><th scope="row">2020</th><td class="ref">Valencia — 2020 global reassessment of the neutrino oscillation picture<span class="ref__meta">JHEP 02 (2021) 071</span></td><td><a href="https://arxiv.org/abs/2006.11237">arXiv:2006.11237</a></td><td>Table III</td><td class="mono small">|Dm2_31| quoted for both orderings</td></tr>
-<tr><th scope="row">2024</th><td class="ref">Nufit — NuFit-6.0: updated global analysis of three-flavor neutrino oscillations<span class="ref__meta">JHEP 12 (2024) 216</span></td><td><a href="https://arxiv.org/abs/2410.05380">arXiv:2410.05380</a></td><td>Table 1, lower block<br>IC24, with SK atmospheric data</td><td class="mono small">Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)</td></tr>
+<tr><th scope="row">2024</th><td class="ref">NuFit — NuFit-6.0: updated global analysis of three-flavor neutrino oscillations<span class="ref__meta">JHEP 12 (2024) 216</span></td><td><a href="https://arxiv.org/abs/2410.05380">arXiv:2410.05380</a></td><td>Table 1, lower block<br>IC24, with SK atmospheric data</td><td class="mono small">Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)</td></tr>
 </tbody>
 </table>
 </div>
@@ -821,15 +836,20 @@ sources in the table below.</p>
 
 <div class="section-head">
   <h2>The releases</h2>
-  <p>11 updates · 393 values, each verified against its source table</p>
+  <p>11 releases · 393 values, 381 of them checked against the source they name</p>
 </div>
 
 <div class="table-scroll">
 <table class="data data--refs">
-<caption>Every value on this page is transcribed from the table named here and
-checked against the paper by <code>tools/tests/test_history_numbers.py</code>,
-which re-reads each source on every run. Papers marked as partial updates
-revise only part of the parameter set.</caption>
+<caption>Every value on this page is transcribed from the table or equations
+named here. Every best fit, and every range endpoint the paper prints, is
+checked against that source by <code>tools/tests/test_history_numbers.py</code>,
+which re-reads each paper on every run. The exceptions are 12 range
+endpoints in the two earliest releases, where the paper states a central value
+± an error and the endpoints are computed from it: the register marks those
+releases as derived, and the test does not search the source for a number the
+source never printed. Papers marked as partial updates revise only part of the
+parameter set.</caption>
 <thead><tr><th scope="col">Year</th><th scope="col">Paper</th><th scope="col">Preprint</th><th scope="col">Source table</th><th scope="col"></th></tr></thead>
 <tbody>
 <tr><th scope="row">2006</th><td class="ref">Global analysis of three-flavor neutrino masses and mixings<span class="ref__meta">Prog. Part. Nucl. Phys. 57, 742 (2006)</span></td><td><a href="https://arxiv.org/abs/hep-ph/0506083">arXiv:hep-ph/0506083</a></td><td>Eq. (53)-(57), global oscillation analysis</td><td></td></tr>
@@ -842,7 +862,7 @@ revise only part of the parameter set.</caption>
 <tr><th scope="row">2018</th><td class="ref">Current unknowns in the three neutrino framework<span class="ref__meta">Prog. Part. Nucl. Phys. 102, 48 (2018)</span></td><td><a href="https://arxiv.org/abs/1804.09678">arXiv:1804.09678</a></td><td>Table 1</td><td></td></tr>
 <tr><th scope="row">2021</th><td class="ref">Unfinished fabric of the three neutrino paradigm<span class="ref__meta">Phys. Rev. D 104, 083031 (2021)</span></td><td><a href="https://arxiv.org/abs/2107.00532">arXiv:2107.00532</a></td><td>Table I</td><td></td></tr>
 <tr><th scope="row">2025</th><td class="ref">Neutrino masses and mixing: Entering the era of subpercent precision<span class="ref__meta">Phys. Rev. D 111, 093006 (2025)</span></td><td><a href="https://arxiv.org/abs/2503.07752">arXiv:2503.07752</a></td><td>Table I</td><td><span class="tag">current release</span></td></tr>
-<tr><th scope="row">2026</th><td class="ref">Updated bounds on the (1,2) neutrino oscillation parameters after first JUNO results<span class="ref__meta">Phys. Rev. D 114, 013003 (2026)</span></td><td><a href="https://arxiv.org/abs/2511.21650">arXiv:2511.21650</a></td><td>Table I, row “w/ SNO+ & JUNO 2025”</td><td><span class="tag">partial update</span></td></tr>
+<tr><th scope="row">2026</th><td class="ref">Updated bounds on the (1, 2) neutrino oscillation parameters after first JUNO results<span class="ref__meta">Phys. Rev. D 114, 016026 (2026)</span></td><td><a href="https://arxiv.org/abs/2511.21650">arXiv:2511.21650</a></td><td>Table I, row “w/ SNO+ & JUNO 2025”</td><td><span class="tag">partial update</span></td></tr>
 </tbody>
 </table>
 </div>

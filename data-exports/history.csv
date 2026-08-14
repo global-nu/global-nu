@@ -138,5 +138,5 @@ bari,2025,2503.07752,"Phys. Rev. D 111, 093006 (2025)",Table I,sin2_th23,no,Dm2 
 bari,2025,2503.07752,"Phys. Rev. D 111, 093006 (2025)",Table I,sin2_th23,io,Dm2 = m3^2 - (m1^2 + m2^2)/2,measurement,5.45,5.45,1e-1,
 bari,2025,2503.07752,"Phys. Rev. D 111, 093006 (2025)",Table I,delta_pi,no,Dm2 = m3^2 - (m1^2 + m2^2)/2,measurement,1.2,1.2,1,
 bari,2025,2503.07752,"Phys. Rev. D 111, 093006 (2025)",Table I,delta_pi,io,Dm2 = m3^2 - (m1^2 + m2^2)/2,measurement,1.48,1.48,1,
-bari,2026,2511.21650,"Phys. Rev. D 114, 013003 (2026)","Table I, row “w/ SNO+ & JUNO 2025”",dm2,any,Dm2 = m3^2 - (m1^2 + m2^2)/2,measurement,7.48,7.48,1e-5 eV²,
-bari,2026,2511.21650,"Phys. Rev. D 114, 013003 (2026)","Table I, row “w/ SNO+ & JUNO 2025”",sin2_th12,any,Dm2 = m3^2 - (m1^2 + m2^2)/2,measurement,3.085,3.085,1e-1,
+bari,2026,2511.21650,"Phys. Rev. D 114, 016026 (2026)","Table I, row “w/ SNO+ & JUNO 2025”",dm2,any,Dm2 = m3^2 - (m1^2 + m2^2)/2,measurement,7.48,7.48,1e-5 eV²,
+bari,2026,2511.21650,"Phys. Rev. D 114, 016026 (2026)","Table I, row “w/ SNO+ & JUNO 2025”",sin2_th12,any,Dm2 = m3^2 - (m1^2 + m2^2)/2,measurement,3.085,3.085,1e-1,
