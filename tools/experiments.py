@@ -33,15 +33,35 @@ ROLES: list[tuple[str, str]] = [
     ("0nubb",       "Neutrinoless double-beta decay"),
 ]
 
-STATUSES: tuple[str, ...] = ("running", "completed", "construction", "proposed")
+STATUSES: tuple[str, ...] = ("running", "completed", "construction",
+                             "construction_running", "paused", "proposed")
 
 # How a status is written on the page. Absent status prints nothing at all,
 # which is the honest outcome when it could not be established.
+#
+# The vocabulary is longer than the obvious four because two real situations
+# were being written as a lie by the nearest available word:
+#
+#   construction_running  A detector still being built that is already taking
+#                         data and publishing physics with the part that
+#                         exists (KM3NeT). "under construction" alone puts it
+#                         next to an experiment that will see nothing for
+#                         years, and reads as "has produced nothing".
+#   paused                An operating experiment that is between runs
+#                         because its accelerator is down (T2K). Neither
+#                         "taking data" nor "completed" is true, and dropping
+#                         the status would hide a fact its laboratory states
+#                         plainly.
+#
+# Both labels are only as good as the sentence in source_quote, like every
+# other status here.
 STATUS_LABEL = {
-    "running":      "taking data",
-    "completed":    "completed",
-    "construction": "under construction",
-    "proposed":     "proposed",
+    "running":              "taking data",
+    "completed":            "completed",
+    "construction":         "under construction",
+    "construction_running": "under construction, partial detector taking data",
+    "paused":               "between runs, accelerator in shutdown",
+    "proposed":             "proposed",
 }
 
 
@@ -61,18 +81,14 @@ _ROLE_KEYS = {k for k, _ in ROLES}
 # gone stale, so it cannot outlive the records it names.
 STATUS_QUOTE_BACKLOG: frozenset[tuple[str, str]] = frozenset({
     ("JUNO", "theta12_dm2"),
-    ("KamLAND", "theta12_dm2"),
     ("Daya Bay", "theta13"),
     ("RENO", "theta13"),
     ("SNO+", "0nubb"),
-    ("Hyper-Kamiokande", "lbl"),
-    ("T2K", "lbl"),
     ("MINOS+", "lbl"),
     ("OPERA", "lbl"),
     ("ICARUS", "lbl"),
     ("ESSnuSB", "lbl"),
     ("Super-Kamiokande", "atmospheric"),
-    ("KM3NeT", "atmospheric"),
     ("ANTARES", "atmospheric"),
     ("SNO", "solar"),
     ("Super-Kamiokande", "solar"),
@@ -80,7 +96,6 @@ STATUS_QUOTE_BACKLOG: frozenset[tuple[str, str]] = frozenset({
     ("GALLEX/GNO", "solar"),
     ("LEGEND", "0nubb"),
     ("GERDA", "0nubb"),
-    ("KamLAND-Zen", "0nubb"),
     ("nEXO", "0nubb"),
     ("EXO-200", "0nubb"),
     ("Majorana Demonstrator", "0nubb"),

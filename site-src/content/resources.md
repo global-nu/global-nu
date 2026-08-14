@@ -44,9 +44,13 @@ its page on Wikimedia Commons — the terms under which it may be here.</p>
 <!--include:experiments-tiles-->
 
 <p class="small muted" style="margin-top:1.4rem">Grouped by what each
-experiment constrains, and ordered within a group by its weight in the
-current global fit. Status is taken from each collaboration's own pages;
-where it could not be established, none is shown.</p>
+experiment constrains; inside a group, the experiments that enter the current
+global fit come first, in descending order of their weight in it, and the ones
+that do not enter it follow. Status is taken from a source recorded with each
+entry, together with the sentence that states it: usually the collaboration's
+own page, and where that page states nothing, the paper of the experiment's
+final dataset, a laboratory's operations notice or an observatory page. Where
+no source could be found that states one, none is shown.</p>
 
 :::
 

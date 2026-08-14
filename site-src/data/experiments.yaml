@@ -67,7 +67,15 @@ experiments:
     role: theta12_dm2
     status: completed
     rank: 2
-    source: https://www.awa.tohoku.ac.jp/kamland/
+    # The homepage states this only as a headline; the news item it links to
+    # says it in a sentence, with a date. "completed" here means the dataset
+    # is closed — the detector itself is being rebuilt as KamLAND2, which the
+    # same quote says, so nobody reads the label as "dismantled and gone".
+    source: https://www.awa.tohoku.ac.jp/en/kamland/News/2024/Completion_KamLAND_Aug_in2024-kl.html
+    source_quote: >-
+      On August 27, 2024, the KamLAND data acquisition drew to a close with 22
+      years of observation history. Major detector upgrades have now started in
+      preparation for the upcoming KamLAND2 experiment.
 
   - name: Daya Bay
     kind: reactor
@@ -132,6 +140,10 @@ experiments:
     source: https://www.dunescience.org/
     photo: DUNE
 
+  # The status used to cite https://www-sk.icrr.u-tokyo.ac.jp/hk/, which is a
+  # Japanese splash page with a news list and states no status in words; the
+  # English page is at /en/hk/ (note /hk/en/ is a 404). The news item below is
+  # the collaboration saying it in terms, with a date.
   - name: Hyper-Kamiokande
     kind: accelerator
     city: Hida
@@ -141,8 +153,23 @@ experiments:
     role: lbl
     status: construction
     rank: 8
-    source: https://www-sk.icrr.u-tokyo.ac.jp/hk/
+    source: https://www-sk.icrr.u-tokyo.ac.jp/en/news/detail/1301
+    source_quote: >-
+      The Hyper-Kamiokande project, currently under construction underground in
+      Kamioka, Hida City, Gifu Prefecture, reached a major milestone on 31 July
+      2026, with the completion of the lining work for its cylindrical detector
+      tank. […] Detector components, including photosensors, will then be
+      installed on the structure beginning in early 2027, with scientific
+      operation scheduled to begin in 2028.
 
+  # `running`, sourced to t2k-experiment.org, was not supported by that page
+  # and is not true today. The newest status-bearing sentence there is a news
+  # item of December 2023 ("started data taking using the enhanced neutrino
+  # beam"); nothing on it speaks to 2026. The beam comes from the J-PARC Main
+  # Ring, and J-PARC's own director states the MR is down: hence `paused`,
+  # sourced to the laboratory that runs the accelerator rather than to the
+  # collaboration page that says nothing. T2K itself is an active experiment —
+  # `completed` would be as wrong as `running`.
   - name: T2K
     kind: accelerator
     city: Tokai
@@ -150,9 +177,16 @@ experiments:
     note: beam source, far detector at Kamioka
     url: https://t2k-experiment.org/
     role: lbl
-    status: running
+    status: paused
     rank: 1
-    source: https://t2k-experiment.org/
+    source: https://j-parc.jp/c/en/information/2026/06/17001832.html
+    source_quote: >-
+      Operation of J-PARC accelerators had been suspended following the fire on
+      Tuesday, April 7; after safety checks, MLF user beam resumed on Monday,
+      June 1. Regarding the MR accelerator, another failure occurred on
+      Tuesday, June 2 to a piece of equipment unrelated to the fire. We have
+      been working to the repairs, but they are found to take time. We have
+      determined that we must abandon MR user operations before summer.
 
   - name: NOvA
     kind: accelerator
@@ -256,6 +290,11 @@ experiments:
       gigabytes are sent over satellite for analysis.
     photo: IceCube
 
+  # The words "under construction" appear nowhere on km3net.org's front page,
+  # and the bare label was misleading anyway: KM3NeT has been taking data and
+  # publishing physics from partial detectors for years. The ORCA page states
+  # both halves of the compound status, so it is the source rather than the
+  # homepage.
   - name: KM3NeT
     kind: natural
     city: Toulon
@@ -263,9 +302,15 @@ experiments:
     note: ORCA site; ARCA off Sicily
     url: https://www.km3net.org/
     role: atmospheric
-    status: construction
+    status: construction_running
     rank: 3
-    source: https://www.km3net.org/
+    source: https://www.km3net.org/research/physics/particle-physics-with-orca/
+    source_quote: >-
+      At the end of the current construction phase KM3NeT 2.0, the full ORCA
+      detector will comprise a detector block of 115 detection units. […]
+      Currently, ORCA is operated with 28 detection units (ORCA28). […] KM3NeT
+      scientists have already published compelling results from studies with
+      only a few detection units.
 
   - name: SNO
     kind: natural
@@ -397,12 +442,22 @@ experiments:
     kind: mass
     city: Hida
     country: JP
-    note: 0νββ in ¹³⁶Xe, at Kamioka
+    note: 0νββ in ¹³⁶Xe, at Kamioka, 800 phase
     url: https://www.awa.tohoku.ac.jp/en/kamland/
     role: 0nubb
     status: completed
     rank: 3
-    source: https://www.awa.tohoku.ac.jp/en/kamland/
+    # `completed` is exact for the phase this record is about, KamLAND-Zen 800,
+    # and the note says which phase that is: the collaboration is preparing
+    # KamLAND2-Zen, so the label must not be read as the end of the programme.
+    source: https://www.awa.tohoku.ac.jp/en/kamland/News/2024/Completed_KamLAND_Zen_800_eng.html
+    source_quote: >-
+      KamLAND-Zen 800 experiment, which had been operated with 750 kg of Xe
+      aiming to search for neutrinoless double-beta (0νββ) decay, was completed
+      on January 12, 2024 after about 4-year data taking since it was started
+      in 2019. […] We are preparing for starting "KamLAND2" experiment with
+      improvement of the detector performance in order to discover the 0νββ
+      decay.
 
   - name: CUORE
     kind: mass
