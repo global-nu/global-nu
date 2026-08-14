@@ -16,6 +16,10 @@ Four checks, each answering a way it could go wrong:
      public, so "not deployed" is not enough
   4. the actual numbers of the draft release appear nowhere in site/ — the
      check that survives someone pasting a table by hand
+
+Checks 2 and 4 read every published *text* artefact: the pages, and the data
+files the site publishes beside them (JSON and CSV under site/data/). An
+embargoed number in a downloadable table is as public as one on a page.
 """
 
 from __future__ import annotations
@@ -48,9 +52,16 @@ def main() -> None:
         sys.exit("site/ not found — run build.py first")
 
     site_files = {p.name for p in SITE.rglob("*") if p.is_file()}
+    # Every published text artefact, not only the pages. The site now ships
+    # data files as well — site/data/chi2.json, history.json, history.csv —
+    # and a number that leaked into one of those is published just as
+    # loudly as one on a page, at a URL people are invited to download. A
+    # glob that reads only *.html would look complete and check none of them.
+    PUBLISHED_TEXT = ("*.html", "*.json", "*.csv")
     site_text = "\n".join(
         p.read_text(encoding="utf-8", errors="ignore")
-        for p in SITE.rglob("*.html"))
+        for pattern in PUBLISHED_TEXT
+        for p in sorted(SITE.rglob(pattern)))
 
     # 1. no draft file by name
     if DRAFTS.exists():

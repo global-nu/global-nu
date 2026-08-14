@@ -34,6 +34,27 @@ meta:
 releases:
 
   - group: bari
+    year: 2006
+    arxiv: "hep-ph/0506083"
+    journal: "Prog. Part. Nucl. Phys. 57, 742 (2006)"
+    title: "Global analysis of three-flavor neutrino masses and mixings"
+    convention: "Dm2 = m3^2 - (m1^2 + m2^2)/2"
+    table: "Eq. (53)-(57), global oscillation analysis"
+    note: >-
+      No numbered table: the paper gives all five parameters only as text
+      equations (Eqs. 53-57), central value with a multiplicative +/-2sigma
+      (95% C.L.) error, not split by mass ordering and with no CP-phase fit
+      (only the extremes delta=0,pi are considered). All five values below
+      are verified against Eqs. (53)-(57) directly.
+    derived: true
+    values:
+      sin2_th13: {"any": {best: 0.9,  s2: [0.0,  3.2]}}
+      dm2:       {"any": {best: 7.92, s2: [7.21, 8.63]}}
+      sin2_th12: {"any": {best: 3.14, s2: [2.67, 3.71]}}
+      Dm2:       {"any": {best: 2.4,  s2: [1.78, 2.90]}}
+      sin2_th23: {"any": {best: 4.4,  s2: [3.43, 6.20]}}
+
+  - group: bari
     year: 2008
     arxiv: "0806.2649"
     journal: "Phys. Rev. Lett. 101, 141801 (2008)"
@@ -265,6 +286,74 @@ releases:
   # atmospheric data is taken, because that is what our own analysis includes.
   # Values below are as published; the conversion to our Dm2 is done by
   # tools/make_history.py and stated on the page.
+  #
+  # The two predecessor entries below (2001, 2004) are earlier IFIC-Valencia
+  # global fits by the same lineage of authors, recorded as "nufit" per this
+  # file's existing convention for predecessors. Their own conventions differ
+  # from the pattern above and from each other, and are stated per-release:
+  # the 2001 paper quotes tan^2(theta) rather than sin^2(theta) throughout and
+  # does not fit an inverted ordering, and the 2004 paper quotes Dm2_31 > 0
+  # with no inverted-ordering fit either (Dm2_3l as a NO-only quantity).
+
+  - group: nufit
+    year: 2001
+    arxiv: "hep-ph/0009350"
+    journal: "Phys. Rev. D 63, 033005 (2001)"
+    title: "Global three-neutrino oscillation analysis of neutrino data"
+    convention: "tan2(theta), not sin2(theta), for every mixing angle; Dm2_32 = m3^2-m2^2 reported without a normal/inverted split"
+    table: "Table V/VI, \"Solar + ALL-ATM. + CHOOZ\" (global combined analysis)"
+    note: >-
+      Only dm2 could be safely recorded from this paper; every mixing angle
+      and the atmospheric-type splitting are left out, for reasons that hold
+      regardless of the text-normalisation fix below. Every mixing angle is
+      quoted as tan2(theta), never sin2(theta) (Tables II-VI and the p.28
+      summary, Eq. 37 area); our sin2_th12/13/23 fields specifically mean
+      sin2(theta). Converting is a well-defined identity
+      (sin2 = tan2/(1+tan2)), but there is no reported/converted mechanism for
+      mixing angles in this codebase (unlike Dm2_3l/abs_Dm2_31 for the larger
+      mass splitting), so it is left undone rather than hand-computed and
+      passed off as printed. The atmospheric-type splitting Dm2_32 = m3^2-m2^2
+      is reported without distinguishing normal from inverted ordering, so it
+      does not match either branch of the later NuFit Dm2_3l convention
+      (Dm2_31 for NO, Dm2_32 for IO) without imposing a hierarchy the paper
+      itself never claims. For the record, the paper's global
+      (Solar+ALL-ATM+CHOOZ) bound is tan2(theta13) < 0.055 (90% CL),
+      < 0.085 (99% CL) -- but tan2(theta13) is not sin2(theta13).
+      dm2 (Dm2_21 = 3.3e-5 eV2, "Solar+ALL-ATM.+CHOOZ, Unconst=LMA" row of
+      Table V) is recorded with no s2/s3 range: Table VI quotes ranges only
+      for tan2_th13, tan2_th23 and Dm2_32, not for Dm2_21 or theta12 (the
+      paper defers those to a figure, Fig. 21).
+    values:
+      dm2: {"any": {best: 3.3}}
+
+  - group: nufit
+    year: 2004
+    arxiv: "hep-ph/0405172"
+    journal: "New J. Phys. 6, 122 (2004)"
+    title: "Status of global fits to neutrino oscillations"
+    convention: "Dm2_3l = Dm2_31 > 0; no inverted-ordering fit performed"
+    reported_splitting: Dm2_3l
+    table: "Table 1"
+    note: >-
+      The paper's original 2004 Table 1 (this record's source). Later arXiv
+      revisions of this same preprint (v6, 2007) append updated Tables C1 and
+      D1 from 2006 and 2007 data respectively; those are not used here, since
+      this record is keyed to the 2004 journal publication (New J. Phys. 6,
+      122), which carries only the original Table 1. No inverted-ordering fit
+      is performed anywhere in the paper: Dm2_31 is given as a single positive
+      value, recorded here under "no" only. No CP phase is fit either (delta
+      is argued to be negligible for this analysis, Sec. 4.1). Table 1's
+      sin2_th13 row reads "0.000  ≤0.028  ≤0.047" (best, 2σ, 3σ) — a limit,
+      not a range with a printed lower endpoint — so it is recorded as an
+      upper bound (3σ) rather than as best+s2/s3, per that row's own "≤".
+    values:
+      dm2:       {"any": {best: 8.1, s2: [7.5, 8.7], s3: [7.2, 9.1]}}
+      sin2_th12: {"any": {best: 3.0, s2: [2.5, 3.4], s3: [2.3, 3.8]}}
+      sin2_th13:
+        "any": {upper: 4.7, level: "3sigma", source_quote: "Best-fit values, 2σ, 3σ, and 4σ intervals (1 d.o.f.)"}
+      sin2_th23: {"any": {best: 5.0, s2: [3.8, 6.4], s3: [3.4, 6.8]}}
+      Dm2_3l:
+        "no": {best: 2.2, s2: [1.7, 2.9], s3: [1.4, 3.3]}
 
   - group: nufit
     year: 2012
@@ -368,6 +457,19 @@ releases:
     convention: "|Dm2_31| quoted for both orderings"
     reported_splitting: abs_Dm2_31
     table: "Table I"
+    note: >-
+      A second 2018 Valencia paper, arXiv:1806.11051 ("Neutrino Mass Ordering
+      from Oscillations and Beyond: 2018 Status and Future Prospects", Front.
+      Astron. Space Sci. 5, 36), reproduces this same fit as its own Table I:
+      9 of its 10 entries (dm2, |Dm2_31| for both orderings, sin2_th12,
+      sin2_th13 and sin2_th23 for both orderings, delta_pi IO) are numerically
+      identical, digit for digit, to the values below. The one exception is
+      delta_pi NO: 1806.11051 gives a best fit of 1.32, this release gives
+      1.21 — a 0.11pi shift — while the 3sigma range for that same parameter,
+      [0.87, 1.94], is identical in both papers. It is a broader review (mass
+      ordering from oscillations, 0vbb and cosmology combined) that carries
+      this same underlying fit forward as an input, not a new analysis, so it
+      is not recorded as a second release; see the excluded section.
     values:
       dm2:       {"any": {best: 7.55, s3: [7.05, 8.14]}}
       sin2_th12: {"any": {best: 3.20, s3: [2.73, 3.79]}}
@@ -407,3 +509,71 @@ releases:
       abs_Dm2_31:
         "no": {best: 2.55, s3: [2.47, 2.63]}
         "io": {best: 2.45, s3: [2.37, 2.53]}
+
+# Papers considered for this register and not included, with the reason. Kept
+# here so a physicist who knows one of these papers finds the answer in the
+# file rather than wondering whether it was simply missed.
+excluded:
+  - arxiv: "hep-ph/0206162"
+    title: "Getting the most from the statistical analysis of solar neutrino oscillations"
+    reason: >-
+      Methodological: a study of statistical-analysis technique for the 2ν
+      solar sector, not a parameter release.
+
+  - arxiv: "hep-ph/0208026"
+    title: "Three-flavor solar neutrino oscillations with terrestrial neutrino constraints"
+    reason: >-
+      A solar analysis with terrestrial constraints whose only table is a 2ν
+      solar fit without CHOOZ — not a citable 3ν global-parameter table.
+
+  - arxiv: "hep-ph/0212127"
+    title: "Solar neutrino oscillation parameters after first KamLAND results"
+    reason: >-
+      Solar+CHOOZ+KamLAND analysis restricted to (δm², sin²θ₁₂, sin²θ₁₃);
+      its only formal table (Table I) covers the 2ν (δm², θ₁₂) sector. The 3ν
+      extension including θ₁₃ is shown solely in χ² contour figures (Figs.
+      5-7), never tabulated, and atmospheric data enter only enough to
+      marginalise Δm² away — no table quotes sin²θ₂₃ or a mass ordering.
+
+  - arxiv: "hep-ph/0308055"
+    title: "Addendum to: Solar neutrino oscillation parameters after first KamLAND results"
+    reason: >-
+      A 5-page addendum to hep-ph/0212127 updating the same restricted
+      (δm², θ₁₂, θ₁₃) analysis with new SNO salt-phase data. Contains no
+      table at all (checked programmatically against the cached PDF).
+
+  - arxiv: "2001–2004 conference proceedings"
+    title: "(various)"
+    reason: >-
+      Conference-proceedings write-ups from this period restate figures from
+      the papers above rather than presenting their own citable table, so
+      none is added as a separate point.
+
+  - arxiv: "1806.11051"
+    title: "Neutrino Mass Ordering from Oscillations and Beyond: 2018 Status and Future Prospects"
+    reason: >-
+      Its Table I carries forward the same fit as arXiv:1708.01186 as an
+      input to a broader mass-ordering review, not a second, independent
+      analysis: 9 of its 10 entries match 1708.01186 digit for digit, and the
+      tenth (delta_pi, normal ordering) differs only in its best fit (1.32 vs
+      1.21), with an identical 3σ range in both papers (see the note on the
+      1708.01186 release, above, for the full comparison).
+
+  - arxiv: "1001.4524"
+    title: "Updated global fit to three neutrino mixing: status of the hints of θ13>0"
+    reason: >-
+      Considered for this pass and not added: no numbered table or equation
+      exists anywhere in this 20-page paper for its headline six-parameter
+      global fit (checked programmatically — zero "table" matches in the
+      extracted text). The results are given only via figures (Figs. 1-9) and
+      one unnumbered two-column display block on p. 16. The schema test's
+      citation-format check accepts only a "Table N" or "Eq. (" citation by
+      deliberate design, so nothing here can be cited without a change to
+      that check, which is outside the scope of a data-only pass. For a later
+      pass: the paper does give Δm²₂₁ (Sec. 2), |Δm²₃₁| for both orderings
+      (Sec. 3, "the absolute best-fit lays in the positive Δm²₃₁ = +2.46e-3
+      eV²... the local best-fit in the inverse mass ordering, Δm²₃₁ =
+      -2.36e-3 eV²"), and a sin²θ₁₃ bound (p. 16, "θ13 = 5.6+3.0-2.7(≤12.5)°"
+      converted to sin²θ₁₃ ≤ 0.047 for GS98) — all in that one unnumbered
+      block, so recovering them needs the citation-format question resolved
+      first, not a reading problem.

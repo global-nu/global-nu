@@ -21,11 +21,15 @@ Chart conventions (see the dataviz method):
 
 from __future__ import annotations
 
+import html
+import sys
 from pathlib import Path
 
-import yaml
-
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from tools import history                              # noqa: E402
+
 DATA = ROOT / "site-src" / "data" / "history.yaml"
 OUT = ROOT / "site-src" / "content" / "history.md"
 
@@ -45,6 +49,38 @@ ORDERINGS = [
     ("any", "Both orderings", "var(--text-soft)"),
 ]
 
+# A compare-panel point whose true value sits far enough below the rest of
+# its series that including it in the axis range would crush the resolution
+# of every later measurement. Listed as (year, group, parameter). Excluded
+# from the axis range and from the connecting line to its neighbour, but
+# still drawn — clamped to the panel floor, with a dashed tail and its own
+# value printed beside it. Kept out of the *scale*, never out of the
+# *picture*.
+#
+# The one entry here is NuFit's 2001 value for dm2 (the solar splitting,
+# delta m^2): 3.3, quoted with no error bar, against a modern cluster in the
+# high 6s to low 9s. It is the single earliest record in the whole register
+# and the reason the axis would otherwise span roughly 2.6-9.8 instead of
+# roughly 6.6-9.3.
+#
+# The floor-clamp treatment below only ever draws e["best"]: it has no
+# rendering for a 3σ range, because a range that is itself off-scale can't be
+# clamped the way a single point can without implying a width it doesn't
+# have. An entry listed here that also carries "s3" is therefore refused at
+# render time (see compare_panel) rather than silently drawn without its
+# range — adding one has to be a decision, not a side effect of editing this
+# set.
+OFF_SCALE_COMPARE = {(2001, "nufit", "dm2")}
+
+# How far above the axis baseline the floor-clamped marker sits, in the same
+# SVG user units as W/H/PAD_*. Large enough that the dashed tail and the
+# marker read as sitting *on* the floor rather than *in* the data — a value
+# of 0 would put the marker on the axis line itself, indistinguishable from
+# a genuine point that happens to be low; 14 clears the axis line, the tick
+# labels below it, and leaves room for the tail to register as a tail rather
+# than a pixel-length smudge.
+OFF_SCALE_FLOOR_GAP = 14
+
 
 def nice_bounds(lo: float, hi: float) -> tuple[float, float]:
     """Pad a data range so marks never touch the frame."""
@@ -54,18 +90,68 @@ def nice_bounds(lo: float, hi: float) -> tuple[float, float]:
     return lo - pad, hi + pad
 
 
-def marker(kind: str, x: float, y: float, colour: str, label: str) -> str:
+def bound_value(e: dict) -> float:
+    """The number that fixes a record's vertical position: the best fit for a
+    measurement, the printed bound for a limit. Used for the axis range, the
+    year-to-year connecting line, and placing the marker itself, so a limit
+    can never fall outside the area its own bound was used to compute."""
+    return e["upper"] if history.kind_of(e) == "limit" else e["best"]
+
+
+def marker(kind: str, x: float, y: float, colour: str, label: str, hollow: bool = False,
+           level_text: str = "") -> str:
     """Circle for NO, square for IO, diamond for “both”: shape carries the
-    same information as colour, for readers who cannot use the colour."""
+    same information as colour, for readers who cannot use the colour.
+
+    hollow draws the same shape unfilled, outlined in the group colour
+    instead of solid-filled with a background ring — used only for the
+    floor-clamped off-scale marker in compare_panel, so a clamped point
+    cannot be mistaken for a genuine plotted value at a glance: same shape
+    and colour encode the same group, but the missing fill is a second,
+    independent signal that this mark is not an ordinary point.
+
+    level_text is the confidence level a "limit-upper" arrow holds at, as
+    tools.history.LEVEL_TEXT renders it ("3σ", "90% CL"). It is drawn beside
+    the arrow, on the panel — not only in the <title>, which is a hover
+    layer no touch screen, no printout and no reader scanning the panel ever
+    sees. Two arrows at different levels are not comparable, so a limit whose
+    level the page does not show is a limit the page invites a reader to
+    mis-compare: drawing one without a level is refused outright rather than
+    left to the tooltip.
+
+    Every label is escaped: a limit label opens with a literal "<", and a
+    future parameter label containing "&" or "<" would otherwise break the
+    page rather than show a wrong character.
+    """
     ring = ' stroke="var(--bg)" stroke-width="2" paint-order="stroke"'
-    t = f"<title>{label}</title>"
+    fill = "none" if hollow else colour
+    outline = f' stroke="{colour}" stroke-width="1.8"' if hollow else ring
+    t = f"<title>{html.escape(label, quote=False)}</title>"
     if kind == "no":
-        return f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4.6" fill="{colour}"{ring}>{t}</circle>'
+        return f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4.6" fill="{fill}"{outline}>{t}</circle>'
     if kind == "io":
         return (f'<rect x="{x - 4.2:.1f}" y="{y - 4.2:.1f}" width="8.4" height="8.4" rx="1.2" '
-                f'fill="{colour}"{ring}>{t}</rect>')
+                f'fill="{fill}"{outline}>{t}</rect>')
+    if kind == "limit-upper":
+        if not level_text:
+            raise SystemExit(
+                "marker(): a limit arrow must be drawn with its confidence level "
+                "(level_text=), because the page states that it prints one beside "
+                f"every limit — label was {label!r}")
+        # A downward arrow from the bound: the value lies below this line,
+        # somewhere, and the drawing must not suggest a point estimate. The
+        # level sits to its right, in the panel's recessive text token and at
+        # the size of the axis labels — the smallest type this page asks
+        # anyone to read — so it reads as annotation of the arrow rather than
+        # as a second data mark, and still reads.
+        return (f'<path d="M{x - 5:.1f} {y:.1f}L{x + 5:.1f} {y:.1f}M{x:.1f} {y:.1f}'
+                f'L{x:.1f} {y + 11:.1f}M{x - 3.4:.1f} {y + 7:.1f}L{x:.1f} {y + 11:.1f}'
+                f'L{x + 3.4:.1f} {y + 7:.1f}" fill="none" stroke="{colour}" '
+                f'stroke-width="2" stroke-linecap="round">{t}</path>'
+                f'<text x="{x + 7:.1f}" y="{y + 3.5:.1f}" font-size="10.5" '
+                f'fill="currentColor" opacity=".75">{html.escape(level_text, quote=False)}</text>')
     return (f'<path d="M{x:.1f} {y - 5.2:.1f}L{x + 5.2:.1f} {y:.1f}'
-            f'L{x:.1f} {y + 5.2:.1f}L{x - 5.2:.1f} {y:.1f}Z" fill="{colour}"{ring}>{t}</path>')
+            f'L{x:.1f} {y + 5.2:.1f}L{x - 5.2:.1f} {y:.1f}Z" fill="{fill}"{outline}>{t}</path>')
 
 
 def to_our_Dm2(rel: dict, ordering: str, value: float) -> float:
@@ -107,7 +193,12 @@ def our_Dm2(rel: dict, ordering: str) -> dict | None:
 
 
 def compare_panel(pname: str, meta: dict, releases: list[dict]) -> str:
-    """One parameter, normal ordering, the three groups against each other."""
+    """One parameter, normal ordering, the three groups against each other.
+
+    OFF_SCALE_COMPARE points are left out of the axis-range and connecting-
+    line calculations below, then drawn separately, clamped to the floor:
+    see the constant's docstring for why.
+    """
     series: dict[str, list[tuple[int, dict]]] = {g: [] for g, _, _, _ in GROUPS}
     for rel in releases:
         if pname == "Dm2":
@@ -117,16 +208,20 @@ def compare_panel(pname: str, meta: dict, releases: list[dict]) -> str:
             e = byo.get("no") or byo.get("any")
         if e:
             series[rel["group"]].append((rel["year"], e))
-    points = [(y, e) for v in series.values() for y, e in v]
-    if not points or sum(1 for v in series.values() if v) < 2:
+    plotted = [(gid, y, e) for gid, v in series.items() for y, e in v]
+    if not plotted or sum(1 for v in series.values() if v) < 2:
         return ""
 
-    years = sorted({y for y, _ in points})
+    years = sorted({y for _, y, _ in plotted})
     x0, x1 = min(years) - 0.8, max(years) + 0.8
     vals = []
-    for _, e in points:
-        vals.append(e["best"])
+    for gid, y, e in plotted:
+        if (y, gid, pname) in OFF_SCALE_COMPARE:
+            continue
+        vals.append(bound_value(e))
         vals += list(e.get("s3") or [])
+    if not vals:
+        return ""
     y0, y1 = nice_bounds(min(vals), max(vals))
     sx = lambda v: PAD_L + (v - x0) / (x1 - x0) * (W - PAD_L - PAD_R)
     sy = lambda v: H - PAD_B - (v - y0) / (y1 - y0) * (H - PAD_T - PAD_B)
@@ -149,34 +244,75 @@ def compare_panel(pname: str, meta: dict, releases: list[dict]) -> str:
     label, unit = meta["label"], meta["unit"]
     # A small horizontal offset per group so coincident years stay readable.
     dx = {"bari": -3.4, "nufit": 0.0, "valencia": 3.4}
+    off_here = []
     for gid, gname, colour, shape in GROUPS:
-        pts = sorted(series[gid])
-        if not pts:
+        pts_all = sorted(series[gid])
+        if not pts_all:
             continue
-        for yr, e in pts:
+        # The connecting line and the 3σ rule only ever run between points
+        # that share the axis: an off-scale point cannot be joined to its
+        # neighbour without implying a scale it is not drawn on.
+        pts_line = [(yr, e) for yr, e in pts_all if (yr, gid, pname) not in OFF_SCALE_COMPARE]
+        for yr, e in pts_line:
             if e.get("s3"):
                 out.append(f'<line x1="{sx(yr) + dx[gid]:.1f}" y1="{sy(e["s3"][0]):.1f}" '
                            f'x2="{sx(yr) + dx[gid]:.1f}" y2="{sy(e["s3"][1]):.1f}" stroke="{colour}" '
                            'stroke-width="2" stroke-linecap="round" opacity=".34"/>')
-        if len(pts) > 1:
-            d = " ".join(f'{"M" if i == 0 else "L"}{sx(y) + dx[gid]:.1f} {sy(e["best"]):.1f}'
-                         for i, (y, e) in enumerate(pts))
+        if len(pts_line) > 1:
+            d = " ".join(f'{"M" if i == 0 else "L"}{sx(y) + dx[gid]:.1f} {sy(bound_value(e)):.1f}'
+                         for i, (y, e) in enumerate(pts_line))
             out.append(f'<path d="{d}" fill="none" stroke="{colour}" stroke-width="2" '
                        'stroke-linejoin="round" opacity=".5"/>')
-        for yr, e in pts:
+        for yr, e in pts_all:
+            x = sx(yr) + dx[gid]
+            if (yr, gid, pname) in OFF_SCALE_COMPARE:
+                if e.get("s3"):
+                    raise SystemExit(
+                        f"{pname}: OFF_SCALE_COMPARE entry ({yr}, {gid!r}) carries a 3σ "
+                        "range, which the floor-clamp treatment has no drawing for — it "
+                        "would be silently lost. Either add explicit handling for a "
+                        "ranged off-scale point, or drop it from OFF_SCALE_COMPARE.")
+                off_here.append((gname, yr, e))
+                y_floor = H - PAD_B - OFF_SCALE_FLOOR_GAP
+                out.append(f'<line x1="{x:.1f}" y1="{y_floor:.1f}" x2="{x:.1f}" y2="{H - PAD_B:.1f}" '
+                           f'stroke="{colour}" stroke-width="1.4" stroke-dasharray="2 3" opacity=".6"/>')
+                out.append(marker(shape, x, y_floor, colour,
+                                  f"{gname}, {yr}: {label} = {history.value_text(e['best'])} "
+                                  f"({unit}) — below this panel's range, drawn at the floor, "
+                                  "not to scale",
+                                  hollow=True))
+                out.append(f'<text x="{x + 7:.1f}" y="{y_floor + 3.5:.1f}" font-size="9.5" '
+                           f'fill="currentColor" opacity=".75">{history.value_text(e["best"])}</text>')
+                continue
+            if history.kind_of(e) == "limit":
+                out.append(marker("limit-upper", x, sy(e["upper"]), colour,
+                                  f"{gname}, {yr}: {label} {history.limit_label(e)} ({unit})",
+                                  level_text=history.level_text(e)))
+                continue
             rng = e.get("s3")
-            span = f', 3σ {rng[0]:.4g}–{rng[1]:.4g}' if rng else ""
-            out.append(marker(shape, sx(yr) + dx[gid], sy(e["best"]), colour,
-                              f"{gname}, {yr}: {label} = {e['best']:.4g}{span} ({unit})"))
+            span = (f', 3σ {history.value_text(rng[0])}–{history.value_text(rng[1])}'
+                    if rng else "")
+            out.append(marker(shape, x, sy(e["best"]), colour,
+                              f"{gname}, {yr}: {label} = {history.value_text(e['best'])}"
+                              f"{span} ({unit})"))
 
     conv = ("  Values of other groups converted to our convention."
             if pname == "Dm2" else "")
+    off_note = ""
+    if off_here:
+        # "3.3 1e-5 eV²" reads as a typo in running prose, where the unit is
+        # not sitting under a panel title to be read as a normalisation.
+        parts = "; ".join(f"{gname} {yr} ({history.value_text(e['best'])}, in units "
+                          f"of {unit})" for gname, yr, e in off_here)
+        off_note = (f"  {parts} lies far below the rest of this series; drawn at the panel "
+                    "floor and labelled with its value, not to scale, so the later "
+                    "measurements keep their resolution.")
     return f"""<figure class="figure reveal">
 <h4>{label} <span class="figure__unit">/ {unit} · normal ordering</span></h4>
 <svg viewBox="0 0 {W} {H}" role="img" aria-label="{label} in normal ordering, compared across the Bari, NuFit and Valencia global analyses">
 {chr(10).join(out)}
 </svg>
-<p class="cap">Best fit with its 3σ range, normal ordering.{conv}</p>
+<p class="cap">Best fit with its 3σ range, normal ordering.{conv}{off_note}</p>
 </figure>"""
 
 
@@ -199,7 +335,7 @@ def panel(pname: str, meta: dict, releases: list[dict]) -> str:
     x0, x1 = min(years) - 0.8, max(years) + 0.8
     vals = []
     for _, e in points:
-        vals.append(e["best"])
+        vals.append(bound_value(e))
         vals += list(e.get("s3") or e.get("s1") or [])
     y0, y1 = nice_bounds(min(vals), max(vals))
 
@@ -240,15 +376,22 @@ def panel(pname: str, meta: dict, releases: list[dict]) -> str:
                            f'x2="{sx(yr):.1f}" y2="{sy(rng[1]):.1f}" stroke="{colour}" '
                            'stroke-width="2" stroke-linecap="round" opacity=".38"/>')
         if len(pts) > 1:
-            d = " ".join(f'{"M" if i == 0 else "L"}{sx(y):.1f} {sy(e["best"]):.1f}'
+            d = " ".join(f'{"M" if i == 0 else "L"}{sx(y):.1f} {sy(bound_value(e)):.1f}'
                          for i, (y, e) in enumerate(pts))
             out.append(f'<path d="{d}" fill="none" stroke="{colour}" stroke-width="2" '
                        'stroke-linejoin="round" opacity=".55"/>')
         for yr, e in pts:
+            if history.kind_of(e) == "limit":
+                out.append(marker("limit-upper", sx(yr), sy(e["upper"]), colour,
+                                  f"{name}, {yr}: {label} {history.limit_label(e)} ({unit})",
+                                  level_text=history.level_text(e)))
+                continue
             rng = e.get("s3") or e.get("s1")
-            span = f', 3σ {rng[0]:g}–{rng[1]:g}' if rng else ""
+            span = (f', 3σ {history.value_text(rng[0])}–{history.value_text(rng[1])}'
+                    if rng else "")
             out.append(marker(kind, sx(yr), sy(e["best"]), colour,
-                              f"{name}, {yr}: {label} = {e['best']:g}{span} ({unit})"))
+                              f"{name}, {yr}: {label} = {history.value_text(e['best'])}"
+                              f"{span} ({unit})"))
 
     body = "\n".join(out)
     return f"""<figure class="figure reveal">
@@ -262,7 +405,7 @@ sources in the table below.</p>
 
 
 def main() -> None:
-    doc = yaml.safe_load(DATA.read_text(encoding="utf-8"))
+    doc = history.load()
 
     # YAML 1.1 reads a bare `no` as the boolean False, which silently deletes
     # the whole normal-ordering series from every panel. The keys are quoted in
@@ -321,9 +464,9 @@ def main() -> None:
 title: Parameter history
 url: history.html
 description: >-
-  How the neutrino oscillation parameters moved across the Bari global
-  analyses, from the first hint of θ₁₃ to subpercent precision — every point
-  traced to the table it came from.
+  How the neutrino oscillation parameters moved across the Bari, NuFit and
+  Valencia global analyses, from the first hint of θ₁₃ to subpercent
+  precision — every point traced to the table it came from.
 katex: false
 ---
 
@@ -333,68 +476,13 @@ katex: false
 <section class="hero">
   <div class="wrap hero__in">
     <p class="kicker">Parameter history</p>
-    <h1>A quarter century of global fits</h1>
-    <p class="lede">Every published update of the Bari global analysis, plotted
-    as it was published: best fit and 3σ range, for both mass orderings. No
-    point is interpolated, rescaled or read off a figure.</p>
+    <h1>Bari, NuFit and Valencia, on the same axes</h1>
+    <p class="lede">How the oscillation parameters have moved across three
+    independent global analyses, and, in finer grain, across every published
+    update of the Bari fit: best fit and 3σ range, for both mass orderings.
+    No point is interpolated, rescaled or read off a figure.</p>
   </div>
 </section>
-
-::: section
-
-<div class="callout">
-<h4>How to read these panels</h4>
-<p>Values are shown in the normalisation used in the papers, given under each
-title. The vertical rule is the 3σ range; the marker is the best fit —
-a circle for normal ordering, a square for inverted, a diamond where the
-analysis quotes a single value for both. Hover a marker for the numbers.</p>
-<p>All entries use our convention Δm² = m₃² − ½(m₁² + m₂²) and δm² = m₂² − m₁²
-&gt; 0. Analyses by other groups use different conventions and are not plotted
-here: adding them means converting first, and stating the conversion.</p>
-</div>
-
-<div class="legend legend--chart" style="margin-top:1.4rem">
-  <span><i class="k-no"></i>Normal ordering (circle)</span>
-  <span><i class="k-io"></i>Inverted ordering (square)</span>
-  <span><i class="k-any"></i>Quoted for both (diamond)</span>
-</div>
-
-<div class="panels">
-
-{panels}
-
-</div>
-
-:::
-
-::: section alt glow
-
-<div class="section-head">
-  <h2>The releases</h2>
-  <p>{len(releases)} updates · {n_values} values, each verified against its source table</p>
-</div>
-
-<div class="table-scroll">
-<table class="data data--refs">
-<caption>Every value on this page is transcribed from the table named here and
-checked against the paper by <code>tools/tests/test_history_numbers.py</code>,
-which re-reads each source on every run. Papers marked as partial updates
-revise only part of the parameter set.</caption>
-<thead><tr><th scope="col">Year</th><th scope="col">Paper</th><th scope="col">Preprint</th><th scope="col">Source table</th><th scope="col"></th></tr></thead>
-<tbody>
-{table}
-</tbody>
-</table>
-</div>
-
-<div class="prose" style="margin-top:2rem">
-<p class="small muted">Earlier analyses of the series — the solar-sector papers
-of 2002–2003 and the first full three-flavour releases of 2005 — are not yet on
-this page: their tables are laid out differently and are being transcribed with
-the same care.</p>
-</div>
-
-:::
 
 ::: section #compare
 
@@ -429,6 +517,7 @@ the marker is the first one quoted and the 3σ range spans both.</p>
   <span><i class="k-bari"></i>Bari (circle)</span>
   <span><i class="k-nufit"></i>NuFit (square)</span>
   <span><i class="k-valencia"></i>Valencia (diamond)</span>
+  <span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" style="vertical-align:middle;margin-right:.35rem"><path d="M2 2L12 2M7 2L7 12M3.6 8L7 12L10.4 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Upper limit, level printed on the marker</span>
 </div>
 
 <div class="panels">
@@ -447,6 +536,68 @@ only at rendering time.</caption>
 {other_rows}
 </tbody>
 </table>
+</div>
+
+:::
+
+::: section alt glow
+
+<div class="section-head">
+  <h2>The Bari series</h2>
+  <p>{len(releases)} releases · best fit and 3σ range, for both mass orderings</p>
+</div>
+
+<div class="callout">
+<h4>How to read these panels</h4>
+<p>Values are shown in the normalisation used in the papers, given under each
+title. The vertical rule is the 3σ range; the marker is the best fit —
+a circle for normal ordering, a square for inverted, a diamond where the
+analysis quotes a single value for both. Hover a marker for the numbers.</p>
+<p>All entries use our convention Δm² = m₃² − ½(m₁² + m₂²) and δm² = m₂² − m₁²
+&gt; 0. Analyses by other groups use different conventions and are not plotted
+here: the comparison above converts first, and states the conversion.</p>
+</div>
+
+<div class="legend legend--chart" style="margin-top:1.4rem">
+  <span><i class="k-no"></i>Normal ordering (circle)</span>
+  <span><i class="k-io"></i>Inverted ordering (square)</span>
+  <span><i class="k-any"></i>Quoted for both (diamond)</span>
+  <span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" style="vertical-align:middle;margin-right:.35rem"><path d="M2 2L12 2M7 2L7 12M3.6 8L7 12L10.4 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Upper limit, level printed on the marker</span>
+</div>
+
+<div class="panels">
+
+{panels}
+
+</div>
+
+:::
+
+::: section
+
+<div class="section-head">
+  <h2>The releases</h2>
+  <p>{len(releases)} updates · {n_values} values, each verified against its source table</p>
+</div>
+
+<div class="table-scroll">
+<table class="data data--refs">
+<caption>Every value on this page is transcribed from the table named here and
+checked against the paper by <code>tools/tests/test_history_numbers.py</code>,
+which re-reads each source on every run. Papers marked as partial updates
+revise only part of the parameter set.</caption>
+<thead><tr><th scope="col">Year</th><th scope="col">Paper</th><th scope="col">Preprint</th><th scope="col">Source table</th><th scope="col"></th></tr></thead>
+<tbody>
+{table}
+</tbody>
+</table>
+</div>
+
+<div class="prose" style="margin-top:2rem">
+<p class="small muted">The solar-sector-only papers of 2002–2003 that precede this
+series are deliberately not on this page: none of them tabulates the full
+parameter set this page tracks. They are listed, with the reason, in the
+excluded section of the source data (site-src/data/history.yaml).</p>
 </div>
 
 :::

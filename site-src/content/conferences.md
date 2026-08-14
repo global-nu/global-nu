@@ -21,7 +21,7 @@ katex: false
 <div class="autogen">
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically with AI and may contain errors.</b>
-<span class="stamp">Last successful update: 13 August 2026, 16:24</span></div>
+<span class="stamp">Last successful update: 14 August 2026, 07:34</span></div>
 </div>
 
 <div class="section-head"><h2>Upcoming</h2>

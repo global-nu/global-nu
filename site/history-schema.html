@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parameter history — data schema — global-nu</title>
+<meta name="description" content="Field-by-field documentation for the parameter-history register exported as JSON and CSV, and the rule for converting between the three groups&#x27; conventions.">
+<link rel="canonical" href="https://global-nu.org/history-schema.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="global-nu">
+<meta property="og:title" content="Parameter history — data schema — global-nu">
+<meta property="og:description" content="Field-by-field documentation for the parameter-history register exported as JSON and CSV, and the rule for converting between the three groups&#x27; conventions.">
+<meta property="og:url" content="https://global-nu.org/history-schema.html">
+<meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/archivo-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css?v=89363597">
+<script>
+/* Apply the saved theme before the first paint. Inline and blocking on
+   purpose: a deferred script runs after the page is drawn, and a reader who
+   chose light would see a flash of dark on every navigation. try/catch
+   because localStorage throws outright in Safari's private mode rather than
+   returning null. */
+(function(){try{var t=localStorage.getItem("gnu-theme");
+if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
+</script>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html">global<i>-nu</i><span>Neutrino oscillation global analyses · Bari</span></a>
+    <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme" title="Switch theme">
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.4"/>
+        <path d="M12 2.6v2.4M12 19v2.4M2.6 12h2.4M19 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7" stroke-linecap="round"/>
+      </svg>
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.5 14.6A8.6 8.6 0 1 1 9.4 3.5a6.9 6.9 0 0 0 11.1 11.1Z" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="results.html">Results</a>
+      <a href="history.html">Parameter history</a>
+      <a href="history-schema.html" aria-current="page">Data schema</a>
+      <a href="digest.html">arXiv digest</a>
+      <a href="news.html">News</a>
+      <a href="conferences.html">Conferences</a>
+      <a href="resources.html">Resources</a>
+      <a href="search.html">Search</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero">
+  <div class="wrap hero__in">
+    <p class="kicker">Parameter history</p>
+    <h1>The register, as data</h1>
+    <p class="lede">Every point on the <a href="history.html">parameter
+    history</a> page — Bari, NuFit and Valencia, from the first hint of
+    θ₁₃ to subpercent precision — as a flat table, one row per value, free to
+    download and cite.</p>
+  </div>
+</section>
+
+<section class="section section--paper"><div class="wrap">
+<div class="section-head">
+  <h2>Download</h2>
+  <p>same rows, two formats, stable URLs</p>
+</div>
+
+<div class="table-scroll">
+<table class="data">
+<thead><tr><th scope="col">File</th><th scope="col">Format</th><th scope="col">URL</th></tr></thead>
+<tbody>
+<tr><td>Parameter history</td><td>JSON</td><td><a href="data/history.json" rel="noopener noreferrer" target="_blank">/data/history.json</a></td></tr>
+<tr><td>Parameter history</td><td>CSV</td><td><a href="data/history.csv" rel="noopener noreferrer" target="_blank">/data/history.csv</a></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="prose" style="margin-top:1.2rem">
+<p>Both files hold exactly the same rows and the same columns — CSV for a
+spreadsheet or a quick <code>pandas.read_csv</code>, JSON for a script. The
+URLs are stable: a regenerated release adds or corrects rows in place, it does
+not move the file. Regenerated by <code>tools/make_history_data.py</code> from
+<code>site-src/data/history.yaml</code>, the same source the parameter-history
+page itself is drawn from — the two can never disagree, because nothing is
+retyped between them.</p>
+
+<p>The JSON file is an <strong>object, not a bare array</strong>: the rows are
+under a <code>rows</code> key, and beside them a <code>note</code> states in
+one sentence what the two value columns mean, so a copy that has been
+downloaded and passed on still carries its own reading instructions.</p>
+
+<pre style="overflow-x:auto;font-family:var(--mono);font-size:.78rem;line-height:1.5;margin:.6rem 0 0"><code>{
+  "note": "The Bari/NuFit/Valencia parameter-history register. value_as_published is …",
+  "rows": [
+    {"group": "nufit", "year": 2004, "arxiv": "hep-ph/0405172", …,
+     "kind": "limit", "value_as_published": 4.7, "value_our_convention": 4.7,
+     "unit": "1e-2", "level": "3sigma"},
+    …
+  ]
+}</code></pre>
+
+<p class="small muted">The CSV has nowhere to put that note: its first line is
+the header of the 13 field names, and every line after it is one row, in the
+same order as <code>rows</code>.</p>
+</div>
+
+</div></section>
+<section class="section section--paper section--alt"><div class="wrap">
+<div class="section-head">
+  <h2>The two value columns</h2>
+  <p>what the paper printed, and our arithmetic — never merged into one</p>
+</div>
+
+<div class="prose">
+<p>Every row carries the value <strong>twice</strong>, under names that cannot
+be confused:</p>
+
+<ul>
+<li><code>value_as_published</code> — exactly what the paper printed, in the
+paper's own convention and normalisation (see <code>convention</code> and
+<code>unit</code>, below).</li>
+<li><code>value_our_convention</code> — the same quantity converted to this
+group's convention: δm² = m₂² − m₁² &gt; 0 and Δm² = m₃² − (m₁² + m₂²)/2.</li>
+</ul>
+
+<p>Only the <code>Dm2</code> parameter is ever converted. NuFit reports Δm²₃ℓ
+(Δm²₃₁ &gt; 0 for normal ordering, Δm²₃₂ &lt; 0 for inverted) and Valencia
+reports |Δm²₃₁| for <em>both</em> orderings — neither is our Δm², and the sign
+of the correction between the two is not even the same for the two groups
+(worked through on the <a href="history.html#compare">parameter-history
+page</a>). The conversion is performed by a single function,
+<code>to_our_Dm2(rel, ordering, value)</code> in
+<code>tools/make_history.py</code>, and nowhere else — read it there rather
+than re-deriving the identity from this page.</p>
+
+<p>For every other parameter (<code>dm2</code>, <code>sin2_th12</code>,
+<code>sin2_th13</code>, <code>sin2_th23</code>, <code>delta_pi</code>) — and
+for Bari's own <code>Dm2</code>, which already <em>is</em> our convention —
+the two columns hold the identical number. That repetition is deliberate, not
+a column to optimise away: it means a downloader gets one column,
+<code>value_our_convention</code>, that is directly comparable across all six
+parameters and all three groups, without first having to know which
+parameter, in which release, needed the conversion.</p>
+</div>
+
+</div></section>
+<section class="section section--paper"><div class="wrap">
+<div class="section-head">
+  <h2>Fields</h2>
+  <p>13 columns, one row per (group, year, parameter, ordering) point</p>
+</div>
+
+<div class="table-scroll">
+<table class="data">
+<thead><tr><th scope="col">Field</th><th scope="col">Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>group</code></td><td><code>bari</code>, <code>nufit</code> or <code>valencia</code></td></tr>
+<tr><td><code>year</code></td><td>Publication year of the release, as used on the parameter-history page</td></tr>
+<tr><td><code>arxiv</code></td><td>arXiv identifier of the source paper</td></tr>
+<tr><td><code>journal</code></td><td>Full journal citation</td></tr>
+<tr><td><code>table</code></td><td>The table or equation, inside that paper, the value is transcribed from and checked against</td></tr>
+<tr><td><code>parameter</code></td><td>One of <code>dm2</code> (δm²), <code>Dm2</code> (Δm²), <code>sin2_th12</code>, <code>sin2_th13</code>, <code>sin2_th23</code>, <code>delta_pi</code> (δ/π)</td></tr>
+<tr><td><code>ordering</code></td><td><code>no</code> (normal), <code>io</code> (inverted) or <code>any</code> (the paper quotes one value for both, or does not split by ordering)</td></tr>
+<tr><td><code>convention</code></td><td>The release's own stated mass-splitting convention, verbatim from <code>history.yaml</code></td></tr>
+<tr><td><code>kind</code></td><td><code>measurement</code> (a best fit) or <code>limit</code> (a bound with no measured central value)</td></tr>
+<tr><td><code>value_as_published</code></td><td>The number as printed in the paper — see "The two value columns", above</td></tr>
+<tr><td><code>value_our_convention</code></td><td>The same quantity in this group's convention — see "The two value columns", above</td></tr>
+<tr><td><code>unit</code></td><td>The normalisation the value is written in, e.g. <code>1e-2</code> means the printed digits are hundredths</td></tr>
+<tr><td><code>level</code></td><td>For a <code>limit</code> row only: the confidence level the bound holds at (<code>3sigma</code>, <code>2sigma</code>, <code>90%CL</code> or <code>95%CL</code>). A <code>measurement</code> row has none, and each format says so in its own way: <code>null</code> in JSON, an empty field in CSV</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="prose" style="margin-top:1.2rem">
+<p class="small muted">A best fit's 3σ (or 1σ, where that is all the paper
+gives) range is not in this export: the register publishes the headline value
+per point, best fit or bound, the same one plotted on the parameter-history
+page. The ranges remain readable there, and in <code>history.yaml</code>
+itself, alongside the source each number is checked against.</p>
+</div>
+
+</div></section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__inner">
+      <div>
+        <h4>global-nu</h4>
+        <p>Global analyses of neutrino oscillation data by the Bari group.<br>
+        Dipartimento Interateneo di Fisica “Michelangelo Merlin” &amp;
+        INFN Sezione di Bari, Via Amendola 173, 70126 Bari, Italy.</p>
+      </div>
+      <div>
+        <h4>The data</h4>
+        <ul>
+          <li><a href="results.html">Releases and tables</a></li>
+          <li><a href="history.html">Parameter history</a></li>
+          <li><a href="about.html#cite">How to cite</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Every day</h4>
+        <ul>
+          <li><a href="digest.html">arXiv digest</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="conferences.html">Conferences</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="results.html">Results</a></li>
+          <li><a href="history.html">Parameter history</a></li>
+          <li><a href="history-schema.html">Data schema</a></li>
+          <li><a href="digest.html">arXiv digest</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="conferences.html">Conferences</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="site-footer__base">© 2026 the Bari group · Content is published
+    under the terms stated on each release page. Pages marked as automatically
+    generated are produced with AI assistance and may contain errors.</p>
+  </div>
+</footer>
+
+<button class="to-top" type="button" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"
+    stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script src="assets/js/site.js?v=215a304f" defer></script>
+
+<script data-goatcounter="https://antoniomarrone.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
+</body>
+</html>
