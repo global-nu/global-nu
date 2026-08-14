@@ -277,6 +277,10 @@ h4{font-weight:700;font-size:.98rem}
 .section-head p{margin:0;color:var(--text-mute);font-size:.86rem;
   font-family:var(--mono)}
 .section-head .more{margin-left:auto;font-size:.88rem;font-weight:600}
+/* A sub-heading inside a domain block (Upcoming / Recent within Neutrino
+   conferences or General particle physics) — same layout, tighter margins so
+   two of these plus the domain heading above them do not eat the fold. */
+.section-head--sub{margin:1.4rem 0 1rem}
 
 /* ---------- generated-page notice ---------- */
 .autogen{display:flex;gap:.7rem;align-items:flex-start;
@@ -295,6 +299,22 @@ h4{font-weight:700;font-size:.98rem}
   text-transform:uppercase;color:var(--text-mute);margin:0 0 .7rem;font-weight:600}
 .figure svg{width:100%;height:auto;display:block}
 .figure .cap{font-size:.74rem;color:var(--text-mute);margin:.5rem 0 0}
+/* The conference timeline: on a wide screen .figure svg above stretches it to
+   fill the card exactly as any other figure. Below ~460px that stretch would
+   shrink its row labels past legibility — the whole point of a Gantt strip is
+   reading which meeting is which — so past that point it stops shrinking and
+   scrolls horizontally instead, the same trade table.data makes with
+   .table-scroll for the same reason.
+   The other end of that same stretch is the actual bug: this figure's
+   viewBox (520x326, a 14-row Gantt strip) is far taller relative to its
+   width than the map's (720x162), so letting it fill a ~1200px-wide card
+   the same way scales it to ~660px tall — nearly a full screen on its own,
+   on the conferences page specifically, the one page where two figures were
+   already flagged as a risk to the list below them. max-width holds it near
+   its own designed proportions instead of the card's. */
+.figure .timeline-scroll{overflow-x:auto}
+.figure .timeline-scroll svg{width:100%;min-width:460px;max-width:620px;
+  height:auto;display:block;margin-inline:auto}
 .legend{display:flex;gap:1.1rem;font-family:var(--mono);font-size:.72rem;
   color:var(--text-mute);margin-top:.7rem;flex-wrap:wrap}
 .legend i{display:inline-block;width:1.6rem;height:2px;vertical-align:middle;
@@ -705,6 +725,56 @@ a.card:hover .card__go{color:var(--text)}
   font-size:.68rem;color:var(--text-mute);line-height:1.5}
 .map-card__credit a{color:var(--text-mute);text-decoration:underline}
 .map-card__credit a:hover{color:var(--accent)}
+
+/* ---------- conference map: a lighter card than the world map's ----------
+   No zoom, no pan, no legend, no fan-reveal: figures.conference_map already
+   clusters coincident cities into distinct, always-visible dots (see its
+   docstring), so confmap.js only ever needs a stage to anchor the card
+   against and a click handler — the reason this block is a fraction of the
+   size of the .map-* rules above rather than sharing their selectors: the
+   two cards differ enough (no photo, two named action links instead of a
+   per-experiment list) that reusing .map-card's classes would mean threading
+   this figure's assumptions back through code the resources-page map
+   depends on. */
+.confmap-stage{position:relative}
+.conf-pin{cursor:pointer}
+
+/* max-height is capped against the viewport, not the stage: .confmap-stage
+   wraps only the SVG, which is half the experiments map's height (see
+   figures.conference_map), so the percentage cap .map-card uses against ITS
+   (much taller) stage would leave this card only ~135px tall — enough to
+   clip a title mid-sentence and hide the dates, place and both action links
+   below it entirely. Found by opening the page, not by the jsdom suite. */
+.conf-card{position:absolute;z-index:6;left:.8rem;bottom:.8rem;
+  width:min(21rem,calc(100% - 1.6rem));max-height:min(60vh,20rem);overflow-y:auto;
+  background:var(--bg);border:1px solid var(--line-strong);border-radius:var(--r);
+  box-shadow:var(--shadow-strong);padding:1rem 1.15rem}
+.conf-card__close{position:absolute;top:.6rem;right:.6rem;width:1.6rem;height:1.6rem;
+  display:flex;align-items:center;justify-content:center;border:none;
+  background:transparent;color:var(--text-mute);font-size:1.1rem;line-height:1;
+  cursor:pointer}
+.conf-card__close:hover{color:var(--text)}
+.conf-card__title{margin:0 1.6rem .5rem 0;font-family:var(--display);
+  font-size:1.02rem;letter-spacing:-.01em;color:var(--text)}
+.conf-card__title a{color:var(--text);text-decoration:none}
+.conf-card__title a:hover{color:var(--accent);text-decoration:underline}
+.conf-card__meta{margin:0;font-family:var(--mono);font-size:.72rem;
+  color:var(--text-mute)}
+.conf-card__actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.75rem}
+.conf-card__actions a{font-size:.82rem;font-weight:600;color:var(--accent);
+  text-decoration:none}
+.conf-card__actions a:hover{text-decoration:underline}
+/* A photograph of the host city (tools/news/photos.py), when Commons has
+   one under a licence that permits reuse — same shape as .map-card's own
+   photo block below, duplicated rather than shared: the comment above
+   already explains why this card does not reuse .map-card's classes. */
+.conf-card__photo{margin:.7rem 0 0}
+.conf-card__photo img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;
+  background:var(--surface-2);border-radius:var(--r-sm)}
+.conf-card__credit{display:block;margin-top:.45rem;font-family:var(--mono);
+  font-size:.68rem;color:var(--text-mute);line-height:1.5}
+.conf-card__credit a{color:var(--text-mute);text-decoration:underline}
+.conf-card__credit a:hover{color:var(--accent)}
 
 /* ---------- Δχ² explorer ---------- */
 .chi2__bar{display:flex;flex-wrap:wrap;gap:.7rem 1.4rem;align-items:center;

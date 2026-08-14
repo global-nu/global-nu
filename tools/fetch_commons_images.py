@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 import time
 import urllib.parse
@@ -101,8 +102,23 @@ def licence_ok(short: str, name: str) -> tuple[bool, str]:
     s = (short or "").lower()
     if not s:
         return False, "no licence stated"
-    if any(bad in s.split() for bad in ("nc", "nd")) or \
-       any(bad in s for bad in ("fair use", "non-free", "noncommercial", "noderiv")):
+    # Commons' LicenseShortName values are single hyphenated tokens ("cc
+    # by-nc", "cc by-nd-sa") — s.split() on whitespace alone never isolates
+    # "nc"/"nd" out of "by-nc", so the substring "cc by" in "cc by-nc 4.0"
+    # would otherwise reach the ALLOWED check below and pass. Splitting on
+    # every non-alphanumeric run (spaces AND hyphens AND dots) tokenises
+    # "cc by-nc 4.0" into ["cc", "by", "nc", "4", "0"], where "nc" is caught.
+    tokens = re.split(r"[^a-z0-9]+", s)
+    # REFUSED itself, not a re-inlined copy of it: a short entry ("nc", "nd")
+    # must match as an isolated TOKEN (a substring check on "nc" would false-
+    # positive on ordinary words), while a longer phrase ("fair use", "non-
+    # free") can never appear as a single token in the first place, since the
+    # split above breaks on the space/hyphen inside it — so it is matched as
+    # a SUBSTRING of the whole string instead. Splitting REFUSED itself by
+    # length keeps this one list authoritative; a re-inlined ("nc", "nd")
+    # here previously let it drift from the module-level constant.
+    if any(bad in tokens for bad in REFUSED if len(bad) <= 2) or \
+       any(bad in s for bad in REFUSED if len(bad) > 2):
         return False, f"licence forbids reuse or derivatives: {short}"
     if any(good in s for good in ALLOWED):
         return True, short

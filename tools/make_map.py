@@ -56,7 +56,7 @@ sys.path.insert(0, str(ROOT))
 
 from tools import experiments                        # noqa: E402
 from tools.fetch_commons_images import short_author    # noqa: E402
-from tools.news import geocode                        # noqa: E402
+from tools.news import geocluster, geocode             # noqa: E402
 from tools.news import worldmap as wm                 # noqa: E402
 
 OUT = ROOT / "site-src" / "data" / "figures" / "map-experiments.svg"
@@ -381,31 +381,18 @@ def main() -> None:
     # any two markers within MERGE_DIST of each other — true coincidences
     # (same city, e.g. every Gran Sasso record) as well as near ones that
     # would otherwise render as one marker hiding another (see MERGE_DIST's
-    # comment). Deduplicate by name within a bucket afterwards: the same
-    # experiment can appear twice in the YAML under two roles —
-    # Super-Kamiokande under both atmospheric and solar — and that must fan
-    # out to one child, not two.
-    parent_of = list(range(len(placed)))
-
-    def _find(i: int) -> int:
-        while parent_of[i] != i:
-            parent_of[i] = parent_of[parent_of[i]]
-            i = parent_of[i]
-        return i
-
-    def _union(i: int, j: int) -> None:
-        ri, rj = _find(i), _find(j)
-        if ri != rj:
-            parent_of[ri] = rj
-
-    for i in range(len(placed)):
-        for j in range(i + 1, len(placed)):
-            if math.hypot(placed[i][1] - placed[j][1], placed[i][2] - placed[j][2]) <= MERGE_DIST:
-                _union(i, j)
-
-    clusters: dict[int, list[tuple[dict, float, float]]] = {}
-    for i, member in enumerate(placed):
-        clusters.setdefault(_find(i), []).append(member)
+    # comment). The bucketing itself is geocluster.cluster_by_distance,
+    # shared with tools/news/figures.py's conference map rather than
+    # reimplemented here, so the merge rule can only be edited in one place.
+    # Deduplicate by name within a bucket afterwards: the same experiment
+    # can appear twice in the YAML under two roles — Super-Kamiokande under
+    # both atmospheric and solar — and that must fan out to one child, not
+    # two.
+    groups = geocluster.cluster_by_distance(
+        [(x, y) for _, x, y in placed], MERGE_DIST)
+    clusters: dict[int, list[tuple[dict, float, float]]] = {
+        idx: [placed[i] for i in idxs] for idx, idxs in enumerate(groups)
+    }
 
     sites = []
     for members in clusters.values():

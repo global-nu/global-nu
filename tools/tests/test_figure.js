@@ -9,6 +9,8 @@
  *   a figure holding a drawing becomes reachable and says so to a screen reader;
  *   the world map is left alone, because it already answers a click by opening
  *     an experiment's card and two meanings for one click means one of them loses;
+ *   the conference map is left alone for the identical reason — its own card
+ *     answers the click confmap.js wires up;
  *   activating a figure shows it enlarged, with its own caption;
  *   the enlarged view zooms, within limits, and can be panned;
  *   Escape closes it and the focus returns to the figure it came from;
@@ -37,6 +39,9 @@ const PAGE = `
 <figure class="figure map-figure" id="map">
   <svg viewBox="0 0 720 324" role="img" aria-label="World map"></svg>
 </figure>
+<figure class="figure confmap-figure" id="confmap">
+  <svg viewBox="0 6 720 162" role="img" aria-label="Conference map"></svg>
+</figure>
 <figure class="figure" id="nodrawing">
   <p class="cap">A caption with no drawing above it.</p>
 </figure>`;
@@ -64,6 +69,14 @@ const mapFig = d.getElementById('map');
 (!mapFig.hasAttribute('tabindex') && mapFig.getAttribute('role') !== 'button')
   ? ok('the world map is not made activatable — it already uses its click')
   : bad('the map figure was made activatable and will fight its own card');
+
+/* 2b. the conference map is left alone too — same reason, separate fixture,
+   so a future refactor of figure.js's exclusion list cannot silently drop
+   .confmap-figure while leaving .map-figure covered. */
+const confmapFig = d.getElementById('confmap');
+(!confmapFig.hasAttribute('tabindex') && confmapFig.getAttribute('role') !== 'button')
+  ? ok('the conference map is not made activatable — it already uses its click')
+  : bad('the conference map figure was made activatable and will fight its own card');
 
 /* 3. a figure with no drawing is skipped */
 !d.getElementById('nodrawing').hasAttribute('tabindex')
@@ -117,7 +130,7 @@ d.activeElement === p2
 
 /* 7. the page is whole with the script never running */
 const plain = new JSDOM(`<!doctype html><body>${PAGE}</body>`).window.document;
-plain.querySelectorAll('figure svg').length === 2
+plain.querySelectorAll('figure svg').length === 3
   ? ok('every figure still draws with the script never running')
   : bad('a figure lost its drawing');
 

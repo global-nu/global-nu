@@ -22,7 +22,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>The summaries on this page are written automatically with AI from
 fetched records, and may contain errors.</b>
-<span class="stamp">Last successful update: 14 August 2026, 12:06 CEST</span></div>
+<span class="stamp">Last successful update: 14 August 2026, 17:55 CEST</span></div>
 </div>
 <p class="small muted"><b>In summary.</b> This week's neutrino news is dominated by detector engineering and machine-learning efforts at DUNE, continued operations and event-identification work at IceCube, and a new precision cross-section measurement from NOvA. On the theory side, published papers this week addressed the reach of neutrinoless double-beta decay searches, event-generator benchmarking for argon-based detectors, and decoherence and decay phenomenology at long-baseline experiments. This paragraph summarises the items below; the sources are on the items themselves.</p>
 

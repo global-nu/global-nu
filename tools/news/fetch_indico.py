@@ -17,10 +17,14 @@ Three things learned the hard way, all worth keeping:
     only `conference` and `meeting`, only spans under `max_span_days`, and only
     if a keyword matches.
   * `location` and `address` are free text and mostly empty (39% filled on the
-    CERN category). No country is derived from them: an event with no country
-    is listed but simply does not appear on the map, which is the honest
-    outcome. Guessing "CERN" means Switzerland would be right often and wrong
-    sometimes, and there is no way to tell which from the record.
+    CERN category). Neither is turned into a country_code here: an event with
+    no country is listed but simply does not appear on the map, which is the
+    honest outcome. Guessing "CERN" means Switzerland would be right often and
+    wrong sometimes, and there is no way to tell which from the record.
+    `address` — often more precise than `location` ("Manchester" vs. "Old
+    Trafford", or a full street address) — is still kept, as extra.address,
+    for `venue.py`'s geocoding cascade to try before it ever fetches the
+    event's own page.
 
 ON robots.txt. Indico's own robots.txt, served by CERN, disallows /export/.
 That directive is aimed at search-engine crawlers rather than at clients of a
@@ -123,6 +127,7 @@ def fetch(cfg: dict, log: logging.Logger) -> list[dict]:
 
             upcoming = end >= today
             place = clean_text(ev.get("location", "")) or ""
+            address = clean_text(ev.get("address", "")) or ""
             records.append(cache.make_record(
                 id=f"indico:{host.split('.')[1] if host.count('.') > 1 else host}"
                    f":{ev.get('id', '')}",
@@ -135,6 +140,7 @@ def fetch(cfg: dict, log: logging.Logger) -> list[dict]:
                 extra={
                     "acronym": "",
                     "place": place,
+                    "address": address,
                     # Left blank on purpose: see the module docstring.
                     "country_code": "",
                     "city": "",

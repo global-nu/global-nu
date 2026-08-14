@@ -21,6 +21,7 @@ import html
 import logging
 from pathlib import Path
 
+from . import conferences as conf_mod, fetch_inspire, figures, venue
 from .common import (CONFERENCES_PAGE, DIGEST_PAGE, NEWS_PAGE, detex,
                      load_config, truncate)
 
@@ -313,6 +314,8 @@ description: >-
   Upcoming and recent neutrino conferences, workshops and schools, with dates,
   links, and venues where the source publishes one — refreshed daily.
 katex: false
+scripts:
+  - assets/js/confmap.js
 ---"""
 
 
@@ -330,6 +333,29 @@ def _conf_list(records: list[dict], empty: str) -> str:
     return "".join(out)
 
 
+def _scope_block(records: list[dict], title: str, empty_upcoming: str) -> str:
+    """One physics domain's meetings — `records` already narrowed by
+    `conferences.split_scope()` — split the way the page has always split
+    meetings within a domain: upcoming first, then recently concluded.
+
+    This is one of the two blocks Antonio asked for (neutrino conferences,
+    general particle physics); the split between the two domains is the new
+    axis this function exists for, and the upcoming/recent split inside it is
+    the one Task 1 already fixed a real bug on (`extra.scope` is the DOMAIN,
+    never the tense — see `fetch_inspire.split`).
+    """
+    upcoming, recent = fetch_inspire.split(records)
+    out = [f'<div class="section-head"><h2>{_esc(title)}</h2>'
+          f'<p>{len(records)} meeting{"" if len(records) == 1 else "s"}</p></div>\n']
+    out.append('<div class="section-head section-head--sub"><h3>Upcoming</h3>'
+               f'<p>{len(upcoming)} meeting{"" if len(upcoming) == 1 else "s"}</p></div>\n')
+    out.append(_conf_list(upcoming, empty_upcoming))
+    out.append('<div class="section-head section-head--sub"><h3>Recent</h3>'
+               f'<p>{len(recent)} meeting{"" if len(recent) == 1 else "s"}</p></div>\n')
+    out.append(_conf_list(recent, "No meeting in this window has ended yet."))
+    return "".join(out)
+
+
 def conferences(records: list[dict], log: logging.Logger,
                 stamp: str | None = None) -> bool:
     """Rewrite conferences.md, split into what is coming and what just ran."""
@@ -337,8 +363,104 @@ def conferences(records: list[dict], log: logging.Logger,
         log.warning("render: no conference records — conferences.md left untouched")
         return False
 
-    upcoming = [r for r in records if (r.get("extra") or {}).get("scope") != "past"]
-    recent = [r for r in records if (r.get("extra") or {}).get("scope") == "past"]
+    # `extra.scope` is the field DOMAIN ("neutrino" vs "general" — what
+    # conferences.split_scope() uses for the two sections below), not the
+    # TENSE. It is never "past"; the field that says whether a conference is
+    # still ahead is `extra.upcoming`, set by every fetcher. Indico alone
+    # never produced a concluded record, so reading `scope` here happened to
+    # give the right answer and nothing noticed until a second source did.
+    upcoming, recent = fetch_inspire.split(records)
+
+    # Drawn fresh from this morning's records, same as the lists below — never
+    # cached from a previous run, so the two can never show different dates.
+    # Rows fill from `upcoming` first (soonest at the top); `recent` only gets
+    # whatever room is left, which is usually none — see conference_timeline's
+    # docstring for why that is the right trade rather than an accident.
+    max_rows = 14
+    timeline = figures.conference_timeline(upcoming, recent, max_rows=max_rows, log=log)
+    timeline_block = ""
+    if timeline:
+        n_up = min(len(upcoming), max_rows)
+        n_rec = max(0, max_rows - len(upcoming))
+        n_rec = min(n_rec, len(recent))
+        # n_up can be 0 on a morning every fetcher fails but stale `recent`
+        # records still remain — "The soonest 0 upcoming meetings" would be
+        # the sentence a reader saw on a page like that, so the two clauses
+        # are built to stand on their own rather than assuming n_up > 0.
+        if n_up:
+            caption = (f"The soonest {n_up} upcoming meeting{'' if n_up == 1 else 's'} "
+                      f"(blue, amber if running right now)")
+            if n_rec:
+                caption += (f" and the {n_rec} most recently concluded "
+                           f"(grey), filling the rows the upcoming ones leave")
+        else:
+            caption = (f"The {n_rec} most recently concluded "
+                      f"meeting{'' if n_rec == 1 else 's'} (grey)")
+        caption += (f". {len(upcoming)} upcoming and {len(recent)} recent "
+                   f"meeting{'' if len(upcoming) + len(recent) == 1 else 's'} "
+                   f"are tracked in full below.")
+        timeline_block = f"""
+<figure class="figure">
+<h4>Timeline</h4>
+<div class="timeline-scroll">
+{timeline}
+</div>
+<p class="cap">{caption}</p>
+</figure>
+"""
+
+    # Located fresh from this morning's `upcoming` records, same as the
+    # timeline above — never cached, so the map can never show a conference
+    # the lists no longer do. venue.locate_record runs the cascade (place
+    # string, INSPIRE's structured address, Indico's address, the
+    # conference's own page — see venue.py) and is asked here for the first
+    # time on this site; a record it cannot place keeps its row in the
+    # "Upcoming" list below and simply gets no dot, per the spec.
+    located: list[tuple[dict, float, float]] = []
+    for rec in upcoming:
+        spot = venue.locate_record(rec, log)
+        if spot is not None:
+            lon, lat = spot
+            located.append((rec, lon, lat))
+
+    conf_map = figures.conference_map(located)
+    map_block = ""
+    if conf_map:
+        n_located = len(located)
+        n_missing = len(upcoming) - n_located
+        map_caption = (f"{n_located} of {len(upcoming)} upcoming "
+                       f"meeting{'' if len(upcoming) == 1 else 's'} placed "
+                       f"on the map from a venue the source published")
+        if n_missing:
+            map_caption += (f"; the other {n_missing} stay in the list "
+                            f"below without a dot rather than a guess.")
+        else:
+            map_caption += "."
+        # figures.conference_map draws at half the experiments map's
+        # vertical resolution so every latitude stays on the frame (see its
+        # docstring) — flattened coastlines there are that trade, not a
+        # rendering bug, and a reader who has seen the taller map on the
+        # Resources page deserves to be told so rather than left to wonder.
+        map_caption += (" The map is compressed north-to-south, so distances "
+                        "and shapes read flatter here than on the world map "
+                        "of experiments.")
+        map_block = f"""
+<figure class="figure confmap-figure">
+<h4>Map</h4>
+{conf_map}
+<p class="cap">{map_caption}</p>
+</figure>
+"""
+
+    # The two list blocks below split on physics DOMAIN, not tense — Antonio's
+    # decision to follow his personal site's INSPIRE query rather than mix
+    # ICHEP and Moriond into a "neutrino conferences" list. The timeline and
+    # map above are drawn from `upcoming`/`located`, i.e. across both domains
+    # at once: they exist to show the field's whole calendar and map at a
+    # glance, and splitting THEM by domain too would mean two timelines and
+    # two maps above a list already asked to make room for one of each.
+    neutrino_records = conf_mod.split_scope(records, "neutrino")
+    general_records = conf_mod.split_scope(records, "general")
 
     body = f"""<section class="hero">
   <div class="wrap hero__in">
@@ -353,29 +475,32 @@ def conferences(records: list[dict], log: logging.Logger,
 
 {AUTOGEN_SCRIPT.format(sources="conference indexers' APIs", stamp=stamp or _stamp())}
 
-<div class="section-head"><h2>Upcoming</h2>
-<p>{len(upcoming)} meeting{"" if len(upcoming) == 1 else "s"}</p></div>
-
-{_conf_list(upcoming, "Nothing announced in this window.")}
+{timeline_block}
+{map_block}
+{_scope_block(neutrino_records, "Neutrino conferences",
+             "Nothing announced in this window.")}
 
 :::
 
 ::: section alt
 
-<div class="section-head"><h2>Recent</h2>
-<p>{len(recent)} meeting{"" if len(recent) == 1 else "s"}</p></div>
-
-{_conf_list(recent, "No meeting in this window has ended yet.")}
+{_scope_block(general_records, "General particle physics",
+             "No flagship meeting is listed ahead in the window; the next "
+             "editions may not be registered with INSPIRE yet.")}
 
 <p class="small muted">The list is rebuilt each day from the conference
 indexers rather than maintained by hand. Where a date cannot be confirmed from
 the source, the entry is dropped rather than guessed; a venue is shown when the
 source publishes one, and left blank when it does not. A meeting stays under
-“Upcoming” until its last day is over.</p>
+“Upcoming” until its last day is over. <b>Neutrino conferences</b> is the
+field's own meetings; <b>General particle physics</b> is the flagship series
+the field plans around — ICHEP, Moriond, LHCP and their neighbours — queried
+from INSPIRE the same way.</p>
 
 :::
 """
     _page(CONFERENCES_PAGE, CONF_FRONTMATTER, body)
-    log.info("render: conferences.md — %d upcoming, %d recent",
-             len(upcoming), len(recent))
+    log.info("render: conferences.md — %d upcoming, %d recent "
+             "(%d neutrino, %d general)",
+             len(upcoming), len(recent), len(neutrino_records), len(general_records))
     return True
