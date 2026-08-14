@@ -250,26 +250,32 @@ def compare_panel(pname: str, meta: dict, releases: list[dict]) -> str:
                 out.append(f'<line x1="{x:.1f}" y1="{y_floor:.1f}" x2="{x:.1f}" y2="{H - PAD_B:.1f}" '
                            f'stroke="{colour}" stroke-width="1.4" stroke-dasharray="2 3" opacity=".6"/>')
                 out.append(marker(shape, x, y_floor, colour,
-                                  f"{gname}, {yr}: {label} = {e['best']:.4g} ({unit}) — "
-                                  "below this panel's range, drawn at the floor, not to scale",
+                                  f"{gname}, {yr}: {label} = {history.value_text(e['best'])} "
+                                  f"({unit}) — below this panel's range, drawn at the floor, "
+                                  "not to scale",
                                   hollow=True))
                 out.append(f'<text x="{x + 7:.1f}" y="{y_floor + 3.5:.1f}" font-size="9.5" '
-                           f'fill="currentColor" opacity=".75">{e["best"]:.3g}</text>')
+                           f'fill="currentColor" opacity=".75">{history.value_text(e["best"])}</text>')
                 continue
             if history.kind_of(e) == "limit":
                 out.append(marker("limit-upper", x, sy(e["upper"]), colour,
                                   f"{gname}, {yr}: {label} {history.limit_label(e)} ({unit})"))
                 continue
             rng = e.get("s3")
-            span = f', 3σ {rng[0]:.4g}–{rng[1]:.4g}' if rng else ""
+            span = (f', 3σ {history.value_text(rng[0])}–{history.value_text(rng[1])}'
+                    if rng else "")
             out.append(marker(shape, x, sy(e["best"]), colour,
-                              f"{gname}, {yr}: {label} = {e['best']:.4g}{span} ({unit})"))
+                              f"{gname}, {yr}: {label} = {history.value_text(e['best'])}"
+                              f"{span} ({unit})"))
 
     conv = ("  Values of other groups converted to our convention."
             if pname == "Dm2" else "")
     off_note = ""
     if off_here:
-        parts = "; ".join(f"{gname} {yr} ({e['best']:.3g} {unit})" for gname, yr, e in off_here)
+        # "3.3 1e-5 eV²" reads as a typo in running prose, where the unit is
+        # not sitting under a panel title to be read as a normalisation.
+        parts = "; ".join(f"{gname} {yr} ({history.value_text(e['best'])}, in units "
+                          f"of {unit})" for gname, yr, e in off_here)
         off_note = (f"  {parts} lies far below the rest of this series; drawn at the panel "
                     "floor and labelled with its value, not to scale, so the later "
                     "measurements keep their resolution.")
@@ -352,9 +358,11 @@ def panel(pname: str, meta: dict, releases: list[dict]) -> str:
                                   f"{name}, {yr}: {label} {history.limit_label(e)} ({unit})"))
                 continue
             rng = e.get("s3") or e.get("s1")
-            span = f', 3σ {rng[0]:g}–{rng[1]:g}' if rng else ""
+            span = (f', 3σ {history.value_text(rng[0])}–{history.value_text(rng[1])}'
+                    if rng else "")
             out.append(marker(kind, sx(yr), sy(e["best"]), colour,
-                              f"{name}, {yr}: {label} = {e['best']:g}{span} ({unit})"))
+                              f"{name}, {yr}: {label} = {history.value_text(e['best'])}"
+                              f"{span} ({unit})"))
 
     body = "\n".join(out)
     return f"""<figure class="figure reveal">
@@ -427,9 +435,9 @@ def main() -> None:
 title: Parameter history
 url: history.html
 description: >-
-  How the neutrino oscillation parameters moved across the Bari global
-  analyses, from the first hint of θ₁₃ to subpercent precision — every point
-  traced to the table it came from.
+  How the neutrino oscillation parameters moved across the Bari, NuFit and
+  Valencia global analyses, from the first hint of θ₁₃ to subpercent
+  precision — every point traced to the table it came from.
 katex: false
 ---
 

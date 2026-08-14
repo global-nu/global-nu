@@ -102,7 +102,13 @@ for r in rows:
     published = r["value_as_published"]
     converted = r["value_our_convention"]
     if r["parameter"] == "Dm2" and rel["group"] != "bari":
-        expected = make_history.to_our_Dm2(rel, r["ordering"], published)
+        # round() at the exporter's declared precision, not the exporter's
+        # own rounding call: the arithmetic stays recomputed here, only the
+        # published precision is read from history.VALUE_DP, which is the
+        # one place it is decided. See that constant for why rounding there
+        # can only remove IEEE noise from the subtraction.
+        expected = round(make_history.to_our_Dm2(rel, r["ordering"], published),
+                         history.VALUE_DP)
         ok = converted == expected
     else:
         ok = converted == published

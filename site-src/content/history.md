@@ -2,9 +2,9 @@
 title: Parameter history
 url: history.html
 description: >-
-  How the neutrino oscillation parameters moved across the Bari global
-  analyses, from the first hint of θ₁₃ to subpercent precision — every point
-  traced to the table it came from.
+  How the neutrino oscillation parameters moved across the Bari, NuFit and
+  Valencia global analyses, from the first hint of θ₁₃ to subpercent
+  precision — every point traced to the table it came from.
 katex: false
 ---
 
@@ -117,7 +117,7 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 <rect x="63.4" y="197.8" width="8.4" height="8.4" rx="1.2" fill="none" stroke="var(--grp-nufit)" stroke-width="1.8"><title>NuFit, 2001: δm² = 3.3 (1e-5 eV²) — below this panel's range, drawn at the floor, not to scale</title></rect>
 <text x="74.6" y="205.5" font-size="9.5" fill="currentColor" opacity=".75">3.3</text>
 <rect x="114.4" y="101.0" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2004: δm² = 8.1, 3σ 7.2–9.1 (1e-5 eV²)</title></rect>
-<rect x="250.3" y="142.9" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2012: δm² = 7.5, 3σ 7–8.09 (1e-5 eV²)</title></rect>
+<rect x="250.3" y="142.9" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2012: δm² = 7.5, 3σ 7.0–8.09 (1e-5 eV²)</title></rect>
 <rect x="352.3" y="150.6" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2018: δm² = 7.39, 3σ 6.79–8.01 (1e-5 eV²)</title></rect>
 <rect x="386.3" y="148.5" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2020: δm² = 7.42, 3σ 6.82–8.04 (1e-5 eV²)</title></rect>
 <rect x="454.2" y="143.6" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2024: δm² = 7.49, 3σ 6.92–8.05 (1e-5 eV²)</title></rect>
@@ -127,7 +127,7 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 <path d="M359.9 138.4L365.1 143.6L359.9 148.8L354.7 143.6Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2018: δm² = 7.55, 3σ 7.05–8.14 (1e-5 eV²)</title></path>
 <path d="M393.9 141.9L399.1 147.1L393.9 152.3L388.7 147.1Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2020: δm² = 7.5, 3σ 6.94–8.14 (1e-5 eV²)</title></path>
 </svg>
-<p class="cap">Best fit with its 3σ range, normal ordering.  NuFit 2001 (3.3 1e-5 eV²) lies far below the rest of this series; drawn at the panel floor and labelled with its value, not to scale, so the later measurements keep their resolution.</p>
+<p class="cap">Best fit with its 3σ range, normal ordering.  NuFit 2001 (3.3, in units of 1e-5 eV²) lies far below the rest of this series; drawn at the panel floor and labelled with its value, not to scale, so the later measurements keep their resolution.</p>
 </figure>
 
 <figure class="figure reveal">
@@ -174,16 +174,16 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 <line x1="390.0" y1="108.5" x2="390.0" y2="94.7" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
 <line x1="470.0" y1="107.2" x2="470.0" y2="96.4" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
 <path d="M70.0 128.7 L230.0 105.3 L350.0 100.8 L390.0 101.5 L470.0 101.9" fill="none" stroke="var(--grp-nufit)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<rect x="65.8" y="124.5" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2004: |Δm²| = 2.159, 3σ 1.359–3.259 (1e-3 eV²)</title></rect>
-<rect x="225.8" y="101.1" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2012: |Δm²| = 2.435, 3σ 2.238–2.657 (1e-3 eV²)</title></rect>
-<rect x="345.8" y="96.6" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2018: |Δm²| = 2.488, 3σ 2.394–2.585 (1e-3 eV²)</title></rect>
-<rect x="385.8" y="97.3" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2020: |Δm²| = 2.48, 3σ 2.398–2.561 (1e-3 eV²)</title></rect>
-<rect x="465.8" y="97.7" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2024: |Δm²| = 2.476, 3σ 2.414–2.541 (1e-3 eV²)</title></rect>
+<rect x="65.8" y="124.5" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2004: |Δm²| = 2.1595, 3σ 1.3595–3.2595 (1e-3 eV²)</title></rect>
+<rect x="225.8" y="101.1" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2012: |Δm²| = 2.4355, 3σ 2.2385–2.6575 (1e-3 eV²)</title></rect>
+<rect x="345.8" y="96.6" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2018: |Δm²| = 2.48805, 3σ 2.39405–2.58505 (1e-3 eV²)</title></rect>
+<rect x="385.8" y="97.3" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2020: |Δm²| = 2.4799, 3σ 2.3979–2.5609 (1e-3 eV²)</title></rect>
+<rect x="465.8" y="97.7" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2024: |Δm²| = 2.47555, 3σ 2.41355–2.54055 (1e-3 eV²)</title></rect>
 <line x1="353.4" y1="110.7" x2="353.4" y2="94.5" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
 <line x1="393.4" y1="105.6" x2="393.4" y2="92.0" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
 <path d="M353.4 103.0 L393.4 98.8" fill="none" stroke="var(--grp-valencia)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<path d="M353.4 97.8L358.6 103.0L353.4 108.2L348.2 103.0Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2018: |Δm²| = 2.462, 3σ 2.372–2.562 (1e-3 eV²)</title></path>
-<path d="M393.4 93.6L398.6 98.8L393.4 104.0L388.2 98.8Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2020: |Δm²| = 2.512, 3σ 2.433–2.592 (1e-3 eV²)</title></path>
+<path d="M353.4 97.8L358.6 103.0L353.4 108.2L348.2 103.0Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2018: |Δm²| = 2.46225, 3σ 2.37225–2.56225 (1e-3 eV²)</title></path>
+<path d="M393.4 93.6L398.6 98.8L393.4 104.0L388.2 98.8Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2020: |Δm²| = 2.5125, 3σ 2.4325–2.5925 (1e-3 eV²)</title></path>
 </svg>
 <p class="cap">Best fit with its 3σ range, normal ordering.  Values of other groups converted to our convention.</p>
 </figure>
@@ -240,7 +240,7 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 <line x1="375.8" y1="154.7" x2="375.8" y2="75.1" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
 <line x1="452.4" y1="148.3" x2="452.4" y2="73.0" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
 <path d="M69.3 121.4 L222.5 119.2 L337.5 110.6 L375.8 117.1 L452.4 112.8" fill="none" stroke="var(--grp-nufit)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<rect x="65.1" y="117.2" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2004: sin²θ₁₂ = 3, 3σ 2.3–3.8 (1e-1)</title></rect>
+<rect x="65.1" y="117.2" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2004: sin²θ₁₂ = 3.0, 3σ 2.3–3.8 (1e-1)</title></rect>
 <rect x="218.3" y="115.0" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2012: sin²θ₁₂ = 3.02, 3σ 2.67–3.44 (1e-1)</title></rect>
 <rect x="333.3" y="106.4" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2018: sin²θ₁₂ = 3.1, 3σ 2.75–3.5 (1e-1)</title></rect>
 <rect x="371.6" y="112.9" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2020: sin²θ₁₂ = 3.04, 3σ 2.69–3.43 (1e-1)</title></rect>
@@ -313,7 +313,7 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 <line x1="393.4" y1="130.0" x2="393.4" y2="115.8" stroke="var(--grp-valencia)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
 <path d="M353.4 124.4 L393.4 123.0" fill="none" stroke="var(--grp-valencia)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
 <path d="M353.4 119.2L358.6 124.4L353.4 129.6L348.2 124.4Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2018: sin²θ₁₃ = 2.16, 3σ 1.96–2.41 (1e-2)</title></path>
-<path d="M393.4 117.8L398.6 123.0L393.4 128.2L388.2 123.0Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2020: sin²θ₁₃ = 2.2, 3σ 2–2.405 (1e-2)</title></path>
+<path d="M393.4 117.8L398.6 123.0L393.4 128.2L388.2 123.0Z" fill="var(--grp-valencia)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>Valencia, 2020: sin²θ₁₃ = 2.2, 3σ 2.0–2.405 (1e-2)</title></path>
 </svg>
 <p class="cap">Best fit with its 3σ range, normal ordering.</p>
 </figure>
@@ -367,7 +367,7 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 <line x1="390.0" y1="157.8" x2="390.0" y2="64.9" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
 <line x1="470.0" y1="148.6" x2="470.0" y2="79.3" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
 <path d="M70.0 118.5 L230.0 158.7 L350.0 80.6 L390.0 84.8 L470.0 132.4" fill="none" stroke="var(--grp-nufit)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<rect x="65.8" y="114.3" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2004: sin²θ₂₃ = 5, 3σ 3.4–6.8 (1e-1)</title></rect>
+<rect x="65.8" y="114.3" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2004: sin²θ₂₃ = 5.0, 3σ 3.4–6.8 (1e-1)</title></rect>
 <rect x="225.8" y="154.5" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2012: sin²θ₂₃ = 4.13, 3σ 3.42–6.67 (1e-1)</title></rect>
 <rect x="345.8" y="76.4" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2018: sin²θ₂₃ = 5.82, 3σ 4.28–6.24 (1e-1)</title></rect>
 <rect x="385.8" y="80.6" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2020: sin²θ₂₃ = 5.73, 3σ 4.15–6.16 (1e-1)</title></rect>

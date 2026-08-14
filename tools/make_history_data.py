@@ -79,7 +79,16 @@ def build_rows(doc: dict) -> list[dict]:
                 published = (entry["best"] if kind == "measurement"
                              else entry.get("upper", entry.get("lower")))
                 if pname in ("Dm2_3l", "abs_Dm2_31"):
-                    converted = make_history.to_our_Dm2(rel, ordering, published)
+                    # Rounded, because the conversion is a subtraction of two
+                    # decimal fractions in binary floating point and leaves
+                    # sixteen digits of IEEE artefact on a number the paper
+                    # printed to four: 2.4355 comes out as 2.4354999999999998.
+                    # A citable export must not publish that. See
+                    # history.VALUE_DP for why the rounding cannot reach a
+                    # digit any source actually printed. value_as_published
+                    # is never rounded — it is not computed.
+                    converted = history.round_value(
+                        make_history.to_our_Dm2(rel, ordering, published))
                 else:
                     converted = published
                 rows.append({

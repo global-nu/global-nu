@@ -29,6 +29,36 @@ LEVELS: tuple[str, ...] = ("3sigma", "2sigma", "90%CL", "95%CL")
 
 LEVEL_TEXT = {"3sigma": "3σ", "2sigma": "2σ", "90%CL": "90% CL", "95%CL": "95% CL"}
 
+# A conversion between conventions is a subtraction of two decimal fractions,
+# and it leaves IEEE artefacts far below anything a paper ever printed:
+# 2.4355 comes out of to_our_Dm2() as 2.4354999999999998. Every converted
+# number is rounded to this many decimal places before it is written to an
+# export or printed on a label. Ten places is orders of magnitude finer than
+# the four or five significant digits the papers publish, so the rounding can
+# only remove arithmetic noise — it can never touch a digit a source printed.
+VALUE_DP = 10
+
+
+def round_value(v: float) -> float:
+    """A value with the arithmetic noise of a convention conversion removed."""
+    return round(v, VALUE_DP)
+
+
+def value_text(v: float) -> str:
+    """A recorded value as text, at the precision the register records it in.
+
+    Never formatted with :g or :.4g. Those round to six (or four) significant
+    figures and strip trailing zeros, so sin²θ₁₂ = 0.30 — recorded as 3.0 in
+    units of 1e-1, because that is how the paper printed it — would render as
+    "3", claiming one significant digit where the source gave two. This is the
+    same rule limit_label() follows for a bound: the printed precision is
+    whatever history.yaml spells, and nothing here may narrow it.
+
+    round_value() first, so a value that reached this function through a
+    convention conversion does not carry its arithmetic noise onto a label.
+    """
+    return str(round_value(v))
+
 
 def kind_of(entry: dict) -> str:
     """Classify entry: "measurement", "limit", or "" when it is neither
