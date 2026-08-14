@@ -623,6 +623,14 @@ def main() -> None:
     # empty .nojekyll stops it touching files whose names start with _.
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
 
+    # CNAME must live INSIDE the published tree, because that tree is what is
+    # pushed to gh-pages and Pages reads the file from the root it serves. Put
+    # there by GitHub's settings UI instead, it would sit on main and never
+    # reach gh-pages — the custom domain would silently unset itself on the
+    # next deploy. Derived from site_url so there is one place to change it.
+    domain = cfg["site_url"].split("//", 1)[-1].rstrip("/")
+    (OUT / "CNAME").write_text(domain + "\n", encoding="utf-8")
+
     now = _dt.date.today().isoformat()
     urls = "\n".join(
         f"  <url><loc>{cfg['site_url']}/{u}</loc><lastmod>{now}</lastmod></url>"

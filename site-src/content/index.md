@@ -37,36 +37,39 @@ katex: false
 
 <div class="section-head">
   <h2>Best fits</h2>
-  <p>normal ordering · arXiv:2503.07752</p>
+  <p>normal ordering · arXiv:2503.07752, (1,2) sector updated in arXiv:2511.21650</p>
   <a class="more" href="results.html">Full tables and ranges →</a>
 </div>
 
 <div class="stats reveal">
-  <div class="stat"><span class="k">sin²θ₁₂</span><span class="v">0.303</span><span class="u">formal 1σ accuracy 4.5%</span><!--include:spark-sin2_th12--></div>
+  <div class="stat"><span class="k">sin²θ₁₂</span><span class="v">0.3085</span><span class="u">formal 1σ accuracy 2.4% · 2026</span><!--include:spark-sin2_th12--></div>
   <div class="stat"><span class="k">sin²θ₁₃</span><span class="v">0.0223</span><span class="u">formal 1σ accuracy 2.4%</span><!--include:spark-sin2_th13--></div>
   <div class="stat"><span class="k">sin²θ₂₃</span><span class="v">0.473</span><span class="u">formal 1σ accuracy 5.1%</span><!--include:spark-sin2_th23--></div>
-  <div class="stat"><span class="k">δm² / 10⁻⁵ eV²</span><span class="v">7.37</span><span class="u">m₂² − m₁² &gt; 0</span><!--include:spark-dm2--></div>
+  <div class="stat"><span class="k">δm² / 10⁻⁵ eV²</span><span class="v">7.48</span><span class="u">m₂² − m₁² &gt; 0 · 2026</span><!--include:spark-dm2--></div>
   <div class="stat"><span class="k">|Δm²| / 10⁻³ eV²</span><span class="v">2.495</span><span class="u">m₃² − (m₁²+m₂²)/2</span><!--include:spark-Dm2-abs--></div>
   <div class="stat"><span class="k">δ/π</span><span class="v">1.20</span><span class="u">CP phase, cyclic mod 2</span><!--include:spark-delta_pi--></div>
 </div>
 
 <p class="small muted" style="margin-top:1.1rem">Normal ordering is favoured at
-2.2σ; the χ² offset between the orderings is Δχ²(IO−NO) = +5.0. All six values
-above are from Table I of
+2.2σ; the χ² offset between the orderings is Δχ²(IO−NO) = +5.0. Four of the six
+values above — sin²θ₁₃, sin²θ₂₃, |Δm²| and δ/π, together with that ordering
+preference — are from Table I of
 <a href="https://doi.org/10.1103/PhysRevD.111.093006">Phys. Rev. D 111, 093006
-(2025)</a>, the most recent full release, in the conventions stated there. The
-percentages are that paper’s own “formal 1σ parameter accuracy”: a sixth of the
-3σ range divided by the best fit, which is not the ordinary 1σ fractional
-uncertainty and does not equal half the 1σ range over the best fit.</p>
+(2025)</a>, the most recent <em>full</em> release, in the conventions stated
+there.</p>
 
-<p class="small muted">Two of them have since been revised by a partial update.
-<a href="https://doi.org/10.1103/cxqw-1bty">Phys. Rev. D 114, 016026
-(2026)</a> (<a href="https://arxiv.org/abs/2511.21650">arXiv:2511.21650</a>)
-adds the first JUNO results and the latest SNO+ data to the 2025 analysis and
-gives δm² = 7.48 (1σ 7.39 – 7.58) in units of 10⁻⁵ eV² and
-sin²θ₁₂ = 0.3085 (1σ 0.3010 – 0.3156); it does not revise the other four
-parameters. The <a href="history.html">parameter history</a> carries both
-releases, value by value.</p>
+<p class="small muted">The two marked 2026 — δm² and sin²θ₁₂ — are newer. They
+come from Table I of
+<a href="https://doi.org/10.1103/cxqw-1bty">Phys. Rev. D 114, 016026 (2026)</a>
+(<a href="https://arxiv.org/abs/2511.21650">arXiv:2511.21650</a>), which adds
+the first JUNO results and the latest SNO+ data to the 2025 analysis. It
+revises the (1,2) sector alone and does not touch the other four parameters, so
+this card set is the newest published value for each — not a single fit. Both
+papers define the percentage the same way, as their own “formal 1σ parameter
+accuracy”: a sixth of the 3σ range divided by the best fit, which is not the
+ordinary 1σ fractional uncertainty and does not equal half the 1σ range over
+the best fit. The <a href="history.html">parameter history</a> carries every
+release, value by value.</p>
 
 :::
 
