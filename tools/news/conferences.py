@@ -188,7 +188,7 @@ def _refresh_tense(records: list[dict]) -> None:
             continue
         try:
             end = _dt.date.fromisoformat(closing)
-        except ValueError:
+        except (ValueError, TypeError):
             continue
         upcoming = end >= today
         in_progress = upcoming
@@ -196,7 +196,7 @@ def _refresh_tense(records: list[dict]) -> None:
         if opening:
             try:
                 in_progress = upcoming and _dt.date.fromisoformat(opening) <= today
-            except ValueError:
+            except (ValueError, TypeError):
                 pass
         extra["upcoming"] = upcoming
         extra["in_progress"] = in_progress

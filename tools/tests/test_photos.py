@@ -57,6 +57,7 @@ def _isolate() -> None:
     photos.PHOTO_CACHE = Path(tempfile.mkdtemp()) / "photocache.json"
     photos._cache = None
     photos.IMAGES_SRC = Path(tempfile.mkdtemp())
+    photos.SITE_IMAGES = Path(tempfile.mkdtemp())
     photos._revalidated_this_run = 0     # fresh per-run revalidation budget
 
 
@@ -593,12 +594,136 @@ check("a failed revalidation fetch keeps serving the old credit rather than "
 
 
 # --------------------------------------------------------------------- #
-# 9. Minor (final whole-branch review): photos._cache_save must go through
-#    common.write_json (atomic: .tmp then rename), not Path.write_text
-#    (truncates before writing — an interrupted run leaves a truncated
-#    file that _cache_load's except clause silently reads back as {}).
-#    Call-monitoring, not a crash simulation: proves the save path is
-#    routed through the atomic helper.
+# 9. Final-fix-round-2 review, DEFECT 1: revalidation must normalise a
+#    Commons credit the same way the FIRST lookup does — by stripping HTML
+#    tags (fetch_commons_images.clean), not by substituting each tag with a
+#    space (common.clean_text). A real Commons Artist field straddling a
+#    tag, "Elekhh (<a href=...>talk</a>)", must revalidate to "Elekhh
+#    (talk)" — what `search()` itself would have produced — not "Elekhh (
+#    talk )". Reproduced against the exact HTML that corrupted a real cache
+#    entry (sydney|AU) before this fix.
+# --------------------------------------------------------------------- #
+_isolate()
+_seed("Trieste", "IT", _stale_entry(author="Elekhh (talk)"))
+
+
+def _api_tagged_artist(params):
+    return {"query": {"pages": {"98765": {
+        "pageid": 98765, "ns": 6, "title": "File:Trieste Old Port.jpg",
+        "imageinfo": [{"extmetadata": {
+            "LicenseShortName": {"value": "CC BY-SA 4.0"},
+            "Artist": {"value": '<a href="https://en.wikipedia.org/wiki/User:Elekhh" '
+                                 'class="extiw">Elekhh</a> (<a '
+                                 'href="https://en.wikipedia.org/wiki/User_talk:Elekhh" '
+                                 'class="extiw">talk</a>)'},
+            "LicenseUrl": {"value": "https://creativecommons.org/licenses/by-sa/4.0"},
+        }}]}}}}
+
+
+photos.commons_api = _api_tagged_artist
+photos.search = _refuse_search
+try:
+    result7 = photos.for_city("Trieste", "IT", _Log())
+finally:
+    photos.commons_api = _orig_commons_api
+    photos.search = _orig_search
+
+check("a tagged Artist field is normalised by stripping the tag, like search() "
+      "does, not by substituting it with a space",
+      result7 is not None and result7["author"] == "Elekhh (talk)", result7)
+
+
+# --------------------------------------------------------------------- #
+# 10. Final-fix-round-2 review, DEFECT 2: an unrecognised Commons response
+#     must be treated as TRANSIENT, the same as a request that fails
+#     outright — never as an affirmative takedown. Only `"missing"`
+#     literally present on the page dict (8c above) or a genuinely-returned
+#     licence that fails licence_ok (8d above) may drop the photo. Every one
+#     of these four real shapes must instead keep serving the OLD credit,
+#     leaving the entry recoverable on a later run — none may write a
+#     permanent None into the cache, which for_city treats as "never look
+#     this city up again" (see for_city's `if cached is None: return None`).
+# --------------------------------------------------------------------- #
+def _check_transient(label, api_fn):
+    _isolate()
+    _seed("Trieste", "IT", _stale_entry())
+    photos.commons_api = api_fn
+    photos.search = _refuse_search
+    try:
+        result = photos.for_city("Trieste", "IT", _Log())
+    finally:
+        photos.commons_api = _orig_commons_api
+        photos.search = _orig_search
+    check(f"{label}: the photo keeps serving (not dropped)",
+          result is not None and result.get("author") == "Old Author", result)
+    check(f"{label}: the cache entry is not a permanent None (city stays "
+          "recoverable on a later run)",
+          photos._cache.get(photos._key("Trieste", "IT")) is not None,
+          photos._cache.get(photos._key("Trieste", "IT")))
+
+
+_check_transient("an error envelope with no 'query' key at all",
+                 lambda params: {"error": {"code": "unknown_action",
+                                           "info": "Unrecognized value"}})
+_check_transient("a 'query' with an empty 'pages' dict",
+                 lambda params: {"query": {"pages": {}}})
+_check_transient("an 'invalid title' response (no 'pages' key at all)",
+                 lambda params: {"query": {"invalid": [
+                     {"title": "File:Trieste Old Port.jpg",
+                      "invalidreason": "The requested page title contains "
+                                       "invalid characters"}]}})
+_check_transient("a page found but carrying no imageinfo/extmetadata at all",
+                 lambda params: {"query": {"pages": {"98765": {
+                     "pageid": 98765, "ns": 6,
+                     "title": "File:Trieste Old Port.jpg"}}}})
+_check_transient("a page whose extmetadata is present but Artist is empty",
+                 lambda params: {"query": {"pages": {"98765": {
+                     "pageid": 98765, "ns": 6, "title": "File:Trieste Old Port.jpg",
+                     "imageinfo": [{"extmetadata": {
+                         "LicenseShortName": {"value": "CC BY-SA 4.0"},
+                         "Artist": {"value": ""},
+                         "LicenseUrl": {"value": "https://creativecommons.org/"
+                                                 "licenses/by-sa/4.0"},
+                     }}]}}}})
+
+
+# --------------------------------------------------------------------- #
+# 11. Final-fix-round-2 review, minor: a GENUINE takedown must remove the
+#     local JPEG from both trees a build can serve it from — site-src/
+#     images-src (what build.py reads) and site/images (what the subtree
+#     push actually deploys) — not just stop linking it from the cache.
+#     Without this, pipeline.PHOTO_GLOBS keeps matching and committing the
+#     taken-down file's bytes by glob even after the card stops using them.
+# --------------------------------------------------------------------- #
+_isolate()
+_seed("Trieste", "IT", _stale_entry())
+site_copy = photos.SITE_IMAGES / "conf-trieste-it.jpg"
+site_copy.parent.mkdir(parents=True, exist_ok=True)
+site_copy.write_bytes(b"old-jpeg-bytes-in-site-images-too")
+src_copy = photos.IMAGES_SRC / "conf-trieste-it.jpg"
+
+photos.commons_api = lambda params: _commons_page(missing=True)
+photos.search = _refuse_search
+try:
+    result8 = photos.for_city("Trieste", "IT", _Log())
+finally:
+    photos.commons_api = _orig_commons_api
+    photos.search = _orig_search
+
+check("a genuine takedown still returns None", result8 is None, result8)
+check("a genuine takedown deletes the file from site-src/images-src",
+      not src_copy.exists(), src_copy)
+check("a genuine takedown deletes the file from site/images too",
+      not site_copy.exists(), site_copy)
+
+
+# --------------------------------------------------------------------- #
+# 12. Minor (final whole-branch review): photos._cache_save must go through
+#     common.write_json (atomic: .tmp then rename), not Path.write_text
+#     (truncates before writing — an interrupted run leaves a truncated
+#     file that _cache_load's except clause silently reads back as {}).
+#     Call-monitoring, not a crash simulation: proves the save path is
+#     routed through the atomic helper.
 # --------------------------------------------------------------------- #
 _isolate()
 _write_json_calls = []

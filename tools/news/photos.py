@@ -11,11 +11,19 @@ than trusted off a candidate dict's own `accepted` flag, since a candidate is
 easy to build by hand in a caller or a test and this module should not have
 to trust that whoever built it also ran the check), and `short_author` (the
 same collapse that turns a seven-hundred-name collaboration credit into one
-usable line — see tools/tests/test_credits.py). A fourth name, `api`, is used
-only to REVALIDATE a credit already in the cache (see `_revalidate` below) —
-the same MediaWiki call `search` makes internally, addressed at one exact
-title instead of a full-text query. No new licence rule is written anywhere
-here: `_revalidate` still judges acceptability with the identical
+usable line — see tools/tests/test_credits.py). A fourth and fifth name,
+`api` and `clean`, are used only to REVALIDATE a credit already in the cache
+(see `_revalidate` below) — `api` is the same MediaWiki call `search` makes
+internally, addressed at one exact title instead of a full-text query, and
+`clean` is the exact HTML-tag-stripping `search` itself uses to normalise
+Commons' `Artist`/`LicenseShortName`/`LicenseUrl` fields (it STRIPS a tag;
+`common.clean_text`, used for feed prose elsewhere in this package,
+SUBSTITUTES each tag with a space instead — close enough to look right until
+a field genuinely straddles a tag, like Elekhh's Commons `Artist` field
+"Elekhh (<a ...>talk</a>)", which `clean_text` turns into "Elekhh ( talk )";
+using anything but `search`'s own `clean` here would silently degrade a
+credit that was correct at first lookup). No new licence rule is written
+anywhere here: `_revalidate` still judges acceptability with the identical
 `licence_ok`, it just asks Commons again rather than trusting a first answer
 forever.
 
@@ -69,13 +77,16 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-from tools.fetch_commons_images import UA, api as commons_api, licence_ok, search, short_author
+from tools.fetch_commons_images import (
+    UA, api as commons_api, clean as commons_clean, licence_ok, search, short_author,
+)
 
 from . import worldmap as wm
-from .common import clean_text, write_json
+from .common import write_json
 
 ROOT = Path(__file__).resolve().parents[2]
 IMAGES_SRC = ROOT / "site-src" / "images-src"
+SITE_IMAGES = ROOT / "site" / "images"
 PHOTO_CACHE = ROOT / "var" / "news" / "photocache.json"
 
 # 640, not site.yaml's 1600: see the module docstring.
@@ -289,13 +300,26 @@ def _revalidate(entry: dict, city: str, log: logging.Logger) -> dict | None:
     licence_url if Commons now reports different ones — a corrected Artist
     field must reach the page, not stay frozen at whatever it said the day
     this was first cached), or None if the photograph must STOP being
-    served: the file is gone from Commons, or its current licence no longer
-    passes `licence_ok` — the same rule `search`'s own results are judged by,
-    not a new one. A request that fails outright (network down, Commons
-    unreachable) is treated as transient, not as a takedown: the entry is
-    returned unchanged, still with its old `cached_at`, so it comes up for
-    revalidation again next run rather than being dropped over a fetch
-    failure that says nothing about the file's actual status.
+    served — but only on an AFFIRMATIVE signal that it should: Commons
+    itself reports the title `"missing"`, or a genuinely-returned licence no
+    longer passes `licence_ok` — the same rule `search`'s own results are
+    judged by, not a new one. `for_city` writes that None straight to the
+    on-disk cache, and a cached None short-circuits before ever calling
+    `search()` again — so a city that lands here by mistake can never regain
+    a photograph without a hand edit to photocache.json. Consequently
+    anything short of an affirmative answer is treated as TRANSIENT, exactly
+    like a request that fails outright (network down, Commons unreachable,
+    caught below): a response that doesn't parse into the expected shape at
+    all (an error envelope, an empty `pages` dict, an "invalid title"
+    response — none of these carry `"missing"`, and none of them say
+    anything about whether the file is actually still there), or a page that
+    IS present but comes back with no `extmetadata` whatsoever, or one whose
+    `Artist` field is empty despite the rest of the metadata being there
+    (Commons vandalism blanking a field is not the same event as a curator
+    deleting the file). In every one of those cases the entry is returned
+    UNCHANGED, still with its old `cached_at`, so it comes up for
+    revalidation again next run rather than being dropped over a response
+    that says nothing conclusive about the file's actual status.
     """
     title = _commons_title_of(entry.get("page", ""))
     if not title:
@@ -310,33 +334,77 @@ def _revalidate(entry: dict, city: str, log: logging.Logger) -> dict | None:
                     "the cached credit for now, will retry", title, exc.__class__.__name__)
         return entry
 
-    if page is None or "missing" in page:
+    if page is None:
+        # No page at all in the response — an error envelope, an "invalid"
+        # title, or a `pages` dict that came back empty. None of these is
+        # Commons saying the file is gone; see the docstring above.
+        log.warning("photos: revalidation got an unrecognised response for "
+                    "%r — keeping the cached credit for now, will retry",
+                    title)
+        return entry
+    if "missing" in page:
         log.warning("photos: %s is gone from Commons — no longer served for %r",
                     title, city)
         return None
 
     meta = (page.get("imageinfo") or [{}])[0].get("extmetadata") or {}
-    licence = clean_text((meta.get("LicenseShortName") or {}).get("value", ""))
+    if not meta:
+        log.warning("photos: revalidation for %s came back with no metadata "
+                    "at all — keeping the cached credit for now, will retry",
+                    title)
+        return entry
+    # commons_clean (fetch_commons_images.clean), not common.clean_text:
+    # clean_text SUBSTITUTES each HTML tag with a space, which mangles a
+    # credit that straddles a tag ("Elekhh (<a ...>talk</a>)" -> "Elekhh
+    # ( talk )") instead of stripping it the way `search`'s own first
+    # lookup does — see the module docstring.
+    licence = commons_clean((meta.get("LicenseShortName") or {}).get("value", ""))
     ok, why = licence_ok(licence, title)
     if not ok:
         log.warning("photos: %s no longer qualifies for reuse (%s) — no "
                     "longer served for %r", title, why, city)
         return None
-    author = short_author(clean_text((meta.get("Artist") or {}).get("value", "")))
+    author = short_author(commons_clean((meta.get("Artist") or {}).get("value", "")))
     if not author:
-        log.warning("photos: %s lost its author field on Commons — no "
-                    "longer served for %r", title, city)
-        return None
+        log.warning("photos: %s's Artist field came back empty on Commons — "
+                    "keeping the cached credit for now, will retry", title)
+        return entry
 
     updated = dict(entry)
     updated["author"] = author
     updated["licence"] = licence
-    updated["licence_url"] = clean_text((meta.get("LicenseUrl") or {}).get("value", ""))
+    updated["licence_url"] = commons_clean((meta.get("LicenseUrl") or {}).get("value", ""))
     updated["cached_at"] = _dt.date.today().isoformat()
     if updated["author"] != entry.get("author") or updated["licence"] != entry.get("licence"):
         log.info("photos: %s's credit changed on Commons — updated for %r",
                  title, city)
     return updated
+
+
+def _delete_local_copies(cached: dict, city: str, log: logging.Logger) -> None:
+    """Remove a taken-down photograph's bytes from both trees a build can
+    serve them from, not just from the cache's *pointer* to them.
+
+    Without this, `for_city` stops linking the file (the cache entry is
+    None) but the JPEG itself stays sitting in site-src/images-src AND in
+    site/images — and pipeline.PHOTO_GLOBS matches both by glob and keeps
+    committing/deploying whatever it finds there, so a taken-down file's
+    bytes would stay served at their old URL indefinitely, just unlinked
+    from any card. Deleting here, at the one place a takedown is actually
+    decided, needs no general pruning machinery: the file this call removes
+    is *exactly* the one the takedown was just decided for.
+    """
+    name = Path(cached.get("file", "")).name
+    if not name:
+        return
+    for base in (IMAGES_SRC, SITE_IMAGES):
+        path = base / name
+        try:
+            if path.exists():
+                path.unlink()
+                log.info("photos: removed the taken-down file %s for %r", path, city)
+        except OSError as exc:
+            log.warning("photos: could not remove %s (%s)", path, exc.__class__.__name__)
 
 
 def _due_for_revalidation(entry: dict) -> bool:
@@ -380,6 +448,8 @@ def for_city(city: str, country_code: str, log: logging.Logger) -> dict | None:
                     and _revalidated_this_run < REVALIDATE_PER_RUN):
                 _revalidated_this_run += 1
                 fresh = _revalidate(cached, city, log)
+                if fresh is None:
+                    _delete_local_copies(cached, city, log)
                 cache[key] = fresh
                 _cache_save()
                 return fresh

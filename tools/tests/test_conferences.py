@@ -231,6 +231,51 @@ check("the corrected-to-recent record's own timeline bar is grey (uncoloured), "
       and "var(--no)" not in _timeline_svg,
       _timeline_svg)
 
+# Minor (final-fix-round-2 review): _refresh_tense must catch TypeError as
+# well as ValueError when parsing extra.closing/opening, matching
+# figures._date's own (ValueError, TypeError) catch just below it in the
+# same review. date.fromisoformat raises TypeError, not ValueError, when
+# handed a non-string — a shape a malformed fetcher record could produce —
+# and an unguarded parse would propagate straight out of sort_for_page,
+# taking the whole render down with it rather than leaving that one
+# record's tense untouched, per _refresh_tense's own documented rule for a
+# value it cannot parse.
+#
+# Called through _refresh_tense directly (not sort_for_page): sort_for_page
+# also sorts on extra.opening as a plain dict key, and mixing a non-string
+# opening into a list alongside a normal string one raises its OWN unrelated
+# TypeError from the sort comparison — a real but different hazard, not what
+# this fix is about. Isolating the call to _refresh_tense tests exactly the
+# parse this finding names, without tripping over that separate one.
+bad_closing = rec("Bad Closing 2026", "https://badclosing.example.org/",
+                  "Bari", "IT", "2026-01-01", "2026-01-05", "nu-unbound")
+bad_closing["extra"]["closing"] = 20260105          # a non-string: TypeError, not ValueError
+bad_closing["extra"]["upcoming"] = True
+try:
+    conf._refresh_tense([bad_closing])
+    _no_raise = True
+except TypeError:
+    _no_raise = False
+check("a non-string extra.closing does not crash _refresh_tense "
+      "(TypeError caught alongside ValueError)", _no_raise)
+check("a record with an unparseable closing is left untouched, not guessed at",
+      bad_closing["extra"]["upcoming"] is True, bad_closing["extra"])
+
+bad_opening = rec("Bad Opening 2026", "https://badopening.example.org/",
+                  "Bari", "IT", "2026-01-01", "2099-01-05", "nu-unbound")
+bad_opening["extra"]["opening"] = 20260101          # closing parses fine; opening does not
+bad_opening["extra"]["upcoming"] = False
+try:
+    conf._refresh_tense([bad_opening])
+    _no_raise2 = True
+except TypeError:
+    _no_raise2 = False
+check("a non-string extra.opening (closing still parses) does not crash either",
+      _no_raise2)
+check("...and still recomputes upcoming from the closing date alone",
+      bad_opening["extra"]["upcoming"] is True, bad_opening["extra"])
+
+
 from tools.news import venue                        # noqa: E402
 
 # The cascade prefers structured data and only then the conference's own page.
