@@ -31,7 +31,8 @@ import html
 import logging
 import math
 
-from . import geocluster, worldmap as wm
+from . import geocluster, photos
+from . import worldmap as wm
 
 
 def _e(text: str) -> str:
@@ -252,7 +253,38 @@ def _map_title(name: str, place: str, dates: str) -> str:
     return f"{title} · {dates}" if dates else title
 
 
-def _conf_pin(conf: dict, lon: float, lat: float, cx: float, cy: float) -> str:
+def _photo_city(conf: dict) -> tuple[str, str] | None:
+    """The (city, ISO2 country code) to ask photos.for_city for, or None
+    when the record does not carry enough structure to ask cleanly.
+
+    Only `extra.city` and `extra.country_code` are trusted — both are
+    already-parsed fields a fetcher set (fetch_inspire.py, fetch_nu_unbound.py
+    — see conferences.py), never derived here by splitting `extra.place` or
+    `extra.address` on a comma. Guessing a city out of an address string
+    risks exactly the "venue, not city" mistake this whole feature exists to
+    avoid — Indico's own address field can read "Sede Afundación, Cantón
+    Grande 8, A Coruña, 15003, Spain", and a naive split would hand Commons
+    "Sede Afundación" to search on, not "A Coruña". Indico never sets
+    extra.city/country_code (see fetch_indico.py), so its records simply get
+    no photo — no photo beats a wrong one, same as everywhere else here.
+    """
+    extra = conf.get("extra") or {}
+    city = (extra.get("city") or "").strip()
+    code = (extra.get("country_code") or "").strip().upper()
+    if city and len(code) == 2:
+        return city, code
+    return None
+
+
+def _lookup_photo(conf: dict, log: logging.Logger) -> dict | None:
+    city_code = _photo_city(conf)
+    if not city_code:
+        return None
+    return photos.for_city(city_code[0], city_code[1], log)
+
+
+def _conf_pin(conf: dict, lon: float, lat: float, cx: float, cy: float,
+             photo: dict | None = None) -> str:
     """One <g class="conf-pin">, drawn at (cx, cy).
 
     (cx, cy) is the marker's own projected position unless it shares a
@@ -262,6 +294,14 @@ def _conf_pin(conf: dict, lon: float, lat: float, cx: float, cy: float) -> str:
     always carry the conference's REAL coordinates regardless of that visual
     nudge: confmap.js builds the Google Maps link from them, and a link is
     only as honest as the numbers that produced it.
+
+    `photo`, when given, is the dict photos.for_city returns — file, page,
+    author, licence, licence_url — carried onto the marker as five
+    data-photo* attributes so confmap.js can render the image and its full
+    credit without a second lookup. Two conferences in the same city (the
+    common case for a fanned, merged marker — see conference_map's docstring)
+    get the identical photo, because photos.for_city caches by city: nothing
+    here needs to know or care that a marker is part of a cluster.
     """
     extra = conf.get("extra") or {}
     name = conf.get("title", "")
@@ -277,6 +317,14 @@ def _conf_pin(conf: dict, lon: float, lat: float, cx: float, cy: float) -> str:
         f' data-lat="{lat:.4f}"'
         f' data-lon="{lon:.4f}"'
     )
+    if photo:
+        attrs += (
+            f' data-photo="{_e(photo["file"])}"'
+            f' data-photo-author="{_e(photo["author"])}"'
+            f' data-photo-licence="{_e(photo["licence"])}"'
+            f' data-photo-licence-url="{_e(photo.get("licence_url") or "")}"'
+            f' data-photo-page="{_e(photo["page"])}"'
+        )
     return (
         f'<g class="conf-pin"{attrs}><title>{_e(title)}</title>'
         f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{MAP_HALO_R}" '
@@ -286,7 +334,8 @@ def _conf_pin(conf: dict, lon: float, lat: float, cx: float, cy: float) -> str:
     )
 
 
-def conference_map(located: list[tuple[dict, float, float]]) -> str:
+def conference_map(located: list[tuple[dict, float, float]],
+                   log: logging.Logger | None = None) -> str:
     """A world map of upcoming conferences, one dot per located one.
 
     `located` holds only conferences the caller already ran through
@@ -302,9 +351,16 @@ def conference_map(located: list[tuple[dict, float, float]]) -> str:
     the worst kind of wrong for a public scientific page — so callers and
     tests should assert the order explicitly rather than trust a reading of
     it.
+
+    Every marker is also offered a photograph of its city, via
+    photos.for_city (see _photo_city/_lookup_photo above) — `log` is passed
+    through for that lookup's own reporting and defaults to this module's
+    own logger so an existing caller (render.conferences()) need not change
+    to keep working.
     """
     if not located:
         return ""
+    log = log or logging.getLogger(__name__)
 
     # Step 1: project and cluster. The bucketing is geocluster's
     # cluster_by_distance — make_map.py's own single-linkage algorithm,
@@ -343,7 +399,7 @@ def conference_map(located: list[tuple[dict, float, float]]) -> str:
     for members in sorted(clusters.values(), key=len):
         if len(members) == 1:
             conf, lon, lat, (x, y) = points[members[0]]
-            parts.append(_conf_pin(conf, lon, lat, x, y))
+            parts.append(_conf_pin(conf, lon, lat, x, y, _lookup_photo(conf, log)))
             continue
         cx = sum(points[i][3][0] for i in members) / len(members)
         cy = sum(points[i][3][1] for i in members) / len(members)
@@ -353,7 +409,7 @@ def conference_map(located: list[tuple[dict, float, float]]) -> str:
             angle = math.radians(-90 + k * 360 / n)
             fx = cx + MAP_FAN_R * math.cos(angle)
             fy = cy + MAP_FAN_R * math.sin(angle)
-            parts.append(_conf_pin(conf, lon, lat, fx, fy))
+            parts.append(_conf_pin(conf, lon, lat, fx, fy, _lookup_photo(conf, log)))
 
     parts.append("</svg>")
     return "\n".join(parts)

@@ -752,6 +752,17 @@ a.card:hover .card__go{color:var(--text)}
 .conf-card__actions a{font-size:.82rem;font-weight:600;color:var(--accent);
   text-decoration:none}
 .conf-card__actions a:hover{text-decoration:underline}
+/* A photograph of the host city (tools/news/photos.py), when Commons has
+   one under a licence that permits reuse — same shape as .map-card's own
+   photo block below, duplicated rather than shared: the comment above
+   already explains why this card does not reuse .map-card's classes. */
+.conf-card__photo{margin:.7rem 0 0}
+.conf-card__photo img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;
+  background:var(--surface-2);border-radius:var(--r-sm)}
+.conf-card__credit{display:block;margin-top:.45rem;font-family:var(--mono);
+  font-size:.68rem;color:var(--text-mute);line-height:1.5}
+.conf-card__credit a{color:var(--text-mute);text-decoration:underline}
+.conf-card__credit a:hover{color:var(--accent)}
 
 /* ---------- Δχ² explorer ---------- */
 .chi2__bar{display:flex;flex-wrap:wrap;gap:.7rem 1.4rem;align-items:center;

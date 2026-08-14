@@ -20,7 +20,7 @@ sys.path.insert(0, str(ROOT))
 import tempfile
 
 from tools.news import conferences as conf          # noqa: E402
-from tools.news import fetch_inspire, fetch_nu_unbound, geocode, render   # noqa: E402
+from tools.news import fetch_inspire, fetch_nu_unbound, geocode, photos, render   # noqa: E402
 
 problems: list[str] = []
 checks = 0
@@ -125,11 +125,25 @@ def _fake_geocode_locate(city, country_code):
     return (16.8622, 41.1171) if city and country_code else None  # a fixed, offline "Bari"
 
 
+# figures.conference_map() now also asks photos.for_city() for every located
+# record's city (Task 5) — a real Commons search for "Bari" without this
+# stub, same silent-on-this-machine trap the geocode stub above exists to
+# avoid, just against a different stranger's server. Stubbed the same way:
+# reassigned, restored in the same `finally`.
+_orig_photos_for_city = photos.for_city
+
+
+def _fake_photos_for_city(city, country_code, log):
+    return None
+
+
 geocode.locate = _fake_geocode_locate
+photos.for_city = _fake_photos_for_city
 try:
     up_block, recent_block = _render_split([still_ahead, already_over, general_upcoming])
 finally:
     geocode.locate = _orig_geocode_locate
+    photos.for_city = _orig_photos_for_city
 check("a record with extra.upcoming=True renders under Upcoming, not Recent",
       "Still Ahead 2099" in up_block and "Still Ahead 2099" not in recent_block)
 check("a record with extra.upcoming=False renders under Recent, not Upcoming",

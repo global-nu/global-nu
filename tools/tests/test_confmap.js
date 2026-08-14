@@ -8,7 +8,13 @@
  * own coordinates (never from the venue string — see confmap.js's comment on
  * why "Old Trafford" as a text search lands in Manchester); Escape closes the
  * card and returns focus to the marker; and with the script never running the
- * SVG still reads via each marker's <title>.
+ * SVG still reads via each marker's <title>. A third marker (Trieste, below)
+ * carries the five data-photo* attributes tools/news/photos.py adds when
+ * Commons has a licence-clean, credited photograph of the conference's city
+ * — its card must render the image AND all three parts of the credit
+ * (author, licence, the Commons file-page link); the other two markers carry
+ * none of those attributes, so their cards must render no image at all —
+ * the regression guard that keeps the photo check from being vacuous.
  *
  *   node tools/tests/test_confmap.js
  */
@@ -41,6 +47,18 @@ const SVG = `
        data-lat="37.93" data-lon="12.83">
       <title>Erice School 2026 — Erice, Italy</title>
       <circle cx="384.6" cy="26.0" r="3.0"/>
+    </g>
+    <g class="conf-pin" data-conf="conf:trieste-photo" data-name="Neutrino Physics in Trieste"
+       data-place="Trieste, Italy" data-dates="3–7 Nov 2026"
+       data-url="https://trieste.example.org/"
+       data-lat="45.6495" data-lon="13.7768"
+       data-photo="images/conf-trieste.jpg"
+       data-photo-author="Fermilab, Reidar Hahn"
+       data-photo-licence="CC BY-SA 4.0"
+       data-photo-licence-url="https://creativecommons.org/licenses/by-sa/4.0"
+       data-photo-page="https://commons.wikimedia.org/wiki/File:Trieste.jpg">
+      <title>Neutrino Physics in Trieste — Trieste, Italy</title>
+      <circle cx="420.0" cy="40.0" r="3.0"/>
     </g>
   </svg>
 </figure>`;
@@ -131,9 +149,56 @@ kbCard && /Erice School 2026/.test(kbCard.textContent)
    e.g. by rebuilding the pin's innerHTML instead of only appending a card
    elsewhere in the figure. */
 d = boot();
-d.querySelectorAll('.conf-pin title').length === 2
+d.querySelectorAll('.conf-pin title').length === 3
   ? ok('every marker keeps its <title> after the script has run')
   : bad('a marker lost its <title>');
+
+/* 7. a marker carrying photo attributes renders the image and all three
+   parts of the credit — author, licence, the Commons file-page link. */
+d = boot();
+const photoPin = d.querySelector('[data-conf="conf:trieste-photo"]');
+photoPin.dispatchEvent(new d.defaultView.Event('click', {bubbles: true}));
+const photoCard = d.querySelector('.conf-card');
+const img = photoCard && photoCard.querySelector('.conf-card__photo img');
+img
+  ? ok('a marker carrying data-photo renders an <img> in the card')
+  : bad('no <img> rendered for a marker carrying data-photo');
+img && img.getAttribute('src') === 'images/conf-trieste.jpg'
+  ? ok('the rendered image src is built from the marker\'s data-photo')
+  : bad('the rendered image src does not match data-photo: ' + (img && img.src));
+
+const credit = photoCard && photoCard.querySelector('.conf-card__credit');
+const creditText = (credit && credit.textContent) || '';
+/Fermilab, Reidar Hahn/.test(creditText)
+  ? ok('the credit names the author')
+  : bad('the credit is missing the author: ' + creditText);
+/CC BY-SA 4\.0/.test(creditText)
+  ? ok('the credit states the licence')
+  : bad('the credit is missing the licence: ' + creditText);
+const creditLinks = credit ? [...credit.querySelectorAll('a')] : [];
+const licenceLink = creditLinks.find(a => a.href === 'https://creativecommons.org/licenses/by-sa/4.0');
+licenceLink
+  ? ok('the licence name links to the licence URL')
+  : bad('no link to the licence URL found in the credit');
+const pageLink = creditLinks.find(a => a.href === 'https://commons.wikimedia.org/wiki/File:Trieste.jpg');
+pageLink
+  ? ok('the credit links to the photograph\'s Commons file page')
+  : bad('no link to the Commons file page found in the credit');
+pageLink && pageLink.target === '_blank' && /noopener/.test(pageLink.rel || '')
+  ? ok('the Commons file-page link opens in a new tab with rel="noopener"')
+  : bad('the Commons file-page link is missing target="_blank"/rel="noopener": '
+      + (pageLink && pageLink.target) + ' / ' + (pageLink && pageLink.rel));
+
+/* 8. a marker with none of the five data-photo* attributes renders no image
+   at all — the regression guard that keeps check 7 from being vacuous
+   (proving the assertions can fail, not merely that they can pass). */
+d = boot();
+const plainPin = d.querySelector('[data-conf="conf:2812345"]');
+plainPin.dispatchEvent(new d.defaultView.Event('click', {bubbles: true}));
+const plainCard = d.querySelector('.conf-card');
+plainCard && !plainCard.querySelector('.conf-card__photo')
+  ? ok('a marker with no data-photo renders no photo block at all')
+  : bad('a photo block was rendered for a marker that carries no data-photo');
 
 console.log();
 if (fail.length) { console.log(fail.length + ' check(s) failed'); process.exit(1); }

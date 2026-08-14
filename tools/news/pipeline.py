@@ -200,6 +200,17 @@ PUBLISHED_BY_JOB = [
     "site/sitemap.xml",
 ]
 
+# tools.news.photos writes one photograph per city on the conference map,
+# named from a slug of the city ("images/conf-shanghai.jpg") that this list
+# cannot predict — which cities appear is only known after today's sources
+# merge — so these are matched by glob rather than listed by name, in both
+# trees: site-src/images-src (what build.py reads next time) and site/images
+# (what the subtree push below actually deploys). Leaving these out of the
+# commit would mean the map's photographs are drawn locally today and then
+# never reach the live site, since `git subtree push` only ever pushes what
+# was committed, not what merely exists in the working tree.
+PHOTO_GLOBS = ["site-src/images-src/conf-*.jpg", "site/images/conf-*.jpg"]
+
 
 def _push_generated(log) -> None:
     """Commit the regenerated pages and push. Never fatal to the run."""
@@ -215,6 +226,8 @@ def _push_generated(log) -> None:
         return
 
     existing = [p for p in PUBLISHED_BY_JOB if (ROOT / p).exists()]
+    for pattern in PHOTO_GLOBS:
+        existing += [str(p.relative_to(ROOT)) for p in sorted(ROOT.glob(pattern))]
     if git("add", "--", *existing).returncode != 0:
         log.error("publish: git add failed")
         return
