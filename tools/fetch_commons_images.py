@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 import time
 import urllib.parse
@@ -101,7 +102,14 @@ def licence_ok(short: str, name: str) -> tuple[bool, str]:
     s = (short or "").lower()
     if not s:
         return False, "no licence stated"
-    if any(bad in s.split() for bad in ("nc", "nd")) or \
+    # Commons' LicenseShortName values are single hyphenated tokens ("cc
+    # by-nc", "cc by-nd-sa") — s.split() on whitespace alone never isolates
+    # "nc"/"nd" out of "by-nc", so the substring "cc by" in "cc by-nc 4.0"
+    # would otherwise reach the ALLOWED check below and pass. Splitting on
+    # every non-alphanumeric run (spaces AND hyphens AND dots) tokenises
+    # "cc by-nc 4.0" into ["cc", "by", "nc", "4", "0"], where "nc" is caught.
+    tokens = re.split(r"[^a-z0-9]+", s)
+    if any(bad in tokens for bad in ("nc", "nd")) or \
        any(bad in s for bad in ("fair use", "non-free", "noncommercial", "noderiv")):
         return False, f"licence forbids reuse or derivatives: {short}"
     if any(good in s for good in ALLOWED):
