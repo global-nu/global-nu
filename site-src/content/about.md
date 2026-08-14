@@ -19,9 +19,9 @@ katex: false
 
 ::: section
 
-<div class="split">
+::: split
 
-<div class="prose">
+::: prose
 
 ## The group
 
@@ -45,7 +45,7 @@ combines them into a single χ² — solar, atmospheric, reactor and accelerator
 data, with cosmological constraints where relevant — and reports the parameters
 with the correlations intact. That combination is what this site publishes.
 
-</div>
+:::
 
 <div>
 
@@ -88,14 +88,14 @@ there is transcribed from a published table by hand.</p>
 
 </div>
 
-</div>
+:::
 
 :::
 
 ::: section alt glow
 
-<div class="split">
-<div class="prose">
+::: split
+::: prose
 
 ## Contact
 
@@ -105,8 +105,8 @@ di Bari.
 
 Write to <a href="mailto:antonio.marrone@ba.infn.it">antonio.marrone@ba.infn.it</a>.
 
-</div>
-<div class="prose">
+:::
+::: prose
 
 ## About this site
 
@@ -117,7 +117,7 @@ directly from you to the databases, and never to this site.
 Visits are counted with GoatCounter, which records a pageview without cookies
 and without tracking individuals.
 
-</div>
-</div>
+:::
+:::
 
 :::
