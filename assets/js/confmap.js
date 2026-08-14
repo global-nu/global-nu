@@ -22,6 +22,18 @@
  * that every dot on it came from a real (lon, lat) via venue.locate_record —
  * throwing that away for a text query would make the link less precise than
  * the data already on the marker.
+ *
+ * A marker whose city has a licence-clean, fully-credited photograph
+ * (tools/news/photos.py) carries five extra data-photo* attributes; the card
+ * renders the image AND its full credit — author, licence, a link to the
+ * file's own page on Commons — because a photograph without its credit is a
+ * licence violation, not a cosmetic slip. A marker with no such photograph
+ * (most conferences: Commons rarely has one, or the record's city could not
+ * be established cleanly — see figures.py's _photo_city) simply carries none
+ * of the five attributes, and the card renders exactly as it did before this
+ * feature existed. Two conferences that share a city (the common case for a
+ * fanned, merged marker) carry the identical photo, because photos.for_city
+ * caches by city — nothing here needs to special-case a cluster.
  */
 (function () {
   "use strict";
@@ -87,6 +99,35 @@
       return a;
     }
 
+    function photoBlock(pin, photo, name, place) {
+      var figure = document.createElement("figure");
+      figure.className = "conf-card__photo";
+
+      var img = document.createElement("img");
+      img.src = photo;
+      img.loading = "lazy";
+      img.alt = "Photograph of " + (place || name);
+      figure.appendChild(img);
+
+      var credit = document.createElement("figcaption");
+      credit.className = "conf-card__credit";
+      var author = pin.getAttribute("data-photo-author") || "";
+      if (author) credit.appendChild(document.createTextNode(author));
+      var lic = pin.getAttribute("data-photo-licence") || "";
+      if (lic) {
+        if (author) credit.appendChild(document.createTextNode(" · "));
+        var licUrl = pin.getAttribute("data-photo-licence-url") || "";
+        credit.appendChild(licUrl ? link(licUrl, lic) : document.createTextNode(lic));
+      }
+      var page = pin.getAttribute("data-photo-page") || "";
+      if (page) {
+        if (author || lic) credit.appendChild(document.createTextNode(" · "));
+        credit.appendChild(link(page, "Wikimedia Commons"));
+      }
+      figure.appendChild(credit);
+      return figure;
+    }
+
     function open(pin) {
       remove();
       lastFocus = document.activeElement;
@@ -97,6 +138,7 @@
       var url = pin.getAttribute("data-url") || "";
       var lat = pin.getAttribute("data-lat") || "";
       var lon = pin.getAttribute("data-lon") || "";
+      var photo = pin.getAttribute("data-photo") || "";
 
       var card = document.createElement("div");
       card.className = "conf-card";
@@ -145,6 +187,16 @@
         actions.appendChild(link(url, "Conference site", "conf-card__site"));
       }
       if (actions.childNodes.length) card.appendChild(actions);
+
+      // A photograph of the host city, when photos.for_city found one — and
+      // its credit, which is not decoration: author, licence and a link to
+      // the file's own page on Commons are the terms under which the
+      // picture may be here at all (see tools/news/photos.py). All three are
+      // rendered whenever present, and every link here goes through link()
+      // above, which always sets target="_blank" rel="noopener noreferrer":
+      // this whole card is built in script, so build.py's own
+      // externalize_links() never gets a chance to add them itself.
+      if (photo) card.appendChild(photoBlock(pin, photo, name, place));
 
       fig.appendChild(card);
       current = card;
