@@ -277,6 +277,10 @@ h4{font-weight:700;font-size:.98rem}
 .section-head p{margin:0;color:var(--text-mute);font-size:.86rem;
   font-family:var(--mono)}
 .section-head .more{margin-left:auto;font-size:.88rem;font-weight:600}
+/* A sub-heading inside a domain block (Upcoming / Recent within Neutrino
+   conferences or General particle physics) — same layout, tighter margins so
+   two of these plus the domain heading above them do not eat the fold. */
+.section-head--sub{margin:1.4rem 0 1rem}
 
 /* ---------- generated-page notice ---------- */
 .autogen{display:flex;gap:.7rem;align-items:flex-start;
@@ -300,9 +304,17 @@ h4{font-weight:700;font-size:.98rem}
    shrink its row labels past legibility — the whole point of a Gantt strip is
    reading which meeting is which — so past that point it stops shrinking and
    scrolls horizontally instead, the same trade table.data makes with
-   .table-scroll for the same reason. */
+   .table-scroll for the same reason.
+   The other end of that same stretch is the actual bug: this figure's
+   viewBox (520x326, a 14-row Gantt strip) is far taller relative to its
+   width than the map's (720x162), so letting it fill a ~1200px-wide card
+   the same way scales it to ~660px tall — nearly a full screen on its own,
+   on the conferences page specifically, the one page where two figures were
+   already flagged as a risk to the list below them. max-width holds it near
+   its own designed proportions instead of the card's. */
 .figure .timeline-scroll{overflow-x:auto}
-.figure .timeline-scroll svg{width:100%;min-width:460px;height:auto;display:block}
+.figure .timeline-scroll svg{width:100%;min-width:460px;max-width:620px;
+  height:auto;display:block;margin-inline:auto}
 .legend{display:flex;gap:1.1rem;font-family:var(--mono);font-size:.72rem;
   color:var(--text-mute);margin-top:.7rem;flex-wrap:wrap}
 .legend i{display:inline-block;width:1.6rem;height:2px;vertical-align:middle;
