@@ -21,7 +21,7 @@ import html
 import logging
 from pathlib import Path
 
-from . import fetch_inspire, figures, venue
+from . import conferences as conf_mod, fetch_inspire, figures, venue
 from .common import (CONFERENCES_PAGE, DIGEST_PAGE, NEWS_PAGE, detex,
                      load_config, truncate)
 
@@ -333,6 +333,29 @@ def _conf_list(records: list[dict], empty: str) -> str:
     return "".join(out)
 
 
+def _scope_block(records: list[dict], title: str, empty_upcoming: str) -> str:
+    """One physics domain's meetings — `records` already narrowed by
+    `conferences.split_scope()` — split the way the page has always split
+    meetings within a domain: upcoming first, then recently concluded.
+
+    This is one of the two blocks Antonio asked for (neutrino conferences,
+    general particle physics); the split between the two domains is the new
+    axis this function exists for, and the upcoming/recent split inside it is
+    the one Task 1 already fixed a real bug on (`extra.scope` is the DOMAIN,
+    never the tense — see `fetch_inspire.split`).
+    """
+    upcoming, recent = fetch_inspire.split(records)
+    out = [f'<div class="section-head"><h2>{_esc(title)}</h2>'
+          f'<p>{len(records)} meeting{"" if len(records) == 1 else "s"}</p></div>\n']
+    out.append('<div class="section-head section-head--sub"><h3>Upcoming</h3>'
+               f'<p>{len(upcoming)} meeting{"" if len(upcoming) == 1 else "s"}</p></div>\n')
+    out.append(_conf_list(upcoming, empty_upcoming))
+    out.append('<div class="section-head section-head--sub"><h3>Recent</h3>'
+               f'<p>{len(recent)} meeting{"" if len(recent) == 1 else "s"}</p></div>\n')
+    out.append(_conf_list(recent, "No meeting in this window has ended yet."))
+    return "".join(out)
+
+
 def conferences(records: list[dict], log: logging.Logger,
                 stamp: str | None = None) -> bool:
     """Rewrite conferences.md, split into what is coming and what just ran."""
@@ -429,6 +452,16 @@ def conferences(records: list[dict], log: logging.Logger,
 </figure>
 """
 
+    # The two list blocks below split on physics DOMAIN, not tense — Antonio's
+    # decision to follow his personal site's INSPIRE query rather than mix
+    # ICHEP and Moriond into a "neutrino conferences" list. The timeline and
+    # map above are drawn from `upcoming`/`located`, i.e. across both domains
+    # at once: they exist to show the field's whole calendar and map at a
+    # glance, and splitting THEM by domain too would mean two timelines and
+    # two maps above a list already asked to make room for one of each.
+    neutrino_records = conf_mod.split_scope(records, "neutrino")
+    general_records = conf_mod.split_scope(records, "general")
+
     body = f"""<section class="hero">
   <div class="wrap hero__in">
     <p class="kicker">Refreshed daily</p>
@@ -444,29 +477,30 @@ def conferences(records: list[dict], log: logging.Logger,
 
 {timeline_block}
 {map_block}
-<div class="section-head"><h2>Upcoming</h2>
-<p>{len(upcoming)} meeting{"" if len(upcoming) == 1 else "s"}</p></div>
-
-{_conf_list(upcoming, "Nothing announced in this window.")}
+{_scope_block(neutrino_records, "Neutrino conferences",
+             "Nothing announced in this window.")}
 
 :::
 
 ::: section alt
 
-<div class="section-head"><h2>Recent</h2>
-<p>{len(recent)} meeting{"" if len(recent) == 1 else "s"}</p></div>
-
-{_conf_list(recent, "No meeting in this window has ended yet.")}
+{_scope_block(general_records, "General particle physics",
+             "No flagship meeting is listed ahead in the window; the next "
+             "editions may not be registered with INSPIRE yet.")}
 
 <p class="small muted">The list is rebuilt each day from the conference
 indexers rather than maintained by hand. Where a date cannot be confirmed from
 the source, the entry is dropped rather than guessed; a venue is shown when the
 source publishes one, and left blank when it does not. A meeting stays under
-“Upcoming” until its last day is over.</p>
+“Upcoming” until its last day is over. <b>Neutrino conferences</b> is the
+field's own meetings; <b>General particle physics</b> is the flagship series
+the field plans around — ICHEP, Moriond, LHCP and their neighbours — queried
+from INSPIRE the same way.</p>
 
 :::
 """
     _page(CONFERENCES_PAGE, CONF_FRONTMATTER, body)
-    log.info("render: conferences.md — %d upcoming, %d recent",
-             len(upcoming), len(recent))
+    log.info("render: conferences.md — %d upcoming, %d recent "
+             "(%d neutrino, %d general)",
+             len(upcoming), len(recent), len(neutrino_records), len(general_records))
     return True

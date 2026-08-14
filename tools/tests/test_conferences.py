@@ -77,19 +77,28 @@ check("the merged entry records both providers",
       bool(lead) and len(set((lead.get("extra") or {}).get("providers") or [])) >= 2,
       f"providers: {(lead or {}).get('extra', {}).get('providers')}")
 
-# render.conferences() must split on whether a conference is still ahead
-# (extra.upcoming), not on which part of the field it covers (extra.scope,
-# "neutrino" vs "general" — the axis conferences.split_scope() uses for the
-# two sections a later task builds). Redirected to a scratch file so this
+# render.conferences() now builds two blocks — "Neutrino conferences" and
+# "General particle physics" — via conferences.split_scope(records, scope),
+# and within EACH block still separates what is ahead (extra.upcoming) from
+# what just concluded, the axis Task 1 found a real bug on (extra.scope is
+# the field DOMAIN, never the tense). Redirected to a scratch file so this
 # does not overwrite the real site-src/content/conferences.md.
 render.CONFERENCES_PAGE = Path(tempfile.mkdtemp()) / "conferences.md"
 
 
-def _render_split(records):
+def _render_page(records):
     render.conferences(records, _Log(), stamp="test")
-    text = render.CONFERENCES_PAGE.read_text(encoding="utf-8")
-    upcoming_block, _, recent_block = text.partition('<h2>Recent</h2>')
-    return upcoming_block, recent_block
+    return render.CONFERENCES_PAGE.read_text(encoding="utf-8")
+
+
+def _domain_blocks(text):
+    """The page's two domain sections, each still cut on their own
+    Upcoming/Recent boundary."""
+    _, _, after_nu = text.partition('<h2>Neutrino conferences</h2>')
+    nu_block, _, general_block = after_nu.partition('<h2>General particle physics</h2>')
+    nu_up, _, nu_recent = nu_block.partition('<h3>Recent</h3>')
+    gen_up, _, gen_recent = general_block.partition('<h3>Recent</h3>')
+    return nu_up, nu_recent, gen_up, gen_recent
 
 
 still_ahead = rec("Still Ahead 2099", "https://ahead.example.org/", "Bari", "IT",
@@ -140,17 +149,24 @@ def _fake_photos_for_city(city, country_code, log):
 geocode.locate = _fake_geocode_locate
 photos.for_city = _fake_photos_for_city
 try:
-    up_block, recent_block = _render_split([still_ahead, already_over, general_upcoming])
+    page = _render_page([still_ahead, already_over, general_upcoming])
 finally:
     geocode.locate = _orig_geocode_locate
     photos.for_city = _orig_photos_for_city
+nu_up, nu_recent, gen_up, gen_recent = _domain_blocks(page)
+
 check("a record with extra.upcoming=True renders under Upcoming, not Recent",
-      "Still Ahead 2099" in up_block and "Still Ahead 2099" not in recent_block)
+      "Still Ahead 2099" in nu_up and "Still Ahead 2099" not in nu_recent)
 check("a record with extra.upcoming=False renders under Recent, not Upcoming",
-      "Already Over 2020" in recent_block and "Already Over 2020" not in up_block)
+      "Already Over 2020" in nu_recent and "Already Over 2020" not in nu_up)
 check("a record whose extra.scope is 'general' is not thereby treated as concluded",
-      "General Physics Meeting 2099" in up_block
-      and "General Physics Meeting 2099" not in recent_block)
+      "General Physics Meeting 2099" in gen_up
+      and "General Physics Meeting 2099" not in gen_recent)
+check("a neutrino-scope record does not leak into the general block",
+      "Still Ahead 2099" not in gen_up and "Already Over 2020" not in gen_recent)
+check("a general-scope record does not leak into the neutrino block",
+      "General Physics Meeting 2099" not in nu_up
+      and "General Physics Meeting 2099" not in nu_recent)
 
 from tools.news import venue                        # noqa: E402
 
