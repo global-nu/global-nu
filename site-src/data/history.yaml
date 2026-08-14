@@ -266,8 +266,8 @@ releases:
   - group: bari
     year: 2026
     arxiv: "2511.21650"
-    journal: "Phys. Rev. D 114, 013003 (2026)"
-    title: "Updated bounds on the (1,2) neutrino oscillation parameters after first JUNO results"
+    journal: "Phys. Rev. D 114, 016026 (2026)"
+    title: "Updated bounds on the (1, 2) neutrino oscillation parameters after first JUNO results"
     convention: "Dm2 = m3^2 - (m1^2 + m2^2)/2"
     table: "Table I, row “w/ SNO+ & JUNO 2025”"
     note: >-
@@ -289,7 +289,11 @@ releases:
   #
   # The two predecessor entries below (2001, 2004) are earlier IFIC-Valencia
   # global fits by the same lineage of authors, recorded as "nufit" per this
-  # file's existing convention for predecessors. Their own conventions differ
+  # file's existing convention for predecessors. Both carry `predecessor: true`,
+  # which is what the page reads to label them "NuFit (predecessor)" and to
+  # print the note about the shared ancestry above the table — the lineage
+  # judgement is stated on the page rather than left implicit in a group key.
+  # Their own conventions differ
   # from the pattern above and from each other, and are stated per-release:
   # the 2001 paper quotes tan^2(theta) rather than sin^2(theta) throughout and
   # does not fit an inverted ordering, and the 2004 paper quotes Dm2_31 > 0
@@ -300,6 +304,7 @@ releases:
     arxiv: "hep-ph/0009350"
     journal: "Phys. Rev. D 63, 033005 (2001)"
     title: "Global three-neutrino oscillation analysis of neutrino data"
+    predecessor: true
     convention: "tan2(theta), not sin2(theta), for every mixing angle; Dm2_32 = m3^2-m2^2 reported without a normal/inverted split"
     table: "Table V/VI, \"Solar + ALL-ATM. + CHOOZ\" (global combined analysis)"
     note: >-
@@ -331,6 +336,7 @@ releases:
     arxiv: "hep-ph/0405172"
     journal: "New J. Phys. 6, 122 (2004)"
     title: "Status of global fits to neutrino oscillations"
+    predecessor: true
     convention: "Dm2_3l = Dm2_31 > 0; no inverted-ordering fit performed"
     reported_splitting: Dm2_3l
     table: "Table 1"
@@ -381,7 +387,7 @@ releases:
     year: 2018
     arxiv: "1811.05487"
     journal: "JHEP 01 (2019) 106"
-    title: "Global analysis of three-flavour neutrino oscillations: synergies and tensions"
+    title: "Global analysis of three-flavour neutrino oscillations: synergies and tensions in the determination of θ₂₃, δCP, and the mass ordering"
     convention: "Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)"
     reported_splitting: Dm2_3l
     variant: "with SK-atm"

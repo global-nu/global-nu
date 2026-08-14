@@ -53,7 +53,7 @@ with the correlations intact. That combination is what this site publishes.
 <h4>How to cite</h4>
 <p>If you use the numbers or the files from the 2025 release, please cite the
 paper:</p>
-<pre style="overflow-x:auto;font-family:var(--mono);font-size:.78rem;line-height:1.5;margin:.6rem 0 0"><code>@article{Capozzi:2025wgt,
+<pre style="overflow-x:auto;font-family:var(--mono);font-size:.78rem;line-height:1.5;margin:.6rem 0 0"><code>@article{Capozzi:2025wyn,
   author  = {Capozzi, Francesco and Giar\`e, William
              and Lisi, Eligio and Marrone, Antonio
              and Melchiorri, Alessandro and Palazzo, Antonio},
@@ -77,10 +77,14 @@ INSPIRE</a>.</p>
 
 <div class="callout" style="margin-top:1.3rem">
 <h4>Automatically generated pages</h4>
-<p>The <a href="digest.html">arXiv digest</a>, the <a href="news.html">news</a>
-and the <a href="conferences.html">conference calendar</a> are produced daily
-with AI assistance and are marked as such at the top of each page. They may
-contain errors, and they are not a substitute for the sources they link to.</p>
+<p>Three pages are rebuilt every morning by a job on our own machine, and each
+one carries a notice saying so. The <a href="digest.html">arXiv digest</a> and
+the <a href="conferences.html">conference calendar</a> are produced by a script
+from the arXiv and Indico APIs, with no model involved at any point. The
+<a href="news.html">news</a> page is different: its summaries are written by a
+language model from fetched records, and every citation in them is checked
+against those records before the page is written. All three may contain
+errors, and none is a substitute for the sources it links to.</p>
 <p>The <a href="results.html">results</a> and the
 <a href="history.html">parameter history</a> are not automated: every number
 there is transcribed from a published table by hand.</p>
@@ -108,14 +112,31 @@ Write to <a href="mailto:antonio.marrone@ba.infn.it">antonio.marrone@ba.infn.it<
 :::
 ::: prose
 
-## About this site
+## How this site is built
 
-Static pages, no server-side code, no cookies. The literature
-[search](search.html) runs entirely in your browser: what you type goes
-directly from you to the databases, and never to this site.
+Static pages, no server-side code, no cookies. Every font, stylesheet and
+script — including the counter's — is served from this domain: no page loads
+anything from a third-party host. The literature [search](search.html) runs
+entirely in your browser: what you type goes directly from you to the
+databases, and never to this site.
 
 Visits are counted with GoatCounter, which records a pageview without cookies
-and without tracking individuals.
+and without tracking individuals. That is the one request a page makes off this
+domain: one counting request per pageview, to
+<code>global-nu.goatcounter.com</code>.
+
+## Licensing {: #licence }
+
+Not one licence for everything. The parameter register and the data files it
+is exported to are published under
+<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>: use them,
+crediting this site and citing the paper each number came from. The text of
+these pages and the code that builds them are all rights reserved. Figures
+reproduced from published papers, and the photographs on the map, travel under
+their own terms, credited beside each one — a figure from
+<a href="https://doi.org/10.1103/PhysRevD.111.093006">Phys. Rev. D 111,
+093006</a> is here under the CC BY 4.0 licence of the paper, and a CC BY-SA
+photograph stays CC BY-SA.
 
 :::
 :::

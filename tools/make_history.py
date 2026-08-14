@@ -43,6 +43,12 @@ GROUPS = [
     ("valencia", "Valencia", "var(--grp-valencia)", "any"),
 ]
 
+# How a group key is written on the page. `.capitalize()` used to do this job
+# and lowercased everything after the first letter, so the citation table —
+# the one place whose whole point is that the metadata is exact — printed
+# another group's name as "Nufit" six times over.
+GROUP_DISPLAY = {"bari": "Bari", "nufit": "NuFit", "valencia": "Valencia"}
+
 ORDERINGS = [
     ("no", "Normal ordering", "var(--no)"),
     ("io", "Inverted ordering", "var(--io)"),
@@ -80,6 +86,23 @@ OFF_SCALE_COMPARE = {(2001, "nufit", "dm2")}
 # labels below it, and leaves room for the tail to register as a tail rather
 # than a pixel-length smudge.
 OFF_SCALE_FLOOR_GAP = 14
+
+
+def group_name(rel: dict) -> str:
+    """The group as the citation table prints it.
+
+    A release flagged `predecessor: true` is one published before the series
+    it is filed under had that name — the 2001 and 2004 IFIC-Valencia fits,
+    recorded under `nufit` for continuity of lineage. Printing them as plain
+    "NuFit" states as fact a lineage judgement that is at least arguable,
+    beside a separate "Valencia" column carrying two of the same authors. The
+    label says which it is; the note above the table says why.
+    """
+    key = rel["group"]
+    name = GROUP_DISPLAY.get(key)
+    if name is None:
+        raise SystemExit(f"unknown group key {key!r}: add it to GROUP_DISPLAY")
+    return f"{name} (predecessor)" if rel.get("predecessor") else name
 
 
 def nice_bounds(lo: float, hi: float) -> tuple[float, float]:
@@ -429,7 +452,7 @@ def main() -> None:
     others = [r for r in all_releases if r["group"] != "bari"]
     other_rows = "\n".join(
         f'<tr><th scope="row">{r["year"]}</th>'
-        f'<td class="ref">{r["group"].capitalize()} — {r["title"]}'
+        f'<td class="ref">{group_name(r)} — {r["title"]}'
         f'<span class="ref__meta">{r["journal"]}</span></td>'
         f'<td><a href="https://arxiv.org/abs/{r["arxiv"]}">arXiv:{r["arxiv"]}</a></td>'
         f'<td>{r["table"]}{("<br>" + r["variant"]) if r.get("variant") else ""}</td>'
@@ -456,6 +479,25 @@ def main() -> None:
         for e in (r.get("values") or {}).values()
         for o in e.values()
         for k in ("best", "s1", "s2", "s3")
+        if k in o
+        for _ in (o[k] if isinstance(o[k], list) else [o[k]])
+    )
+
+    # Range endpoints on a release the register flags `derived: true`: the
+    # paper states the value as a central value ± error and the endpoint is
+    # computed from it, so test_history_numbers.py does not search the source
+    # for it (it skips every non-`best` value on such a release, and prints
+    # "N declared as derived, not searched"). Counted here rather than typed,
+    # so the sentence on the page cannot drift from the data — the page used
+    # to say every value was verified against its source table, which was
+    # true of all but these.
+    n_derived = sum(
+        1
+        for r in releases
+        if r.get("derived")
+        for e in (r.get("values") or {}).values()
+        for o in e.values()
+        for k in ("s1", "s2", "s3")
         if k in o
         for _ in (o[k] if isinstance(o[k], list) else [o[k]])
     )
@@ -506,10 +548,15 @@ katex: false
 ordering and Δm²₃₂ &lt; 0 for inverted. Valencia reports |Δm²₃₁| for
 <em>both</em> orderings.</p>
 <p>From the identity Δm² = Δm²₃₁ − δm²/2, the correction is −δm²/2 for normal
-ordering in every case, but in inverted ordering it is +δm²/2 for NuFit and
-+δm²/2 applied to the modulus for Valencia — <strong>the sign of the shift is
-not the same for the two groups</strong>. That is why this site stores what
-each paper printed and converts in code, where the rule can be read:
+ordering in every case. In inverted ordering the two groups differ, and the
+difference is clearest stated on the modulus, which is what every number on
+this page is plotted as. NuFit publishes Δm²₃ℓ = Δm²₃₂ &lt; 0, and adding
+δm²/2 to a negative number makes its modulus <em>smaller</em>: the shift is
+<strong>−δm²/2 for NuFit</strong>. Valencia publishes |Δm²₃₁|, already a
+modulus, and the same addition makes it <em>larger</em>: the shift is
+<strong>+δm²/2 for Valencia</strong>. Same identity, opposite effect on the
+plotted number — which is why this site stores what each paper printed and
+converts in code, where the rule can be read:
 <code>tools/make_history.py</code>, function <code>to_our_Dm2</code>.</p>
 <p class="small muted">The 3σ ranges are shifted by the same constant as the
 best fit, computed with δm² at its own best fit. The papers do not publish the
@@ -534,7 +581,17 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 
 </div>
 
-<div class="table-scroll" style="margin-top:2rem">
+<div class="prose" style="margin-top:2rem">
+<p class="small muted">The 2001 and 2004 entries predate the NuFit name. They
+are earlier IFIC-Valencia global fits — Gonzalez-Garcia, Maltoni, Peña-Garay
+and Valle in 2001; Maltoni, Schwetz, Tórtola and Valle in 2004 — grouped here
+with the later NuFit papers for continuity of lineage, and marked as
+predecessors rather than presented as NuFit releases. Two of those authors
+also appear on the Valencia papers listed below, so the three series are less
+separate before 2012 than three columns suggest.</p>
+</div>
+
+<div class="table-scroll" style="margin-top:1.2rem">
 <table class="data data--refs">
 <caption>The releases of the other groups included above, with the convention
 each one publishes in. Their values are stored exactly as printed and converted
@@ -585,15 +642,20 @@ here: the comparison above converts first, and states the conversion.</p>
 
 <div class="section-head">
   <h2>The releases</h2>
-  <p>{len(releases)} updates · {n_values} values, each verified against its source table</p>
+  <p>{len(releases)} releases · {n_values} values, {n_values - n_derived} of them checked against the source they name</p>
 </div>
 
 <div class="table-scroll">
 <table class="data data--refs">
-<caption>Every value on this page is transcribed from the table named here and
-checked against the paper by <code>tools/tests/test_history_numbers.py</code>,
-which re-reads each source on every run. Papers marked as partial updates
-revise only part of the parameter set.</caption>
+<caption>Every value on this page is transcribed from the table or equations
+named here. Every best fit, and every range endpoint the paper prints, is
+checked against that source by <code>tools/tests/test_history_numbers.py</code>,
+which re-reads each paper on every run. The exceptions are {n_derived} range
+endpoints in the two earliest releases, where the paper states a central value
+± an error and the endpoints are computed from it: the register marks those
+releases as derived, and the test does not search the source for a number the
+source never printed. Papers marked as partial updates revise only part of the
+parameter set.</caption>
 <thead><tr><th scope="col">Year</th><th scope="col">Paper</th><th scope="col">Preprint</th><th scope="col">Source table</th><th scope="col"></th></tr></thead>
 <tbody>
 {table}
