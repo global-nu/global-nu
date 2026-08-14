@@ -744,7 +744,22 @@ a.card:hover .card__go{color:var(--text)}
    figures.conference_map), so the percentage cap .map-card uses against ITS
    (much taller) stage would leave this card only ~135px tall — enough to
    clip a title mid-sentence and hide the dates, place and both action links
-   below it entirely. Found by opening the page, not by the jsdom suite. */
+   below it entirely. Found by opening the page, not by the jsdom suite.
+
+   20rem fixed THAT case, but a card carrying a photo credit (attribution
+   required by the photo's CC BY/BY-SA licence, not decoration) is taller
+   still: at 20rem the credit sat ~20px below this card's visible bottom at
+   every size, reachable only by scrolling inside the card — not "visible"
+   for licence purposes. Raising the cap instead of the fix below was tried
+   first and rejected: this card is anchored bottom-left of a stage that
+   sits near the top of the page on a short viewport, so a taller box grows
+   upward into the sticky .site-header (z-index 10 over this card's 6) —
+   proven with a real screenshot at 375x700, not assumed. The credit is the
+   obligation and the photo is decoration, so the photo gives way instead:
+   .conf-card__photo img below is shrunk from .map-card's 4:3 to 5:2, and
+   this max-height stays at 20rem, exactly where it already left headroom
+   under the header. overflow-y:auto remains only as a backstop for a
+   viewport shorter than any tested here. */
 .conf-card{position:absolute;z-index:6;left:.8rem;bottom:.8rem;
   width:min(21rem,calc(100% - 1.6rem));max-height:min(60vh,20rem);overflow-y:auto;
   background:var(--bg);border:1px solid var(--line-strong);border-radius:var(--r);
@@ -769,7 +784,13 @@ a.card:hover .card__go{color:var(--text)}
    photo block below, duplicated rather than shared: the comment above
    already explains why this card does not reuse .map-card's classes. */
 .conf-card__photo{margin:.7rem 0 0}
-.conf-card__photo img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;
+/* 5:2 rather than .map-card's 4:3 — shorter at the same width, freeing the
+   vertical room the credit above needs so it fits inside the 20rem cap
+   (see the comment on .conf-card above) rather than being clipped below
+   it. 16:9 alone was not short enough: the narrow-card wrapping at 375px
+   (title, meta and actions all wrap to more lines there) leaves less
+   headroom than the wide desktop layout has to give back. */
+.conf-card__photo img{width:100%;aspect-ratio:5/2;object-fit:cover;display:block;
   background:var(--surface-2);border-radius:var(--r-sm)}
 .conf-card__credit{display:block;margin-top:.45rem;font-family:var(--mono);
   font-size:.68rem;color:var(--text-mute);line-height:1.5}
