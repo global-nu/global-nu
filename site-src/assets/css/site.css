@@ -210,6 +210,10 @@ h4{font-weight:700;font-size:.98rem}
   letter-spacing:-.035em;color:var(--text);display:flex;flex-direction:column;
   line-height:1.15}
 .brand:hover{text-decoration:none}
+/* The wordmark is one flex child, not two. Without the <b>, "global" is an
+   anonymous flex item and <i>-nu</i> is another, so a column layout stacked
+   them and the name read as "global" above "-nu". */
+.brand b{font-weight:inherit;white-space:nowrap}
 .brand i{font-style:normal;color:var(--accent)}
 .brand span{font-family:var(--body);font-size:.68rem;font-weight:400;
   letter-spacing:0;color:var(--text-mute)}
@@ -721,3 +725,51 @@ a.card:hover .card__go{color:var(--text)}
 .chi2__readout{font-family:var(--mono);font-size:.78rem;color:var(--text);
   background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-sm);
   padding:.55rem .8rem;margin:.9rem 0 0;min-height:1.2rem}
+
+/* ---------------------------------------------------------- figure zoom --- */
+/* A figure that can be opened says so quietly: the cursor and a hairline on
+   hover, nothing that competes with the drawing itself. Only figures the
+   script has wired get the class, so with JavaScript off nothing invites a
+   click that would do nothing. */
+.figure--openable{cursor:zoom-in}
+.figure--openable:hover{border-color:var(--line-strong)}
+.figure--openable:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* The page behind must not scroll while a figure is open. */
+.figbox-open,.figbox-open body{overflow:hidden}
+
+.figbox{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;
+  background:var(--bg);padding:1rem clamp(1rem,4vw,3rem) 1.4rem}
+.figbox__bar{display:flex;gap:.4rem;align-items:center;justify-content:flex-end;
+  margin-bottom:.7rem}
+.figbox__bar button{width:2.1rem;height:2.1rem;padding:0;display:flex;
+  align-items:center;justify-content:center;font-family:var(--mono);
+  font-size:1rem;line-height:1;border-radius:var(--r-sm);
+  border:1px solid var(--line-strong);background:var(--surface);
+  color:var(--text-soft);cursor:pointer}
+.figbox__bar button:hover{border-color:var(--accent);color:var(--text)}
+.figbox__close{margin-left:.5rem}
+
+/* The frame clips; the stage is what moves. Keeping the transform on an inner
+   element means panning never fights the scrollbar of the page underneath. */
+.figbox__frame{flex:1;min-height:0;overflow:hidden;display:flex;
+  align-items:center;justify-content:center;touch-action:none}
+/* The stage must FILL the frame, not shrink to the drawing: an SVG with a
+   520x250 viewBox has that as its intrinsic size, so a shrink-to-fit stage
+   made "width:100%" resolve to 520px and the enlarged view was no larger than
+   the page. It filled a screen only once the stage was given the frame's
+   dimensions to resolve against. */
+.figbox__stage{transform-origin:center center;will-change:transform;
+  width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.figbox__stage svg{width:100%;height:100%}
+.figbox__stage img{width:100%;height:100%;object-fit:contain;display:block}
+
+.figbox__cap{margin-top:.9rem;max-width:60ch;color:var(--text-soft);
+  font-size:.88rem;line-height:1.5}
+.figbox__cap b{display:block;color:var(--text);font-family:var(--display);
+  font-size:1rem;margin-bottom:.3rem}
+.figbox__cap p{margin:0}
+
+@media (prefers-reduced-motion:reduce){
+  .figbox__stage{will-change:auto}
+}
