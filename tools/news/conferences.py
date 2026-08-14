@@ -21,6 +21,7 @@ have merged NuFact in Shanghai with a conference in Mexico City.
 
 from __future__ import annotations
 
+import datetime as _dt
 import logging
 import re
 import unicodedata
@@ -144,10 +145,74 @@ def merge(groups: list[list[dict]], log: logging.Logger) -> list[dict]:
     return out
 
 
+def _refresh_tense(records: list[dict]) -> None:
+    """Recompute extra.upcoming/extra.in_progress from extra.opening/closing
+    against date.today(), in place, for every record.
+
+    Every fetcher computes these two fields once, on the day it runs — and
+    that is fine, until the record is handed back on some LATER day without
+    a fetcher having touched it again. Two real paths do exactly that:
+    fetch_nu_unbound's conditional GET replays cached records verbatim on
+    every 304 (see that module's docstring), carrying tense flags computed
+    on whatever day the page last actually changed; and
+    pipeline.run(from_cache=True) re-renders records fetched — and flagged —
+    on an earlier day, on purpose, to let a wording fix be reviewed without
+    touching the network. Nothing downstream ever recomputed them:
+    render.conferences splits on extra.upcoming, figures.py's timeline
+    colours bars from extra.upcoming/in_progress, the map is drawn from the
+    same split, and _absorb above only fills gaps — it never overwrites
+    `upcoming` even when a fresher source (e.g. INSPIRE) disagrees. Left
+    unfixed, a conference that closed weeks ago keeps rendering as upcoming,
+    coloured amber ("running right now"), sitting left of the TODAY line —
+    reproduced end to end against real nu-unbound data before this function
+    existed. This is the one place every source's records pass through
+    before the page is built (`sort_for_page`, below), so it is the one
+    place the two fields are re-derived from the dates themselves rather
+    than trusted off whatever a fetcher wrote on some earlier morning — the
+    same class of bug as commit c2f4162 (a fetcher-set tense field read
+    uncritically at render time), re-entering through the conditional-fetch
+    door instead of the one already closed.
+
+    A record with no parseable extra.closing is left exactly as it was:
+    every fetcher sets it, so that shape should not occur on a real record,
+    and inventing a tense for it would be worse than leaving whatever was
+    already there.
+    """
+    today = _dt.date.today()
+    for r in records:
+        extra = r.get("extra")
+        if not extra:
+            continue
+        closing = extra.get("closing")
+        if not closing:
+            continue
+        try:
+            end = _dt.date.fromisoformat(closing)
+        except ValueError:
+            continue
+        upcoming = end >= today
+        in_progress = upcoming
+        opening = extra.get("opening")
+        if opening:
+            try:
+                in_progress = upcoming and _dt.date.fromisoformat(opening) <= today
+            except ValueError:
+                pass
+        extra["upcoming"] = upcoming
+        extra["in_progress"] = in_progress
+
+
 def sort_for_page(records: list[dict]) -> list[dict]:
     """Upcoming first, soonest at the top; then the recently concluded, most
     recent first. Same order the single-source fetcher produced — merging two
-    already-sorted lists by concatenation does not preserve it."""
+    already-sorted lists by concatenation does not preserve it.
+
+    Also the point where every record's tense (extra.upcoming/in_progress) is
+    re-derived from its own dates against today — see `_refresh_tense` — since
+    every record reaches the page through here, from a live fetch or from
+    pipeline.run(from_cache=True) alike.
+    """
+    _refresh_tense(records)
     upcoming = sorted([r for r in records if r["extra"].get("upcoming")],
                       key=lambda r: (r["extra"].get("opening", ""),
                                      not r["extra"].get("flagship")))

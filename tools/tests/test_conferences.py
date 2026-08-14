@@ -20,7 +20,7 @@ sys.path.insert(0, str(ROOT))
 import tempfile
 
 from tools.news import conferences as conf          # noqa: E402
-from tools.news import fetch_inspire, fetch_nu_unbound, geocode, photos, render   # noqa: E402
+from tools.news import fetch_inspire, fetch_nu_unbound, figures, geocode, photos, render   # noqa: E402
 
 problems: list[str] = []
 checks = 0
@@ -31,6 +31,12 @@ class _Log:
     def warning(self, *a, **k): pass
     def error(self, *a, **k): pass
     def debug(self, *a, **k): pass
+
+
+class _FakeResponse:
+    """A stand-in for requests.Response, carrying only what venue.py reads."""
+    def __init__(self, text):
+        self.text = text
 
 
 def check(label: str, ok: bool, detail: str = "") -> None:
@@ -168,6 +174,63 @@ check("a general-scope record does not leak into the neutrino block",
       "General Physics Meeting 2099" not in nu_up
       and "General Physics Meeting 2099" not in nu_recent)
 
+# CRITICAL (final whole-branch review): a record whose extra.upcoming/
+# in_progress were computed on some EARLIER "today" — a stale 304 replay
+# from fetch_nu_unbound (see its module docstring) or a re-render via
+# pipeline.run(from_cache=True) — must not keep reading as upcoming, coloured
+# as running-right-now, once its own extra.closing has actually passed.
+# conferences.sort_for_page is the one point every source's records pass
+# through before the page is built, so it is where the tense is re-derived
+# from the dates themselves (conferences._refresh_tense) rather than trusted
+# off whatever a fetcher wrote on some earlier morning. Same class of bug as
+# commit c2f4162, re-entered through the conditional-fetch door.
+stale_upcoming = rec("Stale Meeting 2020", "https://stale.example.org/", "Bari", "IT",
+                     "2020-01-01", "2020-01-05", "nu-unbound")
+stale_upcoming["extra"]["upcoming"] = True         # stale: as if flagged on a
+stale_upcoming["extra"]["in_progress"] = True      # much earlier "today"
+
+genuinely_ahead = rec("Genuinely Ahead 2099", "https://ahead2.example.org/", "Bari", "IT",
+                      "2099-03-01", "2099-03-05", "nu-unbound")
+genuinely_ahead["extra"]["upcoming"] = True
+
+refreshed = conf.sort_for_page([stale_upcoming, genuinely_ahead])
+stale_after = next(r for r in refreshed if r["title"] == "Stale Meeting 2020")
+ahead_after = next(r for r in refreshed if r["title"] == "Genuinely Ahead 2099")
+
+check("sort_for_page recomputes a stale upcoming=True to False once closing is past",
+      stale_after["extra"]["upcoming"] is False, stale_after["extra"])
+check("sort_for_page recomputes a stale in_progress=True to False along with it",
+      stale_after["extra"]["in_progress"] is False, stale_after["extra"])
+check("sort_for_page leaves a genuinely still-ahead record's flags untouched",
+      ahead_after["extra"]["upcoming"] is True, ahead_after["extra"])
+
+geocode.locate = _fake_geocode_locate
+photos.for_city = _fake_photos_for_city
+try:
+    stale_page = _render_page(refreshed)
+finally:
+    geocode.locate = _orig_geocode_locate
+    photos.for_city = _orig_photos_for_city
+s_nu_up, s_nu_recent, _, _ = _domain_blocks(stale_page)
+
+check("a record with a stale-but-corrected upcoming flag renders under Recent, not Upcoming",
+      "Stale Meeting 2020" in s_nu_recent and "Stale Meeting 2020" not in s_nu_up)
+
+_map_start = stale_page.find('<h4>Map</h4>')
+_map_end = stale_page.find('</figure>', _map_start) if _map_start >= 0 else -1
+_map_html = stale_page[_map_start:_map_end] if _map_start >= 0 else ""
+check("the corrected-to-recent record is off the map; the genuinely-ahead one is on it",
+      bool(_map_html) and "Stale Meeting 2020" not in _map_html
+      and "Genuinely Ahead 2099" in _map_html,
+      _map_html[:300])
+
+_timeline_svg = figures.conference_timeline([], [stale_after], max_rows=14)
+check("the corrected-to-recent record's own timeline bar is grey (uncoloured), "
+      "not blue (upcoming) or amber (running now)",
+      "var(--text-mute)" in _timeline_svg and "var(--io)" not in _timeline_svg
+      and "var(--no)" not in _timeline_svg,
+      _timeline_svg)
+
 from tools.news import venue                        # noqa: E402
 
 # The cascade prefers structured data and only then the conference's own page.
@@ -189,33 +252,73 @@ check("a record with nothing to go on yields no address",
 check("and therefore no coordinates",
       venue.locate_record(r_none, _Log()) is None)
 
-# The failure cache: a page that answers but carries nothing is fetched once,
-# never again. Monkeypatch venue.http_get to count calls.
+# Two different kinds of "nothing", which must be cached differently (final
+# whole-branch review, IMPORTANT): a page genuinely FETCHED and found to
+# carry no address is cached, exactly like geocode.py caches an empty
+# geocoder answer as null "for good". A page NOT reached at all — http_get
+# returns None alike for a connection error, a timeout and a non-200 — is
+# transient and must NOT be cached, or a 403 hit once (a hostile
+# User-Agent filter) or an hour of maintenance would cost that conference
+# its map marker forever, exactly the failure geocode.py's own docstring
+# warns against and venue.py used to not follow.
+
+# 1. A genuine fetch that carries nothing: cached, fetched once.
 _calls = []
 
 
-def _counting_http_get(url, **kwargs):
+def _counting_http_get_found(url, **kwargs):
     _calls.append(url)
-    return None                          # "unreachable", same as a dead page
+    return _FakeResponse("<html><body>no structured data here</body></html>")
 
 
 _orig_http_get = venue.http_get
 _orig_venue_cache = venue.VENUE_CACHE
 _orig_mem_cache = venue._cache
-venue.http_get = _counting_http_get
+venue.http_get = _counting_http_get_found
 venue.VENUE_CACHE = Path(tempfile.mkdtemp()) / "venuecache.json"
 venue._cache = None                  # do not inherit an earlier block's cache
 try:
-    first = venue._from_page("https://dead.example.org/", _Log())
+    first = venue._from_page("https://empty.example.org/", _Log())
     # Force the SECOND call to re-parse the JSON file rather than reuse the
     # in-memory dict left by the first call — otherwise this only proves the
     # in-memory short-circuit works, and never touches VENUE_CACHE.read_text
     # at all, which is half of what "cached to disk" is supposed to mean.
     venue._cache = None
-    second = venue._from_page("https://dead.example.org/", _Log())
-    check("a page yielding nothing is fetched once",
+    second = venue._from_page("https://empty.example.org/", _Log())
+    check("a page genuinely fetched but carrying nothing is fetched once, "
+          "then cached",
           len(_calls) == 1, f"http_get called {len(_calls)} times: {_calls}")
     check("both calls agree it found nothing",
+          first is None and second is None)
+finally:
+    venue.http_get = _orig_http_get
+    venue.VENUE_CACHE = _orig_venue_cache
+    venue._cache = _orig_mem_cache
+
+# 2. A page NOT reached at all (http_get returns None): never cached, so
+# every call retries — the regression this branch's final review found.
+_unreached_calls = []
+
+
+def _counting_http_get_unreached(url, **kwargs):
+    _unreached_calls.append(url)
+    return None                          # connection error / timeout / non-200
+
+
+_orig_http_get = venue.http_get
+_orig_venue_cache = venue.VENUE_CACHE
+_orig_mem_cache = venue._cache
+venue.http_get = _counting_http_get_unreached
+venue.VENUE_CACHE = Path(tempfile.mkdtemp()) / "venuecache.json"
+venue._cache = None
+try:
+    first = venue._from_page("https://down.example.org/", _Log())
+    venue._cache = None                  # force a cold reload, as above
+    second = venue._from_page("https://down.example.org/", _Log())
+    check("a page that was never reached is retried on the next call, not cached",
+          len(_unreached_calls) == 2,
+          f"http_get called {len(_unreached_calls)} times: {_unreached_calls}")
+    check("an unreached page still answers None both times",
           first is None and second is None)
 finally:
     venue.http_get = _orig_http_get
@@ -227,11 +330,6 @@ finally:
 # organiser never filled the venue in (seen on a real record while building
 # this cascade: indico.cern.ch/event/1677041/). That string must not be
 # mistaken for a real address.
-class _FakeResponse:
-    def __init__(self, text):
-        self.text = text
-
-
 _placeholder_html = (
     '<script type="application/ld+json">'
     '{"@type": "Event", "name": "No location set",'
@@ -307,6 +405,36 @@ finally:
 check("a trailing period after the country name does not break the split",
       venue._split_country("Heidelberg, Germany.") == ("Heidelberg", "DE"),
       f"got {venue._split_country('Heidelberg, Germany.')!r}")
+
+
+# Minor (final whole-branch review): venue._cache_save and geocode._save must
+# go through common.write_json (atomic: write to .tmp, then rename) rather
+# than Path.write_text (truncates before writing — an interrupted run leaves
+# a truncated file that each module's own `except (FileNotFoundError,
+# ValueError)` then silently reads back as an empty cache). Call-monitoring,
+# not a crash simulation: this proves the save path is routed through the
+# atomic helper, which is the property asked for.
+import tools.news.venue as _venue_mod                # noqa: E402
+import tools.news.geocode as _geocode_mod            # noqa: E402
+
+_write_json_calls = []
+_orig_venue_write_json = _venue_mod.write_json
+_orig_geocode_write_json = _geocode_mod.write_json
+_venue_mod.write_json = lambda path, payload: _write_json_calls.append(("venue", path))
+_geocode_mod._cache = {"probe|XX": None}
+_geocode_mod.write_json = lambda path, payload: _write_json_calls.append(("geocode", path))
+try:
+    _venue_mod._cache = {"https://probe.example.org/": None}
+    _venue_mod._cache_save()
+    _geocode_mod._save()
+finally:
+    _venue_mod.write_json = _orig_venue_write_json
+    _geocode_mod.write_json = _orig_geocode_write_json
+
+check("venue._cache_save writes through the atomic common.write_json helper",
+      ("venue", venue.VENUE_CACHE) in _write_json_calls, _write_json_calls)
+check("geocode._save writes through the atomic common.write_json helper",
+      any(tag == "geocode" for tag, _ in _write_json_calls), _write_json_calls)
 
 print()
 if problems:

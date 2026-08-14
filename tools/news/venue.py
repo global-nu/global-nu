@@ -40,7 +40,7 @@ import re
 from pathlib import Path
 
 from . import geocode, worldmap
-from .common import http_get
+from .common import http_get, write_json
 
 VENUE_CACHE = Path(__file__).resolve().parents[2] / "var" / "news" / "venuecache.json"
 
@@ -62,10 +62,12 @@ def _cache_load() -> dict:
 
 
 def _cache_save() -> None:
-    VENUE_CACHE.parent.mkdir(parents=True, exist_ok=True)
-    VENUE_CACHE.write_text(
-        json.dumps(_cache, indent=1, sort_keys=True, ensure_ascii=False),
-        encoding="utf-8")
+    # write_json writes to a .tmp file and renames it into place, so a run
+    # interrupted mid-write cannot leave a truncated cache — Path.write_text
+    # truncates the file before writing and does not, and _cache_load's
+    # `except (FileNotFoundError, ValueError)` would silently turn that
+    # truncated file into an empty cache on the next run.
+    write_json(VENUE_CACHE, _cache)
 
 
 # --------------------------------------------------------------------------- #
@@ -166,22 +168,37 @@ def _from_page(url: str, log) -> str | None:
     without JSON-LD simply yields nothing here rather than a guess assembled
     from unrelated parts of the page.
 
-    Called at most once per URL, ever: a hit or a miss is written back before
-    returning, so tomorrow's run finds the answer already in the cache and
-    makes no request at all.
+    Called at most once per URL that was actually reached, ever: a hit or a
+    genuine miss is written back before returning, so tomorrow's run finds
+    the answer already in the cache and makes no request at all. A page that
+    was NOT reached — http_get returns None alike for a connection error, a
+    timeout and a non-200 status — is a different thing from a page that was
+    reached and genuinely carries no address: only the second is cached.
+    geocode.py documents the identical rule for its own network failures
+    ("a transient network failure returns None WITHOUT caching it, so the
+    next run tries again; an empty geocoder answer is cached as null for
+    good") and this cascade used to not follow it — a site that 403s this
+    project's User-Agent once, or is down for an hour of maintenance, would
+    otherwise lose its map marker forever, since every future run would find
+    `url` already in the cache pointing at None and never try again.
     """
     cache = _cache_load()
     if url in cache:
         return cache[url]
 
-    address = None
     r = http_get(url, timeout=PAGE_TIMEOUT_S, log=log)
-    if r is not None:
-        try:
-            text = r.text
-        except Exception:                 # pragma: no cover — defensive only
-            text = ""
-        address = _address_from_jsonld(text)
+    if r is None:
+        # Not reached at all, for any reason http_get collapses into None.
+        # Do not cache: this is exactly the transient case, not a genuine
+        # "checked, nothing there" answer, so tomorrow's run must try again.
+        log.info("venue: could not fetch %s — not caching, will try again", url)
+        return None
+
+    try:
+        text = r.text
+    except Exception:                 # pragma: no cover — defensive only
+        text = ""
+    address = _address_from_jsonld(text)
 
     cache[url] = address
     _cache_save()

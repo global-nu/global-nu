@@ -82,6 +82,14 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
         feeds = cache.load_records("feeds", day)
         papers = cache.load_records("inspire", day)
         events = cache.load_records("indico", day)
+        # These were merged and sorted by an earlier run, on an earlier day —
+        # sort_for_page also re-derives extra.upcoming/in_progress from each
+        # record's own dates against *today* (see conferences._refresh_tense),
+        # which a cached record's frozen flags would otherwise get wrong the
+        # same way a stale 304 replay does. Re-running it here is what makes
+        # a re-render from cache see the same "is it still upcoming" answer a
+        # fresh fetch would.
+        events = conf_mod.sort_for_page(events)
         log.info("from cache (%s): %d arXiv, %d feed items, %d papers, %d events",
                  day or "today", len(arxiv), len(feeds), len(papers), len(events))
     else:
@@ -151,12 +159,22 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
         state.mark_run("dry-run", f"{len(alive)} live records")
         return 0
 
+    # Through _safe like every fetch step, not called bare: render.conferences
+    # now performs dozens of network requests (venue.locate_record,
+    # photos.for_city), PIL decoding and several cache writes on top of what
+    # used to be plain string formatting, so it can fail for reasons a fetch
+    # step can. The module docstring's promise — a failing step is logged and
+    # skipped, keeping yesterday's content — otherwise would not hold for the
+    # step that now does the most work.
     wrote = []
-    if render.digest(fetch_arxiv.top(arxiv, int(cfg["arxiv"].get("max_items", 12))), log):
+    if _safe("render digest",
+            lambda: render.digest(
+                fetch_arxiv.top(arxiv, int(cfg["arxiv"].get("max_items", 12))), log),
+            log, False):
         wrote.append("digest")
-    if render.conferences(events, log):
+    if _safe("render conferences", lambda: render.conferences(events, log), log, False):
         wrote.append("conferences")
-    if render.news(narrative, known, log):
+    if _safe("render news", lambda: render.news(narrative, known, log), log, False):
         wrote.append("news")
     if not wrote:
         log.warning("nothing was written — the pages keep their last content")
