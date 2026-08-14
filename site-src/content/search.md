@@ -96,8 +96,8 @@ scripts:
   <p class="lit__note">Results are filtered to physics: OpenAlex is asked for
   Physical Sciences only, Semantic Scholar for Physics, and a record found
   only by the generic databases must actually contain your query terms.
-  Google Scholar and NASA ADS have no public search API — use the buttons
-  below to open the same query there.</p>
+  Google Scholar has no public search API, and NASA ADS's requires a personal
+  token — use the buttons below to open the same query there.</p>
 
   <div class="btn-row">
     <button class="btn btn--solid" type="submit">Search</button>
@@ -152,9 +152,10 @@ arXiv registers a DOI for every preprint with DataCite, under the
 So the arXiv results here are arXiv's own metadata, deposited by arXiv, fetched
 from the one place a browser is allowed to read it.
 
-**Why not NASA ADS.** It requires a personal token, which would have to be
-published in the page source to work — so for ADS the parsed query is turned
-into a correct search URL and offered as a button instead.
+**Why not NASA ADS.** Its search API is public and documented, but it requires
+a personal token, which would have to be published in the page source to work —
+so for ADS the parsed query is turned into a correct search URL and offered as
+a button instead.
 
 Results are capped at 20 per database, and every outbound link opens in a new
 tab, so you never lose your place here.

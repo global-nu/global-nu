@@ -3,8 +3,8 @@ title: Results
 url: results.html
 description: >-
   Results of the Bari global analyses of neutrino oscillation data — best-fit
-  values, allowed ranges at 1σ, 2σ and 3σ, for both mass orderings, one entry
-  per release.
+  values, allowed ranges at 1σ, 2σ and 3σ, for both mass orderings, from the
+  most recent full release.
 katex: false
 ---
 
@@ -12,9 +12,11 @@ katex: false
   <div class="wrap hero__in">
     <p class="kicker">Results</p>
     <h1>Results, release by release</h1>
-    <p class="lede">One entry per release: best-fit values and allowed ranges
-    for the six oscillation parameters, in both mass orderings, with the paper
-    and the downloadable files beside them.</p>
+    <p class="lede">The most recent full release in detail: best-fit values and
+    allowed ranges for the six oscillation parameters, in both mass orderings,
+    with the paper and its figures beside them. Every earlier release is traced
+    parameter by parameter on the <a href="history.html">parameter
+    history</a>.</p>
   </div>
 </section>
 
@@ -37,7 +39,7 @@ analyses, it states the conversion it applied.</p>
 <div class="release">
 
 <div class="section-head">
-  <h2>March 2025 — entering the era of subpercent precision</h2>
+  <h2>March 2025 — Entering the era of subpercent precision</h2>
 </div>
 
 <p class="lede" style="margin-top:0">Updated global analysis of the known and
@@ -133,7 +135,9 @@ hand.</p>
 <h3>What changed</h3>
 <p class="small">|Δm²| is now constrained at the 0.8% level — the first
 oscillation parameter to enter the subpercent precision era — against 1.1% in
-the previous update. The uncertainty on sin²θ₁₃ falls to 2.4%, from about 3%.
+the previous update; the paper underlines in the same breath that there are
+issues about systematics which might affect that error estimate. The
+uncertainty on sin²θ₁₃ falls to 2.4%, from about 3%.
 For sin²θ₂₃ the two quasi-degenerate minima are closer than before, differing
 by roughly 15% against about 25% previously. Constraints on δ are similar to
 before within large uncertainties, with a weaker rejection of CP conservation
@@ -144,10 +148,22 @@ from 2.5σ.</p>
 <h4>Not included</h4>
 <p>The first published SNO+ reactor results are not included: they constrain
 δm² with an error larger than the one above by a factor of about 6, and only
-under a prior on θ₁₂. SNO+ expectations on (δm², θ₁₂) are nevertheless very
-promising and are expected to surpass the current δm² accuracy within a few
-years.</p>
+under a prior on θ₁₂. SNO+ is nevertheless expected to surpass the present
+δm² accuracy on (δm², θ₁₂) within a few years.</p>
 </div>
+</div>
+
+<div class="callout" style="margin-top:2rem">
+<h4>Since this release: the (1,&nbsp;2) sector, updated</h4>
+<p>A partial update revises two of the six parameters above.
+<a href="https://doi.org/10.1103/cxqw-1bty">Phys. Rev. D 114, 016026
+(2026)</a> (<a href="https://arxiv.org/abs/2511.21650">arXiv:2511.21650</a>)
+adds the first JUNO results and the latest SNO+ data to the 2025 analysis and
+gives δm² = 7.48 (1σ 7.39 – 7.58) in units of 10⁻⁵ eV² and
+sin²θ₁₂ = 0.3085 (1σ 0.3010 – 0.3156). It quotes no new values for |Δm²|,
+sin²θ₁₃, sin²θ₂₃ or δ, which stand as in the table above. Both releases are on
+the <a href="history.html">parameter history</a>, with the table each number
+was transcribed from.</p>
 </div>
 
 </div>
@@ -168,7 +184,10 @@ at stable URLs — the kind of thing you can fetch from a script and cite — un
 dedicated step; the analysis code itself stays where it belongs and is never
 part of this site.</p>
 <p>Nothing is linked from this section yet: the export runs when the release
-material is prepared, and a link that does not resolve is worse than no link.</p>
+material is prepared, and a link that does not resolve is worse than no link.
+What does exist today is the parameter register — every value on this site,
+with its source — published as JSON and CSV on the
+<a href="history.html#data">parameter history page</a>.</p>
 </div>
 
 :::
@@ -177,7 +196,7 @@ material is prepared, and a link that does not resolve is worse than no link.</p
 
 <div class="strip reveal">
   <a href="history.html"><span class="t">Parameter history</span><span class="d">How these numbers moved over a quarter century, and how other groups’ compare</span></a>
-  <a href="about.html#cite"><span class="t">How to cite</span><span class="d">BibTeX for this release and the ones before it</span></a>
+  <a href="about.html#cite"><span class="t">How to cite</span><span class="d">BibTeX for the current release</span></a>
   <a href="resources.html"><span class="t">Resources</span><span class="d">The experiments and data releases that feed a global analysis</span></a>
 </div>
 

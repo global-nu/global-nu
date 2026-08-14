@@ -25,6 +25,10 @@ OUT = ROOT / "site-src" / "data" / "figures"
 
 PARAMS = ["dm2", "Dm2", "sin2_th12", "sin2_th13", "sin2_th23", "delta_pi"]
 
+# File-name stem per parameter, where the parameter key alone will not do.
+# The include names on the pages are these slugs, not the keys.
+SPARK_SLUG = {"Dm2": "Dm2-abs"}
+
 
 def load() -> tuple[dict, list[dict]]:
     doc = yaml.safe_load(DATA.read_text(encoding="utf-8"))
@@ -316,11 +320,27 @@ def main() -> None:
     written.append("ranges")
     (OUT / "ranges-hero.svg").write_text(hero_ranges_svg(meta, bari), encoding="utf-8")
     written.append("ranges-hero")
+    # Two parameter keys differ only in case — dm2 (δm²) and Dm2 (|Δm²|) — and
+    # this machine's filesystem does not. spark-dm2.svg and spark-Dm2.svg were
+    # one file, written twice: the second overwrote the first and the home
+    # page drew |Δm²|'s curve inside the δm² card. Slugs must therefore differ
+    # by more than case, and the guard below refuses to write a set that does
+    # not, on any filesystem, so the bug cannot come back silently.
+    slugs = {p: SPARK_SLUG.get(p, p) for p in PARAMS}
+    seen: dict[str, str] = {}
+    for pname, slug in slugs.items():
+        clash = seen.get(slug.lower())
+        if clash:
+            raise SystemExit(
+                f"spark slug {slug!r} for {pname!r} collides with {clash!r} on a "
+                "case-insensitive filesystem — give one of them a distinct name "
+                "in SPARK_SLUG")
+        seen[slug.lower()] = pname
     for pname in PARAMS:
         svg = spark_svg(pname, bari)
         if svg:
-            (OUT / f"spark-{pname}.svg").write_text(svg, encoding="utf-8")
-            written.append(f"spark-{pname}")
+            (OUT / f"spark-{slugs[pname]}.svg").write_text(svg, encoding="utf-8")
+            written.append(f"spark-{slugs[pname]}")
 
     print(f"figures: {len(written)} written to {OUT.relative_to(ROOT)}")
     for name in written:
