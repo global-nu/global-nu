@@ -26,7 +26,8 @@ import subprocess
 import sys
 
 from . import cache, conferences as conf_mod, fetch_arxiv, fetch_feeds
-from . import fetch_indico, fetch_inspire, linkcheck, render, state, synthesize
+from . import fetch_indico, fetch_inspire, fetch_nu_unbound, linkcheck, render
+from . import state, synthesize
 from .common import ROOT, get_logger, load_config, now_iso
 from .lock import LockBusy, run_lock
 
@@ -89,9 +90,17 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
         papers = _safe("inspire",
                        lambda: fetch_inspire.fetch_literature(cfg, log), log, [])
         events = _safe("indico", lambda: fetch_indico.fetch(cfg, log), log, [])
-
-        if events:
-            events = conf_mod.sort_for_page(conf_mod.merge([events], log))
+        nu_conf = _safe("nu-unbound",
+                        lambda: fetch_nu_unbound.fetch(cfg, log), log, [])
+        in_conf = _safe("inspire conferences",
+                        lambda: fetch_inspire.fetch_conferences(cfg, log,
+                                                                scope="neutrino"), log, [])
+        gen_conf = _safe("inspire conferences (general)",
+                         lambda: fetch_inspire.fetch_conferences(cfg, log,
+                                                                 scope="general"), log, [])
+        groups = [g for g in (events, nu_conf, in_conf, gen_conf) if g]
+        if groups:
+            events = conf_mod.sort_for_page(conf_mod.merge(groups, log))
 
         for name, records in (("arxiv", arxiv), ("feeds", feeds),
                               ("inspire", papers), ("indico", events)):
