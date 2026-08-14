@@ -413,6 +413,14 @@ def conferences(records: list[dict], log: logging.Logger,
                             f"below without a dot rather than a guess.")
         else:
             map_caption += "."
+        # figures.conference_map draws at half the experiments map's
+        # vertical resolution so every latitude stays on the frame (see its
+        # docstring) — flattened coastlines there are that trade, not a
+        # rendering bug, and a reader who has seen the taller map on the
+        # Resources page deserves to be told so rather than left to wonder.
+        map_caption += (" The map is compressed north-to-south, so distances "
+                        "and shapes read flatter here than on the world map "
+                        "of experiments.")
         map_block = f"""
 <figure class="figure confmap-figure">
 <h4>Map</h4>

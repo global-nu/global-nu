@@ -69,15 +69,25 @@ confLink
 
 /* 3. the card carries an "Open in Google Maps" link built from the marker's
    own coordinates — not from the venue string, which is why the assertion
-   checks for the numbers rather than for "Shanghai" appearing in the URL. */
+   checks for the numbers rather than for "Shanghai" appearing in the URL.
+   The brief's query string is lat BEFORE lon — the opposite order from
+   venue.locate_record's own (lon, lat) — so this asserts the exact
+   "query=<lat>,<lon>" substring, not merely that both numbers appear
+   somewhere in the href: a version of gmapsUrl built as lon + "," + lat
+   would still pass an indexOf-per-number check (both numbers are still in
+   the string, just swapped) while putting every conference in the wrong
+   hemisphere. That regression was caught only by tightening this assertion
+   — see the RED/GREEN mutation transcript in task-4-report.md. */
 const gmapLink = card && [...card.querySelectorAll('a')].find(a =>
   (a.href || '').indexOf('google.com/maps') > -1);
 gmapLink
   ? ok('the card carries a Google Maps link')
   : bad('the card carries no Google Maps link');
-gmapLink && gmapLink.href.indexOf('31.23') > -1 && gmapLink.href.indexOf('121.47') > -1
-  ? ok('the Google Maps link is built from the marker\'s data-lat and data-lon')
-  : bad('the Google Maps link does not carry the marker\'s coordinates: ' + (gmapLink && gmapLink.href));
+gmapLink && gmapLink.href.indexOf('query=31.23,121.47') > -1
+  ? ok('the Google Maps link is built lat-before-lon from the marker\'s '
+      + 'data-lat and data-lon, in that exact order')
+  : bad('the Google Maps link does not carry "query=31.23,121.47" verbatim: '
+      + (gmapLink && gmapLink.href));
 gmapLink && gmapLink.target === '_blank'
   ? ok('the Google Maps link opens in a new tab (target="_blank")')
   : bad('the Google Maps link does not set target="_blank"');
@@ -112,11 +122,17 @@ kbCard && /Erice School 2026/.test(kbCard.textContent)
   ? ok('pressing Enter on a focused marker opens its card, same as a click')
   : bad('Enter on a focused marker did not open its card');
 
-/* 6. the SVG stays readable with the script never running: no marker loses
-   the <title> that carries it when JS is off. */
-const plain = new JSDOM(`<!doctype html><body>${SVG}</body>`).window.document;
-plain.querySelectorAll('.conf-pin title').length === 2
-  ? ok('every marker keeps its <title>, so the map reads with JS off')
+/* 6. no marker loses the <title> that carries it once the script has run —
+   NOT a check against a fresh, un-scripted JSDOM: that would pass no matter
+   what confmap.js does (or does not do), since a document the script never
+   touches trivially still has whatever the fixture put in it. This boots
+   the script exactly as checks 1-5 do, so it can actually fail if a future
+   change to open()/wireCard() ever strips or replaces a marker's <title> —
+   e.g. by rebuilding the pin's innerHTML instead of only appending a card
+   elsewhere in the figure. */
+d = boot();
+d.querySelectorAll('.conf-pin title').length === 2
+  ? ok('every marker keeps its <title> after the script has run')
   : bad('a marker lost its <title>');
 
 console.log();

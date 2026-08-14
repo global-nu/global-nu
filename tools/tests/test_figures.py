@@ -8,9 +8,14 @@ than only by prose reasoning.
 Covered: a record starting today, one that ended yesterday, a missing `end`,
 an unparseable `end`, `end` before `start`, a record with no readable `start`
 at all (dropped, and logged — see figures.conference_timeline's `log`
-argument), and the max_rows slicing arithmetic render.conferences() turns into
+argument), the max_rows slicing arithmetic render.conferences() turns into
 the caption's numbers, including the n_up == 0 edge (every fetcher fails but
-stale `recent` records remain).
+stale `recent` records remain) — and, separately, the (lon, lat) coordinate
+order figures.conference_map and render.conferences() both have to get
+right, at both hops: conference_map's own projection, and render.py's
+`lon, lat = spot` unpacking of venue.locate_record's return value. Neither
+hop is exercised by tools/tests/test_confmap.js, which only ever sees
+numbers already burned into a hand-written SVG fixture.
 """
 from __future__ import annotations
 
@@ -23,7 +28,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from tools.news import figures, render              # noqa: E402
+from tools.news import figures, render, venue        # noqa: E402
 
 problems: list[str] = []
 checks = 0
@@ -222,6 +227,114 @@ check("with zero upcoming, the caption instead leads with what recent is shown",
       "The 6 most recently concluded meetings" in cap, cap)
 check("the caption's totals still report 0 upcoming",
       "0 upcoming and 6 recent meetings are tracked in full below" in cap, cap)
+
+
+# --------------------------------------------------------------------- #
+# coordinate order: longitude first, at BOTH hops, proven with a fixture a
+# swap cannot pass by accident
+# --------------------------------------------------------------------- #
+# Sydney, not an arbitrary city: (lon, lat) = (151.2093, -33.8688) is both a
+# positive (eastern) longitude and a negative (southern) latitude, so a
+# (lat, lon) swap moves the dot somewhere unmistakably wrong rather than a
+# few pixels off within the same hemisphere — -33.8688 read as a longitude
+# lands WEST of the prime meridian (the wrong half of the frame), and
+# 151.2093 read as a latitude is not even a valid one.
+SYDNEY_LON, SYDNEY_LAT = 151.2093, -33.8688
+
+
+def _pin_block(svg: str, conf_id: str) -> str:
+    """The whole <g class="conf-pin" ...>...</g> for one conference, so the
+    attribute and cx/cy checks below read from the SAME marker rather than
+    (accidentally) the first one in the document."""
+    m = re.search(rf'<g class="conf-pin"[^>]*data-conf="{re.escape(conf_id)}"'
+                  r'.*?</g>', svg, re.S)
+    return m.group(0) if m else ""
+
+
+def _num(pattern: str, block: str) -> float | None:
+    m = re.search(pattern, block)
+    return float(m.group(1)) if m else None
+
+
+# Hop 1: figures.conference_map's own projection. A record is handed in
+# already as (record, lon, lat) — conference_map's documented argument
+# order — and the drawn marker must come back at the (lon, lat) it was
+# given, not the transpose of it.
+sydney_conf = {"id": "conf:sydney", "title": "Sydney Coordinate-Order Test",
+              "url": "https://sydney.example.org/",
+              "extra": {"place": "Sydney, Australia",
+                       "span": "1-5 September 2026"}}
+svg = figures.conference_map([(sydney_conf, SYDNEY_LON, SYDNEY_LAT)])
+block = _pin_block(svg, "conf:sydney")
+check("conference_map draws the marker svg carries a matching conf-pin block",
+      bool(block), svg[:200])
+
+lat_attr = _num(r'data-lat="(-?[\d.]+)"', block)
+lon_attr = _num(r'data-lon="(-?[\d.]+)"', block)
+check("the drawn marker's data-lat equals the (lon, lat) tuple's SECOND element",
+      lat_attr is not None and abs(lat_attr - SYDNEY_LAT) < 1e-6,
+      f"data-lat={lat_attr}")
+check("the drawn marker's data-lon equals the (lon, lat) tuple's FIRST element",
+      lon_attr is not None and abs(lon_attr - SYDNEY_LON) < 1e-6,
+      f"data-lon={lon_attr}")
+
+cx = _num(r'cx="(-?[\d.]+)"', block)
+cy = _num(r'cy="(-?[\d.]+)"', block)
+equator_y = figures.wm.project(0.0, 0.0)[1] * figures.MAP_SCALE_Y
+centre_x = figures.wm.WIDTH / 2.0
+check("a southern-hemisphere conference is drawn BELOW the equator line "
+     "(larger y — a swapped lat/lon would place it far outside the frame "
+     "instead, since 151.2 is not a valid latitude)",
+      cy is not None and cy > equator_y,
+      f"cy={cy}, equator_y={equator_y}")
+check("an eastern-longitude conference is drawn EAST of the prime meridian "
+     "(x > width/2 — a swapped lat/lon would put -33.87 in as a longitude "
+     "and land WEST of it instead)",
+      cx is not None and cx > centre_x,
+      f"cx={cx}, centre_x={centre_x}")
+
+# Hop 2: render.conferences()'s own `lon, lat = spot` unpacking of
+# venue.locate_record's return value — the one line test_confmap.js cannot
+# reach at all, because its fixture SVG already has numbers baked in and
+# never runs venue.locate_record or render.py. venue.locate_record is
+# monkeypatched (never touches the network — same insulation
+# test_conferences.py uses for the identical reason) so the real
+# render.conferences() -> figures.conference_map() path runs end to end,
+# with a single Sydney-coordinate record standing in for whatever the
+# cascade would actually have found.
+sydney_rec = rec("Sydney Hop Test", "2026-09-01", "2026-09-05",
+                 place="Sydney, Australia")
+_orig_locate_record = venue.locate_record
+venue.locate_record = lambda record, log: (SYDNEY_LON, SYDNEY_LAT)
+try:
+    render.conferences([sydney_rec], _Log(), stamp="test")
+    hop_html = render.CONFERENCES_PAGE.read_text(encoding="utf-8")
+finally:
+    venue.locate_record = _orig_locate_record
+
+hop_block = _pin_block(hop_html, "Sydney Hop Test")
+check("render.conferences() draws a conf-pin for the mocked record",
+      bool(hop_block), hop_html[:200])
+hop_lat = _num(r'data-lat="(-?[\d.]+)"', hop_block)
+hop_lon = _num(r'data-lon="(-?[\d.]+)"', hop_block)
+check("through render.conferences()'s own lon,lat = spot unpacking, "
+     "data-lat still matches locate_record's SECOND element",
+      hop_lat is not None and abs(hop_lat - SYDNEY_LAT) < 1e-6,
+      f"data-lat={hop_lat}")
+check("through render.conferences()'s own lon,lat = spot unpacking, "
+     "data-lon still matches locate_record's FIRST element",
+      hop_lon is not None and abs(hop_lon - SYDNEY_LON) < 1e-6,
+      f"data-lon={hop_lon}")
+hop_cx = _num(r'cx="(-?[\d.]+)"', hop_block)
+hop_cy = _num(r'cy="(-?[\d.]+)"', hop_block)
+check("the same record, drawn via render.conferences(), still lands south "
+     "of the equator line",
+      hop_cy is not None and hop_cy > equator_y,
+      f"cy={hop_cy}, equator_y={equator_y}")
+check("the same record, drawn via render.conferences(), still lands east "
+     "of the prime meridian",
+      hop_cx is not None and hop_cx > centre_x,
+      f"cx={hop_cx}, centre_x={centre_x}")
 
 
 print()

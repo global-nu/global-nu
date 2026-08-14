@@ -31,7 +31,7 @@ import html
 import logging
 import math
 
-from . import worldmap as wm
+from . import geocluster, worldmap as wm
 
 
 def _e(text: str) -> str:
@@ -306,35 +306,16 @@ def conference_map(located: list[tuple[dict, float, float]]) -> str:
     if not located:
         return ""
 
-    # Step 1: project and cluster. Single-linkage union-find on screen
-    # distance — make_map.py's own algorithm, reused rather than reinvented,
-    # per the brief. Bucketing happens in the FINAL (already-squished) pixel
-    # space, because "coincident" is a statement about what a reader sees on
-    # this drawn map, not about the underlying undistorted globe.
+    # Step 1: project and cluster. The bucketing is geocluster's
+    # cluster_by_distance — make_map.py's own single-linkage algorithm,
+    # shared rather than reimplemented, per the brief. Bucketing happens in
+    # the FINAL (already-squished) pixel space, because "coincident" is a
+    # statement about what a reader sees on this drawn map, not about the
+    # underlying undistorted globe.
     points = [(conf, lon, lat, _map_xy(lon, lat)) for conf, lon, lat in located]
-    parent = list(range(len(points)))
-
-    def find(i: int) -> int:
-        while parent[i] != i:
-            parent[i] = parent[parent[i]]
-            i = parent[i]
-        return i
-
-    def union(i: int, j: int) -> None:
-        ri, rj = find(i), find(j)
-        if ri != rj:
-            parent[ri] = rj
-
-    for i in range(len(points)):
-        for j in range(i + 1, len(points)):
-            xi, yi = points[i][3]
-            xj, yj = points[j][3]
-            if math.hypot(xi - xj, yi - yj) <= MAP_MERGE_DIST:
-                union(i, j)
-
-    clusters: dict[int, list[int]] = {}
-    for i in range(len(points)):
-        clusters.setdefault(find(i), []).append(i)
+    groups = geocluster.cluster_by_distance(
+        [p[3] for p in points], MAP_MERGE_DIST)
+    clusters: dict[int, list[int]] = {idx: idxs for idx, idxs in enumerate(groups)}
 
     top = wm.project(0.0, MAP_TOP_LAT)[1] * MAP_SCALE_Y
     bottom = wm.project(0.0, MAP_BOTTOM_LAT)[1] * MAP_SCALE_Y

@@ -20,7 +20,7 @@ sys.path.insert(0, str(ROOT))
 import tempfile
 
 from tools.news import conferences as conf          # noqa: E402
-from tools.news import fetch_inspire, fetch_nu_unbound, render   # noqa: E402
+from tools.news import fetch_inspire, fetch_nu_unbound, geocode, render   # noqa: E402
 
 problems: list[str] = []
 checks = 0
@@ -109,7 +109,27 @@ general_upcoming = rec("General Physics Meeting 2099", "https://general.example.
                        scope="general")
 general_upcoming["extra"]["upcoming"] = True
 
-up_block, recent_block = _render_split([still_ahead, already_over, general_upcoming])
+# render.conferences() now calls venue.locate_record for every `upcoming`
+# record (Task 4), which in turn calls geocode.locate() for a record with no
+# clean cached answer — a real Nominatim request, plus PAUSE_S's courtesy
+# sleep. These three records all carry a real place ("Bari, IT"), so without
+# this stub the render calls below would phone a stranger's server on a
+# clean checkout — silent here only because geocache.json on THIS machine
+# already has "bari|IT" cached from earlier local runs. Monkeypatched the
+# same way venue.http_get is stubbed further down this file: no network, no
+# dependence on a local cache file, no sleep.
+_orig_geocode_locate = geocode.locate
+
+
+def _fake_geocode_locate(city, country_code):
+    return (16.8622, 41.1171) if city and country_code else None  # a fixed, offline "Bari"
+
+
+geocode.locate = _fake_geocode_locate
+try:
+    up_block, recent_block = _render_split([still_ahead, already_over, general_upcoming])
+finally:
+    geocode.locate = _orig_geocode_locate
 check("a record with extra.upcoming=True renders under Upcoming, not Recent",
       "Still Ahead 2099" in up_block and "Still Ahead 2099" not in recent_block)
 check("a record with extra.upcoming=False renders under Recent, not Upcoming",
