@@ -28,6 +28,7 @@ from __future__ import annotations
 
 import datetime as _dt
 import html
+import logging
 
 
 def _e(text: str) -> str:
@@ -75,7 +76,8 @@ def _short(conf: dict, limit: int = 20) -> str:
 
 def conference_timeline(upcoming: list[dict], recent: list[dict],
                         today: _dt.date | None = None,
-                        max_rows: int = 14) -> str:
+                        max_rows: int = 14,
+                        log: logging.Logger | None = None) -> str:
     """A Gantt-style strip: one bar per conference, with a line for today.
 
     Reading a list of date ranges is work; seeing which one is next, which is
@@ -95,15 +97,26 @@ def conference_timeline(upcoming: list[dict], recent: list[dict],
     rows = rows + recent[:max(0, max_rows - len(rows))]
 
     entries = []
+    dropped = 0
     for c in rows:
         extra = c.get("extra", {})
         start = _date(extra.get("opening", ""))
         if start is None:
+            dropped += 1
             continue
         end = _date(extra.get("closing", "")) or start
         if end < start:
             end = start
         entries.append((c, start, end))
+    if dropped and log is not None:
+        # A missing/unparseable extra.opening is a fetcher-side date
+        # regression, not an expected shape — the record still appears in the
+        # text lists below (they don't need a parsed date), so this figure is
+        # the only place it would otherwise vanish silently. Aggregated, one
+        # line, same level fetch_nu_unbound.fetch() already uses for the
+        # identical situation ("N dropped for an unreadable date").
+        log.info("conference timeline: %d of %d row(s) dropped for a "
+                 "missing/unreadable opening date", dropped, len(rows))
     if not entries:
         return ""
 

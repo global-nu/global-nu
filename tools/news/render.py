@@ -352,17 +352,25 @@ def conferences(records: list[dict], log: logging.Logger,
     # whatever room is left, which is usually none — see conference_timeline's
     # docstring for why that is the right trade rather than an accident.
     max_rows = 14
-    timeline = figures.conference_timeline(upcoming, recent, max_rows=max_rows)
+    timeline = figures.conference_timeline(upcoming, recent, max_rows=max_rows, log=log)
     timeline_block = ""
     if timeline:
         n_up = min(len(upcoming), max_rows)
         n_rec = max(0, max_rows - len(upcoming))
         n_rec = min(n_rec, len(recent))
-        caption = (f"The soonest {n_up} upcoming meeting{'' if n_up == 1 else 's'} "
-                  f"(blue, amber if running right now)")
-        if n_rec:
-            caption += (f" and the {n_rec} most recently concluded "
-                       f"(grey), filling the rows the upcoming ones leave")
+        # n_up can be 0 on a morning every fetcher fails but stale `recent`
+        # records still remain — "The soonest 0 upcoming meetings" would be
+        # the sentence a reader saw on a page like that, so the two clauses
+        # are built to stand on their own rather than assuming n_up > 0.
+        if n_up:
+            caption = (f"The soonest {n_up} upcoming meeting{'' if n_up == 1 else 's'} "
+                      f"(blue, amber if running right now)")
+            if n_rec:
+                caption += (f" and the {n_rec} most recently concluded "
+                           f"(grey), filling the rows the upcoming ones leave")
+        else:
+            caption = (f"The {n_rec} most recently concluded "
+                      f"meeting{'' if n_rec == 1 else 's'} (grey)")
         caption += (f". {len(upcoming)} upcoming and {len(recent)} recent "
                    f"meeting{'' if len(upcoming) + len(recent) == 1 else 's'} "
                    f"are tracked in full below.")
