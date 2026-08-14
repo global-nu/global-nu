@@ -18,6 +18,7 @@ the module, restored in a `finally`. This suite never touches the network.
 """
 from __future__ import annotations
 
+import datetime as _dt
 import io
 import sys
 import tempfile
@@ -56,6 +57,7 @@ def _isolate() -> None:
     photos.PHOTO_CACHE = Path(tempfile.mkdtemp()) / "photocache.json"
     photos._cache = None
     photos.IMAGES_SRC = Path(tempfile.mkdtemp())
+    photos._revalidated_this_run = 0     # fresh per-run revalidation budget
 
 
 def _good_candidate(**over):
@@ -390,6 +392,226 @@ check("the file under US's own name holds US's own photo bytes, not GB's",
       us_bytes)
 check("Cambridge GB's cached answer survives Cambridge US being looked up later",
       gb_again == gb, (gb, gb_again))
+
+
+# --------------------------------------------------------------------- #
+# 7. _slug truncates the CITY portion, not the joined "city-code" string —
+#    a long city name must never cost the disambiguating country code. Real
+#    city names never reach this length, so this is a direct unit check of
+#    the function rather than something reachable through for_city today.
+# --------------------------------------------------------------------- #
+_long_city = "A" * 80
+_slug_result = photos._slug(_long_city, "GB")
+check("a long city name's slug still ends with its country code",
+      _slug_result.endswith("-gb"), _slug_result)
+check("the slug never exceeds 60 characters",
+      len(_slug_result) <= 60, (_slug_result, len(_slug_result)))
+
+_short_slug = photos._slug("Cambridge", "GB")
+check("a short city name's slug is unaffected by the truncation-order fix",
+      _short_slug == "conf-cambridge-gb", _short_slug)
+
+
+# --------------------------------------------------------------------- #
+# 8. Revalidation (final whole-branch review, IMPORTANT): a cached credit's
+#    author/licence/links must not be trusted forever. An entry old enough
+#    (>= photos.REVALIDATE_AFTER_DAYS) is checked again against Commons, by
+#    the exact file title stored in `page` — not a fresh full-text search,
+#    which could legitimately stop returning an unchanged file for reasons
+#    that have nothing to do with its status.
+# --------------------------------------------------------------------- #
+def _stale_entry(**over):
+    e = {
+        "file": "images/conf-trieste-it.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Trieste_Old_Port.jpg",
+        "author": "Old Author",
+        "licence": "CC BY-SA 4.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "cached_at": (_dt.date.today()
+                     - _dt.timedelta(days=photos.REVALIDATE_AFTER_DAYS + 1)).isoformat(),
+    }
+    e.update(over)
+    return e
+
+
+def _seed(city, country, entry):
+    """Preload the cache with one entry and put a real file on disk for it
+    — for_city's disk-existence check must pass before revalidation logic
+    is ever reached."""
+    cache = photos._cache_load()
+    cache[photos._key(city, country)] = entry
+    photos._cache_save()
+    (photos.IMAGES_SRC / Path(entry["file"]).name).parent.mkdir(
+        parents=True, exist_ok=True)
+    (photos.IMAGES_SRC / Path(entry["file"]).name).write_bytes(b"old-jpeg-bytes")
+
+
+def _commons_page(*, missing=False, licence="CC BY-SA 4.0", artist="New Author"):
+    if missing:
+        return {"query": {"pages": {"-1": {"ns": 6,
+                                            "title": "File:Trieste Old Port.jpg",
+                                            "missing": ""}}}}
+    return {"query": {"pages": {"98765": {
+        "pageid": 98765, "ns": 6, "title": "File:Trieste Old Port.jpg",
+        "imageinfo": [{"extmetadata": {
+            "LicenseShortName": {"value": licence},
+            "Artist": {"value": artist},
+            "LicenseUrl": {"value": "https://creativecommons.org/licenses/by-sa/4.0"},
+        }}]}}}}
+
+
+_orig_commons_api = photos.commons_api
+
+
+def _refuse_search(term, query, limit=5):
+    raise AssertionError("for_city should not fall through to a fresh "
+                          "search while a cached entry still exists")
+
+
+# 8a. A due entry with an unchanged, still-acceptable licence: revalidated,
+#     cached_at refreshed, and a genuinely corrected Artist field reaches
+#     the returned credit.
+_isolate()
+_seed("Trieste", "IT", _stale_entry())
+_api_calls = []
+
+
+def _api_ok_new_author(params):
+    _api_calls.append(params)
+    return _commons_page(artist="New Author")
+
+
+photos.commons_api = _api_ok_new_author
+photos.search = _refuse_search
+try:
+    result = photos.for_city("Trieste", "IT", _Log())
+finally:
+    photos.commons_api = _orig_commons_api
+    photos.search = _orig_search
+
+check("a due entry triggers exactly one revalidation call",
+      len(_api_calls) == 1, _api_calls)
+check("revalidation asks about the exact cached title, not a fresh search",
+      _api_calls and _api_calls[0].get("titles") == "File:Trieste Old Port.jpg",
+      _api_calls)
+check("a corrected Artist field on Commons reaches the returned credit",
+      result is not None and result["author"] == "New Author", result)
+check("revalidating a still-good entry stamps a fresh cached_at",
+      result is not None and result["cached_at"] == _dt.date.today().isoformat(),
+      result)
+
+# 8b. A FRESH entry (cached_at == today) is not due: no revalidation call.
+_isolate()
+_seed("Trieste", "IT", _stale_entry(cached_at=_dt.date.today().isoformat()))
+_api_calls2 = []
+photos.commons_api = lambda params: (_api_calls2.append(params) or _commons_page())
+photos.search = _refuse_search
+try:
+    result2 = photos.for_city("Trieste", "IT", _Log())
+finally:
+    photos.commons_api = _orig_commons_api
+    photos.search = _orig_search
+
+check("a freshly-cached entry is returned without a revalidation call",
+      len(_api_calls2) == 0 and result2 is not None and result2["author"] == "Old Author",
+      (_api_calls2, result2))
+
+# 8c. A takedown: the file is gone from Commons. The photograph must STOP
+#     being served — for_city returns None, and the None is itself cached
+#     so tomorrow's run does not keep asking about a file that is gone.
+_isolate()
+_seed("Trieste", "IT", _stale_entry())
+photos.commons_api = lambda params: _commons_page(missing=True)
+photos.search = _refuse_search
+try:
+    result3 = photos.for_city("Trieste", "IT", _Log())
+finally:
+    photos.commons_api = _orig_commons_api
+    photos.search = _orig_search
+
+check("a file removed from Commons is no longer served",
+      result3 is None, result3)
+check("the takedown is itself cached (no photo, not re-served next call)",
+      photos._cache.get(photos._key("Trieste", "IT")) is None,
+      photos._cache.get(photos._key("Trieste", "IT")))
+
+# 8d. A licence that no longer qualifies: same "stop serving" outcome,
+#     judged by the identical licence_ok this module always uses.
+_isolate()
+_seed("Trieste", "IT", _stale_entry())
+photos.commons_api = lambda params: _commons_page(licence="All rights reserved")
+photos.search = _refuse_search
+try:
+    result4 = photos.for_city("Trieste", "IT", _Log())
+finally:
+    photos.commons_api = _orig_commons_api
+    photos.search = _orig_search
+
+check("a licence downgraded below the acceptable list is no longer served",
+      result4 is None, result4)
+
+# 8e. A per-run budget, in the style of geocode.MAX_NEW_PER_RUN: once spent,
+#     further due entries are left exactly as cached (old author, old
+#     cached_at) rather than triggering more Commons requests this run.
+_isolate()
+_seed("Trieste", "IT", _stale_entry())
+photos._revalidated_this_run = photos.REVALIDATE_PER_RUN     # budget exhausted
+_api_calls5 = []
+photos.commons_api = lambda params: (_api_calls5.append(params) or _commons_page())
+photos.search = _refuse_search
+try:
+    result5 = photos.for_city("Trieste", "IT", _Log())
+finally:
+    photos.commons_api = _orig_commons_api
+    photos.search = _orig_search
+
+check("a due entry is left untouched once the per-run revalidation budget is spent",
+      len(_api_calls5) == 0 and result5 is not None and result5["author"] == "Old Author",
+      (_api_calls5, result5))
+
+# 8f. A revalidation fetch that fails outright (Commons unreachable) is
+#     treated as transient, not as a takedown: the old credit keeps serving.
+_isolate()
+_seed("Trieste", "IT", _stale_entry())
+
+
+def _api_raises(params):
+    raise OSError("connection refused")
+
+
+photos.commons_api = _api_raises
+photos.search = _refuse_search
+try:
+    result6 = photos.for_city("Trieste", "IT", _Log())
+finally:
+    photos.commons_api = _orig_commons_api
+    photos.search = _orig_search
+
+check("a failed revalidation fetch keeps serving the old credit rather than "
+      "treating a network error as a takedown",
+      result6 is not None and result6["author"] == "Old Author", result6)
+
+
+# --------------------------------------------------------------------- #
+# 9. Minor (final whole-branch review): photos._cache_save must go through
+#    common.write_json (atomic: .tmp then rename), not Path.write_text
+#    (truncates before writing — an interrupted run leaves a truncated
+#    file that _cache_load's except clause silently reads back as {}).
+#    Call-monitoring, not a crash simulation: proves the save path is
+#    routed through the atomic helper.
+# --------------------------------------------------------------------- #
+_isolate()
+_write_json_calls = []
+_orig_photos_write_json = photos.write_json
+photos.write_json = lambda path, payload: _write_json_calls.append(path)
+try:
+    photos._cache = {"probe|xx": None}
+    photos._cache_save()
+finally:
+    photos.write_json = _orig_photos_write_json
+
+check("photos._cache_save writes through the atomic common.write_json helper",
+      _write_json_calls == [photos.PHOTO_CACHE], _write_json_calls)
 
 
 print()

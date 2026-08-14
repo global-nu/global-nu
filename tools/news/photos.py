@@ -3,15 +3,21 @@
     photos.for_city("Shanghai", "CN", log) -> {"file", "page", "author",
                                                "licence", "licence_url"} | None
 
-Consumes exactly three names from tools.fetch_commons_images, per the brief:
-`search` (Commons image search, one candidate list per query), `licence_ok`
-(the one rule for what may be republished — CC0, public domain, CC BY or
-CC BY-SA, nothing else — re-applied here explicitly rather than trusted off
-a candidate dict's own `accepted` flag, since a candidate is easy to build by
-hand in a caller or a test and this module should not have to trust that
-whoever built it also ran the check), and `short_author` (the same collapse
-that turns a seven-hundred-name collaboration credit into one usable line —
-see tools/tests/test_credits.py). No new licence rule is written here.
+Consumes exactly three names from tools.fetch_commons_images for a first
+lookup, per the brief: `search` (Commons image search, one candidate list per
+query), `licence_ok` (the one rule for what may be republished — CC0, public
+domain, CC BY or CC BY-SA, nothing else — re-applied here explicitly rather
+than trusted off a candidate dict's own `accepted` flag, since a candidate is
+easy to build by hand in a caller or a test and this module should not have
+to trust that whoever built it also ran the check), and `short_author` (the
+same collapse that turns a seven-hundred-name collaboration credit into one
+usable line — see tools/tests/test_credits.py). A fourth name, `api`, is used
+only to REVALIDATE a credit already in the cache (see `_revalidate` below) —
+the same MediaWiki call `search` makes internally, addressed at one exact
+title instead of a full-text query. No new licence rule is written anywhere
+here: `_revalidate` still judges acceptability with the identical
+`licence_ok`, it just asks Commons again rather than trusting a first answer
+forever.
 
 City, not venue: the query is always the conference's *city* — "Shanghai",
 never "Sede Afundación" — because Commons has a good photograph of the
@@ -54,16 +60,19 @@ slip."
 
 from __future__ import annotations
 
+import datetime as _dt
 import io
 import json
 import logging
 import re
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
-from tools.fetch_commons_images import UA, licence_ok, search, short_author
+from tools.fetch_commons_images import UA, api as commons_api, licence_ok, search, short_author
 
 from . import worldmap as wm
+from .common import clean_text, write_json
 
 ROOT = Path(__file__).resolve().parents[2]
 IMAGES_SRC = ROOT / "site-src" / "images-src"
@@ -73,6 +82,19 @@ PHOTO_CACHE = ROOT / "var" / "news" / "photocache.json"
 MAX_SIDE = 640
 JPEG_QUALITY = 78
 CANDIDATES_PER_CITY = 5
+
+# A cached credit is frozen author/licence/links, read from Commons once and
+# never checked again by default — see `_revalidate` below. Re-checking every
+# entry every run would mean one extra Commons request per city on top of the
+# search-cache's own steady-state promise of zero; instead an entry is only
+# due once it is this old, and even then only REVALIDATE_PER_RUN of the due
+# entries are actually re-checked in one run — the same shape as
+# geocode.MAX_NEW_PER_RUN, and for the same reason: bound the damage (here,
+# the request count) of however many entries happen to come due on one
+# morning, at the cost of the rest waiting one more run.
+REVALIDATE_AFTER_DAYS = 180
+REVALIDATE_PER_RUN = 5
+_revalidated_this_run = 0
 
 # A "photograph", not merely a freely-licensed file: Commons' full-text
 # search for a city name routinely surfaces its municipal coat of arms, a
@@ -139,10 +161,22 @@ def _slug(city: str, country_code: str) -> str:
     city-only slugging let a later-processed Cambridge silently overwrite an
     earlier one's file on disk, so the first city's cached author/licence
     ended up captioning the second city's photograph. See
-    tools/tests/test_photos.py for the RED-proven regression check."""
-    parts = f"{city} {country_code or ''}".strip()
-    text = re.sub(r"[^a-z0-9]+", "-", parts.lower()).strip("-")
-    return f"conf-{text or 'city'}"[:60]
+    tools/tests/test_photos.py for the RED-proven regression check.
+
+    The 60-char limit is applied to the CITY portion alone, before the
+    country code is appended — not to the joined "city country_code" string
+    afterwards. Truncating after joining can cut the code off the end of a
+    long city name (anything past ~53 characters), silently re-creating the
+    same disambiguator-loss collision the fix above exists to prevent; no
+    real city name reaches that length today, but nothing here should depend
+    on that staying true.
+    """
+    code = re.sub(r"[^a-z0-9]+", "-", (country_code or "").lower()).strip("-")
+    suffix = f"-{code}" if code else ""
+    prefix = "conf-"
+    budget = max(60 - len(prefix) - len(suffix), 1)
+    city_text = re.sub(r"[^a-z0-9]+", "-", (city or "").lower()).strip("-")[:budget].strip("-")
+    return f"{prefix}{city_text or 'city'}{suffix}"
 
 
 def _cache_load() -> dict:
@@ -156,10 +190,10 @@ def _cache_load() -> dict:
 
 
 def _cache_save() -> None:
-    PHOTO_CACHE.parent.mkdir(parents=True, exist_ok=True)
-    PHOTO_CACHE.write_text(
-        json.dumps(_cache, indent=1, sort_keys=True, ensure_ascii=False),
-        encoding="utf-8")
+    # write_json writes a .tmp file and renames it into place, so a run
+    # interrupted mid-write leaves the last good cache intact rather than a
+    # truncated file that _cache_load's except clause would read back as {}.
+    write_json(PHOTO_CACHE, _cache)
 
 
 # --------------------------------------------------------------------------- #
@@ -226,14 +260,108 @@ def _save_thumb(url: str, dest: Path, log: logging.Logger) -> bool:
 
 
 # --------------------------------------------------------------------------- #
+# revalidation — a cached credit is not permission forever
+# --------------------------------------------------------------------------- #
+# Relicensing is deliberately NOT what this guards against: a CC BY/BY-SA/CC0
+# grant is irrevocable, so permission obtained the day this was first cached
+# survives even if the uploader changes their mind later. Two things a first
+# lookup cannot see coming are what this exists for: a TAKEDOWN of a file that
+# was never the uploader's to license in the first place (Commons deletes it;
+# this project, never checking again, would keep serving it under a retracted
+# claim, with a Commons link that now 404s), and a CORRECTED Artist field —
+# the site printing a credit that no longer matches what the source says,
+# which is the founding rule's own territory ("a photograph without its
+# credit is a licence violation, not a cosmetic slip" applies just as much to
+# a WRONG credit as to a missing one).
+def _commons_title_of(page_url: str) -> str:
+    """The exact Commons page title ("File:Whatever.jpg") a stored `page` URL
+    points at, so revalidation can ask about that one file specifically
+    rather than repeating the original full-text search (whose top result can
+    drift for reasons that have nothing to do with the file's own status)."""
+    tail = (page_url or "").rstrip("/").rsplit("/", 1)[-1]
+    return urllib.parse.unquote(tail).replace("_", " ")
+
+
+def _revalidate(entry: dict, city: str, log: logging.Logger) -> dict | None:
+    """Re-check one cached credit against Commons, by exact title.
+
+    Returns the entry with a fresh `cached_at` (and updated author/licence/
+    licence_url if Commons now reports different ones — a corrected Artist
+    field must reach the page, not stay frozen at whatever it said the day
+    this was first cached), or None if the photograph must STOP being
+    served: the file is gone from Commons, or its current licence no longer
+    passes `licence_ok` — the same rule `search`'s own results are judged by,
+    not a new one. A request that fails outright (network down, Commons
+    unreachable) is treated as transient, not as a takedown: the entry is
+    returned unchanged, still with its old `cached_at`, so it comes up for
+    revalidation again next run rather than being dropped over a fetch
+    failure that says nothing about the file's actual status.
+    """
+    title = _commons_title_of(entry.get("page", ""))
+    if not title:
+        return entry
+    try:
+        data = commons_api({"action": "query", "titles": title,
+                            "prop": "imageinfo", "iiprop": "extmetadata"})
+        pages = ((data.get("query") or {}).get("pages") or {})
+        page = next(iter(pages.values()), None)
+    except Exception as exc:                              # noqa: BLE001
+        log.warning("photos: revalidation fetch failed for %r (%s) — keeping "
+                    "the cached credit for now, will retry", title, exc.__class__.__name__)
+        return entry
+
+    if page is None or "missing" in page:
+        log.warning("photos: %s is gone from Commons — no longer served for %r",
+                    title, city)
+        return None
+
+    meta = (page.get("imageinfo") or [{}])[0].get("extmetadata") or {}
+    licence = clean_text((meta.get("LicenseShortName") or {}).get("value", ""))
+    ok, why = licence_ok(licence, title)
+    if not ok:
+        log.warning("photos: %s no longer qualifies for reuse (%s) — no "
+                    "longer served for %r", title, why, city)
+        return None
+    author = short_author(clean_text((meta.get("Artist") or {}).get("value", "")))
+    if not author:
+        log.warning("photos: %s lost its author field on Commons — no "
+                    "longer served for %r", title, city)
+        return None
+
+    updated = dict(entry)
+    updated["author"] = author
+    updated["licence"] = licence
+    updated["licence_url"] = clean_text((meta.get("LicenseUrl") or {}).get("value", ""))
+    updated["cached_at"] = _dt.date.today().isoformat()
+    if updated["author"] != entry.get("author") or updated["licence"] != entry.get("licence"):
+        log.info("photos: %s's credit changed on Commons — updated for %r",
+                 title, city)
+    return updated
+
+
+def _due_for_revalidation(entry: dict) -> bool:
+    stamp = entry.get("cached_at")
+    if not stamp:
+        return True                  # written before this field existed
+    try:
+        age = (_dt.date.today() - _dt.date.fromisoformat(stamp)).days
+    except ValueError:
+        return True
+    return age >= REVALIDATE_AFTER_DAYS
+
+
+# --------------------------------------------------------------------------- #
 def for_city(city: str, country_code: str, log: logging.Logger) -> dict | None:
     """A credited photograph of `city`, or None.
 
     Looks up Commons at most once per (city, country_code): a cache hit,
-    positive or negative, returns immediately without calling `search`. A
-    cache entry naming a file that is no longer on disk is treated as a miss
-    and re-fetched — the manifest must never point at a picture that is not
-    actually there to serve.
+    positive or negative, returns immediately without calling `search` —
+    unless the cached credit is old enough to be due for revalidation (see
+    `_revalidate` above) and this run still has budget left for it, in which
+    case Commons is asked again about that one exact file before the cached
+    answer is trusted further. A cache entry naming a file that is no longer
+    on disk is treated as a miss and re-fetched — the manifest must never
+    point at a picture that is not actually there to serve.
     """
     city = (city or "").strip()
     if not city:
@@ -247,6 +375,14 @@ def for_city(city: str, country_code: str, log: logging.Logger) -> dict | None:
         if cached is None:
             return None
         if (IMAGES_SRC / Path(cached["file"]).name).exists():
+            global _revalidated_this_run
+            if (_due_for_revalidation(cached)
+                    and _revalidated_this_run < REVALIDATE_PER_RUN):
+                _revalidated_this_run += 1
+                fresh = _revalidate(cached, city, log)
+                cache[key] = fresh
+                _cache_save()
+                return fresh
             return cached
         # else: the manifest remembers a file no longer on disk — fall
         # through and fetch again rather than emit a dangling <img src>.
@@ -290,6 +426,7 @@ def for_city(city: str, country_code: str, log: logging.Logger) -> dict | None:
             "author": author,
             "licence": licence,
             "licence_url": cand.get("licence_url") or "",
+            "cached_at": _dt.date.today().isoformat(),
         }
         break
 

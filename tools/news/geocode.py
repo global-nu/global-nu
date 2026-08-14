@@ -33,6 +33,8 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
+from .common import write_json
+
 CACHE = Path(__file__).resolve().parents[2] / "var" / "news" / "geocache.json"
 ENDPOINT = "https://nominatim.openstreetmap.org/search"
 USER_AGENT = "global-nu-site/1.0 (https://global-nu.org)"
@@ -58,9 +60,9 @@ def _load() -> dict:
 
 
 def _save() -> None:
-    CACHE.parent.mkdir(parents=True, exist_ok=True)
-    CACHE.write_text(json.dumps(_cache, indent=1, sort_keys=True,
-                                ensure_ascii=False), encoding="utf-8")
+    # Atomic (write to .tmp, then rename): an interrupted run must not leave
+    # a truncated cache behind for _load's except clause to read back as {}.
+    write_json(CACHE, _cache)
 
 
 def _query(params: dict) -> list:
