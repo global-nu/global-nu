@@ -69,8 +69,17 @@ function blockAfter(css, selector) {
   return out;
 }
 
+/* index.html is the chooser page that lists the three mockups side by side, not
+ * a mockup itself: it is hand-written with literal colours and carries no theme
+ * token blocks. Globbing every .html in the directory made it report two
+ * missing blocks as if they were two failing colour pairs — a red test that
+ * said nothing true, which is worse than no test, because a red one people
+ * learn to ignore stops protecting the ones that matter. */
+const NOT_A_MOCKUP = new Set(['index.html']);
+
 let failures = 0;
-for (const file of fs.readdirSync(DIR).filter(f => f.endsWith('.html')).sort()) {
+for (const file of fs.readdirSync(DIR)
+       .filter(f => f.endsWith('.html') && !NOT_A_MOCKUP.has(f)).sort()) {
   const css = fs.readFileSync(path.join(DIR, file), 'utf8');
   console.log('\n' + file);
   for (const theme of ['dark', 'light']) {
