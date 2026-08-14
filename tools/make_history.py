@@ -21,6 +21,7 @@ Chart conventions (see the dataviz method):
 
 from __future__ import annotations
 
+import html
 import sys
 from pathlib import Path
 
@@ -97,7 +98,8 @@ def bound_value(e: dict) -> float:
     return e["upper"] if history.kind_of(e) == "limit" else e["best"]
 
 
-def marker(kind: str, x: float, y: float, colour: str, label: str, hollow: bool = False) -> str:
+def marker(kind: str, x: float, y: float, colour: str, label: str, hollow: bool = False,
+           level_text: str = "") -> str:
     """Circle for NO, square for IO, diamond for “both”: shape carries the
     same information as colour, for readers who cannot use the colour.
 
@@ -106,23 +108,48 @@ def marker(kind: str, x: float, y: float, colour: str, label: str, hollow: bool 
     floor-clamped off-scale marker in compare_panel, so a clamped point
     cannot be mistaken for a genuine plotted value at a glance: same shape
     and colour encode the same group, but the missing fill is a second,
-    independent signal that this mark is not an ordinary point."""
+    independent signal that this mark is not an ordinary point.
+
+    level_text is the confidence level a "limit-upper" arrow holds at, as
+    tools.history.LEVEL_TEXT renders it ("3σ", "90% CL"). It is drawn beside
+    the arrow, on the panel — not only in the <title>, which is a hover
+    layer no touch screen, no printout and no reader scanning the panel ever
+    sees. Two arrows at different levels are not comparable, so a limit whose
+    level the page does not show is a limit the page invites a reader to
+    mis-compare: drawing one without a level is refused outright rather than
+    left to the tooltip.
+
+    Every label is escaped: a limit label opens with a literal "<", and a
+    future parameter label containing "&" or "<" would otherwise break the
+    page rather than show a wrong character.
+    """
     ring = ' stroke="var(--bg)" stroke-width="2" paint-order="stroke"'
     fill = "none" if hollow else colour
     outline = f' stroke="{colour}" stroke-width="1.8"' if hollow else ring
-    t = f"<title>{label}</title>"
+    t = f"<title>{html.escape(label, quote=False)}</title>"
     if kind == "no":
         return f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4.6" fill="{fill}"{outline}>{t}</circle>'
     if kind == "io":
         return (f'<rect x="{x - 4.2:.1f}" y="{y - 4.2:.1f}" width="8.4" height="8.4" rx="1.2" '
                 f'fill="{fill}"{outline}>{t}</rect>')
     if kind == "limit-upper":
+        if not level_text:
+            raise SystemExit(
+                "marker(): a limit arrow must be drawn with its confidence level "
+                "(level_text=), because the page states that it prints one beside "
+                f"every limit — label was {label!r}")
         # A downward arrow from the bound: the value lies below this line,
-        # somewhere, and the drawing must not suggest a point estimate.
+        # somewhere, and the drawing must not suggest a point estimate. The
+        # level sits to its right, in the panel's recessive text token and at
+        # the size of the axis labels — the smallest type this page asks
+        # anyone to read — so it reads as annotation of the arrow rather than
+        # as a second data mark, and still reads.
         return (f'<path d="M{x - 5:.1f} {y:.1f}L{x + 5:.1f} {y:.1f}M{x:.1f} {y:.1f}'
                 f'L{x:.1f} {y + 11:.1f}M{x - 3.4:.1f} {y + 7:.1f}L{x:.1f} {y + 11:.1f}'
                 f'L{x + 3.4:.1f} {y + 7:.1f}" fill="none" stroke="{colour}" '
-                f'stroke-width="2" stroke-linecap="round">{t}</path>')
+                f'stroke-width="2" stroke-linecap="round">{t}</path>'
+                f'<text x="{x + 7:.1f}" y="{y + 3.5:.1f}" font-size="10.5" '
+                f'fill="currentColor" opacity=".75">{html.escape(level_text, quote=False)}</text>')
     return (f'<path d="M{x:.1f} {y - 5.2:.1f}L{x + 5.2:.1f} {y:.1f}'
             f'L{x:.1f} {y + 5.2:.1f}L{x - 5.2:.1f} {y:.1f}Z" fill="{fill}"{outline}>{t}</path>')
 
@@ -259,7 +286,8 @@ def compare_panel(pname: str, meta: dict, releases: list[dict]) -> str:
                 continue
             if history.kind_of(e) == "limit":
                 out.append(marker("limit-upper", x, sy(e["upper"]), colour,
-                                  f"{gname}, {yr}: {label} {history.limit_label(e)} ({unit})"))
+                                  f"{gname}, {yr}: {label} {history.limit_label(e)} ({unit})",
+                                  level_text=history.level_text(e)))
                 continue
             rng = e.get("s3")
             span = (f', 3σ {history.value_text(rng[0])}–{history.value_text(rng[1])}'
@@ -355,7 +383,8 @@ def panel(pname: str, meta: dict, releases: list[dict]) -> str:
         for yr, e in pts:
             if history.kind_of(e) == "limit":
                 out.append(marker("limit-upper", sx(yr), sy(e["upper"]), colour,
-                                  f"{name}, {yr}: {label} {history.limit_label(e)} ({unit})"))
+                                  f"{name}, {yr}: {label} {history.limit_label(e)} ({unit})",
+                                  level_text=history.level_text(e)))
                 continue
             rng = e.get("s3") or e.get("s1")
             span = (f', 3σ {history.value_text(rng[0])}–{history.value_text(rng[1])}'

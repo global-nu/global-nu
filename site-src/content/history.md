@@ -304,7 +304,7 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 <line x1="390.0" y1="128.9" x2="390.0" y2="115.6" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
 <line x1="470.0" y1="129.0" x2="470.0" y2="116.4" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round" opacity=".34"/>
 <path d="M70.0 35.4 L230.0 120.6 L350.0 121.6 L390.0 122.3 L470.0 122.5" fill="none" stroke="var(--grp-nufit)" stroke-width="2" stroke-linejoin="round" opacity=".5"/>
-<path d="M65.0 35.4L75.0 35.4M70.0 35.4L70.0 46.4M66.6 42.4L70.0 46.4L73.4 42.4" fill="none" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round"><title>NuFit, 2004: sin²θ₁₃ < 4.7 (3σ) (1e-2)</title></path>
+<path d="M65.0 35.4L75.0 35.4M70.0 35.4L70.0 46.4M66.6 42.4L70.0 46.4L73.4 42.4" fill="none" stroke="var(--grp-nufit)" stroke-width="2" stroke-linecap="round"><title>NuFit, 2004: sin²θ₁₃ &lt; 4.7 (3σ) (1e-2)</title></path><text x="77.0" y="38.9" font-size="10.5" fill="currentColor" opacity=".75">3σ</text>
 <rect x="225.8" y="116.4" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2012: sin²θ₁₃ = 2.27, 3σ 1.56–2.99 (1e-2)</title></rect>
 <rect x="345.8" y="117.4" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2018: sin²θ₁₃ = 2.24, 3σ 2.044–2.437 (1e-2)</title></rect>
 <rect x="385.8" y="118.1" width="8.4" height="8.4" rx="1.2" fill="var(--grp-nufit)" stroke="var(--bg)" stroke-width="2" paint-order="stroke"><title>NuFit, 2020: sin²θ₁₃ = 2.219, 3σ 2.032–2.41 (1e-2)</title></rect>

@@ -13,6 +13,11 @@ The level is not decoration. Older papers bound parameters at whatever
 confidence suited them, and a bound printed without its level cannot be
 compared with another bound — so a limit that does not name one is refused
 here rather than drawn misleadingly on a panel.
+
+A limit is an *upper* bound: the page has one limit marker, a downward arrow,
+and a `lower` bound is refused by validate_value() until there is a marker
+that can draw one. Recording one today would pass validation and then crash
+the generator, which reads entry["upper"] at every draw site.
 """
 from __future__ import annotations
 
@@ -83,12 +88,34 @@ def validate_value(pname: str, ordering: str, entry: dict) -> None:
             sys.exit(f"{DATA.name}: {where} is both a measurement and a limit: {entry!r}")
         sys.exit(f"{DATA.name}: {where} is neither a measurement nor a limit: {entry!r}")
     if kind == "limit":
+        # Only an upper bound can be drawn today: marker() has one limit
+        # shape, "limit-upper", and both draw sites read entry["upper"]. A
+        # record carrying "lower" would validate here, reach the generator
+        # and die there with a KeyError — or worse, be drawn as if it bounded
+        # the parameter from above. Refused until there is a limit-lower
+        # marker to draw it with.
+        if "lower" in entry and "upper" in entry:
+            sys.exit(f"{DATA.name}: {where} carries both an upper and a lower bound, "
+                     f"which is a range, not a limit: {entry!r}")
+        if "lower" in entry:
+            sys.exit(f"{DATA.name}: {where} is a lower limit, which this site cannot "
+                     "yet draw: marker() has only a limit-upper shape and both draw "
+                     "sites read entry['upper']. Add a limit-lower marker to "
+                     "tools/make_history.py (and the draw sites that place it) before "
+                     f"recording one: {entry!r}")
         level = entry.get("level")
         if not level:
             sys.exit(f"{DATA.name}: {where} is a limit with no confidence level")
         if level not in LEVELS:
             sys.exit(f"{DATA.name}: {where} has level {level!r}, "
                      f"which is not one of {', '.join(LEVELS)}")
+
+
+def level_text(entry: dict) -> str:
+    """A limit's confidence level as a reader sees it, the one rendering used
+    both in the marker's label and in the text printed beside it — the two
+    cannot drift apart because there is only one of them."""
+    return LEVEL_TEXT.get(entry.get("level", ""), entry.get("level", ""))
 
 
 def limit_label(entry: dict) -> str:
@@ -98,7 +125,7 @@ def limit_label(entry: dict) -> str:
     to 6 significant figures and would silently drop a paper's digits, and it
     strips trailing zeros, so the printed precision follows however the value
     is spelled in history.yaml (5 vs. 5.0 render differently on purpose)."""
-    level = LEVEL_TEXT.get(entry.get("level", ""), entry.get("level", ""))
+    level = level_text(entry)
     if "upper" in entry:
         return f"< {entry['upper']} ({level})"
     return f"> {entry['lower']} ({level})"

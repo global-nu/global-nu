@@ -11,6 +11,7 @@ and never neither, and a limit names its level.
 """
 from __future__ import annotations
 
+import html
 import re
 import sys
 from pathlib import Path
@@ -76,6 +77,22 @@ check("the 'neither' rejection says so, not 'both'",
       "neither a measurement nor a limit" in message({"note": "unclear"}))
 
 check("a limit with no level is rejected", rejects({"upper": 5.0}))
+
+# A lower bound is half-supported and always was: kind_of() and limit_label()
+# both handle one, but marker() has a single limit shape (limit-upper) and
+# both draw sites read entry["upper"]. Recorded today, a lower limit would
+# validate cleanly and then die in the generator with a KeyError — or, worse,
+# be drawn by a future edit as if it bounded the parameter from above. It is
+# refused here until there is a marker that can draw it, and the message has
+# to say that, not "unknown field".
+check("a lower limit is rejected until there is a marker for it",
+      rejects({"lower": 0.5, "level": "3sigma"}))
+check("the lower-limit rejection says what is missing, not just that it failed",
+      "limit-lower" in message({"lower": 0.5, "level": "3sigma"}),
+      message({"lower": 0.5, "level": "3sigma"}))
+check("an entry carrying both bounds is rejected as a range, not drawn",
+      rejects({"upper": 5.0, "lower": 0.5, "level": "3sigma"}))
+
 check("a limit with an unknown level is rejected",
       rejects({"upper": 5.0, "level": "eyeballed"}))
 check("a limit with a known level is accepted",
@@ -89,7 +106,8 @@ check("a limit's label states the bound and the level",
 sys.path.insert(0, str(ROOT / "tools"))
 import make_history                                     # noqa: E402
 
-svg = make_history.marker("limit-upper", 100.0, 50.0, "var(--no)", "< 5.0 (3σ)")
+svg = make_history.marker("limit-upper", 100.0, 50.0, "var(--no)", "< 5.0 (3σ)",
+                          level_text="3σ")
 diamond = make_history.marker("any", 100.0, 50.0, "var(--no)", "< 5.0 (3σ)")
 check("a limit renders differently from the diamond fallback, same point",
       svg != diamond,
@@ -97,7 +115,34 @@ check("a limit renders differently from the diamond fallback, same point",
 check("a limit's marker is stroked and unfilled, unlike every filled shape",
       'fill="none"' in svg,
       f"got: {svg[:90]}")
-check("a limit's marker carries its label", "< 5.0 (3σ)" in svg)
+# The label reaches the markup escaped: it opens with a literal "<", which
+# raw would open a tag inside the <title> and break the page.
+check("a limit's marker carries its label", html.escape("< 5.0 (3σ)", quote=False) in svg)
+check("the label is escaped rather than emitted raw",
+      "<title>< 5.0" not in svg, svg[:160])
+
+# The level reaches the drawing itself, not only the hover layer: the page's
+# own legend says "level printed on the marker", and a level that lives only
+# in a <title> is invisible on a touch screen, in print, and to anyone
+# reading the panel rather than pointing at it.
+check("a limit's level is printed beside the arrow, in the panel's own text token",
+      '<text' in svg and '>3σ</text>' in svg and 'fill="currentColor"' in svg,
+      svg)
+
+
+def limit_without_level_raises() -> bool:
+    """Drawing a limit arrow with no level must fail loudly: the guarantee the
+    legend states is one the drawing has to keep, and a silently levelless
+    arrow is exactly the state this branch was found in."""
+    try:
+        make_history.marker("limit-upper", 100.0, 50.0, "var(--no)", "< 5.0 (3σ)")
+        return False
+    except SystemExit:
+        return True
+
+
+check("a limit arrow drawn without its level is refused, not drawn bare",
+      limit_without_level_raises())
 
 # 6. integration: the bound survives into compare_panel() and panel()
 #
@@ -138,11 +183,14 @@ def limit_marker_y(svg_out: str, label: str) -> float | None:
     the label text (unique per point) and on the shape's own structural
     signature (unfilled, stroke-linecap="round", closes with </path> rather
     than self-closing) so it cannot match the group's connecting line, which
-    is also an unfilled stroked <path> but self-closes with no <title>."""
+    is also an unfilled stroked <path> but self-closes with no <title>.
+
+    label is given as a reader sees it and escaped here, because that is how
+    it reaches the markup — a limit label starts with a literal "<"."""
     pattern = re.compile(
         r'<path d="M[-\d.]+ (-?[\d.]+)L[^"]*" fill="none" stroke="[^"]+" '
         r'stroke-width="2" stroke-linecap="round">'
-        + re.escape(f"<title>{label}</title>") + r"</path>")
+        + re.escape(f"<title>{html.escape(label, quote=False)}</title>") + r"</path>")
     m = pattern.search(svg_out)
     return float(m.group(1)) if m else None
 
