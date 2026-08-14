@@ -21,6 +21,7 @@ import html
 import logging
 from pathlib import Path
 
+from . import fetch_inspire
 from .common import (CONFERENCES_PAGE, DIGEST_PAGE, NEWS_PAGE, detex,
                      load_config, truncate)
 
@@ -337,8 +338,13 @@ def conferences(records: list[dict], log: logging.Logger,
         log.warning("render: no conference records — conferences.md left untouched")
         return False
 
-    upcoming = [r for r in records if (r.get("extra") or {}).get("scope") != "past"]
-    recent = [r for r in records if (r.get("extra") or {}).get("scope") == "past"]
+    # `extra.scope` is the field DOMAIN ("neutrino" vs "general" — what
+    # conferences.split_scope() uses for the two sections below), not the
+    # TENSE. It is never "past"; the field that says whether a conference is
+    # still ahead is `extra.upcoming`, set by every fetcher. Indico alone
+    # never produced a concluded record, so reading `scope` here happened to
+    # give the right answer and nothing noticed until a second source did.
+    upcoming, recent = fetch_inspire.split(records)
 
     body = f"""<section class="hero">
   <div class="wrap hero__in">

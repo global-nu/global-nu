@@ -17,8 +17,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
+import tempfile
+
 from tools.news import conferences as conf          # noqa: E402
-from tools.news import fetch_inspire, fetch_nu_unbound   # noqa: E402
+from tools.news import fetch_inspire, fetch_nu_unbound, render   # noqa: E402
 
 problems: list[str] = []
 checks = 0
@@ -74,6 +76,47 @@ lead = next((m for m in merged if m["title"] == "NuFact 2026"), None)
 check("the merged entry records both providers",
       bool(lead) and len(set((lead.get("extra") or {}).get("providers") or [])) >= 2,
       f"providers: {(lead or {}).get('extra', {}).get('providers')}")
+
+# render.conferences() must split on whether a conference is still ahead
+# (extra.upcoming), not on which part of the field it covers (extra.scope,
+# "neutrino" vs "general" — the axis conferences.split_scope() uses for the
+# two sections a later task builds). Redirected to a scratch file so this
+# does not overwrite the real site-src/content/conferences.md.
+render.CONFERENCES_PAGE = Path(tempfile.mkdtemp()) / "conferences.md"
+
+
+def _render_split(records):
+    render.conferences(records, _Log(), stamp="test")
+    text = render.CONFERENCES_PAGE.read_text(encoding="utf-8")
+    upcoming_block, _, recent_block = text.partition('<h2>Recent</h2>')
+    return upcoming_block, recent_block
+
+
+still_ahead = rec("Still Ahead 2099", "https://ahead.example.org/", "Bari", "IT",
+                  "2099-01-01", "2099-01-05", "nu-unbound")
+still_ahead["extra"]["upcoming"] = True
+
+already_over = rec("Already Over 2020", "https://over.example.org/", "Bari", "IT",
+                   "2020-01-01", "2020-01-05", "nu-unbound")
+already_over["extra"]["upcoming"] = False
+
+# Upcoming AND scope="general" — the exact combination the bug got wrong: the
+# old predicate read `scope != "past"` as "upcoming", so a general-scope
+# record was never the cause, but the fix must not swap one field-confusion
+# for another in the other direction.
+general_upcoming = rec("General Physics Meeting 2099", "https://general.example.org/",
+                       "Bari", "IT", "2099-02-01", "2099-02-05", "nu-unbound",
+                       scope="general")
+general_upcoming["extra"]["upcoming"] = True
+
+up_block, recent_block = _render_split([still_ahead, already_over, general_upcoming])
+check("a record with extra.upcoming=True renders under Upcoming, not Recent",
+      "Still Ahead 2099" in up_block and "Still Ahead 2099" not in recent_block)
+check("a record with extra.upcoming=False renders under Recent, not Upcoming",
+      "Already Over 2020" in recent_block and "Already Over 2020" not in up_block)
+check("a record whose extra.scope is 'general' is not thereby treated as concluded",
+      "General Physics Meeting 2099" in up_block
+      and "General Physics Meeting 2099" not in recent_block)
 
 print()
 if problems:
