@@ -10,8 +10,9 @@
  * than taking the page down with it. With this script never running, every
  * figure still draws exactly as before; this only adds a way to enlarge one.
  *
- * The world map is deliberately excluded. It already answers a click by opening
- * an experiment's card, and two meanings for one click means one of them loses.
+ * The world map, and the conference map beside it, are deliberately excluded.
+ * Each already answers a click by opening its own card, and two meanings for
+ * one click means one of them loses.
  *
  * On the zoom arithmetic being similar to map.js's: that is deliberate, not an
  * oversight. Sharing it would mean refactoring the map's working, tested
@@ -182,6 +183,7 @@
     if (!figs.length) return;
     Array.prototype.forEach.call(figs, function (fig) {
       if (fig.classList.contains("map-figure")) return;   /* has its own click */
+      if (fig.classList.contains("confmap-figure")) return; /* ditto — confmap.js */
       if (!drawingIn(fig)) return;                        /* nothing to enlarge */
       fig.setAttribute("tabindex", "0");
       fig.setAttribute("role", "button");

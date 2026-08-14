@@ -29,6 +29,9 @@ from __future__ import annotations
 import datetime as _dt
 import html
 import logging
+import math
+
+from . import worldmap as wm
 
 
 def _e(text: str) -> str:
@@ -199,6 +202,177 @@ def conference_timeline(upcoming: list[dict], recent: list[dict],
                 f'<text x="{x1 + w + 6:.1f}" y="{y + 12.5}" '
                 f'style="fill:var(--text-mute);font-size:9px;opacity:{opacity};'
                 f'font-family:var(--body,sans-serif)">{_e(place)}</text>')
+
+    parts.append("</svg>")
+    return "\n".join(parts)
+
+
+# --------------------------------------------------------------------------- #
+# the conference map
+# --------------------------------------------------------------------------- #
+# Same crop as tools/make_map.py's experiments map — 84N down to 78S, far
+# enough south to clear every inhabited continent without needing that map's
+# South Pole inset, which nothing in this dataset has ever required — but
+# drawn at HALF the vertical resolution: worldmap.project's y is halved after
+# the fact, so the same latitude range that gives the experiments map its
+# 324-unit height fits this one in 162. The alternative — keep 2 units per
+# degree of latitude and crop the *range* in half instead — would need a fixed
+# window a real conference can fall outside of: on today's data Sydney and
+# Santiago both sit past 33°S, so a crop centred on the temperate north would
+# cut them, silently, off a map their own coordinates were good enough to be
+# plotted on. Halving the vertical scale instead means every latitude on
+# Earth still has a place here — for a conference calendar, where a
+# first-time entry next February could plausibly be Cape Town, "a flatter
+# map" beats "occasionally missing a real dot," so a mild vertical squeeze
+# against wm.LAND_PATH's otherwise-undistorted outlines is the trade this
+# figure makes. Longitude is not touched at all: the full 720-wide world
+# stays recognisable at a glance, which a map cropped to only the conferences
+# on hand would not.
+MAP_TOP_LAT = 84.0
+MAP_BOTTOM_LAT = -78.0
+MAP_SCALE_Y = 0.5
+
+MAP_HALO_R = 6.0
+MAP_DOT_R = 3.0
+# Two markers this close would sit almost entirely on top of one another,
+# hiding whichever was drawn first — the same problem make_map.py's
+# MERGE_DIST exists to catch, reused at the same "2 dot-radii" rule rather
+# than a second, invented one.
+MAP_MERGE_DIST = 2 * MAP_DOT_R
+MAP_FAN_R = 8.0
+
+
+def _map_xy(lon: float, lat: float) -> tuple[float, float]:
+    x, y = wm.project(lon, lat)
+    return x, y * MAP_SCALE_Y
+
+
+def _map_title(name: str, place: str, dates: str) -> str:
+    title = f"{name} — {place}" if place else name
+    return f"{title} · {dates}" if dates else title
+
+
+def _conf_pin(conf: dict, lon: float, lat: float, cx: float, cy: float) -> str:
+    """One <g class="conf-pin">, drawn at (cx, cy).
+
+    (cx, cy) is the marker's own projected position unless it shares a
+    cluster with another conference, in which case the caller has already
+    nudged it a few units off-centre so the two dots read as two rather than
+    one hiding the other (see conference_map's docstring). data-lat/data-lon
+    always carry the conference's REAL coordinates regardless of that visual
+    nudge: confmap.js builds the Google Maps link from them, and a link is
+    only as honest as the numbers that produced it.
+    """
+    extra = conf.get("extra") or {}
+    name = conf.get("title", "")
+    place = extra.get("place") or extra.get("city") or ""
+    dates = extra.get("span", "")
+    title = _map_title(name, place, dates)
+    attrs = (
+        f' data-conf="{_e(conf.get("id", ""))}"'
+        f' data-name="{_e(name)}"'
+        f' data-place="{_e(place)}"'
+        f' data-dates="{_e(dates)}"'
+        f' data-url="{_e(conf.get("url", ""))}"'
+        f' data-lat="{lat:.4f}"'
+        f' data-lon="{lon:.4f}"'
+    )
+    return (
+        f'<g class="conf-pin"{attrs}><title>{_e(title)}</title>'
+        f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{MAP_HALO_R}" '
+        f'fill="var(--no)" opacity=".18"/>'
+        f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{MAP_DOT_R}" fill="var(--no)" '
+        f'stroke="var(--bg)" stroke-width="1.1" paint-order="stroke"/></g>'
+    )
+
+
+def conference_map(located: list[tuple[dict, float, float]]) -> str:
+    """A world map of upcoming conferences, one dot per located one.
+
+    `located` holds only conferences the caller already ran through
+    venue.locate_record — recently-concluded conferences and ones the cascade
+    could not place are never passed in, per the spec ("a dot in roughly the
+    right country is worse than no dot"); this function draws exactly what it
+    is given and invents nothing.
+
+    Each element is (record, lon, lat) — the same (lon, lat) order
+    venue.locate_record and worldmap.project both use, LONGITUDE FIRST.
+    Getting this order backwards would put every conference in the wrong
+    hemisphere while still producing a map that looks plausible at a glance —
+    the worst kind of wrong for a public scientific page — so callers and
+    tests should assert the order explicitly rather than trust a reading of
+    it.
+    """
+    if not located:
+        return ""
+
+    # Step 1: project and cluster. Single-linkage union-find on screen
+    # distance — make_map.py's own algorithm, reused rather than reinvented,
+    # per the brief. Bucketing happens in the FINAL (already-squished) pixel
+    # space, because "coincident" is a statement about what a reader sees on
+    # this drawn map, not about the underlying undistorted globe.
+    points = [(conf, lon, lat, _map_xy(lon, lat)) for conf, lon, lat in located]
+    parent = list(range(len(points)))
+
+    def find(i: int) -> int:
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    def union(i: int, j: int) -> None:
+        ri, rj = find(i), find(j)
+        if ri != rj:
+            parent[ri] = rj
+
+    for i in range(len(points)):
+        for j in range(i + 1, len(points)):
+            xi, yi = points[i][3]
+            xj, yj = points[j][3]
+            if math.hypot(xi - xj, yi - yj) <= MAP_MERGE_DIST:
+                union(i, j)
+
+    clusters: dict[int, list[int]] = {}
+    for i in range(len(points)):
+        clusters.setdefault(find(i), []).append(i)
+
+    top = wm.project(0.0, MAP_TOP_LAT)[1] * MAP_SCALE_Y
+    bottom = wm.project(0.0, MAP_BOTTOM_LAT)[1] * MAP_SCALE_Y
+    height = bottom - top
+
+    parts = [
+        f'<svg viewBox="0 {top:.0f} {wm.WIDTH:.0f} {height:.0f}" role="img" '
+        'aria-label="World map of upcoming neutrino conferences" '
+        'xmlns="http://www.w3.org/2000/svg">',
+        "<title>Where the upcoming conferences are</title>",
+        f'<g transform="scale(1,{MAP_SCALE_Y})">'
+        f'<path d="{wm.LAND_PATH}" fill="var(--surface-2)" '
+        'stroke="var(--line-strong)" stroke-width="0.6" '
+        'vector-effect="non-scaling-stroke"/></g>',
+    ]
+
+    # Step 2: draw. A cluster of one draws at its own true position; a
+    # cluster of more than one fans its members a few units around their
+    # shared centre — still one complete, independently clickable
+    # <g class="conf-pin"> per conference (no cluster wrapper, no
+    # reveal-on-click state for confmap.js to manage), just close enough
+    # together that a reader sees "more than one conference here" instead of
+    # one dot silently hiding another — the actual problem MERGE_DIST exists
+    # to solve, per make_map.py's own comment on it.
+    for members in sorted(clusters.values(), key=len):
+        if len(members) == 1:
+            conf, lon, lat, (x, y) = points[members[0]]
+            parts.append(_conf_pin(conf, lon, lat, x, y))
+            continue
+        cx = sum(points[i][3][0] for i in members) / len(members)
+        cy = sum(points[i][3][1] for i in members) / len(members)
+        n = len(members)
+        for k, i in enumerate(members):
+            conf, lon, lat, _ = points[i]
+            angle = math.radians(-90 + k * 360 / n)
+            fx = cx + MAP_FAN_R * math.cos(angle)
+            fy = cy + MAP_FAN_R * math.sin(angle)
+            parts.append(_conf_pin(conf, lon, lat, fx, fy))
 
     parts.append("</svg>")
     return "\n".join(parts)

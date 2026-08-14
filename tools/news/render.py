@@ -21,7 +21,7 @@ import html
 import logging
 from pathlib import Path
 
-from . import fetch_inspire, figures
+from . import fetch_inspire, figures, venue
 from .common import (CONFERENCES_PAGE, DIGEST_PAGE, NEWS_PAGE, detex,
                      load_config, truncate)
 
@@ -314,6 +314,8 @@ description: >-
   Upcoming and recent neutrino conferences, workshops and schools, with dates,
   links, and venues where the source publishes one — refreshed daily.
 katex: false
+scripts:
+  - assets/js/confmap.js
 ---"""
 
 
@@ -384,6 +386,41 @@ def conferences(records: list[dict], log: logging.Logger,
 </figure>
 """
 
+    # Located fresh from this morning's `upcoming` records, same as the
+    # timeline above — never cached, so the map can never show a conference
+    # the lists no longer do. venue.locate_record runs the cascade (place
+    # string, INSPIRE's structured address, Indico's address, the
+    # conference's own page — see venue.py) and is asked here for the first
+    # time on this site; a record it cannot place keeps its row in the
+    # "Upcoming" list below and simply gets no dot, per the spec.
+    located: list[tuple[dict, float, float]] = []
+    for rec in upcoming:
+        spot = venue.locate_record(rec, log)
+        if spot is not None:
+            lon, lat = spot
+            located.append((rec, lon, lat))
+
+    conf_map = figures.conference_map(located)
+    map_block = ""
+    if conf_map:
+        n_located = len(located)
+        n_missing = len(upcoming) - n_located
+        map_caption = (f"{n_located} of {len(upcoming)} upcoming "
+                       f"meeting{'' if len(upcoming) == 1 else 's'} placed "
+                       f"on the map from a venue the source published")
+        if n_missing:
+            map_caption += (f"; the other {n_missing} stay in the list "
+                            f"below without a dot rather than a guess.")
+        else:
+            map_caption += "."
+        map_block = f"""
+<figure class="figure confmap-figure">
+<h4>Map</h4>
+{conf_map}
+<p class="cap">{map_caption}</p>
+</figure>
+"""
+
     body = f"""<section class="hero">
   <div class="wrap hero__in">
     <p class="kicker">Refreshed daily</p>
@@ -398,6 +435,7 @@ def conferences(records: list[dict], log: logging.Logger,
 {AUTOGEN_SCRIPT.format(sources="conference indexers' APIs", stamp=stamp or _stamp())}
 
 {timeline_block}
+{map_block}
 <div class="section-head"><h2>Upcoming</h2>
 <p>{len(upcoming)} meeting{"" if len(upcoming) == 1 else "s"}</p></div>
 
