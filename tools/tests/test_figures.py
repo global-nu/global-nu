@@ -243,17 +243,38 @@ SYDNEY_LON, SYDNEY_LAT = 151.2093, -33.8688
 
 
 def _pin_block(svg: str, conf_id: str) -> str:
-    """The whole <g class="conf-pin" ...>...</g> for one conference, so the
-    attribute and cx/cy checks below read from the SAME marker rather than
-    (accidentally) the first one in the document."""
-    m = re.search(rf'<g class="conf-pin"[^>]*data-conf="{re.escape(conf_id)}"'
-                  r'.*?</g>', svg, re.S)
+    """The whole <g class="conf-pin" ...>...</g> for the marker holding one
+    conference, so the attribute and position checks below read from the SAME
+    marker rather than (accidentally) the first one in the document.
+
+    A marker is one <g class="conf-pin"> per venue, holding one
+    <g class="conf-item" data-conf="..."> per conference there (see
+    figures._conf_marker) — data-conf identifies the conference but sits on
+    the inner item, not on the outer pin, so this matches inward to the item
+    first and then reaches back out to the pin's own closing tag.
+    """
+    m = re.search(
+        rf'<g class="conf-pin"[^>]*>.*?'
+        rf'<g class="conf-item"[^>]*data-conf="{re.escape(conf_id)}"[^>]*>'
+        r'</g>(?:<g class="conf-item"[^>]*></g>)*</g>',
+        svg, re.S)
     return m.group(0) if m else ""
 
 
 def _num(pattern: str, block: str) -> float | None:
     m = re.search(pattern, block)
     return float(m.group(1)) if m else None
+
+
+def _xy(block: str) -> tuple[float | None, float | None]:
+    """The marker's drawn (x, y), off the conf-pin's own transform.
+
+    A marker's <circle> sits at the origin of a translated <g> now — no cx/cy
+    of its own (see figures._conf_marker) — so the position a reader sees
+    comes from the group's transform="translate(x y)", not a shape attribute.
+    """
+    m = re.search(r'transform="translate\((-?[\d.]+) (-?[\d.]+)\)"', block)
+    return (float(m.group(1)), float(m.group(2))) if m else (None, None)
 
 
 # Hop 1: figures.conference_map's own projection. A record is handed in
@@ -278,8 +299,7 @@ check("the drawn marker's data-lon equals the (lon, lat) tuple's FIRST element",
       lon_attr is not None and abs(lon_attr - SYDNEY_LON) < 1e-6,
       f"data-lon={lon_attr}")
 
-cx = _num(r'cx="(-?[\d.]+)"', block)
-cy = _num(r'cy="(-?[\d.]+)"', block)
+cx, cy = _xy(block)
 equator_y = figures.wm.project(0.0, 0.0)[1]
 centre_x = figures.wm.WIDTH / 2.0
 check("a southern-hemisphere conference is drawn BELOW the equator line "
@@ -325,8 +345,7 @@ check("through render.conferences()'s own lon,lat = spot unpacking, "
      "data-lon still matches locate_record's FIRST element",
       hop_lon is not None and abs(hop_lon - SYDNEY_LON) < 1e-6,
       f"data-lon={hop_lon}")
-hop_cx = _num(r'cx="(-?[\d.]+)"', hop_block)
-hop_cy = _num(r'cy="(-?[\d.]+)"', hop_block)
+hop_cx, hop_cy = _xy(hop_block)
 check("the same record, drawn via render.conferences(), still lands south "
      "of the equator line",
       hop_cy is not None and hop_cy > equator_y,

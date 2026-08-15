@@ -29,7 +29,6 @@ from __future__ import annotations
 import datetime as _dt
 import html
 import logging
-import math
 
 from . import geocluster, photos
 from . import worldmap as wm
@@ -222,14 +221,12 @@ def conference_timeline(upcoming: list[dict], recent: list[dict],
 MAP_TOP_LAT = 82.0
 MAP_BOTTOM_LAT = -58.0
 
-MAP_HALO_R = 6.0
 MAP_DOT_R = 3.0
 # Two markers this close would sit almost entirely on top of one another,
 # hiding whichever was drawn first — the same problem make_map.py's
 # MERGE_DIST exists to catch, reused at the same "2 dot-radii" rule rather
 # than a second, invented one.
 MAP_MERGE_DIST = 2 * MAP_DOT_R
-MAP_FAN_R = 8.0
 
 
 def _map_title(name: str, place: str, dates: str) -> str:
@@ -267,37 +264,47 @@ def _lookup_photo(conf: dict, log: logging.Logger) -> dict | None:
     return photos.for_city(city_code[0], city_code[1], log)
 
 
-def _conf_pin(conf: dict, lon: float, lat: float, cx: float, cy: float,
-             photo: dict | None = None) -> str:
-    """One <g class="conf-pin">, drawn at (cx, cy).
+def _conf_marker(confs: list[dict], lon: float, lat: float,
+                 x: float, y: float, photo: dict | None = None) -> str:
+    """One <g class="conf-pin"> for a venue, holding every conference at it.
 
-    (cx, cy) is the marker's own projected position unless it shares a
-    cluster with another conference, in which case the caller has already
-    nudged it a few units off-centre so the two dots read as two rather than
-    one hiding the other (see conference_map's docstring). data-lat/data-lon
-    always carry the conference's REAL coordinates regardless of that visual
-    nudge: confmap.js builds the Google Maps link from them, and a link is
-    only as honest as the numbers that produced it.
+    A marker used to be one conference, and a city with two fanned them into
+    two dots a few units apart. It is now one dot with the count on it — what
+    makes the home page's map legible across a crowded Europe — so the
+    conferences have to live inside it. `map.js` already does exactly this
+    with `.map-exp` children inside one experiment pin; this follows that
+    pattern rather than inventing a second one.
+
+    Each `<g class="conf-item">` draws nothing. It carries one conference's
+    name, dates and URL for confmap.js to read, on hover and on click.
+
+    data-lat/data-lon are the venue's REAL coordinates: confmap.js builds the
+    Google Maps link from them, and a link is only as honest as the numbers
+    that produced it.
 
     `photo`, when given, is the dict photos.for_city returns — file, page,
-    author, licence, licence_url — carried onto the marker as five
-    data-photo* attributes so confmap.js can render the image and its full
-    credit without a second lookup. Two conferences in the same city (the
-    common case for a fanned, merged marker — see conference_map's docstring)
-    get the identical photo, because photos.for_city caches by city: nothing
-    here needs to know or care that a marker is part of a cluster.
+    author, licence, licence_url — carried as five data-photo* attributes so
+    confmap.js can render the image and its full credit without a second
+    lookup. It sits on the marker, not on a conference, because it is a
+    photograph of the CITY: photos.for_city caches by city, and every
+    conference here shares one.
     """
-    extra = conf.get("extra") or {}
-    name = conf.get("title", "")
+    first = confs[0]
+    extra = first.get("extra") or {}
     place = extra.get("place") or extra.get("city") or ""
-    dates = extra.get("span", "")
-    title = _map_title(name, place, dates)
+    city = extra.get("city") or place
+    n = len(confs)
+    r = 3.2 + 1.5 * min(n - 1, 4)
+    colour = ("var(--dec-4)" if (extra.get("scope") or "") == "general"
+              else "var(--no)")
+
+    title = "; ".join(
+        _map_title(c.get("title", ""), place,
+                   (c.get("extra") or {}).get("span", ""))
+        for c in confs)
+
     attrs = (
-        f' data-conf="{_e(conf.get("id", ""))}"'
-        f' data-name="{_e(name)}"'
         f' data-place="{_e(place)}"'
-        f' data-dates="{_e(dates)}"'
-        f' data-url="{_e(conf.get("url", ""))}"'
         f' data-lat="{lat:.4f}"'
         f' data-lon="{lon:.4f}"'
     )
@@ -309,18 +316,40 @@ def _conf_pin(conf: dict, lon: float, lat: float, cx: float, cy: float,
             f' data-photo-licence-url="{_e(photo.get("licence_url") or "")}"'
             f' data-photo-page="{_e(photo["page"])}"'
         )
+
+    items = "".join(
+        f'<g class="conf-item" data-conf="{_e(c.get("id", ""))}"'
+        f' data-name="{_e(c.get("title", ""))}"'
+        f' data-dates="{_e((c.get("extra") or {}).get("span", ""))}"'
+        f' data-url="{_e(c.get("url", ""))}"></g>'
+        for c in confs)
+
+    # The shapes sit at the origin inside a translated group, and data-fixed
+    # holds the anchor: svgzoom.js counter-scales every [data-fixed] group so
+    # a dot keeps its on-screen size as the map is zoomed, and a crowd comes
+    # apart instead of growing into one blob.
+    count = (f'<text y="2.4" text-anchor="middle" '
+             f'style="fill:var(--on-accent);font-size:6px;font-weight:700;'
+             f'font-family:var(--display,sans-serif)">{n}</text>'
+             if n > 1 else "")
+
     return (
-        f'<g class="conf-pin"{attrs}><title>{_e(title)}</title>'
-        f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{MAP_HALO_R}" '
-        f'fill="var(--no)" opacity=".18"/>'
-        f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{MAP_DOT_R}" fill="var(--no)" '
-        f'stroke="var(--bg)" stroke-width="1.1" paint-order="stroke"/></g>'
+        f'<g class="conf-pin"{attrs} data-fixed="{x:.1f} {y:.1f}" '
+        f'transform="translate({x:.1f} {y:.1f})" tabindex="0">'
+        f'<title>{_e(title)}</title>'
+        f'<circle r="{r:.1f}" fill="{colour}" stroke="var(--bg)" '
+        f'stroke-width="1.1" paint-order="stroke"/>'
+        f'{count}'
+        f'<text y="{-r - 3:.1f}" text-anchor="middle" class="map-name" '
+        f'style="fill:var(--text-mute);font-size:8px;'
+        f'font-family:var(--body,sans-serif)">{_e(_trim(city, 18))}</text>'
+        f'{items}</g>'
     )
 
 
 def conference_map(located: list[tuple[dict, float, float]],
                    log: logging.Logger | None = None) -> str:
-    """A world map of upcoming conferences, one dot per located one.
+    """A world map of upcoming conferences, one dot per venue.
 
     `located` holds only conferences the caller already ran through
     venue.locate_record — recently-concluded conferences and ones the cascade
@@ -371,28 +400,19 @@ def conference_map(located: list[tuple[dict, float, float]],
         'vector-effect="non-scaling-stroke"/>',
     ]
 
-    # Step 2: draw. A cluster of one draws at its own true position; a
-    # cluster of more than one fans its members a few units around their
-    # shared centre — still one complete, independently clickable
-    # <g class="conf-pin"> per conference (no cluster wrapper, no
-    # reveal-on-click state for confmap.js to manage), just close enough
-    # together that a reader sees "more than one conference here" instead of
-    # one dot silently hiding another — the actual problem MERGE_DIST exists
-    # to solve, per make_map.py's own comment on it.
+    # Step 2: draw one marker per cluster. A cluster of one is a city with one
+    # conference; a cluster of several is a city with several, and the count
+    # goes on the dot instead of fanning them into separate ones.
     for members in sorted(clusters.values(), key=len):
-        if len(members) == 1:
-            conf, lon, lat, (x, y) = points[members[0]]
-            parts.append(_conf_pin(conf, lon, lat, x, y, _lookup_photo(conf, log)))
-            continue
+        confs = [points[i][0] for i in members]
+        # The cluster's position is the mean of its members', but the
+        # coordinates carried on the marker are the first conference's real
+        # ones — the Google Maps link must land on a venue, not on a centroid.
         cx = sum(points[i][3][0] for i in members) / len(members)
         cy = sum(points[i][3][1] for i in members) / len(members)
-        n = len(members)
-        for k, i in enumerate(members):
-            conf, lon, lat, _ = points[i]
-            angle = math.radians(-90 + k * 360 / n)
-            fx = cx + MAP_FAN_R * math.cos(angle)
-            fy = cy + MAP_FAN_R * math.sin(angle)
-            parts.append(_conf_pin(conf, lon, lat, fx, fy, _lookup_photo(conf, log)))
+        _, lon, lat, _ = points[members[0]]
+        parts.append(_conf_marker(confs, lon, lat, cx, cy,
+                                  _lookup_photo(confs[0], log)))
 
     parts.append("</svg>")
     return "\n".join(parts)

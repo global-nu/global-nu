@@ -68,7 +68,12 @@ check("nothing scales the land vertically any more",
 # svg check can pass by coincidence — which is exactly what it did against
 # the old, squashed code (see the control below).
 x, y = wm.project(16.87, 41.12)
-cm = re.search(r'<circle cx="([-\d.]+)" cy="([-\d.]+)"', svg)
+# The marker's own <circle> sits at the origin of a translated <g> now (see
+# _conf_marker: r has no cx/cy, translate(x y) on the group carries the
+# position instead, so svgzoom.js can counter-scale the whole group by its
+# data-fixed anchor). The position check below reads that translate, not a
+# cx/cy pair that no longer exists.
+cm = re.search(r'class="conf-pin".*?transform="translate\(([-\d.]+) ([-\d.]+)\)"', svg)
 check("the marker's circle is present", cm is not None, svg[:200])
 if cm:
     cx, cy = float(cm.group(1)), float(cm.group(2))
@@ -85,6 +90,39 @@ if cm:
     check("this check would have caught the old squash (control)",
           abs(cy - squashed_y) > 5.0,
           f"cy={cy}, squashed would be {squashed_y:.1f} — too close to tell apart")
+
+# --- one marker per venue, not per conference ----------------------------
+TWO = [
+    ({"id": "a", "title": "First Conference", "url": "https://a.example/",
+      "extra": {"place": "Bari, Italy", "city": "Bari", "span": "1-5 Sep 2026",
+                "scope": "neutrino"}}, 16.87, 41.12),
+    ({"id": "b", "title": "Second Conference", "url": "https://b.example/",
+      "extra": {"place": "Bari, Italy", "city": "Bari", "span": "8-9 Sep 2026",
+                "scope": "neutrino"}}, 16.87, 41.12),
+]
+svg2 = figures.conference_map(TWO)
+
+check("two conferences in one city draw ONE marker",
+      svg2.count('class="conf-pin"') == 1,
+      f'found {svg2.count(chr(34) + "conf-pin" + chr(34))} markers')
+check("the marker holds one conf-item per conference",
+      svg2.count('class="conf-item"') == 2)
+check("the count is drawn on the marker", ">2</text>" in svg2, svg2[-900:])
+check("every conference keeps its own name",
+      "First Conference" in svg2 and "Second Conference" in svg2)
+check("every conference keeps its own dates",
+      "1-5 Sep 2026" in svg2 and "8-9 Sep 2026" in svg2)
+check("every conference keeps its own url",
+      "https://a.example/" in svg2 and "https://b.example/" in svg2)
+check("the venue's real coordinates are on the marker",
+      'data-lat="41.1200"' in svg2 and 'data-lon="16.8700"' in svg2)
+check("the fan-out is gone", not hasattr(figures, "MAP_FAN_R"))
+check("the halo is gone", not hasattr(figures, "MAP_HALO_R"))
+check("the marker is anchored for counter-scaling", 'data-fixed=' in svg2)
+check("the city is named on the marker", 'class="map-name"' in svg2)
+
+single = figures.conference_map([TWO[0]])
+check("a lone conference draws no count badge", ">1</text>" not in single)
 
 print()
 if problems:
