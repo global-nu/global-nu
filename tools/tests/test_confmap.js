@@ -64,7 +64,7 @@ const SVG = `
          data-dates="3–7 Nov 2026" data-url="https://trieste.example.org/"></g>
     </g>
     <g class="conf-pin" data-place="Bari, Italy" data-lat="41.1200"
-       data-lon="16.8700" tabindex="0">
+       data-lon="16.8700">
       <title>First Conference — Bari, Italy — 1-5 Sep 2026</title>
       <circle r="4.7"/><text>2</text>
       <g class="conf-item" data-conf="conf:first" data-name="First Conference"

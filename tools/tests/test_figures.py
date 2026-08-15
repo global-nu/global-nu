@@ -252,9 +252,18 @@ def _pin_block(svg: str, conf_id: str) -> str:
     figures._conf_marker) — data-conf identifies the conference but sits on
     the inner item, not on the outer pin, so this matches inward to the item
     first and then reaches back out to the pin's own closing tag.
+
+    The span between the two is a TEMPERED dot, not a plain `.*?`: with re.S
+    a plain one can start at an EARLIER pin and run straight through that
+    pin's closing </g> into the target's item, returning a block whose
+    transform and data-* belong to the wrong marker — silently, and on
+    exactly the multi-marker input the coordinate-order check below relies on
+    this function to disambiguate. Refusing to cross another
+    `<g class="conf-pin"` opening ties the match to the pin that really
+    contains the item.
     """
     m = re.search(
-        rf'<g class="conf-pin"[^>]*>.*?'
+        rf'<g class="conf-pin"(?:(?!<g class="conf-pin").)*?'
         rf'<g class="conf-item"[^>]*data-conf="{re.escape(conf_id)}"[^>]*>'
         r'</g>(?:<g class="conf-item"[^>]*></g>)*</g>',
         svg, re.S)

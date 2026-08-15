@@ -4,9 +4,19 @@
     ./.venv/bin/python3 tools/tests/test_confmap_geometry.py
 
 The map used to scale every y by 0.5 to stay short, and a caption apologised
-for it in prose. Cropping the empty Arctic and the Antarctic smear gives the
-same height on screen with the right shapes, so the squash — and the excuse —
-are gone. This test is what stops either coming back.
+for it in prose. Cropping the empty Arctic and the Antarctic smear gets the
+shapes right instead, at the cost of a taller figure — 280 viewBox units
+against the old 162, about 73% more height on the page, since .figure svg
+sizes the card by the viewBox's own aspect ratio. That cost was accepted
+deliberately; the squash, and the excuse for it, are gone. This test is what
+stops either coming back.
+
+It also polices what a marker may claim. A marker asserts a place — in its
+<title>, its data-place, and everything confmap.js builds from those — so
+only conferences at the SAME position may share one. See the NEAR fixture at
+the end: fixtures that put every conference at one coordinate cannot tell a
+position-identity grouping from a proximity merge, and for a while none of
+them did.
 """
 from __future__ import annotations
 
@@ -187,6 +197,49 @@ check("the legend never advertises a colour no dot wears",
 check("the general conference is folded into the neutrino dot, so its "
       "legend entry is not drawn",
       "General particle physics" not in svgs)
+
+# --- a marker must never speak for a city it is not in -------------------
+# Every fixture above puts its conferences at ONE place and ONE coordinate,
+# so each passes identically whether markers are grouped by identical
+# position or merely by proximity — none of them can tell the two apart.
+# This one can. Otranto and Corfu are ~1.5 degrees apart, i.e. ~3 units in
+# a 720-unit-wide projection: inside the 6-unit proximity merge the map
+# briefly used, and the reason the published map captioned a conference in
+# Apulia "Corfu, Greece" and showed it a photograph of Corfu. Distinct
+# cities are distinct venues; only an identical position may share a dot.
+NEAR = [
+    ({"id": "ot", "title": "Neutrino Oscillation Workshop",
+      "url": "https://ot.example/",
+      "extra": {"place": "Otranto (Lecce), Italy", "city": "Otranto",
+                "span": "6-13 Sep 2026", "scope": "neutrino"}}, 18.49, 40.15),
+    ({"id": "kf", "title": "Corfu Summer Institute", "url": "https://kf.example/",
+      "extra": {"place": "Corfu, Greece", "city": "Corfu",
+                "span": "1-10 Sep 2026", "scope": "neutrino"}}, 19.92, 39.62),
+]
+svgn = figures.conference_map(NEAR)
+
+check("two nearby but DIFFERENT cities draw two markers",
+      svgn.count('class="conf-pin"') == 2,
+      f'found {svgn.count(chr(34) + "conf-pin" + chr(34))} markers')
+check("neither nearby marker carries a count badge",
+      ">2</text>" not in svgn,
+      "a badge means 'this many conferences at this venue' — two cities is "
+      "not one venue")
+
+places = set(re.findall(r'<g class="conf-pin" data-place="([^"]*)"', svgn))
+check("each marker keeps its own place",
+      places == {"Otranto (Lecce), Italy", "Corfu, Greece"}, places)
+
+coords = set(re.findall(r'data-lat="(-?[\d.]+)" data-lon="(-?[\d.]+)"', svgn))
+check("each marker keeps its own coordinates",
+      coords == {("40.1500", "18.4900"), ("39.6200", "19.9200")}, coords)
+
+# The <title> is what a reader without JS gets, and the only place the
+# conference name and the place appear together in the static SVG.
+check("each conference's <title> names the city it is actually in",
+      "Neutrino Oscillation Workshop — Otranto (Lecce), Italy" in svgn
+      and "Corfu Summer Institute — Corfu, Greece" in svgn,
+      re.findall(r"<title>[^<]*</title>", svgn))
 
 print()
 if problems:

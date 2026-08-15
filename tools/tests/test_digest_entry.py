@@ -10,7 +10,6 @@ paper's real citation links, silently, on a page nobody re-reads daily.
 """
 from __future__ import annotations
 
-import re
 import sys
 from pathlib import Path
 

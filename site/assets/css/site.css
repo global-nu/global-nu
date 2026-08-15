@@ -307,7 +307,7 @@ h4{font-weight:700;font-size:.98rem}
    .table-scroll for the same reason.
    The other end of that same stretch is the actual bug: this figure's
    viewBox (520x326, a 14-row Gantt strip) is far taller relative to its
-   width than the map's (720x162), so letting it fill a ~1200px-wide card
+   width than the map's (720x280), so letting it fill a ~1200px-wide card
    the same way scales it to ~660px tall — nearly a full screen on its own,
    on the conferences page specifically, the one page where two figures were
    already flagged as a risk to the list below them. max-width holds it near
@@ -907,7 +907,11 @@ a.card:hover .card__go{color:var(--text)}
    closest sibling to these buttons, rather than being copied verbatim from
    the home page this file was ported from. */
 .svgzoom{position:relative}
-.svgzoom--zoomed .confmap-figure svg,.svgzoom--zoomed svg{cursor:grab}
+/* .svgzoom is the wrapper svgzoom.js inserts around the svg, so the svg is
+   its child; a `.svgzoom--zoomed .confmap-figure svg` half was dropped from
+   this selector because .confmap-figure is the wrapper's ANCESTOR and could
+   never have matched. */
+.svgzoom--zoomed svg{cursor:grab}
 .svgzoom--zoomed svg:active{cursor:grabbing}
 /* A normal-flow row above the svg, laid out the same way .figbox__bar is
    above — not an absolutely-positioned overlay on top of it. See
@@ -924,8 +928,14 @@ a.card:hover .card__go{color:var(--text)}
 .svgzoom__btn:disabled{opacity:.25;cursor:default}
 /* Thirty-odd city labels collide at rest, so they fade in only when the map
    is zoomed. With no JS there is no .svgzoom wrapper and the labels simply
-   stay visible — the right fallback, not a broken one. */
-.map-name{transition:opacity .2s}
+   stay visible — the right fallback, not a broken one.
+   pointer-events:none because opacity:0 does NOT stop a label being hit:
+   measured in Chromium on the built page, the exact centre of the Otranto
+   dot returns Kolymbari's invisible <text class="map-name"> from
+   elementFromPoint, and confmap.js's closest(".conf-pin") would then open
+   Kolymbari's card for a click aimed at Otranto. The dot is the target; the
+   name is decoration, at every zoom level. */
+.map-name{transition:opacity .2s;pointer-events:none}
 .svgzoom:not(.svgzoom--zoomed) .map-name{opacity:0}
 
 /* ---------- Δχ² explorer ---------- */
