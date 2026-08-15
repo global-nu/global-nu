@@ -816,6 +816,27 @@ a.card:hover .card__go{color:var(--text)}
 .conf-card__credit a{color:var(--text-mute);text-decoration:underline}
 .conf-card__credit a:hover{color:var(--accent)}
 
+/* Pan/zoom wrapper that svgzoom.js builds around svg[data-zoomable] — the
+   conference map. Tokens follow .figbox__bar's zoom controls above, the
+   closest sibling to these buttons, rather than being copied verbatim from
+   the home page this file was ported from. */
+.svgzoom{position:relative}
+.svgzoom--zoomed .confmap-figure svg,.svgzoom--zoomed svg{cursor:grab}
+.svgzoom--zoomed svg:active{cursor:grabbing}
+.svgzoom__bar{position:absolute;top:.4rem;right:.4rem;display:flex;
+  flex-direction:column;gap:.25rem;z-index:2}
+.svgzoom__btn{width:1.9rem;height:1.9rem;border-radius:var(--r-sm);
+  border:1px solid var(--line-strong);background:var(--surface);
+  color:var(--text-soft);opacity:.55;transition:opacity .2s;cursor:pointer}
+.svgzoom__btn:hover,.svgzoom__btn:focus-visible,
+.svgzoom--zoomed .svgzoom__btn{opacity:1;color:var(--text)}
+.svgzoom__btn:disabled{opacity:.25;cursor:default}
+/* Thirty-odd city labels collide at rest, so they fade in only when the map
+   is zoomed. With no JS there is no .svgzoom wrapper and the labels simply
+   stay visible — the right fallback, not a broken one. */
+.map-name{transition:opacity .2s}
+.svgzoom:not(.svgzoom--zoomed) .map-name{opacity:0}
+
 /* ---------- Δχ² explorer ---------- */
 .chi2__bar{display:flex;flex-wrap:wrap;gap:.7rem 1.4rem;align-items:center;
   margin-bottom:1.1rem}

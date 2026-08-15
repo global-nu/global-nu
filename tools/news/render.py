@@ -352,6 +352,7 @@ description: >-
 katex: false
 scripts:
   - assets/js/confmap.js
+  - assets/js/svgzoom.js
 ---"""
 
 
