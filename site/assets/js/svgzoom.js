@@ -33,14 +33,27 @@
     var wrap = document.createElement("div");
     wrap.className = "svgzoom";
     svg.parentNode.insertBefore(wrap, svg);
-    wrap.appendChild(svg);
 
     var bar = document.createElement("div");
     bar.className = "svgzoom__bar";
     var bIn = btn("+", "Zoom in"), bOut = btn("−", "Zoom out"),
         bRst = btn("↺", "Reset zoom");
     bar.appendChild(bIn); bar.appendChild(bOut); bar.appendChild(bRst);
+    // The bar is a normal-flow row ABOVE the svg (appended first), not an
+    // absolutely-positioned overlay on top of it — the same pattern
+    // .figbox__bar already uses for the lightbox's own controls (site.css).
+    // The overlay was the original layout here, and it broke down on the
+    // conference map specifically: a wide, short (landscape) SVG renders
+    // only ~85-100px tall at 375px wide, and three stacked buttons made a
+    // column almost that same height, sitting directly over one of the
+    // map's own markers (Sydney, near the top-right) and swallowing both
+    // its clicks and its hovers — even through the gaps between buttons,
+    // since nothing here set pointer-events:none. A row reserved in normal
+    // flow can never overlap a marker at any width, the same reason it
+    // already works for figbox; pointer-events was rejected as the fix
+    // because it only relocates the dead zone, it doesn't remove it.
     wrap.appendChild(bar);
+    wrap.appendChild(svg);
 
     function btn(label, title) {
       var b = document.createElement("button");

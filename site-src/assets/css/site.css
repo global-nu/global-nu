@@ -748,8 +748,11 @@ a.card:hover .card__go{color:var(--text)}
 .conf-pin{cursor:pointer}
 
 /* max-height is capped against the viewport, not the stage: .confmap-stage
-   wraps only the SVG, and back when that SVG was squashed to half its drawn
-   latitude range (162 of 720 viewBox units), the percentage cap .map-card
+   wraps the SVG (confmap.js's ensureStage runs first) and svgzoom.js's own
+   zoom-bar-plus-svg wrapper then lands inside it, so the stage's height is
+   the bar row plus the SVG, not the SVG alone — but back when that SVG was
+   squashed to half its drawn latitude range (162 of 720 viewBox units), the
+   percentage cap .map-card
    uses against ITS (then genuinely much taller, 324-unit) stage would have
    left this card only ~135px tall — enough to clip a title mid-sentence and
    hide the dates, place and both action links below it entirely. Found by
@@ -771,14 +774,15 @@ a.card:hover .card__go{color:var(--text)}
    viewport shorter than any tested here.
 
    Task 2 cropped the map instead of squashing it (see figures.py's
-   MAP_TOP_LAT/MAP_BOTTOM_LAT comment), so .confmap-stage is now 280 viewBox
+   MAP_TOP_LAT/MAP_BOTTOM_LAT comment), so the SVG itself is now 280 viewBox
    units tall, not 162 — 73% taller, and no longer far short of the
    experiments map's 324. That does not erode the headroom above: the card
-   is anchored to the STAGE's own bottom edge (bottom:.8rem here; .confmap-
-   stage carries no height of its own beyond its child svg's, set by
-   .figure svg{height:auto} above), so a taller stage pushes that anchor
-   further down the page, away from the sticky header, not into it. 20rem/
-   60vh and the photo's 5:2 crop stand exactly as they were. */
+   is anchored to the STAGE's own bottom edge (bottom:.8rem here), and the
+   svgzoom-bar row Task 5 later added sits ABOVE the svg, inside the stage —
+   it grows the stage from the top, not the bottom, so a taller stage still
+   pushes that anchor further down the page, away from the sticky header,
+   not into it. 20rem/60vh and the photo's 5:2 crop stand exactly as they
+   were. */
 .conf-card{position:absolute;z-index:6;left:.8rem;bottom:.8rem;
   width:min(21rem,calc(100% - 1.6rem));max-height:min(60vh,20rem);overflow-y:auto;
   background:var(--bg);border:1px solid var(--line-strong);border-radius:var(--r);
@@ -853,8 +857,17 @@ a.card:hover .card__go{color:var(--text)}
    the same reason: a marker can hold several conferences (Milano carries
    five), and an uncapped list ran the panel's bottom past the figure's own
    bottom edge at 375px tall — verified with Playwright, not assumed, since
-   jsdom's zero-height layout can't catch a real overflow. */
-.conf-tip{position:absolute;top:.6rem;left:.6rem;max-width:22rem;z-index:3;
+   jsdom's zero-height layout can't catch a real overflow.
+
+   top is not the stage's own .6rem gap: this panel is positioned against
+   .confmap-stage (position:relative), and svgzoom.js's zoom-bar-plus-svg
+   wrapper lands inside that stage, above the svg — so top:.6rem alone would
+   float the panel over the bar row, not the map's top-left corner. The bar
+   is a fixed height (.svgzoom__btn's 1.9rem plus .svgzoom__bar's .4rem
+   margin-bottom = 2.3rem, always present because the conference map always
+   carries data-zoomable), so 2.3rem + the same .6rem gap lands the panel's
+   top edge against the SVG's, not the bar's. */
+.conf-tip{position:absolute;top:2.9rem;left:.6rem;max-width:22rem;z-index:3;
   max-height:min(60vh,20rem);overflow-y:auto;
   padding:.5rem .7rem;border:1px solid var(--line);border-radius:var(--r-sm);
   background:var(--surface);box-shadow:var(--shadow);pointer-events:none}

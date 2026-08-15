@@ -25,7 +25,7 @@ scripts:
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the conference indexers' APIs,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 15 August 2026, 23:23 CEST</span></div>
+<span class="stamp">Last successful update: 16 August 2026, 00:32 CEST</span></div>
 </div>
 
 
@@ -34,49 +34,49 @@ and may contain errors. No model is involved.</b>
 <div class="timeline-scroll">
 <svg viewBox="0 0 520 326" role="img" width="520" height="326" aria-label="Timeline of upcoming and recently concluded neutrino conferences" xmlns="http://www.w3.org/2000/svg">
 <title>Conference timeline</title>
-<line x1="313.0" y1="14" x2="313.0" y2="311" style="stroke:var(--line);stroke-width:1"/>
-<text x="316.0" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
-<line x1="150.7" y1="8" x2="150.7" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
-<text x="150.7" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
-<rect x="188.8" y="30" width="105.0" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<line x1="308.1" y1="14" x2="308.1" y2="311" style="stroke:var(--line);stroke-width:1"/>
+<text x="311.1" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
+<line x1="151.4" y1="8" x2="151.4" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
+<text x="151.4" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
+<rect x="180.8" y="30" width="107.7" height="10" rx="5" style="fill:var(--no);opacity:1"/>
 <text x="112" y="38.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">ICNFP 2026</text>
-<text x="299.9" y="38.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Kolymbari, Crete…</text>
-<rect x="227.1" y="50" width="85.9" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="294.5" y="38.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Kolymbari, Crete…</text>
+<rect x="219.9" y="50" width="88.2" height="10" rx="5" style="fill:var(--no);opacity:1"/>
 <text x="112" y="58.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">Corfu 2026</text>
-<text x="319.0" y="58.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Corfu, Greece</text>
-<rect x="236.6" y="70" width="38.2" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="314.1" y="58.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Corfu, Greece</text>
+<rect x="229.7" y="70" width="39.2" height="10" rx="5" style="fill:var(--no);opacity:1"/>
 <text x="112" y="78.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">Multi-Messenger…</text>
-<text x="280.8" y="78.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Athens, Greece</text>
-<rect x="236.6" y="90" width="38.2" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="274.9" y="78.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Athens, Greece</text>
+<rect x="229.7" y="90" width="39.2" height="10" rx="5" style="fill:var(--no);opacity:1"/>
 <text x="112" y="98.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">COSMO 2026</text>
-<text x="280.8" y="98.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Leiden…</text>
-<rect x="246.2" y="110" width="28.7" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="274.9" y="98.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Leiden…</text>
+<rect x="239.5" y="110" width="29.4" height="10" rx="5" style="fill:var(--no);opacity:1"/>
 <text x="112" y="118.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">Multi-Higgs 2026</text>
-<text x="280.8" y="118.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Lisbon, Portugal</text>
-<rect x="293.9" y="130" width="47.8" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="274.9" y="118.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Lisbon, Portugal</text>
+<rect x="288.5" y="130" width="49.0" height="10" rx="5" style="fill:var(--no);opacity:1"/>
 <text x="112" y="138.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">TeVPA 2026</text>
-<text x="347.6" y="138.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Tendo, Japan</text>
-<rect x="303.4" y="150" width="38.2" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="343.5" y="138.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Tendo, Japan</text>
+<rect x="298.3" y="150" width="39.2" height="10" rx="5" style="fill:var(--no);opacity:1"/>
 <text x="112" y="158.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">PPC 2026</text>
-<text x="347.6" y="158.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Sydney, Australia</text>
-<rect x="303.4" y="170" width="38.2" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="343.5" y="158.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Sydney, Australia</text>
+<rect x="298.3" y="170" width="39.2" height="10" rx="5" style="fill:var(--no);opacity:1"/>
 <text x="112" y="178.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">Gamma 2026</text>
-<text x="347.6" y="178.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Heidelberg…</text>
-<rect x="303.4" y="190" width="47.8" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="343.5" y="178.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Heidelberg…</text>
+<rect x="298.3" y="190" width="49.0" height="10" rx="5" style="fill:var(--no);opacity:1"/>
 <text x="112" y="198.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">NuFact 2026</text>
-<text x="357.2" y="198.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Shanghai, China</text>
-<rect x="303.4" y="210" width="57.3" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="353.3" y="198.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Shanghai, China</text>
+<rect x="298.3" y="210" width="58.8" height="10" rx="5" style="fill:var(--no);opacity:1"/>
 <text x="112" y="218.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">NOW 2026</text>
-<text x="366.8" y="218.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Otranto (Lecce)…</text>
-<rect x="370.3" y="230" width="38.2" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="363.1" y="218.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Otranto (Lecce)…</text>
+<rect x="366.9" y="230" width="39.2" height="10" rx="5" style="fill:var(--no);opacity:1"/>
 <text x="112" y="238.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">UNDARK 2026</text>
-<text x="414.5" y="238.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">CERN, Geneva…</text>
-<rect x="398.9" y="250" width="9.6" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="412.1" y="238.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">CERN, Geneva…</text>
+<rect x="396.3" y="250" width="9.8" height="10" rx="5" style="fill:var(--no);opacity:1"/>
 <text x="112" y="258.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">CZ+SK HEP Workshop…</text>
-<text x="414.5" y="258.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Prague</text>
-<rect x="437.1" y="270" width="38.2" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="412.1" y="258.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Prague</text>
+<rect x="435.4" y="270" width="39.2" height="10" rx="5" style="fill:var(--no);opacity:1"/>
 <text x="112" y="278.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">Gravity@Prague 2026</text>
-<rect x="437.1" y="290" width="38.2" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<rect x="435.4" y="290" width="39.2" height="10" rx="5" style="fill:var(--no);opacity:1"/>
 <text x="112" y="298.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">New Physics from…</text>
 </svg>
 </div>

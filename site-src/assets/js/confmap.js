@@ -398,7 +398,8 @@
 
       // The CSS max-height (min(60vh,20rem), .conf-card's own cap) assumes
       // a figure tall enough to hold it; .confmap-stage is only as tall as
-      // the SVG itself (a wide, short map — ~85px at 375px wide), so a
+      // the svgzoom bar row plus the SVG itself (a wide, short map — ~85px
+      // of SVG at 375px wide, plus the bar's own ~37px), so a
       // crowded marker (Milano: five conferences) can still overflow past
       // the FIGURE's bottom edge even with that cap, because a panel
       // anchored to the stage's top corner isn't limited by the stage's
