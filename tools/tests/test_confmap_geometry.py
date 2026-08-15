@@ -62,11 +62,29 @@ if m:
 check("nothing scales the land vertically any more",
       "scale(1," not in svg, "a scale(1,k) transform survived")
 
-# The marker must sit where projection puts it, undistorted.
+# The marker must sit where projection puts it, undistorted. Parsed off the
+# marker's own <circle>, not substring-matched against the whole document:
+# wm.LAND_PATH is thousands of two-decimal coordinates, so an f'{y:.1f}' in
+# svg check can pass by coincidence — which is exactly what it did against
+# the old, squashed code (see the control below).
 x, y = wm.project(16.87, 41.12)
-check("the marker sits at the undistorted projection",
-      f'{x:.1f}' in svg and f'{y:.1f}' in svg,
-      f"expected {x:.1f},{y:.1f}")
+cm = re.search(r'<circle cx="([-\d.]+)" cy="([-\d.]+)"', svg)
+check("the marker's circle is present", cm is not None, svg[:200])
+if cm:
+    cx, cy = float(cm.group(1)), float(cm.group(2))
+    check("the marker sits at the undistorted projection",
+          abs(cx - x) < 0.05 and abs(cy - y) < 0.05,
+          f"circle at {cx},{cy}; expected {x:.1f},{y:.1f}")
+
+    # Control: proves the check above actually discriminates. Under the old
+    # scale(1,.5) squash this same marker drew at y*0.5, ~49 units away from
+    # the true y for Bari — nowhere near the <0.05 tolerance above, so a
+    # regression back to the squash fails this check rather than silently
+    # passing it the way the old substring match did.
+    squashed_y = y * 0.5
+    check("this check would have caught the old squash (control)",
+          abs(cy - squashed_y) > 5.0,
+          f"cy={cy}, squashed would be {squashed_y:.1f} — too close to tell apart")
 
 print()
 if problems:

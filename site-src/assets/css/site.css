@@ -748,11 +748,12 @@ a.card:hover .card__go{color:var(--text)}
 .conf-pin{cursor:pointer}
 
 /* max-height is capped against the viewport, not the stage: .confmap-stage
-   wraps only the SVG, which is half the experiments map's height (see
-   figures.conference_map), so the percentage cap .map-card uses against ITS
-   (much taller) stage would leave this card only ~135px tall — enough to
-   clip a title mid-sentence and hide the dates, place and both action links
-   below it entirely. Found by opening the page, not by the jsdom suite.
+   wraps only the SVG, and back when that SVG was squashed to half its drawn
+   latitude range (162 of 720 viewBox units), the percentage cap .map-card
+   uses against ITS (then genuinely much taller, 324-unit) stage would have
+   left this card only ~135px tall — enough to clip a title mid-sentence and
+   hide the dates, place and both action links below it entirely. Found by
+   opening the page, not by the jsdom suite.
 
    20rem fixed THAT case, but a card carrying a photo credit (attribution
    required by the photo's CC BY/BY-SA licence, not decoration) is taller
@@ -767,7 +768,17 @@ a.card:hover .card__go{color:var(--text)}
    .conf-card__photo img below is shrunk from .map-card's 4:3 to 5:2, and
    this max-height stays at 20rem, exactly where it already left headroom
    under the header. overflow-y:auto remains only as a backstop for a
-   viewport shorter than any tested here. */
+   viewport shorter than any tested here.
+
+   Task 2 cropped the map instead of squashing it (see figures.py's
+   MAP_TOP_LAT/MAP_BOTTOM_LAT comment), so .confmap-stage is now 280 viewBox
+   units tall, not 162 — 73% taller, and no longer far short of the
+   experiments map's 324. That does not erode the headroom above: the card
+   is anchored to the STAGE's own bottom edge (bottom:.8rem here; .confmap-
+   stage carries no height of its own beyond its child svg's, set by
+   .figure svg{height:auto} above), so a taller stage pushes that anchor
+   further down the page, away from the sticky header, not into it. 20rem/
+   60vh and the photo's 5:2 crop stand exactly as they were. */
 .conf-card{position:absolute;z-index:6;left:.8rem;bottom:.8rem;
   width:min(21rem,calc(100% - 1.6rem));max-height:min(60vh,20rem);overflow-y:auto;
   background:var(--bg);border:1px solid var(--line-strong);border-radius:var(--r);

@@ -214,8 +214,11 @@ def conference_timeline(upcoming: list[dict], recent: list[dict],
 # Cropped rather than compressed. In an equirectangular projection Antarctica
 # smears into a band the width of the world, and the empty Arctic wasted a
 # third of the height; no conference has ever been held in either. Cropping
-# them away gives the same height on the page as the old scale(1,.5) squash
-# did, with the shapes undistorted — there is no trade between the two.
+# them away still leaves a taller frame than the old scale(1,.5) squash did —
+# 280 units against 162, since .figure svg{height:auto} sizes the card by
+# this viewBox's own aspect ratio — a real ~73% more vertical space on the
+# page. That is the accepted cost of undistorted shapes, paid deliberately,
+# not a trade this crop avoids.
 MAP_TOP_LAT = 82.0
 MAP_BOTTOM_LAT = -58.0
 
