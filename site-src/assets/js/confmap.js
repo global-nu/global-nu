@@ -53,6 +53,7 @@
     var stage = ensureStage(svg);
 
     wireCard(stage, svg, pins);
+    wireTip(fig, stage, pins);
   }
 
   function ensureStage(svg) {
@@ -335,6 +336,99 @@
       if (e.key === "Escape") { close(); return; }
       if (e.key === "Tab") trapFocus(e);
     });
+  }
+
+  /* A light panel: the place, then one line per conference with its name
+   * and dates. No image, so crossing a crowded Europe loads nothing. The
+   * full card, with the photograph, stays on click — two weights of
+   * answer for two weights of gesture.
+   *
+   * `fig` (the .confmap-figure element itself, same as init()'s own `fig`)
+   * is what the sizing check below measures room against — see there for
+   * why the stage alone is not enough. */
+  function wireTip(fig, stage, pins) {
+    var tip = document.createElement("div");
+    tip.className = "conf-tip";
+    tip.hidden = true;
+    stage.appendChild(tip);
+
+    function show(pin) {
+      var place = pin.getAttribute("data-place") || "";
+      var confs = items(pin), i;
+      tip.textContent = "";
+      tip.style.maxHeight = "";           // drop any earlier marker's clamp
+      if (place) {
+        var head = document.createElement("b");
+        head.textContent = place;
+        tip.appendChild(head);
+      }
+      for (i = 0; i < confs.length; i++) {
+        var line = document.createElement("p");
+        line.textContent = confs[i].dates
+          ? confs[i].name + " · " + confs[i].dates
+          : confs[i].name;
+        tip.appendChild(line);
+      }
+      // Default corner first, then check: this map's markers are not
+      // uniformly spread (Vancouver, near the map's own top-left, sits
+      // right under the panel's default top:.6rem/left:.6rem spot — found
+      // by hovering it in a real browser, not by the jsdom suite, which
+      // has no layout engine to catch it). getBoundingClientRect is all
+      // zero in jsdom, so `overlap` is always false there and this is a
+      // no-op for test_confmap.js, same treatment as .conf-card--scrollable
+      // above gives its own post-layout measurement.
+      tip.hidden = false;
+      tip.classList.remove("conf-tip--br");
+      var tr = tip.getBoundingClientRect(), pr = pin.getBoundingClientRect();
+      var overlap = !(tr.right < pr.left || tr.left > pr.right ||
+                       tr.bottom < pr.top || tr.top > pr.bottom);
+      if (overlap) tip.classList.add("conf-tip--br");
+
+      // The CSS max-height (min(60vh,20rem), .conf-card's own cap) assumes
+      // a figure tall enough to hold it; .confmap-stage is only as tall as
+      // the SVG itself (a wide, short map — ~85px at 375px wide), so a
+      // crowded marker (Milano: five conferences) can still overflow past
+      // the FIGURE's bottom edge even with that cap, because a panel
+      // anchored to the stage's top corner isn't limited by the stage's
+      // own short height. Verified in a real browser at 375x700, not
+      // assumed: the figure includes the caption below the map, so this
+      // measures room against `fig`, not `stage`, and only ever tightens
+      // the CSS cap, never loosens it — a tall desktop figure leaves this
+      // a no-op. fr is all-zero in jsdom, so `room` is 0 there too, and
+      // this stays a no-op for test_confmap.js.
+      tr = tip.getBoundingClientRect();     // re-measure: the flip may have moved it
+      var fr = fig.getBoundingClientRect();
+      var room = tip.classList.contains("conf-tip--br")
+        ? tr.bottom - fr.top
+        : fr.bottom - tr.top;
+      if (room > 0) tip.style.maxHeight = Math.max(60, room - 8) + "px";
+    }
+
+    function hide() { tip.hidden = true; }
+
+    for (var i = 0; i < pins.length; i++) {
+      pins[i].addEventListener("mouseenter", (function (p) {
+        // svgzoom.js pans this very SVG by tracking pointermove on the
+        // whole document without ever calling setPointerCapture (its own
+        // header explains why: capture broke confmap.js's click). Without
+        // capture, the browser keeps hit-testing normally during a mouse
+        // drag, so panning across the map fires real mouseenter/mouseleave
+        // on every marker the pointer sweeps over. Left unguarded, that
+        // pops this panel open and shut under the pointer for the whole
+        // drag — a nuisance, not a feature. e.buttons is nonzero exactly
+        // while a mouse button is held (i.e. mid-drag); it is 0 for an
+        // actual, button-up hover, so this only suppresses the drag case.
+        // Touch panning is not a concern here: sliding a finger does not
+        // synthesize mouseenter on the elements it crosses, only a single
+        // pointer/touchmove stream, so there is nothing to sweep-trigger.
+        return function (e) { if (!e.buttons) show(p); };
+      })(pins[i]));
+      pins[i].addEventListener("mouseleave", hide);
+      pins[i].addEventListener("focus", (function (p) {
+        return function () { show(p); };
+      })(pins[i]));
+      pins[i].addEventListener("blur", hide);
+    }
   }
 
   if (document.readyState === "loading") {

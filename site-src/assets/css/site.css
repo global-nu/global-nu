@@ -846,6 +846,29 @@ a.card:hover .card__go{color:var(--text)}
 .conf-card__credit a{color:var(--text-mute);text-decoration:underline}
 .conf-card__credit a:hover{color:var(--accent)}
 
+/* The map's hover panel: light, immediate, and never an image. The full
+   card with the photograph is what a click is for.
+
+   max-height/overflow-y follow .conf-card's own 60vh/20rem cap above, for
+   the same reason: a marker can hold several conferences (Milano carries
+   five), and an uncapped list ran the panel's bottom past the figure's own
+   bottom edge at 375px tall — verified with Playwright, not assumed, since
+   jsdom's zero-height layout can't catch a real overflow. */
+.conf-tip{position:absolute;top:.6rem;left:.6rem;max-width:22rem;z-index:3;
+  max-height:min(60vh,20rem);overflow-y:auto;
+  padding:.5rem .7rem;border:1px solid var(--line);border-radius:var(--r-sm);
+  background:var(--surface);box-shadow:var(--shadow);pointer-events:none}
+.conf-tip[hidden]{display:none}
+.conf-tip b{display:block;font-size:.8rem;color:var(--text)}
+.conf-tip p{margin:.2rem 0 0;font-size:.78rem;color:var(--text-soft)}
+/* confmap.js flips to this corner when the default top-left placement
+   would sit on top of the very marker it names (real, not hypothetical —
+   Vancouver's marker sits under the default spot on this map's actual
+   layout). The opposite corner is free precisely because a marker close
+   enough to the top-left to trigger the flip cannot, at the same time, be
+   close to the bottom-right too. */
+.conf-tip--br{top:auto;left:auto;right:.6rem;bottom:.6rem}
+
 /* Pan/zoom wrapper that svgzoom.js builds around svg[data-zoomable] — the
    conference map. Tokens follow .figbox__bar's zoom controls above, the
    closest sibling to these buttons, rather than being copied verbatim from

@@ -250,6 +250,31 @@ scard && scard.textContent.includes('1 conference') && !scard.textContent.includ
   : bad('a single-conference card does not state the count correctly: '
       + (scard && scard.textContent));
 
+// --- the hover panel -----------------------------------------------------
+const hoverPin = d.querySelector('[data-place="Bari, Italy"]');
+hoverPin.dispatchEvent(new d.defaultView.Event('mouseenter', {bubbles: true}));
+const tip = d.querySelector('.conf-tip');
+tip ? ok('hovering a marker opens a panel') : bad('hovering a marker opens a panel');
+tip && tip.textContent.includes('Bari, Italy')
+  ? ok('the panel names the place') : bad('the panel names the place');
+tip && tip.textContent.includes('First Conference') &&
+      tip.textContent.includes('Second Conference')
+  ? ok('the panel names every conference') : bad('the panel names every conference');
+tip && tip.textContent.includes('1-5 Sep 2026')
+  ? ok('the panel gives the period') : bad('the panel gives the period');
+tip && tip.querySelectorAll('img').length === 0
+  ? ok('the panel loads no image') : bad('the panel loads an image');
+
+hoverPin.dispatchEvent(new d.defaultView.Event('mouseleave', {bubbles: true}));
+!d.querySelector('.conf-tip') || d.querySelector('.conf-tip').hidden
+  ? ok('leaving the marker closes the panel') : bad('the panel stayed open');
+
+// A control reachable by mouse but not by keyboard is a defect.
+hoverPin.dispatchEvent(new d.defaultView.Event('focus', {bubbles: true}));
+const kbTip = d.querySelector('.conf-tip');
+kbTip && !kbTip.hidden
+  ? ok('keyboard focus opens the panel too') : bad('keyboard focus opens the panel too');
+
 console.log();
 if (fail.length) { console.log(fail.length + ' check(s) failed'); process.exit(1); }
 console.log('all checks pass');
