@@ -62,6 +62,11 @@ const PAIRS = [
   ['--io', '--surface-2', 3],
   ['--accent-2', '--bg', 4.5],
   ['--accent-2', '--surface', 4.5],
+  /* the conference map's two category colours: dots on the land fill, and
+     the count badge's own text sitting on top of the dot's fill */
+  ['--dec-4', '--surface-2', 3],
+  ['--on-accent', '--no', 4.5],
+  ['--on-accent', '--dec-4', 4.5],
 ];
 
 function parseVars(block) {

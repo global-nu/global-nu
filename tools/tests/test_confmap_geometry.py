@@ -124,6 +124,29 @@ check("the city is named on the marker", 'class="map-name"' in svg2)
 single = figures.conference_map([TWO[0]])
 check("a lone conference draws no count badge", ">1</text>" not in single)
 
+# --- two colours, and a legend that explains them ------------------------
+MIXED = [
+    ({"id": "n", "title": "A Neutrino Meeting", "url": "https://n.example/",
+      "extra": {"place": "Bari, Italy", "city": "Bari", "span": "1-5 Sep 2026",
+                "scope": "neutrino"}}, 16.87, 41.12),
+    ({"id": "g", "title": "A General Meeting", "url": "https://g.example/",
+      "extra": {"place": "Tokyo, Japan", "city": "Tokyo", "span": "3-4 Oct 2026",
+                "scope": "general"}}, 139.69, 35.69),
+]
+svgm = figures.conference_map(MIXED)
+
+check("the neutrino marker uses the blue token", "var(--no)" in svgm)
+check("the general marker uses the purple token", "var(--dec-4)" in svgm)
+check("amber is not used as a category colour",
+      "var(--io)" not in svgm,
+      "amber already means 'in progress right now' on this page")
+check("the legend names both categories",
+      "Neutrino" in svgm and "General particle physics" in svgm, svgm[-700:])
+
+only_nu = figures.conference_map([MIXED[0]])
+check("a legend entry with nothing to label is not drawn",
+      "General particle physics" not in only_nu)
+
 print()
 if problems:
     print(f"  ! {len(problems)} of {checks} checks failed")

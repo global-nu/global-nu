@@ -414,5 +414,23 @@ def conference_map(located: list[tuple[dict, float, float]],
         parts.append(_conf_marker(confs, lon, lat, cx, cy,
                                   _lookup_photo(confs[0], log)))
 
+    # A legend, so two colours are not a puzzle. Only categories actually on
+    # the map are listed: a key to something the reader cannot see is noise.
+    present = {(p[0].get("extra") or {}).get("scope") or "neutrino"
+               for p in points}
+    lx, ly = 12.0, top + height - 8.0
+    for scope, colour, label in (
+            ("neutrino", "var(--no)", "Neutrino"),
+            ("general", "var(--dec-4)", "General particle physics")):
+        if scope not in present:
+            continue
+        parts.append(f'<circle cx="{lx + 4:.1f}" cy="{ly - 3:.1f}" r="4" '
+                     f'fill="{colour}"/>')
+        parts.append(
+            f'<text x="{lx + 13:.1f}" y="{ly:.1f}" style="fill:var(--text-mute);'
+            f'font-size:9px;font-family:var(--body,sans-serif)">'
+            f'{_e(label)}</text>')
+        lx += 15 + 6.0 * len(label)
+
     parts.append("</svg>")
     return "\n".join(parts)
