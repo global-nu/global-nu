@@ -1,10 +1,15 @@
 /* global-nu — the conference map's card.
  *
- * Deliberately small next to map.js: that script owns pan, zoom, a legend
- * and fan-out over forty-odd experiments; this one only ever answers one
- * click with one card — which conference, when, where, and a link out —
- * because tools/news/figures.py draws a flat `<g class="conf-pin">` per
- * marker with no cluster wrapper to reveal. Same conventions as site.js: an
+ * This file owns what a marker SAYS: a hover panel listing the conferences
+ * at it, and a click card with the full detail — which conference, when,
+ * where, a photograph of the city and a link out. It does not own how the
+ * map moves. Pan, zoom and pinch belong to svgzoom.js, which is wired to
+ * the same SVG (`data-zoomable="1"`) by conferences.md; the legend is drawn
+ * into the SVG by tools/news/figures.py. Read the drag note above the click
+ * listener before assuming this script can ignore pointer events: the
+ * surface IS draggable, and two guards in wireTip exist for exactly that.
+ *
+ * Same conventions as site.js: an
  * IIFE, "use strict", var, no build step, no dependency, and every
  * enhancement guarded so a missing API disables the one thing that needs it
  * rather than taking the rest down. It touches exactly one figure —
@@ -31,9 +36,10 @@
  * (most conferences: Commons rarely has one, or the record's city could not
  * be established cleanly — see figures.py's _photo_city) simply carries none
  * of the five attributes, and the card renders exactly as it did before this
- * feature existed. Two conferences that share a city (the common case for a
- * fanned, merged marker) carry the identical photo, because photos.for_city
- * caches by city — nothing here needs to special-case a cluster.
+ * feature existed. A marker holding several conferences carries ONE photo
+ * for all of them, which is correct because figures.py groups a marker's
+ * conferences by identical coordinate: they are all in the same city, and
+ * photos.for_city caches by city. Nothing here needs to special-case that.
  */
 (function () {
   "use strict";
@@ -268,13 +274,17 @@
       closeBtn.focus();
     }
 
-    // Every marker becomes a keyboard target: informational without JS
-    // (readable via its <title> on hover) and only becomes an operable
-    // control once this script actually runs.
+    // Every marker becomes a keyboard target HERE, and only here: figures.py
+    // ships the marker with neither role nor tabindex, so without this script
+    // it is inert content readable through its <title> rather than a tab stop
+    // that swallows a keypress and answers nothing. role and tabindex are set
+    // unconditionally and together — the pair is this script's to own, and a
+    // "keep what's already there" guard on either would only ever be reading
+    // back an attribute a previous run of this same loop had set.
     for (var pi = 0; pi < pins.length; pi++) {
       var pinEl = pins[pi];
       pinEl.setAttribute("role", "button");
-      if (!pinEl.hasAttribute("tabindex")) pinEl.setAttribute("tabindex", "0");
+      pinEl.setAttribute("tabindex", "0");
       if (!pinEl.hasAttribute("aria-label")) {
         // data-name lived on the pin itself before a marker could hold more
         // than one conference; now it is only on the .conf-item children,
@@ -298,10 +308,19 @@
 
     // Click delegation on the SVG, not one listener per marker: markers never
     // move or get replaced, but this mirrors map.js's own pattern and stays
-    // correct if a future revision redraws the SVG in place. No pointer/drag
-    // handling here at all — there is nothing to pan, so a plain `click`
-    // never needs the setPointerCapture-avoidance map.js's wireInteractions
-    // documents at length; that hazard is specific to a draggable surface.
+    // correct if a future revision redraws the SVG in place.
+    //
+    // A plain `click` is enough here, but NOT because the surface is static —
+    // svgzoom.js pans and pinches this very SVG. It is enough only because
+    // svgzoom.js deliberately does not call setPointerCapture on it: capture
+    // would retarget the browser's own mouseup and no `click` would ever be
+    // synthesized, so a marker would stop opening its card even without a
+    // drag. map.js's wireInteractions documents the identical bug on the
+    // experiments map. If that decision is ever revisited in svgzoom.js, this
+    // listener breaks with it — see the comment at the head of its pointer
+    // block. The other half of the drag hazard, a pan sweeping the pointer
+    // across markers, is real and is guarded in wireTip below (an e.buttons
+    // check on enter, and a re-check on pointerup).
     svg.addEventListener("click", function (e) {
       if (!e.target.closest) return;
       var pin = e.target.closest(".conf-pin");
