@@ -69,6 +69,23 @@
     return "https://www.google.com/maps/search/?api=1&query=" + lat + "," + lon;
   }
 
+  // One entry per <g class="conf-item"> inside a marker — a marker now holds
+  // every conference at that venue, not just one (figures.py's _conf_marker).
+  // Top-level, not nested in wireCard: the hover panel a later task adds is a
+  // sibling function that needs this same reading, and a helper buried inside
+  // wireCard would be invisible to it.
+  function items(pin) {
+    var out = [], els = pin.querySelectorAll(".conf-item"), i;
+    for (i = 0; i < els.length; i++) {
+      out.push({
+        name: els[i].getAttribute("data-name") || "",
+        dates: els[i].getAttribute("data-dates") || "",
+        url: els[i].getAttribute("data-url") || ""
+      });
+    }
+    return out;
+  }
+
   function wireCard(fig, svg, pins) {
     var current = null;
     // Whatever was focused at the moment the open card was opened — normally
@@ -132,18 +149,26 @@
       remove();
       lastFocus = document.activeElement;
 
-      var name = pin.getAttribute("data-name") || "";
+      // data-place/data-lat/data-lon and the five data-photo* attributes are
+      // per VENUE, not per conference — they stay on the pin exactly as
+      // before. Only the name, dates and URL moved: they now live one per
+      // <g class="conf-item"> child, because a marker can hold several
+      // conferences at the same venue (figures.py's _conf_marker).
+      var confs = items(pin);
       var place = pin.getAttribute("data-place") || "";
-      var dates = pin.getAttribute("data-dates") || "";
-      var url = pin.getAttribute("data-url") || "";
       var lat = pin.getAttribute("data-lat") || "";
       var lon = pin.getAttribute("data-lon") || "";
       var photo = pin.getAttribute("data-photo") || "";
 
+      var names = [], ci;
+      for (ci = 0; ci < confs.length; ci++) {
+        if (confs[ci].name) names.push(confs[ci].name);
+      }
+
       var card = document.createElement("div");
       card.className = "conf-card";
       card.setAttribute("role", "dialog");
-      card.setAttribute("aria-label", name);
+      card.setAttribute("aria-label", names.join("; ") || place);
 
       var closeBtn = document.createElement("button");
       closeBtn.type = "button";
@@ -153,28 +178,53 @@
       closeBtn.addEventListener("click", close);
       card.appendChild(closeBtn);
 
-      var h = document.createElement("h4");
-      h.className = "conf-card__title";
-      if (url) {
-        var titleLink = document.createElement("a");
-        titleLink.href = url;
-        titleLink.target = "_blank";
-        titleLink.rel = "noopener noreferrer";
-        titleLink.textContent = name;
-        h.appendChild(titleLink);
-      } else {
-        h.textContent = name;
+      // The place line is shared by every conference on this marker, so it
+      // is shown once, ahead of the list rather than repeated per entry.
+      if (place) {
+        var placeMeta = document.createElement("p");
+        placeMeta.className = "conf-card__meta";
+        placeMeta.textContent = place;
+        card.appendChild(placeMeta);
       }
-      card.appendChild(h);
 
-      var bits = [];
-      if (dates) bits.push(dates);
-      if (place) bits.push(place);
-      if (bits.length) {
-        var meta = document.createElement("p");
-        meta.className = "conf-card__meta";
-        meta.textContent = bits.join(" · ");
-        card.appendChild(meta);
+      // A photograph of the host city, when photos.for_city found one — and
+      // its credit, which is not decoration: author, licence and a link to
+      // the file's own page on Commons are the terms under which the
+      // picture may be here at all (see tools/news/photos.py). It is
+      // rendered once, here, ABOVE the list built below: this is a
+      // photograph of the CITY (photos.for_city caches by city), so every
+      // conference on this marker shares the identical image — repeating it
+      // per conference would be wrong and would multiply the card's height.
+      // Keeping it (and its credit) this close to the top also keeps the
+      // credit inside .conf-card's max-height/overflow-y:auto box even when
+      // the list below grows long, instead of being pushed past the card's
+      // visible bottom edge the way Task 4/the 2026-08-14 fix found it —
+      // see tools/tests/test_confcard_credit.py.
+      if (photo) card.appendChild(photoBlock(pin, photo, names.join("; ") || place, place));
+
+      // One heading block per conference at this venue — a link when the
+      // conference has a URL, plain text when it does not — followed by its
+      // own dates. All links here go through link() above, which always
+      // sets target="_blank" rel="noopener noreferrer": this whole card is
+      // built in script, so build.py's own externalize_links() never gets a
+      // chance to add them itself.
+      for (ci = 0; ci < confs.length; ci++) {
+        var c = confs[ci];
+        var h = document.createElement("h4");
+        h.className = "conf-card__title";
+        if (c.url) {
+          h.appendChild(link(c.url, c.name));
+        } else {
+          h.textContent = c.name;
+        }
+        card.appendChild(h);
+
+        if (c.dates) {
+          var meta = document.createElement("p");
+          meta.className = "conf-card__meta";
+          meta.textContent = c.dates;
+          card.appendChild(meta);
+        }
       }
 
       var actions = document.createElement("div");
@@ -183,20 +233,7 @@
         actions.appendChild(link(gmapsUrl(lat, lon), "Open in Google Maps",
           "conf-card__gmaps"));
       }
-      if (url) {
-        actions.appendChild(link(url, "Conference site", "conf-card__site"));
-      }
       if (actions.childNodes.length) card.appendChild(actions);
-
-      // A photograph of the host city, when photos.for_city found one — and
-      // its credit, which is not decoration: author, licence and a link to
-      // the file's own page on Commons are the terms under which the
-      // picture may be here at all (see tools/news/photos.py). All three are
-      // rendered whenever present, and every link here goes through link()
-      // above, which always sets target="_blank" rel="noopener noreferrer":
-      // this whole card is built in script, so build.py's own
-      // externalize_links() never gets a chance to add them itself.
-      if (photo) card.appendChild(photoBlock(pin, photo, name, place));
 
       fig.appendChild(card);
       current = card;
@@ -214,8 +251,15 @@
       pinEl.setAttribute("role", "button");
       if (!pinEl.hasAttribute("tabindex")) pinEl.setAttribute("tabindex", "0");
       if (!pinEl.hasAttribute("aria-label")) {
-        var pinName = pinEl.getAttribute("data-name");
-        if (pinName) pinEl.setAttribute("aria-label", pinName);
+        // data-name lived on the pin itself before a marker could hold more
+        // than one conference; now it is only on the .conf-item children,
+        // so this reads all of them and joins them "; " — the same
+        // separator figures.py already uses for the pin's own <title>.
+        var pinConfs = items(pinEl), pinNames = [], pj;
+        for (pj = 0; pj < pinConfs.length; pj++) {
+          if (pinConfs[pj].name) pinNames.push(pinConfs[pj].name);
+        }
+        if (pinNames.length) pinEl.setAttribute("aria-label", pinNames.join("; "));
       }
       pinEl.addEventListener("keydown", function (e) {
         if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
