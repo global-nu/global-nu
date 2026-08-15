@@ -136,7 +136,9 @@ MIXED = [
 svgm = figures.conference_map(MIXED)
 
 check("the neutrino marker uses the blue token", "var(--no)" in svgm)
-check("the general marker uses the purple token", "var(--dec-4)" in svgm)
+check("the general marker uses the accent-2 token",
+      "var(--accent-2)" in svgm,
+      "not --dec-4: --on-accent on it measured 4.27:1 in the dark theme")
 check("amber is not used as a category colour",
       "var(--io)" not in svgm,
       "amber already means 'in progress right now' on this page")

@@ -295,7 +295,12 @@ def _conf_marker(confs: list[dict], lon: float, lat: float,
     city = extra.get("city") or place
     n = len(confs)
     r = 3.2 + 1.5 * min(n - 1, 4)
-    colour = ("var(--dec-4)" if (extra.get("scope") or "") == "general"
+    # --dec-4 is the obvious "fourth decorative colour" but its count digits
+    # (--on-accent) measure only 4.27:1 on it in the dark theme — under the
+    # 4.5:1 text threshold. --accent-2 is already in the palette and clears
+    # 7.15:1 for the same pair, so this figure uses that token instead; see
+    # the matching pairs in tools/tests/test_theme.js.
+    colour = ("var(--accent-2)" if (extra.get("scope") or "") == "general"
               else "var(--no)")
 
     title = "; ".join(
@@ -421,7 +426,9 @@ def conference_map(located: list[tuple[dict, float, float]],
     lx, ly = 12.0, top + height - 8.0
     for scope, colour, label in (
             ("neutrino", "var(--no)", "Neutrino"),
-            ("general", "var(--dec-4)", "General particle physics")):
+            # var(--accent-2), not --dec-4 — see the comment on the marker's
+            # own colour choice above; the legend swatch must match the dot.
+            ("general", "var(--accent-2)", "General particle physics")):
         if scope not in present:
             continue
         parts.append(f'<circle cx="{lx + 4:.1f}" cy="{ly - 3:.1f}" r="4" '

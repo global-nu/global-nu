@@ -63,10 +63,13 @@ const PAIRS = [
   ['--accent-2', '--bg', 4.5],
   ['--accent-2', '--surface', 4.5],
   /* the conference map's two category colours: dots on the land fill, and
-     the count badge's own text sitting on top of the dot's fill */
-  ['--dec-4', '--surface-2', 3],
+     the count badge's own text sitting on top of the dot's fill. --dec-4 was
+     tried first for the general-scope dot but --on-accent on it measured
+     4.27:1 in the dark theme, under the 4.5 text minimum; --accent-2 clears
+     it (7.15:1) and is already in the palette, so the marker uses that. */
+  ['--accent-2', '--surface-2', 3],
   ['--on-accent', '--no', 4.5],
-  ['--on-accent', '--dec-4', 4.5],
+  ['--on-accent', '--accent-2', 4.5],
 ];
 
 function parseVars(block) {
