@@ -280,7 +280,7 @@ check("the drawn marker's data-lon equals the (lon, lat) tuple's FIRST element",
 
 cx = _num(r'cx="(-?[\d.]+)"', block)
 cy = _num(r'cy="(-?[\d.]+)"', block)
-equator_y = figures.wm.project(0.0, 0.0)[1] * figures.MAP_SCALE_Y
+equator_y = figures.wm.project(0.0, 0.0)[1]
 centre_x = figures.wm.WIDTH / 2.0
 check("a southern-hemisphere conference is drawn BELOW the equator line "
      "(larger y — a swapped lat/lon would place it far outside the frame "

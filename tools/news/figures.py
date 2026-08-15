@@ -211,27 +211,13 @@ def conference_timeline(upcoming: list[dict], recent: list[dict],
 # --------------------------------------------------------------------------- #
 # the conference map
 # --------------------------------------------------------------------------- #
-# Same crop as tools/make_map.py's experiments map — 84N down to 78S, far
-# enough south to clear every inhabited continent without needing that map's
-# South Pole inset, which nothing in this dataset has ever required — but
-# drawn at HALF the vertical resolution: worldmap.project's y is halved after
-# the fact, so the same latitude range that gives the experiments map its
-# 324-unit height fits this one in 162. The alternative — keep 2 units per
-# degree of latitude and crop the *range* in half instead — would need a fixed
-# window a real conference can fall outside of: on today's data Sydney and
-# Santiago both sit past 33°S, so a crop centred on the temperate north would
-# cut them, silently, off a map their own coordinates were good enough to be
-# plotted on. Halving the vertical scale instead means every latitude on
-# Earth still has a place here — for a conference calendar, where a
-# first-time entry next February could plausibly be Cape Town, "a flatter
-# map" beats "occasionally missing a real dot," so a mild vertical squeeze
-# against wm.LAND_PATH's otherwise-undistorted outlines is the trade this
-# figure makes. Longitude is not touched at all: the full 720-wide world
-# stays recognisable at a glance, which a map cropped to only the conferences
-# on hand would not.
-MAP_TOP_LAT = 84.0
-MAP_BOTTOM_LAT = -78.0
-MAP_SCALE_Y = 0.5
+# Cropped rather than compressed. In an equirectangular projection Antarctica
+# smears into a band the width of the world, and the empty Arctic wasted a
+# third of the height; no conference has ever been held in either. Cropping
+# them away gives the same height on the page as the old scale(1,.5) squash
+# did, with the shapes undistorted — there is no trade between the two.
+MAP_TOP_LAT = 82.0
+MAP_BOTTOM_LAT = -58.0
 
 MAP_HALO_R = 6.0
 MAP_DOT_R = 3.0
@@ -241,11 +227,6 @@ MAP_DOT_R = 3.0
 # than a second, invented one.
 MAP_MERGE_DIST = 2 * MAP_DOT_R
 MAP_FAN_R = 8.0
-
-
-def _map_xy(lon: float, lat: float) -> tuple[float, float]:
-    x, y = wm.project(lon, lat)
-    return x, y * MAP_SCALE_Y
 
 
 def _map_title(name: str, place: str, dates: str) -> str:
@@ -365,27 +346,26 @@ def conference_map(located: list[tuple[dict, float, float]],
     # Step 1: project and cluster. The bucketing is geocluster's
     # cluster_by_distance — make_map.py's own single-linkage algorithm,
     # shared rather than reimplemented, per the brief. Bucketing happens in
-    # the FINAL (already-squished) pixel space, because "coincident" is a
-    # statement about what a reader sees on this drawn map, not about the
-    # underlying undistorted globe.
-    points = [(conf, lon, lat, _map_xy(lon, lat)) for conf, lon, lat in located]
+    # projected pixel space, because "coincident" is a statement about what
+    # a reader sees on the drawn map, not about the underlying globe.
+    points = [(conf, lon, lat, wm.project(lon, lat)) for conf, lon, lat in located]
     groups = geocluster.cluster_by_distance(
         [p[3] for p in points], MAP_MERGE_DIST)
     clusters: dict[int, list[int]] = {idx: idxs for idx, idxs in enumerate(groups)}
 
-    top = wm.project(0.0, MAP_TOP_LAT)[1] * MAP_SCALE_Y
-    bottom = wm.project(0.0, MAP_BOTTOM_LAT)[1] * MAP_SCALE_Y
+    top = wm.project(0.0, MAP_TOP_LAT)[1]
+    bottom = wm.project(0.0, MAP_BOTTOM_LAT)[1]
     height = bottom - top
 
     parts = [
-        f'<svg viewBox="0 {top:.0f} {wm.WIDTH:.0f} {height:.0f}" role="img" '
+        f'<svg data-zoomable="1" viewBox="0 {top:.0f} {wm.WIDTH:.0f} '
+        f'{height:.0f}" role="img" '
         'aria-label="World map of upcoming neutrino conferences" '
         'xmlns="http://www.w3.org/2000/svg">',
         "<title>Where the upcoming conferences are</title>",
-        f'<g transform="scale(1,{MAP_SCALE_Y})">'
         f'<path d="{wm.LAND_PATH}" fill="var(--surface-2)" '
         'stroke="var(--line-strong)" stroke-width="0.6" '
-        'vector-effect="non-scaling-stroke"/></g>',
+        'vector-effect="non-scaling-stroke"/>',
     ]
 
     # Step 2: draw. A cluster of one draws at its own true position; a
