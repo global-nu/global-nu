@@ -1,13 +1,17 @@
 /* global-nu — pan & zoom for inline SVGs marked data-zoomable, by viewBox
  * alone.
  *
- * Ported unchanged from Antonio's home page, which is where this behaviour
- * was written and proven. Not map.js generalised: figure.js already argues
- * the case in its own header — duplicating one clamp and one transform
- * string costs less than coupling a working, tested interaction to a second
- * caller — and that reasoning applies here without modification. map.js
- * still owns the experiments map, and figure.js still excludes both maps
- * from its lightbox, because each already answers a click with its own card.
+ * Ported from Antonio's home page, which is where this behaviour was
+ * written and proven, with one documented change: the pointer-handling
+ * block below does not capture the pointer, because confmap.js answers a
+ * click on this same SVG with its own card and capture broke that click
+ * outright — see the comment there for the diagnosis and the fix. Not
+ * map.js generalised: figure.js already argues the case in its own header —
+ * duplicating one clamp and one transform string costs less than coupling a
+ * working, tested interaction to a second caller — and that reasoning
+ * applies here without modification. map.js still owns the experiments map,
+ * and figure.js still excludes both maps from its lightbox, because each
+ * already answers a click with its own card.
  *
  * No transforms, no dependencies. Wheel zoom requires Ctrl (or a trackpad
  * pinch, which macOS reports as ctrl+wheel) so plain scrolling over the
@@ -149,6 +153,16 @@
     svg.addEventListener("pointerdown", function (ev) {
       pointers[ev.pointerId] = { cx: ev.clientX, cy: ev.clientY, moved: 0 };
       if (Object.keys(pointers).length === 2) pinch0 = dist();
+      // Reset here, not only where it is consumed below: the suppressor
+      // only ever sees a click that lands ON the svg, but a pan released
+      // with the pointer outside it (easy once zoomed — drag past the
+      // map's edge) fires its click on some ancestor instead, so the flag
+      // would never be cleared and the next genuine marker click would be
+      // eaten for no visible reason. A new gesture is the one event both
+      // paths are guaranteed to see, so it is the only safe place to clear
+      // a flag set by the previous one. (map.js's own drag.justDragged
+      // resets the same way, at its pointerdown.)
+      justPanned = false;
     });
 
     document.addEventListener("pointermove", function (ev) {
@@ -192,6 +206,17 @@
     // across a marker would pop its card open as an unwanted side effect of
     // the gesture, the same hazard map.js's wireCard guards against with its
     // drag.justDragged flag.
+    //
+    // stopPropagation() here also stops the click from ever reaching
+    // confmap.js's document-level "click outside closes the card" listener,
+    // since that click never finishes bubbling past this svg. Known
+    // consequence, not fixed: ending a pan anywhere over the map while a
+    // card is already open leaves that card open, instead of closing it as
+    // a click on the map normally would. Left alone on purpose — teaching
+    // svgzoom.js about confmap.js's card lifecycle to close that gap would
+    // couple a generic, reusable script to one page's specific overlay for
+    // a cosmetic miss, not a functional one (the card's own close button
+    // and Escape still work).
     svg.addEventListener("click", function (ev) {
       if (justPanned) { justPanned = false; ev.stopPropagation(); }
     }, true);
