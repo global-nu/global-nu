@@ -864,10 +864,27 @@ a.card:hover .card__go{color:var(--text)}
 /* confmap.js flips to this corner when the default top-left placement
    would sit on top of the very marker it names (real, not hypothetical —
    Vancouver's marker sits under the default spot on this map's actual
-   layout). The opposite corner is free precisely because a marker close
-   enough to the top-left to trigger the flip cannot, at the same time, be
-   close to the bottom-right too. */
+   layout). This is a best-effort choice, not a guarantee: confmap.js
+   measures both corners against the marker and keeps whichever overlaps
+   less, because on a small enough map with long enough conference titles
+   the two corners are not always far enough apart to leave either one
+   fully clear of a centrally-placed marker — verified at 375px, where
+   both corners still touched Vancouver's and Milano's own dots. That
+   residual case is what the max-width:520px rule below actually disposes
+   of, by not showing the panel at all at that width, rather than this
+   flip claiming a coverage it can't deliver on a map this size. */
 .conf-tip--br{top:auto;left:auto;right:.6rem;bottom:.6rem}
+/* Below 520px the audience is touch, where hover as an input doesn't
+   exist — a tap opens the full .conf-card instead — and every marker
+   still carries its own <title>, so the browser's native tooltip is not
+   lost by hiding this. A panel that can cover the very marker it names
+   (the residual case above) is strictly worse than that native tooltip,
+   so this width just doesn't show it. This also disposes of a real
+   untidiness on touch: some browsers synthesize a mouseenter on tap (for
+   :hover CSS support) with no matching mouseleave ever following, which
+   would otherwise leave the panel stuck open until some unrelated
+   interaction closed it. */
+@media (max-width:520px){.conf-tip{display:none}}
 
 /* Pan/zoom wrapper that svgzoom.js builds around svg[data-zoomable] — the
    conference map. Tokens follow .figbox__bar's zoom controls above, the
@@ -876,8 +893,13 @@ a.card:hover .card__go{color:var(--text)}
 .svgzoom{position:relative}
 .svgzoom--zoomed .confmap-figure svg,.svgzoom--zoomed svg{cursor:grab}
 .svgzoom--zoomed svg:active{cursor:grabbing}
-.svgzoom__bar{position:absolute;top:.4rem;right:.4rem;display:flex;
-  flex-direction:column;gap:.25rem;z-index:2}
+/* A normal-flow row above the svg, laid out the same way .figbox__bar is
+   above — not an absolutely-positioned overlay on top of it. See
+   svgzoom.js's own comment on why: at 375px wide the old overlay's column
+   of three buttons was nearly as tall as the whole map and sat on top of
+   a real marker. */
+.svgzoom__bar{display:flex;gap:.4rem;justify-content:flex-end;
+  margin-bottom:.4rem}
 .svgzoom__btn{width:1.9rem;height:1.9rem;border-radius:var(--r-sm);
   border:1px solid var(--line-strong);background:var(--surface);
   color:var(--text-soft);opacity:.55;transition:opacity .2s;cursor:pointer}

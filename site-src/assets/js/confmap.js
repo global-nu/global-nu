@@ -369,20 +369,32 @@
           : confs[i].name;
         tip.appendChild(line);
       }
-      // Default corner first, then check: this map's markers are not
-      // uniformly spread (Vancouver, near the map's own top-left, sits
-      // right under the panel's default top:.6rem/left:.6rem spot — found
-      // by hovering it in a real browser, not by the jsdom suite, which
-      // has no layout engine to catch it). getBoundingClientRect is all
-      // zero in jsdom, so `overlap` is always false there and this is a
-      // no-op for test_confmap.js, same treatment as .conf-card--scrollable
-      // above gives its own post-layout measurement.
+      // Default corner first, then measure both corners and keep whichever
+      // overlaps the marker less. This map's markers are not uniformly
+      // spread (Vancouver, near the map's own top-left, sits right under
+      // the panel's default top:.6rem/left:.6rem spot — found by hovering
+      // it in a real browser, not by the jsdom suite, which has no layout
+      // engine to catch it), so a straight "flip once" is not a guarantee:
+      // on a small enough map with long enough text, BOTH corners can
+      // still touch a centrally-placed marker (verified at 375px — see
+      // .conf-tip's hidden-below-520px rule below, which is what actually
+      // disposes of that residual case rather than this comparison alone).
+      // getBoundingClientRect is all zero in jsdom, so both overlap areas
+      // come out 0 there and this is a no-op for test_confmap.js, same
+      // treatment as .conf-card--scrollable above gives its own
+      // post-layout measurement.
       tip.hidden = false;
       tip.classList.remove("conf-tip--br");
-      var tr = tip.getBoundingClientRect(), pr = pin.getBoundingClientRect();
-      var overlap = !(tr.right < pr.left || tr.left > pr.right ||
-                       tr.bottom < pr.top || tr.top > pr.bottom);
-      if (overlap) tip.classList.add("conf-tip--br");
+      var pr = pin.getBoundingClientRect();
+      var trDefault = tip.getBoundingClientRect();
+      var areaDefault = overlapArea(trDefault, pr);
+      if (areaDefault > 0) {
+        tip.classList.add("conf-tip--br");
+        var trFlipped = tip.getBoundingClientRect();
+        if (overlapArea(trFlipped, pr) >= areaDefault) {
+          tip.classList.remove("conf-tip--br");   // flipping didn't help
+        }
+      }
 
       // The CSS max-height (min(60vh,20rem), .conf-card's own cap) assumes
       // a figure tall enough to hold it; .confmap-stage is only as tall as
@@ -391,17 +403,31 @@
       // the FIGURE's bottom edge even with that cap, because a panel
       // anchored to the stage's top corner isn't limited by the stage's
       // own short height. Verified in a real browser at 375x700, not
-      // assumed: the figure includes the caption below the map, so this
-      // measures room against `fig`, not `stage`, and only ever tightens
-      // the CSS cap, never loosens it — a tall desktop figure leaves this
-      // a no-op. fr is all-zero in jsdom, so `room` is 0 there too, and
-      // this stays a no-op for test_confmap.js.
-      tr = tip.getBoundingClientRect();     // re-measure: the flip may have moved it
+      // assumed. This only ever TIGHTENS the CSS cap, never loosens it: an
+      // earlier version set the inline max-height unconditionally whenever
+      // `room > 0`, which on a ~430px-tall desktop figure actually
+      // INCREASED the effective cap from 320px to ~370px — review caught
+      // that the "only tightens" comment was false for that version. Now
+      // the inline value is set only when the panel, at its current
+      // (already CSS-capped) size, genuinely runs past the figure's edge;
+      // a figure with room to spare leaves tip.style.maxHeight unset and
+      // the stylesheet cap applies untouched. fr is all-zero in jsdom, so
+      // `overflowsFigure` is always false there and this stays a no-op for
+      // test_confmap.js.
+      var tr = tip.getBoundingClientRect();     // re-measure: the flip may have moved it
       var fr = fig.getBoundingClientRect();
-      var room = tip.classList.contains("conf-tip--br")
-        ? tr.bottom - fr.top
-        : fr.bottom - tr.top;
-      if (room > 0) tip.style.maxHeight = Math.max(60, room - 8) + "px";
+      var flipped = tip.classList.contains("conf-tip--br");
+      var overflowsFigure = flipped ? tr.top < fr.top : tr.bottom > fr.bottom;
+      if (overflowsFigure) {
+        var room = flipped ? tr.bottom - fr.top : fr.bottom - tr.top;
+        if (room > 0) tip.style.maxHeight = room + "px";
+      }
+    }
+
+    function overlapArea(a, b) {
+      var w = Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left));
+      var h = Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top));
+      return w * h;
     }
 
     function hide() { tip.hidden = true; }
@@ -418,9 +444,14 @@
         // drag — a nuisance, not a feature. e.buttons is nonzero exactly
         // while a mouse button is held (i.e. mid-drag); it is 0 for an
         // actual, button-up hover, so this only suppresses the drag case.
-        // Touch panning is not a concern here: sliding a finger does not
-        // synthesize mouseenter on the elements it crosses, only a single
-        // pointer/touchmove stream, so there is nothing to sweep-trigger.
+        // Deliberately blunt: it suppresses a hover while ANY button is
+        // held, not only the one svgzoom.js pans with (e.g. a right-click
+        // held down over a marker also won't open the panel). Accepted —
+        // there is no ordinary reason to hold a button down over a map
+        // marker other than panning it. Touch panning is not a concern
+        // here: sliding a finger does not synthesize mouseenter on the
+        // elements it crosses, only a single pointer/touchmove stream, so
+        // there is nothing to sweep-trigger.
         return function (e) { if (!e.buttons) show(p); };
       })(pins[i]));
       pins[i].addEventListener("mouseleave", hide);
@@ -429,6 +460,22 @@
       })(pins[i]));
       pins[i].addEventListener("blur", hide);
     }
+
+    // The guard above has a gap: if a pan ends with the pointer resting on
+    // a marker, no further mouseenter ever fires (the one and only
+    // mouseenter for that marker already happened, and was suppressed,
+    // when the drag first swept onto it) — the panel would then stay
+    // suppressed until the pointer actually leaves and re-enters, even
+    // though the drag is over and this is now, at that point, an entirely
+    // ordinary hover. mouseup's own target is whatever element the
+    // pointer is currently over at release, so re-checking there recovers
+    // that case without tracking pointer position separately. Same
+    // e.buttons guard for consistency, though by "mouseup" it has already
+    // dropped the button this very event released.
+    document.addEventListener("mouseup", function (e) {
+      var pin = e.target.closest && e.target.closest(".conf-pin");
+      if (pin && !e.buttons) show(pin);
+    });
   }
 
   if (document.readyState === "loading") {
