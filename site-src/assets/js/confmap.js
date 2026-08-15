@@ -53,7 +53,7 @@
     var stage = ensureStage(svg);
 
     wireCard(stage, svg, pins);
-    wireTip(fig, stage, pins);
+    wireTip(fig, stage, svg, pins);
   }
 
   function ensureStage(svg) {
@@ -345,8 +345,9 @@
    *
    * `fig` (the .confmap-figure element itself, same as init()'s own `fig`)
    * is what the sizing check below measures room against — see there for
-   * why the stage alone is not enough. */
-  function wireTip(fig, stage, pins) {
+   * why the stage alone is not enough. `svg` is what the top-offset check
+   * right below measures the panel's default position against. */
+  function wireTip(fig, stage, svg, pins) {
     var tip = document.createElement("div");
     tip.className = "conf-tip";
     tip.hidden = true;
@@ -369,16 +370,35 @@
           : confs[i].name;
         tip.appendChild(line);
       }
+      // top:2.9rem in CSS used to be a hand-derived constant (the zoom
+      // bar's fixed 2.3rem plus the original .6rem gap) — fragile, because
+      // the day either of those two numbers changes, the constant goes
+      // stale silently. site.css now sets no top at all for exactly this
+      // reason: measured live here instead, the same way the flip check
+      // just below already measures pin/tip rects rather than trusting a
+      // number written down in advance. svgRect.top - stageRect.top is the
+      // bar's rendered height regardless of what it is this week (zero if
+      // the bar were ever removed), so this keeps working even if a future
+      // change resizes the buttons or the bar's margin. getBoundingClientRect
+      // is all zero in jsdom, so this collapses to the plain .6rem gap
+      // there — harmless, since test_confmap.js never checks the panel's
+      // exact position, only that it opens and names the right things.
+      var svgRect = svg.getBoundingClientRect();
+      var stageRect = stage.getBoundingClientRect();
+      var topCalc = "calc(" + (svgRect.top - stageRect.top) + "px + .6rem)";
+      tip.style.top = topCalc;
+
       // Default corner first, then measure both corners and keep whichever
       // overlaps the marker less. This map's markers are not uniformly
       // spread (Vancouver, near the map's own top-left, sits right under
-      // the panel's default top:.6rem/left:.6rem spot — found by hovering
-      // it in a real browser, not by the jsdom suite, which has no layout
-      // engine to catch it), so a straight "flip once" is not a guarantee:
-      // on a small enough map with long enough text, BOTH corners can
-      // still touch a centrally-placed marker (verified at 375px — see
-      // .conf-tip's hidden-below-520px rule below, which is what actually
-      // disposes of that residual case rather than this comparison alone).
+      // the panel's default top/left spot computed just above — found by
+      // hovering it in a real browser, not by the jsdom suite, which has no
+      // layout engine to catch it), so a straight "flip once" is not a
+      // guarantee: on a small enough map with long enough text, BOTH
+      // corners can still touch a centrally-placed marker (verified at
+      // 375px — see .conf-tip's hidden-below-520px rule below, which is
+      // what actually disposes of that residual case rather than this
+      // comparison alone).
       // getBoundingClientRect is all zero in jsdom, so both overlap areas
       // come out 0 there and this is a no-op for test_confmap.js, same
       // treatment as .conf-card--scrollable above gives its own
@@ -389,10 +409,20 @@
       var trDefault = tip.getBoundingClientRect();
       var areaDefault = overlapArea(trDefault, pr);
       if (areaDefault > 0) {
+        // .conf-tip--br sets top:auto in site.css to switch corners, but an
+        // inline style always beats a stylesheet rule for the same
+        // property regardless of selector — topCalc above would otherwise
+        // pin the panel to its top-left math even with the class applied,
+        // silently defeating the flip. Clearing the inline value lets the
+        // class's top:auto (and its own right/bottom) take over; if the
+        // flip turns out not to help, the inline value is put straight
+        // back below.
         tip.classList.add("conf-tip--br");
+        tip.style.top = "";
         var trFlipped = tip.getBoundingClientRect();
         if (overlapArea(trFlipped, pr) >= areaDefault) {
           tip.classList.remove("conf-tip--br");   // flipping didn't help
+          tip.style.top = topCalc;
         }
       }
 

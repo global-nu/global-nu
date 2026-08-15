@@ -859,15 +859,18 @@ a.card:hover .card__go{color:var(--text)}
    bottom edge at 375px tall — verified with Playwright, not assumed, since
    jsdom's zero-height layout can't catch a real overflow.
 
-   top is not the stage's own .6rem gap: this panel is positioned against
+   top has no rule here on purpose: this panel is positioned against
    .confmap-stage (position:relative), and svgzoom.js's zoom-bar-plus-svg
-   wrapper lands inside that stage, above the svg — so top:.6rem alone would
-   float the panel over the bar row, not the map's top-left corner. The bar
-   is a fixed height (.svgzoom__btn's 1.9rem plus .svgzoom__bar's .4rem
-   margin-bottom = 2.3rem, always present because the conference map always
-   carries data-zoomable), so 2.3rem + the same .6rem gap lands the panel's
-   top edge against the SVG's, not the bar's. */
-.conf-tip{position:absolute;top:2.9rem;left:.6rem;max-width:22rem;z-index:3;
+   wrapper lands inside that stage, above the svg — so a fixed top:.6rem
+   would float the panel over the bar row, not the map's top-left corner. A
+   hand-derived constant (bar height + gap) was tried first and rejected:
+   the day either number changes in CSS, the constant silently goes stale
+   and nothing catches it. confmap.js's wireTip instead measures the SVG's
+   own top edge against the stage's, live, on every show() call, and sets
+   tip.style.top from that plus the same .6rem gap — see the comment there.
+   This rule only needs position:absolute and left; top is always set
+   inline before the panel is ever unhidden. */
+.conf-tip{position:absolute;left:.6rem;max-width:22rem;z-index:3;
   max-height:min(60vh,20rem);overflow-y:auto;
   padding:.5rem .7rem;border:1px solid var(--line);border-radius:var(--r-sm);
   background:var(--surface);box-shadow:var(--shadow);pointer-events:none}
