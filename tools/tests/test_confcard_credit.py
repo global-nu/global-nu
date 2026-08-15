@@ -85,12 +85,28 @@ else:
             page.goto(url)
             page.wait_for_selector(".conf-pin")
 
-            # Any conference pin carrying a photo — not a specific city name,
-            # since the conference list is refreshed daily and today's
-            # photographed cities are not guaranteed to still be in the data
-            # tomorrow. The other markers omit data-photo entirely.
-            pin = page.query_selector(".conf-pin[data-photo]")
-            check(f"[{label_vp}] a conference pin with a photo exists", pin is not None)
+            # Not a specific city name, since the conference list is
+            # refreshed daily and today's photographed cities are not
+            # guaranteed to still be in the data tomorrow. The other markers
+            # omit data-photo entirely.
+            #
+            # Among the photographed pins, pick the one with the most
+            # .conf-item children rather than just the first in document
+            # order. Task 6 made a marker able to hold several conferences
+            # under one shared photo, and a tall, multi-conference card is
+            # exactly the shape most likely to push the credit past
+            # .conf-card's max-height/overflow-y:auto box — the risk this
+            # test exists to catch. Before this fix the first photographed
+            # pin in the built page was reliably a one-conference marker
+            # (Lisbon), so the multi-conference case this task actually
+            # introduced was never exercised here at all — see
+            # task-6-report.md, "Finding 3".
+            photo_pins = page.query_selector_all(".conf-pin[data-photo]")
+            check(f"[{label_vp}] a conference pin with a photo exists", len(photo_pins) > 0)
+            pin = None
+            if photo_pins:
+                pin = max(photo_pins,
+                          key=lambda p: len(p.query_selector_all(".conf-item")))
 
             if pin is not None:
                 pin.scroll_into_view_if_needed()

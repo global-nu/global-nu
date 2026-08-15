@@ -235,6 +235,20 @@ links.includes('https://first.example/') && links.includes('https://second.examp
 mcard && mcard.querySelectorAll('.conf-card__photo').length <= 1
   ? ok('the city photograph is rendered once, not once per conference')
   : bad('the photograph was repeated per conference');
+mcard && mcard.textContent.includes('2 conferences')
+  ? ok('the card states the count next to the place, plural for two')
+  : bad('the card does not state the conference count');
+
+/* 10. a single-conference marker states the count too, correctly singular —
+   the count line is not something that only appears once a marker is
+   crowded; the grammar has to hold at the n=1 boundary as well. */
+const single = d.querySelector('[data-conf="conf:2812345"]');
+single.dispatchEvent(new d.defaultView.Event('click', {bubbles: true}));
+const scard = d.querySelector('.conf-card');
+scard && scard.textContent.includes('1 conference') && !scard.textContent.includes('1 conferences')
+  ? ok('a single-conference card states the count, singular')
+  : bad('a single-conference card does not state the count correctly: '
+      + (scard && scard.textContent));
 
 console.log();
 if (fail.length) { console.log(fail.length + ' check(s) failed'); process.exit(1); }

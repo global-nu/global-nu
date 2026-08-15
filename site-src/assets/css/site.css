@@ -790,14 +790,44 @@ a.card:hover .card__go{color:var(--text)}
 .conf-card__close:hover{color:var(--text)}
 .conf-card__title{margin:0 1.6rem .5rem 0;font-family:var(--display);
   font-size:1.02rem;letter-spacing:-.01em;color:var(--text)}
-.conf-card__title a{color:var(--text);text-decoration:none}
-.conf-card__title a:hover{color:var(--accent);text-decoration:underline}
+/* Task 6 removed the single "Conference site" pill (confmap.js) because one
+   button cannot represent N conferences on a shared marker. That left every
+   conference's own title — the thing that now carries the only link to it —
+   coloured the same as a plain heading (var(--text)) until hover, so a
+   reader had no way to tell a one-conference card's title was clickable
+   without trying. Colouring it var(--accent), the same token the removed
+   pill used, restores that affordance and scales to any list length: each
+   heading advertises itself instead of one button trying to speak for all
+   of them. A heading with no URL (confmap.js renders plain text, no <a>,
+   when a conference carries none) is untouched by this rule and stays
+   var(--text) — correctly reading as NOT a link. */
+.conf-card__title a{color:var(--accent);text-decoration:none}
+.conf-card__title a:hover{text-decoration:underline}
 .conf-card__meta{margin:0;font-family:var(--mono);font-size:.72rem;
   color:var(--text-mute)}
 .conf-card__actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.75rem}
 .conf-card__actions a{font-size:.82rem;font-weight:600;color:var(--accent);
   text-decoration:none}
 .conf-card__actions a:hover{text-decoration:underline}
+/* A marker can hold several conferences (Task 6); the card's own
+   .conf-card__meta already states the count next to the place
+   (confmap.js), but a reader scrolled to the first two headings of a
+   five-conference card still has no on-screen sign that scrolling reveals
+   more — the 20rem/60vh cap above exists for a good reason (fits a short
+   viewport) and stays, so the fix is to say more is there, not to remove
+   the cap. confmap.js adds .conf-card--scrollable only when the rendered
+   card's content actually exceeds its own box (scrollHeight > clientHeight)
+   so this never paints over a card that already shows everything.
+   position:sticky (not fixed/absolute) keeps the fade inside .conf-card's
+   own scrollport without a second wrapper element, and the negative
+   margin-top pulls it over the last line of real content instead of adding
+   scrollable height of its own. pointer-events:none so it never blocks a
+   click on whatever it happens to sit over (most often the Google Maps
+   action). */
+.conf-card--scrollable::after{content:"";display:block;position:sticky;
+  left:0;right:0;bottom:0;height:1.6rem;margin-top:-1.6rem;
+  pointer-events:none;
+  background:linear-gradient(to bottom,transparent,var(--bg) 80%)}
 /* A photograph of the host city (tools/news/photos.py), when Commons has
    one under a licence that permits reuse — same shape as .map-card's own
    photo block below, duplicated rather than shared: the comment above

@@ -179,11 +179,21 @@
       card.appendChild(closeBtn);
 
       // The place line is shared by every conference on this marker, so it
-      // is shown once, ahead of the list rather than repeated per entry.
-      if (place) {
+      // is shown once, ahead of the list rather than repeated per entry —
+      // alongside a count ("5 conferences"), because a card capped at
+      // 20rem/60vh (see .conf-card in site.css) can scroll past two or
+      // three headings of a five-conference marker with nothing else on
+      // screen saying there are more. The count is the reader's first
+      // signal of that before they ever need to notice the scrollbar.
+      var placeBits = [];
+      if (place) placeBits.push(place);
+      if (confs.length) {
+        placeBits.push(confs.length + " conference" + (confs.length === 1 ? "" : "s"));
+      }
+      if (placeBits.length) {
         var placeMeta = document.createElement("p");
         placeMeta.className = "conf-card__meta";
-        placeMeta.textContent = place;
+        placeMeta.textContent = placeBits.join(" · ");
         card.appendChild(placeMeta);
       }
 
@@ -237,6 +247,20 @@
 
       fig.appendChild(card);
       current = card;
+
+      // .conf-card--scrollable turns on the fade site.css paints at the
+      // bottom of the card (see the rule there) — only when this card's own
+      // content actually overflows its box, so a short, single-conference
+      // card (still the common case) never shows a "there is more" cue that
+      // would be a lie. scrollHeight/clientHeight only report real numbers
+      // once the card is in the document with layout run, which is why this
+      // reads them here rather than before the appendChild above; jsdom (no
+      // layout engine) reports 0 for both, so this is a no-op there, not a
+      // false positive.
+      if (card.scrollHeight > card.clientHeight) {
+        card.classList.add("conf-card--scrollable");
+      }
+
       // A role="dialog" that never receives focus is announced as a dialog
       // but does not behave like one; move focus onto its close button so a
       // keyboard or screen-reader user lands inside it immediately.
