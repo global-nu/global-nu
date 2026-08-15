@@ -559,7 +559,7 @@ table.data--refs td.ref{min-width:20rem;color:var(--text)}
   color:var(--text-mute);margin-top:.2rem}
 
 /* ---------- automated pages: citations under an item ---------- */
-.list--news li{padding:.75rem 0}
+.list--news li{padding:1.05rem 0}
 .list--news b{margin-bottom:.15rem}
 .cites{display:flex;flex-wrap:wrap;gap:.35rem .9rem;margin-top:.4rem;
   font-family:var(--mono);font-size:.72rem;color:var(--text-mute)}
@@ -569,6 +569,14 @@ table.data--refs td.ref{min-width:20rem;color:var(--text)}
 .tile .cites{margin-top:.7rem;padding-top:.7rem;border-top:1px solid var(--line)}
 .tile p{margin:0;color:var(--text-soft);font-size:.92rem}
 .list--news li > p{margin:0 0 .1rem;color:var(--text-soft)}
+
+/* The digest entry, given room. The categories were a comma-joined string
+   inside the grey meta line; as pills they are scannable, and .tag already
+   exists (see the badge rules above) so this only has to lay them out. */
+.list--news .tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.4rem}
+.list--news .tags .tag{font-family:var(--mono);font-size:.72rem;
+  color:var(--text-mute)}
+.list--news .cites{margin-top:.35rem}
 
 /* ============================================================
    Richer surfaces

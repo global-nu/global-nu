@@ -22,15 +22,15 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 15 August 2026, 07:32 CEST</span></div>
+<span class="stamp">Last successful update: 15 August 2026, 22:28 CEST</span></div>
 </div>
 
 <div class="section-head"><h2>Experimental</h2>
 <p>2 preprints</p></div>
 
 <ul class="list list--news">
-<li><b>MANGO: An Autodiff Neutrino Oscillation Engine for Differentiable Analysis Pipelines</b><span>Pierre Granger · hep-ex, hep-ph · 2026-08-13</span><span class="cites"><a href="https://arxiv.org/abs/2608.13429">arXiv</a></span></li>
-<li><b>Laboratory constraints on peV-scale mass splitting between ordinary and sterile neutron states</b><span>N. J. Ayres, Z. Berezhiani, G. Bison et al. · hep-ex · 2026-08-12</span><span class="cites"><a href="https://arxiv.org/abs/2608.12173">arXiv</a></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.13429">MANGO: An Autodiff Neutrino Oscillation Engine for Differentiable Analysis Pipelines</a></b><span>Pierre Granger · 13 Aug 2026</span><span class="tags"><span class="tag">hep-ex</span><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.12173">Laboratory constraints on peV-scale mass splitting between ordinary and sterile neutron states</a></b><span>N. J. Ayres, Z. Berezhiani, G. Bison et al. · 12 Aug 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
 </ul>
 
 
@@ -42,20 +42,20 @@ and may contain errors. No model is involved.</b>
 <p>14 preprints</p></div>
 
 <ul class="list list--news">
-<li><b>Archimedean Seesaw: Small Neutrino Masses and Large Lepton-number Violation</b><span>Tao Han, Alejandro Ibarra, Subhojit Roy et al. · hep-ph, hep-ex · 2026-08-10</span><span class="cites"><a href="https://arxiv.org/abs/2608.10062">arXiv</a></span></li>
-<li><b>Impact of Neutrino Flavour Conversion on the Diffuse Neutrino Background from Neutrino-dominated Accretion Flows</b><span>Yun-Feng Wei, Tong Liu · astro-ph.HE · 2026-08-12</span><span class="cites"><a href="https://arxiv.org/abs/2608.12177">arXiv</a></span></li>
-<li><b>A Novel One-loop Model for Majorana Neutrino Mass and Dark Matter</b><span>Mohamed Belfkir, Mohamed Amin Loualidi, Salah Nasri · hep-ph · 2026-08-12</span><span class="cites"><a href="https://arxiv.org/abs/2608.12646">arXiv</a></span></li>
-<li><b>Spontaneous Scoto-leptogenesis</b><span>Arghyajit Datta, Hyun Min Lee, Jun-Ho Song · hep-ph, astro-ph.CO · 2026-08-12</span><span class="cites"><a href="https://arxiv.org/abs/2608.12497">arXiv</a></span></li>
-<li><b>Singlet-Doublet fermion origin of dark matter, neutrino mass and inverse first-order electroweak phase transition</b><span>Debasish Borah, Indrajit Saha, Sujit Kumar Sahoo et al. · hep-ph, astro-ph.CO, hep-ex · 2026-08-12</span><span class="cites"><a href="https://arxiv.org/abs/2608.12483">arXiv</a></span></li>
-<li><b>An Evolving Leptonic Jet Model for Delayed Radio Flares in Neutrino Blazars</b><span>Alina Kochocki, Xavier Rodrigues, Nathan Whitehorn · astro-ph.HE, astro-ph.GA · 2026-08-13</span><span class="cites"><a href="https://arxiv.org/abs/2608.12696">arXiv</a></span></li>
-<li><b>The Galactic Neutrino Sky: Predictions from Gamma-ray Source Populations</b><span>Leo Seen, Ke Fang · astro-ph.HE · 2026-08-10</span><span class="cites"><a href="https://arxiv.org/abs/2608.09849">arXiv</a></span></li>
-<li><b>Probing Memory-Burdened Primordial Black Holes with High-Energy Neutrinos</b><span>Arian Moradi Asl, Sandhya Choubey, Andreas Lund · hep-ph, astro-ph.HE · 2026-08-08</span><span class="cites"><a href="https://arxiv.org/abs/2608.08144">arXiv</a></span></li>
-<li><b>Neutrino Mass and its Impact on Gravitational Waves from Domain Wall Collision</b><span>Victoria Puyam, Mrinal Kumar Das · hep-ph · 2026-08-08</span><span class="cites"><a href="https://arxiv.org/abs/2608.08084">arXiv</a></span></li>
-<li><b>Newtrinos.jl: A Julia Package for Global Analysis of Neutrino Data</b><span>Philipp Eller, David Schultheiß · hep-ph, hep-ex · 2026-08-13</span><span class="cites"><a href="https://arxiv.org/abs/2608.12940">arXiv</a></span></li>
-<li><b>Cross-spectral Analysis of the Type-C Quasi-periodic Oscillation Shoulder Component in GX 339-4</b><span>Haifan Zhu, Mariano Méndez, Pengcheng Yang et al. · astro-ph.HE · 2026-08-13</span><span class="cites"><a href="https://arxiv.org/abs/2608.12966">arXiv</a></span></li>
-<li><b>High-energy neutrino signatures of embedded GRB jets in AGN disks: a dynamic jet-propagation framework</b><span>Wei-Cheng Long, Yun-Wei Yu · astro-ph.HE · 2026-08-12</span><span class="cites"><a href="https://arxiv.org/abs/2608.12217">arXiv</a></span></li>
-<li><b>SPORE: An Event-Level Sampling Pipeline for Multi-Telescope Neutrino Astronomy</b><span>Jeffrey Lazar, Perrine Wilmet, Gwenhaël de Wasseige · astro-ph.IM, astro-ph.HE · 2026-08-12</span><span class="cites"><a href="https://arxiv.org/abs/2608.11862">arXiv</a></span></li>
-<li><b>Leptogenesis in Brane-modified cosmology: Signatures in primordial gravitational waves</b><span>Amit Dutta Banik, Arnab Paul · hep-ph · 2026-08-10</span><span class="cites"><a href="https://arxiv.org/abs/2608.09814">arXiv</a></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.10062">Archimedean Seesaw: Small Neutrino Masses and Large Lepton-number Violation</a></b><span>Tao Han, Alejandro Ibarra, Subhojit Roy et al. · 10 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.12177">Impact of Neutrino Flavour Conversion on the Diffuse Neutrino Background from Neutrino-dominated Accretion Flows</a></b><span>Yun-Feng Wei, Tong Liu · 12 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.12646">A Novel One-loop Model for Majorana Neutrino Mass and Dark Matter</a></b><span>Mohamed Belfkir, Mohamed Amin Loualidi, Salah Nasri · 12 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.12497">Spontaneous Scoto-leptogenesis</a></b><span>Arghyajit Datta, Hyun Min Lee, Jun-Ho Song · 12 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.12483">Singlet-Doublet fermion origin of dark matter, neutrino mass and inverse first-order electroweak phase transition</a></b><span>Debasish Borah, Indrajit Saha, Sujit Kumar Sahoo et al. · 12 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.12696">An Evolving Leptonic Jet Model for Delayed Radio Flares in Neutrino Blazars</a></b><span>Alina Kochocki, Xavier Rodrigues, Nathan Whitehorn · 13 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">astro-ph.GA</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.09849">The Galactic Neutrino Sky: Predictions from Gamma-ray Source Populations</a></b><span>Leo Seen, Ke Fang · 10 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.08144">Probing Memory-Burdened Primordial Black Holes with High-Energy Neutrinos</a></b><span>Arian Moradi Asl, Sandhya Choubey, Andreas Lund · 8 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.08084">Neutrino Mass and its Impact on Gravitational Waves from Domain Wall Collision</a></b><span>Victoria Puyam, Mrinal Kumar Das · 8 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.12940">Newtrinos.jl: A Julia Package for Global Analysis of Neutrino Data</a></b><span>Philipp Eller, David Schultheiß · 13 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.12966">Cross-spectral Analysis of the Type-C Quasi-periodic Oscillation Shoulder Component in GX 339-4</a></b><span>Haifan Zhu, Mariano Méndez, Pengcheng Yang et al. · 13 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.12217">High-energy neutrino signatures of embedded GRB jets in AGN disks: a dynamic jet-propagation framework</a></b><span>Wei-Cheng Long, Yun-Wei Yu · 12 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.11862">SPORE: An Event-Level Sampling Pipeline for Multi-Telescope Neutrino Astronomy</a></b><span>Jeffrey Lazar, Perrine Wilmet, Gwenhaël de Wasseige · 12 Aug 2026</span><span class="tags"><span class="tag">astro-ph.IM</span><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.09814">Leptogenesis in Brane-modified cosmology: Signatures in primordial gravitational waves</a></b><span>Amit Dutta Banik, Arnab Paul · 10 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 </ul>
 
 

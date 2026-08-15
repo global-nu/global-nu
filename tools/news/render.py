@@ -72,22 +72,43 @@ def _stamp(when: _dt.datetime | None = None) -> str:
     return (when or _dt.datetime.now()).astimezone().strftime("%d %B %Y, %H:%M %Z")
 
 
-def _links_row(rec: dict) -> str:
+def _human_date(iso: str) -> str:
+    """"2026-08-13" -> "13 Aug 2026".
+
+    Returned unchanged if it does not parse: the records come from an API,
+    and a date this function cannot read is still better shown as it arrived
+    than swallowed.
+    """
+    try:
+        return _dt.date.fromisoformat(str(iso)).strftime("%-d %b %Y")
+    except (ValueError, TypeError):
+        return str(iso)
+
+
+def _links_row(rec: dict, skip: set[str] | None = None) -> str:
     """arXiv / INSPIRE / DOI, whichever the record actually carries.
 
     Only links that came with the record are emitted: a DOI is never
     constructed from an arXiv id, because a paper that is not published yet
     would get a link that 404s.
+
+    `skip` leaves out link keys the caller has already shown elsewhere. The
+    digest passes {"arxiv"} because the entry's title now carries that link;
+    the row still appears for a record that also has a DOI or a journal, and
+    disappears only when arXiv was all it had.
     """
     order = [("arxiv", "arXiv"), ("inspire", "INSPIRE"), ("doi", "DOI"),
              ("journal", "Journal"), ("source", "Source")]
+    skip = skip or set()
     seen, out = set(), []
     for key, label in order:
+        if key in skip:
+            continue
         url = (rec.get("links") or {}).get(key)
         if url and url not in seen:
             seen.add(url)
             out.append(f'<a href="{_esc(url)}">{label}</a>')
-    if not out and rec.get("url"):
+    if not out and rec.get("url") and "url" not in skip:
         out.append(f'<a href="{_esc(rec["url"])}">Read it</a>')
     return " · ".join(out)
 
@@ -212,11 +233,26 @@ def _digest_list(records: list[dict]) -> str:
                 'quiet Sunday rather than a failure.</p>\n')
     out = ['<ul class="list list--news">\n']
     for rec in records:
-        cats = ", ".join((rec.get("extra") or {}).get("categories", [])[:3])
-        meta = " · ".join(x for x in (rec.get("authors"), cats, rec.get("date")) if x)
-        out.append(f'<li><b>{_title(rec)}</b>'
+        title = _title(rec)
+        arxiv = (rec.get("links") or {}).get("arxiv")
+        # The title carries the arXiv link, so the links row below drops it.
+        # A record with no arXiv link keeps a plain title and an untouched
+        # row — nothing is lost for the records this does not apply to.
+        head = f'<a href="{_esc(arxiv)}">{title}</a>' if arxiv else title
+        meta = " · ".join(x for x in (rec.get("authors"),
+                                      _human_date(rec.get("date", ""))) if x)
+        tags = "".join(
+            f'<span class="tag">{_esc(c)}</span>'
+            for c in (rec.get("extra") or {}).get("categories", [])[:3])
+        # `url` is skipped alongside `arxiv`: every fetched record carries a
+        # `url` (cache.py's contract), and for an arXiv-sourced record it IS
+        # the arXiv link — so leaving it in would print a second "Read it"
+        # link to the same address the title already points to.
+        rest = _links_row(rec, skip={"arxiv", "url"} if arxiv else None)
+        row = f'<span class="cites">{rest}</span>' if rest else ""
+        out.append(f'<li><b>{head}</b>'
                    f'<span>{_esc(meta)}</span>'
-                   f'<span class="cites">{_links_row(rec)}</span></li>\n')
+                   f'<span class="tags">{tags}</span>{row}</li>\n')
     out.append('</ul>\n')
     return "".join(out)
 
