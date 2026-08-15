@@ -264,6 +264,16 @@ def _lookup_photo(conf: dict, log: logging.Logger) -> dict | None:
     return photos.for_city(city_code[0], city_code[1], log)
 
 
+def _marker_scope(first: dict) -> str:
+    """The scope that decides a cluster's colour: always the venue's FIRST
+    conference. A mixed-scope cluster's dot is (arbitrarily) painted for
+    whichever conference sorts first — see _conf_marker's own colour line,
+    which calls this on the same `confs[0]` — so the legend has to ask this
+    same question about the same record, not re-derive an answer from the
+    whole cluster, or it can advertise a colour the dot never wears."""
+    return (first.get("extra") or {}).get("scope") or "neutrino"
+
+
 def _conf_marker(confs: list[dict], lon: float, lat: float,
                  x: float, y: float, photo: dict | None = None) -> str:
     """One <g class="conf-pin"> for a venue, holding every conference at it.
@@ -300,7 +310,7 @@ def _conf_marker(confs: list[dict], lon: float, lat: float,
     # 4.5:1 text threshold. --accent-2 is already in the palette and clears
     # 7.15:1 for the same pair, so this figure uses that token instead; see
     # the matching pairs in tools/tests/test_theme.js.
-    colour = ("var(--accent-2)" if (extra.get("scope") or "") == "general"
+    colour = ("var(--accent-2)" if _marker_scope(first) == "general"
               else "var(--no)")
 
     title = "; ".join(
@@ -408,6 +418,16 @@ def conference_map(located: list[tuple[dict, float, float]],
     # Step 2: draw one marker per cluster. A cluster of one is a city with one
     # conference; a cluster of several is a city with several, and the count
     # goes on the dot instead of fanning them into separate ones.
+    #
+    # `present` is built here, from each cluster's own confs[0], rather than
+    # from every raw point afterwards: a mixed-scope cluster draws ONE dot in
+    # ONE colour (_conf_marker's own scope call, below, is on that same
+    # confs[0]), so a legend built from every point's scope could list a
+    # colour that never actually appears on the map — the "a key to something
+    # the reader cannot see is noise" rule, failing on exactly that case.
+    # Reading both the dot and the legend off the same confs[0] makes them
+    # agree by construction instead of by afterwards comparing colour strings.
+    present: set[str] = set()
     for members in sorted(clusters.values(), key=len):
         confs = [points[i][0] for i in members]
         # The cluster's position is the mean of its members', but the
@@ -416,13 +436,12 @@ def conference_map(located: list[tuple[dict, float, float]],
         cx = sum(points[i][3][0] for i in members) / len(members)
         cy = sum(points[i][3][1] for i in members) / len(members)
         _, lon, lat, _ = points[members[0]]
+        present.add(_marker_scope(confs[0]))
         parts.append(_conf_marker(confs, lon, lat, cx, cy,
                                   _lookup_photo(confs[0], log)))
 
     # A legend, so two colours are not a puzzle. Only categories actually on
     # the map are listed: a key to something the reader cannot see is noise.
-    present = {(p[0].get("extra") or {}).get("scope") or "neutrino"
-               for p in points}
     lx, ly = 12.0, top + height - 8.0
     for scope, colour, label in (
             ("neutrino", "var(--no)", "Neutrino"),

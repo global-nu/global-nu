@@ -149,6 +149,45 @@ only_nu = figures.conference_map([MIXED[0]])
 check("a legend entry with nothing to label is not drawn",
       "General particle physics" not in only_nu)
 
+# --- a legend must never label a colour that isn't on any dot -------------
+# MIXED above can't catch this: Bari and Tokyo are thousands of units apart,
+# so they never share a cluster. Two conferences at the SAME spot cluster
+# into ONE marker, painted from confs[0] alone (_marker_scope) — so if the
+# legend were built from every raw point instead of that same confs[0], it
+# could draw a swatch for the scope that got folded away, describing a
+# colour that appears nowhere on the map.
+SAME_SPOT = [
+    ({"id": "n2", "title": "A Neutrino Meeting Here", "url": "https://n2.example/",
+      "extra": {"place": "Bari, Italy", "city": "Bari", "span": "1-5 Sep 2026",
+                "scope": "neutrino"}}, 16.87, 41.12),
+    ({"id": "g2", "title": "A General Meeting Here", "url": "https://g2.example/",
+      "extra": {"place": "Bari, Italy", "city": "Bari", "span": "1-5 Sep 2026",
+                "scope": "general"}}, 16.87, 41.12),
+]
+svgs = figures.conference_map(SAME_SPOT)
+
+check("two conferences at the same spot draw ONE marker",
+      svgs.count('class="conf-pin"') == 1,
+      f'found {svgs.count(chr(34) + "conf-pin" + chr(34))} markers')
+
+# A dot's own circle: <circle r="..." fill="COLOUR" stroke="var(--bg)" ...>.
+# The legend's swatch circle carries cx/cy and no stroke, so this pattern
+# only matches colours actually worn by a marker on the map.
+dot_colours = set(re.findall(
+    r'<circle r="[\d.]+" fill="(var\(--[\w-]+\))" stroke="var\(--bg\)"', svgs))
+# The legend's own swatch: <circle cx="..." cy="..." r="4" fill="COLOUR"/>.
+legend_colours = set(re.findall(
+    r'<circle cx="[\d.]+" cy="[\d.]+" r="4" fill="(var\(--[\w-]+\))"/>', svgs))
+
+check("only the first conference's colour is actually on the map",
+      dot_colours == {"var(--no)"}, dot_colours)
+check("the legend never advertises a colour no dot wears",
+      legend_colours <= dot_colours,
+      f"legend={legend_colours} dots={dot_colours}")
+check("the general conference is folded into the neutrino dot, so its "
+      "legend entry is not drawn",
+      "General particle physics" not in svgs)
+
 print()
 if problems:
     print(f"  ! {len(problems)} of {checks} checks failed")
