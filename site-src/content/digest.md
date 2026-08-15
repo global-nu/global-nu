@@ -22,7 +22,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 14 August 2026, 17:55 CEST</span></div>
+<span class="stamp">Last successful update: 15 August 2026, 07:32 CEST</span></div>
 </div>
 
 <div class="section-head"><h2>Experimental</h2>
@@ -47,7 +47,6 @@ and may contain errors. No model is involved.</b>
 <li><b>A Novel One-loop Model for Majorana Neutrino Mass and Dark Matter</b><span>Mohamed Belfkir, Mohamed Amin Loualidi, Salah Nasri · hep-ph · 2026-08-12</span><span class="cites"><a href="https://arxiv.org/abs/2608.12646">arXiv</a></span></li>
 <li><b>Spontaneous Scoto-leptogenesis</b><span>Arghyajit Datta, Hyun Min Lee, Jun-Ho Song · hep-ph, astro-ph.CO · 2026-08-12</span><span class="cites"><a href="https://arxiv.org/abs/2608.12497">arXiv</a></span></li>
 <li><b>Singlet-Doublet fermion origin of dark matter, neutrino mass and inverse first-order electroweak phase transition</b><span>Debasish Borah, Indrajit Saha, Sujit Kumar Sahoo et al. · hep-ph, astro-ph.CO, hep-ex · 2026-08-12</span><span class="cites"><a href="https://arxiv.org/abs/2608.12483">arXiv</a></span></li>
-<li><b>Neutrino quantum kinetics for fast flavor conversion in a time-dependent environment</b><span>Zewei Xiong, Meng-Ru Wu · astro-ph.HE, hep-ph · 2026-08-07</span><span class="cites"><a href="https://arxiv.org/abs/2608.07773">arXiv</a></span></li>
 <li><b>An Evolving Leptonic Jet Model for Delayed Radio Flares in Neutrino Blazars</b><span>Alina Kochocki, Xavier Rodrigues, Nathan Whitehorn · astro-ph.HE, astro-ph.GA · 2026-08-13</span><span class="cites"><a href="https://arxiv.org/abs/2608.12696">arXiv</a></span></li>
 <li><b>The Galactic Neutrino Sky: Predictions from Gamma-ray Source Populations</b><span>Leo Seen, Ke Fang · astro-ph.HE · 2026-08-10</span><span class="cites"><a href="https://arxiv.org/abs/2608.09849">arXiv</a></span></li>
 <li><b>Probing Memory-Burdened Primordial Black Holes with High-Energy Neutrinos</b><span>Arian Moradi Asl, Sandhya Choubey, Andreas Lund · hep-ph, astro-ph.HE · 2026-08-08</span><span class="cites"><a href="https://arxiv.org/abs/2608.08144">arXiv</a></span></li>
@@ -56,6 +55,7 @@ and may contain errors. No model is involved.</b>
 <li><b>Cross-spectral Analysis of the Type-C Quasi-periodic Oscillation Shoulder Component in GX 339-4</b><span>Haifan Zhu, Mariano Méndez, Pengcheng Yang et al. · astro-ph.HE · 2026-08-13</span><span class="cites"><a href="https://arxiv.org/abs/2608.12966">arXiv</a></span></li>
 <li><b>High-energy neutrino signatures of embedded GRB jets in AGN disks: a dynamic jet-propagation framework</b><span>Wei-Cheng Long, Yun-Wei Yu · astro-ph.HE · 2026-08-12</span><span class="cites"><a href="https://arxiv.org/abs/2608.12217">arXiv</a></span></li>
 <li><b>SPORE: An Event-Level Sampling Pipeline for Multi-Telescope Neutrino Astronomy</b><span>Jeffrey Lazar, Perrine Wilmet, Gwenhaël de Wasseige · astro-ph.IM, astro-ph.HE · 2026-08-12</span><span class="cites"><a href="https://arxiv.org/abs/2608.11862">arXiv</a></span></li>
+<li><b>Leptogenesis in Brane-modified cosmology: Signatures in primordial gravitational waves</b><span>Amit Dutta Banik, Arnab Paul · hep-ph · 2026-08-10</span><span class="cites"><a href="https://arxiv.org/abs/2608.09814">arXiv</a></span></li>
 </ul>
 
 
