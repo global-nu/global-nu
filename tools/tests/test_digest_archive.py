@@ -135,6 +135,17 @@ check("older days are reached through their month, not listed one by one",
 check("each listed day shows how many papers it holds",
       "1 paper" in block, block[:400])
 
+# --- the daily job must be able to commit what it just wrote --------------
+from tools.news import pipeline                          # noqa: E402
+
+check("the publish list covers the archive's source pages",
+      "site-src/content/digest" in pipeline.PUBLISHED_BY_JOB,
+      "a page the job writes but cannot commit leaves the tree dirty, and the "
+      "next git pull --rebase refuses — the site then stops updating silently")
+check("and their built output",
+      "site/digest" in pipeline.PUBLISHED_BY_JOB,
+      str(pipeline.PUBLISHED_BY_JOB))
+
 print()
 if problems:
     print(f"  ! {len(problems)} of {checks} checks failed")

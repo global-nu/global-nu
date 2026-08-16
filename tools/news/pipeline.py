@@ -26,7 +26,7 @@ import subprocess
 import sys
 
 from . import cache, conferences as conf_mod, fetch_arxiv, fetch_feeds
-from . import fetch_indico, fetch_inspire, fetch_nu_unbound, linkcheck, render
+from . import archive, fetch_indico, fetch_inspire, fetch_nu_unbound, linkcheck, render
 from . import state, synthesize
 from .common import ROOT, get_logger, load_config, now_iso
 from .lock import LockBusy, run_lock
@@ -167,10 +167,8 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
     # skipped, keeping yesterday's content — otherwise would not hold for the
     # step that now does the most work.
     wrote = []
-    if _safe("render digest",
-            lambda: render.digest(
-                fetch_arxiv.top(arxiv, int(cfg["arxiv"].get("max_items", 12))), log),
-            log, False):
+    published = fetch_arxiv.top(arxiv, int(cfg["arxiv"].get("max_items", 12)))
+    if _safe("render digest", lambda: render.digest(published, log), log, False):
         wrote.append("digest")
     if _safe("render conferences", lambda: render.conferences(events, log), log, False):
         wrote.append("conferences")
@@ -178,6 +176,19 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
         wrote.append("news")
     if not wrote:
         log.warning("nothing was written — the pages keep their last content")
+
+    # The archive keeps what the digest published, filed by each paper's own
+    # announcement date. Inside _safe like every other step: an archive that
+    # fails must cost the archive, not the day's digest.
+    def _archive() -> list[str]:
+        store = archive.merge(archive.load(), published)
+        archive.save(store)
+        pages = archive.write_pages(store, render._stamp())
+        archive.update_index(store)
+        return pages
+
+    archived = _safe("archive digest", _archive, log, [])
+    log.info("archive: wrote %d page(s)", len(archived))
 
     # ------------------------------------------------------------ 5. build --
     if do_build and wrote:
@@ -211,9 +222,19 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
 # Only these reach a commit. The daily job regenerates three pages and their
 # built output; anything else in the tree is someone's work in progress and is
 # not this job's to commit.
+#
+# "site-src/content/digest" and "site/digest" are directories, not files: the
+# archive writes a page per day and per month, and which days and months
+# exist is only known after today's records are filed, so the names cannot be
+# enumerated here in advance the way the three fixed pages above are. The
+# archive never deletes (see tools/news/archive.py), so a plain `git add` of
+# each directory is enough to pick up everything it wrote; `git add -A` is
+# deliberately not used anywhere in this list, since it would also stage
+# anything else that happened to be removed elsewhere in the tree.
 PUBLISHED_BY_JOB = [
     "site-src/content/digest.md", "site-src/content/news.md",
     "site-src/content/conferences.md",
+    "site-src/content/digest", "site/digest",
     "site/digest.html", "site/news.html", "site/conferences.html",
     "site/sitemap.xml",
 ]
