@@ -352,6 +352,22 @@ h4{font-weight:700;font-size:.98rem}
 .list span{font-family:var(--mono);font-size:.72rem;color:var(--text-mute)}
 .tile .more{display:inline-block;margin-top:.9rem;font-size:.85rem;font-weight:600}
 
+/* ---------- archive index (digest.md, between the ARCHIVE markers) ----------
+   tools/news/archive.py emits <li><time>…</time><a>…</a><span class="count">
+   …</span></li> — a row, not the title-plus-meta shape .list carries, so it
+   gets its own rules rather than reusing .list. Rows wrap onto two lines
+   below ~420px rather than truncating: every field here is the whole reason
+   the row exists, so nothing in it is a candidate for ellipsis. */
+.archive{list-style:none;margin:0;padding:0;font-size:.9rem}
+.archive li{display:flex;flex-wrap:wrap;align-items:baseline;gap:.25rem 1rem;
+  padding:.65rem 0;border-top:1px solid var(--line)}
+.archive li:first-child{border-top:0}
+.archive time{flex:0 0 auto;min-width:9rem;font-family:var(--mono);
+  font-size:.78rem;color:var(--text-mute)}
+.archive a{flex:1 1 14rem;font-weight:600}
+.archive .count{flex:0 0 auto;margin-left:auto;font-family:var(--mono);
+  font-size:.72rem;color:var(--text-mute)}
+
 /* ---------- link strip ---------- */
 .strip{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
 .strip a{display:block;background:var(--bg);border:1px solid var(--line);
