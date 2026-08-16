@@ -706,6 +706,8 @@ def main() -> None:
     ap.add_argument("--no-images", action="store_true", help="skip image pipeline")
     ap.add_argument("--drafts", action="store_true",
                     help="include drafts/ and build to site-draft/ (never published)")
+    ap.add_argument("--out", default=None,
+                    help="output directory (default: site/, or site-draft/ with --drafts)")
     args = ap.parse_args()
 
     cfg = load_config()
@@ -714,6 +716,8 @@ def main() -> None:
     if args.drafts:
         OUT = OUT_DRAFT
         print("DRAFT BUILD — includes unpublished material, never deploy this tree")
+    if args.out:
+        OUT = Path(args.out)
 
     if args.clean and OUT.exists():
         shutil.rmtree(OUT)
