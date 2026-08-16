@@ -83,8 +83,8 @@ uncommitted, `git pull --rebase` would refuse a dirty tree, and publication
 would stop.
 
 That failure has now occurred twice in one day for unrelated reasons, and both
-times it was silent. The design must extend `GENERATED_PATHS` to cover the
-archive directories.
+times it was silent. The design must extend `PUBLISHED_BY_JOB` (the list's actual name) to cover
+the archive directories.
 
 Because day pages persist, the job only ever **adds** files, never removes
 them, so a plain `git add` of the two directories is enough and the more
@@ -158,7 +158,7 @@ the site. An archive that breaks must cost the archive, not the day's digest.
 | Day pages exist for every day in the store | a day silently absent from its own archive |
 | The monthly page contains exactly the days of that calendar month | a paper filed under the wrong month at a boundary |
 | No day page is ever deleted | the 404 this design exists to avoid |
-| `GENERATED_PATHS` covers both archive directories | the silent publication stall described above |
+| `PUBLISHED_BY_JOB` covers both archive directories | the silent publication stall described above |
 | The store round-trips: pages regenerated from it are byte-identical | a page that can no longer be rebuilt from its source |
 
 And the built pages are looked at in a browser, at three widths and both
