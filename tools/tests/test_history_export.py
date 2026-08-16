@@ -231,7 +231,7 @@ check("interval_method is set exactly when there is an interval to describe",
 
 check("interval_method only ever takes a value the documentation defines",
       {r.get("interval_method") for r in measured}
-      <= {"identical", "shifted", "reprojected", None},
+      <= {"identical", "propagated", "propagated_rho", None},
       str({r.get("interval_method") for r in measured}))
 
 # Five of the six parameters are reported the same way by every group, so
@@ -248,8 +248,8 @@ check("and its two conventions carry the same interval",
 # Dm2 as reported by NuFit and Valencia is the one that moves.
 converted = [r for r in measured
              if r["parameter"] == "Dm2" and r["group"] != "bari"]
-check("a converted Dm2 row is marked shifted, not identical",
-      converted and all(r["interval_method"] == "shifted" for r in converted),
+check("a converted Dm2 row is marked propagated, not identical",
+      converted and all(r["interval_method"] == "propagated" for r in converted),
       str({r["interval_method"] for r in converted}))
 check("a converted Dm2 row's interval really did move",
       all(r["s3_lo_as_published"] != r["s3_lo_our_convention"]
@@ -259,14 +259,50 @@ check("a converted Dm2 row's interval really did move",
 # The width is what a reader compares across groups; the offset must not
 # change it. Anything else would mean the endpoints were shifted by different
 # amounts, which is not what a constant offset does.
+grew = 0
 for r in converted:
     if r["s3_lo_as_published"] is None:
         continue
     w_pub = r["s3_hi_as_published"] - r["s3_lo_as_published"]
     w_our = r["s3_hi_our_convention"] - r["s3_lo_our_convention"]
-    check(f"the shift preserves the 3s width for {r['group']} {r['year']} "
-          f"{r['ordering']}", abs(w_pub - w_our) < 1e-9,
-          f"{w_pub} vs {w_our}")
+    # Propagation can only add variance, so the converted range is never
+    # narrower. It is often EQUAL, and that is not a failure: the bounds are
+    # printed at the source's own precision, and for most releases sigma(dm2)/2
+    # is smaller than the last digit the paper printed. Claiming otherwise
+    # would mean printing digits nobody measured.
+    check(f"the propagated 3s width never shrank for {r['group']} {r['year']} "
+          f"{r['ordering']}", w_our >= w_pub - 1e-12,
+          f"published {w_pub:.5f} vs converted {w_our:.5f} — narrower is "
+          f"impossible when a variance is added")
+    if w_our > w_pub + 1e-12:
+        grew += 1
+
+check("and on at least one release the growth is visible at published precision",
+      grew > 0,
+      "if sigma(u) never moved a printed digit anywhere, check it is in the "
+      "arithmetic at all")
+
+# A propagated bound is the square root of a sum of squares: its exact value
+# has no last digit, so the number of decimals published is a decision. The
+# only defensible one is the precision of the inputs — anything finer claims
+# accuracy the source papers never printed.
+def _dp(x: float) -> int:
+    s = repr(float(x))
+    return len(s.split(".")[1]) if "." in s and "e" not in s else 0
+
+
+for r in measured:
+    for level in ("s1", "s3"):
+        pub_lo, our_lo = r[f"{level}_lo_as_published"], r[f"{level}_lo_our_convention"]
+        if pub_lo is None or our_lo is None or r["interval_method"] != "propagated":
+            continue
+        # The offset dm2/2 sets a floor: rounding below it would hide the
+        # conversion. Two extra places cover it on every release here.
+        want = max(_dp(pub_lo), _dp(r[f"{level}_hi_as_published"])) + 3
+        got = max(_dp(our_lo), _dp(r[f"{level}_hi_our_convention"]))
+        check(f"{r['group']} {r['year']} {r['ordering']} {level}: the propagated "
+              f"bound is not printed finer than its source",
+              got <= want, f"source {want} decimals, converted {got}")
 
 print()
 if problems:

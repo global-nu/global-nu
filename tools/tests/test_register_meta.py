@@ -33,6 +33,17 @@ def check(label: str, ok: bool, detail: str = "") -> None:
     print(f"  FAIL {label}" + (f"\n         {detail}" if detail else ""))
 
 
+import subprocess                                       # noqa: E402
+
+
+def _git_date(path) -> str | None:
+    """The same question the module asks git, asked independently here."""
+    out = subprocess.run(["git", "log", "-1", "--format=%cs", "--", str(path)],
+                         cwd=ROOT, capture_output=True, text=True, check=False)
+    d = out.stdout.strip()
+    return d if len(d) == 10 else None
+
+
 facts = register_meta.register_facts()
 rows = json.loads(register_meta.EXPORT.read_text(encoding="utf-8"))["rows"]
 
@@ -71,9 +82,9 @@ import datetime as _dt                                    # noqa: E402
 dm = facts["date_modified"]
 check("date_modified is an ISO date or None",
       dm is None or len(dm) == 10 and dm[4] == dm[7] == "-", f"got {dm!r}")
-check("date_modified is not simply today (that would be the build date)",
-      dm is None or dm != _dt.date.today().isoformat(),
-      "the export did not change today; if it did, re-run this test tomorrow")
+check("date_modified is exactly the export's own last commit date",
+      dm == _git_date(register_meta.EXPORT),
+      f"module says {dm!r}, git says {_git_date(register_meta.EXPORT)!r}")
 
 print()
 if problems:

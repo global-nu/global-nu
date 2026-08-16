@@ -4,7 +4,7 @@ nufit,2004,hep-ph/0405172,"New J. Phys. 6, 122 (2004)",Table 1,dm2,any,Dm2_3l = 
 nufit,2004,hep-ph/0405172,"New J. Phys. 6, 122 (2004)",Table 1,sin2_th12,any,Dm2_3l = Dm2_31 > 0; no inverted-ordering fit performed,measurement,3.0,3.0,1e-1,,,,2.3,3.8,,,2.3,3.8,identical
 nufit,2004,hep-ph/0405172,"New J. Phys. 6, 122 (2004)",Table 1,sin2_th13,any,Dm2_3l = Dm2_31 > 0; no inverted-ordering fit performed,limit,4.7,4.7,1e-2,3sigma,,,,,,,,,
 nufit,2004,hep-ph/0405172,"New J. Phys. 6, 122 (2004)",Table 1,sin2_th23,any,Dm2_3l = Dm2_31 > 0; no inverted-ordering fit performed,measurement,5.0,5.0,1e-1,,,,3.4,6.8,,,3.4,6.8,identical
-nufit,2004,hep-ph/0405172,"New J. Phys. 6, 122 (2004)",Table 1,Dm2,no,Dm2_3l = Dm2_31 > 0; no inverted-ordering fit performed,measurement,2.2,2.1595,1e-3 eV²,,,,1.4,3.3,,,1.3595,3.2595,shifted
+nufit,2004,hep-ph/0405172,"New J. Phys. 6, 122 (2004)",Table 1,Dm2,no,Dm2_3l = Dm2_31 > 0; no inverted-ordering fit performed,measurement,2.2,2.1595,1e-3 eV²,,,,1.4,3.3,,,1.3595,3.2595,propagated
 bari,2006,hep-ph/0506083,"Prog. Part. Nucl. Phys. 57, 742 (2006)","Eq. (53)-(57), global oscillation analysis",sin2_th13,any,Dm2 = m3^2 - (m1^2 + m2^2)/2,measurement,0.9,0.9,1e-2,,,,,,,,,,
 bari,2006,hep-ph/0506083,"Prog. Part. Nucl. Phys. 57, 742 (2006)","Eq. (53)-(57), global oscillation analysis",dm2,any,Dm2 = m3^2 - (m1^2 + m2^2)/2,measurement,7.92,7.92,1e-5 eV²,,,,,,,,,,
 bari,2006,hep-ph/0506083,"Prog. Part. Nucl. Phys. 57, 742 (2006)","Eq. (53)-(57), global oscillation analysis",sin2_th12,any,Dm2 = m3^2 - (m1^2 + m2^2)/2,measurement,3.14,3.14,1e-1,,,,,,,,,,
@@ -30,8 +30,8 @@ nufit,2012,1209.3023,JHEP 12 (2012) 123,"Table 1, first column",dm2,any,"Dm2_3l 
 nufit,2012,1209.3023,JHEP 12 (2012) 123,"Table 1, first column",sin2_th12,any,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,3.02,3.02,1e-1,,,,2.67,3.44,,,2.67,3.44,identical
 nufit,2012,1209.3023,JHEP 12 (2012) 123,"Table 1, first column",sin2_th13,any,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,2.27,2.27,1e-2,,,,1.56,2.99,,,1.56,2.99,identical
 nufit,2012,1209.3023,JHEP 12 (2012) 123,"Table 1, first column",sin2_th23,any,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,4.13,4.13,1e-1,,,,3.42,6.67,,,3.42,6.67,identical
-nufit,2012,1209.3023,JHEP 12 (2012) 123,"Table 1, first column",Dm2,no,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,2.473,2.4355,1e-3 eV²,,,,2.276,2.695,,,2.2385,2.6575,shifted
-nufit,2012,1209.3023,JHEP 12 (2012) 123,"Table 1, first column",Dm2,io,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,-2.427,2.3895,1e-3 eV²,,,,-2.649,-2.242,,,2.2045,2.6115,shifted
+nufit,2012,1209.3023,JHEP 12 (2012) 123,"Table 1, first column",Dm2,no,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,2.473,2.4355,1e-3 eV²,,,,2.276,2.695,,,2.2385,2.6575,propagated
+nufit,2012,1209.3023,JHEP 12 (2012) 123,"Table 1, first column",Dm2,io,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,-2.427,2.3895,1e-3 eV²,,,,-2.649,-2.242,,,2.2045,2.6115,propagated
 bari,2013,1312.2878,"Phys. Rev. D 89, 093018 (2014)",Table I,dm2,any,Dm2 = m3^2 - (m1^2 + m2^2)/2,measurement,7.54,7.54,1e-5 eV²,,7.32,7.8,6.99,8.18,7.32,7.8,6.99,8.18,identical
 bari,2013,1312.2878,"Phys. Rev. D 89, 093018 (2014)",Table I,sin2_th12,any,Dm2 = m3^2 - (m1^2 + m2^2)/2,measurement,3.08,3.08,1e-1,,2.91,3.25,2.59,3.59,2.91,3.25,2.59,3.59,identical
 bari,2013,1312.2878,"Phys. Rev. D 89, 093018 (2014)",Table I,Dm2,no,Dm2 = m3^2 - (m1^2 + m2^2)/2,measurement,2.43,2.43,1e-3 eV²,,2.37,2.49,2.23,2.61,2.37,2.49,2.23,2.61,identical
@@ -80,8 +80,8 @@ nufit,2018,1811.05487,JHEP 01 (2019) 106,"Table 1, lower block",sin2_th13,no,"Dm
 nufit,2018,1811.05487,JHEP 01 (2019) 106,"Table 1, lower block",sin2_th13,io,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,2.263,2.263,1e-2,,,,2.067,2.461,,,2.067,2.461,identical
 nufit,2018,1811.05487,JHEP 01 (2019) 106,"Table 1, lower block",sin2_th23,no,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,5.82,5.82,1e-1,,,,4.28,6.24,,,4.28,6.24,identical
 nufit,2018,1811.05487,JHEP 01 (2019) 106,"Table 1, lower block",sin2_th23,io,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,5.82,5.82,1e-1,,,,4.33,6.23,,,4.33,6.23,identical
-nufit,2018,1811.05487,JHEP 01 (2019) 106,"Table 1, lower block",Dm2,no,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,2.525,2.48805,1e-3 eV²,,,,2.431,2.622,,,2.39405,2.58505,shifted
-nufit,2018,1811.05487,JHEP 01 (2019) 106,"Table 1, lower block",Dm2,io,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,-2.512,2.47505,1e-3 eV²,,,,-2.606,-2.413,,,2.37605,2.56905,shifted
+nufit,2018,1811.05487,JHEP 01 (2019) 106,"Table 1, lower block",Dm2,no,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,2.525,2.48805,1e-3 eV²,,,,2.431,2.622,,,2.394,2.5851,propagated
+nufit,2018,1811.05487,JHEP 01 (2019) 106,"Table 1, lower block",Dm2,io,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,-2.512,2.47505,1e-3 eV²,,,,-2.606,-2.413,,,2.376,2.5691,propagated
 valencia,2018,1708.01186,"Phys. Lett. B 782, 633 (2018)",Table I,dm2,any,|Dm2_31| quoted for both orderings,measurement,7.55,7.55,1e-5 eV²,,,,7.05,8.14,,,7.05,8.14,identical
 valencia,2018,1708.01186,"Phys. Lett. B 782, 633 (2018)",Table I,sin2_th12,any,|Dm2_31| quoted for both orderings,measurement,3.2,3.2,1e-1,,,,2.73,3.79,,,2.73,3.79,identical
 valencia,2018,1708.01186,"Phys. Lett. B 782, 633 (2018)",Table I,sin2_th13,no,|Dm2_31| quoted for both orderings,measurement,2.16,2.16,1e-2,,,,1.96,2.41,,,1.96,2.41,identical
@@ -90,16 +90,16 @@ valencia,2018,1708.01186,"Phys. Lett. B 782, 633 (2018)",Table I,sin2_th23,no,|D
 valencia,2018,1708.01186,"Phys. Lett. B 782, 633 (2018)",Table I,sin2_th23,io,|Dm2_31| quoted for both orderings,measurement,5.51,5.51,1e-1,,,,4.53,5.98,,,4.53,5.98,identical
 valencia,2018,1708.01186,"Phys. Lett. B 782, 633 (2018)",Table I,delta_pi,no,|Dm2_31| quoted for both orderings,measurement,1.21,1.21,1,,,,0.87,1.94,,,0.87,1.94,identical
 valencia,2018,1708.01186,"Phys. Lett. B 782, 633 (2018)",Table I,delta_pi,io,|Dm2_31| quoted for both orderings,measurement,1.56,1.56,1,,,,1.12,1.94,,,1.12,1.94,identical
-valencia,2018,1708.01186,"Phys. Lett. B 782, 633 (2018)",Table I,Dm2,no,|Dm2_31| quoted for both orderings,measurement,2.5,2.46225,1e-3 eV²,,,,2.41,2.6,,,2.37225,2.56225,shifted
-valencia,2018,1708.01186,"Phys. Lett. B 782, 633 (2018)",Table I,Dm2,io,|Dm2_31| quoted for both orderings,measurement,2.42,2.45775,1e-3 eV²,,,,2.31,2.51,,,2.34775,2.54775,shifted
+valencia,2018,1708.01186,"Phys. Lett. B 782, 633 (2018)",Table I,Dm2,no,|Dm2_31| quoted for both orderings,measurement,2.5,2.46225,1e-3 eV²,,,,2.41,2.6,,,2.37221,2.56229,propagated
+valencia,2018,1708.01186,"Phys. Lett. B 782, 633 (2018)",Table I,Dm2,io,|Dm2_31| quoted for both orderings,measurement,2.42,2.45775,1e-3 eV²,,,,2.31,2.51,,,2.34772,2.54779,propagated
 nufit,2020,2007.14792,JHEP 09 (2020) 178,"Table 3, lower block",dm2,any,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,7.42,7.42,1e-5 eV²,,,,6.82,8.04,,,6.82,8.04,identical
 nufit,2020,2007.14792,JHEP 09 (2020) 178,"Table 3, lower block",sin2_th12,any,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,3.04,3.04,1e-1,,,,2.69,3.43,,,2.69,3.43,identical
 nufit,2020,2007.14792,JHEP 09 (2020) 178,"Table 3, lower block",sin2_th13,no,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,2.219,2.219,1e-2,,,,2.032,2.41,,,2.032,2.41,identical
 nufit,2020,2007.14792,JHEP 09 (2020) 178,"Table 3, lower block",sin2_th13,io,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,2.238,2.238,1e-2,,,,2.052,2.428,,,2.052,2.428,identical
 nufit,2020,2007.14792,JHEP 09 (2020) 178,"Table 3, lower block",sin2_th23,no,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,5.73,5.73,1e-1,,,,4.15,6.16,,,4.15,6.16,identical
 nufit,2020,2007.14792,JHEP 09 (2020) 178,"Table 3, lower block",sin2_th23,io,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,5.75,5.75,1e-1,,,,4.19,6.17,,,4.19,6.17,identical
-nufit,2020,2007.14792,JHEP 09 (2020) 178,"Table 3, lower block",Dm2,no,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,2.517,2.4799,1e-3 eV²,,,,2.435,2.598,,,2.3979,2.5609,shifted
-nufit,2020,2007.14792,JHEP 09 (2020) 178,"Table 3, lower block",Dm2,io,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,-2.498,2.4609,1e-3 eV²,,,,-2.581,-2.414,,,2.3769,2.5439,shifted
+nufit,2020,2007.14792,JHEP 09 (2020) 178,"Table 3, lower block",Dm2,no,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,2.517,2.4799,1e-3 eV²,,,,2.435,2.598,,,2.39784,2.56096,propagated
+nufit,2020,2007.14792,JHEP 09 (2020) 178,"Table 3, lower block",Dm2,io,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,-2.498,2.4609,1e-3 eV²,,,,-2.581,-2.414,,,2.37684,2.54396,propagated
 valencia,2020,2006.11237,JHEP 02 (2021) 071,Table III,dm2,any,|Dm2_31| quoted for both orderings,measurement,7.5,7.5,1e-5 eV²,,,,6.94,8.14,,,6.94,8.14,identical
 valencia,2020,2006.11237,JHEP 02 (2021) 071,Table III,sin2_th12,any,|Dm2_31| quoted for both orderings,measurement,3.18,3.18,1e-1,,,,2.71,3.69,,,2.71,3.69,identical
 valencia,2020,2006.11237,JHEP 02 (2021) 071,Table III,sin2_th13,no,|Dm2_31| quoted for both orderings,measurement,2.2,2.2,1e-2,,,,2.0,2.405,,,2.0,2.405,identical
@@ -108,8 +108,8 @@ valencia,2020,2006.11237,JHEP 02 (2021) 071,Table III,sin2_th23,no,|Dm2_31| quot
 valencia,2020,2006.11237,JHEP 02 (2021) 071,Table III,sin2_th23,io,|Dm2_31| quoted for both orderings,measurement,5.78,5.78,1e-1,,,,4.33,6.08,,,4.33,6.08,identical
 valencia,2020,2006.11237,JHEP 02 (2021) 071,Table III,delta_pi,no,|Dm2_31| quoted for both orderings,measurement,1.08,1.08,1,,,,0.71,1.99,,,0.71,1.99,identical
 valencia,2020,2006.11237,JHEP 02 (2021) 071,Table III,delta_pi,io,|Dm2_31| quoted for both orderings,measurement,1.58,1.58,1,,,,1.11,1.96,,,1.11,1.96,identical
-valencia,2020,2006.11237,JHEP 02 (2021) 071,Table III,Dm2,no,|Dm2_31| quoted for both orderings,measurement,2.55,2.5125,1e-3 eV²,,,,2.47,2.63,,,2.4325,2.5925,shifted
-valencia,2020,2006.11237,JHEP 02 (2021) 071,Table III,Dm2,io,|Dm2_31| quoted for both orderings,measurement,2.45,2.4875,1e-3 eV²,,,,2.37,2.53,,,2.4075,2.5675,shifted
+valencia,2020,2006.11237,JHEP 02 (2021) 071,Table III,Dm2,no,|Dm2_31| quoted for both orderings,measurement,2.55,2.5125,1e-3 eV²,,,,2.47,2.63,,,2.4324,2.5926,propagated
+valencia,2020,2006.11237,JHEP 02 (2021) 071,Table III,Dm2,io,|Dm2_31| quoted for both orderings,measurement,2.45,2.4875,1e-3 eV²,,,,2.37,2.53,,,2.4074,2.5676,propagated
 bari,2021,2107.00532,"Phys. Rev. D 104, 083031 (2021)",Table I,dm2,any,Dm2 = m3^2 - (m1^2 + m2^2)/2,measurement,7.36,7.36,1e-5 eV²,,7.21,7.52,6.93,7.93,7.21,7.52,6.93,7.93,identical
 bari,2021,2107.00532,"Phys. Rev. D 104, 083031 (2021)",Table I,sin2_th12,any,Dm2 = m3^2 - (m1^2 + m2^2)/2,measurement,3.03,3.03,1e-1,,2.9,3.16,2.63,3.45,2.9,3.16,2.63,3.45,identical
 bari,2021,2107.00532,"Phys. Rev. D 104, 083031 (2021)",Table I,Dm2,no,Dm2 = m3^2 - (m1^2 + m2^2)/2,measurement,2.485,2.485,1e-3 eV²,,2.454,2.508,2.401,2.565,2.454,2.508,2.401,2.565,identical
@@ -126,8 +126,8 @@ nufit,2024,2410.05380,JHEP 12 (2024) 216,"Table 1, lower block",sin2_th13,no,"Dm
 nufit,2024,2410.05380,JHEP 12 (2024) 216,"Table 1, lower block",sin2_th13,io,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,2.231,2.231,1e-2,,,,2.06,2.409,,,2.06,2.409,identical
 nufit,2024,2410.05380,JHEP 12 (2024) 216,"Table 1, lower block",sin2_th23,no,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,4.7,4.7,1e-1,,,,4.35,5.85,,,4.35,5.85,identical
 nufit,2024,2410.05380,JHEP 12 (2024) 216,"Table 1, lower block",sin2_th23,io,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,5.5,5.5,1e-1,,,,4.4,5.84,,,4.4,5.84,identical
-nufit,2024,2410.05380,JHEP 12 (2024) 216,"Table 1, lower block",Dm2,no,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,2.513,2.47555,1e-3 eV²,,,,2.451,2.578,,,2.41355,2.54055,shifted
-nufit,2024,2410.05380,JHEP 12 (2024) 216,"Table 1, lower block",Dm2,io,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,-2.484,2.44655,1e-3 eV²,,,,-2.547,-2.421,,,2.38355,2.50955,shifted
+nufit,2024,2410.05380,JHEP 12 (2024) 216,"Table 1, lower block",Dm2,no,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,2.513,2.47555,1e-3 eV²,,,,2.451,2.578,,,2.41349,2.54061,propagated
+nufit,2024,2410.05380,JHEP 12 (2024) 216,"Table 1, lower block",Dm2,io,"Dm2_3l = Dm2_31 > 0 (NO), Dm2_32 < 0 (IO)",measurement,-2.484,2.44655,1e-3 eV²,,,,-2.547,-2.421,,,2.38349,2.50961,propagated
 bari,2025,2503.07752,"Phys. Rev. D 111, 093006 (2025)",Table I,dm2,any,Dm2 = m3^2 - (m1^2 + m2^2)/2,measurement,7.37,7.37,1e-5 eV²,,7.21,7.52,6.93,7.93,7.21,7.52,6.93,7.93,identical
 bari,2025,2503.07752,"Phys. Rev. D 111, 093006 (2025)",Table I,sin2_th12,any,Dm2 = m3^2 - (m1^2 + m2^2)/2,measurement,3.03,3.03,1e-1,,2.91,3.17,2.64,3.45,2.91,3.17,2.64,3.45,identical
 bari,2025,2503.07752,"Phys. Rev. D 111, 093006 (2025)",Table I,Dm2,no,Dm2 = m3^2 - (m1^2 + m2^2)/2,measurement,2.495,2.495,1e-3 eV²,,2.475,2.515,2.433,2.558,2.475,2.515,2.433,2.558,identical

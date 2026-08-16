@@ -58,6 +58,14 @@ try:
           creators and creators[0].get("orcid") == "0000-0001-6096-1880",
           str(creators))
 
+    # A deposit made months after the data last changed must not be stamped
+    # with the data's date: Zenodo reads publication_date as when the RECORD
+    # was published, and backdating it claims a priority the deposit has not
+    # got. Absent, Zenodo uses the real deposit date.
+    check("the deposit does not backdate itself",
+          "publication_date" not in meta,
+          str(meta.get("publication_date")))
+
     check("licence is CC BY 4.0", meta.get("license") == "cc-by-4.0",
           str(meta.get("license")))
 

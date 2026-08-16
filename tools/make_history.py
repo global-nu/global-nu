@@ -200,6 +200,44 @@ def to_our_Dm2(rel: dict, ordering: str, value: float) -> float:
     raise SystemExit(f"unknown reported_splitting: {kind}")
 
 
+def propagate_interval(best: float, interval: tuple[float, float], sign: int,
+                       offset: float, sigma_offset: float,
+                       rho: float | None = None) -> tuple[float, float]:
+    """Convert an interval on X into one on Delta m^2 = X + sign*offset.
+
+    Both quantities are measured, so the uncertainty on the offset u = dm2/2
+    belongs in the answer:
+
+        sigma^2(Dm2) = sigma^2(X) + sigma^2(u) + 2*sign*rho*sigma(X)*sigma(u)
+
+    This is a propagation, not a translation. Shifting the published interval
+    rigidly would keep sigma(X) and drop sigma(u) altogether — an assumption
+    that dm2 is known exactly, which it is not. With sigma(u) = 0 the formula
+    reduces to that shift, which is the only case where the shift is right.
+
+    rho is the correlation between X and dm2. It is not published by any group
+    in this register, so it is normally None and the cross term is omitted —
+    an omission that costs up to about 4% of the width either way on the
+    current release, and which is declared rather than hidden: see
+    `interval_method` in the exported register.
+
+    Each side propagates from its own half-width, so an asymmetric interval
+    stays asymmetric. Collapsing it to a single sigma first would discard the
+    asymmetry the source paper reported.
+    """
+    lo, hi = interval
+    centre = best + sign * offset
+    cross = 0.0 if rho is None else 2.0 * sign * rho * sigma_offset
+
+    def side(half: float) -> float:
+        var = half * half + sigma_offset * sigma_offset + cross * half
+        # Numerically, a strong positive rho on a half-width comparable with
+        # sigma(u) can drive the variance to a very small negative number.
+        return math.sqrt(max(var, 0.0))
+
+    return centre - side(best - lo), centre + side(hi - best)
+
+
 def conversion_scale(doc: dict) -> dict:
     """How big the change of convention is, in units a reader can judge.
 
@@ -233,14 +271,27 @@ def conversion_scale(doc: dict) -> dict:
     sig_offset = (dm2["s1"][1] - dm2["s1"][0]) / 2 / 2 / 100.0
     sig_Dm2 = (Dm2["s1"][1] - Dm2["s1"][0]) / 2
 
+    # What the correlation is worth, as a range. sigma^2(Dm2) = sigma^2(X)
+    # + sigma^2(u) -+ 2 rho sigma(X) sigma(u) with u = dm2/2: rho = +-1 are the
+    # extremes, and they bracket every possible value. The point of quoting
+    # them is that they are far larger than the rho = 0 term, so "we neglected
+    # the correlation" is a bigger admission than "we neglected sigma(dm2)".
+    def _sig(rho: float) -> float:
+        return math.sqrt(sig_Dm2**2 + sig_offset**2
+                         - 2.0 * rho * sig_Dm2 * sig_offset)
+
     return {
         "year": rel["year"],
         "arxiv": rel["arxiv"],
         "offset": offset,
         "offset_sigma": offset / sig_Dm2,
         "offset_pct": 100.0 * offset / Dm2["best"],
+        "sigma_Dm2": sig_Dm2,
+        "sigma_offset": sig_offset,
         "error_inflation_pct":
             100.0 * (math.hypot(sig_Dm2, sig_offset) / sig_Dm2 - 1.0),
+        "corr_swing_pct": 100.0 * (_sig(1.0) / sig_Dm2 - 1.0),
+        "corr_swing_pct_neg": 100.0 * (_sig(-1.0) / sig_Dm2 - 1.0),
     }
 
 
@@ -254,10 +305,70 @@ def our_Dm2(rel: dict, ordering: str) -> dict | None:
         return None
     e = src[ordering]
     out = {"best": to_our_Dm2(rel, ordering, e["best"])}
-    if e.get("s3"):
-        lo, hi = sorted(to_our_Dm2(rel, ordering, x) for x in e["s3"])
-        out["s3"] = [lo, hi]
+    for level in ("s1", "s3"):
+        got = converted_interval(rel, ordering, e, level)
+        if got:
+            out[level] = list(got)
     return out
+
+
+def converted_interval(rel: dict, ordering: str, entry: dict,
+                       level: str) -> tuple[float, float] | None:
+    """One published interval, converted into our convention. Or None.
+
+    The offset's own uncertainty is taken at the SAME confidence level as the
+    interval being converted — a 3 sigma range is widened by the 3 sigma
+    uncertainty on delta m^2/2, not by the 1 sigma one. Mixing the two would
+    understate a 3 sigma range by roughly a factor of three in that term.
+
+    The modulus is applied after propagating, not before: NuFit reports a
+    negative Dm2_32 in inverted ordering, and taking |.| reverses which end of
+    the interval is which, so the endpoints are sorted afterwards. The old code
+    converted the two endpoints separately and sorted for the same reason; what
+    is new is that the width grows instead of being carried across unchanged.
+    """
+    pub = entry.get(level)
+    dm2 = ((rel.get("values") or {}).get("dm2") or {}).get("any")
+    if not pub or not dm2:
+        return None
+
+    # dm2 is in 1e-5 eV^2 and the splittings in 1e-3, so u = dm2/2 is dm2/200.
+    offset = dm2["best"] / 200.0
+    dm2_range = dm2.get(level)
+    sigma_offset = ((dm2_range[1] - dm2_range[0]) / 2 / 200.0
+                    if dm2_range else 0.0)
+    sign = -1 if ordering == "no" else +1
+
+    lo, hi = propagate_interval(entry["best"], (pub[0], pub[1]), sign,
+                                offset, sigma_offset)
+    if rel.get("reported_splitting") == "Dm2_3l":
+        lo, hi = sorted((abs(lo), abs(hi)))
+
+    # A propagated bound is a square root: its exact value has no last digit,
+    # so how many to print is a decision rather than a fact. The only
+    # defensible one is the precision of the source — printing further would
+    # claim accuracy the paper never had. (history.VALUE_DP is 10, which is
+    # right for the old subtraction of two printed decimals, where it removed
+    # IEEE noise and could not reach a real digit. It is wrong here.)
+    # ...but never so coarse that the conversion itself disappears. NuFit 2004
+    # printed its 3 sigma range to one decimal while the offset is 0.0405, so
+    # rounding to the source alone would give back the published numbers
+    # unchanged and hide the conversion entirely — while the centre, an exact
+    # subtraction, plainly moved. The offset's own precision is the floor.
+    # The offset's precision comes from the SOURCE value, not from the
+    # quotient: dm2/200 in binary floating point is 0.037049999999999995, whose
+    # repr has eighteen decimals and means nothing. Dividing by 200 shifts by
+    # two places and the halving can add one more, hence +3.
+    dp = max(_decimals(pub[0]), _decimals(pub[1]), _decimals(dm2["best"]) + 3)
+    return round(lo, dp), round(hi, dp)
+
+
+def _decimals(value: float) -> int:
+    """How many decimal places a source number was written with."""
+    text = repr(float(value))
+    if "e" in text or "E" in text or "." not in text:
+        return 0
+    return len(text.split(".")[1])
 
 
 def compare_panel(pname: str, meta: dict, releases: list[dict]) -> str:
@@ -609,9 +720,10 @@ modulus, and the same addition makes it <em>larger</em>: the shift is
 plotted number — which is why this site stores what each paper printed and
 converts in code, where the rule can be read:
 <code>tools/make_history.py</code>, function <code>to_our_Dm2</code>.</p>
-<p><strong>What this does to the errors.</strong> The shift is a constant, so
-both ends of an interval move together and its <em>width</em> is unchanged.
-The two effects are of completely different sizes, and on the {scale['year']}
+<p><strong>What this does to the errors.</strong> The offset carries its own
+uncertainty, so the converted interval is <em>wider</em> than the published
+one — it is propagated, not translated. The two effects are of completely
+different sizes, and on the {scale['year']}
 Bari release they can be put in numbers: the offset δm²/2 is
 <strong>{scale['offset_sigma']:.1f}σ of Δm²</strong> — larger than the error
 bar itself — while the uncertainty it adds grows that error bar by
@@ -620,14 +732,38 @@ moves by more than one standard deviation and the uncertainty effectively does
 not move at all. That is the whole reason two groups' Δm² must never be
 compared as printed, and equally the reason their error bars can be carried
 across almost unchanged.</p>
-<p class="small muted">Both are computed from the register, not written here,
-so they follow the fit rather than aging with the prose. The ranges are
-shifted with δm² at its own best fit, which <strong>neglects the δm²–Δm²
-correlation</strong>: the published papers do not carry the joint information
-a rigorous reprojection would need. It is an approximation, not a re-analysis,
-and the exported register records which treatment produced each interval in
-its <code>interval_method</code> column — <code>shifted</code> today, and
-<code>reprojected</code> for any future release that can do better.</p>
+<p><strong>How to propagate the error properly.</strong> Write the conversion
+as Δm² = X ∓ u, with X the splitting the other group reports and
+u = δm²/2. Then, in the Gaussian approximation,</p>
+<p class="formula" style="text-align:center;font-family:var(--mono)">
+σ²(Δm²) = σ²(X) + σ²(u) ∓ 2ρ·σ(X)·σ(u)
+</p>
+<p>where ρ = corr(X, δm²) and the sign of the last term follows the sign in the
+conversion — minus where δm²/2 is subtracted (normal ordering, and Valencia's
+|Δm²₃₁|), plus where it is added. More generally, for any linear combination
+Z = aX + bY, σ²(Z) = a²σ²(X) + b²σ²(Y) + 2ab·ρ·σ(X)·σ(Y). ρ is read off the
+two-dimensional Δχ² map in the (δm², Δm²) plane — the orientation of its 1σ
+ellipse, equivalently the off-diagonal element of the inverse Hessian at the
+minimum. It is exactly what a group has in hand and does not publish.</p>
+<p><strong>And the correlation term dominates.</strong> On the
+{scale['year']} release σ(X) = {scale['sigma_Dm2']:.4f} and
+σ(u) = {scale['sigma_offset']:.5f} (10⁻³ eV²). Setting ρ = 0 changes the error
+by {scale['error_inflation_pct']:+.2f}%; letting ρ run over its full range
+moves it between <strong>{scale['corr_swing_pct']:+.1f}%</strong> and
+<strong>{scale['corr_swing_pct_neg']:+.1f}%</strong>. Neglecting the
+correlation is therefore up to fifty times larger an error than neglecting
+σ(δm²) altogether. That is why the correlation term is the one piece still
+missing, and why its absence is declared rather than assumed away.</p>
+<p class="small muted">Every number above is computed from the register, so it
+follows the fit rather than aging with the prose. The formula assumes
+parabolic χ² and symmetric errors; where the interval is markedly asymmetric
+the honest route is to propagate the χ² map itself rather than a σ. What the
+ranges here get is the first two terms: the centre moves by u and σ(u) is
+added in quadrature to each half-width, at the interval's own confidence
+level. Only ρ is dropped, because no group publishes it. The exported register
+records which treatment produced each interval in its
+<code>interval_method</code> column: <code>propagated</code> today,
+<code>propagated_rho</code> for any release that can supply ρ.</p>
 <p class="small muted">NuFit prints δ<sub>CP</sub> in degrees only, so it does
 not appear on the δ/π panel. Where a fit has two quasi-degenerate θ₂₃ minima,
 the marker is the first one quoted and the 3σ range spans both.</p>

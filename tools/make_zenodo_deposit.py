@@ -214,8 +214,13 @@ def build_package(out_dir: Path) -> dict:
         ],
         "related_identifiers": related_identifiers,
     }
-    if facts["date_modified"]:
-        meta["publication_date"] = facts["date_modified"]
+    # publication_date is deliberately NOT set. Zenodo reads it as the date
+    # the record was published, and the deposit may be made a long time after
+    # the register last changed — setting it to the data's own date would
+    # backdate the record and claim a priority the deposit does not have. Left
+    # out, Zenodo fills in the real deposit date. When the data last changed is
+    # a different fact, and it is carried by dateModified on the page and by
+    # the README, where it means what it says.
 
     shutil.copyfile(register_meta.EXPORT, out_dir / "history.json")
     shutil.copyfile(register_meta.EXPORT.with_suffix(".csv"), out_dir / "history.csv")

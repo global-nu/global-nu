@@ -103,17 +103,33 @@ FIELD_DOCS = [
     ("interval_method", "How the converted interval was obtained. "
                         "<code>identical</code> &mdash; nothing was converted, "
                         "because every group reports this parameter the same "
-                        "way. <code>shifted</code> &mdash; translated by the "
-                        "constant &delta;m&sup2;/2 with &delta;m&sup2; at its "
-                        "own best fit. That leaves the interval's <em>width</em> "
-                        "unchanged, and it neglects the "
-                        "&delta;m&sup2;&ndash;&Delta;m&sup2; correlation: an "
-                        "approximation, not a re-analysis, and the only one the "
-                        "published papers support. <code>reprojected</code> "
-                        "&mdash; obtained from the joint "
-                        "&delta;m&sup2;&ndash;&Delta;m&sup2; information, which "
+                        "way. <code>propagated</code> &mdash; the offset "
+                        "u = &delta;m&sup2;/2 is applied to the centre and "
+                        "&sigma;(u) added in quadrature to each half-width, at "
+                        "the same confidence level as the interval, so the "
+                        "converted interval is <em>wider</em> than the "
+                        "published one. Only the correlation term is left out, "
+                        "because no group publishes &rho;. "
+                        "<code>propagated_rho</code> "
+                        "&mdash; the same with the correlation included, from "
+                        "the joint &delta;m&sup2;&ndash;&Delta;m&sup2; "
+                        "information, which "
                         "no release in this register carries yet. Empty for a "
-                        "<code>limit</code> row, which has no interval"),
+                        "<code>limit</code> row, which has no interval. "
+                        "To propagate properly, write the conversion as "
+                        "&Delta;m&sup2; = X &mp; u with X the reported "
+                        "splitting and u = &delta;m&sup2;/2; then "
+                        "&sigma;&sup2;(&Delta;m&sup2;) = &sigma;&sup2;(X) + "
+                        "&sigma;&sup2;(u) &mp; 2&rho;&middot;&sigma;(X)&middot;"
+                        "&sigma;(u), where &rho; is the correlation between X "
+                        "and &delta;m&sup2; and the sign of the last term "
+                        "follows the sign in the conversion. &rho; comes from "
+                        "the two-dimensional &Delta;&chi;&sup2; map in the "
+                        "(&delta;m&sup2;, &Delta;m&sup2;) plane. The columns "
+                        "here carry the first two terms and omit the third; "
+                        "on the 2025 release &sigma;(u) adds +0.08% to the "
+                        "error, while the full range of &rho; would move it by "
+                        "&plusmn;3.9%"),
 ]
 
 assert [name for name, _ in FIELD_DOCS] == FIELDS, (
@@ -163,10 +179,13 @@ def _intervals(rel: dict, ordering: str, entry: dict,
             out[f"{level}_hi_our_convention"] = None
             continue
         if needs_conversion:
-            lo, hi = sorted(
-                history.round_value(make_history.to_our_Dm2(rel, ordering, x))
-                for x in pub)
-            method = "shifted"
+            got = make_history.converted_interval(rel, ordering, entry, level)
+            if got is None:
+                out[f"{level}_lo_our_convention"] = None
+                out[f"{level}_hi_our_convention"] = None
+                continue
+            lo, hi = (history.round_value(got[0]), history.round_value(got[1]))
+            method = "propagated"
         else:
             lo, hi = lo_pub, hi_pub
             method = method or "identical"

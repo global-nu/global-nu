@@ -34,11 +34,11 @@ which is the form the conversion is easiest to read from: since
 comparable with ours at a glance.</strong> Wherever this site compares
 analyses, it states the conversion it applied.</p>
 <p><strong>And the errors move differently from the values.</strong> Because
-the shift is a constant, an interval keeps its width: the central value moves
-by more than one standard deviation while the uncertainty grows by a fraction
-of a percent. Both numbers are computed from the register and quoted on the
+the offset carries its own uncertainty, the converted interval is wider than
+the published one: the central value moves by more than one standard deviation
+while the uncertainty grows by a fraction of a percent. Both numbers are computed from the register and quoted on the
 <a href="history.html#compare">parameter-history page</a>, which also records
-that the constant shift neglects the δm²–Δm² correlation — the published
+that the propagation still omits the δm²–Δm² correlation, and gives the formula — the published
 papers do not carry the joint information a rigorous reprojection would need.
 The <a href="history.html#data">exported register</a> carries every interval in
 both conventions, and an <code>interval_method</code> column saying which
