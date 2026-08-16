@@ -6,6 +6,7 @@ description: >-
   allowed ranges for the three-flavour parameters, a daily arXiv digest, news,
   conferences and curated resources.
 katex: false
+jsonld: site
 ---
 
 <section class="hero hero--split">

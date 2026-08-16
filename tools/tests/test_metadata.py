@@ -122,6 +122,17 @@ else:
         check("with no DOI configured, the Dataset has no identifier",
               not bool(ds) or "identifier" not in ds)
 
+    # --- index.html: who publishes this -----------------------------------
+    home = blocks("index.html")
+    types = {b.get("@type") for b in home}
+    check("index.html carries an Organization block", "Organization" in types,
+          f"found {sorted(t for t in types if t)}")
+    check("index.html carries a WebSite block", "WebSite" in types,
+          f"found {sorted(t for t in types if t)}")
+    for b in home:
+        check(f"{b.get('@type')} on index.html names its url",
+              b.get("url") == CFG["site_url"], str(b.get("url")))
+
     # --- citation_* belongs on the dataset page and nowhere else ---------
     for page in sorted(SITE.glob("*.html")):
         has = "citation_title" in page.read_text(encoding="utf-8")
