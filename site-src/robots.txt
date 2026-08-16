@@ -81,5 +81,3 @@ Allow: /
 
 User-agent: Meta-ExternalFetcher
 Allow: /
-
-Sitemap: https://global-nu.org/sitemap.xml

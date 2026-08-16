@@ -736,9 +736,13 @@ def main() -> None:
         print(f"  drafts: {n} data files copied")
 
     written, in_sitemap = build_pages(cfg, with_drafts=args.drafts)
+    # The crawler policy is data, not a string in the middle of code: the list
+    # of named agents is a public position of this site and has to be
+    # reviewable in a diff. Only the Sitemap line is derived, so the domain
+    # stays defined in exactly one place (site_url).
+    robots = (SRC / "robots.txt").read_text(encoding="utf-8").rstrip("\n")
     (OUT / "robots.txt").write_text(
-        f"User-agent: *\nAllow: /\nSitemap: {cfg['site_url']}/sitemap.xml\n",
-        encoding="utf-8")
+        f"{robots}\n\nSitemap: {cfg['site_url']}/sitemap.xml\n", encoding="utf-8")
     # GitHub Pages runs Jekyll on the published tree unless told not to; an
     # empty .nojekyll stops it touching files whose names start with _.
     (OUT / ".nojekyll").write_text("", encoding="utf-8")

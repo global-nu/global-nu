@@ -142,6 +142,34 @@ else:
             check(f"{page.name} carries no citation_* tags", not has,
                   "Google Scholar would index it as a separate scholarly work")
 
+# --- robots.txt: the policy is a position, not an omission ----------------
+AI_AGENTS = [
+    # Training crawlers — allowed, because CC BY 4.0 already grants this and
+    # declining it here would contradict the licence the data carries.
+    "GPTBot", "ClaudeBot", "anthropic-ai", "Google-Extended", "CCBot",
+    "Bytespider", "Applebot-Extended", "Meta-ExternalAgent", "Amazonbot",
+    "cohere-ai",
+    # Retrieval agents — fetch a page to answer a question, and cite it.
+    "OAI-SearchBot", "ChatGPT-User", "Claude-User", "Claude-SearchBot",
+    "PerplexityBot", "Perplexity-User", "Meta-ExternalFetcher",
+    # Ordinary search engines.
+    "Googlebot", "Bingbot", "DuckDuckBot", "Applebot",
+]
+
+robots = (SITE / "robots.txt").read_text(encoding="utf-8")
+for agent in AI_AGENTS:
+    check(f"robots.txt names {agent}",
+          re.search(rf"^User-agent: {re.escape(agent)}$", robots, re.M) is not None,
+          "the declared policy allows it, so it must be named explicitly")
+
+denies = [ln for ln in robots.splitlines()
+          if ln.strip().lower().startswith("disallow:") and ln.split(":", 1)[1].strip()]
+check("robots.txt blocks nobody", not denies,
+      f"the site's stated policy is open; found {denies}")
+
+check("robots.txt points at the sitemap",
+      f"Sitemap: {CFG['site_url']}/sitemap.xml" in robots)
+
 print()
 if problems:
     print(f"  ! {len(problems)} of {checks} checks failed")
