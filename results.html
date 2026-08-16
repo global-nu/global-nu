@@ -79,10 +79,23 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
 <h4>Conventions used throughout this site</h4>
 <p>The two squared mass gaps are δm² = m₂² − m₁² &gt; 0 and
 Δm² = m₃² − ½(m₁² + m₂²), with α = sign(Δm²) distinguishing normal ordering
-(NO, α = +1) from inverted ordering (IO, α = −1).</p>
+(NO, α = +1) from inverted ordering (IO, α = −1). Equivalently, our Δm² is the
+<strong>half-sum</strong> of the two larger splittings, Δm² = ½(Δm²₃₁ + Δm²₃₂),
+which is the form the conversion is easiest to read from: since
+Δm²₃₁ − Δm²₃₂ = δm², passing to either of them is a shift of ±δm²/2.</p>
 <p>Other groups quote Δm²₃₁ or Δm²₂₃ instead: <strong>those numbers are not
 comparable with ours at a glance.</strong> Wherever this site compares
 analyses, it states the conversion it applied.</p>
+<p><strong>And the errors move differently from the values.</strong> Because
+the shift is a constant, an interval keeps its width: the central value moves
+by more than one standard deviation while the uncertainty grows by a fraction
+of a percent. Both numbers are computed from the register and quoted on the
+<a href="history.html#compare">parameter-history page</a>, which also records
+that the constant shift neglects the δm²–Δm² correlation — the published
+papers do not carry the joint information a rigorous reprojection would need.
+The <a href="history.html#data">exported register</a> carries every interval in
+both conventions, and an <code>interval_method</code> column saying which
+treatment produced it.</p>
 </div>
 
 </div></section>
