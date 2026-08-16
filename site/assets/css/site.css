@@ -1001,7 +1001,28 @@ a.card:hover .card__go{color:var(--text)}
 /* The frame clips; the stage is what moves. Keeping the transform on an inner
    element means panning never fights the scrollbar of the page underneath. */
 .figbox__frame{flex:1;min-height:0;overflow:hidden;display:flex;
-  align-items:center;justify-content:center;touch-action:none}
+  align-items:center;justify-content:center;touch-action:none;position:relative}
+
+/* The hover panel a point opens, styled after .conf-tip above and placed the
+   same way: a corner of the frame rather than a spot next to the point. It
+   sits on the frame and NOT on .figbox__stage, so the stage's transform —
+   up to 8x, plus whatever the pan has moved — never reaches it. A panel that
+   grew with the zoom would be unreadable exactly when the zoom is what the
+   reader asked for. pointer-events:none so it can never eat the hover that
+   is keeping it open. */
+.figtip{position:absolute;bottom:.6rem;left:.6rem;max-width:22rem;z-index:3;
+  padding:.5rem .7rem;border:1px solid var(--line);border-radius:var(--r-sm);
+  background:var(--surface);box-shadow:var(--shadow);pointer-events:none}
+.figtip[hidden]{display:none}
+.figtip--right{left:auto;right:.6rem}
+.figtip b{display:block;font-size:.8rem;color:var(--text)}
+.figtip p{margin:.2rem 0 0;font-size:.78rem;color:var(--text-soft)}
+.figtip__val{font-size:.92rem!important;color:var(--text)!important;
+  font-variant-numeric:tabular-nums}
+/* The points themselves, in the enlarged view only: on the page they are not
+   focusable and not interactive, and a cursor promising otherwise would lie. */
+.figbox__stage .pt{cursor:pointer}
+.figbox__stage .pt:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 /* The stage must FILL the frame, not shrink to the drawing: an SVG with a
    520x250 viewBox has that as its intrinsic size, so a shrink-to-fit stage
    made "width:100%" resolve to 520px and the enlarged view was no larger than

@@ -106,15 +106,26 @@ check("a limit's label states the bound and the level",
 sys.path.insert(0, str(ROOT / "tools"))
 import make_history                                     # noqa: E402
 
+# The facts every point carries for the hover panel; see MARKER_FACTS. They
+# are not what this section tests, but marker() refuses to draw a point that
+# cannot say what it is, so they have to be here.
+FACTS = {"group": "Bari", "year": 2025, "param": "sin²θ13", "value": "< 5.0",
+         "unit": "1e-2", "ordering": "Normal ordering"}
+
 svg = make_history.marker("limit-upper", 100.0, 50.0, "var(--no)", "< 5.0 (3σ)",
-                          level_text="3σ")
-diamond = make_history.marker("any", 100.0, 50.0, "var(--no)", "< 5.0 (3σ)")
+                          facts=FACTS, level_text="3σ")
+diamond = make_history.marker("any", 100.0, 50.0, "var(--no)", "< 5.0 (3σ)", facts=FACTS)
 check("a limit renders differently from the diamond fallback, same point",
       svg != diamond,
       f"limit:   {svg[:90]}\n         diamond: {diamond[:90]}")
+# Asked of the ink only. Every marker now also carries an invisible hit disc,
+# which is itself fill="none", so searching the whole group would pass on a
+# solidly filled point and prove nothing.
+ink = re.sub(r'<circle class="pt__hit"[^>]*/>', "", svg)
+ink_d = re.sub(r'<circle class="pt__hit"[^>]*/>', "", diamond)
 check("a limit's marker is stroked and unfilled, unlike every filled shape",
-      'fill="none"' in svg,
-      f"got: {svg[:90]}")
+      'fill="none"' in ink and 'fill="none"' not in ink_d,
+      f"limit ink: {ink[:120]}\n         diamond ink: {ink_d[:120]}")
 # The label reaches the markup escaped: it opens with a literal "<", which
 # raw would open a tag inside the <title> and break the page.
 check("a limit's marker carries its label", html.escape("< 5.0 (3σ)", quote=False) in svg)
@@ -135,7 +146,8 @@ def limit_without_level_raises() -> bool:
     legend states is one the drawing has to keep, and a silently levelless
     arrow is exactly the state this branch was found in."""
     try:
-        make_history.marker("limit-upper", 100.0, 50.0, "var(--no)", "< 5.0 (3σ)")
+        make_history.marker("limit-upper", 100.0, 50.0, "var(--no)", "< 5.0 (3σ)",
+                            facts=FACTS)
         return False
     except SystemExit:
         return True
@@ -162,9 +174,9 @@ META = {"label": "Synthetic θ", "unit": "1"}
 # sized from the measurements alone and the arrow lands off the top of the
 # frame — exactly the failure this check exists to catch.
 PANEL_RELEASES = [
-    {"year": 2000, "values": {"synthetic_param": {"no": {"upper": 50.0, "level": "3sigma"}}}},
-    {"year": 2010, "values": {"synthetic_param": {"no": {"best": 5.0, "s3": [4.0, 6.0]}}}},
-    {"year": 2012, "values": {"synthetic_param": {"no": {"best": 5.2, "s3": [4.2, 6.2]}}}},
+    {"group": "bari", "year": 2000, "values": {"synthetic_param": {"no": {"upper": 50.0, "level": "3sigma"}}}},
+    {"group": "bari", "year": 2010, "values": {"synthetic_param": {"no": {"best": 5.0, "s3": [4.0, 6.0]}}}},
+    {"group": "bari", "year": 2012, "values": {"synthetic_param": {"no": {"best": 5.2, "s3": [4.2, 6.2]}}}},
 ]
 COMPARE_RELEASES = [
     {"group": "bari", "year": 2000,
@@ -181,16 +193,23 @@ def limit_marker_y(svg_out: str, label: str) -> float | None:
     out of the emitted path — not recomputed, so a broken call site shows up
     here instead of being masked by re-deriving the same formula. Anchored on
     the label text (unique per point) and on the shape's own structural
-    signature (unfilled, stroke-linecap="round", closes with </path> rather
-    than self-closing) so it cannot match the group's connecting line, which
-    is also an unfilled stroked <path> but self-closes with no <title>.
+    signature (unfilled, stroke-linecap="round") so it cannot match the
+    group's connecting line, which is also an unfilled stroked <path> but
+    carries no <title> and sits inside no <g class="pt">.
+
+    A point is now a <g class="pt"> holding, in this order, its <title>, the
+    invisible disc that makes it hittable, and the ink. The whole sequence is
+    matched rather than the path alone, so that rearranging the hover panel's
+    markup fails here loudly instead of quietly matching another point.
 
     label is given as a reader sees it and escaped here, because that is how
     it reaches the markup — a limit label starts with a literal "<"."""
     pattern = re.compile(
-        r'<path d="M[-\d.]+ (-?[\d.]+)L[^"]*" fill="none" stroke="[^"]+" '
-        r'stroke-width="2" stroke-linecap="round">'
-        + re.escape(f"<title>{html.escape(label, quote=False)}</title>") + r"</path>")
+        r'<g class="pt"[^>]*>'
+        + re.escape(f"<title>{html.escape(label, quote=False)}</title>")
+        + r'<circle class="pt__hit"[^>]*/>'
+          r'<path d="M[-\d.]+ (-?[\d.]+)L[^"]*" fill="none" stroke="[^"]+" '
+          r'stroke-width="2" stroke-linecap="round"/>')
     m = pattern.search(svg_out)
     return float(m.group(1)) if m else None
 
@@ -255,10 +274,17 @@ def offscale_marker_y(svg_out: str, title: str) -> float | None:
     parsed from the emitted markup rather than recomputed — the same
     approach as limit_marker_y above. fill="none" is baked into the pattern:
     if a future edit stops passing hollow=True for the clamped marker, this
-    stops matching even though *a* circle with that title still exists."""
+    stops matching even though *a* circle with that title still exists.
+
+    The ink is now the last child of the point's <g class="pt">, after the
+    <title> and the invisible hit disc — hence the two steps before it. The
+    hit disc is also fill="none", so the ink's own r="4.6" and its 1.8 stroke
+    are what distinguish the shape from the target drawn under it."""
     pattern = re.compile(
-        r'<circle cx="[-\d.]+" cy="(-?[\d.]+)" r="4.6" fill="none" stroke="[^"]+" '
-        r'stroke-width="1.8">' + re.escape(f"<title>{title}</title>") + r"</circle>")
+        r'<g class="pt"[^>]*>' + re.escape(f"<title>{title}</title>")
+        + r'<circle class="pt__hit"[^>]*/>'
+          r'<circle cx="[-\d.]+" cy="(-?[\d.]+)" r="4.6" fill="none" stroke="[^"]+" '
+          r'stroke-width="1.8"/>')
     m = pattern.search(svg_out)
     return float(m.group(1)) if m else None
 

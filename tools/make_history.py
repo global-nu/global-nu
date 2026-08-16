@@ -16,7 +16,10 @@ Chart conventions (see the dataviz method):
   * marks are thin, markers ≥ 8px, grid and axes recessive, labels in text
     tokens rather than in the series colour
   * every point carries an SVG <title>, which is the hover layer a static
-    page can offer without shipping a line of JavaScript
+    page can offer without shipping a line of JavaScript — and, beside it,
+    the same facts as data- attributes, which figure.js renders as a proper
+    panel once a figure has been enlarged and its points are big enough to
+    aim at. The <title> stays: it is what answers when the script does not
 """
 
 from __future__ import annotations
@@ -37,6 +40,19 @@ OUT = ROOT / "site-src" / "content" / "history.md"
 # Panel geometry, in SVG user units.
 W, H = 520, 250
 PAD_L, PAD_R, PAD_T, PAD_B = 54, 14, 16, 34
+
+# Radius of the invisible disc that makes a point hittable, against ink of
+# 4.6. It does overlap its neighbours: compare_panel staggers groups in the
+# same year by 3.4 units, which is less than the ink's own radius, so those
+# markers already overlap before any hit area is added. SVG resolves an
+# overlap by document order — the last drawn wins — not by which centre is
+# nearer, so where two groups nearly coincide the hover panel answers for the
+# topmost point. That is a property of the drawing, not of this number, and
+# the enlarged view is the cure: at 4x the stagger is 14 screen pixels and
+# the two are separately reachable. Kept at 9 rather than larger so that in
+# panel(), where nothing is staggered, a disc still cannot reach the
+# neighbouring year.
+HIT_R = 9
 
 GROUPS = [
     ("bari", "Bari", "var(--grp-bari)", "no"),
@@ -122,7 +138,55 @@ def bound_value(e: dict) -> float:
     return e["upper"] if history.kind_of(e) == "limit" else e["best"]
 
 
-def marker(kind: str, x: float, y: float, colour: str, label: str, hollow: bool = False,
+def interval_of(entry: dict) -> tuple[list | None, str]:
+    """The interval to draw for an entry, together with the level it holds at.
+
+    Nine entries in history.yaml publish a 1σ range and no 3σ one — Bari's
+    δ/π from 2012 to 2017, and sin²θ13 in 2008. The panels used to fall back
+    to that 1σ range and go on calling it "3σ", so a 1σ interval reached the
+    site announced as three times its width. The level travels with the
+    numbers here so that no caller can print one while drawing the other.
+    """
+    if entry.get("s3"):
+        return entry["s3"], "3σ"
+    if entry.get("s1"):
+        return entry["s1"], "1σ"
+    return None, ""
+
+
+def range_text(entry: dict) -> str:
+    """An entry's interval as the hover panel and the <title> both print it."""
+    rng, level = interval_of(entry)
+    if not rng:
+        return ""
+    return f"{level} {history.value_text(rng[0])}–{history.value_text(rng[1])}"
+
+
+# What every plotted point must be able to say about itself. A point that
+# cannot answer "which group, which year, which parameter, what value" is a
+# point the hover panel would open blank on, and a reader would sooner
+# distrust the whole figure than a single dot in it.
+MARKER_FACTS = ("group", "year", "param", "value", "unit", "ordering")
+
+
+def facts_attrs(facts: dict) -> str:
+    """Render a point's facts as data- attributes for the hover panel.
+
+    The panel reads these rather than parsing the <title> text, which is
+    written for a human and would have to be re-parsed — and re-escaped —
+    every time its wording changed.
+    """
+    missing = [k for k in MARKER_FACTS if not str(facts.get(k, "")).strip()]
+    if missing:
+        raise SystemExit(
+            "marker(): a plotted point must carry its own facts — missing "
+            f"{', '.join(missing)} in {facts!r}. See MARKER_FACTS.")
+    return "".join(f' data-{k}="{html.escape(str(v), quote=True)}"'
+                   for k, v in facts.items() if str(v).strip())
+
+
+def marker(kind: str, x: float, y: float, colour: str, label: str,
+           facts: dict | None = None, hollow: bool = False,
            level_text: str = "") -> str:
     """Circle for NO, square for IO, diamond for “both”: shape carries the
     same information as colour, for readers who cannot use the colour.
@@ -151,11 +215,23 @@ def marker(kind: str, x: float, y: float, colour: str, label: str, hollow: bool 
     fill = "none" if hollow else colour
     outline = f' stroke="{colour}" stroke-width="1.8"' if hollow else ring
     t = f"<title>{html.escape(label, quote=False)}</title>"
+
+    # The ink is four pixels across, and a limit is a two-pixel stroke with no
+    # fill at all: aiming at one with a mouse is luck, and with a finger it is
+    # nothing. Every point therefore gets an invisible disc, drawn first so it
+    # sits under the ink, wide enough to be hit — fill="none" so it cannot
+    # print or show, pointer-events="all" so it is still a target.
+    hit = (f'<circle class="pt__hit" cx="{x:.1f}" cy="{y + (5 if kind == "limit-upper" else 0):.1f}" '
+           f'r="{HIT_R}" fill="none" pointer-events="all"/>')
+
+    def wrap(ink: str) -> str:
+        return f'<g class="pt"{facts_attrs(facts or {})}>{t}{hit}{ink}</g>'
+
     if kind == "no":
-        return f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4.6" fill="{fill}"{outline}>{t}</circle>'
+        return wrap(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4.6" fill="{fill}"{outline}/>')
     if kind == "io":
-        return (f'<rect x="{x - 4.2:.1f}" y="{y - 4.2:.1f}" width="8.4" height="8.4" rx="1.2" '
-                f'fill="{fill}"{outline}>{t}</rect>')
+        return wrap(f'<rect x="{x - 4.2:.1f}" y="{y - 4.2:.1f}" width="8.4" height="8.4" rx="1.2" '
+                    f'fill="{fill}"{outline}/>')
     if kind == "limit-upper":
         if not level_text:
             raise SystemExit(
@@ -168,14 +244,15 @@ def marker(kind: str, x: float, y: float, colour: str, label: str, hollow: bool 
         # the size of the axis labels — the smallest type this page asks
         # anyone to read — so it reads as annotation of the arrow rather than
         # as a second data mark, and still reads.
-        return (f'<path d="M{x - 5:.1f} {y:.1f}L{x + 5:.1f} {y:.1f}M{x:.1f} {y:.1f}'
+        return wrap(
+                f'<path d="M{x - 5:.1f} {y:.1f}L{x + 5:.1f} {y:.1f}M{x:.1f} {y:.1f}'
                 f'L{x:.1f} {y + 11:.1f}M{x - 3.4:.1f} {y + 7:.1f}L{x:.1f} {y + 11:.1f}'
                 f'L{x + 3.4:.1f} {y + 7:.1f}" fill="none" stroke="{colour}" '
-                f'stroke-width="2" stroke-linecap="round">{t}</path>'
+                f'stroke-width="2" stroke-linecap="round"/>'
                 f'<text x="{x + 7:.1f}" y="{y + 3.5:.1f}" font-size="10.5" '
                 f'fill="currentColor" opacity=".75">{html.escape(level_text, quote=False)}</text>')
-    return (f'<path d="M{x:.1f} {y - 5.2:.1f}L{x + 5.2:.1f} {y:.1f}'
-            f'L{x:.1f} {y + 5.2:.1f}L{x - 5.2:.1f} {y:.1f}Z" fill="{fill}"{outline}>{t}</path>')
+    return wrap(f'<path d="M{x:.1f} {y - 5.2:.1f}L{x + 5.2:.1f} {y:.1f}'
+                f'L{x:.1f} {y + 5.2:.1f}L{x - 5.2:.1f} {y:.1f}Z" fill="{fill}"{outline}/>')
 
 
 def to_our_Dm2(rel: dict, ordering: str, value: float) -> float:
@@ -378,16 +455,22 @@ def compare_panel(pname: str, meta: dict, releases: list[dict]) -> str:
     line calculations below, then drawn separately, clamped to the floor:
     see the constant's docstring for why.
     """
-    series: dict[str, list[tuple[int, dict]]] = {g: [] for g, _, _, _ in GROUPS}
+    series: dict[str, list[tuple[int, dict, str]]] = {g: [] for g, _, _, _ in GROUPS}
     for rel in releases:
+        ordering = "Normal ordering"
         if pname == "Dm2":
             e = our_Dm2(rel, "no")
         else:
             byo = (rel.get("values") or {}).get(pname) or {}
-            e = byo.get("no") or byo.get("any")
+            e = byo.get("no")
+            if not e:
+                # A paper that quotes one value for both orderings: the panel
+                # plots it in the normal-ordering row, and the hover panel has
+                # to say that it is not a normal-ordering number.
+                e, ordering = byo.get("any"), "Both orderings"
         if e:
-            series[rel["group"]].append((rel["year"], e))
-    plotted = [(gid, y, e) for gid, v in series.items() for y, e in v]
+            series[rel["group"]].append((rel["year"], e, ordering))
+    plotted = [(gid, y, e) for gid, v in series.items() for y, e, _ in v]
     if not plotted or sum(1 for v in series.values() if v) < 2:
         return ""
 
@@ -425,13 +508,13 @@ def compare_panel(pname: str, meta: dict, releases: list[dict]) -> str:
     dx = {"bari": -3.4, "nufit": 0.0, "valencia": 3.4}
     off_here = []
     for gid, gname, colour, shape in GROUPS:
-        pts_all = sorted(series[gid])
+        pts_all = sorted(series[gid], key=lambda t: t[0])
         if not pts_all:
             continue
         # The connecting line and the 3σ rule only ever run between points
         # that share the axis: an off-scale point cannot be joined to its
         # neighbour without implying a scale it is not drawn on.
-        pts_line = [(yr, e) for yr, e in pts_all if (yr, gid, pname) not in OFF_SCALE_COMPARE]
+        pts_line = [(yr, e) for yr, e, _ in pts_all if (yr, gid, pname) not in OFF_SCALE_COMPARE]
         for yr, e in pts_line:
             if e.get("s3"):
                 out.append(f'<line x1="{sx(yr) + dx[gid]:.1f}" y1="{sy(e["s3"][0]):.1f}" '
@@ -442,8 +525,10 @@ def compare_panel(pname: str, meta: dict, releases: list[dict]) -> str:
                          for i, (y, e) in enumerate(pts_line))
             out.append(f'<path d="{d}" fill="none" stroke="{colour}" stroke-width="2" '
                        'stroke-linejoin="round" opacity=".5"/>')
-        for yr, e in pts_all:
+        for yr, e, ordering in pts_all:
             x = sx(yr) + dx[gid]
+            base = {"group": gname, "year": yr, "param": label,
+                    "unit": unit, "ordering": ordering}
             if (yr, gid, pname) in OFF_SCALE_COMPARE:
                 if e.get("s3"):
                     raise SystemExit(
@@ -459,6 +544,10 @@ def compare_panel(pname: str, meta: dict, releases: list[dict]) -> str:
                                   f"{gname}, {yr}: {label} = {history.value_text(e['best'])} "
                                   f"({unit}) — below this panel's range, drawn at the floor, "
                                   "not to scale",
+                                  facts={**base, "value": history.value_text(e["best"]),
+                                         "range": range_text(e),
+                                         "note": "Below this panel's range — drawn at the "
+                                                 "floor, not to scale"},
                                   hollow=True))
                 out.append(f'<text x="{x + 7:.1f}" y="{y_floor + 3.5:.1f}" font-size="9.5" '
                            f'fill="currentColor" opacity=".75">{history.value_text(e["best"])}</text>')
@@ -466,6 +555,9 @@ def compare_panel(pname: str, meta: dict, releases: list[dict]) -> str:
             if history.kind_of(e) == "limit":
                 out.append(marker("limit-upper", x, sy(e["upper"]), colour,
                                   f"{gname}, {yr}: {label} {history.limit_label(e)} ({unit})",
+                                  facts={**base, "value": history.limit_label(e),
+                                         "kind": "limit",
+                                         "level": history.level_text(e)},
                                   level_text=history.level_text(e)))
                 continue
             rng = e.get("s3")
@@ -473,7 +565,15 @@ def compare_panel(pname: str, meta: dict, releases: list[dict]) -> str:
                     if rng else "")
             out.append(marker(shape, x, sy(e["best"]), colour,
                               f"{gname}, {yr}: {label} = {history.value_text(e['best'])}"
-                              f"{span} ({unit})"))
+                              f"{span} ({unit})",
+                              facts={**base, "value": history.value_text(e["best"]),
+                                     # What this panel drew, not what the paper
+                                     # published: compare_panel rules only 3σ,
+                                     # so a point whose 1σ is all there is has
+                                     # no bar here and the panel must not claim
+                                     # one it did not draw.
+                                     "range": (f'3σ {history.value_text(rng[0])}–'
+                                               f'{history.value_text(rng[1])}') if rng else ""}))
 
     conv = ("  Values of other groups converted to our convention."
             if pname == "Dm2" else "")
@@ -497,16 +597,19 @@ def compare_panel(pname: str, meta: dict, releases: list[dict]) -> str:
 
 def panel(pname: str, meta: dict, releases: list[dict]) -> str:
     """One small multiple: best fit and 3σ range against publication year."""
-    series: dict[str, list[tuple[int, dict]]] = {k: [] for k, _, _ in ORDERINGS}
+    series: dict[str, list[tuple[int, dict, dict]]] = {k: [] for k, _, _ in ORDERINGS}
     for rel in releases:
         entry = (rel.get("values") or {}).get(pname)
         if not entry:
             continue
         for key in series:
             if key in entry:
-                series[key].append((rel["year"], entry[key]))
+                # The release travels with its point: the hover panel names
+                # the group, and deriving it from "these are all Bari" would
+                # be a comment pretending to be code the day it stops being.
+                series[key].append((rel["year"], entry[key], rel))
 
-    points = [(y, e) for s in series.values() for y, e in s]
+    points = [(y, e) for s in series.values() for y, e, _ in s]
     if not points:
         return ""
 
@@ -543,42 +646,60 @@ def panel(pname: str, meta: dict, releases: list[dict]) -> str:
 
     label = meta["label"]
     unit = meta["unit"]
+    fell_back = False
     for kind, name, colour in ORDERINGS:
-        pts = sorted(series[kind])
+        pts = sorted(series[kind], key=lambda t: t[0])
         if not pts:
             continue
-        # 3σ range as a thin vertical rule behind the marker
-        for yr, e in pts:
-            rng = e.get("s3") or e.get("s1")
+        # The interval as a thin vertical rule behind the marker
+        for yr, e, _ in pts:
+            rng, level = interval_of(e)
             if rng:
+                fell_back = fell_back or level == "1σ"
                 out.append(f'<line x1="{sx(yr):.1f}" y1="{sy(rng[0]):.1f}" '
                            f'x2="{sx(yr):.1f}" y2="{sy(rng[1]):.1f}" stroke="{colour}" '
                            'stroke-width="2" stroke-linecap="round" opacity=".38"/>')
         if len(pts) > 1:
             d = " ".join(f'{"M" if i == 0 else "L"}{sx(y):.1f} {sy(bound_value(e)):.1f}'
-                         for i, (y, e) in enumerate(pts))
+                         for i, (y, e, _) in enumerate(pts))
             out.append(f'<path d="{d}" fill="none" stroke="{colour}" stroke-width="2" '
                        'stroke-linejoin="round" opacity=".55"/>')
-        for yr, e in pts:
+        for yr, e, rel in pts:
+            base = {"group": group_name(rel), "year": yr, "param": label,
+                    "unit": unit, "ordering": name}
             if history.kind_of(e) == "limit":
                 out.append(marker("limit-upper", sx(yr), sy(e["upper"]), colour,
                                   f"{name}, {yr}: {label} {history.limit_label(e)} ({unit})",
+                                  facts={**base, "value": history.limit_label(e),
+                                         "kind": "limit",
+                                         "level": history.level_text(e)},
                                   level_text=history.level_text(e)))
                 continue
-            rng = e.get("s3") or e.get("s1")
-            span = (f', 3σ {history.value_text(rng[0])}–{history.value_text(rng[1])}'
-                    if rng else "")
+            span = range_text(e)
             out.append(marker(kind, sx(yr), sy(e["best"]), colour,
                               f"{name}, {yr}: {label} = {history.value_text(e['best'])}"
-                              f"{span} ({unit})"))
+                              f"{', ' + span if span else ''} ({unit})",
+                              facts={**base, "value": history.value_text(e["best"]),
+                                     "range": span}))
 
+    # Nine entries publish a 1σ range and no 3σ one. The rule is drawn either
+    # way — a measurement with no error bar at all would read as a claim of
+    # precision it never made — but a panel that draws two different levels
+    # must say so, and each point states its own on hover.
+    fallback_note = ("  Where a paper published no 3σ range, its 1σ range is drawn "
+                     "instead; every point states which it is." if fell_back else "")
+    # The accessible name has to carry the same caveat. A screen reader hears
+    # this sentence instead of seeing the panel, so a name that says "3σ
+    # ranges" over a panel drawing 1σ ones misleads the one reader who cannot
+    # check it against the drawing.
+    ranges = "3σ ranges" if not fell_back else "the range each paper published"
     body = "\n".join(out)
     return f"""<figure class="figure reveal">
 <h4>{label} <span class="figure__unit">/ {unit}</span></h4>
-<svg viewBox="0 0 {W} {H}" role="img" aria-label="{label} best-fit values and 3σ ranges by publication year, for the two mass orderings">
+<svg viewBox="0 0 {W} {H}" role="img" aria-label="{label} best-fit values and {ranges} by publication year, for the two mass orderings">
 {body}
 </svg>
-<p class="cap">Best fit with its 3σ range, by year of publication. Values and
+<p class="cap">Best fit with its 3σ range, by year of publication.{fallback_note} Values and
 sources in the table below.</p>
 </figure>"""
 
@@ -774,6 +895,7 @@ the marker is the first one quoted and the 3σ range spans both.</p>
   <span><i class="k-nufit"></i>NuFit (square)</span>
   <span><i class="k-valencia"></i>Valencia (diamond)</span>
   <span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" style="vertical-align:middle;margin-right:.35rem"><path d="M2 2L12 2M7 2L7 12M3.6 8L7 12L10.4 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Upper limit, level printed on the marker</span>
+  <span>Open a panel to read each point: group, year, value and range</span>
 </div>
 
 <div class="panels">
@@ -829,6 +951,7 @@ here: the comparison above converts first, and states the conversion.</p>
   <span><i class="k-io"></i>Inverted ordering (square)</span>
   <span><i class="k-any"></i>Quoted for both (diamond)</span>
   <span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" style="vertical-align:middle;margin-right:.35rem"><path d="M2 2L12 2M7 2L7 12M3.6 8L7 12L10.4 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Upper limit, level printed on the marker</span>
+  <span>Open a panel to read each point: group, year, value and range</span>
 </div>
 
 <div class="panels">
