@@ -84,6 +84,12 @@ def _zenodo_name(display_name: str) -> str:
 
     Derived from the verified name in site.yaml rather than typed a second
     time in "Family, Given" order, so the two can never say different names.
+
+    Only correct for a plain two-token "Given Family" name, which is what
+    site.yaml holds today. A compound surname ("Antonio Marrone Garcia"), a
+    particle ("van der Something"), or a mononym would come out wrong — this
+    must be revisited before a second creator is added to the config, not
+    after, because the result goes onto a record that cannot be withdrawn.
     """
     parts = display_name.split()
     if len(parts) < 2:
@@ -196,11 +202,16 @@ def build_package(out_dir: Path) -> dict:
     shutil.copyfile(register_meta.EXPORT.with_suffix(".csv"), out_dir / "history.csv")
     (out_dir / "README.md").write_text(
         _readme(facts, cfg, meta, licence_url), encoding="utf-8")
+    # Same rule as the creators block and the README: an attribution naming
+    # nobody is worse than one naming no individual at all, so an unset
+    # config name drops the clause rather than leaving a blank in its place.
+    creator_name = creator.get("name", "")
+    attribution = f"{creator_name} and the Bari group" if creator_name else "the Bari group"
     (out_dir / "LICENSE.txt").write_text(
         "This dataset is licensed CC BY 4.0.\n"
         f"Full text: {licence_url}\n\n"
-        "Attribute the parameter register to Antonio Marrone and the Bari "
-        "group, and cite it by its DOI.\n", encoding="utf-8")
+        f"Attribute the parameter register to {attribution}, and cite it "
+        "by its DOI.\n", encoding="utf-8")
     (out_dir / "zenodo.json").write_text(
         json.dumps({"metadata": meta}, indent=2, ensure_ascii=False),
         encoding="utf-8")
