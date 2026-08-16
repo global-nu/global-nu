@@ -307,7 +307,7 @@ h4{font-weight:700;font-size:.98rem}
    .table-scroll for the same reason.
    The other end of that same stretch is the actual bug: this figure's
    viewBox (520x326, a 14-row Gantt strip) is far taller relative to its
-   width than the map's (720x162), so letting it fill a ~1200px-wide card
+   width than the map's (720x280), so letting it fill a ~1200px-wide card
    the same way scales it to ~660px tall — nearly a full screen on its own,
    on the conferences page specifically, the one page where two figures were
    already flagged as a risk to the list below them. max-width holds it near
@@ -559,7 +559,7 @@ table.data--refs td.ref{min-width:20rem;color:var(--text)}
   color:var(--text-mute);margin-top:.2rem}
 
 /* ---------- automated pages: citations under an item ---------- */
-.list--news li{padding:.75rem 0}
+.list--news li{padding:1.05rem 0}
 .list--news b{margin-bottom:.15rem}
 .cites{display:flex;flex-wrap:wrap;gap:.35rem .9rem;margin-top:.4rem;
   font-family:var(--mono);font-size:.72rem;color:var(--text-mute)}
@@ -569,6 +569,14 @@ table.data--refs td.ref{min-width:20rem;color:var(--text)}
 .tile .cites{margin-top:.7rem;padding-top:.7rem;border-top:1px solid var(--line)}
 .tile p{margin:0;color:var(--text-soft);font-size:.92rem}
 .list--news li > p{margin:0 0 .1rem;color:var(--text-soft)}
+
+/* The digest entry, given room. The categories were a comma-joined string
+   inside the grey meta line; as pills they are scannable, and .tag already
+   exists (see the badge rules above) so this only has to lay them out. */
+.list--news .tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.4rem}
+.list--news .tags .tag{font-family:var(--mono);font-size:.72rem;
+  color:var(--text-mute)}
+.list--news .cites{margin-top:.35rem}
 
 /* ============================================================
    Richer surfaces
@@ -740,11 +748,15 @@ a.card:hover .card__go{color:var(--text)}
 .conf-pin{cursor:pointer}
 
 /* max-height is capped against the viewport, not the stage: .confmap-stage
-   wraps only the SVG, which is half the experiments map's height (see
-   figures.conference_map), so the percentage cap .map-card uses against ITS
-   (much taller) stage would leave this card only ~135px tall — enough to
-   clip a title mid-sentence and hide the dates, place and both action links
-   below it entirely. Found by opening the page, not by the jsdom suite.
+   wraps the SVG (confmap.js's ensureStage runs first) and svgzoom.js's own
+   zoom-bar-plus-svg wrapper then lands inside it, so the stage's height is
+   the bar row plus the SVG, not the SVG alone — but back when that SVG was
+   squashed to half its drawn latitude range (162 of 720 viewBox units), the
+   percentage cap .map-card
+   uses against ITS (then genuinely much taller, 324-unit) stage would have
+   left this card only ~135px tall — enough to clip a title mid-sentence and
+   hide the dates, place and both action links below it entirely. Found by
+   opening the page, not by the jsdom suite.
 
    20rem fixed THAT case, but a card carrying a photo credit (attribution
    required by the photo's CC BY/BY-SA licence, not decoration) is taller
@@ -759,7 +771,18 @@ a.card:hover .card__go{color:var(--text)}
    .conf-card__photo img below is shrunk from .map-card's 4:3 to 5:2, and
    this max-height stays at 20rem, exactly where it already left headroom
    under the header. overflow-y:auto remains only as a backstop for a
-   viewport shorter than any tested here. */
+   viewport shorter than any tested here.
+
+   Task 2 cropped the map instead of squashing it (see figures.py's
+   MAP_TOP_LAT/MAP_BOTTOM_LAT comment), so the SVG itself is now 280 viewBox
+   units tall, not 162 — 73% taller, and no longer far short of the
+   experiments map's 324. That does not erode the headroom above: the card
+   is anchored to the STAGE's own bottom edge (bottom:.8rem here), and the
+   svgzoom-bar row Task 5 later added sits ABOVE the svg, inside the stage —
+   it grows the stage from the top, not the bottom, so a taller stage still
+   pushes that anchor further down the page, away from the sticky header,
+   not into it. 20rem/60vh and the photo's 5:2 crop stand exactly as they
+   were. */
 .conf-card{position:absolute;z-index:6;left:.8rem;bottom:.8rem;
   width:min(21rem,calc(100% - 1.6rem));max-height:min(60vh,20rem);overflow-y:auto;
   background:var(--bg);border:1px solid var(--line-strong);border-radius:var(--r);
@@ -771,14 +794,44 @@ a.card:hover .card__go{color:var(--text)}
 .conf-card__close:hover{color:var(--text)}
 .conf-card__title{margin:0 1.6rem .5rem 0;font-family:var(--display);
   font-size:1.02rem;letter-spacing:-.01em;color:var(--text)}
-.conf-card__title a{color:var(--text);text-decoration:none}
-.conf-card__title a:hover{color:var(--accent);text-decoration:underline}
+/* Task 6 removed the single "Conference site" pill (confmap.js) because one
+   button cannot represent N conferences on a shared marker. That left every
+   conference's own title — the thing that now carries the only link to it —
+   coloured the same as a plain heading (var(--text)) until hover, so a
+   reader had no way to tell a one-conference card's title was clickable
+   without trying. Colouring it var(--accent), the same token the removed
+   pill used, restores that affordance and scales to any list length: each
+   heading advertises itself instead of one button trying to speak for all
+   of them. A heading with no URL (confmap.js renders plain text, no <a>,
+   when a conference carries none) is untouched by this rule and stays
+   var(--text) — correctly reading as NOT a link. */
+.conf-card__title a{color:var(--accent);text-decoration:none}
+.conf-card__title a:hover{text-decoration:underline}
 .conf-card__meta{margin:0;font-family:var(--mono);font-size:.72rem;
   color:var(--text-mute)}
 .conf-card__actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.75rem}
 .conf-card__actions a{font-size:.82rem;font-weight:600;color:var(--accent);
   text-decoration:none}
 .conf-card__actions a:hover{text-decoration:underline}
+/* A marker can hold several conferences (Task 6); the card's own
+   .conf-card__meta already states the count next to the place
+   (confmap.js), but a reader scrolled to the first two headings of a
+   five-conference card still has no on-screen sign that scrolling reveals
+   more — the 20rem/60vh cap above exists for a good reason (fits a short
+   viewport) and stays, so the fix is to say more is there, not to remove
+   the cap. confmap.js adds .conf-card--scrollable only when the rendered
+   card's content actually exceeds its own box (scrollHeight > clientHeight)
+   so this never paints over a card that already shows everything.
+   position:sticky (not fixed/absolute) keeps the fade inside .conf-card's
+   own scrollport without a second wrapper element, and the negative
+   margin-top pulls it over the last line of real content instead of adding
+   scrollable height of its own. pointer-events:none so it never blocks a
+   click on whatever it happens to sit over (most often the Google Maps
+   action). */
+.conf-card--scrollable::after{content:"";display:block;position:sticky;
+  left:0;right:0;bottom:0;height:1.6rem;margin-top:-1.6rem;
+  pointer-events:none;
+  background:linear-gradient(to bottom,transparent,var(--bg) 80%)}
 /* A photograph of the host city (tools/news/photos.py), when Commons has
    one under a licence that permits reuse — same shape as .map-card's own
    photo block below, duplicated rather than shared: the comment above
@@ -796,6 +849,94 @@ a.card:hover .card__go{color:var(--text)}
   font-size:.68rem;color:var(--text-mute);line-height:1.5}
 .conf-card__credit a{color:var(--text-mute);text-decoration:underline}
 .conf-card__credit a:hover{color:var(--accent)}
+
+/* The map's hover panel: light, immediate, and never an image. The full
+   card with the photograph is what a click is for.
+
+   max-height/overflow-y follow .conf-card's own 60vh/20rem cap above, for
+   the same reason: a marker can hold several conferences (Milano carries
+   five), and an uncapped list ran the panel's bottom past the figure's own
+   bottom edge at 375px tall — verified with Playwright, not assumed, since
+   jsdom's zero-height layout can't catch a real overflow.
+
+   top has no rule here on purpose: this panel is positioned against
+   .confmap-stage (position:relative), and svgzoom.js's zoom-bar-plus-svg
+   wrapper lands inside that stage, above the svg — so a fixed top:.6rem
+   would float the panel over the bar row, not the map's top-left corner. A
+   hand-derived constant (bar height + gap) was tried first and rejected:
+   the day either number changes in CSS, the constant silently goes stale
+   and nothing catches it. confmap.js's wireTip instead measures the SVG's
+   own top edge against the stage's, live, on every show() call, and sets
+   tip.style.top from that plus the same .6rem gap — see the comment there.
+   This rule only needs position:absolute and left; top is always set
+   inline before the panel is ever unhidden. */
+.conf-tip{position:absolute;left:.6rem;max-width:22rem;z-index:3;
+  max-height:min(60vh,20rem);overflow-y:auto;
+  padding:.5rem .7rem;border:1px solid var(--line);border-radius:var(--r-sm);
+  background:var(--surface);box-shadow:var(--shadow);pointer-events:none}
+.conf-tip[hidden]{display:none}
+.conf-tip b{display:block;font-size:.8rem;color:var(--text)}
+.conf-tip p{margin:.2rem 0 0;font-size:.78rem;color:var(--text-soft)}
+/* confmap.js flips to this corner when the default top-left placement
+   would sit on top of the very marker it names (real, not hypothetical —
+   Vancouver's marker sits under the default spot on this map's actual
+   layout). This is a best-effort choice, not a guarantee: confmap.js
+   measures both corners against the marker and keeps whichever overlaps
+   less, because on a small enough map with long enough conference titles
+   the two corners are not always far enough apart to leave either one
+   fully clear of a centrally-placed marker — verified at 375px, where
+   both corners still touched Vancouver's and Milano's own dots. That
+   residual case is what the max-width:520px rule below actually disposes
+   of, by not showing the panel at all at that width, rather than this
+   flip claiming a coverage it can't deliver on a map this size. */
+.conf-tip--br{top:auto;left:auto;right:.6rem;bottom:.6rem}
+/* Below 520px the audience is touch, where hover as an input doesn't
+   exist — a tap opens the full .conf-card instead — and every marker
+   still carries its own <title>, so the browser's native tooltip is not
+   lost by hiding this. A panel that can cover the very marker it names
+   (the residual case above) is strictly worse than that native tooltip,
+   so this width just doesn't show it. This also disposes of a real
+   untidiness on touch: some browsers synthesize a mouseenter on tap (for
+   :hover CSS support) with no matching mouseleave ever following, which
+   would otherwise leave the panel stuck open until some unrelated
+   interaction closed it. */
+@media (max-width:520px){.conf-tip{display:none}}
+
+/* Pan/zoom wrapper that svgzoom.js builds around svg[data-zoomable] — the
+   conference map. Tokens follow .figbox__bar's zoom controls above, the
+   closest sibling to these buttons, rather than being copied verbatim from
+   the home page this file was ported from. */
+.svgzoom{position:relative}
+/* .svgzoom is the wrapper svgzoom.js inserts around the svg, so the svg is
+   its child; a `.svgzoom--zoomed .confmap-figure svg` half was dropped from
+   this selector because .confmap-figure is the wrapper's ANCESTOR and could
+   never have matched. */
+.svgzoom--zoomed svg{cursor:grab}
+.svgzoom--zoomed svg:active{cursor:grabbing}
+/* A normal-flow row above the svg, laid out the same way .figbox__bar is
+   above — not an absolutely-positioned overlay on top of it. See
+   svgzoom.js's own comment on why: at 375px wide the old overlay's column
+   of three buttons was nearly as tall as the whole map and sat on top of
+   a real marker. */
+.svgzoom__bar{display:flex;gap:.4rem;justify-content:flex-end;
+  margin-bottom:.4rem}
+.svgzoom__btn{width:1.9rem;height:1.9rem;border-radius:var(--r-sm);
+  border:1px solid var(--line-strong);background:var(--surface);
+  color:var(--text-soft);opacity:.55;transition:opacity .2s;cursor:pointer}
+.svgzoom__btn:hover,.svgzoom__btn:focus-visible,
+.svgzoom--zoomed .svgzoom__btn{opacity:1;color:var(--text)}
+.svgzoom__btn:disabled{opacity:.25;cursor:default}
+/* Thirty-odd city labels collide at rest, so they fade in only when the map
+   is zoomed. With no JS there is no .svgzoom wrapper and the labels simply
+   stay visible — the right fallback, not a broken one.
+   pointer-events:none because opacity:0 does NOT stop a label being hit:
+   measured in Chromium on the built page, the exact centre of the Otranto
+   dot returns Kolymbari's invisible <text class="map-name"> from
+   elementFromPoint, and confmap.js's closest(".conf-pin") would then open
+   Kolymbari's card for a click aimed at Otranto. The dot is the target; the
+   name is decoration, at every zoom level. */
+.map-name{transition:opacity .2s;pointer-events:none}
+.svgzoom:not(.svgzoom--zoomed) .map-name{opacity:0}
 
 /* ---------- Δχ² explorer ---------- */
 .chi2__bar{display:flex;flex-wrap:wrap;gap:.7rem 1.4rem;align-items:center;

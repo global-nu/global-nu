@@ -29,9 +29,8 @@ from __future__ import annotations
 import datetime as _dt
 import html
 import logging
-import math
 
-from . import geocluster, photos
+from . import photos
 from . import worldmap as wm
 
 
@@ -211,41 +210,24 @@ def conference_timeline(upcoming: list[dict], recent: list[dict],
 # --------------------------------------------------------------------------- #
 # the conference map
 # --------------------------------------------------------------------------- #
-# Same crop as tools/make_map.py's experiments map — 84N down to 78S, far
-# enough south to clear every inhabited continent without needing that map's
-# South Pole inset, which nothing in this dataset has ever required — but
-# drawn at HALF the vertical resolution: worldmap.project's y is halved after
-# the fact, so the same latitude range that gives the experiments map its
-# 324-unit height fits this one in 162. The alternative — keep 2 units per
-# degree of latitude and crop the *range* in half instead — would need a fixed
-# window a real conference can fall outside of: on today's data Sydney and
-# Santiago both sit past 33°S, so a crop centred on the temperate north would
-# cut them, silently, off a map their own coordinates were good enough to be
-# plotted on. Halving the vertical scale instead means every latitude on
-# Earth still has a place here — for a conference calendar, where a
-# first-time entry next February could plausibly be Cape Town, "a flatter
-# map" beats "occasionally missing a real dot," so a mild vertical squeeze
-# against wm.LAND_PATH's otherwise-undistorted outlines is the trade this
-# figure makes. Longitude is not touched at all: the full 720-wide world
-# stays recognisable at a glance, which a map cropped to only the conferences
-# on hand would not.
-MAP_TOP_LAT = 84.0
-MAP_BOTTOM_LAT = -78.0
-MAP_SCALE_Y = 0.5
+# Cropped rather than compressed. In an equirectangular projection Antarctica
+# smears into a band the width of the world, and the empty Arctic wasted a
+# third of the height; no conference has ever been held in either. Cropping
+# them away still leaves a taller frame than the old scale(1,.5) squash did —
+# 280 units against 162, since .figure svg{height:auto} sizes the card by
+# this viewBox's own aspect ratio — a real ~73% more vertical space on the
+# page. That is the accepted cost of undistorted shapes, paid deliberately,
+# not a trade this crop avoids.
+MAP_TOP_LAT = 82.0
+MAP_BOTTOM_LAT = -58.0
 
-MAP_HALO_R = 6.0
-MAP_DOT_R = 3.0
-# Two markers this close would sit almost entirely on top of one another,
-# hiding whichever was drawn first — the same problem make_map.py's
-# MERGE_DIST exists to catch, reused at the same "2 dot-radii" rule rather
-# than a second, invented one.
-MAP_MERGE_DIST = 2 * MAP_DOT_R
-MAP_FAN_R = 8.0
-
-
-def _map_xy(lon: float, lat: float) -> tuple[float, float]:
-    x, y = wm.project(lon, lat)
-    return x, y * MAP_SCALE_Y
+# Venues are grouped by IDENTICAL position, to this many decimal places of a
+# degree — about 1 km, far below anything the map can draw, so in practice
+# this means "the same geocoded city". Deliberately not a distance merge:
+# a marker asserts a place (its <title>, its data-place, the hover heading,
+# the Google Maps link, the photograph and its alt text all come from its
+# first conference), so anything folded into it must genuinely BE there.
+MAP_KEY_DP = 2
 
 
 def _map_title(name: str, place: str, dates: str) -> str:
@@ -283,37 +265,63 @@ def _lookup_photo(conf: dict, log: logging.Logger) -> dict | None:
     return photos.for_city(city_code[0], city_code[1], log)
 
 
-def _conf_pin(conf: dict, lon: float, lat: float, cx: float, cy: float,
-             photo: dict | None = None) -> str:
-    """One <g class="conf-pin">, drawn at (cx, cy).
+def _marker_scope(first: dict) -> str:
+    """The scope that decides a marker's colour: always the venue's FIRST
+    conference. A venue hosting both a neutrino and a general meeting gets
+    ONE dot, (arbitrarily) painted for whichever conference sorts first —
+    see _conf_marker's own colour line, which calls this on the same
+    `confs[0]` — so the legend has to ask this same question about the same
+    record, not re-derive an answer from every conference at the venue, or
+    it can advertise a colour the dot never wears."""
+    return (first.get("extra") or {}).get("scope") or "neutrino"
 
-    (cx, cy) is the marker's own projected position unless it shares a
-    cluster with another conference, in which case the caller has already
-    nudged it a few units off-centre so the two dots read as two rather than
-    one hiding the other (see conference_map's docstring). data-lat/data-lon
-    always carry the conference's REAL coordinates regardless of that visual
-    nudge: confmap.js builds the Google Maps link from them, and a link is
-    only as honest as the numbers that produced it.
+
+def _conf_marker(confs: list[dict], lon: float, lat: float,
+                 x: float, y: float, photo: dict | None = None) -> str:
+    """One <g class="conf-pin"> for a venue, holding every conference at it.
+
+    A marker used to be one conference, and a city with two fanned them into
+    two dots a few units apart. It is now one dot with the count on it — what
+    makes the home page's map legible across a crowded Europe — so the
+    conferences have to live inside it. `map.js` already does exactly this
+    with `.map-exp` children inside one experiment pin; this follows that
+    pattern rather than inventing a second one.
+
+    Each `<g class="conf-item">` draws nothing. It carries one conference's
+    name, dates and URL for confmap.js to read, on hover and on click.
+
+    data-lat/data-lon are the venue's REAL coordinates: confmap.js builds the
+    Google Maps link from them, and a link is only as honest as the numbers
+    that produced it.
 
     `photo`, when given, is the dict photos.for_city returns — file, page,
-    author, licence, licence_url — carried onto the marker as five
-    data-photo* attributes so confmap.js can render the image and its full
-    credit without a second lookup. Two conferences in the same city (the
-    common case for a fanned, merged marker — see conference_map's docstring)
-    get the identical photo, because photos.for_city caches by city: nothing
-    here needs to know or care that a marker is part of a cluster.
+    author, licence, licence_url — carried as five data-photo* attributes so
+    confmap.js can render the image and its full credit without a second
+    lookup. It sits on the marker, not on a conference, because it is a
+    photograph of the CITY: photos.for_city caches by city, and every
+    conference here shares one.
     """
-    extra = conf.get("extra") or {}
-    name = conf.get("title", "")
+    first = confs[0]
+    extra = first.get("extra") or {}
     place = extra.get("place") or extra.get("city") or ""
-    dates = extra.get("span", "")
-    title = _map_title(name, place, dates)
+    city = extra.get("city") or place
+    n = len(confs)
+    r = 3.2 + 1.5 * min(n - 1, 4)
+    # --dec-4 is the obvious "fourth decorative colour" but its count digits
+    # (--on-accent) measure only 4.27:1 on it in the dark theme — under the
+    # 4.5:1 text threshold. --accent-2 is already in the palette and clears
+    # 7.15:1 for the same pair, so this figure uses that token instead; see
+    # the matching pairs in tools/tests/test_theme.js.
+    colour = ("var(--accent-2)" if _marker_scope(first) == "general"
+              else "var(--no)")
+
+    title = "; ".join(
+        _map_title(c.get("title", ""), place,
+                   (c.get("extra") or {}).get("span", ""))
+        for c in confs)
+
     attrs = (
-        f' data-conf="{_e(conf.get("id", ""))}"'
-        f' data-name="{_e(name)}"'
         f' data-place="{_e(place)}"'
-        f' data-dates="{_e(dates)}"'
-        f' data-url="{_e(conf.get("url", ""))}"'
         f' data-lat="{lat:.4f}"'
         f' data-lon="{lon:.4f}"'
     )
@@ -325,18 +333,48 @@ def _conf_pin(conf: dict, lon: float, lat: float, cx: float, cy: float,
             f' data-photo-licence-url="{_e(photo.get("licence_url") or "")}"'
             f' data-photo-page="{_e(photo["page"])}"'
         )
+
+    items = "".join(
+        f'<g class="conf-item" data-conf="{_e(c.get("id", ""))}"'
+        f' data-name="{_e(c.get("title", ""))}"'
+        f' data-dates="{_e((c.get("extra") or {}).get("span", ""))}"'
+        f' data-url="{_e(c.get("url", ""))}"></g>'
+        for c in confs)
+
+    # The shapes sit at the origin inside a translated group, and data-fixed
+    # holds the anchor: svgzoom.js counter-scales every [data-fixed] group so
+    # a dot keeps its on-screen size as the map is zoomed, and a crowd comes
+    # apart instead of growing into one blob.
+    #
+    # No tabindex here, deliberately: a marker only DOES anything once
+    # confmap.js has wired its click and Enter handlers, and confmap.js sets
+    # role="button" and tabindex="0" together at that moment. Marking it
+    # focusable in the static markup would hand a keyboard user, on a page
+    # whose JS never ran, a tab stop that answers no key — focusable but not
+    # operable, which is worse than not being a stop at all. The <title> is
+    # still read out either way.
+    count = (f'<text y="2.4" text-anchor="middle" '
+             f'style="fill:var(--on-accent);font-size:6px;font-weight:700;'
+             f'font-family:var(--display,sans-serif)">{n}</text>'
+             if n > 1 else "")
+
     return (
-        f'<g class="conf-pin"{attrs}><title>{_e(title)}</title>'
-        f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{MAP_HALO_R}" '
-        f'fill="var(--no)" opacity=".18"/>'
-        f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{MAP_DOT_R}" fill="var(--no)" '
-        f'stroke="var(--bg)" stroke-width="1.1" paint-order="stroke"/></g>'
+        f'<g class="conf-pin"{attrs} data-fixed="{x:.1f} {y:.1f}" '
+        f'transform="translate({x:.1f} {y:.1f})">'
+        f'<title>{_e(title)}</title>'
+        f'<circle r="{r:.1f}" fill="{colour}" stroke="var(--bg)" '
+        f'stroke-width="1.1" paint-order="stroke"/>'
+        f'{count}'
+        f'<text y="{-r - 3:.1f}" text-anchor="middle" class="map-name" '
+        f'style="fill:var(--text-mute);font-size:8px;'
+        f'font-family:var(--body,sans-serif)">{_e(_trim(city, 18))}</text>'
+        f'{items}</g>'
     )
 
 
 def conference_map(located: list[tuple[dict, float, float]],
                    log: logging.Logger | None = None) -> str:
-    """A world map of upcoming conferences, one dot per located one.
+    """A world map of upcoming conferences, one dot per venue.
 
     `located` holds only conferences the caller already ran through
     venue.locate_record — recently-concluded conferences and ones the cascade
@@ -362,54 +400,92 @@ def conference_map(located: list[tuple[dict, float, float]],
         return ""
     log = log or logging.getLogger(__name__)
 
-    # Step 1: project and cluster. The bucketing is geocluster's
-    # cluster_by_distance — make_map.py's own single-linkage algorithm,
-    # shared rather than reimplemented, per the brief. Bucketing happens in
-    # the FINAL (already-squished) pixel space, because "coincident" is a
-    # statement about what a reader sees on this drawn map, not about the
-    # underlying undistorted globe.
-    points = [(conf, lon, lat, _map_xy(lon, lat)) for conf, lon, lat in located]
-    groups = geocluster.cluster_by_distance(
-        [p[3] for p in points], MAP_MERGE_DIST)
-    clusters: dict[int, list[int]] = {idx: idxs for idx, idxs in enumerate(groups)}
+    # Step 1: project, and group by identical coordinate — the same
+    # (round(lon, 2), round(lat, 2)) tally the home page's map uses.
+    #
+    # NOT geocluster.cluster_by_distance, which this function briefly used
+    # and which is right for make_map.py's experiments map, where a merged
+    # pin is only a drawing convenience and claims to be no particular
+    # place. Here a marker speaks for a venue: its place, its city label,
+    # its coordinates, its Google Maps link and its city photograph are all
+    # taken from the first conference in the group and asserted for all of
+    # them. Single-linkage over a few degrees put Otranto and Corfu, Milano
+    # and L'Aquila, Amsterdam and Leiden in one "cluster" and then told the
+    # reader the second was the first. Identity cannot do that.
+    #
+    # Two consequences, accepted: genuinely nearby cities are two dots
+    # again and may overlap at rest — that is what the zoom is for, and
+    # what the home page's map has always lived with; and the count badges
+    # fall, because a badge now counts conferences at one venue and nothing
+    # else.
+    points = [(conf, lon, lat, wm.project(lon, lat)) for conf, lon, lat in located]
+    venues: dict[tuple[float, float], list[int]] = {}
+    for i, (_, lon, lat, _xy) in enumerate(points):
+        venues.setdefault((round(lon, MAP_KEY_DP), round(lat, MAP_KEY_DP)),
+                          []).append(i)
 
-    top = wm.project(0.0, MAP_TOP_LAT)[1] * MAP_SCALE_Y
-    bottom = wm.project(0.0, MAP_BOTTOM_LAT)[1] * MAP_SCALE_Y
+    top = wm.project(0.0, MAP_TOP_LAT)[1]
+    bottom = wm.project(0.0, MAP_BOTTOM_LAT)[1]
     height = bottom - top
 
     parts = [
-        f'<svg viewBox="0 {top:.0f} {wm.WIDTH:.0f} {height:.0f}" role="img" '
+        f'<svg data-zoomable="1" viewBox="0 {top:.0f} {wm.WIDTH:.0f} '
+        f'{height:.0f}" role="img" '
         'aria-label="World map of upcoming neutrino conferences" '
         'xmlns="http://www.w3.org/2000/svg">',
         "<title>Where the upcoming conferences are</title>",
-        f'<g transform="scale(1,{MAP_SCALE_Y})">'
         f'<path d="{wm.LAND_PATH}" fill="var(--surface-2)" '
         'stroke="var(--line-strong)" stroke-width="0.6" '
-        'vector-effect="non-scaling-stroke"/></g>',
+        'vector-effect="non-scaling-stroke"/>',
     ]
 
-    # Step 2: draw. A cluster of one draws at its own true position; a
-    # cluster of more than one fans its members a few units around their
-    # shared centre — still one complete, independently clickable
-    # <g class="conf-pin"> per conference (no cluster wrapper, no
-    # reveal-on-click state for confmap.js to manage), just close enough
-    # together that a reader sees "more than one conference here" instead of
-    # one dot silently hiding another — the actual problem MERGE_DIST exists
-    # to solve, per make_map.py's own comment on it.
-    for members in sorted(clusters.values(), key=len):
-        if len(members) == 1:
-            conf, lon, lat, (x, y) = points[members[0]]
-            parts.append(_conf_pin(conf, lon, lat, x, y, _lookup_photo(conf, log)))
+    # Step 2: draw one marker per venue. A venue with one conference is a
+    # plain dot; a venue with several is one dot with the count on it,
+    # instead of fanning them into separate ones.
+    #
+    # Sorted by size, smallest first, so the biggest dot is painted last and
+    # a small neighbour is not hidden underneath it; then by coordinate key,
+    # so the byte order of the output never depends on dict iteration order
+    # among same-sized venues (the daily refresh commits this file, and a
+    # reshuffle would show up as noise in the diff).
+    #
+    # `present` is built here, from each venue's own confs[0], rather than
+    # from every raw point afterwards: a mixed-scope venue draws ONE dot in
+    # ONE colour (_conf_marker's own scope call, below, is on that same
+    # confs[0]), so a legend built from every point's scope could list a
+    # colour that never actually appears on the map — the "a key to something
+    # the reader cannot see is noise" rule, failing on exactly that case.
+    # Reading both the dot and the legend off the same confs[0] makes them
+    # agree by construction instead of by afterwards comparing colour strings.
+    present: set[str] = set()
+    for key in sorted(venues, key=lambda k: (len(venues[k]), k)):
+        members = venues[key]
+        confs = [points[i][0] for i in members]
+        # Position, coordinates, place and photograph all come from the same
+        # first conference — everything the marker asserts is true of every
+        # member because they are all at this one point.
+        _, lon, lat, (x, y) = points[members[0]]
+        present.add(_marker_scope(confs[0]))
+        parts.append(_conf_marker(confs, lon, lat, x, y,
+                                  _lookup_photo(confs[0], log)))
+
+    # A legend, so two colours are not a puzzle. Only categories actually on
+    # the map are listed: a key to something the reader cannot see is noise.
+    lx, ly = 12.0, top + height - 8.0
+    for scope, colour, label in (
+            ("neutrino", "var(--no)", "Neutrino"),
+            # var(--accent-2), not --dec-4 — see the comment on the marker's
+            # own colour choice above; the legend swatch must match the dot.
+            ("general", "var(--accent-2)", "General particle physics")):
+        if scope not in present:
             continue
-        cx = sum(points[i][3][0] for i in members) / len(members)
-        cy = sum(points[i][3][1] for i in members) / len(members)
-        n = len(members)
-        for k, i in enumerate(members):
-            conf, lon, lat, _ = points[i]
-            angle = math.radians(-90 + k * 360 / n)
-            fx = cx + MAP_FAN_R * math.cos(angle)
-            fy = cy + MAP_FAN_R * math.sin(angle)
-            parts.append(_conf_pin(conf, lon, lat, fx, fy, _lookup_photo(conf, log)))
+        parts.append(f'<circle cx="{lx + 4:.1f}" cy="{ly - 3:.1f}" r="4" '
+                     f'fill="{colour}"/>')
+        parts.append(
+            f'<text x="{lx + 13:.1f}" y="{ly:.1f}" style="fill:var(--text-mute);'
+            f'font-size:9px;font-family:var(--body,sans-serif)">'
+            f'{_e(label)}</text>')
+        lx += 15 + 6.0 * len(label)
 
     parts.append("</svg>")
     return "\n".join(parts)

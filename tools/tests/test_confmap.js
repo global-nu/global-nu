@@ -34,23 +34,24 @@ const SVG = `
   <svg id="cm" viewBox="0 6 720 162" role="img" aria-label="Where the upcoming conferences are">
     <title>Where the upcoming conferences are</title>
     <path d="M0,0 L720,0 L720,162 L0,162Z" class="confmap-land"/>
-    <g class="conf-pin" data-conf="conf:2812345" data-name="NuFact 2026"
-       data-place="Shanghai, China" data-dates="31 Aug – 5 Sep 2026"
-       data-url="https://nufact2026.example.org/"
+    <g class="conf-pin" data-conf="conf:2812345"
+       data-place="Shanghai, China"
        data-lat="31.23" data-lon="121.47">
       <title>NuFact 2026 — Shanghai, China</title>
       <circle cx="601.6" cy="58.9" r="3.0"/>
+      <g class="conf-item" data-conf="conf:2812345" data-name="NuFact 2026"
+         data-dates="31 Aug – 5 Sep 2026" data-url="https://nufact2026.example.org/"></g>
     </g>
-    <g class="conf-pin" data-conf="nu:2026-09-14-erice" data-name="Erice School 2026"
-       data-place="Erice, Italy" data-dates="14–22 Sep 2026"
-       data-url="https://erice.example.org/"
+    <g class="conf-pin" data-conf="nu:2026-09-14-erice"
+       data-place="Erice, Italy"
        data-lat="37.93" data-lon="12.83">
       <title>Erice School 2026 — Erice, Italy</title>
       <circle cx="384.6" cy="26.0" r="3.0"/>
+      <g class="conf-item" data-conf="nu:2026-09-14-erice" data-name="Erice School 2026"
+         data-dates="14–22 Sep 2026" data-url="https://erice.example.org/"></g>
     </g>
-    <g class="conf-pin" data-conf="conf:trieste-photo" data-name="Neutrino Physics in Trieste"
-       data-place="Trieste, Italy" data-dates="3–7 Nov 2026"
-       data-url="https://trieste.example.org/"
+    <g class="conf-pin" data-conf="conf:trieste-photo"
+       data-place="Trieste, Italy"
        data-lat="45.6495" data-lon="13.7768"
        data-photo="images/conf-trieste.jpg"
        data-photo-author="Fermilab, Reidar Hahn"
@@ -59,6 +60,17 @@ const SVG = `
        data-photo-page="https://commons.wikimedia.org/wiki/File:Trieste.jpg">
       <title>Neutrino Physics in Trieste — Trieste, Italy</title>
       <circle cx="420.0" cy="40.0" r="3.0"/>
+      <g class="conf-item" data-conf="conf:trieste-photo" data-name="Neutrino Physics in Trieste"
+         data-dates="3–7 Nov 2026" data-url="https://trieste.example.org/"></g>
+    </g>
+    <g class="conf-pin" data-place="Bari, Italy" data-lat="41.1200"
+       data-lon="16.8700">
+      <title>First Conference — Bari, Italy — 1-5 Sep 2026</title>
+      <circle r="4.7"/><text>2</text>
+      <g class="conf-item" data-conf="conf:first" data-name="First Conference"
+         data-dates="1-5 Sep 2026" data-url="https://first.example/"></g>
+      <g class="conf-item" data-conf="conf:second" data-name="Second Conference"
+         data-dates="8-9 Sep 2026" data-url="https://second.example/"></g>
     </g>
   </svg>
 </figure>`;
@@ -149,7 +161,7 @@ kbCard && /Erice School 2026/.test(kbCard.textContent)
    e.g. by rebuilding the pin's innerHTML instead of only appending a card
    elsewhere in the figure. */
 d = boot();
-d.querySelectorAll('.conf-pin title').length === 3
+d.querySelectorAll('.conf-pin title').length === 4
   ? ok('every marker keeps its <title> after the script has run')
   : bad('a marker lost its <title>');
 
@@ -199,6 +211,69 @@ const plainCard = d.querySelector('.conf-card');
 plainCard && !plainCard.querySelector('.conf-card__photo')
   ? ok('a marker with no data-photo renders no photo block at all')
   : bad('a photo block was rendered for a marker that carries no data-photo');
+
+/* 9. a marker holding several conferences (Task 6's shape: one .conf-pin,
+   several .conf-item children) lists every one of them, each with its own
+   dates and its own link, under a single, non-repeated photograph. */
+d = boot();
+const multi = d.querySelector('[data-place="Bari, Italy"]');
+multi.dispatchEvent(new d.defaultView.Event('click', {bubbles: true}));
+const mcard = d.querySelector('.conf-card');
+mcard && mcard.textContent.includes('First Conference')
+  ? ok('the card names the first conference')
+  : bad('the card names the first conference');
+mcard && mcard.textContent.includes('Second Conference')
+  ? ok('the card names the second conference')
+  : bad('the card names the second conference');
+mcard && mcard.textContent.includes('8-9 Sep 2026')
+  ? ok('each conference keeps its own dates')
+  : bad('each conference keeps its own dates');
+const links = mcard ? [...mcard.querySelectorAll('a')].map(a => a.href) : [];
+links.includes('https://first.example/') && links.includes('https://second.example/')
+  ? ok('each conference links to itself')
+  : bad('each conference links to itself: ' + links.join(', '));
+mcard && mcard.querySelectorAll('.conf-card__photo').length <= 1
+  ? ok('the city photograph is rendered once, not once per conference')
+  : bad('the photograph was repeated per conference');
+mcard && mcard.textContent.includes('2 conferences')
+  ? ok('the card states the count next to the place, plural for two')
+  : bad('the card does not state the conference count');
+
+/* 10. a single-conference marker states the count too, correctly singular —
+   the count line is not something that only appears once a marker is
+   crowded; the grammar has to hold at the n=1 boundary as well. */
+const single = d.querySelector('[data-conf="conf:2812345"]');
+single.dispatchEvent(new d.defaultView.Event('click', {bubbles: true}));
+const scard = d.querySelector('.conf-card');
+scard && scard.textContent.includes('1 conference') && !scard.textContent.includes('1 conferences')
+  ? ok('a single-conference card states the count, singular')
+  : bad('a single-conference card does not state the count correctly: '
+      + (scard && scard.textContent));
+
+// --- the hover panel -----------------------------------------------------
+const hoverPin = d.querySelector('[data-place="Bari, Italy"]');
+hoverPin.dispatchEvent(new d.defaultView.Event('mouseenter', {bubbles: true}));
+const tip = d.querySelector('.conf-tip');
+tip ? ok('hovering a marker opens a panel') : bad('hovering a marker opens a panel');
+tip && tip.textContent.includes('Bari, Italy')
+  ? ok('the panel names the place') : bad('the panel names the place');
+tip && tip.textContent.includes('First Conference') &&
+      tip.textContent.includes('Second Conference')
+  ? ok('the panel names every conference') : bad('the panel names every conference');
+tip && tip.textContent.includes('1-5 Sep 2026')
+  ? ok('the panel gives the period') : bad('the panel gives the period');
+tip && tip.querySelectorAll('img').length === 0
+  ? ok('the panel loads no image') : bad('the panel loads an image');
+
+hoverPin.dispatchEvent(new d.defaultView.Event('mouseleave', {bubbles: true}));
+!d.querySelector('.conf-tip') || d.querySelector('.conf-tip').hidden
+  ? ok('leaving the marker closes the panel') : bad('the panel stayed open');
+
+// A control reachable by mouse but not by keyboard is a defect.
+hoverPin.dispatchEvent(new d.defaultView.Event('focus', {bubbles: true}));
+const kbTip = d.querySelector('.conf-tip');
+kbTip && !kbTip.hidden
+  ? ok('keyboard focus opens the panel too') : bad('keyboard focus opens the panel too');
 
 console.log();
 if (fail.length) { console.log(fail.length + ' check(s) failed'); process.exit(1); }

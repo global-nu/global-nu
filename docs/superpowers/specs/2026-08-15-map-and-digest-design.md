@@ -86,10 +86,24 @@ guessed one — is unaffected and stays.
 
 ### One marker per venue
 
-`geocluster.cluster_by_distance` stays, and keeps the `MAP_MERGE_DIST` rule, but
-now buckets in undistorted pixel space. A cluster draws **one** circle of radius
-`3.2 + 1.5 × min(n − 1, 4)`, with the count centred on it when `n > 1`.
-`MAP_FAN_R` and the fan-out are removed.
+~~`geocluster.cluster_by_distance` stays, and keeps the `MAP_MERGE_DIST` rule,
+but now buckets in undistorted pixel space.~~ **Superseded at final review,
+2026-08-15.** A distance merge was wrong for this map. Under the old drawing a
+merge only moved where a dot was *painted*, and every pin kept its own place;
+now a marker *speaks for* a venue — its `<title>`, `data-place`, hover heading,
+Google Maps link and city photograph all come from its first conference and are
+asserted for every conference on it. At `MAP_MERGE_DIST = 6` units (≈3°, single
+linkage) that put 10 of the 18 conferences on shared markers in a city they are
+not in: Otranto captioned "Corfu, Greece", four L'Aquila / Bertinoro / Passo del
+Tonale meetings captioned "Milano", LIDINE at Nikhef captioned "Leiden".
+Markers are grouped by **identical position** instead — `(round(lon, 2),
+round(lat, 2))`, the same tally the home page's own `conference_map` uses.
+Accepted in exchange: two genuinely nearby cities are two dots again and may
+overlap at rest (that is what the zoom is for, and what the home page's map has
+always lived with), and the count badges fall.
+
+A venue draws **one** circle of radius `3.2 + 1.5 × min(n − 1, 4)`, with the
+count centred on it when `n > 1`. `MAP_FAN_R` and the fan-out are removed.
 
 A pin therefore represents N conferences, and the DOM has to carry them. This
 codebase already has the pattern: `map.js` reads `.map-exp` children inside a
