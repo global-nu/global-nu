@@ -22,7 +22,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 16 August 2026, 18:48 CEST</span></div>
+<span class="stamp">Last successful update: 16 August 2026, 19:12 CEST</span></div>
 </div>
 
 <div class="section-head"><h2>Experimental</h2>
@@ -49,13 +49,13 @@ and may contain errors. No model is involved.</b>
 <li><b><a href="https://arxiv.org/abs/2608.12483">Singlet-Doublet fermion origin of dark matter, neutrino mass and inverse first-order electroweak phase transition</a></b><span>Debasish Borah, Indrajit Saha, Sujit Kumar Sahoo et al. · 12 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span><span class="tag">hep-ex</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.12696">An Evolving Leptonic Jet Model for Delayed Radio Flares in Neutrino Blazars</a></b><span>Alina Kochocki, Xavier Rodrigues, Nathan Whitehorn · 13 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">astro-ph.GA</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.09849">The Galactic Neutrino Sky: Predictions from Gamma-ray Source Populations</a></b><span>Leo Seen, Ke Fang · 10 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2608.08144">Probing Memory-Burdened Primordial Black Holes with High-Energy Neutrinos</a></b><span>Arian Moradi Asl, Sandhya Choubey, Andreas Lund · 8 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2608.08084">Neutrino Mass and its Impact on Gravitational Waves from Domain Wall Collision</a></b><span>Victoria Puyam, Mrinal Kumar Das · 8 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.12940">Newtrinos.jl: A Julia Package for Global Analysis of Neutrino Data</a></b><span>Philipp Eller, David Schultheiß · 13 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.12966">Cross-spectral Analysis of the Type-C Quasi-periodic Oscillation Shoulder Component in GX 339-4</a></b><span>Haifan Zhu, Mariano Méndez, Pengcheng Yang et al. · 13 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.12217">High-energy neutrino signatures of embedded GRB jets in AGN disks: a dynamic jet-propagation framework</a></b><span>Wei-Cheng Long, Yun-Wei Yu · 12 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.11862">SPORE: An Event-Level Sampling Pipeline for Multi-Telescope Neutrino Astronomy</a></b><span>Jeffrey Lazar, Perrine Wilmet, Gwenhaël de Wasseige · 12 Aug 2026</span><span class="tags"><span class="tag">astro-ph.IM</span><span class="tag">astro-ph.HE</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.09814">Leptogenesis in Brane-modified cosmology: Signatures in primordial gravitational waves</a></b><span>Amit Dutta Banik, Arnab Paul · 10 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.13068">Complex Energy-Dependent Behaviour of Quasi-Periodic Oscillation Observed in GRS 1915+105</a></b><span>Vaibhav Sharma, Ranjeev Misra, V. Jithesh et al. · 13 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.11522">How to Identify a Majoron: Effective Field Theories of Spontaneous Lepton Number Breaking</a></b><span>Carla Biggio, Marta Fuentes Zamoro, Xu Li et al. · 12 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 </ul>
 
 
@@ -75,10 +75,9 @@ still appears under theory.</p>
 
 <!-- ARCHIVE:BEGIN -->
 <ul class="archive">
-  <li><time datetime="2026-08-13">13 August 2026</time><a href="digest/2026-08-13.html">Digest of 2026-08-13</a><span class="count">4 papers</span></li>
-  <li><time datetime="2026-08-12">12 August 2026</time><a href="digest/2026-08-12.html">Digest of 2026-08-12</a><span class="count">7 papers</span></li>
+  <li><time datetime="2026-08-13">13 August 2026</time><a href="digest/2026-08-13.html">Digest of 2026-08-13</a><span class="count">5 papers</span></li>
+  <li><time datetime="2026-08-12">12 August 2026</time><a href="digest/2026-08-12.html">Digest of 2026-08-12</a><span class="count">8 papers</span></li>
   <li><time datetime="2026-08-10">10 August 2026</time><a href="digest/2026-08-10.html">Digest of 2026-08-10</a><span class="count">3 papers</span></li>
-  <li><time datetime="2026-08-08">8 August 2026</time><a href="digest/2026-08-08.html">Digest of 2026-08-08</a><span class="count">2 papers</span></li>
   <li><time datetime="2026-08">August 2026</time><a href="digest/2026-08.html">All of August 2026</a><span class="count">16 papers</span></li>
 </ul>
 <!-- ARCHIVE:END -->
