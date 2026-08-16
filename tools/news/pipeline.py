@@ -183,12 +183,20 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
     def _archive() -> list[str]:
         store = archive.merge(archive.load(), published)
         archive.save(store)
-        pages = archive.write_pages(store, render._stamp())
+        pages = archive.write_pages(store)
         archive.update_index(store)
         return pages
 
-    archived = _safe("archive digest", _archive, log, [])
-    log.info("archive: wrote %d page(s)", len(archived))
+    # The default is None, not []: _safe returns the default when the step
+    # raised, so "wrote 0 page(s)" would read identically whether the archive
+    # legitimately had nothing to write or the step crashed. _safe's own
+    # warning names the exception, but the count line is what a reader scans
+    # for, and the log is the only witness this step has.
+    archived = _safe("archive digest", _archive, log, None)
+    if archived is None:
+        log.warning("archive: step failed — no pages written, index untouched")
+    else:
+        log.info("archive: wrote %d page(s)", len(archived))
 
     # ------------------------------------------------------------ 5. build --
     if do_build and wrote:

@@ -54,6 +54,22 @@ fetched records, and may contain errors.</b>
 <span class="stamp">Last successful update: {stamp}</span></div>
 </div>"""
 
+# The same warning, without the timestamp, for the archive's day and month
+# pages. It differs from AUTOGEN_SCRIPT for two reasons. "Last successful
+# update" answers "is this page still being kept up?", which is a question
+# about the live digest and meaningless on a page about 8 August: that page's
+# content is fixed by its day, not by when the file was last written. And
+# write_pages regenerates every archive page on every run, so a wall-clock
+# stamp would give every archived page different bytes on every run — the
+# daily job commits its output, so that is a growing pile of noise in every
+# morning's commit forever. The sentence that matters, that no model is
+# involved, is unchanged.
+AUTOGEN_ARCHIVE = """<div class="autogen">
+<span aria-hidden="true">⚠</span>
+<div><b>This page is generated automatically by a script from the {sources},
+and may contain errors. No model is involved.</b></div>
+</div>"""
+
 
 def _esc(s: str) -> str:
     return html.escape(str(s), quote=False)

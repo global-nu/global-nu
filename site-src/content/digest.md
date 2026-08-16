@@ -22,7 +22,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 16 August 2026, 18:08 CEST</span></div>
+<span class="stamp">Last successful update: 16 August 2026, 18:48 CEST</span></div>
 </div>
 
 <div class="section-head"><h2>Experimental</h2>
@@ -79,6 +79,7 @@ still appears under theory.</p>
   <li><time datetime="2026-08-12">12 August 2026</time><a href="digest/2026-08-12.html">Digest of 2026-08-12</a><span class="count">7 papers</span></li>
   <li><time datetime="2026-08-10">10 August 2026</time><a href="digest/2026-08-10.html">Digest of 2026-08-10</a><span class="count">3 papers</span></li>
   <li><time datetime="2026-08-08">8 August 2026</time><a href="digest/2026-08-08.html">Digest of 2026-08-08</a><span class="count">2 papers</span></li>
+  <li><time datetime="2026-08">August 2026</time><a href="digest/2026-08.html">All of August 2026</a><span class="count">16 papers</span></li>
 </ul>
 <!-- ARCHIVE:END -->
 
