@@ -36,6 +36,24 @@ nav:
 # changing this one line is all it takes.
 goatcounter: "global-nu"
 
+# The citable parameter register: what the schema.org/Dataset block on
+# history.html and the Zenodo deposit both say about it.
+#
+# doi is the Zenodo CONCEPT DOI — the one that always resolves to the newest
+# version, not a per-version DOI. While it is empty the build emits no
+# identifier, no citation_doi and no DOI line in llms.txt. That is deliberate
+# and it is tested: a page states nothing it cannot support.
+dataset:
+  doi: ""
+  creator:
+    name: "Antonio Marrone"
+    orcid: "0000-0001-6096-1880"
+    affiliation: "Università di Bari and INFN Bari"
+  license: "https://creativecommons.org/licenses/by/4.0/"
+  related:
+    paper_doi: "10.1103/PhysRevD.111.093006"
+    arxiv: "2503.07752"
+
 # Image pipeline (site-src/images-src/ -> site/images/)
 images:
   max_side: 1600

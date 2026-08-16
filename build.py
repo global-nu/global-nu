@@ -29,6 +29,7 @@ import argparse
 import datetime as _dt
 import hashlib
 import html
+import json
 import re
 import shutil
 import sys
@@ -207,6 +208,124 @@ def render_template(tpl: str, ctx: dict) -> str:
         key = m.group(1).strip()
         return str(ctx.get(key, ""))
     return re.sub(r"\{\{([a-z_0-9]+)\}\}", sub, tpl)
+
+
+def _json_ld(obj: dict) -> str:
+    """One JSON-LD object, as a script element that cannot break the page.
+
+    A literal "</script>" inside any string would end the element early and
+    spill JSON into the document as text. Escaping "<" as \\u003c is valid
+    JSON, changes no value, and removes the whole class of problem. The same
+    reasoning as the html.escape() on title and description below.
+    """
+    body = json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
+    body = body.replace("<", "\\u003c")
+    return f'<script type="application/ld+json">{body}</script>'
+
+
+def head_extra(fm: dict, cfg: dict, url: str) -> str:
+    """Structured metadata for the pages that ask for it in their front matter.
+
+    Opt-in per page (`jsonld: dataset` / `jsonld: site`), because these blocks
+    describe a specific object and a block that describes the wrong thing is
+    worse than none. An unrecognised value is a build error rather than a
+    silent empty string: a typo that removes the site's structured metadata
+    would otherwise be found by an audit months later, if at all.
+    """
+    kind = fm.get("jsonld")
+    if not kind:
+        return ""
+    if kind not in ("dataset", "site"):
+        sys.exit(f"{url}: unknown 'jsonld: {kind}' — expected 'dataset' or 'site'")
+    if kind == "dataset":
+        return _dataset_head(fm, cfg, url)
+    return _site_head(cfg)
+
+
+def _dataset_head(fm: dict, cfg: dict, url: str) -> str:
+    from tools import register_meta
+
+    facts = register_meta.register_facts()
+    ds_cfg = cfg.get("dataset") or {}
+    creator = ds_cfg.get("creator") or {}
+    base = cfg["site_url"]
+    doi = (ds_cfg.get("doi") or "").strip()
+
+    person = {"@type": "Person", "name": creator.get("name", "")}
+    if creator.get("orcid"):
+        person["identifier"] = f"https://orcid.org/{creator['orcid']}"
+        person["sameAs"] = f"https://orcid.org/{creator['orcid']}"
+    if creator.get("affiliation"):
+        person["affiliation"] = {"@type": "Organization",
+                                 "name": creator["affiliation"]}
+
+    obj = {
+        "@context": "https://schema.org",
+        "@type": "Dataset",
+        "name": fm.get("title", ""),
+        "description": " ".join((fm.get("description") or "").split()),
+        "url": f"{base}/{url}",
+        "license": ds_cfg.get("license", ""),
+        "isAccessibleForFree": True,
+        "creator": person,
+        "temporalCoverage": facts["temporal_coverage"],
+        "variableMeasured": [
+            {"@type": "PropertyValue", "name": v["name"],
+             "alternateName": v["label"], "unitText": v["unit"]}
+            for v in facts["variables"]
+        ],
+        "distribution": [
+            {"@type": "DataDownload", "encodingFormat": "application/json",
+             "contentUrl": f"{base}/data/history.json"},
+            {"@type": "DataDownload", "encodingFormat": "text/csv",
+             "contentUrl": f"{base}/data/history.csv"},
+        ],
+    }
+    # Absent, not empty: with no deposit there is no identifier to state.
+    if facts["date_modified"]:
+        obj["dateModified"] = facts["date_modified"]
+    if doi:
+        obj["identifier"] = f"https://doi.org/{doi}"
+
+    tags = [
+        ("citation_title", fm.get("title", "")),
+        ("citation_author", creator.get("name", "")),
+        ("citation_public_url", f"{base}/{url}"),
+    ]
+    if facts["date_modified"]:
+        tags.append(("citation_publication_date",
+                     facts["date_modified"].replace("-", "/")))
+    if doi:
+        tags.append(("citation_doi", doi))
+
+    meta = "\n".join(
+        f'<meta name="{n}" content="{html.escape(str(v), quote=True)}">'
+        for n, v in tags if v)
+    return _json_ld(obj) + "\n" + meta
+
+
+def _site_head(cfg: dict) -> str:
+    base = cfg["site_url"]
+    org = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Bari neutrino global analysis group",
+        "url": base,
+        "parentOrganization": [
+            {"@type": "Organization", "name": "Università degli Studi di Bari Aldo Moro"},
+            {"@type": "Organization", "name": "INFN, Sezione di Bari"},
+        ],
+    }
+    site = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": cfg["site_name"],
+        "url": base,
+        "description": cfg.get("tagline", ""),
+        "publisher": {"@type": "Organization",
+                      "name": "Bari neutrino global analysis group"},
+    }
+    return _json_ld(org) + "\n" + _json_ld(site)
 
 
 KATEX_HEAD = (
@@ -511,6 +630,7 @@ def build_pages(cfg: dict, with_drafts: bool = False) -> tuple[list[str], list[s
             "nav": nav,
             "footer_nav": foot,
             "year": year,
+            "head_extra": head_extra(fm, cfg, url),
             "katex_head": KATEX_HEAD.replace("{{base}}", base) if use_katex else "",
             "katex_body": KATEX_BODY.replace("{{base}}", base) if use_katex else "",
             "scripts": scripts,
