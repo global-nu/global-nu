@@ -743,6 +743,24 @@ def main() -> None:
     robots = (SRC / "robots.txt").read_text(encoding="utf-8").rstrip("\n")
     (OUT / "robots.txt").write_text(
         f"{robots}\n\nSitemap: {cfg['site_url']}/sitemap.xml\n", encoding="utf-8")
+    # llms.txt: not a standard, and no vendor has committed to honouring it.
+    # It costs one small file, and it is the only place where the attribution
+    # the CC BY licence requires is stated in a form a model reads. The DOI
+    # line is absent, not empty, until there is a deposit to point at.
+    ds_cfg = cfg.get("dataset") or {}
+    doi = (ds_cfg.get("doi") or "").strip()
+    (OUT / "llms.txt").write_text(render_template(
+        (SRC / "llms.txt").read_text(encoding="utf-8"), {
+            "site_url": cfg["site_url"],
+            "tagline": cfg.get("tagline", ""),
+            "creator_name": (ds_cfg.get("creator") or {}).get("name", ""),
+            # The template puts this placeholder on its own line with no
+            # blank line around it; the trailing \n here supplies that blank
+            # line when there is a DOI to state, and an empty string leaves
+            # a single blank line (not two) when there is not.
+            "dataset_doi_line":
+                f"Permanent identifier: https://doi.org/{doi}\n" if doi else "",
+        }), encoding="utf-8")
     # GitHub Pages runs Jekyll on the published tree unless told not to; an
     # empty .nojekyll stops it touching files whose names start with _.
     (OUT / ".nojekyll").write_text("", encoding="utf-8")

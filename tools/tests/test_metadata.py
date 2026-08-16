@@ -170,6 +170,23 @@ check("robots.txt blocks nobody", not denies,
 check("robots.txt points at the sitemap",
       f"Sitemap: {CFG['site_url']}/sitemap.xml" in robots)
 
+# --- llms.txt -------------------------------------------------------------
+llms_path = SITE / "llms.txt"
+check("llms.txt is published", llms_path.exists())
+if llms_path.exists():
+    llms = llms_path.read_text(encoding="utf-8")
+    check("llms.txt has no unsubstituted placeholder", "{{" not in llms,
+          "a template placeholder reached the published root")
+    check("llms.txt states the licence",
+          "creativecommons.org/licenses/by/4.0" in llms)
+    check("llms.txt points at both data files",
+          "/data/history.json" in llms and "/data/history.csv" in llms)
+    if DOI:
+        check("llms.txt states the DOI", DOI in llms)
+    else:
+        check("with no DOI configured, llms.txt claims none",
+              "doi.org" not in llms.lower())
+
 print()
 if problems:
     print(f"  ! {len(problems)} of {checks} checks failed")
