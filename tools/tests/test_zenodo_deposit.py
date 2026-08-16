@@ -60,11 +60,27 @@ try:
     check("licence is CC BY 4.0", meta.get("license") == "cc-by-4.0",
           str(meta.get("license")))
 
-    rel = {r["identifier"] for r in meta.get("related_identifiers", [])}
-    check("the deposit is bound to the 2025 paper",
-          "10.1103/PhysRevD.111.093006" in rel, str(sorted(rel)))
-    check("the deposit is bound to the site",
-          any("global-nu.org" in r for r in rel), str(sorted(rel)))
+    check("the title is the one register_meta computes",
+          meta["title"] == facts["title"],
+          "the page asserts this record's DOI; it must name it identically")
+
+    # The relation, not just the identifier. A related identifier states what
+    # this dataset IS with respect to that work, permanently. "isSupplementTo"
+    # a paper would claim the register is that article's supplementary
+    # material; it is a compilation drawing on some twenty-five papers by
+    # three groups, and the 2025 Bari paper is one source among them. Checking
+    # only for presence cannot tell a true relation from a false one.
+    rel = {r["identifier"]: r["relation"]
+           for r in meta.get("related_identifiers", [])}
+    check("the 2025 paper is referenced, not supplemented",
+          rel.get("10.1103/PhysRevD.111.093006") == "references", str(rel))
+    check("the preprint is referenced, not supplemented",
+          rel.get("arXiv:2503.07752") == "references", str(rel))
+    site_rel = {v for k, v in rel.items() if "global-nu.org" in k}
+    check("the site page documents the deposit",
+          site_rel == {"isDocumentedBy"}, str(rel))
+    check("no related identifier claims the deposit supplements a work",
+          "isSupplementTo" not in rel.values(), str(rel))
 
     # The README must describe exactly the columns the files actually carry,
     # and it is generated from FIELD_DOCS so it cannot drift. Check that the

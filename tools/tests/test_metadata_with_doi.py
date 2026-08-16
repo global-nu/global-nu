@@ -5,17 +5,22 @@
 
 The real DOI arrives only after the Zenodo deposit, and the moment after a
 permanent identifier is minted is the worst moment to discover that the build
-mishandles it. This builds into a throwaway tree with a placeholder DOI in
-site.yaml, so both states — with and without — are covered before the deposit
-is made. It never touches site/ and never writes a DOI into the real config.
+mishandles it. This builds into a throwaway tree with a placeholder DOI, so
+both states — with and without — are covered before the deposit is made.
 
-site.yaml is edited by text substitution, not by parsing it into a dict and
-dumping it back: a round trip through yaml.safe_dump would silently strip
+The modified config is written to a temp file and the build is pointed at it
+with --config; site-src/site.yaml is never touched. Editing the real config
+and restoring it afterwards protected the file but not the window: the daily
+job runs build.py from the checkout at 07:30 and then commits and pushes
+site/, so a run of this suite overlapping that job would publish a fabricated
+DOI, Dataset identifier and llms.txt line to the live site. A file that is
+never written cannot be published.
+
+The copy is made by text substitution, not by parsing site.yaml into a dict
+and dumping it back: a round trip through yaml.safe_dump would silently strip
 every comment in the file, including the ones explaining why an empty DOI (or
 an empty GoatCounter code) must make the build emit nothing rather than an
-empty tag. The original bytes are saved to a temp file before anything is
-touched, so a crash mid-test still leaves a way to recover the file by hand,
-and the restore in `finally` is a plain byte-for-byte write-back.
+empty tag.
 """
 from __future__ import annotations
 
@@ -47,34 +52,33 @@ def check(label: str, ok: bool, detail: str = "") -> None:
 cfg_path = ROOT / "site-src" / "site.yaml"
 original = cfg_path.read_text(encoding="utf-8")
 
-# Save the untouched bytes to disk *before* editing anything in place, so a
-# crash between the edit and the restore below still leaves a copy to recover
-# from — the hand-written comments in site.yaml are not reproducible from a
-# yaml.safe_dump round trip.
-backup_dir = Path(tempfile.mkdtemp(prefix="gnu-doi-backup-"))
-backup_path = backup_dir / "site.yaml.orig"
-backup_path.write_text(original, encoding="utf-8")
-
 work = Path(tempfile.mkdtemp(prefix="gnu-doi-"))
 
 try:
+    # One occurrence, or the substitution below is aimed at a line we have not
+    # identified — and a DOI written into the wrong key would make the test
+    # pass against a build that never saw one. Stop rather than pick.
     needle = 'doi: ""'
-    check("the empty doi: \"\" line is present exactly once",
-          original.count(needle) == 1,
-          f"found {original.count(needle)} occurrences — refusing to guess which one")
+    found = original.count(needle)
+    check("the empty doi: \"\" line is present exactly once", found == 1,
+          f"found {found} occurrences — cannot tell which one is the dataset DOI")
+    if found != 1:
+        sys.exit(f"  ! aborting: {found} candidate doi: \"\" lines in site.yaml")
 
-    edited = original.replace(needle, f'doi: "{FAKE_DOI}"', 1)
-    cfg_path.write_text(edited, encoding="utf-8")
+    doi_cfg = work / "site-with-doi.yaml"
+    doi_cfg.write_text(original.replace(needle, f'doi: "{FAKE_DOI}"', 1),
+                       encoding="utf-8")
 
+    out = work / "site"
     run = subprocess.run(
         [str(ROOT / ".venv" / "bin" / "python3"), "build.py",
-         "--out", str(work), "--no-images"],
+         "--out", str(out), "--config", str(doi_cfg), "--no-images"],
         cwd=ROOT, capture_output=True, text=True)
     check("the build succeeds with a DOI configured", run.returncode == 0,
           (run.stderr or run.stdout)[-800:])
 
     if run.returncode == 0:
-        hist = (work / "history.html").read_text(encoding="utf-8")
+        hist = (out / "history.html").read_text(encoding="utf-8")
         check("citation_doi is emitted",
               f'name="citation_doi" content="{FAKE_DOI}"' in hist)
 
@@ -85,23 +89,26 @@ try:
               ds.get("identifier") == f"https://doi.org/{FAKE_DOI}",
               str(ds.get("identifier")))
 
-        llms = (work / "llms.txt").read_text(encoding="utf-8")
+        # The DOI resolves to a Zenodo record whose title comes from
+        # register_meta. If the page named the dataset differently, one
+        # identifier would carry two names.
+        sys.path.insert(0, str(ROOT))
+        from tools import register_meta
+        formal = register_meta.register_facts()["title"]
+        check("the Dataset asserting the DOI carries the formal title",
+              ds.get("name") == formal, str(ds.get("name")))
+        check("citation_title is that same title",
+              f'name="citation_title" content="{formal}"' in hist)
+
+        llms = (out / "llms.txt").read_text(encoding="utf-8")
         check("llms.txt states the DOI", FAKE_DOI in llms)
         check("llms.txt has no unsubstituted placeholder", "{{" not in llms)
 finally:
-    cfg_path.write_text(original, encoding="utf-8")
     shutil.rmtree(work, ignore_errors=True)
-    shutil.rmtree(backup_dir, ignore_errors=True)
 
-restored = cfg_path.read_text(encoding="utf-8")
 check("site.yaml is byte-identical to what it was before this test ran",
-      restored == original,
-      "the real config was left modified — fix this before committing")
-if restored != original:
-    # Loud enough that it cannot be scrolled past: this is the one failure
-    # mode that corrupts a file other tests and Antonio's editor both trust.
-    print("  !!!! site-src/site.yaml was NOT restored correctly !!!!",
-          file=sys.stderr)
+      cfg_path.read_text(encoding="utf-8") == original,
+      "the real config was modified — this test must never write to it")
 
 print()
 if problems:

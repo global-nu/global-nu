@@ -51,19 +51,29 @@ exported = {r["parameter"] for r in rows}
 check("variableMeasured lists exactly the exported parameters",
       named == exported, f"metadata {sorted(named)} vs export {sorted(exported)}")
 
+# A unit is omitted, never defaulted, when meta.parameters does not carry one
+# — so an omission here is real, and every exported parameter is expected to
+# have one today. This fails if a new parameter reaches the export without a
+# unit, which is the case the omission exists to handle honestly.
 check("every variable carries a label and a unit",
       all(v.get("label") and v.get("unit") for v in facts["variables"]),
       str([v for v in facts["variables"] if not (v.get("label") and v.get("unit"))]))
 
+check("the title is computed, and carries the register's real year span",
+      facts["title"] == register_meta.TITLE.format(lo=lo, hi=hi),
+      facts["title"])
+check("the title states the span the rows actually cover",
+      f"({lo}–{hi})" in facts["title"], facts["title"])
+
 # date_modified may legitimately be None (no git, or the file untracked), but
-# it must never be today's build date dressed up as the register's date.
+# it must never be today's build date dressed up as the export's date.
 import datetime as _dt                                    # noqa: E402
 dm = facts["date_modified"]
 check("date_modified is an ISO date or None",
       dm is None or len(dm) == 10 and dm[4] == dm[7] == "-", f"got {dm!r}")
 check("date_modified is not simply today (that would be the build date)",
       dm is None or dm != _dt.date.today().isoformat(),
-      "the register did not change today; if it did, re-run this test tomorrow")
+      "the export did not change today; if it did, re-run this test tomorrow")
 
 print()
 if problems:

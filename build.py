@@ -66,8 +66,8 @@ MD_EXTENSIONS = ["extra", "attr_list", "md_in_html", "tables", "sane_lists", "fo
 # --------------------------------------------------------------------------- #
 # helpers
 # --------------------------------------------------------------------------- #
-def load_config() -> dict:
-    with open(SRC / "site.yaml", encoding="utf-8") as fh:
+def load_config(path: Path | None = None) -> dict:
+    with open(path or (SRC / "site.yaml"), encoding="utf-8") as fh:
         return yaml.safe_load(fh)
 
 
@@ -262,16 +262,26 @@ def _dataset_head(fm: dict, cfg: dict, url: str) -> str:
     obj = {
         "@context": "https://schema.org",
         "@type": "Dataset",
-        "name": fm.get("title", ""),
+        # The formal title, from register_meta, because this block asserts the
+        # dataset's DOI and the Zenodo record that DOI resolves to carries that
+        # same title. Two names for one identifier is a disagreement an indexer
+        # can see. The page's own short front-matter title stays as
+        # alternateName, so the heading a reader sees is still represented.
+        "name": facts["title"],
+        "alternateName": fm.get("title", ""),
         "description": " ".join((fm.get("description") or "").split()),
         "url": f"{base}/{url}",
         "license": ds_cfg.get("license", ""),
         "isAccessibleForFree": True,
         "creator": person,
         "temporalCoverage": facts["temporal_coverage"],
+        # unitText only where register_meta could establish a unit: a "1" for a
+        # parameter whose unit is unknown would assert dimensionless.
         "variableMeasured": [
-            {"@type": "PropertyValue", "name": v["name"],
-             "alternateName": v["label"], "unitText": v["unit"]}
+            {k: v2 for k, v2 in (
+                ("@type", "PropertyValue"), ("name", v["name"]),
+                ("alternateName", v["label"]), ("unitText", v.get("unit")))
+             if v2 is not None}
             for v in facts["variables"]
         ],
         "distribution": [
@@ -288,7 +298,9 @@ def _dataset_head(fm: dict, cfg: dict, url: str) -> str:
         obj["identifier"] = f"https://doi.org/{doi}"
 
     tags = [
-        ("citation_title", fm.get("title", "")),
+        # The same formal title the Dataset block and the Zenodo record carry:
+        # Scholar files this string against the citation_doi below.
+        ("citation_title", facts["title"]),
         ("citation_author", creator.get("name", "")),
         ("citation_public_url", f"{base}/{url}"),
     ]
@@ -708,9 +720,16 @@ def main() -> None:
                     help="include drafts/ and build to site-draft/ (never published)")
     ap.add_argument("--out", default=None,
                     help="output directory (default: site/, or site-draft/ with --drafts)")
+    # A test that needs a different config — one carrying a placeholder DOI,
+    # say — points the build at its own copy instead of editing the real
+    # site.yaml in place. The daily 07:30 job builds and pushes from the main
+    # checkout, so a config mutated even briefly is a config that can be
+    # published.
+    ap.add_argument("--config", default=None,
+                    help="site config to build from (default: site-src/site.yaml)")
     args = ap.parse_args()
 
-    cfg = load_config()
+    cfg = load_config(Path(args.config) if args.config else None)
 
     global OUT
     if args.drafts:

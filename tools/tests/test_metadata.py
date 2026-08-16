@@ -162,10 +162,18 @@ for agent in AI_AGENTS:
           re.search(rf"^User-agent: {re.escape(agent)}$", robots, re.M) is not None,
           "the declared policy allows it, so it must be named explicitly")
 
-denies = [ln for ln in robots.splitlines()
-          if ln.strip().lower().startswith("disallow:") and ln.split(":", 1)[1].strip()]
-check("robots.txt blocks nobody", not denies,
-      f"the site's stated policy is open; found {denies}")
+# Not just a non-empty Disallow:. robots.txt's own comment says the file
+# holds nothing but Allow, and a Crawl-delay:, a Noindex: or a Disallow: with
+# an empty value would each restrict or muddy the stated policy while passing
+# a Disallow-only check. Whitelisting the three directives the policy is made
+# of makes the comment true of every line.
+ALLOWED_DIRECTIVES = {"user-agent", "allow", "sitemap"}
+stray = [ln for ln in robots.splitlines()
+         if ln.strip() and not ln.lstrip().startswith("#")
+         and ln.split(":", 1)[0].strip().lower() not in ALLOWED_DIRECTIVES]
+check("robots.txt holds nothing but User-agent, Allow and Sitemap",
+      not stray,
+      f"the site's stated policy is open and unconditional; found {stray}")
 
 check("robots.txt points at the sitemap",
       f"Sitemap: {CFG['site_url']}/sitemap.xml" in robots)

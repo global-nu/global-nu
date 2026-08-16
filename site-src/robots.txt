@@ -11,7 +11,9 @@
 # It is stated in /llms.txt and on /about.html#licence.
 #
 # tools/tests/test_metadata.py fails if a name below goes missing, or if any
-# rule in this file is anything other than Allow.
+# line in the published file is anything other than a comment, a User-agent,
+# an Allow or the Sitemap. A Disallow, a Crawl-delay or a Noindex cannot be
+# added here without the suite refusing it.
 
 User-agent: *
 Allow: /

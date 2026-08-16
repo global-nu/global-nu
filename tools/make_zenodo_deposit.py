@@ -34,15 +34,11 @@ import make_history_data                                  # noqa: E402
 OUT_DIR = ROOT / "var" / "zenodo"
 CFG = ROOT / "site-src" / "site.yaml"
 
-TITLE = ("Published global-fit values of the three-flavour neutrino "
-         "oscillation parameters, with provenance and convention "
-         "conversions ({lo}–{hi})")
-
 DESCRIPTION = """\
 <p>A register of the three-flavour neutrino oscillation parameters as
 published by three independent global analyses &mdash; Bari, NuFit and
-Valencia &mdash; across {span}. It holds {n} values covering {nvars}
-parameters.</p>
+Valencia &mdash; across {span}. It holds {n} published values and limits
+covering {nvars} parameters.</p>
 
 <p>Every value is transcribed by hand from the table of the paper that
 printed it, and each row names that paper and that table. No value is
@@ -102,7 +98,10 @@ def _readme(facts: dict, cfg: dict, meta: dict, licence_url: str) -> str:
     lines = [
         f"# {meta['title']}",
         "",
-        f"{facts['n_rows']} values, {facts['years'][0]}–{facts['years'][1]}, "
+        # "values and limits", not "values": one row is a kind: limit, a bound
+        # with no central value, and the count covers both.
+        f"{facts['n_rows']} published values and limits, "
+        f"{facts['years'][0]}–{facts['years'][1]}, "
         f"from the Bari, NuFit and Valencia global analyses.",
         "",
         "Published, with the page that documents it, at "
@@ -125,7 +124,10 @@ def _readme(facts: dict, cfg: dict, meta: dict, licence_url: str) -> str:
         "",
     ]
     for v in facts["variables"]:
-        lines.append(f"- `{v['name']}` — {v['label']}, in units of {v['unit']}")
+        # No unit clause where register_meta could not establish a unit: the
+        # README states what is known and stays silent on what is not.
+        unit = f", in units of {v['unit']}" if v.get("unit") else ""
+        lines.append(f"- `{v['name']}` — {v['label']}{unit}")
     lines += [
         "",
         "## Licence",
@@ -158,6 +160,13 @@ def build_package(out_dir: Path) -> dict:
     # never become an entry that points at nothing — so only identifiers
     # that are actually present get emitted, rather than emitting all three
     # unconditionally and hoping the config is complete.
+    #
+    # The paper and its preprint are "references", not "isSupplementTo". The
+    # register is a compilation drawing values from some twenty-five papers by
+    # three independent groups across a quarter century; the 2025 Bari paper is
+    # one source among them, and calling the register that article's
+    # supplementary material would misstate what this dataset is. The site page
+    # keeps isDocumentedBy, which is exactly what it is.
     related_identifiers = [
         {"identifier": f"{cfg['site_url']}/history.html",
          "relation": "isDocumentedBy", "resource_type": "publication-webpage",
@@ -166,17 +175,19 @@ def build_package(out_dir: Path) -> dict:
     paper_doi = related.get("paper_doi", "")
     if paper_doi:
         related_identifiers.append({
-            "identifier": paper_doi, "relation": "isSupplementTo",
+            "identifier": paper_doi, "relation": "references",
             "resource_type": "publication-article", "scheme": "doi"})
     arxiv_id = related.get("arxiv", "")
     if arxiv_id:
         related_identifiers.append({
-            "identifier": f"arXiv:{arxiv_id}", "relation": "isSupplementTo",
+            "identifier": f"arXiv:{arxiv_id}", "relation": "references",
             "resource_type": "publication-preprint", "scheme": "arxiv"})
 
     meta = {
         "upload_type": "dataset",
-        "title": TITLE.format(lo=lo, hi=hi),
+        # From register_meta, not from a constant here: history.html asserts
+        # the DOI of this record, so the two must name it identically.
+        "title": facts["title"],
         "version": "1.0.0",
         "language": "eng",
         "creators": [{
