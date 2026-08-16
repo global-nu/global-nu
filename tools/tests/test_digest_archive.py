@@ -120,6 +120,21 @@ check("the month page contains every paper of its days",
 check("month_markdown is given only its own days",
       "2026-09" not in month_md)
 
+# --- the index block on the digest page -----------------------------------
+block = archive.index_block({
+    f"2026-08-{d:02d}": [rec(f"arxiv:{d}", f"2026-08-{d:02d}")]
+    for d in range(1, 15)})
+
+check("the index lists the ten most recent days by name",
+      block.count('href="digest/2026-08-') >= 10, block[:300])
+check("the newest day comes first",
+      block.index("2026-08-14") < block.index("2026-08-13"))
+check("older days are reached through their month, not listed one by one",
+      'href="digest/2026-08.html"' in block,
+      "fourteen days with no month link would grow without bound")
+check("each listed day shows how many papers it holds",
+      "1 paper" in block, block[:400])
+
 print()
 if problems:
     print(f"  ! {len(problems)} of {checks} checks failed")

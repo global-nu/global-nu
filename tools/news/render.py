@@ -333,6 +333,12 @@ still appears under theory.</p>
 
 {_keyword_note()}
 
+<div class="section-head"><h2>Archive</h2>
+<p>Every edition, by the day each paper was announced.</p></div>
+
+<!-- ARCHIVE:BEGIN -->
+<!-- ARCHIVE:END -->
+
 :::
 """
     _page(DIGEST_PAGE, DIGEST_FRONTMATTER, body)
