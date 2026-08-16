@@ -32,7 +32,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from tools.news import cache, common, conferences as conf_mod, pipeline, render, state  # noqa: E402
+from tools.news import (archive, cache, common, conferences as conf_mod,
+                         pipeline, render, state)  # noqa: E402
 
 # Send this run's logging to a throwaway directory before anything configures
 # a logger. The pipeline writes to var/news/logs/news.log, and that file is
@@ -44,6 +45,21 @@ from tools.news import cache, common, conferences as conf_mod, pipeline, render,
 # 2026-08-16. `common.LOGS` is read inside get_logger, not captured at import,
 # so rebinding it here is enough.
 common.LOGS = Path(tempfile.mkdtemp(prefix="gnu-test-logs-"))
+
+# pipeline.run's archive step (see pipeline._archive) calls archive.save,
+# archive.write_pages and archive.update_index unconditionally — they are not
+# behind the render.* seams this file patches below. Left pointed at the
+# module's real paths, two full pipeline.run() calls below silently rewrote
+# this checkout's actual site-src/content/digest/*.md with a fresh stamp on
+# every run of this test file, exactly the "writes nothing under the real
+# var/ or site-src/" this docstring promises and, on 2026-08-16, did not
+# keep. Redirected to a throwaway directory for the lifetime of this file.
+_archive_tmp = Path(tempfile.mkdtemp(prefix="gnu-test-archive-"))
+archive.STORE = _archive_tmp / "archive.json"
+archive.CONTENT_DIR = _archive_tmp / "content" / "digest"
+archive.DIGEST_MD = _archive_tmp / "digest.md"
+archive.DIGEST_MD.write_text(
+    f"intro\n\n{archive.BEGIN}\n{archive.END}\n", encoding="utf-8")
 
 problems: list[str] = []
 checks = 0

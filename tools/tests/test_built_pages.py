@@ -53,7 +53,10 @@ def check(label: str, ok: bool, detail: str = "") -> None:
         print(f"  FAIL {label}" + (f"\n         {detail}" if detail else ""))
 
 
-pages = sorted(SITE.glob("*.html"))
+# rglob, not glob: site/digest/ holds the archive's day and month pages, and
+# a page generated fresh every morning is exactly the kind of thing to ship
+# with a leak — a flat glob silently never looked at them.
+pages = sorted(SITE.rglob("*.html"))
 if not pages:
     check("site/ holds built pages", False, "run ./.venv/bin/python3 build.py first")
 else:
