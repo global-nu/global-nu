@@ -51,7 +51,12 @@ DM2_KEYS = {"Dm2", "Dm2_3l", "abs_Dm2_31"}
 
 FIELDS = ["group", "year", "arxiv", "journal", "table", "parameter", "ordering",
           "convention", "kind", "value_as_published", "value_our_convention",
-          "unit", "level"]
+          "unit", "level",
+          "s1_lo_as_published", "s1_hi_as_published",
+          "s3_lo_as_published", "s3_hi_as_published",
+          "s1_lo_our_convention", "s1_hi_our_convention",
+          "s3_lo_our_convention", "s3_hi_our_convention",
+          "interval_method"]
 
 # The field documentation, kept here beside FIELDS so the published table and
 # the exported columns cannot drift apart — it used to live as hand-written
@@ -84,6 +89,31 @@ FIELD_DOCS = [
               "<code>90%CL</code> or <code>95%CL</code>). A "
               "<code>measurement</code> row has none, and each format says so "
               "in its own way: <code>null</code> in JSON, an empty field in CSV"),
+    ("s1_lo_as_published", "Lower end of the 1&sigma; interval exactly as the "
+                           "paper printed it, in that paper's own convention"),
+    ("s1_hi_as_published", "Upper end of the same 1&sigma; interval"),
+    ("s3_lo_as_published", "Lower end of the 3&sigma; interval, as printed"),
+    ("s3_hi_as_published", "Upper end of the 3&sigma; interval, as printed"),
+    ("s1_lo_our_convention", "Lower end of the 1&sigma; interval in this "
+                             "group's convention &mdash; see "
+                             "<code>interval_method</code> for how it got there"),
+    ("s1_hi_our_convention", "Upper end of the same converted 1&sigma; interval"),
+    ("s3_lo_our_convention", "Lower end of the converted 3&sigma; interval"),
+    ("s3_hi_our_convention", "Upper end of the converted 3&sigma; interval"),
+    ("interval_method", "How the converted interval was obtained. "
+                        "<code>identical</code> &mdash; nothing was converted, "
+                        "because every group reports this parameter the same "
+                        "way. <code>shifted</code> &mdash; translated by the "
+                        "constant &delta;m&sup2;/2 with &delta;m&sup2; at its "
+                        "own best fit. That leaves the interval's <em>width</em> "
+                        "unchanged, and it neglects the "
+                        "&delta;m&sup2;&ndash;&Delta;m&sup2; correlation: an "
+                        "approximation, not a re-analysis, and the only one the "
+                        "published papers support. <code>reprojected</code> "
+                        "&mdash; obtained from the joint "
+                        "&delta;m&sup2;&ndash;&Delta;m&sup2; information, which "
+                        "no release in this register carries yet. Empty for a "
+                        "<code>limit</code> row, which has no interval"),
 ]
 
 assert [name for name, _ in FIELD_DOCS] == FIELDS, (
@@ -101,6 +131,49 @@ NOTE = (
     "conversion is performed by tools/make_history.py's to_our_Dm2(). See "
     "history.html#data for the full field-by-field documentation."
 )
+
+
+def _intervals(rel: dict, ordering: str, entry: dict,
+               needs_conversion: bool) -> dict:
+    """The 1s and 3s intervals, as published and in our convention.
+
+    Converting Dm2 between conventions is a constant offset of dm2/2, so the
+    two endpoints move together and the WIDTH of the interval is unchanged.
+    That is the useful half of the answer to "what happens to the errors":
+    almost nothing. The other half is that the central value moves by far more
+    than the error bar — on the 2025 Bari release the offset is 1.8 sigma of
+    Dm2 — which is why two groups' numbers must never be compared raw.
+
+    What this cannot do is reproject rigorously. Shifting by dm2/2 evaluated at
+    its own best fit neglects the dm2-Dm2 correlation; the published papers do
+    not carry the joint information that would take. `interval_method` records
+    which treatment produced each converted interval precisely so that, when a
+    release does carry it, a reprojected interval and a shifted one cannot be
+    mistaken for one another in this file.
+    """
+    out: dict[str, float | str | None] = {}
+    method = None
+    for level in ("s1", "s3"):
+        pub = entry.get(level)
+        lo_pub, hi_pub = (pub[0], pub[1]) if pub else (None, None)
+        out[f"{level}_lo_as_published"] = lo_pub
+        out[f"{level}_hi_as_published"] = hi_pub
+        if pub is None:
+            out[f"{level}_lo_our_convention"] = None
+            out[f"{level}_hi_our_convention"] = None
+            continue
+        if needs_conversion:
+            lo, hi = sorted(
+                history.round_value(make_history.to_our_Dm2(rel, ordering, x))
+                for x in pub)
+            method = "shifted"
+        else:
+            lo, hi = lo_pub, hi_pub
+            method = method or "identical"
+        out[f"{level}_lo_our_convention"] = lo
+        out[f"{level}_hi_our_convention"] = hi
+    out["interval_method"] = method
+    return out
 
 
 def build_rows(doc: dict) -> list[dict]:
@@ -142,6 +215,8 @@ def build_rows(doc: dict) -> list[dict]:
                     "value_our_convention": converted,
                     "unit": units[canonical],
                     "level": entry.get("level") if kind == "limit" else None,
+                    **_intervals(rel, ordering, entry,
+                                 pname in ("Dm2_3l", "abs_Dm2_31")),
                 })
     return rows
 

@@ -100,6 +100,60 @@ def main() -> None:
         sys.exit(1)
     print(f"\nall {checked} conversions agree with the identity, and IO stays below NO")
 
+    _check_quantified_scale()
+
+
+def _check_quantified_scale() -> None:
+    """The page says how big the conversion is. Those numbers must be computed.
+
+    Antonio asked, on 2026-08-16, that the effect of the conversion on the
+    *errors* be stated wherever the conversion is. The honest way to state it
+    is with numbers — the offset is δm²/2, which on the most recent Bari
+    release is a sizeable fraction of Δm² while the uncertainty it adds is
+    almost nothing — and the moment those numbers are typed into the prose
+    they begin to rot: the next global fit changes both. So the page computes
+    them from the register, and this checks that what it printed is what the
+    register currently says.
+    """
+    import math
+    from pathlib import Path
+
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    import make_history                                   # noqa: PLC0415
+
+    doc = yaml.safe_load(DATA.read_text(encoding="utf-8"))
+    got = make_history.conversion_scale(doc)
+
+    rel = [r for r in doc["releases"]
+           if r["group"] == "bari" and "Dm2" in (r.get("values") or {})][-1]
+    dm2 = rel["values"]["dm2"]["any"]
+    Dm2 = rel["values"]["Dm2"]["no"]
+    off = dm2["best"] / 2 / 100.0                       # 1e-5 → 1e-3 eV²
+    sig_dm2 = (dm2["s1"][1] - dm2["s1"][0]) / 2 / 2 / 100.0
+    sig_Dm2 = (Dm2["s1"][1] - Dm2["s1"][0]) / 2
+
+    want_sigma = off / sig_Dm2
+    want_infl = 100.0 * (math.hypot(sig_Dm2, sig_dm2) / sig_Dm2 - 1.0)
+
+    bad = []
+    if got["year"] != rel["year"]:
+        bad.append(f"release: page {got['year']}, register {rel['year']}")
+    if abs(got["offset_sigma"] - want_sigma) > 0.05:
+        bad.append(f"offset in sigma: page {got['offset_sigma']:.2f}, "
+                   f"recomputed {want_sigma:.2f}")
+    if abs(got["error_inflation_pct"] - want_infl) > 0.005:
+        bad.append(f"error inflation: page {got['error_inflation_pct']:.3f}%, "
+                   f"recomputed {want_infl:.3f}%")
+
+    if bad:
+        print("\n  ! the quantified conversion scale does not match the register:")
+        for b in bad:
+            print("      " + b)
+        sys.exit(1)
+    print(f"  and the quantified scale matches the register: the offset is "
+          f"{got['offset_sigma']:.1f}σ of Δm² while the error grows "
+          f"{got['error_inflation_pct']:.2f}% ({got['year']} Bari release)")
+
 
 if __name__ == "__main__":
     main()

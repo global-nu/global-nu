@@ -33,9 +33,11 @@ jsonld: dataset
 <div class="callout">
 <h4>Reading a comparison across conventions</h4>
 <p>The three groups do not report the same quantity. We use
-Δm² = m₃² − ½(m₁² + m₂²). NuFit reports Δm²₃ℓ, which is Δm²₃₁ &gt; 0 for normal
-ordering and Δm²₃₂ &lt; 0 for inverted. Valencia reports |Δm²₃₁| for
-<em>both</em> orderings.</p>
+Δm² = m₃² − ½(m₁² + m₂²), which is the same thing as the half-sum
+<strong>Δm² = ½(Δm²₃₁ + Δm²₃₂)</strong> — and written that way the conversion
+can be read off directly, since Δm²₃₁ − Δm²₃₂ = δm². NuFit reports Δm²₃ℓ,
+which is Δm²₃₁ &gt; 0 for normal ordering and Δm²₃₂ &lt; 0 for inverted.
+Valencia reports |Δm²₃₁| for <em>both</em> orderings.</p>
 <p>From the identity Δm² = Δm²₃₁ − δm²/2, the correction is −δm²/2 for normal
 ordering in every case. In inverted ordering the two groups differ, and the
 difference is clearest stated on the modulus, which is what every number on
@@ -47,11 +49,25 @@ modulus, and the same addition makes it <em>larger</em>: the shift is
 plotted number — which is why this site stores what each paper printed and
 converts in code, where the rule can be read:
 <code>tools/make_history.py</code>, function <code>to_our_Dm2</code>.</p>
-<p class="small muted">The 3σ ranges are shifted by the same constant as the
-best fit, computed with δm² at its own best fit. The papers do not publish the
-joint δm²–Δm² information a rigorous reprojection would need; the resulting
-error is far smaller than the width of the ranges shown, but it is an
-approximation and not a re-analysis.</p>
+<p><strong>What this does to the errors.</strong> The shift is a constant, so
+both ends of an interval move together and its <em>width</em> is unchanged.
+The two effects are of completely different sizes, and on the 2025
+Bari release they can be put in numbers: the offset δm²/2 is
+<strong>1.8σ of Δm²</strong> — larger than the error
+bar itself — while the uncertainty it adds grows that error bar by
+<strong>0.08%</strong>. So the central value
+moves by more than one standard deviation and the uncertainty effectively does
+not move at all. That is the whole reason two groups' Δm² must never be
+compared as printed, and equally the reason their error bars can be carried
+across almost unchanged.</p>
+<p class="small muted">Both are computed from the register, not written here,
+so they follow the fit rather than aging with the prose. The ranges are
+shifted with δm² at its own best fit, which <strong>neglects the δm²–Δm²
+correlation</strong>: the published papers do not carry the joint information
+a rigorous reprojection would need. It is an approximation, not a re-analysis,
+and the exported register records which treatment produced each interval in
+its <code>interval_method</code> column — <code>shifted</code> today, and
+<code>reprojected</code> for any future release that can do better.</p>
 <p class="small muted">NuFit prints δ<sub>CP</sub> in degrees only, so it does
 not appear on the δ/π panel. Where a fit has two quasi-degenerate θ₂₃ minima,
 the marker is the first one quoted and the 3σ range spans both.</p>
@@ -906,7 +922,7 @@ files cannot disagree — nothing is retyped between them.</p>
 under a <code>rows</code> key, and beside them a <code>note</code> says in one
 sentence what the two value columns mean, so a copy that has been downloaded
 and passed on still carries its own reading instructions. The CSV has nowhere
-to put that note: its first line is the header of the 13 field names,
+to put that note: its first line is the header of the 22 field names,
 and every line after it is one row, in the same order.</p>
 
 <h3>The two value columns</h3>
@@ -931,7 +947,7 @@ to know which value needed the arithmetic.</p>
 
 <div class="table-scroll" style="margin-top:1.4rem">
 <table class="data">
-<caption>13 columns, one row per (group, year, parameter, ordering)
+<caption>22 columns, one row per (group, year, parameter, ordering)
 point. This table is generated from the exporter's own field list, so it cannot
 describe a column the files do not carry.</caption>
 <thead><tr><th scope="col">Field</th><th scope="col">Meaning</th></tr></thead>
@@ -949,6 +965,15 @@ describe a column the files do not carry.</caption>
 <tr><td><code>value_our_convention</code></td><td>The same quantity in this group's convention — see the two value columns, above</td></tr>
 <tr><td><code>unit</code></td><td>The normalisation the value is written in: <code>1e-2</code> means the printed digits are hundredths</td></tr>
 <tr><td><code>level</code></td><td>For a <code>limit</code> row only: the confidence level the bound holds at (<code>3sigma</code>, <code>2sigma</code>, <code>90%CL</code> or <code>95%CL</code>). A <code>measurement</code> row has none, and each format says so in its own way: <code>null</code> in JSON, an empty field in CSV</td></tr>
+<tr><td><code>s1_lo_as_published</code></td><td>Lower end of the 1&sigma; interval exactly as the paper printed it, in that paper's own convention</td></tr>
+<tr><td><code>s1_hi_as_published</code></td><td>Upper end of the same 1&sigma; interval</td></tr>
+<tr><td><code>s3_lo_as_published</code></td><td>Lower end of the 3&sigma; interval, as printed</td></tr>
+<tr><td><code>s3_hi_as_published</code></td><td>Upper end of the 3&sigma; interval, as printed</td></tr>
+<tr><td><code>s1_lo_our_convention</code></td><td>Lower end of the 1&sigma; interval in this group's convention &mdash; see <code>interval_method</code> for how it got there</td></tr>
+<tr><td><code>s1_hi_our_convention</code></td><td>Upper end of the same converted 1&sigma; interval</td></tr>
+<tr><td><code>s3_lo_our_convention</code></td><td>Lower end of the converted 3&sigma; interval</td></tr>
+<tr><td><code>s3_hi_our_convention</code></td><td>Upper end of the converted 3&sigma; interval</td></tr>
+<tr><td><code>interval_method</code></td><td>How the converted interval was obtained. <code>identical</code> &mdash; nothing was converted, because every group reports this parameter the same way. <code>shifted</code> &mdash; translated by the constant &delta;m&sup2;/2 with &delta;m&sup2; at its own best fit. That leaves the interval's <em>width</em> unchanged, and it neglects the &delta;m&sup2;&ndash;&Delta;m&sup2; correlation: an approximation, not a re-analysis, and the only one the published papers support. <code>reprojected</code> &mdash; obtained from the joint &delta;m&sup2;&ndash;&Delta;m&sup2; information, which no release in this register carries yet. Empty for a <code>limit</code> row, which has no interval</td></tr>
 </tbody>
 </table>
 </div>

@@ -16,6 +16,7 @@ a person takes, not a side effect of running a tool.
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import re
 import shutil
@@ -67,11 +68,18 @@ def _plain(html_text: str) -> str:
     The README must describe exactly the columns the exports carry, so it is
     generated from the same FIELD_DOCS the page uses rather than written
     again here — a second copy would start out identical and end up wrong.
+
+    Entities are decoded as well as tags stripped. FIELD_DOCS writes Greek
+    letters and dashes as `&sigma;` and `&mdash;` because it is HTML; a
+    deposit README is read as plain text, where those are not characters but
+    noise — and the deposit is permanent.
     """
     text = re.sub(r"<code>(.*?)</code>", r"`\1`", html_text, flags=re.S)
     text = re.sub(r'<a [^>]*href="([^"]+)"[^>]*>(.*?)</a>', r"\2 (\1)", text,
                   flags=re.S)
     text = re.sub(r"<[^>]+>", "", text)
+    # Last, so an entity that spelled a tag character cannot become one.
+    text = html.unescape(text)
     return " ".join(text.split())
 
 

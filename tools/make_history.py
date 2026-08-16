@@ -22,6 +22,7 @@ Chart conventions (see the dataviz method):
 from __future__ import annotations
 
 import html
+import math
 import sys
 from pathlib import Path
 
@@ -197,6 +198,50 @@ def to_our_Dm2(rel: dict, ordering: str, value: float) -> float:
     if kind == "abs_Dm2_31":
         return value - dm2 if ordering == "no" else value + dm2
     raise SystemExit(f"unknown reported_splitting: {kind}")
+
+
+def conversion_scale(doc: dict) -> dict:
+    """How big the change of convention is, in units a reader can judge.
+
+    Two numbers, both computed from the most recent Bari release rather than
+    written into the prose, because the next global fit changes both and a
+    typed figure would quietly stop being true.
+
+      offset_sigma          the shift between conventions, delta m^2/2,
+                            expressed in standard deviations of Delta m^2
+      error_inflation_pct   what that shift's own uncertainty does to the
+                            error bar, added in quadrature
+
+    The pair is the whole answer to "what happens to the errors when you
+    convert". The central value moves by more than the error bar; the error
+    bar barely moves at all. Stating only the first invites a reader to think
+    the two analyses disagree; stating only the second invites them to compare
+    raw numbers across groups.
+
+    Both use the 1 sigma interval, halved to a standard deviation. This is the
+    constant-shift treatment, which neglects the delta m^2 - Delta m^2
+    correlation: see `interval_method` in the exported register.
+    """
+    bari = [r for r in doc["releases"]
+            if r["group"] == "bari" and "Dm2" in (r.get("values") or {})]
+    rel = bari[-1]
+    dm2 = rel["values"]["dm2"]["any"]
+    Dm2 = rel["values"]["Dm2"]["no"]
+
+    # dm2 is in 1e-5 eV^2 and the splittings in 1e-3, hence the /100.
+    offset = dm2["best"] / 2 / 100.0
+    sig_offset = (dm2["s1"][1] - dm2["s1"][0]) / 2 / 2 / 100.0
+    sig_Dm2 = (Dm2["s1"][1] - Dm2["s1"][0]) / 2
+
+    return {
+        "year": rel["year"],
+        "arxiv": rel["arxiv"],
+        "offset": offset,
+        "offset_sigma": offset / sig_Dm2,
+        "offset_pct": 100.0 * offset / Dm2["best"],
+        "error_inflation_pct":
+            100.0 * (math.hypot(sig_Dm2, sig_offset) / sig_Dm2 - 1.0),
+    }
 
 
 def our_Dm2(rel: dict, ordering: str) -> dict | None:
@@ -450,6 +495,9 @@ def main() -> None:
         p for p in (compare_panel(k, v, all_releases) for k, v in params.items()) if p)
 
     others = [r for r in all_releases if r["group"] != "bari"]
+    # How big the change of convention actually is, computed rather than
+    # written into the prose below — see conversion_scale's docstring.
+    scale = conversion_scale(doc)
     other_rows = "\n".join(
         f'<tr><th scope="row">{r["year"]}</th>'
         f'<td class="ref">{group_name(r)} — {r["title"]}'
@@ -545,9 +593,11 @@ jsonld: dataset
 <div class="callout">
 <h4>Reading a comparison across conventions</h4>
 <p>The three groups do not report the same quantity. We use
-Δm² = m₃² − ½(m₁² + m₂²). NuFit reports Δm²₃ℓ, which is Δm²₃₁ &gt; 0 for normal
-ordering and Δm²₃₂ &lt; 0 for inverted. Valencia reports |Δm²₃₁| for
-<em>both</em> orderings.</p>
+Δm² = m₃² − ½(m₁² + m₂²), which is the same thing as the half-sum
+<strong>Δm² = ½(Δm²₃₁ + Δm²₃₂)</strong> — and written that way the conversion
+can be read off directly, since Δm²₃₁ − Δm²₃₂ = δm². NuFit reports Δm²₃ℓ,
+which is Δm²₃₁ &gt; 0 for normal ordering and Δm²₃₂ &lt; 0 for inverted.
+Valencia reports |Δm²₃₁| for <em>both</em> orderings.</p>
 <p>From the identity Δm² = Δm²₃₁ − δm²/2, the correction is −δm²/2 for normal
 ordering in every case. In inverted ordering the two groups differ, and the
 difference is clearest stated on the modulus, which is what every number on
@@ -559,11 +609,25 @@ modulus, and the same addition makes it <em>larger</em>: the shift is
 plotted number — which is why this site stores what each paper printed and
 converts in code, where the rule can be read:
 <code>tools/make_history.py</code>, function <code>to_our_Dm2</code>.</p>
-<p class="small muted">The 3σ ranges are shifted by the same constant as the
-best fit, computed with δm² at its own best fit. The papers do not publish the
-joint δm²–Δm² information a rigorous reprojection would need; the resulting
-error is far smaller than the width of the ranges shown, but it is an
-approximation and not a re-analysis.</p>
+<p><strong>What this does to the errors.</strong> The shift is a constant, so
+both ends of an interval move together and its <em>width</em> is unchanged.
+The two effects are of completely different sizes, and on the {scale['year']}
+Bari release they can be put in numbers: the offset δm²/2 is
+<strong>{scale['offset_sigma']:.1f}σ of Δm²</strong> — larger than the error
+bar itself — while the uncertainty it adds grows that error bar by
+<strong>{scale['error_inflation_pct']:.2f}%</strong>. So the central value
+moves by more than one standard deviation and the uncertainty effectively does
+not move at all. That is the whole reason two groups' Δm² must never be
+compared as printed, and equally the reason their error bars can be carried
+across almost unchanged.</p>
+<p class="small muted">Both are computed from the register, not written here,
+so they follow the fit rather than aging with the prose. The ranges are
+shifted with δm² at its own best fit, which <strong>neglects the δm²–Δm²
+correlation</strong>: the published papers do not carry the joint information
+a rigorous reprojection would need. It is an approximation, not a re-analysis,
+and the exported register records which treatment produced each interval in
+its <code>interval_method</code> column — <code>shifted</code> today, and
+<code>reprojected</code> for any future release that can do better.</p>
 <p class="small muted">NuFit prints δ<sub>CP</sub> in degrees only, so it does
 not appear on the δ/π panel. Where a fit has two quasi-degenerate θ₂₃ minima,
 the marker is the first one quoted and the 3σ range spans both.</p>

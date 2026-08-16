@@ -9,6 +9,7 @@ against the register itself, while it is still only a directory on disk.
 from __future__ import annotations
 
 import json
+import re
 import shutil
 import sys
 import tempfile
@@ -88,6 +89,15 @@ try:
     readme = (work / "README.md").read_text(encoding="utf-8")
     for field, _ in make_history_data.FIELD_DOCS:
         check(f"README documents the column {field}", f"`{field}`" in readme)
+    # FIELD_DOCS is written as HTML for the web page, so it carries entities
+    # as well as tags. A deposit README is read as plain text, and "&sigma;"
+    # on a permanent record is simply wrong where the word or the letter
+    # belongs. This became worth enforcing when the interval columns were
+    # added on 2026-08-16: their documentation is full of entities.
+    check("README carries no undecoded HTML entities",
+          not re.search(r"&[a-zA-Z]+;|&#\d+;", readme),
+          "; ".join(sorted(set(re.findall(r"&[a-zA-Z]+;|&#\d+;", readme)))[:6]))
+
     check("README carries no HTML tags from the page version",
           "<code>" not in readme and "<a " not in readme,
           "FIELD_DOCS is HTML for the web page; it must be converted for a text README")

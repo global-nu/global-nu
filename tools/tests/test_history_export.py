@@ -176,6 +176,98 @@ for got, want in zip(csv_rows, expected_rows):
 check("the committed CSV export is what history.yaml produces today",
       not csv_drift, "; ".join(csv_drift[:8]))
 
+# --------------------------------------------------------------------------- #
+# the uncertainties, and how they survive a change of convention
+#
+# A register of measurements that exports only central values is not a register
+# of measurements. And once the intervals are there, the question Antonio put
+# on 2026-08-16 has to be answerable from the file itself: how do the errors
+# transform when Dm2 is converted between conventions?
+#
+# The conversion is a constant offset of dm2/2. On the 2025 Bari release that
+# offset is 1.8 sigma of Dm2, while the uncertainty it adds is 4% of sigma(Dm2)
+# — 0.08% once added in quadrature. So the central value moves by nearly two
+# standard deviations and the error bar essentially does not move at all, which
+# is exactly why the two must be documented separately and neither guessed.
+#
+# `interval_method` records which treatment produced the converted interval, so
+# a shifted one and a properly reprojected one can never be mistaken for each
+# other in the file. Today nothing is reprojected: the published papers do not
+# carry the joint dm2-Dm2 information that would take. The next Bari release
+# can, and this column is where that shows up.
+# --------------------------------------------------------------------------- #
+INTERVAL_FIELDS = [
+    "s1_lo_as_published", "s1_hi_as_published",
+    "s3_lo_as_published", "s3_hi_as_published",
+    "s1_lo_our_convention", "s1_hi_our_convention",
+    "s3_lo_our_convention", "s3_hi_our_convention",
+]
+
+for field in INTERVAL_FIELDS + ["interval_method"]:
+    check(f"the export carries {field}", field in make_history_data.FIELDS)
+
+check("every exported column is documented",
+      [n for n, _ in make_history_data.FIELD_DOCS] == make_history_data.FIELDS)
+
+measured = [r for r in rows if r["kind"] == "measurement"]
+
+# Six of these — the oldest releases — carry a best fit and no interval,
+# because the cited table printed none. The register transcribes what a paper
+# printed and does not invent a range, so "every measurement has an interval"
+# is a claim about the literature that is simply false. What must hold is that
+# an interval is never half-present.
+for level in ("s1", "s3"):
+    for suffix in ("as_published", "our_convention"):
+        lo, hi = f"{level}_lo_{suffix}", f"{level}_hi_{suffix}"
+        check(f"no row carries half of {level}_{suffix}",
+              all((r[lo] is None) == (r[hi] is None) for r in rows),
+              "one end of an interval without the other is unusable")
+
+check("interval_method is set exactly when there is an interval to describe",
+      all(bool(r.get("interval_method"))
+          == any(r.get(f) is not None for f in INTERVAL_FIELDS)
+          for r in measured),
+      "naming the method of an interval that does not exist says nothing")
+
+check("interval_method only ever takes a value the documentation defines",
+      {r.get("interval_method") for r in measured}
+      <= {"identical", "shifted", "reprojected", None},
+      str({r.get("interval_method") for r in measured}))
+
+# Five of the six parameters are reported the same way by every group, so
+# nothing is converted and the two conventions must hold identical numbers.
+unconverted = [r for r in measured if r["parameter"] != "Dm2"]
+check("a parameter nobody converts is marked identical",
+      all(r["interval_method"] in ("identical", None) for r in unconverted),
+      str({r["interval_method"] for r in unconverted}))
+check("and its two conventions carry the same interval",
+      all(r["s3_lo_as_published"] == r["s3_lo_our_convention"]
+          and r["s3_hi_as_published"] == r["s3_hi_our_convention"]
+          for r in unconverted if r["s3_lo_as_published"] is not None))
+
+# Dm2 as reported by NuFit and Valencia is the one that moves.
+converted = [r for r in measured
+             if r["parameter"] == "Dm2" and r["group"] != "bari"]
+check("a converted Dm2 row is marked shifted, not identical",
+      converted and all(r["interval_method"] == "shifted" for r in converted),
+      str({r["interval_method"] for r in converted}))
+check("a converted Dm2 row's interval really did move",
+      all(r["s3_lo_as_published"] != r["s3_lo_our_convention"]
+          for r in converted if r["s3_lo_as_published"] is not None),
+      "an unchanged interval on a converted row means the shift was not applied")
+
+# The width is what a reader compares across groups; the offset must not
+# change it. Anything else would mean the endpoints were shifted by different
+# amounts, which is not what a constant offset does.
+for r in converted:
+    if r["s3_lo_as_published"] is None:
+        continue
+    w_pub = r["s3_hi_as_published"] - r["s3_lo_as_published"]
+    w_our = r["s3_hi_our_convention"] - r["s3_lo_our_convention"]
+    check(f"the shift preserves the 3s width for {r['group']} {r['year']} "
+          f"{r['ordering']}", abs(w_pub - w_our) < 1e-9,
+          f"{w_pub} vs {w_our}")
+
 print()
 if problems:
     print(f"  ! {len(problems)} of {checks} checks failed")
