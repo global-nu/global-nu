@@ -80,6 +80,27 @@
     stage.appendChild(art);
     frame.appendChild(stage);
 
+    /* Every plotted point becomes a stop for the keyboard, and names itself
+       to a screen reader through the <title> make_history.py already writes
+       inside it. Done to the copy only: the figure on the page keeps its
+       single tab stop, so tabbing down the page does not walk through forty
+       data points before reaching the next link. */
+    var points = art.querySelectorAll ? art.querySelectorAll(".pt") : [];
+    Array.prototype.forEach.call(points, function (p) {
+      p.setAttribute("tabindex", "0");
+      p.setAttribute("role", "img");
+    });
+
+    /* The hover panel. It hangs off the frame and not off the stage, which
+       is deliberate and is the whole reason this took a design: the stage is
+       what carries transform: scale(), so a panel inside it would be drawn at
+       eight times its size at maximum zoom and dragged out of view by any
+       pan. Outside it, the panel keeps one size at every zoom. */
+    var tip = document.createElement("div");
+    tip.className = "figtip";
+    tip.hidden = true;
+    frame.appendChild(tip);
+
     box.appendChild(bar);
     box.appendChild(frame);
 
@@ -100,6 +121,95 @@
       }
       box.appendChild(foot);
     }
+
+    /* The point under an event, or null. Walked by hand rather than with
+       closest(): the target is usually an SVG child, and this file's rule is
+       that a missing API disables an enhancement rather than throwing. */
+    function pointAt(e) {
+      var n = e.target;
+      while (n && n !== frame) {
+        if (n.classList && n.classList.contains("pt")) return n;
+        n = n.parentNode;
+      }
+      return null;
+    }
+
+    /* What a point says about itself, in the order a reader needs it: who and
+       when, then the number, then how well it is known. Read from data-
+       attributes rather than from the <title> text, which is written for a
+       human and would have to be re-parsed every time its wording changed. */
+    function fill(pt) {
+      var d = {}, attrs = pt.attributes, i;
+      for (i = 0; i < attrs.length; i++) {
+        if (attrs[i].name.indexOf("data-") === 0) {
+          d[attrs[i].name.slice(5)] = attrs[i].value;
+        }
+      }
+      if (!d.value || !d.param) return false;      /* nothing to show beats a panel of blanks */
+      while (tip.firstChild) tip.removeChild(tip.firstChild);
+
+      var head = document.createElement("b");
+      head.textContent = [d.group, d.year].filter(Boolean).join(" · ");
+      tip.appendChild(head);
+
+      var val = document.createElement("p");
+      val.className = "figtip__val";
+      /* A limit's value already reads as "< 5.0 (3σ)" — an "=" in front of it
+         would state the opposite of what the point means. */
+      val.textContent = d.param + (d.kind === "limit" ? " " : " = ") + d.value +
+                        (d.unit ? "  ·  " + d.unit : "");
+      tip.appendChild(val);
+
+      var lines = [];
+      if (d.kind === "limit") lines.push("Upper limit — a bound, not a measurement");
+      else if (d.range) lines.push(d.range);
+      if (d.ordering) lines.push(d.ordering);
+      if (d.note) lines.push(d.note);
+      lines.forEach(function (t) {
+        var p = document.createElement("p");
+        p.textContent = t;
+        tip.appendChild(p);
+      });
+      return true;
+    }
+
+    /* The panel rests in the frame's bottom-left corner, and moves to the
+       bottom-right when the point being named is itself down there — the one
+       placement that would hide the very thing the reader is pointing at.
+       Guarded on a measurable rectangle: where layout is not computed there
+       is nothing to avoid, and the default corner stands. */
+    function place(p) {
+      if (!p.getBoundingClientRect || !frame.getBoundingClientRect) return;
+      var r = p.getBoundingClientRect(), f = frame.getBoundingClientRect();
+      if (!f.width || !f.height) return;
+      var low = r.top - f.top > f.height * 0.55;
+      var left = r.left - f.left < f.width * 0.45;
+      tip.classList.toggle("figtip--right", low && left);
+    }
+
+    function showTip(e) {
+      var p = pointAt(e);
+      if (!p) return;
+      tip.hidden = !fill(p);
+      if (!tip.hidden) place(p);
+    }
+    function hideTip() { tip.hidden = true; }
+
+    frame.addEventListener("mouseover", showTip);
+    frame.addEventListener("mouseout", function (e) {
+      /* Moving between a point's own children — its hit disc and its ink —
+         fires mouseout too. Closing on those would flicker the panel off and
+         on again while the pointer never left the point. */
+      var from = pointAt(e), to = e.relatedTarget;
+      if (!from) return;
+      while (to && to !== frame) {
+        if (to === from) return;
+        to = to.parentNode;
+      }
+      hideTip();
+    });
+    frame.addEventListener("focusin", showTip);
+    frame.addEventListener("focusout", hideTip);
 
     function apply() {
       stage.style.transform = "translate(" + tx.toFixed(1) + "px," +
@@ -157,8 +267,11 @@
       if (e.key === "+" || e.key === "=") zoom(STEP);
       else if (e.key === "-") zoom(1 / STEP);
       else if (e.key === "Tab") {
-        /* Keep the keyboard inside the dialog while it is open. */
-        var stops = box.querySelectorAll("button");
+        /* Keep the keyboard inside the dialog while it is open. The points
+           are stops too: a cycle that ended at the last button would send Tab
+           straight back to the first control and no point would ever be
+           reachable without a mouse. */
+        var stops = box.querySelectorAll("button, .pt[tabindex]");
         if (!stops.length) return;
         var first = stops[0], last = stops[stops.length - 1];
         if (e.shiftKey && document.activeElement === first) {
