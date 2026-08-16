@@ -1,0 +1,72 @@
+#!/usr/bin/env python3
+"""Check that the facts the metadata states are computed, not typed.
+
+    ./.venv/bin/python3 tools/tests/test_register_meta.py
+
+Every one of these values appears in published metadata — the
+schema.org/Dataset block on history.html and the Zenodo deposit. A
+hand-written year span or parameter list is a value that rots the first time
+a release is added, and nothing on the page would show it had.
+"""
+from __future__ import annotations
+
+import json
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
+
+from tools import register_meta                          # noqa: E402
+
+checks = 0
+problems = []
+
+
+def check(label: str, ok: bool, detail: str = "") -> None:
+    global checks
+    checks += 1
+    if ok:
+        print(f"  ok   {label}")
+        return
+    problems.append(label)
+    print(f"  FAIL {label}" + (f"\n         {detail}" if detail else ""))
+
+
+facts = register_meta.register_facts()
+rows = json.loads(register_meta.EXPORT.read_text(encoding="utf-8"))["rows"]
+
+lo, hi = min(r["year"] for r in rows), max(r["year"] for r in rows)
+check("temporalCoverage spans the register's real years",
+      facts["temporal_coverage"] == f"{lo}/{hi}",
+      f"got {facts['temporal_coverage']!r}, export says {lo}/{hi}")
+
+check("years agrees with temporal_coverage", facts["years"] == (lo, hi))
+
+check("n_rows counts every exported row",
+      facts["n_rows"] == len(rows), f"got {facts['n_rows']}, export has {len(rows)}")
+
+named = {v["name"] for v in facts["variables"]}
+exported = {r["parameter"] for r in rows}
+check("variableMeasured lists exactly the exported parameters",
+      named == exported, f"metadata {sorted(named)} vs export {sorted(exported)}")
+
+check("every variable carries a label and a unit",
+      all(v.get("label") and v.get("unit") for v in facts["variables"]),
+      str([v for v in facts["variables"] if not (v.get("label") and v.get("unit"))]))
+
+# date_modified may legitimately be None (no git, or the file untracked), but
+# it must never be today's build date dressed up as the register's date.
+import datetime as _dt                                    # noqa: E402
+dm = facts["date_modified"]
+check("date_modified is an ISO date or None",
+      dm is None or len(dm) == 10 and dm[4] == dm[7] == "-", f"got {dm!r}")
+check("date_modified is not simply today (that would be the build date)",
+      dm is None or dm != _dt.date.today().isoformat(),
+      "the register did not change today; if it did, re-run this test tomorrow")
+
+print()
+if problems:
+    print(f"  ! {len(problems)} of {checks} checks failed")
+    sys.exit(1)
+print(f"all {checks} checks pass — the register's facts are computed from the register")
