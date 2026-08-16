@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  global-nu — the watchdog.
+
+  Template. install-launchagent.sh fills in the placeholders. Do not edit the
+  installed copy: re-run the installer, so the hour keeps coming from
+  tools/news/config.yaml.
+
+  Why a second agent instead of a check inside the daily run: on 2026-08-16
+  the daily agent exited before it could log anything — nothing in news.log,
+  nothing in launchd.log — and the site simply stopped being refreshed with
+  nobody the wiser. A check that lives inside the run cannot catch a run that
+  never began. This one runs hours later, reads state.json's last_success,
+  and if the site has gone stale it reruns the pipeline and sends one email.
+
+  It is silent when all is well: no mail, one INFO line, exit 0. An alarm
+  that speaks every day is an alarm nobody reads.
+
+  No RunAtLoad, for the same reason the daily agent has none: installing
+  something must never trigger a run.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>org.global-nu.watchdog</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>__PYTHON__</string>
+        <string>-m</string>
+        <string>tools.news.watchdog</string>
+    </array>
+
+    <!-- python -m resolves tools.news.watchdog relative to the working
+         directory, so this is load-bearing, not cosmetic. -->
+    <key>WorkingDirectory</key>
+    <string>__ROOT__</string>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>__HOUR__</integer>
+        <key>Minute</key>
+        <integer>__MINUTE__</integer>
+    </dict>
+
+    <!-- Deliberately absent: RunAtLoad. See the note above. -->
+
+    <key>StandardOutPath</key>
+    <string>__ROOT__/var/news/logs/watchdog.log</string>
+    <key>StandardErrorPath</key>
+    <string>__ROOT__/var/news/logs/watchdog.log</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>__HOME__/.local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>HOME</key>
+        <string>__HOME__</string>
+        <key>LANG</key>
+        <string>en_US.UTF-8</string>
+        <key>PYTHONUNBUFFERED</key>
+        <string>1</string>
+    </dict>
+
+    <!-- Background: lower I/O and CPU priority, and no effect on App Nap for
+         foreground apps. The daily run is never urgent. -->
+    <key>ProcessType</key>
+    <string>Background</string>
+    <key>Nice</key>
+    <integer>5</integer>
+
+    <key>LowPriorityIO</key>
+    <true/>
+
+    <!-- Seconds between SIGTERM and SIGKILL when launchd stops the job, e.g.
+         at logout or when the installer boots it out. Long enough for the
+         pipeline to release var/news/run.lock on its way down. -->
+    <key>ExitTimeOut</key>
+    <integer>30</integer>
+</dict>
+</plist>

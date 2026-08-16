@@ -32,7 +32,18 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from tools.news import cache, conferences as conf_mod, pipeline, render, state  # noqa: E402
+from tools.news import cache, common, conferences as conf_mod, pipeline, render, state  # noqa: E402
+
+# Send this run's logging to a throwaway directory before anything configures
+# a logger. The pipeline writes to var/news/logs/news.log, and that file is
+# how a human diagnoses a real outage — so a test must not write into it. This
+# suite provokes a failure on purpose, and the line it produces reads
+# "WARNING render conferences: failed (RuntimeError: simulated ...)". Left in
+# the operational log it is indistinguishable, at a glance on a bad morning,
+# from a failure that actually happened; it was mistaken for one on
+# 2026-08-16. `common.LOGS` is read inside get_logger, not captured at import,
+# so rebinding it here is enough.
+common.LOGS = Path(tempfile.mkdtemp(prefix="gnu-test-logs-"))
 
 problems: list[str] = []
 checks = 0

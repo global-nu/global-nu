@@ -331,3 +331,36 @@ arxiv_digest:
 # succeeded, and never force-pushes.
 publish:
   push: true
+
+# The watchdog: what to do when the site stops updating.
+#
+# This exists because of 2026-08-16, when the daily LaunchAgent exited before
+# it could log anything — nothing in news.log, nothing in launchd.log — and
+# the site simply stopped being refreshed with no one the wiser. A check
+# inside the run cannot catch a run that never began, so a second agent runs
+# tools/news/watchdog.py a few hours later and asks state.json a different
+# question: when did this site last update?
+#
+# max_hours is deliberately longer than a day. The daily run is at 07:30 and
+# the check at 12:30, so yesterday's run reads as 29 hours old while today's
+# reads as 5 — anything between 24 and 29 separates them, and 26 leaves room
+# for a run that starts late without crying wolf.
+#
+# The SMTP password is NOT here and must never be. It lives in the login
+# Keychain; tools/news/mailer.py reads it with `security find-generic-password`.
+# Install it once, typing the password at the prompt so it never reaches a
+# shell history or a process listing:
+#
+#   security add-generic-password -a antonio.marrone@icloud.com \
+#       -s global-nu-smtp -w
+#
+# With no credential the watchdog still reruns the pipeline — the half that
+# keeps the site correct — and logs loudly that nobody was told.
+alerts:
+  max_hours: 26
+  hour: 12
+  minute: 30
+  account: "antonio.marrone@icloud.com"
+  recipient: "antonio.marrone@icloud.com"
+  smtp_host: "smtp.mail.me.com"
+  smtp_port: 587

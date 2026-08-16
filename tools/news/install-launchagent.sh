@@ -1,50 +1,79 @@
 #!/usr/bin/env bash
 #
-# Install (or refresh) the daily LaunchAgent for global-nu.
+# Install (or refresh) the two LaunchAgents for global-nu.
 #
-#   tools/news/install-launchagent.sh            install / refresh
-#   tools/news/install-launchagent.sh --remove   uninstall
+#   tools/news/install-launchagent.sh            install / refresh both
+#   tools/news/install-launchagent.sh --remove   uninstall both
 #
-# The schedule comes from tools/news/config.yaml, so the hour is configured in
-# one place. Re-run this after changing it.
+# There are two, and the second exists because of the first's failure mode.
+# The daily agent runs the pipeline. On 2026-08-16 it exited before it could
+# log anything — nothing in news.log, nothing in launchd.log — and the site
+# simply stopped being refreshed with nobody the wiser. A check inside the run
+# cannot catch a run that never began, so the watchdog agent runs hours later,
+# asks state.json when the site last updated, and if it has gone stale reruns
+# the pipeline and sends one email.
 #
-# The agent has no RunAtLoad: installing it must never trigger a run. To test
-# it now, use `./update-daily --dry-run`, or `launchctl kickstart` as printed
-# at the end.
+# Both schedules come from tools/news/config.yaml, so the hours are configured
+# in one place. Re-run this after changing them.
+#
+# Neither agent has RunAtLoad: installing something must never trigger a run.
+# To test now, use `./update-daily --dry-run`, or `launchctl kickstart` as
+# printed at the end.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-LABEL="org.global-nu.daily"
-PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
-TEMPLATE="$ROOT/tools/news/launchd/$LABEL.plist.template"
+DAILY="org.global-nu.daily"
+WATCHDOG="org.global-nu.watchdog"
 
 if [ "${1:-}" = "--remove" ]; then
-  launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null || true
-  rm -f "$PLIST"
-  echo "removed $LABEL"
+  for LABEL in "$DAILY" "$WATCHDOG"; do
+    launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null || true
+    rm -f "$HOME/Library/LaunchAgents/$LABEL.plist"
+    echo "removed $LABEL"
+  done
   exit 0
 fi
 
 PYTHON="$ROOT/.venv/bin/python3"
 [ -x "$PYTHON" ] || { echo "run ./setup-venv.sh first" >&2; exit 1; }
 
-read -r HOUR MINUTE <<<"$("$PYTHON" - "$ROOT" <<'PY'
+# Both schedules in one read, so the two agents cannot drift apart in time.
+read -r HOUR MINUTE WD_HOUR WD_MINUTE <<<"$("$PYTHON" - "$ROOT" <<'PY'
 import sys, yaml, pathlib
-cfg = yaml.safe_load((pathlib.Path(sys.argv[1]) / "tools/news/config.yaml").read_text())
-s = (cfg or {}).get("schedule") or {}
-print(int(s.get("hour", 7)), int(s.get("minute", 30)))
+cfg = yaml.safe_load((pathlib.Path(sys.argv[1]) / "tools/news/config.yaml").read_text()) or {}
+s = cfg.get("schedule") or {}
+a = cfg.get("alerts") or {}
+print(int(s.get("hour", 7)), int(s.get("minute", 30)),
+      int(a.get("hour", 12)), int(a.get("minute", 30)))
 PY
 )"
 
 mkdir -p "$HOME/Library/LaunchAgents" "$ROOT/var/news/logs"
-sed -e "s|__ROOT__|$ROOT|g" -e "s|__PYTHON__|$PYTHON|g" \
-    -e "s|__HOUR__|$HOUR|g" -e "s|__MINUTE__|$MINUTE|g" \
-    -e "s|__HOME__|$HOME|g" "$TEMPLATE" > "$PLIST"
 
-launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null || true
-launchctl bootstrap "gui/$(id -u)" "$PLIST"
+install_agent() {
+  local label="$1" hour="$2" minute="$3"
+  local plist="$HOME/Library/LaunchAgents/$label.plist"
+  local template="$ROOT/tools/news/launchd/$label.plist.template"
+  sed -e "s|__ROOT__|$ROOT|g" -e "s|__PYTHON__|$PYTHON|g" \
+      -e "s|__HOUR__|$hour|g" -e "s|__MINUTE__|$minute|g" \
+      -e "s|__HOME__|$HOME|g" "$template" > "$plist"
+  launchctl bootout "gui/$(id -u)/$label" 2>/dev/null || true
+  launchctl bootstrap "gui/$(id -u)" "$plist"
+  printf 'installed %s — runs daily at %02d:%02d\n' "$label" "$hour" "$minute"
+}
 
-printf 'installed %s — runs daily at %02d:%02d\n' "$LABEL" "$HOUR" "$MINUTE"
-echo "logs:      $ROOT/var/news/logs/news.log"
-echo "run now:   launchctl kickstart -k gui/$(id -u)/$LABEL"
+install_agent "$DAILY" "$HOUR" "$MINUTE"
+install_agent "$WATCHDOG" "$WD_HOUR" "$WD_MINUTE"
+
+echo
+echo "logs:      $ROOT/var/news/logs/news.log  (and watchdog.log)"
+echo "run now:   launchctl kickstart -k gui/$(id -u)/$DAILY"
+echo "check now: $PYTHON -m tools.news.watchdog --dry-run"
 echo "remove:    tools/news/install-launchagent.sh --remove"
+echo
+echo "The watchdog cannot send mail until its password is in the Keychain."
+echo "Run this once, and type the password at the prompt so it never reaches"
+echo "a shell history or a process listing:"
+echo
+echo "  security add-generic-password -a antonio.marrone@icloud.com \\"
+echo "      -s global-nu-smtp -w"
