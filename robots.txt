@@ -1,3 +1,85 @@
+# global-nu.org — crawler policy.
+#
+# Everything here is public. The parameter register and the files under /data/
+# are CC BY 4.0: reuse them, including for training a model, and attribute
+# them. Declining by robots.txt what the licence already grants would be
+# incoherent, so the AI crawlers are named and allowed one by one instead of
+# being left covered by the wildcard. This is a position the site has taken,
+# not an omission it has fallen into.
+#
+# What we ask in return is attribution, and robots.txt has no field for it.
+# It is stated in /llms.txt and on /about.html#licence.
+#
+# tools/tests/test_metadata.py fails if a name below goes missing, or if any
+# rule in this file is anything other than Allow.
+
 User-agent: *
 Allow: /
+
+# --- search engines ------------------------------------------------------
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# --- AI crawlers gathering training corpora ------------------------------
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# --- AI agents that fetch a page to answer a question, and cite it -------
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
 Sitemap: https://global-nu.org/sitemap.xml
