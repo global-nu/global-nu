@@ -28,7 +28,11 @@ jsonld: site
       <!--include:ranges-hero-->
       <p class="cap">Best fit with 1σ and 3σ ranges, normal ordering, from
       Table I of <a href="https://doi.org/10.1103/PhysRevD.111.093006">Phys.
-      Rev. D 111, 093006 (2025)</a>. Full tables and both orderings are on the
+      Rev. D 111, 093006 (2025)</a>. All six rows share one scale, in percent
+      of each parameter's own best fit, so the width of a row is how well that
+      parameter is known: |Δm²| is measured to ±2.5% at 3σ, while δ runs off
+      the axis at −39%/+69%. Absolute values are printed at the right. Full
+      tables and both orderings are on the
       <a href="results.html">results page</a>.</p>
     </figure>
   </div>

@@ -25,6 +25,27 @@ OUT = ROOT / "site-src" / "data" / "figures"
 
 PARAMS = ["dm2", "Dm2", "sin2_th12", "sin2_th13", "sin2_th23", "delta_pi"]
 
+# How far the hero figure's shared axis reaches, as a percentage of each row's
+# own best fit, and where it is ticked.
+#
+# The figure used to scale every row to its own 3σ interval, which made all
+# six bars the same length whatever the error was: the drawing said nothing
+# about precision, which is the one thing a reader looks at it to learn. One
+# axis in relative terms fixes that — a row twice as uncertain is twice as
+# wide — at the cost of a decision about where to stop it.
+#
+# ±25% is chosen against the data rather than for roundness. On the current
+# release the six 3σ half-widths are 2.5, 6.8, 7.2, 13.4, 15.2 and 54.2
+# percent: a limit that contained δ/π would have to reach ±70%, and would
+# then draw the three best-measured parameters as near-identical stubs a few
+# pixels long — trading one uninformative figure for another. ±25% holds five
+# of the six at a readable size and sends δ/π off the edge, which is a fair
+# description of what is actually known about the CP phase. Anything that
+# runs off is drawn to the boundary, marked with an arrow, and has its true
+# extent printed beside it: see _hero_row.
+HERO_REL_LIMIT = 25.0
+HERO_TICKS = (-20, -10, 0, 10, 20)
+
 # File-name stem per parameter, where the parameter key alone will not do.
 # The include names on the pages are these slugs, not the keys.
 SPARK_SLUG = {"Dm2": "Dm2-abs"}
@@ -179,9 +200,16 @@ def _range_row(y: float, label: str, tag: str, colour: str, e: dict,
     column is 48px wide in the hero — and it is the place the home page's stat
     cards already put it.
 
-    Shared by ranges_svg (results page) and hero_ranges_svg (home page) so
-    the two figures draw from one place and cannot disagree about a number
-    or a scale.
+    Used by ranges_svg, on the results page, where the figure sits directly
+    under Table I and answers "what is the interval for this parameter" — a
+    question each row can answer on its own scale, because the numbers are
+    right there to read.
+
+    The hero figure on the home page no longer shares this: it answers a
+    different question — which parameters are well known and which are not —
+    and a per-row scale cannot answer that, since it draws every interval the
+    same length whatever the error is. It has its own row renderer on one
+    shared relative axis; see _hero_row.
     """
     lo3, hi3 = e["s3"]
     lo1, hi1 = e.get("s1") or e["s3"]
@@ -243,32 +271,120 @@ def ranges_svg(meta: dict, bari: list[dict]) -> str:
 # --------------------------------------------------------------------------- #
 # 2b. compact ranges for the home-page hero, normal ordering only
 # --------------------------------------------------------------------------- #
+def _hero_row(pname: str, label: str, unit: str | None, e: dict, y: float,
+              colour: str, L: float, R: float, W: float) -> list[str]:
+    """One row of the hero figure, on the shared relative axis.
+
+    Every row is centred on its own best fit and measured outward in percent
+    of it, so lengths are comparable down the column: that is the whole
+    difference from _range_row, which gives each row its own axis and
+    therefore draws every interval the same length.
+
+    A row wider than the axis is drawn to the boundary and marked there with
+    an arrow, with its true extent printed beside it. Clipping without saying
+    so would be worse than the flaw this replaced: a bar that stops at the
+    edge reads as a measurement that stops there.
+    """
+    lo3, hi3 = e["s3"]
+    lo1, hi1 = e.get("s1") or e["s3"]
+    best = e["best"]
+    half = (W - R - L) / 2.0
+    centre = L + half
+
+    def pct(v: float) -> float:
+        return (v - best) / best * 100.0
+
+    def sx(v: float) -> float:
+        x = centre + pct(v) / HERO_REL_LIMIT * half
+        return min(max(x, L), W - R)
+
+    lo_pct, hi_pct = pct(lo3), pct(hi3)
+    off_lo, off_hi = lo_pct < -HERO_REL_LIMIT, hi_pct > HERO_REL_LIMIT
+
+    def num(p: float) -> str:
+        return f"{'−' if p < 0 else '+'}{abs(p):.0f}%"
+
+    out = [
+        f'<g class="rr" data-param="{pname}">',
+        f'<text x="{L-12}" y="{y+4:.0f}" text-anchor="end" font-size="11.5" '
+        f'font-weight="600" fill="currentColor">{label}{unit_suffix(unit)}</text>',
+        f'<line class="s3" x1="{sx(lo3):.1f}" y1="{y:.0f}" x2="{sx(hi3):.1f}" y2="{y:.0f}" '
+        f'stroke="{colour}" stroke-width="3" stroke-linecap="round" opacity=".28">'
+        f'<title>3σ: {lo3:g} – {hi3:g}  ({num(lo_pct)} / {num(hi_pct)})</title></line>',
+        f'<line class="s1" x1="{sx(lo1):.1f}" y1="{y:.0f}" x2="{sx(hi1):.1f}" y2="{y:.0f}" '
+        f'stroke="{colour}" stroke-width="7" stroke-linecap="round" opacity=".55">'
+        f'<title>1σ: {lo1:g} – {hi1:g}  ({num(pct(lo1))} / {num(pct(hi1))})</title></line>',
+        f'<circle class="best" cx="{centre:.1f}" cy="{y:.0f}" r="5" fill="{colour}" '
+        f'stroke="var(--surface)" stroke-width="2" paint-order="stroke">'
+        f'<title>best fit {best:g}</title></circle>',
+        f'<text x="{W-R+10}" y="{y+4:.0f}" font-size="11" '
+        f'font-family="var(--mono)" fill="currentColor" opacity=".75">{best:g}</text>',
+    ]
+
+    # The arrow head is drawn as two strokes rather than a filled triangle so
+    # it reads at the same weight as the 3σ rule it terminates.
+    for side, runs_off, pctv in ((-1, off_lo, lo_pct), (1, off_hi, hi_pct)):
+        if not runs_off:
+            continue
+        edge = L if side < 0 else W - R
+        tipx = edge + side * 4
+        out.append(f'<path class="rr__off" d="M{edge - side * 5:.1f} {y - 4:.0f}'
+                   f'L{tipx:.1f} {y:.0f}L{edge - side * 5:.1f} {y + 4:.0f}" '
+                   f'fill="none" stroke="{colour}" stroke-width="2" '
+                   'stroke-linecap="round" stroke-linejoin="round"/>')
+        out.append(f'<text class="rr__offpct" x="{edge - side * 11:.1f}" y="{y - 9:.0f}" '
+                   f'text-anchor="{"start" if side < 0 else "end"}" font-size="9" '
+                   f'font-family="var(--mono)" fill="currentColor" opacity=".7">'
+                   f'{num(pctv)}</text>')
+
+    out.append("</g>")
+    return out
+
+
 def hero_ranges_svg(meta: dict, bari: list[dict]) -> str:
     rel = next(r for r in bari if r.get("current"))
     rows = [(pname, e) for pname in PARAMS if (e := entry(rel, pname)) and e.get("s3")]
     W = 520
-    ROW, TOP = 34, 20
+    ROW, TOP = 34, 36
     H = TOP + ROW * len(rows) + 26
     # L holds the longest label — "|Δm²| / 10⁻³ eV²", 87px in Inter at 11.5px —
     # plus its 12px gap and room for a wider fallback face.
     L, R = 124, 58
+    half = (W - R - L) / 2.0
+    centre = L + half
+    top_rule, bot_rule = TOP - 12, TOP + ROW * len(rows)
 
     out = []
+    for t in HERO_TICKS:
+        x = centre + t / HERO_REL_LIMIT * half
+        zero = t == 0
+        out.append(f'<line class="{"rr__zero" if zero else "rr__grid"}" '
+                   f'x1="{x:.1f}" y1="{top_rule}" x2="{x:.1f}" y2="{bot_rule}" '
+                   f'stroke="currentColor" stroke-width="1" '
+                   f'opacity="{".35" if zero else ".14"}"'
+                   f'{"" if zero else ' stroke-dasharray="3 5"'}/>')
+        out.append(f'<text x="{x:.1f}" y="{top_rule - 6}" text-anchor="middle" '
+                   f'font-size="9.5" fill="currentColor" opacity=".62">'
+                   f'{"best fit" if zero else f"{t:+d}%"}</text>')
+
     for i, (pname, e) in enumerate(rows):
         y = TOP + i * ROW + ROW / 2
-        label = meta[pname]["label"]
-        out.extend(_range_row(y, label, "", "var(--no)", e, L, R, W,
-                               font=11.5, value_font=11,
-                               unit=meta[pname].get("unit")))
+        out.extend(_hero_row(pname, meta[pname]["label"], meta[pname].get("unit"),
+                             e, y, "var(--no)", L, R, W))
+
+    out.append(f'<text x="{L}" y="{H-6:.0f}" font-size="9.5" fill="currentColor" '
+               f'opacity=".6">width = 3σ range as a percentage of the best fit</text>')
     out.append(f'<text x="{W-R}" y="{H-6:.0f}" text-anchor="end" font-size="9.5" '
                f'font-family="var(--mono)" fill="currentColor" opacity=".5">'
                f'arXiv:{rel["arxiv"]}</text>')
 
     body = "\n".join(out)
     return (f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="Best fit with 1σ and 3σ '
-            'ranges for each oscillation parameter, normal ordering, current release, '
-            'each row labelled with the parameter and the units its values are given '
-            'in">\n'
+            'ranges for each oscillation parameter, normal ordering, current release. '
+            'All six rows share one horizontal scale, measured in percent of each '
+            "parameter's own best fit, so the width of a row is how well that "
+            'parameter is known: the narrowest is the mass splitting |Δm²| and the '
+            'widest by far is the CP phase δ, which runs past the edge of the axis">\n'
             f'{body}\n</svg>')
 
 
