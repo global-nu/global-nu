@@ -134,11 +134,14 @@ above.</p>
 <figure class="figure figure--wide reveal" style="margin-top:1.6rem">
 <div class="figure__head">
   <h3>The same table, seen at a glance</h3>
-  <p>best fit · 1σ · 3σ · each row on its own scale</p>
+  <p>best fit · 1σ · 3σ · one shared scale, in % of each best fit</p>
 </div>
 <!--include:ranges-->
-<p class="cap">Every row is drawn on its own axis, so the widths compare
-precision rather than magnitude. Values are those of Table I above; the figure
+<p class="cap">Every row is centred on its own best fit and measured
+outward in percent of it, on one shared axis, so the width of a row is how well
+that parameter is known: |Δm²| is measured to ±2.5% at 3σ, while δ in normal
+ordering runs off the axis at −39%/+69% and is marked where it leaves. Absolute
+values are printed at the right. Values are those of Table I above; the figure
 is generated from them by <code>tools/make_figures.py</code>, not drawn by
 hand.</p>
 </figure>
