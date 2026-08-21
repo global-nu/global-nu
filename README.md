@@ -82,6 +82,14 @@ terms, credited beside each one. See [LICENSE](LICENSE).
 
 ## The group
 
-Capozzi, Giarè, Lisi, Marrone, Melchiorri, Palazzo. See the
-[About](https://global-nu.org/about.html) page for the series of papers and how
-to cite them.
+Capozzi, Lisi, Marcone, Marrone, Palazzo.
+
+That is the group, which is not the same list as any one paper's authors: a
+release may be written with collaborators from outside Bari — the 2025 full
+release adds the cosmologists Giarè and Melchiorri. Add someone to the list
+above only when they sign a release with a Bari affiliation, Università di Bari
+or INFN Bari; anyone else is named beside the paper they joined. The rule and
+the list are checked by `tools/tests/test_group_membership.py`.
+
+See the [About](https://global-nu.org/about.html) page for the series of papers
+and how to cite them.

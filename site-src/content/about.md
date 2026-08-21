@@ -25,16 +25,31 @@ katex: false
 
 ## The group
 
-The global analyses published here are the work of a collaboration centred on
-Bari. The most recent release,
-<a href="https://doi.org/10.1103/PhysRevD.111.093006">Phys. Rev. D 111, 093006
-(2025)</a>, is by <strong>Francesco Capozzi</strong> (L’Aquila and INFN LNGS),
-<strong>William Giarè</strong> (Sheffield), <strong>Eligio Lisi</strong> (INFN
-Bari), <strong>Antonio Marrone</strong> (Università di Bari and INFN Bari),
-<strong>Alessandro Melchiorri</strong> (Roma “La Sapienza” and INFN Roma I) and
-<strong>Antonio Palazzo</strong> (Università di Bari and INFN Bari).
+<!-- This list is the group, not a paper's author list, and the two are not
+     the same thing: a release may be written with collaborators from outside
+     Bari, and those belong in the paragraph below, named with the paper they
+     joined. Add someone to the list only when they sign a release with a Bari
+     affiliation — Università di Bari or INFN Bari. Checked by
+     tools/tests/test_group_membership.py, which also holds the rule. -->
+The global analyses published here are the work of the Bari group:
 
-The series of analyses it belongs to goes back to the early 2000s; the
+<p class="group-list"><strong>Francesco Capozzi</strong> (L’Aquila and INFN
+LNGS), <strong>Eligio Lisi</strong> (INFN Bari), <strong>Francesco
+Marcone</strong> (Università di Bari and INFN Bari), <strong>Antonio
+Marrone</strong> (Università di Bari and INFN Bari) and <strong>Antonio
+Palazzo</strong> (Università di Bari and INFN Bari).</p>
+
+The most recent release,
+<a href="https://doi.org/10.1103/cxqw-1bty">Phys. Rev. D 114, 016026
+(2026)</a>, is by those five and revises the (1, 2) sector alone. The most
+recent <em>full</em> release,
+<a href="https://doi.org/10.1103/PhysRevD.111.093006">Phys. Rev. D 111, 093006
+(2025)</a>, was written in collaboration with the cosmologists <strong>William
+Giarè</strong> (Sheffield) and <strong>Alessandro Melchiorri</strong> (Roma “La
+Sapienza” and INFN Roma I). What to cite is always the author list of the paper
+the numbers come from; the list above is the group.
+
+The series of analyses goes back to the early 2000s; the
 [parameter history](history.html) page traces it release by release.
 
 ## What a global analysis is
