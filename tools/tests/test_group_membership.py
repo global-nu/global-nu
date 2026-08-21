@@ -12,9 +12,15 @@ member off, which is the kind of error no test catches and everyone reads.
 THE RULE, stated by Antonio Marrone on 2026-08-21 and enforced below: someone
 belongs on the group list when they sign a release with a Bari affiliation —
 Università di Bari or INFN Bari. Everyone else is a collaborator, named beside
-the paper they joined and never in the list. Francesco Capozzi is on the list
-having moved to L'Aquila; he is a member, and the affiliation printed beside
-him is his current one, from INSPIRE.
+the paper they joined and never in the list.
+
+Francesco Capozzi is a standing exception to that rule, and a PROVISIONAL one:
+he signs from L'Aquila and INFN LNGS, and when asked on 2026-08-21 whether the
+rule should move him to the collaborators, Antonio's answer was "leave him —
+for now". The affiliation printed beside him is his current one, from INSPIRE.
+Do not quietly resolve this either way: the exception stands until Antonio
+says otherwise, and it is not evidence that the rule admits exceptions
+generally.
 
 Changing the membership means changing GROUP below, deliberately — which is the
 point of pinning it here rather than trusting prose in two files to agree.
