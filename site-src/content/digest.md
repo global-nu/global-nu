@@ -22,15 +22,16 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 17 August 2026, 19:49 CEST</span></div>
+<span class="stamp">Last successful update: 21 August 2026, 09:28 CEST</span></div>
 </div>
 
 <div class="section-head"><h2>Experimental</h2>
-<p>2 preprints</p></div>
+<p>3 preprints</p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2608.13429">MANGO: An Autodiff Neutrino Oscillation Engine for Differentiable Analysis Pipelines</a></b><span>Pierre Granger · 13 Aug 2026</span><span class="tags"><span class="tag">hep-ex</span><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2608.12173">Laboratory constraints on peV-scale mass splitting between ordinary and sterile neutron states</a></b><span>N. J. Ayres, Z. Berezhiani, G. Bison et al. · 12 Aug 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.14959">Development of a 10 mol% Rubidium-doped CsI Crystal for ⁸⁷Rb Beta-Spectroscopy and Sterile Neutrino Searches</a></b><span>W. K. Kim, K. W. Kim, L. T. Truc et al. · 15 Aug 2026</span><span class="tags"><span class="tag">physics.ins-det</span><span class="tag">hep-ex</span><span class="tag">nucl-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.15231">Deep Earth imaging through neutrino and seismic tomography</a></b><span>Sanjib Kumar Agarwalla, Arjun Datta, Amol Dighe et al. · 15 Aug 2026</span><span class="tags"><span class="tag">hep-ex</span><span class="tag">astro-ph.EP</span><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.19051">The Radioactive Background of the JUNO Calibration System</a></b><span>Rui Li, Youhui Yun, Zhangming Chen et al. · 19 Aug 2026</span><span class="tags"><span class="tag">physics.ins-det</span><span class="tag">hep-ex</span></span></li>
 </ul>
 
 
@@ -39,23 +40,22 @@ and may contain errors. No model is involved.</b>
 ::: section alt
 
 <div class="section-head"><h2>Theory</h2>
-<p>14 preprints</p></div>
+<p>13 preprints</p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2608.13680">High-Energy Neutrinos from Supernova Shock Breakouts in Circumstellar Media: Light Curves, Spectra, and Contribution to the Extragalactic Neutrino Background</a></b><span>Tal Wasserman, Eli Waxman, Kohta Murase · 13 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2608.10062">Archimedean Seesaw: Small Neutrino Masses and Large Lepton-number Violation</a></b><span>Tao Han, Alejandro Ibarra, Subhojit Roy et al. · 10 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.19367">TeV-scale leptogenesis in a parity symmetric neutrino mass model</a></b><span>Keisuke Harigaya, Gio Leone · 19 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.14269">Nonstandard Solution for Anomaly Cancellation as Seesaw Neutrino Origin in the SM</a></b><span>Zi-Yue Zou, Chia-Wei Liu, Zhong-Lv Huang et al. · 14 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2608.12177">Impact of Neutrino Flavour Conversion on the Diffuse Neutrino Background from Neutrino-dominated Accretion Flows</a></b><span>Yun-Feng Wei, Tong Liu · 12 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2608.12646">A Novel One-loop Model for Majorana Neutrino Mass and Dark Matter</a></b><span>Mohamed Belfkir, Mohamed Amin Loualidi, Salah Nasri · 12 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2608.12497">Spontaneous Scoto-leptogenesis</a></b><span>Arghyajit Datta, Hyun Min Lee, Jun-Ho Song · 12 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2608.12483">Singlet-Doublet fermion origin of dark matter, neutrino mass and inverse first-order electroweak phase transition</a></b><span>Debasish Borah, Indrajit Saha, Sujit Kumar Sahoo et al. · 12 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span><span class="tag">hep-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2608.13736">Beyond Δm²: Absolute Mass Sensitivity in Neutrino Oscillations</a></b><span>Gustavo F. S. Alves, André L. C. de Gouvêa, Joshua Kaler et al. · 13 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2608.13814">Time-dependent multi-energy neutrino emission from symbiotic recurrent novae: the role of accretion disks</a></b><span>Rui Xu, Yudong Cui, Yihan Shi et al. · 13 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2608.12696">An Evolving Leptonic Jet Model for Delayed Radio Flares in Neutrino Blazars</a></b><span>Alina Kochocki, Xavier Rodrigues, Nathan Whitehorn · 13 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">astro-ph.GA</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2608.12940">Newtrinos.jl: A Julia Package for Global Analysis of Neutrino Data</a></b><span>Philipp Eller, David Schultheiß · 13 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2608.14010">Detection of possible burst oscillation in the neutron star low-mass X-ray binary 4U 1323-62</a></b><span>Manoj Mandal, Sachindra Naik · 14 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2608.12966">Cross-spectral Analysis of the Type-C Quasi-periodic Oscillation Shoulder Component in GX 339-4</a></b><span>Haifan Zhu, Mariano Méndez, Pengcheng Yang et al. · 13 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2608.12217">High-energy neutrino signatures of embedded GRB jets in AGN disks: a dynamic jet-propagation framework</a></b><span>Wei-Cheng Long, Yun-Wei Yu · 12 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.14785">Unveiling Neutrino Nature with the Diffuse Supernova Background</a></b><span>Marco Manno, Pablo Martínez-Miravé, Irene Tamborra · 14 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.17681">An axion constraint from the diffuse supernova neutrino background indicated by Super-Kamiokande</a></b><span>Kanji Mori, Tomoya Takiwaki, Kazunori Kohri et al. · 18 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.16107">Unfolding the low-energy reactor neutrino flux from CEνNS data with a finite Dirac sum</a></b><span>Muping Chen, Graciela Gelmini, Danny Marfatia et al. · 17 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.17676">Precise Measurement of δ at LBL Experiments Using Only The Neutrino Sector</a></b><span>Emilio Ciuffoli · 18 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.17236">Reply to "Revisiting bounds on neutrino dark matter interaction at spikes"</a></b><span>James M. Cline, Matteo Puel · 18 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.16540">Cosmogenic neutrinos from FRII galaxies as potential origin of the ultra-high-energy KM3-230213A event</a></b><span>Denis Allard, Bruny Baret, Noémie Globus et al. · 17 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.18812">Revisiting Quark-Lepton Complementarity in the Precision Neutrino Era</a></b><span>Gazal Sharma, Gaurav Katoch · 19 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.19277">On the Flavor Yukawa coupling for the Lepton Mass Hierarchy and the Koide Relation</a></b><span>Olivier Rousselle · 18 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.17651">Revisiting neutrino event epochs for the blazar PKS 0735+178 with TESS</a></b><span>Shubham Kishore, Alok C. Gupta, Debanjan Bose · 18 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.17526">From Variability to SED Modeling: A Multiwavelength Study of the Neutrino Blazar TXS 0506+056</a></b><span>Shiyu Du, Hanxiao Xia, Jianghua Wu et al. · 18 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">astro-ph.GA</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.16275">Multipolar Neutrino Radiation in Binary Neutron Star Mergers: Angular Structure, Rotational Variability, and Implications for Electron Fraction</a></b><span>Kutay Arınç Çokluk, Albino Perego, Federico Maria Guercilena et al. · 17 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">gr-qc</span><span class="tag">hep-ph</span></span></li>
 </ul>
 
 
@@ -75,11 +75,15 @@ still appears under theory.</p>
 
 <!-- ARCHIVE:BEGIN -->
 <ul class="archive">
-  <li><time datetime="2026-08-14">14 August 2026</time><a href="digest/2026-08-14.html">Digest of 2026-08-14</a><span class="count">2 papers</span></li>
+  <li><time datetime="2026-08-19">19 August 2026</time><a href="digest/2026-08-19.html">Digest of 2026-08-19</a><span class="count">3 papers</span></li>
+  <li><time datetime="2026-08-18">18 August 2026</time><a href="digest/2026-08-18.html">Digest of 2026-08-18</a><span class="count">6 papers</span></li>
+  <li><time datetime="2026-08-17">17 August 2026</time><a href="digest/2026-08-17.html">Digest of 2026-08-17</a><span class="count">3 papers</span></li>
+  <li><time datetime="2026-08-15">15 August 2026</time><a href="digest/2026-08-15.html">Digest of 2026-08-15</a><span class="count">2 papers</span></li>
+  <li><time datetime="2026-08-14">14 August 2026</time><a href="digest/2026-08-14.html">Digest of 2026-08-14</a><span class="count">3 papers</span></li>
   <li><time datetime="2026-08-13">13 August 2026</time><a href="digest/2026-08-13.html">Digest of 2026-08-13</a><span class="count">8 papers</span></li>
   <li><time datetime="2026-08-12">12 August 2026</time><a href="digest/2026-08-12.html">Digest of 2026-08-12</a><span class="count">8 papers</span></li>
   <li><time datetime="2026-08-10">10 August 2026</time><a href="digest/2026-08-10.html">Digest of 2026-08-10</a><span class="count">3 papers</span></li>
-  <li><time datetime="2026-08">August 2026</time><a href="digest/2026-08.html">All of August 2026</a><span class="count">21 papers</span></li>
+  <li><time datetime="2026-08">August 2026</time><a href="digest/2026-08.html">All of August 2026</a><span class="count">36 papers</span></li>
 </ul>
 <!-- ARCHIVE:END -->
 
