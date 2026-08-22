@@ -25,7 +25,7 @@ scripts:
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the conference indexers' APIs,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 22 August 2026, 12:39 CEST</span></div>
+<span class="stamp">Last successful update: 22 August 2026, 13:26 CEST</span></div>
 </div>
 
 
