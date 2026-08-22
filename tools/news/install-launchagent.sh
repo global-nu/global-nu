@@ -57,6 +57,26 @@ install_agent() {
   sed -e "s|__ROOT__|$ROOT|g" -e "s|__PYTHON__|$PYTHON|g" \
       -e "s|__HOUR__|$hour|g" -e "s|__MINUTE__|$minute|g" \
       -e "s|__HOME__|$HOME|g" "$template" > "$plist"
+  # Hand launchd a log file it created itself.
+  #
+  # This is not tidiness. launchd opens the job's stdout/stderr file BEFORE it
+  # forks, and macOS records access to a file under a protected directory —
+  # this repo lives on the Desktop — as a grant attached to that individual
+  # file. A log file left over from an earlier install carries a grant that no
+  # longer matches, launchd cannot open it, and it abandons the spawn with
+  # EX_CONFIG (78). The program never runs, so nothing is written anywhere:
+  # not the program's log, not the file that just refused to open. That is
+  # exactly how the daily agent died silently on 2026-08-16 and stayed dead
+  # for six days while the watchdog quietly covered for it.
+  #
+  # Rotated rather than deleted: watchdog.log holds the watchdog's own history,
+  # which is worth keeping, and one .prev is enough to keep it.
+  local log
+  log="$(/usr/libexec/PlistBuddy -c 'Print :StandardOutPath' "$plist" 2>/dev/null || true)"
+  if [ -n "$log" ] && [ -e "$log" ]; then
+    mv -f "$log" "$log.prev"
+  fi
+
   launchctl bootout "gui/$(id -u)/$label" 2>/dev/null || true
   launchctl bootstrap "gui/$(id -u)" "$plist"
   printf 'installed %s — runs daily at %02d:%02d\n' "$label" "$hour" "$minute"

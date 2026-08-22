@@ -133,6 +133,46 @@ check("both reports state how long the site had been stale",
 check("the two subjects differ, so a mail client will not thread them as one",
       recovered[0] != broken[0])
 
+# --- what launchd itself makes of the scheduled job ------------------------
+# On 2026-08-16 the daily agent stopped running and nobody could tell why for
+# six days: the watchdog kept the site current and reported only "the site was
+# stale". launchd knew all along — it was recording exit 78 on every attempt.
+# The report now carries that record, and the specific meaning of 78, because
+# it is the one code that means the job never started at all.
+SAMPLE = """gui/501/org.global-nu.daily = {
+	active count = 0
+	state = not running
+	runs = 7
+	last exit code = 78: EX_CONFIG
+}"""
+
+status = watchdog.parse_agent_status(SAMPLE)
+check("the agent's run count is read out of launchd's own record",
+      "7" in status, status)
+check("so is its last exit code", "78" in status, status)
+check("and 78 is explained, not just quoted",
+      "log" in status.lower() and "start" in status.lower(), status)
+
+healthy = watchdog.parse_agent_status(
+    "\truns = 3\n\tlast exit code = 0\n")
+check("a healthy agent is reported without an alarm",
+      "0" in healthy and "EX_CONFIG" not in healthy, healthy)
+check("and without the log-file advice, which would be noise there",
+      "could not start" not in healthy.lower(), healthy)
+
+check("output launchctl cannot produce yields nothing, not a guess",
+      watchdog.parse_agent_status("") == "" and
+      watchdog.parse_agent_status("Could not find service") == "",
+      repr(watchdog.parse_agent_status("Could not find service")))
+
+with_agent = watchdog.compose_report(hours=29.1, rerun_ok=True, detail="",
+                                     agent=status)
+check("the report carries launchd's record into the body",
+      "78" in with_agent[1] and "7" in with_agent[1], with_agent[1])
+without = watchdog.compose_report(hours=29.1, rerun_ok=True, detail="", agent="")
+check("and says nothing at all when launchd has nothing to say",
+      "exit" not in without[1].lower(), without[1])
+
 print()
 if problems:
     print(f"  ! {len(problems)} of {checks} checks failed")

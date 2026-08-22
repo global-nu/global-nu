@@ -15,6 +15,8 @@ from __future__ import annotations
 
 import datetime as _dt
 import logging
+import os
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -62,8 +64,63 @@ def should_act(state: dict, now: _dt.datetime, max_hours: float) -> bool:
     return age > max_hours
 
 
+DAILY_LABEL = "org.global-nu.daily"
+
+
+def parse_agent_status(text: str) -> str:
+    """launchd's own record of the scheduled job, as one line for the report.
+
+    Written because of what 2026-08-16 cost. The daily agent stopped running
+    and the fault took six days and an hour of digging to name, while launchd
+    had been recording the answer on every attempt: exit 78. The watchdog was
+    reporting "the site was stale", which is the symptom, and keeping the site
+    current, which hid the cause.
+
+    78 is EX_CONFIG, and for a LaunchAgent it means something narrower than
+    "configuration error": launchd could not *start* the job at all. It opens
+    the job's stdout/stderr file before it forks, so a log file it cannot open
+    kills the run before a line of the program executes — which is why that
+    failure leaves nothing in any log and looks, from the inside, exactly like
+    a run that never happened. The advice is attached to 78 only; on a healthy
+    agent it would be noise.
+
+    Returns "" for anything that is not a launchctl record, so a machine
+    without launchctl, or a label that is not loaded, adds nothing to the mail
+    rather than a guess.
+    """
+    runs = re.search(r"^\s*runs = (\d+)", text, re.M)
+    code = re.search(r"^\s*last exit code = (.+)$", text, re.M)
+    if not runs and not code:
+        return ""
+    parts = []
+    if runs:
+        parts.append(f"{runs.group(1)} run(s)")
+    if code:
+        parts.append(f"last exit code {code.group(1).strip()}")
+    line = "launchd's record of the scheduled job: " + ", ".join(parts) + "."
+    if code and code.group(1).strip().startswith("78"):
+        line += (" 78 means launchd could not start the job at all — most "
+                 "often because it could not open the log file it was told to "
+                 "write, at var/news/logs/launchd.log. Deleting that file lets "
+                 "launchd create one it can open.")
+    return line
+
+
+def agent_status(label: str = DAILY_LABEL) -> str:
+    """parse_agent_status over the live `launchctl print`, or "" if it cannot
+    be asked. Never raises: a watchdog that dies while reporting a failure is
+    worse than one that reports a little less."""
+    try:
+        out = subprocess.run(
+            ["launchctl", "print", f"gui/{os.getuid()}/{label}"],
+            capture_output=True, text=True, timeout=10)
+    except (OSError, subprocess.SubprocessError):
+        return ""
+    return parse_agent_status(out.stdout or "")
+
+
 def compose_report(hours: float | None, rerun_ok: bool,
-                   detail: str) -> tuple[str, str]:
+                   detail: str, agent: str = "") -> tuple[str, str]:
     """The subject and body of the one message a human will read.
 
     The two outcomes get different subjects on purpose. "It broke and I have
@@ -88,6 +145,12 @@ def compose_report(hours: float | None, rerun_ok: bool,
         body = (f"The site has not been refreshed for {age}, and running the "
                 "pipeline again did not fix it.\n\nThe site is serving stale "
                 "pages until this is looked at.\n")
+    # launchd's own account of the job goes in every report, recovered or
+    # not. The recovered case is the one that needs it: the site is current,
+    # nothing is on fire, and without this line the mail says only that a run
+    # was missed — which is how a dead job stayed dead for six days.
+    if agent:
+        body += f"\n{agent}\n"
     if detail:
         body += f"\n{detail}\n"
     return subject, body
@@ -149,7 +212,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     ok, detail = _rerun()
-    subject, body = compose_report(age, ok, detail)
+    subject, body = compose_report(age, ok, detail, agent=agent_status())
     log.info("watchdog: rerun %s", "succeeded" if ok else "FAILED")
 
     account = cfg.get("account") or ""
