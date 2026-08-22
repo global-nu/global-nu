@@ -25,7 +25,7 @@ scripts:
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the conference indexers' APIs,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 21 August 2026, 09:28 CEST</span></div>
+<span class="stamp">Last successful update: 22 August 2026, 12:39 CEST</span></div>
 </div>
 
 
@@ -36,8 +36,8 @@ and may contain errors. No model is involved.</b>
 <title>Conference timeline</title>
 <line x1="332.8" y1="14" x2="332.8" y2="311" style="stroke:var(--line);stroke-width:1"/>
 <text x="335.8" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
-<line x1="187.9" y1="8" x2="187.9" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
-<text x="187.9" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
+<line x1="201.0" y1="8" x2="201.0" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
+<text x="201.0" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
 <rect x="161.5" y="30" width="144.9" height="10" rx="5" style="fill:var(--io);opacity:1"/>
 <text x="112" y="38.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">ICNFP 2026</text>
 <text x="312.4" y="38.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Kolymbari, Crete…</text>
@@ -81,7 +81,7 @@ and may contain errors. No model is involved.</b>
 <text x="470.5" y="298.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Prague</text>
 </svg>
 </div>
-<p class="cap">The soonest 14 upcoming meetings (blue, amber if running right now). 43 upcoming and 45 recent meetings are tracked in full below.</p>
+<p class="cap">The soonest 14 upcoming meetings (blue, amber if running right now). 43 upcoming and 43 recent meetings are tracked in full below.</p>
 </figure>
 
 
@@ -129,7 +129,7 @@ and may contain errors. No model is involved.</b>
 <p class="cap">33 of 43 upcoming meetings placed on the map from a venue the source published; the other 10 stay in the list below without a dot rather than a guess.</p>
 </figure>
 
-<div class="section-head"><h2>Neutrino conferences</h2><p>71 meetings</p></div>
+<div class="section-head"><h2>Neutrino conferences</h2><p>69 meetings</p></div>
 <div class="section-head section-head--sub"><h3>Upcoming</h3><p>35 meetings</p></div>
 <ul class="list list--news">
 <li><b>XV International Conference on New Frontiers in Physics</b><span>19–30 August 2026 · Kolymbari, Crete, Greece</span><span class="cites"><a href="https://indico.cern.ch/event/1571736/">Details</a></span></li>
@@ -168,7 +168,7 @@ and may contain errors. No model is involved.</b>
 <li><b>10th International Conference on High Energy, Particles and Nuclear Physics in the LHC Era</b><span>18–22 January 2027 · Valparaiso, Chile</span><span class="cites"><a href="https://indico.hpc.utfsm.cl/event/2/">Details</a></span></li>
 <li><b>Cosmological Fundamental Observables and Novel Discoveries in Universe Evolution</b><span>25–29 January 2027 · CERN, Geneva, Switzerland</span><span class="cites"><a href="https://indico.cern.ch/e/cosmofondue27">Details</a></span></li>
 </ul>
-<div class="section-head section-head--sub"><h3>Recent</h3><p>36 meetings</p></div>
+<div class="section-head section-head--sub"><h3>Recent</h3><p>34 meetings</p></div>
 <ul class="list list--news">
 <li><b>Neutrino, Dark Matter, Astroparticle Physics, Cosmology</b><span>10–14 August 2026 · A Coruña, Spain</span><span class="cites"><a href="https://indico.cern.ch/event/1561367/">Details</a></span></li>
 <li><b>43rd International Conference on High Energy Physics</b><span>30 July – 5 August 2026 · Natal, Brazil</span><span class="cites"><a href="https://ichep2026.org/">Details</a></span></li>
@@ -204,8 +204,6 @@ and may contain errors. No model is involved.</b>
 <li><b>Progress on Old and New Themes in cosmology</b><span>27–30 April 2026 · Avignon, France</span><span class="cites"><a href="https://indico.cern.ch/e/PONT2026">Details</a></span></li>
 <li><b>A high precision measurement of the primordial helium abundance and its implications</b><span>23 April 2026 · Online</span><span class="cites"><a href="https://indico.cern.ch/e/Yp_and_implications_2026">Details</a></span></li>
 <li><b>60th Rencontres de Moriond: Electroweak Interactions &amp; Unified Theories</b><span>26–30 March 2026 · La Thuile, Aosta Valley, Italy</span><span class="cites"><a href="https://moriond.in2p3.fr/2026/EW/">Details</a></span></li>
-<li><b>Balzan Conference on Open Issues in Gravitation</b><span>24–26 March 2026 · Bures-sur-Yvette, France</span><span class="cites"><a href="https://indico.math.cnrs.fr/event/16096/">Details</a></span></li>
-<li><b>Transient High-Energy Sky and Early Universe Surveyor</b><span>24–26 March 2026 · Torremolinos, Malaga, Spain</span><span class="cites"><a href="https://theseus.astro-ge.ch/portail/2026-science-conference.html">Details</a></span></li>
 </ul>
 
 
