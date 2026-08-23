@@ -587,7 +587,7 @@ def compare_panel(pname: str, meta: dict, releases: list[dict]) -> str:
                     "floor and labelled with its value, not to scale, so the later "
                     "measurements keep their resolution.")
     return f"""<figure class="figure reveal">
-<h4>{label} <span class="figure__unit">/ {unit} · normal ordering</span></h4>
+<h4><span class="sym">{label}</span> <span class="figure__unit">/ {unit} · normal ordering</span></h4>
 <svg viewBox="0 0 {W} {H}" role="img" aria-label="{label} in normal ordering, compared across the Bari, NuFit and Valencia global analyses">
 {chr(10).join(out)}
 </svg>
@@ -695,7 +695,7 @@ def panel(pname: str, meta: dict, releases: list[dict]) -> str:
     ranges = "3σ ranges" if not fell_back else "the range each paper published"
     body = "\n".join(out)
     return f"""<figure class="figure reveal">
-<h4>{label} <span class="figure__unit">/ {unit}</span></h4>
+<h4><span class="sym">{label}</span> <span class="figure__unit">/ {unit}</span></h4>
 <svg viewBox="0 0 {W} {H}" role="img" aria-label="{label} best-fit values and {ranges} by publication year, for the two mass orderings">
 {body}
 </svg>

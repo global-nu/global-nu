@@ -109,7 +109,7 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 <div class="panels">
 
 <figure class="figure reveal">
-<h4>δm² <span class="figure__unit">/ 1e-5 eV² · normal ordering</span></h4>
+<h4><span class="sym">δm²</span> <span class="figure__unit">/ 1e-5 eV² · normal ordering</span></h4>
 <svg viewBox="0 0 520 250" role="img" aria-label="δm² in normal ordering, compared across the Bari, NuFit and Valencia global analyses">
 <line x1="54" y1="216" x2="506" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="16" x2="54" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
@@ -179,7 +179,7 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 </figure>
 
 <figure class="figure reveal">
-<h4>|Δm²| <span class="figure__unit">/ 1e-3 eV² · normal ordering</span></h4>
+<h4><span class="sym">|Δm²|</span> <span class="figure__unit">/ 1e-3 eV² · normal ordering</span></h4>
 <svg viewBox="0 0 520 250" role="img" aria-label="|Δm²| in normal ordering, compared across the Bari, NuFit and Valencia global analyses">
 <line x1="54" y1="216" x2="506" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="16" x2="54" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
@@ -237,7 +237,7 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 </figure>
 
 <figure class="figure reveal">
-<h4>sin²θ₁₂ <span class="figure__unit">/ 1e-1 · normal ordering</span></h4>
+<h4><span class="sym">sin²θ₁₂</span> <span class="figure__unit">/ 1e-1 · normal ordering</span></h4>
 <svg viewBox="0 0 520 250" role="img" aria-label="sin²θ₁₂ in normal ordering, compared across the Bari, NuFit and Valencia global analyses">
 <line x1="54" y1="216" x2="506" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="16" x2="54" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
@@ -303,7 +303,7 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 </figure>
 
 <figure class="figure reveal">
-<h4>sin²θ₁₃ <span class="figure__unit">/ 1e-2 · normal ordering</span></h4>
+<h4><span class="sym">sin²θ₁₃</span> <span class="figure__unit">/ 1e-2 · normal ordering</span></h4>
 <svg viewBox="0 0 520 250" role="img" aria-label="sin²θ₁₃ in normal ordering, compared across the Bari, NuFit and Valencia global analyses">
 <line x1="54" y1="216" x2="506" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="16" x2="54" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
@@ -367,7 +367,7 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 </figure>
 
 <figure class="figure reveal">
-<h4>sin²θ₂₃ <span class="figure__unit">/ 1e-1 · normal ordering</span></h4>
+<h4><span class="sym">sin²θ₂₃</span> <span class="figure__unit">/ 1e-1 · normal ordering</span></h4>
 <svg viewBox="0 0 520 250" role="img" aria-label="sin²θ₂₃ in normal ordering, compared across the Bari, NuFit and Valencia global analyses">
 <line x1="54" y1="216" x2="506" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="16" x2="54" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
@@ -430,7 +430,7 @@ the marker is the first one quoted and the 3σ range spans both.</p>
 </figure>
 
 <figure class="figure reveal">
-<h4>δ/π <span class="figure__unit">/ 1 · normal ordering</span></h4>
+<h4><span class="sym">δ/π</span> <span class="figure__unit">/ 1 · normal ordering</span></h4>
 <svg viewBox="0 0 520 250" role="img" aria-label="δ/π in normal ordering, compared across the Bari, NuFit and Valencia global analyses">
 <line x1="54" y1="216" x2="506" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="16" x2="54" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
@@ -532,7 +532,7 @@ here: the comparison above converts first, and states the conversion.</p>
 <div class="panels">
 
 <figure class="figure reveal">
-<h4>δm² <span class="figure__unit">/ 1e-5 eV²</span></h4>
+<h4><span class="sym">δm²</span> <span class="figure__unit">/ 1e-5 eV²</span></h4>
 <svg viewBox="0 0 520 250" role="img" aria-label="δm² best-fit values and 3σ ranges by publication year, for the two mass orderings">
 <line x1="54" y1="216" x2="506" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="16" x2="54" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
@@ -582,7 +582,7 @@ sources in the table below.</p>
 </figure>
 
 <figure class="figure reveal">
-<h4>|Δm²| <span class="figure__unit">/ 1e-3 eV²</span></h4>
+<h4><span class="sym">|Δm²|</span> <span class="figure__unit">/ 1e-3 eV²</span></h4>
 <svg viewBox="0 0 520 250" role="img" aria-label="|Δm²| best-fit values and 3σ ranges by publication year, for the two mass orderings">
 <line x1="54" y1="216" x2="506" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="16" x2="54" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
@@ -643,7 +643,7 @@ sources in the table below.</p>
 </figure>
 
 <figure class="figure reveal">
-<h4>sin²θ₁₂ <span class="figure__unit">/ 1e-1</span></h4>
+<h4><span class="sym">sin²θ₁₂</span> <span class="figure__unit">/ 1e-1</span></h4>
 <svg viewBox="0 0 520 250" role="img" aria-label="sin²θ₁₂ best-fit values and 3σ ranges by publication year, for the two mass orderings">
 <line x1="54" y1="216" x2="506" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="16" x2="54" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
@@ -693,7 +693,7 @@ sources in the table below.</p>
 </figure>
 
 <figure class="figure reveal">
-<h4>sin²θ₁₃ <span class="figure__unit">/ 1e-2</span></h4>
+<h4><span class="sym">sin²θ₁₃</span> <span class="figure__unit">/ 1e-2</span></h4>
 <svg viewBox="0 0 520 250" role="img" aria-label="sin²θ₁₃ best-fit values and the range each paper published by publication year, for the two mass orderings">
 <line x1="54" y1="216" x2="506" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="16" x2="54" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
@@ -757,7 +757,7 @@ sources in the table below.</p>
 </figure>
 
 <figure class="figure reveal">
-<h4>sin²θ₂₃ <span class="figure__unit">/ 1e-1</span></h4>
+<h4><span class="sym">sin²θ₂₃</span> <span class="figure__unit">/ 1e-1</span></h4>
 <svg viewBox="0 0 520 250" role="img" aria-label="sin²θ₂₃ best-fit values and 3σ ranges by publication year, for the two mass orderings">
 <line x1="54" y1="216" x2="506" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="16" x2="54" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
@@ -818,7 +818,7 @@ sources in the table below.</p>
 </figure>
 
 <figure class="figure reveal">
-<h4>δ/π <span class="figure__unit">/ 1</span></h4>
+<h4><span class="sym">δ/π</span> <span class="figure__unit">/ 1</span></h4>
 <svg viewBox="0 0 520 250" role="img" aria-label="δ/π best-fit values and the range each paper published by publication year, for the two mass orderings">
 <line x1="54" y1="216" x2="506" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="54" y1="16" x2="54" y2="216" stroke="currentColor" stroke-width="1" opacity=".35"/>

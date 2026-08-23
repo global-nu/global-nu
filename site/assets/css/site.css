@@ -564,6 +564,16 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
 .panels .figure{color:var(--text-soft)}          /* axes inherit currentColor */
 .figure__unit{font-family:var(--mono);font-size:.68rem;color:var(--text-mute);
   text-transform:none;letter-spacing:0}
+/* Notation, inside a label the design sets in capitals.
+   text-transform:uppercase applies the Unicode uppercase mapping, which does
+   not know that case is meaning here: it turns δm² into ΔM², making the solar
+   splitting indistinguishable from the atmospheric one, σ into Σ, which is a
+   sum, and eV into EV, which is not a unit. .figure__unit above already
+   carried this reset for the units; this is the same reset, named for what it
+   protects, so any symbol placed in a capitalised label can be marked.
+   Letter-spacing is deliberately NOT reset: the label's tracking is part of
+   the design, and a symbol keeps its own case, not its own spacing. */
+.sym{text-transform:none}
 .legend--chart{gap:1.4rem;font-size:.78rem}
 .legend .k-any{background:var(--text-soft)}
 .legend .k-bari{background:var(--grp-bari)}
