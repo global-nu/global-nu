@@ -22,14 +22,13 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 22 August 2026, 13:26 CEST</span></div>
+<span class="stamp">Last successful update: 23 August 2026, 07:31 CEST</span></div>
 </div>
 
 <div class="section-head"><h2>Experimental</h2>
-<p>2 preprints</p></div>
+<p>1 preprint</p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2608.15231">Deep Earth imaging through neutrino and seismic tomography</a></b><span>Sanjib Kumar Agarwalla, Arjun Datta, Amol Dighe et al. · 15 Aug 2026</span><span class="tags"><span class="tag">hep-ex</span><span class="tag">astro-ph.EP</span><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.19051">The Radioactive Background of the JUNO Calibration System</a></b><span>Rui Li, Youhui Yun, Zhangming Chen et al. · 19 Aug 2026</span><span class="tags"><span class="tag">physics.ins-det</span><span class="tag">hep-ex</span></span></li>
 </ul>
 
@@ -39,7 +38,7 @@ and may contain errors. No model is involved.</b>
 ::: section alt
 
 <div class="section-head"><h2>Theory</h2>
-<p>14 preprints</p></div>
+<p>15 preprints</p></div>
 
 <ul class="list list--news">
 <li><b><a href="https://arxiv.org/abs/2608.19367">TeV-scale leptogenesis in a parity symmetric neutrino mass model</a></b><span>Keisuke Harigaya, Gio Leone · 19 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
@@ -56,6 +55,7 @@ and may contain errors. No model is involved.</b>
 <li><b><a href="https://arxiv.org/abs/2608.16648">Broadband Properties of the Harmonic of Type-C Quasi-periodic Oscillation in MAXI J1348-630</a></b><span>Xin-Lei Wang, Zhen Yan, Jun-Feng Wang et al. · 17 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.18954">Constraining Cosmic-Ray Acceleration and Escape in Middle-Aged Supernova Remnants with GeV-TeV Gamma-Ray Observations</a></b><span>Siyu Chen, Bing Theodore Zhang, Yi Xing et al. · 19 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.15960">Probing T and CP Violation at DUNE and T2HK</a></b><span>Sabya Sachi Chatterjee, Sudhanwa Patra, Thomas Schwetz et al. · 16 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.19319">Solar Constraints on Heavy Neutral Leptons with ν_τ Mixing</a></b><span>Vedran Brdar, Samiur R. Mir, Xun-Jie Xu · 19 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 </ul>
 
 
@@ -75,7 +75,7 @@ still appears under theory.</p>
 
 <!-- ARCHIVE:BEGIN -->
 <ul class="archive">
-  <li><time datetime="2026-08-19">19 August 2026</time><a href="digest/2026-08-19.html">Digest of 2026-08-19</a><span class="count">4 papers</span></li>
+  <li><time datetime="2026-08-19">19 August 2026</time><a href="digest/2026-08-19.html">Digest of 2026-08-19</a><span class="count">5 papers</span></li>
   <li><time datetime="2026-08-18">18 August 2026</time><a href="digest/2026-08-18.html">Digest of 2026-08-18</a><span class="count">6 papers</span></li>
   <li><time datetime="2026-08-17">17 August 2026</time><a href="digest/2026-08-17.html">Digest of 2026-08-17</a><span class="count">4 papers</span></li>
   <li><time datetime="2026-08-16">16 August 2026</time><a href="digest/2026-08-16.html">Digest of 2026-08-16</a><span class="count">1 paper</span></li>
@@ -84,7 +84,7 @@ still appears under theory.</p>
   <li><time datetime="2026-08-13">13 August 2026</time><a href="digest/2026-08-13.html">Digest of 2026-08-13</a><span class="count">8 papers</span></li>
   <li><time datetime="2026-08-12">12 August 2026</time><a href="digest/2026-08-12.html">Digest of 2026-08-12</a><span class="count">8 papers</span></li>
   <li><time datetime="2026-08-10">10 August 2026</time><a href="digest/2026-08-10.html">Digest of 2026-08-10</a><span class="count">3 papers</span></li>
-  <li><time datetime="2026-08">August 2026</time><a href="digest/2026-08.html">All of August 2026</a><span class="count">39 papers</span></li>
+  <li><time datetime="2026-08">August 2026</time><a href="digest/2026-08.html">All of August 2026</a><span class="count">40 papers</span></li>
 </ul>
 <!-- ARCHIVE:END -->
 

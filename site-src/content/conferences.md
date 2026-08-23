@@ -25,7 +25,7 @@ scripts:
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the conference indexers' APIs,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 22 August 2026, 13:26 CEST</span></div>
+<span class="stamp">Last successful update: 23 August 2026, 07:31 CEST</span></div>
 </div>
 
 
@@ -36,12 +36,12 @@ and may contain errors. No model is involved.</b>
 <title>Conference timeline</title>
 <line x1="332.8" y1="14" x2="332.8" y2="311" style="stroke:var(--line);stroke-width:1"/>
 <text x="335.8" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
-<line x1="201.0" y1="8" x2="201.0" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
-<text x="201.0" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
+<line x1="214.2" y1="8" x2="214.2" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
+<text x="214.2" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
 <rect x="161.5" y="30" width="144.9" height="10" rx="5" style="fill:var(--io);opacity:1"/>
 <text x="112" y="38.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">ICNFP 2026</text>
 <text x="312.4" y="38.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Kolymbari, Crete…</text>
-<rect x="214.2" y="50" width="118.6" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<rect x="214.2" y="50" width="118.6" height="10" rx="5" style="fill:var(--io);opacity:1"/>
 <text x="112" y="58.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">Corfu 2026</text>
 <text x="338.8" y="58.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Corfu, Greece</text>
 <rect x="227.4" y="70" width="52.7" height="10" rx="5" style="fill:var(--no);opacity:1"/>
