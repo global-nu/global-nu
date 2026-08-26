@@ -99,10 +99,15 @@ def parse_agent_status(text: str) -> str:
         parts.append(f"last exit code {code.group(1).strip()}")
     line = "launchd's record of the scheduled job: " + ", ".join(parts) + "."
     if code and code.group(1).strip().startswith("78"):
-        line += (" 78 means launchd could not start the job at all — most "
-                 "often because it could not open the log file it was told to "
-                 "write, at var/news/logs/launchd.log. Deleting that file lets "
-                 "launchd create one it can open.")
+        line += (" 78 means launchd could not start the job at all, before a "
+                 "single line of the program ran. Until 26 August 2026 the "
+                 "cause was always the same: the agent was told to redirect "
+                 "its output to a log file under the project directory, macOS "
+                 "stamped com.apple.macl on that file, and launchd could no "
+                 "longer open it. Both agents have had that redirect removed "
+                 "and now write their own logs, so a 78 appearing again means "
+                 "something else in the plist — check it against the "
+                 "templates in tools/news/launchd/.")
     return line
 
 
@@ -184,15 +189,21 @@ def main(argv: list[str] | None = None) -> int:
     """
     import argparse
     from . import mailer, state
-    from .common import load_config
+    from .common import get_logger, load_config
 
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--dry-run", action="store_true",
                     help="report the verdict and change nothing")
     args = ap.parse_args(argv)
 
-    logging.basicConfig(level=logging.INFO, format="%(levelname)-7s %(message)s")
-    log = logging.getLogger("watchdog")
+    # Its own file, not stderr alone. Until 26 August 2026 this was
+    # basicConfig() and nothing else: every line the watchdog produced existed
+    # only if the agent's StandardErrorPath caught it. That redirect is what
+    # launchd could not open, so the watchdog was killed at spawn — and the one
+    # module able to recognise exit 78 (parse_agent_status, below) never got to
+    # run, for two days, in silence. The watcher must not depend on the
+    # mechanism it watches.
+    log = get_logger("watchdog", filename="watchdog.log")
 
     cfg = (load_config().get("alerts") or {})
     max_hours = float(cfg.get("max_hours", DEFAULT_MAX_HOURS))

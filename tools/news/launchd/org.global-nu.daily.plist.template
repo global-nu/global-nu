@@ -51,10 +51,27 @@
 
     <!-- Deliberately absent: RunAtLoad. See the note above. -->
 
-    <key>StandardOutPath</key>
-    <string>__ROOT__/var/news/logs/launchd.log</string>
-    <key>StandardErrorPath</key>
-    <string>__ROOT__/var/news/logs/launchd.log</string>
+    <!-- Deliberately absent: StandardOutPath and StandardErrorPath. They used
+         to point at __ROOT__/var/news/logs/launchd.log, and on 24 August 2026
+         that stopped the site for two days.
+
+         The mechanism: once a sandboxed application has opened a file under a
+         protected directory — and ~/Desktop is protected exactly as
+         ~/Documents is — macOS stamps com.apple.macl on it. From then on
+         xpcproxy cannot open that file to redirect the job's output, and it
+         kills the job at spawn with exit 78 (EX_CONFIG), before python runs.
+         Nothing is written anywhere: no line in news.log, no line in
+         launchd.log, and `launchctl list` shows the agent loaded and healthy.
+         The failure is indistinguishable from an agent that never fired.
+
+         Verified on 26 August 2026: `xattr` on that file returned
+         com.apple.macl, and launchd's own record read
+         `last exit code = 78: EX_CONFIG`.
+
+         Nothing is lost by dropping these. The pipeline writes news.log
+         itself through common.get_logger, and that file is unaffected — a
+         program opening its own log is not xpcproxy trying to open one before
+         the program exists. -->
 
     <key>EnvironmentVariables</key>
     <dict>

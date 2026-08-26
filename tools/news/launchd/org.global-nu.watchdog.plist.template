@@ -47,10 +47,20 @@
 
     <!-- Deliberately absent: RunAtLoad. See the note above. -->
 
-    <key>StandardOutPath</key>
-    <string>__ROOT__/var/news/logs/watchdog.log</string>
-    <key>StandardErrorPath</key>
-    <string>__ROOT__/var/news/logs/watchdog.log</string>
+    <!-- Deliberately absent: StandardOutPath and StandardErrorPath, for the
+         reason given at length in the daily template — com.apple.macl on a log
+         file under ~/Desktop, exit 78 at spawn, total silence.
+
+         It cost more here than there. This agent exists to notice when the
+         daily one stops, and on 24 August 2026 both were killed by the same
+         line in their own plists. The watchdog even carries the text that
+         explains exit 78 (parse_agent_status in watchdog.py) and could not
+         reach the point of printing it. A watcher configured like the thing it
+         watches fails at the same instant, for the same reason, and its
+         silence is read as good news.
+
+         The module now writes var/news/logs/watchdog.log itself, through
+         common.get_logger. Do not hand that job back to launchd. -->
 
     <key>EnvironmentVariables</key>
     <dict>

@@ -114,9 +114,17 @@ def save_config(cfg, path: Path | None = None) -> None:
 # --------------------------------------------------------------------------- #
 # logging
 # --------------------------------------------------------------------------- #
-def get_logger(name: str = "news", verbose: bool = True) -> logging.Logger:
+def get_logger(name: str = "news", verbose: bool = True,
+               filename: str = "news.log") -> logging.Logger:
     """One rotating file plus stderr. Idempotent: repeated calls do not stack
-    handlers, which matters because the dashboard imports the pipeline."""
+    handlers, which matters because the dashboard imports the pipeline.
+
+    `filename` exists so a job that is not the pipeline can keep a file of its
+    own. The watchdog needs one: it used to log to stderr and nothing else,
+    and relied on its agent's StandardErrorPath to put that somewhere. That
+    redirect is what killed it on 24 August 2026 — see the launchd templates.
+    A job that cannot write its own log has no way to report the failure of
+    the mechanism that was supposed to write it on its behalf."""
     log = logging.getLogger(name)
     if getattr(log, "_news_configured", False):
         # Already set up — but possibly by an earlier caller that did not know
@@ -129,7 +137,7 @@ def get_logger(name: str = "news", verbose: bool = True) -> logging.Logger:
     LOGS.mkdir(parents=True, exist_ok=True)
 
     fh = logging.handlers.RotatingFileHandler(
-        LOGS / "news.log", maxBytes=LOG_MAX_BYTES, backupCount=LOG_BACKUPS,
+        LOGS / filename, maxBytes=LOG_MAX_BYTES, backupCount=LOG_BACKUPS,
         encoding="utf-8")
     fh.setLevel(logging.DEBUG)
     fh.setFormatter(logging.Formatter("%(asctime)s  %(levelname)-7s %(message)s",
