@@ -25,7 +25,7 @@ scripts:
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the conference indexers' APIs,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 24 August 2026, 16:19 CEST</span></div>
+<span class="stamp">Last successful update: 26 August 2026, 11:14 CEST</span></div>
 </div>
 
 
@@ -34,54 +34,54 @@ and may contain errors. No model is involved.</b>
 <div class="timeline-scroll">
 <svg viewBox="0 0 520 326" role="img" width="520" height="326" aria-label="Timeline of upcoming and recently concluded neutrino conferences" xmlns="http://www.w3.org/2000/svg">
 <title>Conference timeline</title>
-<line x1="332.8" y1="14" x2="332.8" y2="311" style="stroke:var(--line);stroke-width:1"/>
-<text x="335.8" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
-<line x1="227.4" y1="8" x2="227.4" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
-<text x="227.4" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
-<rect x="161.5" y="30" width="144.9" height="10" rx="5" style="fill:var(--io);opacity:1"/>
+<line x1="291.8" y1="14" x2="291.8" y2="311" style="stroke:var(--line);stroke-width:1"/>
+<text x="294.8" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
+<line x1="228.1" y1="8" x2="228.1" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
+<text x="228.1" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
+<rect x="153.8" y="30" width="116.7" height="10" rx="5" style="fill:var(--io);opacity:1"/>
 <text x="112" y="38.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">ICNFP 2026</text>
-<text x="312.4" y="38.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Kolymbari, Crete…</text>
-<rect x="214.2" y="50" width="118.6" height="10" rx="5" style="fill:var(--io);opacity:1"/>
+<text x="276.6" y="38.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Kolymbari, Crete…</text>
+<rect x="196.3" y="50" width="95.5" height="10" rx="5" style="fill:var(--io);opacity:1"/>
 <text x="112" y="58.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">Corfu 2026</text>
-<text x="338.8" y="58.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Corfu, Greece</text>
-<rect x="227.4" y="70" width="52.7" height="10" rx="5" style="fill:var(--io);opacity:1"/>
+<text x="297.8" y="58.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Corfu, Greece</text>
+<rect x="206.9" y="70" width="42.4" height="10" rx="5" style="fill:var(--io);opacity:1"/>
 <text x="112" y="78.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">Multi-Messenger…</text>
-<text x="286.1" y="78.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Athens, Greece</text>
-<rect x="227.4" y="90" width="52.7" height="10" rx="5" style="fill:var(--io);opacity:1"/>
+<text x="255.3" y="78.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Athens, Greece</text>
+<rect x="206.9" y="90" width="42.4" height="10" rx="5" style="fill:var(--io);opacity:1"/>
 <text x="112" y="98.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">COSMO 2026</text>
-<text x="286.1" y="98.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Leiden…</text>
-<rect x="240.6" y="110" width="39.5" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="255.3" y="98.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Leiden…</text>
+<rect x="217.5" y="110" width="31.8" height="10" rx="5" style="fill:var(--io);opacity:1"/>
 <text x="112" y="118.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">Multi-Higgs 2026</text>
-<text x="286.1" y="118.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Lisbon, Portugal</text>
-<rect x="240.6" y="130" width="4.0" height="10" rx="5" style="fill:var(--no);opacity:1"/>
-<text x="112" y="138.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">Neutrino Group…</text>
-<text x="250.6" y="138.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">ExWi</text>
-<rect x="306.4" y="150" width="65.9" height="10" rx="5" style="fill:var(--no);opacity:1"/>
-<text x="112" y="158.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">TeVPA 2026</text>
-<text x="378.3" y="158.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Tendo, Japan</text>
-<rect x="319.6" y="170" width="52.7" height="10" rx="5" style="fill:var(--no);opacity:1"/>
-<text x="112" y="178.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">PPC 2026</text>
-<text x="378.3" y="178.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Sydney, Australia</text>
-<rect x="319.6" y="190" width="52.7" height="10" rx="5" style="fill:var(--no);opacity:1"/>
-<text x="112" y="198.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">Gamma 2026</text>
-<text x="378.3" y="198.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Heidelberg…</text>
-<rect x="319.6" y="210" width="65.9" height="10" rx="5" style="fill:var(--no);opacity:1"/>
-<text x="112" y="218.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">NuFact 2026</text>
-<text x="391.4" y="218.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Shanghai, China</text>
-<rect x="319.6" y="230" width="79.0" height="10" rx="5" style="fill:var(--no);opacity:1"/>
-<text x="112" y="238.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">NOW 2026</text>
-<text x="404.6" y="238.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Otranto (Lecce)…</text>
-<rect x="411.8" y="250" width="52.7" height="10" rx="5" style="fill:var(--no);opacity:1"/>
-<text x="112" y="258.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">UNDARK 2026</text>
-<text x="470.5" y="258.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">CERN, Geneva…</text>
-<rect x="438.1" y="270" width="4.0" height="10" rx="5" style="fill:var(--no);opacity:1"/>
-<text x="112" y="278.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">AI for Operations:…</text>
-<rect x="451.3" y="290" width="13.2" height="10" rx="5" style="fill:var(--no);opacity:1"/>
-<text x="112" y="298.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">CZ+SK HEP Workshop…</text>
-<text x="470.5" y="298.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Prague</text>
+<text x="255.3" y="118.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Lisbon, Portugal</text>
+<rect x="270.6" y="130" width="53.1" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="112" y="138.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">TeVPA 2026</text>
+<text x="329.6" y="138.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Tendo, Japan</text>
+<rect x="281.2" y="150" width="42.4" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="112" y="158.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">PPC 2026</text>
+<text x="329.6" y="158.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Sydney, Australia</text>
+<rect x="281.2" y="170" width="42.4" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="112" y="178.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">Gamma 2026</text>
+<text x="329.6" y="178.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Heidelberg…</text>
+<rect x="281.2" y="190" width="53.1" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="112" y="198.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">NuFact 2026</text>
+<text x="340.2" y="198.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Shanghai, China</text>
+<rect x="281.2" y="210" width="63.7" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="112" y="218.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">NOW 2026</text>
+<text x="350.8" y="218.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Otranto (Lecce)…</text>
+<rect x="355.4" y="230" width="42.4" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="112" y="238.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">UNDARK 2026</text>
+<text x="403.9" y="238.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">CERN, Geneva…</text>
+<rect x="376.7" y="250" width="4.0" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="112" y="258.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">AI for Operations:…</text>
+<rect x="387.3" y="270" width="10.6" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="112" y="278.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">CZ+SK HEP Workshop…</text>
+<text x="403.9" y="278.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Prague</text>
+<rect x="429.7" y="290" width="42.4" height="10" rx="5" style="fill:var(--no);opacity:1"/>
+<text x="112" y="298.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">Gravity@Prague 2026</text>
+<text x="478.2" y="298.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Prague, Czech…</text>
 </svg>
 </div>
-<p class="cap">The soonest 14 upcoming meetings (blue, amber if running right now). 43 upcoming and 42 recent meetings are tracked in full below.</p>
+<p class="cap">The soonest 14 upcoming meetings (blue, amber if running right now). 42 upcoming and 42 recent meetings are tracked in full below.</p>
 </figure>
 
 
@@ -126,18 +126,17 @@ and may contain errors. No model is involved.</b>
 <circle cx="79.0" cy="285.0" r="4" fill="var(--accent-2)"/>
 <text x="88.0" y="288.0" style="fill:var(--text-mute);font-size:9px;font-family:var(--body,sans-serif)">General particle physics</text>
 </svg>
-<p class="cap">33 of 43 upcoming meetings placed on the map from a venue the source published; the other 10 stay in the list below without a dot rather than a guess.</p>
+<p class="cap">33 of 42 upcoming meetings placed on the map from a venue the source published; the other 9 stay in the list below without a dot rather than a guess.</p>
 </figure>
 
-<div class="section-head"><h2>Neutrino conferences</h2><p>68 meetings</p></div>
-<div class="section-head section-head--sub"><h3>Upcoming</h3><p>35 meetings</p></div>
+<div class="section-head"><h2>Neutrino conferences</h2><p>67 meetings</p></div>
+<div class="section-head section-head--sub"><h3>Upcoming</h3><p>34 meetings</p></div>
 <ul class="list list--news">
 <li><b>XV International Conference on New Frontiers in Physics</b><span>19–30 August 2026 · Kolymbari, Crete, Greece</span><span class="cites"><a href="https://indico.cern.ch/event/1571736/">Details</a></span></li>
 <li><b>Workshop on the Standard Model and Beyond</b><span>23 August – 1 September 2026 · Corfu, Greece</span><span class="cites"><a href="http://www.physics.ntua.gr/corfu2026/sm.html">Details</a></span></li>
 <li><b>6th Hellenic Astronomical Society Summer School</b><span>24–28 August 2026 · Athens, Greece</span><span class="cites"><a href="https://conferences.uoa.gr/event/125/overview">Details</a></span></li>
 <li><b>29th International Conference on Particle Physics &amp; Cosmology</b><span>24–28 August 2026 · Leiden, Netherlands</span><span class="cites"><a href="https://cosmo-26.lorentz.leidenuniv.nl/">Details</a></span></li>
 <li><b>Eighth Workshop on Multi-Higgs Models</b><span>25–28 August 2026 · Lisbon, Portugal</span><span class="cites"><a href="http://cftp.tecnico.ulisboa.pt/~2hdmwork/">Details</a></span></li>
-<li><b>Neutrino Group Meeting</b><span>25 August 2026 · ExWi</span><span class="cites"><a href="https://indico.global/event/18780/">Details</a></span></li>
 <li><b>TeV Particle Astrophysics</b><span>30 August – 4 September 2026 · Tendo, Japan</span><span class="cites"><a href="https://indico-icehap.phys.s.chiba-u.ac.jp/event/3/">Details</a></span></li>
 <li><b>XIX International Conference on Interconnections between Particle Physics and Cosmology</b><span>31 August – 4 September 2026 · Sydney, Australia</span><span class="cites"><a href="https://indico.global/event/15267/">Details</a></span></li>
 <li><b>9th Heidelberg International Symposium on High-Energy Gamma-Ray Astronomy</b><span>31 August – 4 September 2026 · Heidelberg, Germany.</span><span class="cites"><a href="https://plan.events.mpg.de/event/543/">Details</a></span></li>
