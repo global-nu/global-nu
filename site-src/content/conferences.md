@@ -25,7 +25,7 @@ scripts:
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the conference indexers' APIs,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 27 August 2026, 07:31 CEST</span></div>
+<span class="stamp">Last successful update: 28 August 2026, 07:32 CEST</span></div>
 </div>
 
 
@@ -36,8 +36,8 @@ and may contain errors. No model is involved.</b>
 <title>Conference timeline</title>
 <line x1="291.8" y1="14" x2="291.8" y2="311" style="stroke:var(--line);stroke-width:1"/>
 <text x="294.8" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
-<line x1="238.7" y1="8" x2="238.7" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
-<text x="238.7" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
+<line x1="249.3" y1="8" x2="249.3" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
+<text x="249.3" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
 <rect x="153.8" y="30" width="116.7" height="10" rx="5" style="fill:var(--io);opacity:1"/>
 <text x="112" y="38.5" text-anchor="end" style="fill:var(--text-soft);font-size:10.5px;opacity:1;font-family:var(--body,sans-serif)">ICNFP 2026</text>
 <text x="276.6" y="38.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Kolymbari, Crete…</text>
@@ -81,7 +81,7 @@ and may contain errors. No model is involved.</b>
 <text x="478.2" y="298.5" style="fill:var(--text-mute);font-size:9px;opacity:1;font-family:var(--body,sans-serif)">Prague, Czech…</text>
 </svg>
 </div>
-<p class="cap">The soonest 14 upcoming meetings (blue, amber if running right now). 42 upcoming and 42 recent meetings are tracked in full below.</p>
+<p class="cap">The soonest 14 upcoming meetings (blue, amber if running right now). 42 upcoming and 41 recent meetings are tracked in full below.</p>
 </figure>
 
 
@@ -209,7 +209,7 @@ and may contain errors. No model is involved.</b>
 
 ::: section alt
 
-<div class="section-head"><h2>General particle physics</h2><p>17 meetings</p></div>
+<div class="section-head"><h2>General particle physics</h2><p>16 meetings</p></div>
 <div class="section-head section-head--sub"><h3>Upcoming</h3><p>8 meetings</p></div>
 <ul class="list list--news">
 <li><b>XIVth International Symposium on Nuclear Symmetry Energy</b><span>14–18 September 2026 · Catania, Italy</span><span class="cites"><a href="https://agenda.infn.it/event/48729/">Details</a></span></li>
@@ -221,7 +221,7 @@ and may contain errors. No model is involved.</b>
 <li><b>34th International Conference on Supersymmetry and Unification of Fundamental Interactions (SUSY 2027)</b><span>31 May – 4 June 2027 · Daejeon, South Korea</span><span class="cites"><a href="https://indico.ibs.re.kr/event/1301">Details</a></span></li>
 <li><b>15th Large Hadron Collider Physics Conference (LHCP2027)</b><span>31 May – 4 June 2027 · Vancouver, Canada</span><span class="cites"><a href="https://indico.cern.ch/event/1689315/">Details</a></span></li>
 </ul>
-<div class="section-head section-head--sub"><h3>Recent</h3><p>9 meetings</p></div>
+<div class="section-head section-head--sub"><h3>Recent</h3><p>8 meetings</p></div>
 <ul class="list list--news">
 <li><b>XXXIV edition of "Giornate di Studio sui Rivelatori"</b><span>29 June – 3 July 2026 · Cogne, Aosta Valley, Italy</span><span class="cites"><a href="https://gsr.to.infn.it/">Details</a></span></li>
 <li><b>17th Conference on Quark Confinement and the Hadron Spectrum</b><span>29 June – 4 July 2026 · Wrocław, Poland</span><span class="cites"><a href="https://indico.cern.ch/event/1531304/">Details</a></span></li>
@@ -231,7 +231,6 @@ and may contain errors. No model is involved.</b>
 <li><b>37th Rencontres de Blois</b><span>10–15 May 2026 · Blois, France</span><span class="cites"><a href="https://blois.in2p3.fr/2026">Details</a></span></li>
 <li><b>22ma edizione degli Incontri di Fisica delle Alte Energie</b><span>8–10 April 2026 · Bologna</span><span class="cites"><a href="https://agenda.infn.it/event/47878/">Details</a></span></li>
 <li><b>Standard Model at the LHC</b><span>7–10 April 2026 · Torino</span><span class="cites"><a href="https://agenda.infn.it/event/48435/">Details</a></span></li>
-<li><b>60th Rencontres de Moriond: QCD &amp; High Energy Interactions</b><span>30 March – 6 April 2026 · La Thuile, Aosta Valley, Italy</span><span class="cites"><a href="https://moriond.in2p3.fr/2026/QCD/">Details</a></span></li>
 </ul>
 
 
