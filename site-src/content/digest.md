@@ -22,7 +22,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 28 August 2026, 07:32 CEST</span></div>
+<span class="stamp">Last successful update: 30 August 2026, 07:31 CEST</span></div>
 </div>
 
 <div class="section-head"><h2>Experimental</h2>
@@ -44,18 +44,18 @@ and may contain errors. No model is involved.</b>
 <li><b><a href="https://arxiv.org/abs/2608.25590">Quantum-Kinetic Leptogenesis and Gravitational Waves from Seesaw-Assisted Domain-Wall Dynamics</a></b><span>Gayatri Ghosh · 26 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.26847">Energy-dependent slow collective flavor conversion of supernova neutrinos</a></b><span>Heng-Hao Chen, Ian Padilla-Gay, Meng-Ru Wu et al. · 27 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.22374">Galactic Microquasar and Supernova Remnants Imprinting on Diffuse Neutrino and Gamma-Ray Sky</a></b><span>Shiqi Yu, Bing Theodore Zhang · 23 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2608.22005">Effects of RG running in breaking μ-τ reflection symmetry, conventional versus minimal seesaw</a></b><span>Chandan Kumar Borah, Chandan Duarah · 22 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.25049">NuGlass: A Fast and Interactive 3D Visualization of Neutrino Oscillations</a></b><span>Chao Zhang · 25 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.25069">Energy-independent neutrino dephasing from an ultralight axion-like background</a></b><span>B. A. Couto e Silva, B. L. Sánchez-Vega · 25 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.22556">Three-Technology Ultra-High-Energy Neutrino Flavor Measurement</a></b><span>Alba Burgos-Mondéjar, William G. Thompson, Carlos A. Argüelles · 23 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2608.21266">Generation of TeV Photons by PeV Neutrinos in Dense Astrophysical Environments</a></b><span>Jun-Chen Wang, Hanlin Song, Hao Li et al. · 21 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.26681">ANRe-M1: a GPU-accelerated numerical relativity code with multi-energy M1 neutrino transport</a></b><span>Takami Kuroda, Masaru Shibata · 27 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.26090">Finding and using interpretable latents in a neutrino foundation model with sparse autoencoders</a></b><span>Raphaël Bonnet-Guerrini, Johann Ioannou-Nikolaides, Inar Timiryasov et al. · 26 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">cs.AI</span><span class="tag">cs.LG</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.25430">A Rotational Perturbative Correction to Democratic Neutrino Mixing and JUNO Compatibility</a></b><span>Maibam Ricky Devi, Swaraj Kumar Nanda, Sudhanwa Patra · 26 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.24739">Discovery Potentials for the Cosmic Neutrino Background using Single Arm Interferometer</a></b><span>Chrisna Setyo Nugroho · 25 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2608.21353">High-Energy Neutrino Constraints on memory burdened Bardeen and Kerr Primordial Black Holes</a></b><span>Md Riajul Haque, Suvashis Maity · 21 Aug 2026</span><span class="tags"><span class="tag">astro-ph.CO</span><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.26063">Strong CP and the PMNS Phase in Dirac Left-Right Symmetry</a></b><span>Vladimir Tello · 26 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2608.25001">Resonant Induced Orbital Electron Capture: Novel method for low-energy ν̄_e detection</a></b><span>Evgeny Akhmedov, Thierry Lasserre, Leonardo Maturi · 25 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span><span class="tag">nucl-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.23654">Operational quantum estimation theory for neutrino oscillations: identifiability, attainability, and spectral precision bounds</a></b><span>Jianlong Lu · 24 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.27258">An Axial U_A(1)_L_μ-L_τ: UV Completion and Experimental Searches</a></b><span>Rundong Fang, Jinhui Guo, Ming Li et al. · 27 Aug 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.26666">Optical Discovery of New and Candidate Galactic Supernova Remnants Plus Optical Imaging of the Monogem Ring Supernova Remnant</a></b><span>Robert A. Fesen, Marcel Drechsler, Bray Falls et al. · 27 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">astro-ph.GA</span></span></li>
 </ul>
 
 
@@ -75,7 +75,7 @@ still appears under theory.</p>
 
 <!-- ARCHIVE:BEGIN -->
 <ul class="archive">
-  <li><time datetime="2026-08-27">27 August 2026</time><a href="digest/2026-08-27.html">Digest of 2026-08-27</a><span class="count">2 papers</span></li>
+  <li><time datetime="2026-08-27">27 August 2026</time><a href="digest/2026-08-27.html">Digest of 2026-08-27</a><span class="count">4 papers</span></li>
   <li><time datetime="2026-08-26">26 August 2026</time><a href="digest/2026-08-26.html">Digest of 2026-08-26</a><span class="count">4 papers</span></li>
   <li><time datetime="2026-08-25">25 August 2026</time><a href="digest/2026-08-25.html">Digest of 2026-08-25</a><span class="count">6 papers</span></li>
   <li><time datetime="2026-08-24">24 August 2026</time><a href="digest/2026-08-24.html">Digest of 2026-08-24</a><span class="count">1 paper</span></li>
@@ -85,7 +85,7 @@ still appears under theory.</p>
   <li><time datetime="2026-08-20">20 August 2026</time><a href="digest/2026-08-20.html">Digest of 2026-08-20</a><span class="count">1 paper</span></li>
   <li><time datetime="2026-08-19">19 August 2026</time><a href="digest/2026-08-19.html">Digest of 2026-08-19</a><span class="count">5 papers</span></li>
   <li><time datetime="2026-08-18">18 August 2026</time><a href="digest/2026-08-18.html">Digest of 2026-08-18</a><span class="count">6 papers</span></li>
-  <li><time datetime="2026-08">August 2026</time><a href="digest/2026-08.html">All of August 2026</a><span class="count">62 papers</span></li>
+  <li><time datetime="2026-08">August 2026</time><a href="digest/2026-08.html">All of August 2026</a><span class="count">64 papers</span></li>
 </ul>
 <!-- ARCHIVE:END -->
 
