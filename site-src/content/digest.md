@@ -22,14 +22,13 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 05 September 2026, 07:32 CEST</span></div>
+<span class="stamp">Last successful update: 06 September 2026, 07:32 CEST</span></div>
 </div>
 
 <div class="section-head"><h2>Experimental</h2>
-<p>3 preprints</p></div>
+<p>2 preprints</p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2608.29450">First Measurement of Solar Neutrinos through Elastic Neutrino-Electron Scattering at the keV Scale</a></b><span>XENON Collaboration, E. Aprile, J. Aalbers et al. · 29 Aug 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.02950">Comment on arXiv:2608.29450: "First Measurement of Solar Neutrinos through Elastic Neutrino-Electron Scattering at the keV Scale"</a></b><span>Ke Han, Xiangdong Ji, Jianglai Liu et al. · 1 Sep 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.00842">Neutrino Experiments at the LHC and the HL-LHC</a></b><span>Chayanit Asawatangtrakuldee, Albert De Roeck · 1 Sep 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
 </ul>
@@ -40,7 +39,7 @@ and may contain errors. No model is involved.</b>
 ::: section alt
 
 <div class="section-head"><h2>Theory</h2>
-<p>13 preprints</p></div>
+<p>14 preprints</p></div>
 
 <ul class="list list--news">
 <li><b><a href="https://arxiv.org/abs/2609.00888">The Type-I Seesaw as a Relativistic Fermionic Proximity Effect: Spectral Moments, EFT Consistency, and Sterile-Sector Reconstruction</a></b><span>Jianlong Lu · 1 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">math-ph</span></span></li>
@@ -56,6 +55,7 @@ and may contain errors. No model is involved.</b>
 <li><b><a href="https://arxiv.org/abs/2608.30562">Cascades from ultra-high-energy neutrinos</a></b><span>Gaetano Di Marco, Rhorry Gauld, Rafael Alves Batista et al. · 31 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.03648">Light Leptoquarks in a Dark Sector: Scalar Dark Matter, Neutrino Mass, and Collider Signatures</a></b><span>Priyotosh Bandyopadhyay, Kirtiman Ghosh, Anirban Karan et al. · 3 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.03609">KM3NeT/ARCA stacking search for high-energy neutrino point sources: the case of ultra-luminous infrared galaxies and blazars</a></b><span>The KM3NeT Collaboration · 3 Sep 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2608.30989">The First Array-Wide Diffuse Flux Search for UHE Neutrinos with the Askaryan Radio Array</a></b><span>Alan Salcedo-Gomez, Marco Stein Muzio, for the ARA Collaboration · 31 Aug 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">astro-ph.IM</span></span></li>
 </ul>
 
 
