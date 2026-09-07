@@ -14,6 +14,13 @@
  * Each already answers a click by opening its own card, and two meanings for
  * one click means one of them loses.
  *
+ * The conference timeline is excluded for the opposite reason: it is WIDER
+ * than its card and is read by scrolling it sideways, so a click on it is
+ * usually the end of a drag, and the enlarged view it opened was worth
+ * nothing anyway — a 10:1 strip letterboxed into a square stage is smaller
+ * than the figure the reader was already scrolling. A figure whose drawing
+ * sits in a scrolling wrapper is a figure whose click belongs to the scroll.
+ *
  * On the zoom arithmetic being similar to map.js's: that is deliberate, not an
  * oversight. Sharing it would mean refactoring the map's working, tested
  * interaction to serve a simpler case — this one has no markers to counter-
@@ -297,6 +304,7 @@
     Array.prototype.forEach.call(figs, function (fig) {
       if (fig.classList.contains("map-figure")) return;   /* has its own click */
       if (fig.classList.contains("confmap-figure")) return; /* ditto — confmap.js */
+      if (fig.querySelector(".timeline-scroll")) return;    /* scrolls; see header */
       if (!drawingIn(fig)) return;                        /* nothing to enlarge */
       fig.setAttribute("tabindex", "0");
       fig.setAttribute("role", "button");

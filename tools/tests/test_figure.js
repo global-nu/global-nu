@@ -42,6 +42,12 @@ const PAGE = `
 <figure class="figure confmap-figure" id="confmap">
   <svg viewBox="0 6 720 162" role="img" aria-label="Conference map"></svg>
 </figure>
+<figure class="figure" id="timeline">
+  <h4>Timeline</h4>
+  <div class="timeline-scroll">
+    <svg viewBox="0 0 2690 326" role="img" aria-label="Conference timeline"></svg>
+  </div>
+</figure>
 <figure class="figure" id="nodrawing">
   <p class="cap">A caption with no drawing above it.</p>
 </figure>`;
@@ -77,6 +83,17 @@ const confmapFig = d.getElementById('confmap');
 (!confmapFig.hasAttribute('tabindex') && confmapFig.getAttribute('role') !== 'button')
   ? ok('the conference map is not made activatable — it already uses its click')
   : bad('the conference map figure was made activatable and will fight its own card');
+
+/* 2c. the conference timeline is left alone as well — it is wider than its
+   card and read by scrolling, so a click on it is the tail of a drag, and the
+   enlarged view was smaller than what the reader was already looking at.
+   Matched by the scrolling wrapper rather than by a class of its own, so any
+   future figure that has to scroll inherits the same answer. */
+const timelineFig = d.getElementById('timeline');
+(!timelineFig.hasAttribute('tabindex') && timelineFig.getAttribute('role') !== 'button'
+ && !timelineFig.classList.contains('figure--openable'))
+  ? ok('the scrolling timeline is not made activatable — its click is the scroll')
+  : bad('the timeline figure was made activatable and will fight its own scroll');
 
 /* 3. a figure with no drawing is skipped */
 !d.getElementById('nodrawing').hasAttribute('tabindex')
@@ -130,7 +147,7 @@ d.activeElement === p2
 
 /* 7. the page is whole with the script never running */
 const plain = new JSDOM(`<!doctype html><body>${PAGE}</body>`).window.document;
-plain.querySelectorAll('figure svg').length === 3
+plain.querySelectorAll('figure svg').length === 4
   ? ok('every figure still draws with the script never running')
   : bad('a figure lost its drawing');
 
