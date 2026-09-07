@@ -43,16 +43,39 @@ def _e(text: str) -> str:
 # --------------------------------------------------------------------------- #
 # Small on purpose: this sits above the two lists that are the point of the
 # page, and a reader who scrolled here for "what's next" should not have to
-# scroll past a tall figure to reach it. 520 wide matches the home page's
-# ranges-hero figure rather than the 760 of a full-width table, because a
-# narrower viewBox keeps the row labels legible when the SVG is scaled down
-# to a 375px screen — the ratio of text to viewBox width is what survives the
-# shrink, not the absolute font-size.
+# scroll past a tall figure to reach it.
+#
+# The figure is WIDER than the space it is given, and scrolls sideways inside
+# it (.figure .timeline-scroll in site.css). That is the whole geometry here:
+# a year squeezed into one screenful put every September meeting inside the
+# same four pixels, and no amount of choosing which rows to draw fixes a
+# scale that coarse. So the scale is fixed instead — VIEW units to the next
+# MONTHS_VISIBLE months — and the drawing simply runs off the right edge for
+# as long as the calendar does. What a reader sees without touching anything
+# is the next four months, ruled every month; the rest of the year is one
+# swipe away.
+#
+# Only the TIME axis is stretched, never the drawing as a whole. Rows, text
+# and bar heights are in the same units they always were and render at the
+# same px; what changed is that four months now take 875 units instead of a
+# whole 520-unit figure. The distinction matters: making the svg itself wider
+# on screen (a percentage width, say, so a card of any size shows exactly four
+# months) scales the type and the row pitch with it, and a 14-row strip on a
+# 1064px card came back 666px tall — the full-screen figure this page has
+# fought twice already. A fixed unit scale cannot do that: the figure is
+# ~390px tall on every screen, and a wider card simply shows more calendar.
+#
+# 875 units at UNIT_PX puts four months in ~1050px, which is about the card
+# width on a 1280px screen. A narrower card therefore shows less than four
+# months rather than shrinking the type to fit — the same trade .table-scroll
+# makes, and the reason the drawing scrolls at all.
 ROW = 20
 PAD_TOP = 26
 PAD_BOTTOM = 20
-LABEL_W = 122          # room for the acronym column, in viewBox units
-WIDTH = 520
+VIEW = 875             # viewBox units to MONTHS_VISIBLE months
+MONTHS_VISIBLE = 4
+LEAD_DAYS = 5          # air to the left of today, so the TODAY label fits
+UNIT_PX = 1.2          # px per viewBox unit — constant, whatever the card
 
 
 def _date(value: str) -> _dt.date | None:
@@ -83,6 +106,25 @@ def _plus_year(d: _dt.date) -> _dt.date:
         return d.replace(year=d.year + 1)
     except ValueError:
         return d.replace(year=d.year + 1, day=28)
+
+
+def _plus_months(d: _dt.date, months: int) -> _dt.date:
+    """`d` shifted by whole months, clamped to the end of a shorter month."""
+    total = d.month - 1 + months
+    year, month = d.year + total // 12, total % 12 + 1
+    day = min(d.day, [31, 29 if year % 4 == 0 and (year % 100 or not year % 400)
+                      else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month - 1])
+    return _dt.date(year, month, day)
+
+
+def _text_w(text: str, size: float) -> float:
+    """Roughly how wide `text` will set, in viewBox units.
+
+    Only ever used to decide whether a label has room to its right, where
+    being a few units out costs nothing — the alternative is measuring text
+    the build cannot measure, since the font is the reader's own.
+    """
+    return len(text) * size * 0.52
 
 
 def _parse(rows: list[dict]) -> tuple[list[tuple[dict, _dt.date, _dt.date]], int]:
@@ -200,38 +242,57 @@ def conference_timeline(upcoming: list[dict], recent: list[dict],
     # every rebuild, and leaves visible empty space where nothing is announced
     # yet — which is itself the honest reading of the calendar.
     hi = max(hi, _plus_year(today))
-    span = max((hi - lo).days, 1)
-    # A little air either side so the first bar does not touch the axis.
-    pad = max(int(span * 0.04), 3)
-    lo -= _dt.timedelta(days=pad)
-    hi += _dt.timedelta(days=pad)
-    span = (hi - lo).days
+    lo -= _dt.timedelta(days=LEAD_DAYS)
+    hi += _dt.timedelta(days=LEAD_DAYS)
 
-    plot_w = WIDTH - LABEL_W - 16
+    # The scale is set by the visible window, not by the total span: VIEW
+    # units carry the next MONTHS_VISIBLE months, and the drawing is however
+    # many units wide the rest of the calendar needs. This is what stops a
+    # busy September from collapsing — adding a meeting in 2027 lengthens the
+    # figure now, it does not shrink the bars already drawn.
+    per_day = VIEW / max((_plus_months(today, MONTHS_VISIBLE) - today).days, 1)
+    width = round((hi - lo).days * per_day)
     height = PAD_TOP + ROW * len(entries) + PAD_BOTTOM
 
     def x_of(d: _dt.date) -> float:
-        return LABEL_W + plot_w * ((d - lo).days / span)
+        return (d - lo).days * per_day
 
     parts = [
-        f'<svg viewBox="0 0 {WIDTH} {height}" '
-        f'role="img" width="{WIDTH}" height="{height}" '
+        # The width/height attributes ARE the size this figure renders at: the
+        # CSS hands it back its intrinsic size instead of stretching it to the
+        # card (see .figure .timeline-scroll svg in site.css), because a
+        # drawing scaled to fit cannot scroll, and fitting is precisely what
+        # this one must not do.
+        f'<svg viewBox="0 0 {width} {height}" '
+        f'role="img" width="{width * UNIT_PX:.0f}" height="{height * UNIT_PX:.0f}" '
         f'aria-label="Timeline of upcoming and recently concluded neutrino '
-        f'conferences" xmlns="http://www.w3.org/2000/svg">',
+        f'conferences, scrollable sideways from today to a year ahead" '
+        f'xmlns="http://www.w3.org/2000/svg">',
         '<title>Conference timeline</title>',
     ]
 
-    # Gridlines every two months, labelled at the top. Every month was legible
-    # while the window was a few months wide; with a year of runway now always
-    # on the right the same step packs some fifteen lines into 382 units of
-    # plot, close enough that the labels touch. Two-monthly halves that without
-    # taking the scale away. The step is anchored on odd months (Jan, Mar, …),
-    # not on whichever month `lo` happens to fall in, so the ruling stays in
-    # the same place from one rebuild to the next instead of flipping phase
-    # when the earliest conference changes.
+    # Month gridlines, labelled at the top. One a month is legible again now
+    # that a month is ~128 units wide rather than ~30: the two-monthly step
+    # this figure briefly used was a symptom of the squashed scale, not
+    # something worth keeping once the scale stopped squashing.
+    def month_label(x: float, month: _dt.date) -> str:
+        label = month.strftime("%b")
+        if month.month == 1:
+            # The drawing spans more than a year, so a bare "Jan" would not
+            # say which January: the year rides along on that one label.
+            label += month.strftime(" '%y")
+        return (f'<text x="{x:.1f}" y="{PAD_TOP - 15}" '
+                f'style="fill:var(--text-mute);font-size:9.5px;'
+                f'font-family:var(--display,sans-serif)">{_e(label)}</text>')
+
+    # The window opens a few days into a month, so that month's own gridline
+    # is behind the left edge and the first thing a reader sees would be an
+    # unnamed stretch of calendar ending at a line labelled "Oct". Its name
+    # goes at the edge instead, gridline or no gridline.
+    if lo.day != 1:
+        parts.append(month_label(2, lo))
+
     month = _dt.date(lo.year, lo.month, 1)
-    if month.month % 2 == 0:                    # step back onto the odd-month grid
-        month = _dt.date(month.year, month.month - 1, 1)
     while month <= hi:
         if month >= lo:
             x = x_of(month)
@@ -239,18 +300,9 @@ def conference_timeline(upcoming: list[dict], recent: list[dict],
                 f'<line x1="{x:.1f}" y1="{PAD_TOP - 12}" x2="{x:.1f}" '
                 f'y2="{height - PAD_BOTTOM + 5}" '
                 f'style="stroke:var(--line);stroke-width:1"/>')
-            # The window spans more than a year, so a bare "Jan" would not say
-            # which January: the year rides along on that one label per cycle.
-            label = month.strftime("%b")
-            if month.month == 1:
-                label += month.strftime(" '%y")
-            parts.append(
-                f'<text x="{x + 3:.1f}" y="{PAD_TOP - 15}" '
-                f'style="fill:var(--text-mute);font-size:9.5px;'
-                f'font-family:var(--display,sans-serif)">'
-                f'{_e(label)}</text>')
-        month = _dt.date(month.year + (month.month >= 11),
-                         (month.month + 1) % 12 + 1, 1)
+            parts.append(month_label(x + 3, month))
+        month = _dt.date(month.year + (month.month == 12),
+                         month.month % 12 + 1, 1)
 
     # Today.
     tx = x_of(today)
@@ -278,17 +330,32 @@ def conference_timeline(upcoming: list[dict], recent: list[dict],
         parts.append(
             f'<rect x="{x1:.1f}" y="{y + 4}" width="{w:.1f}" height="10" rx="5" '
             f'style="fill:{colour};opacity:{opacity}"/>')
+
+        # The name travels WITH the bar, rather than sitting in a fixed column
+        # down the left. In a drawing that scrolls, that column is the first
+        # thing to leave the screen — a reader who swipes to next spring would
+        # be looking at unlabelled bars — and it was never legible for long
+        # names anyway: at 122 units it clipped "CZ+SK HEP Workshop" to
+        # "Z+SK HEP Workshop". Beside the bar there is as much room as the
+        # calendar leaves.
+        name = _short(c, 30)
+        place = _trim(extra.get("place", ""), 24)
+        room = _text_w(name, 10.5) + (_text_w(place, 9) + 6 if place else 0)
+        if x1 + w + 8 + room <= width:
+            anchor, text_x = "start", x1 + w + 8
+        else:
+            # No room to the right (a meeting at the very end of the span):
+            # the label reads back towards the bar instead of off the edge.
+            anchor, text_x = "end", x1 - 8
+        label = (f'<tspan style="fill:var(--text-soft);font-size:10.5px">'
+                 f'{_e(name)}</tspan>')
+        if place:
+            label += (f'<tspan dx="6" style="fill:var(--text-mute);'
+                      f'font-size:9px">{_e(place)}</tspan>')
         parts.append(
-            f'<text x="{LABEL_W - 10}" y="{y + 12.5}" text-anchor="end" '
-            f'style="fill:var(--text-soft);font-size:10.5px;opacity:{opacity};'
-            f'font-family:var(--body,sans-serif)">{_e(_short(c))}</text>')
-        # The place, set after the bar, only when there is room for it.
-        place = _trim(extra.get("place", ""), 18)
-        if place and x1 + w + 6 < WIDTH - 40:
-            parts.append(
-                f'<text x="{x1 + w + 6:.1f}" y="{y + 12.5}" '
-                f'style="fill:var(--text-mute);font-size:9px;opacity:{opacity};'
-                f'font-family:var(--body,sans-serif)">{_e(place)}</text>')
+            f'<text x="{text_x:.1f}" y="{y + 12.5}" text-anchor="{anchor}" '
+            f'style="opacity:{opacity};font-family:var(--body,sans-serif)">'
+            f'{label}</text>')
 
     parts.append("</svg>")
     return "\n".join(parts)

@@ -299,22 +299,24 @@ h4{font-weight:700;font-size:.98rem}
   text-transform:uppercase;color:var(--text-mute);margin:0 0 .7rem;font-weight:600}
 .figure svg{width:100%;height:auto;display:block}
 .figure .cap{font-size:.74rem;color:var(--text-mute);margin:.5rem 0 0}
-/* The conference timeline: on a wide screen .figure svg above stretches it to
-   fill the card exactly as any other figure. Below ~460px that stretch would
-   shrink its row labels past legibility — the whole point of a Gantt strip is
-   reading which meeting is which — so past that point it stops shrinking and
-   scrolls horizontally instead, the same trade table.data makes with
-   .table-scroll for the same reason.
-   The other end of that same stretch is the actual bug: this figure's
-   viewBox (520x326, a 14-row Gantt strip) is far taller relative to its
-   width than the map's (720x280), so letting it fill a ~1200px-wide card
-   the same way scales it to ~660px tall — nearly a full screen on its own,
-   on the conferences page specifically, the one page where two figures were
-   already flagged as a risk to the list below them. max-width holds it near
-   its own designed proportions instead of the card's. */
-.figure .timeline-scroll{overflow-x:auto}
-.figure .timeline-scroll svg{width:100%;min-width:460px;max-width:620px;
-  height:auto;display:block;margin-inline:auto}
+/* The conference timeline is the one figure on the site that must NOT fit its
+   card. figures.conference_timeline draws a year of calendar at a fixed scale
+   — 520 viewBox units to four months — and states that scale in the svg's own
+   width/height attributes, so the drawing is some 1900px wide and the card is
+   not. Letting .figure svg above stretch it to width:100% would scale those
+   four months back down to the card's width, which is exactly the squash the
+   fixed scale exists to prevent: every September meeting inside four pixels.
+   So this rule hands the element back its intrinsic size and lets the wrapper
+   scroll, the same trade table.data makes with .table-scroll.
+   Keeping the drawing at its own size also settles the sizing bug this rule
+   used to fight with max-width: a 520x326 strip stretched to a ~1200px card
+   rendered ~660px tall, nearly a full screen, on the one page already
+   carrying two figures above its lists. A drawing that never stretches
+   cannot do that — tools/tests/test_timeline_proportion.py measures the
+   result rather than trusting this comment. */
+.figure .timeline-scroll{overflow-x:auto;overscroll-behavior-x:contain}
+.figure .timeline-scroll svg{width:auto;max-width:none;min-width:0;
+  height:auto;display:block;margin-inline:0}
 .legend{display:flex;gap:1.1rem;font-family:var(--mono);font-size:.72rem;
   color:var(--text-mute);margin-top:.7rem;flex-wrap:wrap}
 .legend i{display:inline-block;width:1.6rem;height:2px;vertical-align:middle;

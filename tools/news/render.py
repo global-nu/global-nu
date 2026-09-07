@@ -465,7 +465,12 @@ def conferences(records: list[dict], log: logging.Logger,
         else:
             caption = (f"The {n_rec} most recently concluded "
                       f"meeting{'' if n_rec == 1 else 's'} (grey)")
-        caption += (f". {len(upcoming)} upcoming and {len(recent)} recent "
+        # The scroll is not discoverable on its own: a drawing wider than its
+        # card looks like a drawing that was cut off, and nothing on the page
+        # says otherwise. One clause is cheaper than a scrollbar nobody sees.
+        caption += (f". The next four months are shown — scroll the figure "
+                   f"sideways for the rest of the year. "
+                   f"{len(upcoming)} upcoming and {len(recent)} recent "
                    f"meeting{'' if len(upcoming) + len(recent) == 1 else 's'} "
                    f"are tracked in full below.")
         timeline_block = f"""

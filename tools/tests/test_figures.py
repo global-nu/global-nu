@@ -75,6 +75,12 @@ def rects(svg: str) -> list[str]:
     return re.findall(r"<rect ([^/]*?)/>", svg)
 
 
+def view_w(svg: str) -> float:
+    """The drawing's own width, in viewBox units — no longer a constant: the
+    figure is as wide as the calendar it covers (see figures.VIEW)."""
+    return float(re.search(r'viewBox="0 0 ([\d.]+)', svg).group(1))
+
+
 # --------------------------------------------------------------------- #
 # date handling
 # --------------------------------------------------------------------- #
@@ -140,10 +146,10 @@ row = rects(svg)
 check("a closing date before the opening date is corrected to a one-day bar",
       row and 'width="4.0"' in row[0], row)
 bar_x = float(re.search(r'x="([\d.]+)"', row[0]).group(1)) if row else None
-check("the corrected bar is positioned inside the plot area, not "
+check("the corrected bar is positioned inside the drawing, not "
      "extrapolated off-canvas by an uncorrected end<start",
-      bar_x is not None and figures.LABEL_W <= bar_x <= figures.WIDTH,
-      f"bar x={bar_x}, plot area=[{figures.LABEL_W}, {figures.WIDTH}]")
+      bar_x is not None and 0 <= bar_x <= view_w(svg),
+      f"bar x={bar_x}, drawing 0..{view_w(svg)}")
 
 # A record with no readable `start` at all (missing or unparseable) is
 # dropped from the figure — but the drop is now logged, once, aggregated,
@@ -173,13 +179,16 @@ check("nothing is logged when nothing is dropped",
 
 
 # --------------------------------------------------------------------- #
-# the axis: a year of runway, ruled every two months
+# the axis: a year of runway at a fixed scale, ruled every month
 # --------------------------------------------------------------------- #
 # The window used to end at the last conference it drew, which made the same
 # bar sit somewhere different every time a fetcher added or dropped a distant
-# meeting. It now always reaches a year past today, and a scale that wide is
-# ruled every two months rather than every one — fifteen labels in 382 units
-# of plot ran into each other.
+# meeting. It now always reaches a year past today — and that year is drawn at
+# a fixed scale (figures.VIEW units to figures.MONTHS_VISIBLE months) rather
+# than squeezed into one screenful, so the drawing runs off the right edge and
+# the card scrolls. These checks are the reason the squeeze cannot come back:
+# a fitted drawing would put a month in ~30 units and every September meeting
+# in the same four pixels, which is what the width assertions below rule out.
 
 
 def gridlines(svg: str) -> list[float]:
@@ -198,14 +207,29 @@ near = figures.conference_timeline([rec("Near", "2026-08-20", "2026-08-22")],
 labels = [l for l in month_labels(near) if l != "TODAY"]
 check("the axis runs a year forward even when the only meeting is next week",
       len(labels) >= 6, labels)
-check("every gridline label is an odd month — the two-month step is anchored "
-      "on the calendar, not on wherever the earliest record happens to fall",
-      all(l.split()[0] in ("Jan", "Mar", "May", "Jul", "Sep", "Nov")
-          for l in labels), labels)
-check("the ruling really is two-monthly: consecutive labels are two months "
-      "apart, and none repeats inside the window",
-      len(labels) == len(gridlines(near)) and len(set(labels)) == len(labels),
-      labels)
+_rules = gridlines(near)
+_gaps = [b - a for a, b in zip(_rules, _rules[1:])]
+check("the year is ruled every month: twelve or thirteen lines, each with a "
+      "label of its own",
+      12 <= len(_rules) <= 13 and len(labels) == len(_rules) + 1,
+      f"{len(_rules)} lines, {len(labels)} labels: {labels}")
+check("consecutive rules are one month apart, not two",
+      bool(_gaps) and all(figures.VIEW / 4.6 < g < figures.VIEW / 3.6
+                          for g in _gaps),
+      f"gaps={[round(g) for g in _gaps]}, a month is ~{figures.VIEW / 4:.0f}")
+check("the month the window opens in is named at the left edge, even though "
+      "its own rule falls before it",
+      labels[0] == TODAY.strftime("%b") and float(
+          re.search(r'<text x="([\d.]+)"', near).group(1)) < _rules[0],
+      labels[:2])
+check("a screenful of the drawing carries MONTHS_VISIBLE months, so the whole "
+      "drawing is about three screenfuls wide and has to scroll",
+      view_w(near) > 2.5 * figures.VIEW,
+      f"viewBox width={view_w(near)}, screenful={figures.VIEW}")
+check("the svg states that width in px too — a drawing scaled to fit its "
+      "card cannot scroll",
+      float(re.search(r'width="([\d.]+)"', near).group(1))
+      > view_w(near) * 0.9, near[:200])
 check("the January label carries its year, since the window spans more than "
       "one January",
       all(len(l.split()) == 2 for l in labels if l.startswith("Jan")), labels)
@@ -217,13 +241,15 @@ _dense = [rec(f"D {i}", (TODAY + _dt.timedelta(days=10 * i)).isoformat(),
           for i in range(30)]
 dense = figures.conference_timeline(_dense, [], today=TODAY, max_rows=14)
 _bars = [float(re.search(r'x="([\d.]+)"', r).group(1)) for r in rects(dense)]
-_plot_lo, _plot_hi = figures.LABEL_W, figures.WIDTH - 16
 check("with 30 meetings across the year, 14 rows are drawn",
       len(_bars) == 14, _bars)
-check("those 14 rows cover the window rather than crowding its first weeks "
-      "(the last bar sits past the middle of the plot)",
-      bool(_bars) and _bars[-1] > (_plot_lo + _plot_hi) / 2,
-      f"last bar x={_bars[-1] if _bars else None}, plot {_plot_lo}..{_plot_hi}")
+check("those 14 rows cover the year rather than crowding its first weeks "
+      "(the last bar sits past the middle of the drawing)",
+      bool(_bars) and _bars[-1] > view_w(dense) / 2,
+      f"last bar x={_bars[-1] if _bars else None}, width={view_w(dense)}")
+check("the first screenful is not squashed: two meetings ten days apart are "
+      "drawn at least 30 units apart, not on top of each other",
+      len(_bars) > 1 and _bars[1] - _bars[0] > 30, _bars[:2])
 check("the rows stay in date order, soonest at the top",
       _bars == sorted(_bars), _bars)
 
