@@ -446,8 +446,18 @@ def conferences(records: list[dict], log: logging.Logger,
         # records still remain — "The soonest 0 upcoming meetings" would be
         # the sentence a reader saw on a page like that, so the two clauses
         # are built to stand on their own rather than assuming n_up > 0.
-        if n_up:
-            caption = (f"The soonest {n_up} upcoming meeting{'' if n_up == 1 else 's'} "
+        if n_up and n_up < len(upcoming):
+            # Not "the soonest N" any more: the timeline runs a year forward
+            # and picks its rows across that window (figures._spread), so the
+            # rows are no longer the head of the list. Saying "soonest" would
+            # now be a claim the figure contradicts — a reader who counted the
+            # September meetings in the list below and found fewer in the
+            # figure would be right to call it a bug.
+            caption = (f"{n_up} of the {len(upcoming)} upcoming meetings, "
+                      f"spread across the year ahead "
+                      f"(blue, amber if running right now)")
+        elif n_up:
+            caption = (f"The {n_up} upcoming meeting{'' if n_up == 1 else 's'} "
                       f"(blue, amber if running right now)")
             if n_rec:
                 caption += (f" and the {n_rec} most recently concluded "

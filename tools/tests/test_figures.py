@@ -173,6 +173,68 @@ check("nothing is logged when nothing is dropped",
 
 
 # --------------------------------------------------------------------- #
+# the axis: a year of runway, ruled every two months
+# --------------------------------------------------------------------- #
+# The window used to end at the last conference it drew, which made the same
+# bar sit somewhere different every time a fetcher added or dropped a distant
+# meeting. It now always reaches a year past today, and a scale that wide is
+# ruled every two months rather than every one — fifteen labels in 382 units
+# of plot ran into each other.
+
+
+def gridlines(svg: str) -> list[float]:
+    return [float(x) for x in
+            re.findall(r'<line x1="([\d.]+)"[^>]*stroke:var\(--line\)', svg)]
+
+
+def month_labels(svg: str) -> list[str]:
+    return re.findall(r'font-family:var\(--display,sans-serif\)">([^<]+)<', svg)
+
+
+# One meeting, next week: without the fixed horizon the whole axis would be
+# that one week wide.
+near = figures.conference_timeline([rec("Near", "2026-08-20", "2026-08-22")],
+                                   [], today=TODAY)
+labels = [l for l in month_labels(near) if l != "TODAY"]
+check("the axis runs a year forward even when the only meeting is next week",
+      len(labels) >= 6, labels)
+check("every gridline label is an odd month — the two-month step is anchored "
+      "on the calendar, not on wherever the earliest record happens to fall",
+      all(l.split()[0] in ("Jan", "Mar", "May", "Jul", "Sep", "Nov")
+          for l in labels), labels)
+check("the ruling really is two-monthly: consecutive labels are two months "
+      "apart, and none repeats inside the window",
+      len(labels) == len(gridlines(near)) and len(set(labels)) == len(labels),
+      labels)
+check("the January label carries its year, since the window spans more than "
+      "one January",
+      all(len(l.split()) == 2 for l in labels if l.startswith("Jan")), labels)
+
+# The rows themselves: 30 meetings, one every ten days from today, is exactly
+# the shape that used to stack every drawn bar in the first month.
+_dense = [rec(f"D {i}", (TODAY + _dt.timedelta(days=10 * i)).isoformat(),
+              (TODAY + _dt.timedelta(days=10 * i + 2)).isoformat())
+          for i in range(30)]
+dense = figures.conference_timeline(_dense, [], today=TODAY, max_rows=14)
+_bars = [float(re.search(r'x="([\d.]+)"', r).group(1)) for r in rects(dense)]
+_plot_lo, _plot_hi = figures.LABEL_W, figures.WIDTH - 16
+check("with 30 meetings across the year, 14 rows are drawn",
+      len(_bars) == 14, _bars)
+check("those 14 rows cover the window rather than crowding its first weeks "
+      "(the last bar sits past the middle of the plot)",
+      bool(_bars) and _bars[-1] > (_plot_lo + _plot_hi) / 2,
+      f"last bar x={_bars[-1] if _bars else None}, plot {_plot_lo}..{_plot_hi}")
+check("the rows stay in date order, soonest at the top",
+      _bars == sorted(_bars), _bars)
+
+# Fewer meetings than rows: nothing is selected away, and nothing is
+# reordered — _spread must be a no-op here.
+few = figures.conference_timeline(_dense[:5], [], today=TODAY, max_rows=14)
+check("with fewer meetings than rows, every one of them is still drawn",
+      len(rects(few)) == 5, rects(few))
+
+
+# --------------------------------------------------------------------- #
 # max_rows slicing arithmetic and the caption's numbers
 # --------------------------------------------------------------------- #
 
@@ -200,8 +262,9 @@ def _caption(records) -> str:
 # Fewer upcoming than max_rows (14): recent fills the remaining rows, and the
 # caption states both counts and both totals correctly.
 cap = _caption(_upcoming_recs(5) + _recent_recs(20))
-check("with 5 upcoming, the caption states the soonest 5",
-      "The soonest 5 upcoming meetings" in cap, cap)
+check("with 5 upcoming (all of them shown), the caption says so plainly and "
+      "does not claim a selection it did not make",
+      "The 5 upcoming meetings" in cap and "spread across" not in cap, cap)
 check("with 5 upcoming (of 14 rows), the remaining 9 rows go to recent",
       "the 9 most recently concluded" in cap, cap)
 check("the caption's totals match the full record counts (5 upcoming, 20 recent)",
@@ -210,8 +273,10 @@ check("the caption's totals match the full record counts (5 upcoming, 20 recent)
 # More upcoming than max_rows: recent gets none of the 14 rows at all, and
 # the caption must not claim otherwise.
 cap = _caption(_upcoming_recs(20) + _recent_recs(10))
-check("with 20 upcoming, the caption caps the shown count at max_rows (14)",
-      "The soonest 14 upcoming meetings" in cap, cap)
+check("with 20 upcoming, the caption caps the shown count at max_rows (14) "
+      "and says the 14 are picked across the window, not the soonest 14",
+      "14 of the 20 upcoming meetings, spread across the year ahead" in cap
+      and "soonest" not in cap, cap)
 check("with upcoming already filling every row, recent is not mentioned as shown",
       "most recently concluded" not in cap, cap)
 check("the caption's totals still report the true 20 upcoming and 10 recent",

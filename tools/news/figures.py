@@ -77,6 +77,73 @@ def _short(conf: dict, limit: int = 20) -> str:
     return _trim(extra.get("acronym") or conf.get("title", ""), limit)
 
 
+def _plus_year(d: _dt.date) -> _dt.date:
+    """The same calendar day a year on — 29 Feb lands on 28 Feb."""
+    try:
+        return d.replace(year=d.year + 1)
+    except ValueError:
+        return d.replace(year=d.year + 1, day=28)
+
+
+def _parse(rows: list[dict]) -> tuple[list[tuple[dict, _dt.date, _dt.date]], int]:
+    """(conference, start, end) per record, plus a count of the unusable ones."""
+    entries, dropped = [], 0
+    for c in rows:
+        extra = c.get("extra", {})
+        start = _date(extra.get("opening", ""))
+        if start is None:
+            dropped += 1
+            continue
+        end = _date(extra.get("closing", "")) or start
+        if end < start:
+            end = start
+        entries.append((c, start, end))
+    return entries, dropped
+
+
+def _spread(entries: list[tuple[dict, _dt.date, _dt.date]], limit: int,
+            today: _dt.date, horizon: _dt.date
+            ) -> list[tuple[dict, _dt.date, _dt.date]]:
+    """At most `limit` entries, chosen to cover today..horizon rather than
+    just its first weeks.
+
+    The window is cut into `limit` equal slots and each slot offers up its
+    soonest meeting; slots nobody is meeting in give their row back, and the
+    rows left over go to the soonest meetings not already taken. So a quiet
+    spring costs the figure nothing, and a crowded September still shows more
+    than one September meeting — while a reader who scans the rows top to
+    bottom is looking at the whole year rather than at four weeks of it.
+
+    What this deliberately is not: a claim to completeness. Fourteen rows out
+    of thirty-five upcoming meetings never was one, and the caption
+    render.conferences writes beside the figure says which fourteen these are.
+    Entries are returned in the input's order (soonest-first), never resorted.
+    """
+    if len(entries) <= limit:
+        return entries
+    span = max((horizon - today).days, 1)
+    slot = span / limit
+    picked: list[int] = []
+    taken: set[int] = set()
+    seen_slots: set[int] = set()
+    for i, (_c, start, _e) in enumerate(entries):
+        # Anything already begun, and anything past the horizon, belongs to
+        # the nearest slot rather than to no slot at all: the axis still draws
+        # it, so the selection must still be able to reach it.
+        k = min(max(int((start - today).days / slot), 0), limit - 1)
+        if k not in seen_slots:
+            seen_slots.add(k)
+            picked.append(i)
+            taken.add(i)
+    for i in range(len(entries)):        # soonest-first, by construction
+        if len(picked) >= limit:
+            break
+        if i not in taken:
+            picked.append(i)
+            taken.add(i)
+    return [entries[i] for i in sorted(picked[:limit])]
+
+
 def conference_timeline(upcoming: list[dict], recent: list[dict],
                         today: _dt.date | None = None,
                         max_rows: int = 14,
@@ -94,23 +161,18 @@ def conference_timeline(upcoming: list[dict], recent: list[dict],
     more upcoming meetings than `max_rows`, `recent` gets none at all; that is
     the correct trade, not an accident of the slicing, because a meeting
     already over is the one thing on this page nobody needs to plan around.
+
+    Which `max_rows` of the upcoming ones is _spread's job, not a plain
+    head-slice: the axis now always runs a year forward, and the soonest
+    fourteen meetings are routinely all inside one month, which drew fourteen
+    bars stacked in the leftmost 4% of the plot with eleven empty months
+    beside them. Picking across the window instead makes every row's position
+    carry information.
     """
     today = today or _dt.date.today()
-    rows = upcoming[:max_rows]
-    rows = rows + recent[:max(0, max_rows - len(rows))]
-
-    entries = []
-    dropped = 0
-    for c in rows:
-        extra = c.get("extra", {})
-        start = _date(extra.get("opening", ""))
-        if start is None:
-            dropped += 1
-            continue
-        end = _date(extra.get("closing", "")) or start
-        if end < start:
-            end = start
-        entries.append((c, start, end))
+    up, dropped = _parse(upcoming)
+    rec, dropped_rec = _parse(recent)
+    dropped += dropped_rec
     if dropped and log is not None:
         # A missing/unparseable extra.opening is a fetcher-side date
         # regression, not an expected shape — the record still appears in the
@@ -118,15 +180,26 @@ def conference_timeline(upcoming: list[dict], recent: list[dict],
         # the only place it would otherwise vanish silently. Aggregated, one
         # line, same level fetch_nu_unbound.fetch() already uses for the
         # identical situation ("N dropped for an unreadable date").
-        log.info("conference timeline: %d of %d row(s) dropped for a "
-                 "missing/unreadable opening date", dropped, len(rows))
+        log.info("conference timeline: %d of %d record(s) dropped for a "
+                 "missing/unreadable opening date",
+                 dropped, len(upcoming) + len(recent))
+
+    entries = _spread(up, max_rows, today, _plus_year(today))
+    entries = entries + rec[:max(0, max_rows - len(entries))]
     if not entries:
         return ""
 
     lo = min(s for _, s, _ in entries)
     hi = max(e for _, _, e in entries)
     lo = min(lo, today)
-    hi = max(hi, today)
+    # Always a full year of runway to the right of today, whether or not any
+    # meeting is scheduled that far out. A window that stops at the last known
+    # conference silently rescales every time a fetcher adds or drops a distant
+    # entry, so the same bar sits in a different place from one day to the
+    # next; a fixed horizon makes "how far off is this" mean the same thing on
+    # every rebuild, and leaves visible empty space where nothing is announced
+    # yet — which is itself the honest reading of the calendar.
+    hi = max(hi, _plus_year(today))
     span = max((hi - lo).days, 1)
     # A little air either side so the first bar does not touch the axis.
     pad = max(int(span * 0.04), 3)
@@ -148,8 +221,17 @@ def conference_timeline(upcoming: list[dict], recent: list[dict],
         '<title>Conference timeline</title>',
     ]
 
-    # Month gridlines, labelled at the top.
+    # Gridlines every two months, labelled at the top. Every month was legible
+    # while the window was a few months wide; with a year of runway now always
+    # on the right the same step packs some fifteen lines into 382 units of
+    # plot, close enough that the labels touch. Two-monthly halves that without
+    # taking the scale away. The step is anchored on odd months (Jan, Mar, …),
+    # not on whichever month `lo` happens to fall in, so the ruling stays in
+    # the same place from one rebuild to the next instead of flipping phase
+    # when the earliest conference changes.
     month = _dt.date(lo.year, lo.month, 1)
+    if month.month % 2 == 0:                    # step back onto the odd-month grid
+        month = _dt.date(month.year, month.month - 1, 1)
     while month <= hi:
         if month >= lo:
             x = x_of(month)
@@ -157,13 +239,18 @@ def conference_timeline(upcoming: list[dict], recent: list[dict],
                 f'<line x1="{x:.1f}" y1="{PAD_TOP - 12}" x2="{x:.1f}" '
                 f'y2="{height - PAD_BOTTOM + 5}" '
                 f'style="stroke:var(--line);stroke-width:1"/>')
+            # The window spans more than a year, so a bare "Jan" would not say
+            # which January: the year rides along on that one label per cycle.
+            label = month.strftime("%b")
+            if month.month == 1:
+                label += month.strftime(" '%y")
             parts.append(
                 f'<text x="{x + 3:.1f}" y="{PAD_TOP - 15}" '
                 f'style="fill:var(--text-mute);font-size:9.5px;'
                 f'font-family:var(--display,sans-serif)">'
-                f'{_e(month.strftime("%b"))}</text>')
-        month = _dt.date(month.year + (month.month == 12),
-                         month.month % 12 + 1, 1)
+                f'{_e(label)}</text>')
+        month = _dt.date(month.year + (month.month >= 11),
+                         (month.month + 1) % 12 + 1, 1)
 
     # Today.
     tx = x_of(today)
