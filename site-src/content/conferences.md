@@ -25,14 +25,14 @@ scripts:
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the conference indexers' APIs,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 07 September 2026, 10:49 CEST</span></div>
+<span class="stamp">Last successful update: 08 September 2026, 07:33 CEST</span></div>
 </div>
 
 
 <figure class="figure">
 <h4>Timeline</h4>
 <div class="timeline-scroll">
-<svg viewBox="0 0 2690 326" role="img" width="3228" height="391" aria-label="Timeline of upcoming and recently concluded neutrino conferences, scrollable sideways from today to a year ahead" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 2697 326" role="img" width="3236" height="391" aria-label="Timeline of upcoming and recently concluded neutrino conferences, scrollable sideways from today to a year ahead" xmlns="http://www.w3.org/2000/svg">
 <title>Conference timeline</title>
 <text x="2.0" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
 <line x1="208.0" y1="14" x2="208.0" y2="311" style="stroke:var(--line);stroke-width:1"/>
@@ -59,8 +59,8 @@ and may contain errors. No model is involved.</b>
 <text x="2391.3" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Aug</text>
 <line x1="2610.7" y1="14" x2="2610.7" y2="311" style="stroke:var(--line);stroke-width:1"/>
 <text x="2613.7" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
-<line x1="35.9" y1="8" x2="35.9" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
-<text x="35.9" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
+<line x1="43.0" y1="8" x2="43.0" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
+<text x="43.0" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
 <rect x="35.9" y="30" width="28.7" height="10" rx="5" style="fill:var(--io);opacity:1"/>
 <text x="72.5" y="38.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">UNDARK 2026</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">CERN, Geneva…</tspan></text>
 <rect x="50.2" y="50" width="4.0" height="10" rx="5" style="fill:var(--no);opacity:1"/>
