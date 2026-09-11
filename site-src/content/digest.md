@@ -22,7 +22,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 10 September 2026, 07:33 CEST</span></div>
+<span class="stamp">Last successful update: 11 September 2026, 07:33 CEST</span></div>
 </div>
 
 <div class="section-head"><h2>Experimental</h2>
@@ -44,7 +44,7 @@ and may contain errors. No model is involved.</b>
 <ul class="list list--news">
 <li><b><a href="https://arxiv.org/abs/2609.04761">Flavor Tomography of Long-Lived Neutrino-Mass Mediators: Probing the Neutrino Mass Ordering at the HL-LHC</a></b><span>Renjie Wang · 4 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.10383">Quantifying Information Hierarchy for Neutrino Oscillation Parameters at JUNO</a></b><span>Yu-han Shu, Neetu Raj Singh Chundawat, Luis A. Delgadillo et al. · 9 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span><span class="tag">quant-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2609.04650">Self-Interacting Sterile Neutrino Cold Dark Matter: Resonant Production Mechanism in the Early Universe</a></b><span>Eung Jin Chun, Kenji Kadota, Seokhoon Yun · 4 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2609.10668">The Dark Dimension and Majorana Neutrinos</a></b><span>Arturo de Giorgi, Dhruv Pasari · 9 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span><span class="tag">hep-th</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.07130">Majoron-driven spontaneous leptogenesis in type-II seesaw model</a></b><span>Eung Jin Chun, Tae Hyun Jung, Jin Sun · 7 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.06825">Inelastic Self-interacting Dark Matter and LUX-ZEPLIN 248 keV Event in a Dirac Modular Inverse Seesaw</a></b><span>Pritam Das, Biswajit Karmakar, Satyabrata Mahapatra et al. · 6 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span><span class="tag">hep-ex</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.05352">Displaced Signals from Long-lived Particles in Neutrinoless Double Beta Decay</a></b><span>Patrick D. Bolton, Noor-Inès Boudjema, Frank F. Deppisch et al. · 4 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
@@ -54,8 +54,8 @@ and may contain errors. No model is involved.</b>
 <li><b><a href="https://arxiv.org/abs/2609.06734">Inverse seesaw and inflation in a supersymmetric 331 model from SU(6)</a></b><span>Imtiaz Khan, Tianjun Li · 6 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.06494">Radiative double inverse seesaw and dark matter in an alternative gauged U(1)_B-L model</a></b><span>Hiroshi Okada, Labh Singh · 6 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.06203">Planck-Scale Signatures in Vacuum Neutrino Oscillations</a></b><span>Bipin Singh Koranga, Imran Khan · 5 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2609.10931">IceCube neutrino point-source searches in the direction of the KM3NeT ultra-high-energy event</a></b><span>R. Abbasi, M. Ackermann, J. Adams et al. · 10 Sep 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.10128">Hadronic origin of gamma rays and neutrinos from blazars: Multi-messenger implications and observational constraints</a></b><span>Rodrigo Sasse, Rita de Cássia dos Anjos · 9 Sep 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span><span class="cites"><a href="https://doi.org/10.1016/j.astropartphys.2026.103292">DOI</a></span></li>
-<li><b><a href="https://arxiv.org/abs/2609.04185">Atmospheric neutrino up-scattering explanation of LZ 2026 excess</a></b><span>Sk Jeesun, Anirban Majumdar · 3 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
 </ul>
 
 
@@ -75,7 +75,8 @@ still appears under theory.</p>
 
 <!-- ARCHIVE:BEGIN -->
 <ul class="archive">
-  <li><time datetime="2026-09-09">9 September 2026</time><a href="digest/2026-09-09.html">Digest of 2026-09-09</a><span class="count">3 papers</span></li>
+  <li><time datetime="2026-09-10">10 September 2026</time><a href="digest/2026-09-10.html">Digest of 2026-09-10</a><span class="count">1 paper</span></li>
+  <li><time datetime="2026-09-09">9 September 2026</time><a href="digest/2026-09-09.html">Digest of 2026-09-09</a><span class="count">4 papers</span></li>
   <li><time datetime="2026-09-08">8 September 2026</time><a href="digest/2026-09-08.html">Digest of 2026-09-08</a><span class="count">3 papers</span></li>
   <li><time datetime="2026-09-07">7 September 2026</time><a href="digest/2026-09-07.html">Digest of 2026-09-07</a><span class="count">3 papers</span></li>
   <li><time datetime="2026-09-06">6 September 2026</time><a href="digest/2026-09-06.html">Digest of 2026-09-06</a><span class="count">3 papers</span></li>
@@ -84,8 +85,7 @@ still appears under theory.</p>
   <li><time datetime="2026-09-03">3 September 2026</time><a href="digest/2026-09-03.html">Digest of 2026-09-03</a><span class="count">4 papers</span></li>
   <li><time datetime="2026-09-02">2 September 2026</time><a href="digest/2026-09-02.html">Digest of 2026-09-02</a><span class="count">1 paper</span></li>
   <li><time datetime="2026-09-01">1 September 2026</time><a href="digest/2026-09-01.html">Digest of 2026-09-01</a><span class="count">8 papers</span></li>
-  <li><time datetime="2026-08-31">31 August 2026</time><a href="digest/2026-08-31.html">Digest of 2026-08-31</a><span class="count">3 papers</span></li>
-  <li><time datetime="2026-09">September 2026</time><a href="digest/2026-09.html">All of September 2026</a><span class="count">31 papers</span></li>
+  <li><time datetime="2026-09">September 2026</time><a href="digest/2026-09.html">All of September 2026</a><span class="count">33 papers</span></li>
   <li><time datetime="2026-08">August 2026</time><a href="digest/2026-08.html">All of August 2026</a><span class="count">76 papers</span></li>
 </ul>
 <!-- ARCHIVE:END -->
