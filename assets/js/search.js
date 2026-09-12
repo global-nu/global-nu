@@ -95,6 +95,21 @@
     "prediction predictions correlation correlations degeneracy"
   ).split(" "));
 
+  /* Name particles, and single initials. Both are shorter than the three
+     letters the surname test asks for, so both used to fall through to the
+     topic — and that is not a cosmetic loss: "de Salas neutrino" went to
+     INSPIRE as `a Salas and ft de neutrino`, which searches for a different
+     person AND puts INSPIRE's own date operator (`de`) inside a full-text
+     clause. Measured on the live API: `a de Salas` answers 55 papers,
+     `a Di Valentino` 935, `a E. Lisi` 239 against 174 for the old reading.
+
+     A particle only counts as one when a name follows it — otherwise "de" in
+     an English sentence would swallow the next word. */
+  var PARTICLES = new Set((
+    "de del della di da dal dalla do dos das du van von der den ter te " +
+    "le la el al bin ibn ben mac mc o st saint san santa"
+  ).split(" "));
+
   // Experiment names, recognised so that multi-word ones ("Daya Bay",
   // "Hyper-Kamiokande") survive as a single phrase instead of being split into
   // two capitalised words that then look like surnames.
@@ -190,9 +205,16 @@
       return " ";
     });
 
-    // --- arXiv identifier: jump straight to the paper ---
+    /* --- identifiers: jump straight to the paper ---
+       Both arXiv spellings, new (2107.00532) and old (hep-ph/0208026), and a
+       DOI. Until this existed a pasted arXiv identifier produced NO INSPIRE
+       query at all — the id is not a word, not a year and not a surname, so
+       every branch dropped it and INSPIRE was simply not asked. */
     var ax = s.match(/\b(\d{4}\.\d{4,5})(v\d+)?\b/);
+    if (!ax) ax = s.match(/\b([a-z-]{2,}(?:\.[A-Za-z]{2})?\/\d{7})(v\d+)?\b/);
     if (ax) { out.arxivId = ax[1]; s = s.replace(ax[0], " "); }
+    var dx = s.match(/\b(10\.\d{4,9}\/[^\s"']+)/);
+    if (dx) { out.doi = dx[1].replace(/[.,;]+$/, ""); s = s.replace(dx[0], " "); }
 
     // --- experiment names -> topic (see the note on EXPERIMENTS above) ---
     EXPERIMENTS.forEach(function (c) {
@@ -202,6 +224,40 @@
 
     // --- remaining words: subject vocabulary -> topic, the rest -> surname ---
     var words = s.split(/\s+/).filter(Boolean);
+
+    /* Glue a particle, or an initial, onto the name that follows it, before
+       anything else looks at the list. Done here rather than inside the loop
+       below because it is a fact about a PAIR of tokens, and the loop can
+       only see one at a time. */
+    function bare(t) { return String(t).toLowerCase().replace(/[.,;']+$/, ""); }
+    function isPrefix(t) {
+      return PARTICLES.has(bare(t)) || /^[a-z]\.?$/i.test(t);
+    }
+    function isSurname(t) {
+      var b = bare(t);
+      return /^[a-zà-ÿ'’\-]{3,}[.,;]?$/i.test(t) && !PHYS.has(b) && !DROP.has(b) &&
+             !PARTICLES.has(b);
+    }
+
+    var glued = [];
+    var wi = 0;
+    while (wi < words.length) {
+      // A RUN of prefixes, not one: "van der Meer" is two particles and a
+      // name, and gluing only the last of them left `a Van der and a Meer`.
+      var run = 0;
+      while (isPrefix(words[wi + run]) && wi + run + 1 < words.length) run++;
+      if (run && isSurname(words[wi + run])) {
+        glued.push(words.slice(wi, wi + run + 1).join(" "));
+        wi += run + 1;
+      } else {
+        // No name behind them, so they were never particles: "de" in an
+        // English sentence must not swallow the word that follows.
+        glued.push(words[wi]);
+        wi++;
+      }
+    }
+    words = glued;
+
     words.forEach(function (w) {
       var clean = w.replace(/^[.,;("']+|[.,;)"']+$/g, "");
       if (!clean) return;
@@ -211,8 +267,15 @@
       if (PHYS.has(lower)) { out.topic.push(clean); return; }
 
       // Purely alphabetic word of decent length, not a known subject term:
-      // most likely a surname. Case is deliberately ignored.
-      var looksName = /^[a-zà-ÿ'’\-]{3,}$/i.test(clean) && !/\d/.test(clean);
+      // most likely a surname. Case is deliberately ignored. A glued
+      // "de Salas" or "E. Lisi" carries a space and a dot and is admitted
+      // here too — INSPIRE takes both spellings as written (verified).
+      // A bare surname, or one the glue pass above assembled: up to three
+      // short prefixes (particles, initials) and then the name — "de Salas",
+      // "van der Meer", "E. Lisi". INSPIRE takes all of them as written.
+      var looksName = /^[a-zà-ÿ'’\-]{3,}$/i.test(clean) ||
+                      /^(?:[a-zà-ÿ'’\-]{1,5}\.?\s+){1,3}[a-zà-ÿ'’\-]{3,}$/i.test(clean);
+      looksName = looksName && !/\d/.test(clean);
       if (looksName && out.author.length < 4) out.author.push(capitalise(clean));
       else out.topic.push(clean);
     });
@@ -236,8 +299,14 @@
     if (el) el.addEventListener("input", function () { userTouched[k] = true; });
   });
 
+  // The last reading of the free-text line, kept so `fields()` can carry the
+  // identifiers it found. Everything else the reader can correct in a box;
+  // an arXiv id or a DOI has no box, and is a fact about the query.
+  var lastParsed = null;
+
   function applyParse() {
     var p = parseFree(elFree.value);
+    lastParsed = p;
     if (!userTouched.author) elAuthor.value = p.author.join("; ");
     if (!userTouched.title)  elTitle.value  = p.title;
     if (!userTouched.topic)  elTopic.value  = p.topic.join(" ");
@@ -287,6 +356,10 @@
       collab: elCollab.value.trim(),
       from: elFrom.value.trim(),
       to: elTo.value.trim(),
+      // Carried from the free-text line, not from a box: an identifier is
+      // something the reader pasted, never something they refined by hand.
+      arxivId: lastParsed && lastParsed.arxivId,
+      doi: lastParsed && lastParsed.doi,
       // What the DATABASES are asked for, which is not the same question as
       // how the answer is displayed. Only the date axis is worth pushing
       // upstream: asking for the most recent records genuinely changes which
@@ -322,6 +395,15 @@
      inside each branch, because `or` binds looser than `and` and a trailing
      date clause would otherwise apply to the second reading only. */
   function inspireQuery(f) {
+    /* An identifier names ONE paper, so it is the whole question: no author,
+       no date, nothing to loosen. Both spellings answer exactly one record
+       (verified live). Before this, a pasted arXiv id produced no INSPIRE
+       query at all and a DOI went through as a bare word. */
+    var ids = [];
+    if (f.arxivId) ids.push("arxiv " + f.arxivId);
+    if (f.doi) ids.push("doi " + f.doi);
+    if (ids.length) return ids.join(" or ");
+
     var rest = [];
     if (f.title) rest.push('t "' + f.title + '"');
     if (f.collab) rest.push("cn " + f.collab);
@@ -356,8 +438,34 @@
     return "(" + asTwo + ") or (" + asOne + ")";
   }
 
+  /* A pasted identifier is a request for ONE paper, and the generic
+     databases cannot take it as a search term: asked for "2107.00532" they
+     fall back on their default subject and answer with forty unrelated
+     neutrino papers, which is worse than answering nothing. So each builder
+     below says whether it can answer an identifier exactly, and returns null
+     when it cannot. A null means the source is skipped for that search and
+     the status line counts one database fewer — visible, and true. */
+  function idOnly(f) {
+    return !!(f.arxivId || f.doi) &&
+           !f.author.length && !f.title && !f.topic && !f.collab;
+  }
+
+  // arXiv registers its own DOI with DataCite under this prefix, which is how
+  // an arXiv identifier becomes something DataCite can match exactly.
+  function arxivDoi(id) { return "10.48550/arXiv." + id; }
+
   function crossrefUrl(f) {
     var p = new URLSearchParams();
+    if (idOnly(f)) {
+      // Crossref registers journal DOIs, never arXiv's own: with only an
+      // arXiv id there is nothing here to ask for.
+      if (!f.doi) return null;
+      p.set("filter", "doi:" + f.doi);
+      p.set("rows", "5");
+      p.set("select", "title,author,issued,container-title,DOI,URL,type,subject");
+      p.set("mailto", "antonio.marrone@ba.infn.it");
+      return "https://api.crossref.org/works?" + p.toString();
+    }
     var bib = [f.title, f.topic, f.collab].filter(Boolean).join(" ");
     if (bib) p.set("query.bibliographic", bib);
     if (f.author.length) p.set("query.author", f.author.join(" "));
@@ -381,6 +489,15 @@
 
   function openalexUrl(f) {
     var p = new URLSearchParams();
+    if (idOnly(f)) {
+      // Verified: OpenAlex matches a journal DOI and does NOT match arXiv's
+      // 10.48550 one.
+      if (!f.doi) return null;
+      p.set("filter", "doi:" + f.doi);
+      p.set("per-page", "5");
+      p.set("mailto", "antonio.marrone@ba.infn.it");
+      return "https://api.openalex.org/works?" + p.toString();
+    }
     var search = [f.title, f.topic, f.collab].filter(Boolean).join(" ");
     if (search) p.set("search", search);
     // Physical Sciences only (domain 3 in OpenAlex's topic hierarchy —
@@ -435,6 +552,12 @@
   }
 
   function dataciteUrl(f) {
+    if (idOnly(f)) {
+      var p0 = new URLSearchParams();
+      p0.set("query", 'doi:"' + (f.doi || arxivDoi(f.arxivId)) + '"');
+      p0.set("page[size]", "5");
+      return "https://api.datacite.org/dois?" + p0.toString();
+    }
     var terms = [];
     f.author.forEach(function (a) {
       var v = esClean(a);
@@ -543,22 +666,101 @@
       });
   }
 
-  function fromInspire(f) {
+  /* ---------------------------------------------------------------
+     Asking INSPIRE, and not taking silence for an answer
+
+     Two ways this database used to disappear from a page, both seen for
+     real:
+
+       * a MOMENTARY failure. `a Salas and ft de neutrino` answered HTTP 500
+         once and then 308 hits three times in a row — a transient, and there
+         was no retry, so the one database this page trusts most simply was
+         not in the results and nothing said why;
+       * a query that is merely too NARROW. INSPIRE does not degrade when a
+         reading is wrong or a filter too tight: it returns zero. A date
+         range that excludes the paper, a topic word the record does not
+         carry, a title phrase spelled differently — each gives an empty
+         answer that looks exactly like "this does not exist".
+
+     So: one retry on a transport failure, and then a ladder. The rungs drop
+     the most disposable constraint first — dates, then the topic, then the
+     title when an author is there to carry the search — and the first rung
+     that answers wins. The reader is told when a looser question was the one
+     that answered, because "INSPIRE found nothing" and "INSPIRE found
+     nothing until the dates came off" are different facts.
+     --------------------------------------------------------------- */
+
+  var INSPIRE_FIELDS =
+    "titles,authors,arxiv_eprints,publication_info,earliest_date," +
+    "dois,citation_count,control_number,inspire_categories";
+  var LADDER_MAX = 4;          // the question plus three loosenings
+  var inspireLoosened = "";        // which constraint had to go, if any
+
+  function looser(f) {
+    var g = {
+      author: f.author, title: f.title, topic: f.topic, collab: f.collab,
+      from: f.from, to: f.to, sort: f.sort, arxivId: f.arxivId, doi: f.doi
+    };
+    // An identifier is already the narrowest possible question and there is
+    // nothing to loosen: zero hits means INSPIRE does not have that paper.
+    if (f.arxivId || f.doi) return null;
+    if (g.from || g.to) { g.from = ""; g.to = ""; g.why = "the date range"; return g; }
+    /* Then the LAST name, and before the topic, because a word mistaken for
+       a surname is the commonest way a query comes back empty: the parser
+       has to guess which leftover words are people, and one wrong guess is
+       fatal rather than merely noisy — `a Bilenky and a Petcov and a Massive
+       and ft neutrinos` answers 0, the same query without "Massive" answers
+       12 (measured). Dropping the word beats moving it into the topic, which
+       only relocates the problem: a word the records do not carry zeroes the
+       search from there too (verified: 0 either way for an invented one). */
+    if (g.author.length > 1) {
+      g.author = g.author.slice(0, -1);
+      g.why = "the last name, “" + f.author[f.author.length - 1] + "”";
+      return g;
+    }
+    if (g.topic) { g.topic = ""; g.why = "the topic words"; return g; }
+    if (g.title && (g.author.length || g.collab)) {
+      g.title = ""; g.why = "the title words"; return g;
+    }
+    return null;
+  }
+
+  function inspireOnce(f) {
     var q = inspireQuery(f);
-    if (!q) return Promise.resolve([]);
+    if (!q) return Promise.resolve(null);
     var p = new URLSearchParams({
-      q: q, size: "20", page: "1",
-      fields: "titles,authors,arxiv_eprints,publication_info,earliest_date," +
-              "dois,citation_count,control_number,inspire_categories"
+      q: q, size: "20", page: "1", fields: INSPIRE_FIELDS
     });
     // Relevance mode leaves INSPIRE's own ranking alone: sort=mostcited
     // turned every topic search into "the most cited papers that mention
     // these words", which for "lecture notes string theory" was Quantum
     // Entanglement and the PDG Review.
     if (f.sort === "date") p.set("sort", "mostrecent");
-    return getJSON("https://inspirehep.net/api/literature?" + p.toString())
-      .then(function (d) {
-        return (d.hits && d.hits.hits ? d.hits.hits : []).map(function (h) {
+    return getJSON("https://inspirehep.net/api/literature?" + p.toString());
+  }
+
+  function inspireTry(f) {
+    return inspireOnce(f).then(null, function () { return inspireOnce(f); });
+  }
+
+  function inspireLadder(f, depth) {
+    return inspireTry(f).then(function (d) {
+      var hits = (d && d.hits && d.hits.hits) ? d.hits.hits : [];
+      if (hits.length) return hits;
+      if (depth + 1 >= LADDER_MAX) return hits;
+      var g = looser(f);
+      if (!g) return hits;
+      return inspireLadder(g, depth + 1).then(function (more) {
+        if (more.length && !inspireLoosened) inspireLoosened = g.why;
+        return more;
+      });
+    });
+  }
+
+  function fromInspire(f) {
+    return inspireLadder(f, 0)
+      .then(function (hits) {
+        return hits.map(function (h) {
           var m = h.metadata || {};
           var pi = (m.publication_info || [])[0] || {};
           var journal = pi.journal_title
@@ -597,7 +799,9 @@
   }
 
   function fromCrossref(f) {
-    return getJSON(crossrefUrl(f)).then(function (d) {
+    var url = crossrefUrl(f);
+    if (!url) return Promise.resolve([]);
+    return getJSON(url).then(function (d) {
       return ((d.message && d.message.items) || []).map(function (it) {
         var dp = (it.issued && it.issued["date-parts"] && it.issued["date-parts"][0]) || [];
         return {
@@ -626,7 +830,9 @@
   }
 
   function fromOpenAlex(f) {
-    return getJSON(openalexUrl(f)).then(function (d) {
+    var url = openalexUrl(f);
+    if (!url) return Promise.resolve([]);
+    return getJSON(url).then(function (d) {
       return (d.results || []).map(function (w) {
         var loc = w.primary_location || {};
         return {
@@ -662,6 +868,10 @@
      is reported like any other source and the search still answers from the
      rest. */
   function s2Url(f) {
+    // Semantic Scholar's search endpoint takes words, not identifiers, and
+    // its by-identifier endpoint answers a different shape; rather than feed
+    // it an id it cannot use, this source sits the search out.
+    if (idOnly(f)) return null;
     var q = [f.title, f.topic, f.collab].filter(Boolean).join(" ");
     if (f.author.length) q = (q ? q + " " : "") + f.author.join(" ");
     var p = new URLSearchParams();
@@ -677,7 +887,9 @@
   }
 
   function fromS2(f) {
-    return getJSON(s2Url(f)).then(function (d) {
+    var url = s2Url(f);
+    if (!url) return Promise.resolve([]);
+    return getJSON(url).then(function (d) {
       return (d.data || []).map(function (w) {
         var ext = w.externalIds || {};
         return {
@@ -755,6 +967,7 @@
     return String(s || "").toLowerCase()
       .replace(/\$[^$]*\$/g, " ")          // strip inline maths
       .replace(/[^a-z0-9]+/g, " ")
+      .replace(/^the\s+/, "")             // "The unfinished fabric" = "Unfinished fabric"
       .trim();
   }
 
@@ -765,7 +978,15 @@
       if (/doi\.org\//i.test(l.href)) doi = l.href.replace(/^.*doi\.org\//i, "").toLowerCase();
       if (/arxiv\.org\/abs\//i.test(l.href)) arx = l.href.replace(/^.*abs\//i, "").replace(/v\d+$/, "");
     });
-    return doi || (arx && "arxiv:" + arx) || "t:" + normTitle(r.title);
+    /* The arXiv identifier FIRST, not the DOI. The same paper reaches this
+       page as a preprint and as an article, and those two records carry
+       DIFFERENT dois — arXiv's own 10.48550/arXiv.NNNN on one, the journal's
+       on the other — so keying on the doi kept them apart while the arXiv id
+       they share would have joined them. Seen for real: pasting an arXiv id
+       returned the same paper twice, once from INSPIRE and once from arXiv.
+       Two different papers never share an arXiv id, so this cannot merge
+       what should stay apart. */
+    return (arx && "arxiv:" + arx) || doi || "t:" + normTitle(r.title);
   }
 
   /* Subject information is per-database and none of them has it all:
@@ -1530,7 +1751,7 @@
      the status line says how much that is.
      --------------------------------------------------------------- */
 
-  var state = { rows: [], failures: [], dbs: 0, merged: 0, gated: 0 };
+  var state = { rows: [], failures: [], dbs: 0, merged: 0, gated: 0, loosened: "" };
 
   function anyHidden() {
     return Object.keys(hidden).some(function (k) { return hidden[k]; });
@@ -1625,6 +1846,12 @@
       bits.push(state.gated === 1 ? "1 off-topic record dropped"
                                   : state.gated + " off-topic records dropped");
     }
+    // Said plainly, because it changes what the answer means: these are not
+    // the papers the question asked for, they are the papers of the nearest
+    // question INSPIRE could answer.
+    if (state.loosened) {
+      bits.push("INSPIRE answered only without " + state.loosened);
+    }
     if (shown.length !== state.rows.length) {
       bits.push(shown.length + " shown");
     }
@@ -1691,7 +1918,10 @@
     var parsed = applyParse();
     var f = fields();
 
-    if (!f.author.length && !f.title && !f.topic && !f.collab) {
+    // An identifier counts as something to search for. It used to not, so a
+    // pasted arXiv id or DOI stopped the page before a single request left.
+    if (!f.author.length && !f.title && !f.topic && !f.collab &&
+        !f.arxivId && !f.doi) {
       elStatus.textContent = "Type something to search — an author, a title, a topic, a year.";
       elResults.innerHTML = "";
       elOutbound.innerHTML = "";
@@ -1706,7 +1936,8 @@
     // answer behind a decision taken about the old one. The sort key is the
     // opposite case — it is a standing preference and survives.
     hidden = {};
-    state = { rows: [], failures: [], dbs: 0, merged: 0, gated: 0 };
+    inspireLoosened = "";
+    state = { rows: [], failures: [], dbs: 0, merged: 0, gated: 0, loosened: "" };
     renderControls();
 
     // Bring the results area into view and give it focus, so the answer is
@@ -1787,7 +2018,8 @@
           failures: failures,
           dbs: ok.length,
           merged: found - afterMerge,
-          gated: afterMerge - rows.length
+          gated: afterMerge - rows.length,
+          loosened: inspireLoosened
         };
         draw();
       });
@@ -1800,7 +2032,8 @@
     form.reset();
     userTouched = {};
     hidden = {};
-    state = { rows: [], failures: [], dbs: 0, merged: 0, gated: 0 };
+    inspireLoosened = "";
+    state = { rows: [], failures: [], dbs: 0, merged: 0, gated: 0, loosened: "" };
     renderControls();
     elResults.innerHTML = "";
     elOutbound.innerHTML = "";
