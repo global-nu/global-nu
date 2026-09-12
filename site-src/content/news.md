@@ -22,7 +22,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>The summaries on this page are written automatically with AI from
 fetched records, and may contain errors.</b>
-<span class="stamp">Last successful update: 12 September 2026, 07:33 CEST</span></div>
+<span class="stamp">Last successful update: 12 September 2026, 21:10 CEST</span></div>
 </div>
 <p class="small muted"><b>In summary.</b> This week's neutrino news is dominated by null results that sharpen the picture: NOvA finds no evidence for sterile neutrinos in a new dual-baseline search, IceCube sees no counterpart to KM3NeT's ultra-high-energy event, and PandaX-4T tightens the limit on neutrinoless quadruple beta decay in xenon. On the infrastructure side, the NSF has renewed IceCube's operating funding through 2031, Fermilab is preparing new underwater detector tests in Minnesota, and DUNE continues preparations for automated data analysis and undergraduate outreach. This paragraph summarises the items below; the sources are on the items themselves.</p>
 
@@ -36,17 +36,17 @@ fetched records, and may contain errors.</b>
 <article class="tile">
 <div class="stamp stamp--no">NOvA sterile search</div>
 <p>NOvA has reported the first search for sterile-neutrino oscillations to combine neutrino- and antineutrino-mode beam data across both its near and far detectors, using exposures of 26.61×10^20 and 12.50×10^20 protons on target respectively. The collaboration finds no evidence for sterile neutrinos and excludes regions of parameter space allowed by previous experiments, including most of the region favoured by IceCube.</p>
-<div class="cites"><span class="cite">NOvA Dual-Baseline Search for Active-to-Sterile Neutrino Oscillations using Neutrino- and … — <a href="https://arxiv.org/abs/2609.08900">arXiv</a></span></div>
+<div class="cites"></div>
 </article>
 <article class="tile">
 <div class="stamp stamp--no">IceCube–KM3NeT follow-up</div>
 <p>IceCube searched 15 years of its data for neutrino emission from the direction of KM3NeT's roughly 200 PeV event, the highest-energy neutrino yet reported, testing steady, flaring and arbitrary-time hypotheses. No evidence of emission was found, and IceCube set upper limits on neutrino output from that location.</p>
-<div class="cites"><span class="cite">IceCube neutrino point-source searches in the direction of the KM3NeT ultra-high-energy … — <a href="https://arxiv.org/abs/2609.10931">arXiv</a></span></div>
+<div class="cites"></div>
 </article>
 <article class="tile">
 <div class="stamp stamp--no">PandaX-4T</div>
 <p>PandaX-4T has searched for neutrinoless quadruple beta decay of xenon-136, a process whose observation without accompanying neutrinoless double beta decay would point to neutrinos being Dirac particles. Using an exposure of 148.4 kg·yr from its commissioning and first science runs, the collaboration saw no significant excess and set a lower limit on the decay half-life of 6.01×10^24 years at 90% confidence, the most stringent constraint on this process in xenon to date.</p>
-<div class="cites"><span class="cite">Search for neutrinoless quadruple beta decay of ¹³⁶Xe in PandaX-4T detector — <a href="https://arxiv.org/abs/2609.10048">arXiv</a></span></div>
+<div class="cites"></div>
 </article>
 <article class="tile">
 <div class="stamp stamp--no">IceCube operations</div>
@@ -66,7 +66,7 @@ fetched records, and may contain errors.</b>
 <article class="tile">
 <div class="stamp stamp--no">NOvA detector systematics</div>
 <p>NOvA has published two technical studies aimed at reducing systematic uncertainty in its oscillation measurements: a report on the Test Beam experiment, which used a scaled-down detector at the Fermilab Test Beam Facility to calibrate detector response with data collected between 2019 and 2022, and a study of neutron detector response that finds an excess of simulated low-energy neutron candidates relative to data in its antineutrino near-detector sample.</p>
-<div class="cites"><span class="cite">The NOvA Test Beam Experiment — <a href="https://arxiv.org/abs/2609.10804">arXiv</a></span><span class="cite">Neutron detector response modeling in NOvA — <a href="https://arxiv.org/abs/2609.06956">arXiv</a></span></div>
+<div class="cites"></div>
 </article>
 <article class="tile">
 <div class="stamp stamp--no">Lake Vermilion detector</div>
@@ -76,7 +76,7 @@ fetched records, and may contain errors.</b>
 <article class="tile">
 <div class="stamp stamp--no">JUNO information limits</div>
 <p>A new study quantifies, using quantum and classical Fisher information, how precisely JUNO can determine oscillation parameters from the information encoded in reactor antineutrino states as it flows through to detected events. The analysis builds an information ladder for JUNO and finds that the loss of precision at each stage is strongly dependent on which oscillation parameter is being measured.</p>
-<div class="cites"><span class="cite">Quantifying Information Hierarchy for Neutrino Oscillation Parameters at JUNO — <a href="https://arxiv.org/abs/2609.10383">arXiv</a></span></div>
+<div class="cites"></div>
 </article>
 </div>
 :::
