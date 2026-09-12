@@ -87,7 +87,15 @@
       out.push({
         name: els[i].getAttribute("data-name") || "",
         dates: els[i].getAttribute("data-dates") || "",
-        url: els[i].getAttribute("data-url") || ""
+        url: els[i].getAttribute("data-url") || "",
+        // The meeting's own affinity tier. A marker is painted with the
+        // STRONGEST tier at its venue (figures.py's _marker_tier), so at a
+        // mixed venue the dot's colour is true of one meeting and not of the
+        // others — these two attributes are what lets the card and the hover
+        // panel say which is which, instead of letting one colour stand
+        // silently for several subjects.
+        tier: els[i].getAttribute("data-tier") || "",
+        tierLabel: els[i].getAttribute("data-tier-label") || ""
       });
     }
     return out;
@@ -236,10 +244,20 @@
         }
         card.appendChild(h);
 
-        if (c.dates) {
+        if (c.dates || c.tierLabel) {
           var meta = document.createElement("p");
           meta.className = "conf-card__meta";
-          meta.textContent = c.dates;
+          if (c.dates) meta.appendChild(document.createTextNode(c.dates));
+          // The same chip the listing uses, with the same class, so the map
+          // and the list cannot word or colour a tier differently. Appended
+          // as an element: nothing here is ever built from a string of HTML.
+          if (c.tier && c.tierLabel) {
+            var chip = document.createElement("span");
+            chip.className = "conf-aff conf-aff--" + c.tier;
+            chip.textContent = c.tierLabel;
+            if (c.dates) meta.appendChild(document.createTextNode(" "));
+            meta.appendChild(chip);
+          }
           card.appendChild(meta);
         }
       }
@@ -387,6 +405,16 @@
         line.textContent = confs[i].dates
           ? confs[i].name + " · " + confs[i].dates
           : confs[i].name;
+        // Per-meeting tier here too: the hover panel is what most readers
+        // see, and a mixed venue must not present several subjects under one
+        // colour.
+        if (confs[i].tier && confs[i].tierLabel) {
+          var tchip = document.createElement("span");
+          tchip.className = "conf-aff conf-aff--" + confs[i].tier;
+          tchip.textContent = confs[i].tierLabel;
+          line.appendChild(document.createTextNode(" "));
+          line.appendChild(tchip);
+        }
         tip.appendChild(line);
       }
       // top:2.9rem in CSS used to be a hand-derived constant (the zoom
