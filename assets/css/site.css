@@ -62,9 +62,23 @@
   --grp-bari:#1f9fd4;
   --grp-nufit:#c67f28;
   --grp-valencia:#b06fc4;
-  /* Decoration only — card rules, tags, section accents. These never encode
-     a value, so telling two of them apart is never load-bearing; they are
-     still validated as a categorical set, in this order. */
+  /* Card rules, tags, section accents — and, since the conference affinity
+     chips landed, ONE PAGE WHERE FOUR OF THEM DO ENCODE A VALUE. This comment
+     used to read "decoration only … these never encode a value, so telling
+     two of them apart is never load-bearing". That is no longer true, and the
+     next reader needs to know it: on conferences.html --dec-2, --dec-5,
+     --dec-1 and --dec-3 ARE the four tiers of tools/news/affinity.py (core,
+     related, broad, adjacent), worn by the listing chips and by the timeline
+     bars, with --text-mute for "not classified". Telling those four apart is
+     load-bearing there, and tools/tests/test_theme.js measures each of them
+     on --bg and on --surface in both themes at the 4.5:1 a chip's own text
+     needs.
+     --dec-4 is deliberately NOT one of them, for a measured reason: it
+     reaches only 4.33:1 on --bg and 3.97:1 on --surface in the dark theme,
+     and in the light theme its value is exactly --accent-2, which is the
+     conference map's "general particle physics" marker on that same page. It
+     stays pure decoration.
+     Still validated as a categorical set, in this order. */
   --dec-1:#b8862c;
   --dec-2:#1f9fd4;
   --dec-3:#d1614a;
@@ -515,6 +529,93 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
 .lit-bucket--topic .lit-group{color:var(--text-soft)}
 @media (max-width:600px){.lit-bucket{padding-left:.75rem}}
 
+/* the controls over the results: ordering, and narrowing to one subfield.
+   Both are pill rows in the same idiom as .btn--sm, but smaller and quieter:
+   they sit between the status line and the answer and must not compete with
+   it. Pressed state is carried by aria-pressed, so the styling and the
+   accessibility name can never drift apart. */
+.lit-sort{display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;margin:0 0 1rem}
+/* An author rule beats the user agent's: without this line `display:flex`
+   would win over [hidden]{display:none} and the two bars would sit there,
+   empty, above a page with no results. */
+.lit-sort[hidden]{display:none}
+.lit-sort--filters{margin-bottom:1.6rem}
+.lit-sort__label{font-family:var(--display);font-size:.66rem;font-weight:600;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--text-mute);
+  margin-right:.35rem}
+.lit-sort__btn,.lit-filter{display:inline-flex;align-items:center;gap:.4rem;
+  font-family:var(--display);font-size:.73rem;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;padding:.4rem .9rem;border-radius:999px;
+  border:1px solid var(--line-strong);background:transparent;color:var(--text-soft);
+  cursor:pointer;transition:border-color .2s ease,color .2s ease,background .2s ease}
+/* Only the sort buttons take a filled hover. The filter chips carry a --dec-*
+   tone (below), and --dec-3 on --surface-2 measures 4.19:1 in the dark theme —
+   under the 4.5 a text chip needs. Their hover moves the border instead, which
+   is not text and clears the 3:1 that applies to it. */
+.lit-sort__btn:hover{background:var(--surface-2);color:var(--text)}
+.lit-filter:hover{border-color:currentColor}
+.lit-sort__btn[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+.lit-sort__dir{font-size:.85em;line-height:1}
+/* A filter that is switched OFF is the exceptional state, so it is the one
+   that looks different: dimmed and struck through, not merely unhighlighted,
+   because "no papers in that group" and "you hid that group" must not look
+   alike. */
+.lit-filter{text-transform:none;letter-spacing:.02em;font-size:.76rem}
+.lit-filter[aria-pressed="false"]{color:var(--text-mute);border-style:dashed;
+  text-decoration:line-through}
+/* No background of its own: the count is text, and left on the section's own
+   --surface it is the --text-mute/--surface pair already measured in
+   tools/tests/test_theme.js. A tinted pill would have shifted the backdrop
+   under it and made the measured pair the wrong one. */
+.lit-filter__n{font-family:var(--body);font-size:.72rem;letter-spacing:0;
+  color:var(--text-mute);font-variant-numeric:tabular-nums}
+.lit-filter--all{color:var(--accent);border-color:var(--accent)}
+
+/* the subfield of a result, and — outside the relevance view, where the
+   heading no longer says it — why the paper came back. Eleven subfields
+   cannot each have a legible colour, so the chip carries the precise label as
+   text and is tinted by the broad family it belongs to: five tones.
+
+   The four coloured families take the decorative categorical set in its own
+   declared order — --dec-1, --dec-2, --dec-3, --dec-5 — matched to the order
+   the subfields themselves are listed in search.js. --dec-4 is skipped, not
+   forgotten: it measures 3.97:1 on --surface in the dark theme, and this is
+   text. --text-mute carries the unclassifiable, because a muted grey is the
+   one tone that reads as absence rather than as a fifth category.
+
+   The chips share a row with the .src badges, and two tones there are twins:
+   --dec-2 is the same value as --no, which .src--inspire wears, and --dec-1 is
+   what .src--s2 wears. They stay apart by shape and typeface — the .src badges
+   are uppercase --mono, these are sentence-case --display — which is why this
+   chip does not take the .src badge's font.
+
+   The background under all of it is --surface: #lit-pane is `::: section alt`,
+   that is .section--alt, and .publist li repeats the same --surface. Every
+   tone below is measured against it in tools/tests/test_theme.js. */
+.sf{font-family:var(--display);font-size:.66rem;letter-spacing:.06em;
+  padding:.1rem .5rem;border-radius:999px;border:1px solid var(--line-strong);
+  color:var(--text-mute)}
+.sf--nu{color:var(--dec-1)}
+.sf--hep{color:var(--dec-2)}
+.sf--thy{color:var(--dec-3)}
+.sf--sky{color:var(--dec-5)}
+.sf--dim{color:var(--text-mute)}
+.sf--match{color:var(--text-soft);border-style:dashed}
+.lit-filter.sf--nu[aria-pressed="true"]{border-color:var(--dec-1)}
+.lit-filter.sf--hep[aria-pressed="true"]{border-color:var(--dec-2)}
+.lit-filter.sf--thy[aria-pressed="true"]{border-color:var(--dec-3)}
+.lit-filter.sf--sky[aria-pressed="true"]{border-color:var(--dec-5)}
+.lit-bucket--sf{border-left-color:var(--line-strong)}
+.sf-block--nu{border-left-color:var(--dec-1)}
+.sf-block--nu .lit-group{color:var(--dec-1)}
+.sf-block--hep{border-left-color:var(--dec-2)}
+.sf-block--hep .lit-group{color:var(--dec-2)}
+.sf-block--thy{border-left-color:var(--dec-3)}
+.sf-block--thy .lit-group{color:var(--dec-3)}
+.sf-block--sky{border-left-color:var(--dec-5)}
+.sf-block--sky .lit-group{color:var(--dec-5)}
+.sf-block--dim .lit-group{color:var(--text-soft)}
+
 /* which database(s) returned a given record */
 .src-row{display:inline-flex;gap:.35rem;flex-wrap:wrap;margin-left:auto}
 .src{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;
@@ -605,6 +706,42 @@ table.data--refs td.ref{min-width:20rem;color:var(--text)}
 .list--news .tags .tag{font-family:var(--mono);font-size:.72rem;
   color:var(--text-mute)}
 .list--news .cites{margin-top:.35rem}
+
+/* ---------- conference affinity ----------
+   The chip on each meeting in conferences.md, and the one key above them.
+   Emitted by tools/news/render.py (`_affinity_chip`, `affinity_legend`); the
+   tier -> token map lives in tools/news/affinity.py and is shared with the
+   timeline bars in figures.py, so the figure and the list can never advertise
+   different colours for the same tier.
+
+   Not a filled pill: the outline is `currentColor`, so ONE declaration per
+   tier sets both the text and the border, and there is no second colour that
+   could be forgotten when a tier is added. It also keeps the chip readable on
+   both of the backgrounds it sits on — --bg in the neutrino block, --surface
+   in the `section alt` one — which is what PAIRS in tools/tests/test_theme.js
+   measures, in both themes.
+
+   Every colour here is a token. Adding a tier means adding its token pair to
+   that test as well, or the new colour ships unmeasured.
+
+   WHY `span.` AND NOT A BARE CLASS. The chip lives inside <li> in a .list,
+   and `.list span` above already sets colour, family and size on every span
+   in there — at (0,1,1) it beats a bare `.conf-aff--core` (0,1,0), and every
+   chip in the listing came out grey and monospaced while the legend, which is
+   not inside a .list, came out right. Adding the element name ties the
+   specificity and this block wins on order. */
+span.conf-aff{display:inline-block;font-family:var(--body);font-size:.7rem;
+  font-weight:600;letter-spacing:.02em;line-height:1.35;padding:.12rem .55rem;
+  margin:.15rem 0 .1rem;border:1px solid currentColor;border-radius:999px;
+  white-space:nowrap;color:var(--text-mute)}
+span.conf-aff--core{color:var(--dec-2)}
+span.conf-aff--related{color:var(--dec-5)}
+span.conf-aff--broad{color:var(--dec-1)}
+span.conf-aff--adjacent{color:var(--dec-3)}
+span.conf-aff--unknown{color:var(--text-mute)}
+.conf-legend{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .55rem;
+  margin:0 0 1.6rem}
+.conf-legend__lead{font-size:.82rem;color:var(--text-mute)}
 
 /* ============================================================
    Richer surfaces
