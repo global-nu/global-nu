@@ -1,0 +1,319 @@
+{
+ "source": "inspire-conf",
+ "fetched_at": "2026-09-12T07:31:32+02:00",
+ "errors": [],
+ "records": [
+  {
+   "id": "conf:3202251",
+   "source": "inspire-conf",
+   "title": "14th International Workshop on Neutrino Beams and Instrumentation and 10th Radiation Damage In Accelerator Target Environments Collaboration Meeting",
+   "url": "https://indico.fnal.gov/event/71651/",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/3202251"
+   },
+   "authors": "",
+   "date": "2026-09-21",
+   "summary": "",
+   "extra": {
+    "acronym": "NBI/RaDIATE 2026",
+    "place": "Batavia, United States",
+    "country_code": "US",
+    "city": "Batavia",
+    "scope": "neutrino",
+    "opening": "2026-09-21",
+    "closing": "2026-09-25",
+    "span": "21–25 September 2026",
+    "upcoming": true,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-09-21.7"
+   }
+  },
+  {
+   "id": "conf:3178676",
+   "source": "inspire-conf",
+   "title": "25th International Workshop on Next Generation Nucleon Decay and Neutrino Detectors",
+   "url": "https://indico.neutrino.or.kr/event/514/",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/3178676"
+   },
+   "authors": "",
+   "date": "2026-10-28",
+   "summary": "",
+   "extra": {
+    "acronym": "NNN26",
+    "place": "Seoul, South Korea",
+    "country_code": "KR",
+    "city": "Seoul",
+    "scope": "neutrino",
+    "opening": "2026-10-28",
+    "closing": "2026-10-30",
+    "span": "28–30 October 2026",
+    "upcoming": true,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-10-28"
+   }
+  },
+  {
+   "id": "conf:3185090",
+   "source": "inspire-conf",
+   "title": "Neutrino Geoscience 2026 and 2026 Fall School on Interdisciplinary Neutrino Science",
+   "url": "https://ifcen.sysu.edu.cn/nu-geoscience2026/",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/3185090"
+   },
+   "authors": "",
+   "date": "2026-11-11",
+   "summary": "",
+   "extra": {
+    "acronym": "",
+    "place": "Zhuhai, China",
+    "country_code": "CN",
+    "city": "Zhuhai",
+    "scope": "neutrino",
+    "opening": "2026-11-11",
+    "closing": "2026-11-19",
+    "span": "11–19 November 2026",
+    "upcoming": true,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-11-11"
+   }
+  },
+  {
+   "id": "conf:3198870",
+   "source": "inspire-conf",
+   "title": "XXII International Workshop on Neutrino Telescopes 2027",
+   "url": "https://inspirehep.net/conferences/3198870",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/3198870"
+   },
+   "authors": "",
+   "date": "2027-02-15",
+   "summary": "",
+   "extra": {
+    "acronym": "Neutel 27",
+    "place": "Padova, Italy",
+    "country_code": "IT",
+    "city": "Padova",
+    "scope": "neutrino",
+    "opening": "2027-02-15",
+    "closing": "2027-02-19",
+    "span": "15–19 February 2027",
+    "upcoming": true,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C27-02-15"
+   }
+  },
+  {
+   "id": "conf:3123797",
+   "source": "inspire-conf",
+   "title": "Neutrino Oscillation Workshop 2026",
+   "url": "https://www.ba.infn.it/now",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/3123797"
+   },
+   "authors": "",
+   "date": "2026-08-31",
+   "summary": "",
+   "extra": {
+    "acronym": "NOW 2026",
+    "place": "Otranto, Lecce, Italy",
+    "country_code": "IT",
+    "city": "Otranto, Lecce",
+    "scope": "neutrino",
+    "opening": "2026-08-31",
+    "closing": "2026-09-06",
+    "span": "31 August – 6 September 2026",
+    "upcoming": false,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-08-31.10"
+   }
+  },
+  {
+   "id": "conf:3082136",
+   "source": "inspire-conf",
+   "title": "The Magnificent CEvNS: A workshop exploring coherent elastic neutrino-nucleus scattering",
+   "url": "https://plan.events.mpg.de/e/Magnificent-CEvNS-2026",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/3082136"
+   },
+   "authors": "",
+   "date": "2026-07-13",
+   "summary": "",
+   "extra": {
+    "acronym": "MagCEvNS2026",
+    "place": "Heidelberg, Germany",
+    "country_code": "DE",
+    "city": "Heidelberg",
+    "scope": "neutrino",
+    "opening": "2026-07-13",
+    "closing": "2026-07-15",
+    "span": "13–15 July 2026",
+    "upcoming": false,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-07-13"
+   }
+  },
+  {
+   "id": "conf:3112497",
+   "source": "inspire-conf",
+   "title": "The Cosmic Neutrino Practicum",
+   "url": "https://harvard-neutrinos.rc.fas.harvard.edu/event/30/overview",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/3112497"
+   },
+   "authors": "",
+   "date": "2026-06-29",
+   "summary": "",
+   "extra": {
+    "acronym": "CNP2026",
+    "place": "Cambridge, United States",
+    "country_code": "US",
+    "city": "Cambridge",
+    "scope": "neutrino",
+    "opening": "2026-06-29",
+    "closing": "2026-07-03",
+    "span": "29 June – 3 July 2026",
+    "upcoming": false,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-06-29.6"
+   }
+  },
+  {
+   "id": "conf:3117085",
+   "source": "inspire-conf",
+   "title": "17th International Neutrino Summer School 2026",
+   "url": "https://indico.global/event/16507/",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/3117085"
+   },
+   "authors": "",
+   "date": "2026-06-29",
+   "summary": "",
+   "extra": {
+    "acronym": "INSS 2026",
+    "place": "Santa Barbara, United States",
+    "country_code": "US",
+    "city": "Santa Barbara",
+    "scope": "neutrino",
+    "opening": "2026-06-29",
+    "closing": "2026-07-10",
+    "span": "29 June – 10 July 2026",
+    "upcoming": false,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-06-29.9"
+   }
+  },
+  {
+   "id": "conf:2834241",
+   "source": "inspire-conf",
+   "title": "32nd International Conference on Neutrino Physics and Astrophysics",
+   "url": "https://sites.uci.edu/neutrino2026/",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/2834241"
+   },
+   "authors": "",
+   "date": "2026-06-22",
+   "summary": "",
+   "extra": {
+    "acronym": "NEUTRINO 2026",
+    "place": "Irvine, United States",
+    "country_code": "US",
+    "city": "Irvine",
+    "scope": "neutrino",
+    "opening": "2026-06-22",
+    "closing": "2026-06-26",
+    "span": "22–26 June 2026",
+    "upcoming": false,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-06-22"
+   }
+  },
+  {
+   "id": "conf:3171340",
+   "source": "inspire-conf",
+   "title": "The 5th Neutrino Physics and Machine Learning (NPML 2026)",
+   "url": "https://indico.slac.stanford.edu/event/10387/",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/3171340"
+   },
+   "authors": "",
+   "date": "2026-06-15",
+   "summary": "",
+   "extra": {
+    "acronym": "",
+    "place": "Irvine, United States",
+    "country_code": "US",
+    "city": "Irvine",
+    "scope": "neutrino",
+    "opening": "2026-06-15",
+    "closing": "2026-06-19",
+    "span": "15–19 June 2026",
+    "upcoming": false,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-06-15.12"
+   }
+  },
+  {
+   "id": "conf:3098540",
+   "source": "inspire-conf",
+   "title": "11th International Workshop on Acoustic and Radio EeV Neutrino Detection Activities",
+   "url": "https://indico.kit.edu/e/arena2026",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/3098540"
+   },
+   "authors": "",
+   "date": "2026-06-08",
+   "summary": "",
+   "extra": {
+    "acronym": "ARENA2026",
+    "place": "Karlsruhe, Germany",
+    "country_code": "DE",
+    "city": "Karlsruhe",
+    "scope": "neutrino",
+    "opening": "2026-06-08",
+    "closing": "2026-06-11",
+    "span": "8–11 June 2026",
+    "upcoming": false,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-06-08.2"
+   }
+  },
+  {
+   "id": "conf:3120596",
+   "source": "inspire-conf",
+   "title": "6th New Physics Opportunities at Neutrino Facilities Workshop (NPN 2026)",
+   "url": "https://conference-indico.kek.jp/event/361/",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/3120596"
+   },
+   "authors": "",
+   "date": "2026-05-26",
+   "summary": "",
+   "extra": {
+    "acronym": "",
+    "place": "Mito, Japan",
+    "country_code": "JP",
+    "city": "Mito",
+    "scope": "neutrino",
+    "opening": "2026-05-26",
+    "closing": "2026-05-28",
+    "span": "26–28 May 2026",
+    "upcoming": false,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-05-26.2"
+   }
+  }
+ ]
+}

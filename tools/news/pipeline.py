@@ -22,9 +22,11 @@ page is worse than a stale one.
 from __future__ import annotations
 
 import argparse
+import datetime as _dt
 import subprocess
 import sys
 
+from . import affinity
 from . import cache, conferences as conf_mod, fetch_arxiv, fetch_feeds
 from . import archive, fetch_indico, fetch_inspire, fetch_nu_unbound, linkcheck, render
 from . import state, synthesize
@@ -47,6 +49,45 @@ def _safe(step: str, fn, log, default):
     except Exception as exc:                                  # noqa: BLE001
         log.warning("%s: failed (%s: %s)", step, exc.__class__.__name__, exc)
         return default
+
+
+def _recover_conferences(source: str, records: list[dict], cfg: dict,
+                         cfg_key: str, log) -> list[dict]:
+    """Today's records, or the most recent cached day's if today came back empty.
+
+    The four conference sources had no fallback of any kind. When
+    nu.to.infn.it started answering ConnectTimeout on 9 September 2026 its
+    records did not age — they VANISHED, and the merged listing went from 84
+    events (var/news/cache/2026-09-08/indico.json) to 29
+    (var/news/cache/2026-09-12/indico.json) with nothing on the page or in the
+    log saying a source was missing.
+
+    Two guards, both of which matter:
+
+      * a source switched OFF in the config fetches nothing, which looks
+        exactly like a failed fetch — restoring a week of its records would
+        make disabling it do nothing at all;
+      * the log must SAY when a section is running on an older day. A silent
+        recovery is how a source can stay down for a week without anyone
+        noticing, which is the failure this whole function exists to end. So
+        the line names the source, the day and the count, at WARNING.
+    """
+    if records:
+        return records
+    if not bool((cfg.get(cfg_key) or {}).get("enabled", True)):
+        log.info("%s: disabled — not restoring from cache", source)
+        return records
+    day = cache.latest_day_with(source)
+    if not day:
+        log.warning("%s: empty today and nothing cached within the last week "
+                    "— this source contributes nothing to today's page", source)
+        return records
+    recovered = cache.load_records(source, day)
+    log.warning("%s: empty today — the Conferences page is running on the "
+                "%d record(s) cached on %s, %d day(s) old. Their own dates are "
+                "unchanged; nothing is presented as fresher than it is.",
+                source, len(recovered), day, (_dt.date.today() - day).days)
+    return recovered
 
 
 def _experiment_pool(feeds: list[dict], arxiv: list[dict]) -> list[dict]:
@@ -106,6 +147,18 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
         gen_conf = _safe("inspire conferences (general)",
                          lambda: fetch_inspire.fetch_conferences(cfg, log,
                                                                  scope="general"), log, [])
+        # A conference source that failed today falls back to its most recent
+        # cached day rather than emptying its share of the page. BEFORE the
+        # merge, so a recovered source is merged like any other — see
+        # `_recover_conferences` for why this exists at all.
+        events = _recover_conferences("indico-conf", events, cfg,
+                                      "conferences_indico", log)
+        nu_conf = _recover_conferences("nu-unbound", nu_conf, cfg,
+                                       "conferences_nu_unbound", log)
+        in_conf = _recover_conferences("inspire-conf", in_conf, cfg,
+                                       "inspire", log)
+        gen_conf = _recover_conferences("inspire-conf-general", gen_conf, cfg,
+                                        "inspire", log)
         groups = [g for g in (events, nu_conf, in_conf, gen_conf) if g]
         if groups:
             events = conf_mod.sort_for_page(conf_mod.merge(groups, log))
@@ -154,6 +207,23 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
     known = cache.index(alive)
 
     # ----------------------------------------------------------- 4. render --
+    # Topical affinity is written here, at the LAST possible moment, and not
+    # one line earlier. Two things upstream would otherwise leave untagged
+    # records on the page:
+    #
+    #   * the merge above runs only `if groups`. On a day when every
+    #     conference source comes back empty, `events` is whatever the cache
+    #     replay left, and anything tagged inside that `if` would have been
+    #     tagged for nobody;
+    #   * the link-check drops records, and the from_cache path never fetched
+    #     at all — a record read back from an older day's cache has an `extra`
+    #     that may predate the affinity field entirely.
+    #
+    # Tagging here means every record the renderer will see has been read by
+    # the classifier, whichever path it arrived on. `tag` is idempotent, so a
+    # record tagged on an earlier run is simply re-read.
+    affinity.tag(events, cfg)
+
     if dry_run:
         log.info("dry run: fetched and checked, nothing written")
         state.mark_run("dry-run", f"{len(alive)} live records")

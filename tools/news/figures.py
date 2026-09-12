@@ -16,12 +16,25 @@ Ported from ~/Documents/My Home Page - Claude/tools/news/figures.py, whose
 (`extra.opening`/`closing`/`acronym`/`place`/`upcoming`/`in_progress`, which
 this site's fetchers already fill in identically — see conferences.py). Only
 the styling changes here: that site paints with `--gold`/`--cyan`, tokens this
-site does not have. Below, an upcoming bar is `--no`, a bar for a meeting
-running right now is `--io`, and "today" is `--accent` — reusing the ordering
-pair for a completely different distinction. That is a deliberate borrow of
-two hues already proven against every background at the 3:1 a data-carrying
-mark needs (see PAIRS in tools/tests/test_theme.js), not a claim that this
-figure has anything to do with the mass ordering.
+site does not have.
+
+WHAT A TIMELINE BAR'S COLOUR MEANS, AND WHAT IT USED TO MEAN. It used to carry
+three things at once: `--no` "ahead", `--io` "running right now",
+`--text-mute` "concluded". It now carries ONE — how close the meeting's
+subject is to this site's field, from tools/news/affinity.py, the same scale
+the chips in the listing and the legend above the figure use. One meaning, one
+colour, decided in one place.
+
+Nothing was lost in the move. "Concluded" was ALREADY said by the .55 opacity
+below, which is unchanged and applies to the name and the place as well; and
+"under way" moved from the fill to the OUTLINE, a different channel, so it
+cannot argue with the fill: a bar under way is visibly ringed whatever tier
+colour it wears. The ring is `--text`, which tools/tests/test_theme.js already
+measures against every background at the 4.5:1 body-text threshold —
+comfortably past the 3:1 WCAG 1.4.11 asks of a graphical object like this.
+
+"Today" stays `--accent`: it rules the axis, it is not a meeting, and it
+belongs to the frame rather than to the scale.
 """
 
 from __future__ import annotations
@@ -30,7 +43,7 @@ import datetime as _dt
 import html
 import logging
 
-from . import photos
+from . import affinity, photos
 from . import worldmap as wm
 
 
@@ -320,16 +333,29 @@ def conference_timeline(upcoming: list[dict], recent: list[dict],
         extra = c.get("extra", {})
         ahead = bool(extra.get("upcoming"))
         running = bool(extra.get("in_progress"))
-        colour = "var(--no)" if ahead else "var(--text-mute)"
-        if running:
-            colour = "var(--io)"
+        # The FILL carries the subject affinity, the same scale as the chips
+        # in the listing and the legend above — see the module docstring for
+        # why the fill stopped carrying the tense and what carries it instead.
+        # An untagged record (nothing ran affinity.tag over it) falls back to
+        # the `unknown` grey rather than to a tier it did not earn.
+        aff = extra.get("affinity") or {}
+        tier = aff.get("tier") or "unknown"
+        colour = affinity.TIER_COLOUR.get(tier, affinity.TIER_COLOUR["unknown"])
         x1, x2 = x_of(start), x_of(end)
         w = max(x2 - x1, 4.0)          # a one-day meeting still needs a mark
         opacity = "1" if ahead else ".55"
+        ring = ";stroke:var(--text);stroke-width:2" if running else ""
+        # The tooltip names the tier and the signal that decided it: the
+        # colour is never an assertion with no explanation within reach.
+        state = " · under way" if running else ("" if ahead else " · concluded")
+        tail = ((f" — {aff['label']}" if aff.get("label") else "")
+                + (f" ({aff['why']})" if aff.get("why") else ""))
 
         parts.append(
             f'<rect x="{x1:.1f}" y="{y + 4}" width="{w:.1f}" height="10" rx="5" '
-            f'style="fill:{colour};opacity:{opacity}"/>')
+            f'style="fill:{colour};opacity:{opacity}{ring}"><title>'
+            f'{_e(_short(c, 40))}: {start.isoformat()} → {end.isoformat()}'
+            f'{_e(state)}{_e(tail)}</title></rect>')
 
         # The name travels WITH the bar, rather than sitting in a fixed column
         # down the left. In a drawing that scrolls, that column is the first

@@ -70,6 +70,34 @@ const PAIRS = [
   ['--accent-2', '--surface-2', 3],
   ['--on-accent', '--no', 4.5],
   ['--on-accent', '--accent-2', 4.5],
+  /* the literature page's subfield chips (.sf--*) and the subfield group
+     headings, on the results pane. That pane is `::: section alt`, i.e.
+     .section--alt, whose background is --surface, and .publist li repeats the
+     same --surface — so --surface is the only backdrop to measure. These are
+     text at .66rem and 1rem, never large text, so 4.5 applies to all of them.
+     The four take the decorative set in its declared order with --dec-4 left
+     out: it measures 3.97:1 here in the dark theme. */
+  ['--dec-1', '--surface', 4.5],
+  ['--dec-2', '--surface', 4.5],
+  ['--dec-3', '--surface', 4.5],
+  ['--dec-5', '--surface', 4.5],
+  /* the conference affinity chips (.conf-aff--*) and the one legend above
+     them, on conferences.html. Same four tokens as the row above and the same
+     tier order as tools/news/affinity.py — core --dec-2, related --dec-5,
+     broad --dec-1, adjacent --dec-3 — but a second backdrop to measure: that
+     page puts the neutrino block and the legend in a plain `::: section`,
+     whose background is --bg, and only the "General particle physics" block
+     in `::: section alt` on --surface. The chip is .7rem text inside a
+     1px border of the same colour, never large text, so 4.5 applies. The
+     timeline bars carry the same four colours on the figure card (--surface),
+     which the row above already measures and which would only need 3 anyway.
+     --dec-4 is left out here for the same reason plus one more: 4.33:1 on
+     --bg in the dark theme, and in the light theme it is byte-for-byte
+     --accent-2, the conference map's own "general" marker on this page. */
+  ['--dec-1', '--bg', 4.5],
+  ['--dec-2', '--bg', 4.5],
+  ['--dec-3', '--bg', 4.5],
+  ['--dec-5', '--bg', 4.5],
 ];
 
 function parseVars(block) {

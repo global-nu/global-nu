@@ -1,0 +1,319 @@
+{
+ "source": "inspire-conf-general",
+ "fetched_at": "2026-09-12T07:31:32+02:00",
+ "errors": [],
+ "records": [
+  {
+   "id": "conf:3122555",
+   "source": "inspire-conf",
+   "title": "Higgs Hunting 2026",
+   "url": "http://www.higgshunting.fr/",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/3122555"
+   },
+   "authors": "",
+   "date": "2026-09-16",
+   "summary": "",
+   "extra": {
+    "acronym": "HH2026",
+    "place": "Orsay & Paris, France",
+    "country_code": "FR",
+    "city": "Orsay & Paris",
+    "scope": "general",
+    "opening": "2026-09-16",
+    "closing": "2026-09-18",
+    "span": "16–18 September 2026",
+    "upcoming": true,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-09-16.1"
+   }
+  },
+  {
+   "id": "conf:3157998",
+   "source": "inspire-conf",
+   "title": "Physics in Collision 2026",
+   "url": "http://vietnam.in2p3.fr/2026/pic",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/3157998"
+   },
+   "authors": "",
+   "date": "2026-10-05",
+   "summary": "",
+   "extra": {
+    "acronym": "PIC 2026",
+    "place": "Quy Nhon, Vietnam",
+    "country_code": "VN",
+    "city": "Quy Nhon",
+    "scope": "general",
+    "opening": "2026-10-05",
+    "closing": "2026-10-09",
+    "span": "5–9 October 2026",
+    "upcoming": true,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-10-05.6"
+   }
+  },
+  {
+   "id": "conf:2779154",
+   "source": "inspire-conf",
+   "title": "32nd International Conference on Ultra-relativistic Nucleus-Nucleus Collisions",
+   "url": "https://inspirehep.net/conferences/2779154",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/2779154"
+   },
+   "authors": "",
+   "date": "2027-03-21",
+   "summary": "",
+   "extra": {
+    "acronym": "Quark Matter 2027",
+    "place": "Seoguipo, South Korea",
+    "country_code": "KR",
+    "city": "Seoguipo",
+    "scope": "general",
+    "opening": "2027-03-21",
+    "closing": "2027-03-27",
+    "span": "21–27 March 2027",
+    "upcoming": true,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C27-03-21"
+   }
+  },
+  {
+   "id": "conf:3157559",
+   "source": "inspire-conf",
+   "title": "34th International Conference on Supersymmetry and Unification of Fundamental Interactions (SUSY 2027)",
+   "url": "https://indico.ibs.re.kr/event/1301",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/3157559"
+   },
+   "authors": "",
+   "date": "2027-05-31",
+   "summary": "",
+   "extra": {
+    "acronym": "SUSY 2027",
+    "place": "Daejeon, South Korea",
+    "country_code": "KR",
+    "city": "Daejeon",
+    "scope": "general",
+    "opening": "2027-05-31",
+    "closing": "2027-06-04",
+    "span": "31 May – 4 June 2027",
+    "upcoming": true,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C27-05-31"
+   }
+  },
+  {
+   "id": "conf:3162201",
+   "source": "inspire-conf",
+   "title": "15th Large Hadron Collider Physics Conference (LHCP2027)",
+   "url": "https://indico.cern.ch/event/1689315/",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/3162201"
+   },
+   "authors": "",
+   "date": "2027-05-31",
+   "summary": "",
+   "extra": {
+    "acronym": "",
+    "place": "Vancouver, Canada",
+    "country_code": "CA",
+    "city": "Vancouver",
+    "scope": "general",
+    "opening": "2027-05-31",
+    "closing": "2027-06-04",
+    "span": "31 May – 4 June 2027",
+    "upcoming": true,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C27-05-31.1"
+   }
+  },
+  {
+   "id": "conf:2880224",
+   "source": "inspire-conf",
+   "title": "43rd International Conference on High Energy Physics",
+   "url": "https://ichep2026.org/",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/2880224"
+   },
+   "authors": "",
+   "date": "2026-07-30",
+   "summary": "",
+   "extra": {
+    "acronym": "ICHEP 2026",
+    "place": "Natal, Brazil",
+    "country_code": "BR",
+    "city": "Natal",
+    "scope": "general",
+    "opening": "2026-07-30",
+    "closing": "2026-08-05",
+    "span": "30 July – 5 August 2026",
+    "upcoming": false,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-07-30"
+   }
+  },
+  {
+   "id": "conf:2940160",
+   "source": "inspire-conf",
+   "title": "17th Conference on Quark Confinement and the Hadron Spectrum",
+   "url": "https://indico.cern.ch/event/1531304/",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/2940160"
+   },
+   "authors": "",
+   "date": "2026-06-29",
+   "summary": "",
+   "extra": {
+    "acronym": "QCHS26",
+    "place": "Wrocław, Poland",
+    "country_code": "PL",
+    "city": "Wrocław",
+    "scope": "general",
+    "opening": "2026-06-29",
+    "closing": "2026-07-04",
+    "span": "29 June – 4 July 2026",
+    "upcoming": false,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-06-29.1"
+   }
+  },
+  {
+   "id": "conf:2971917",
+   "source": "inspire-conf",
+   "title": "Conference on Supersymmetry and Unification of Fundamental Interactions",
+   "url": "https://indico.cern.ch/event/1508223/",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/2971917"
+   },
+   "authors": "",
+   "date": "2026-05-18",
+   "summary": "",
+   "extra": {
+    "acronym": "",
+    "place": "Norman, United States",
+    "country_code": "US",
+    "city": "Norman",
+    "scope": "general",
+    "opening": "2026-05-18",
+    "closing": "2026-05-22",
+    "span": "18–22 May 2026",
+    "upcoming": false,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-05-18.3"
+   }
+  },
+  {
+   "id": "conf:2909791",
+   "source": "inspire-conf",
+   "title": "14th Large Hadron Collider Physics Conference",
+   "url": "http://indico.cern.ch/e/LHCP2026",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/2909791"
+   },
+   "authors": "",
+   "date": "2026-05-18",
+   "summary": "",
+   "extra": {
+    "acronym": "LHCP2026",
+    "place": "Paris, France",
+    "country_code": "FR",
+    "city": "Paris",
+    "scope": "general",
+    "opening": "2026-05-18",
+    "closing": "2026-05-22",
+    "span": "18–22 May 2026",
+    "upcoming": false,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-05-18"
+   }
+  },
+  {
+   "id": "conf:3115268",
+   "source": "inspire-conf",
+   "title": "Phenomenology 2026 Symposium (PHENO 2026)",
+   "url": "https://indico.global/e/pheno26",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/3115268"
+   },
+   "authors": "",
+   "date": "2026-05-11",
+   "summary": "",
+   "extra": {
+    "acronym": "",
+    "place": "Pittsburgh, United States",
+    "country_code": "US",
+    "city": "Pittsburgh",
+    "scope": "general",
+    "opening": "2026-05-11",
+    "closing": "2026-05-13",
+    "span": "11–13 May 2026",
+    "upcoming": false,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-05-11.4"
+   }
+  },
+  {
+   "id": "conf:3108498",
+   "source": "inspire-conf",
+   "title": "37th Rencontres de Blois",
+   "url": "https://blois.in2p3.fr/2026",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/3108498"
+   },
+   "authors": "",
+   "date": "2026-05-10",
+   "summary": "",
+   "extra": {
+    "acronym": "Blois 2026",
+    "place": "Blois, France",
+    "country_code": "FR",
+    "city": "Blois",
+    "scope": "general",
+    "opening": "2026-05-10",
+    "closing": "2026-05-15",
+    "span": "10–15 May 2026",
+    "upcoming": false,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-05-10"
+   }
+  },
+  {
+   "id": "conf:2923679",
+   "source": "inspire-conf",
+   "title": "33rd International Workshop on Deep Inelastic Scattering and Related Subjects",
+   "url": "https://dis2026.infn.it",
+   "links": {
+    "inspire": "https://inspirehep.net/conferences/2923679"
+   },
+   "authors": "",
+   "date": "2026-05-04",
+   "summary": "",
+   "extra": {
+    "acronym": "DIS2026",
+    "place": "Bologna, Italy",
+    "country_code": "IT",
+    "city": "Bologna",
+    "scope": "general",
+    "opening": "2026-05-04",
+    "closing": "2026-05-08",
+    "span": "4–8 May 2026",
+    "upcoming": false,
+    "in_progress": false,
+    "flagship": true,
+    "cnum": "C26-05-04"
+   }
+  }
+ ]
+}

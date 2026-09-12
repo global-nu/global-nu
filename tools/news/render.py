@@ -21,7 +21,7 @@ import html
 import logging
 from pathlib import Path
 
-from . import conferences as conf_mod, fetch_inspire, figures, venue
+from . import affinity, conferences as conf_mod, fetch_inspire, figures, venue
 from .common import (CONFERENCES_PAGE, DIGEST_PAGE, NEWS_PAGE, detex,
                      load_config, truncate)
 
@@ -73,6 +73,16 @@ and may contain errors. No model is involved.</b></div>
 
 def _esc(s: str) -> str:
     return html.escape(str(s), quote=False)
+
+
+def _attr(s: str) -> str:
+    """Escaping for text that lands inside a quoted HTML attribute.
+
+    `_esc` above is quote=False, which is right for element text and wrong
+    here: the affinity chip's tooltip carries the classifier's own `why`, and
+    a `"` in it would end the attribute early.
+    """
+    return html.escape(str(s), quote=True)
 
 
 def _title(rec: dict, limit: int | None = None) -> str:
@@ -378,6 +388,53 @@ scripts:
 ---"""
 
 
+def _affinity_chip(record: dict) -> str:
+    """The topical-affinity chip for one conference, or "" if it has no tier.
+
+    The `title` attribute carries the classifier's own `why` — the signal that
+    decided the tier — so the colour is never an unexplained assertion: a
+    reader who wonders why ICHEP is gold can hover and read "series “ICHEP”".
+    An untagged record (nothing ran affinity.tag over it) gets no chip at all
+    rather than a grey "Not classified" one it never earned.
+    """
+    aff = (record.get("extra") or {}).get("affinity") or {}
+    tier, label = aff.get("tier"), aff.get("label")
+    if not tier or not label:
+        return ""
+    why = aff.get("why") or ""
+    title_attr = f' title="{_attr(why)}"' if why else ""
+    return (f'<span class="conf-aff conf-aff--{_attr(tier)}"{title_attr}>'
+            f'{_esc(label)}</span>')
+
+
+def affinity_legend(*groups: list[dict]) -> str:
+    """One key for the whole page, or "" when there is nothing to decode.
+
+    Rendered ONCE, near the top, above the timeline: on this site Conferences
+    is a page rather than a section, and both figures and both listings are
+    painted on this one scale. A key repeated per block would suggest there
+    are several scales; a key sitting under the lists would arrive after the
+    reader has already met the colours in the timeline.
+
+    Only the tiers actually present are listed: a five-entry key over a page
+    with two colours on it sends the reader hunting for a colour that is not
+    there. A single tier is not a scale either, so that case prints nothing.
+    """
+    tiers = affinity.tiers_present(*groups)
+    if len(tiers) < 2:
+        return ""
+    labels: dict[str, str] = {}
+    for group in groups:
+        for rec in (group or []):
+            aff = (rec.get("extra") or {}).get("affinity") or {}
+            if aff.get("tier") and aff.get("label"):
+                labels.setdefault(aff["tier"], aff["label"])
+    items = "".join(f'<span class="conf-aff conf-aff--{_attr(t)}">'
+                    f'{_esc(labels[t])}</span>' for t in tiers if t in labels)
+    return ('<p class="conf-legend"><span class="conf-legend__lead">'
+            'Closeness of the subject:</span>' + items + '</p>')
+
+
 def _conf_list(records: list[dict], empty: str) -> str:
     if not records:
         return f'<p class="small muted">{empty}</p>\n'
@@ -386,13 +443,31 @@ def _conf_list(records: list[dict], empty: str) -> str:
         extra = rec.get("extra") or {}
         meta = " · ".join(x for x in (extra.get("span"), extra.get("place")) if x)
         out.append(f'<li><b>{_title(rec)}</b>'
+                   f'{_affinity_chip(rec)}'
                    f'<span>{_esc(meta)}</span>'
                    f'<span class="cites"><a href="{_esc(rec["url"])}">Details</a></span></li>\n')
     out.append('</ul>\n')
     return "".join(out)
 
 
-def _scope_block(records: list[dict], title: str, empty_upcoming: str) -> str:
+# How many concluded meetings one domain block may show.
+#
+# The page's subject is what is AHEAD; the concluded tail is context, not
+# content. Until the window went from 14 months to 18 that distinction cost
+# nothing, because "Recent" was a handful of rows either way. It is not: the
+# lookback is five months and the INSPIRE sweep now finds everything in it, so
+# an uncapped tail grows with the sweep and a reader scrolling for "what is
+# coming" ends up reading an archive. Six is the same instrument, for the same
+# reason, as `max_recent_rows` in figures.py — and the two need not be equal,
+# because a row costs 30 px in the figure and one line here.
+#
+# A cap, never a silent one: `_scope_block` prints "6 of 23" rather than "6",
+# so the number left out is on the page next to the number shown.
+MAX_RECENT = 6
+
+
+def _scope_block(records: list[dict], title: str, empty_upcoming: str,
+                 max_recent: int = MAX_RECENT) -> str:
     """One physics domain's meetings — `records` already narrowed by
     `conferences.split_scope()` — split the way the page has always split
     meetings within a domain: upcoming first, then recently concluded.
@@ -402,16 +477,24 @@ def _scope_block(records: list[dict], title: str, empty_upcoming: str) -> str:
     axis this function exists for, and the upcoming/recent split inside it is
     the one Task 1 already fixed a real bug on (`extra.scope` is the DOMAIN,
     never the tense — see `fetch_inspire.split`).
+
+    UPCOMING IS NEVER CUT. A meeting inside the window that does not reach the
+    page means the window was widened for nothing; only the concluded tail is
+    capped, at `max_recent`.
     """
     upcoming, recent = fetch_inspire.split(records)
+    shown_recent = recent[:max(0, max_recent)]
     out = [f'<div class="section-head"><h2>{_esc(title)}</h2>'
           f'<p>{len(records)} meeting{"" if len(records) == 1 else "s"}</p></div>\n']
     out.append('<div class="section-head section-head--sub"><h3>Upcoming</h3>'
                f'<p>{len(upcoming)} meeting{"" if len(upcoming) == 1 else "s"}</p></div>\n')
     out.append(_conf_list(upcoming, empty_upcoming))
+    count = (f"{len(shown_recent)} of {len(recent)}"
+             if len(shown_recent) < len(recent)
+             else f'{len(recent)} meeting{"" if len(recent) == 1 else "s"}')
     out.append('<div class="section-head section-head--sub"><h3>Recent</h3>'
-               f'<p>{len(recent)} meeting{"" if len(recent) == 1 else "s"}</p></div>\n')
-    out.append(_conf_list(recent, "No meeting in this window has ended yet."))
+               f'<p>{count}</p></div>\n')
+    out.append(_conf_list(shown_recent, "No meeting in this window has ended yet."))
     return "".join(out)
 
 
@@ -454,17 +537,23 @@ def conferences(records: list[dict], log: logging.Logger,
             # September meetings in the list below and found fewer in the
             # figure would be right to call it a bug.
             caption = (f"{n_up} of the {len(upcoming)} upcoming meetings, "
-                      f"spread across the year ahead "
-                      f"(blue, amber if running right now)")
+                      f"spread across the year ahead")
         elif n_up:
-            caption = (f"The {n_up} upcoming meeting{'' if n_up == 1 else 's'} "
-                      f"(blue, amber if running right now)")
+            caption = (f"The {n_up} upcoming meeting{'' if n_up == 1 else 's'}")
             if n_rec:
-                caption += (f" and the {n_rec} most recently concluded "
-                           f"(grey), filling the rows the upcoming ones leave")
+                caption += (f" and the {n_rec} most recently concluded, "
+                           f"filling the rows the upcoming ones leave")
         else:
             caption = (f"The {n_rec} most recently concluded "
-                      f"meeting{'' if n_rec == 1 else 's'} (grey)")
+                      f"meeting{'' if n_rec == 1 else 's'}")
+        # The colour used to say three things at once — blue "ahead", amber
+        # "running", grey "concluded" — and now says one: how close the
+        # meeting's subject is to this site's field, on the key above. The
+        # other two are not lost, they moved to channels that do not compete
+        # with a hue: a bar that has concluded is faded, a bar under way is
+        # outlined. See figures.conference_timeline.
+        caption += (". Bar colour follows the key above; an outlined bar is "
+                    "under way, a faded one has concluded")
         # The scroll is not discoverable on its own: a drawing wider than its
         # card looks like a drawing that was cut off, and nothing on the page
         # says otherwise. One clause is cheaper than a scrollbar nobody sees.
@@ -528,6 +617,14 @@ def conferences(records: list[dict], log: logging.Logger,
     neutrino_records = conf_mod.split_scope(records, "neutrino")
     general_records = conf_mod.split_scope(records, "general")
 
+    # The key to the whole page, above the first thing it explains. Both
+    # figures and both listings are painted on this one scale, so it is drawn
+    # from every record on the page, not from one block's.
+    legend = affinity_legend(neutrino_records, general_records)
+
+    max_recent = int(((load_config().get("inspire") or {})
+                      .get("conferences") or {}).get("max_recent", MAX_RECENT))
+
     body = f"""<section class="hero">
   <div class="wrap hero__in">
     <p class="kicker">Refreshed daily</p>
@@ -541,10 +638,11 @@ def conferences(records: list[dict], log: logging.Logger,
 
 {AUTOGEN_SCRIPT.format(sources="conference indexers' APIs", stamp=stamp or _stamp())}
 
+{legend}
 {timeline_block}
 {map_block}
 {_scope_block(neutrino_records, "Neutrino conferences",
-             "Nothing announced in this window.")}
+             "Nothing announced in this window.", max_recent)}
 
 :::
 
@@ -552,7 +650,7 @@ def conferences(records: list[dict], log: logging.Logger,
 
 {_scope_block(general_records, "General particle physics",
              "No flagship meeting is listed ahead in the window; the next "
-             "editions may not be registered with INSPIRE yet.")}
+             "editions may not be registered with INSPIRE yet.", max_recent)}
 
 <p class="small muted">The list is rebuilt each day from the conference
 indexers rather than maintained by hand. Where a date cannot be confirmed from
@@ -562,6 +660,14 @@ source publishes one, and left blank when it does not. A meeting stays under
 field's own meetings; <b>General particle physics</b> is the flagship series
 the field plans around — ICHEP, Moriond, LHCP and their neighbours — queried
 from INSPIRE the same way.</p>
+
+<p class="small muted">The coloured chip on each entry is a reading aid and
+nothing more: it is this pipeline's reading of the meeting's series name, its
+title and INSPIRE's own subject categories, and it says how close the subject
+is likely to be to neutrino physics — not what the organisers say, not how
+much of the programme is given to it, and not how important the meeting is. A
+general conference marked “particle physics at large” may well hold the year's
+most important neutrino talk. Hover a chip to see which signal decided it.</p>
 
 :::
 """

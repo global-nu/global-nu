@@ -32,6 +32,12 @@ scripts:
            aria-describedby="lit-chips">
   </div>
 
+  <p class="lit__hint">The results can be re-ordered — by relevance,
+  publication date, citations or subfield, each of them reversible — and
+  narrowed to the subfields you want, with the buttons above them. Choosing
+  the order before you search is worth it for the date: the databases are then
+  asked for their most recent records, which changes which ones come back.</p>
+
   <p class="lit__hint">Recognised automatically: surnames, quoted titles,
   experiment names, arXiv identifiers, and dates written as
   <code>2019-2023</code>, <code>2019-&gt;2023</code>, <code>since 2020</code>, <code>before 2015</code>,
@@ -74,13 +80,6 @@ scripts:
           <label class="lit__label" for="q-to">To</label>
           <input id="q-to" type="text" inputmode="numeric" placeholder="2025">
         </div>
-        <div>
-          <label class="lit__label" for="q-sort">Sort by</label>
-          <select id="q-sort">
-            <option value="relevance" selected>Relevance / citations</option>
-            <option value="date">Most recent first</option>
-          </select>
-        </div>
       </div>
     </div>
   </details>
@@ -121,6 +120,8 @@ scripts:
 ::: section alt #lit-pane
 
 <p id="lit-status" class="lit__status" aria-live="polite"></p>
+<div id="lit-sort" class="lit-sort" role="group" aria-label="Order the results" hidden></div>
+<div id="lit-filters" class="lit-sort lit-sort--filters" role="group" aria-label="Show only some subfields" hidden></div>
 <div id="lit-results" class="lit__results"></div>
 
 :::
@@ -151,6 +152,39 @@ arXiv registers a DOI for every preprint with DataCite, under the
 `10.48550/arXiv.*` prefix, and DataCite's API does send CORS and needs no key.
 So the arXiv results here are arXiv's own metadata, deposited by arXiv, fetched
 from the one place a browser is allowed to read it.
+
+**Ordering, and what "most cited" can honestly mean.** The four sort
+buttons above the results work on what is already on the page: no click
+re-queries anything, so reordering is instant, and the order covers exactly
+the records the status line counts. (A *fresh* search does ask each database
+for its most recent records while the date order is active, because that
+genuinely changes which twenty come back.) Relevance is computed here rather than
+taken from any one database — once several answers are merged their own
+rankings are no longer comparable — from the authors and the title and topic
+words you asked for, a collaboration name if you gave one, and the number of
+databases that independently returned the paper. Its citations and its age
+are a separate, second number, read only to separate two papers the query
+itself cannot tell apart — never added to the match, so a much-cited paper
+cannot out-rank one that answers your query better. The full weighting is
+written out above `relevance()` in the page's script. Sorting *by* citations is a
+button of its own, and it is deliberately not pushed upstream: asking INSPIRE
+for `sort=mostcited` does not return the most cited papers *on* a subject, it
+returns the most cited papers that *mention* the words — which is how a search
+for lecture notes on string theory once came back with the PDG Review.
+
+**How the subfields are decided.** Each result is filed under one subfield,
+and the grouping is not invented here: it is the
+[arXiv subject taxonomy](https://arxiv.org/category_taxonomy) — the
+classification under which these papers were actually deposited — collapsed
+into eleven groups. Whatever each database holds of it is used and merged:
+INSPIRE's arXiv categories and its own subject terms, arXiv's own subject
+headings as deposited with DataCite, OpenAlex's topic, Semantic Scholar's
+fields of study, Crossref's subject when a publisher deposited one. Neutrino
+physics is the one group that is *not* an arXiv category — it runs through
+`hep-ph`, `hep-ex`, `astro-ph.HE` and `nucl-ex` at once — so it is decided
+from the topic, or from the words of the title or of the journal or conference
+it appeared in, and it takes precedence over the rest. A record no
+database classified is shown as *Unclassified*, not guessed into a group.
 
 **Why not NASA ADS.** Its search API is public and documented, but it requires
 a personal token, which would have to be published in the page source to work —

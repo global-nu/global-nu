@@ -71,8 +71,14 @@ def rec(title, opening, closing=None, *, upcoming=True, in_progress=False,
 
 
 def rects(svg: str) -> list[str]:
-    """Every <rect ...> element as its raw attribute string, in order."""
-    return re.findall(r"<rect ([^/]*?)/>", svg)
+    """Every <rect ...> element as its raw attribute string, in order.
+
+    Not `<rect …/>` any more: a bar now carries a <title> child holding its
+    dates, its tense and its affinity tier, so the element has an end tag. The
+    pattern stops at the first `>` and takes the optional slash with it, which
+    reads both shapes.
+    """
+    return re.findall(r"<rect ([^>]*?)/?>", svg)
 
 
 def view_w(svg: str) -> float:
@@ -93,8 +99,16 @@ row = rects(svg)
 bar_x = re.search(r'x="([\d.]+)"', row[0]).group(1) if row else None
 today_x = re.search(r'x1="([\d.]+)" y1="[^"]+" x2="[\d.]+" y2="[^"]+"\s*'
                     r'style="stroke:var\(--accent\)', svg)
-check("a record starting today appears in the figure, as an upcoming bar",
-      row and "var(--no)" in row[0] and "opacity:1" in row[0], row)
+# The FILL no longer says "ahead": it carries the meeting's subject affinity
+# (tools/news/affinity.py), and the tense moved to channels that cannot argue
+# with a hue — full opacity for "still ahead", .55 for concluded, an outline
+# for "under way". These records are untagged, so the fill is the `unknown`
+# grey; what is checked here is the tense, which is this section's subject.
+# The tier colours themselves are checked on real records in
+# tools/tests/test_conf_affinity.py.
+check("a record starting today appears in the figure, at full opacity "
+      "because it is still ahead",
+      row and "opacity:1" in row[0] and "stroke:var(--text)" not in row[0], row)
 check("a record starting today's bar left edge aligns with the TODAY line",
       bar_x is not None and today_x is not None
       and abs(float(bar_x) - float(today_x.group(1))) < 0.15,
@@ -109,9 +123,16 @@ svg = figures.conference_timeline([], [ended_yesterday], today=TODAY)
 row = rects(svg)
 check("a record that ended yesterday still appears in the figure",
       len(row) == 1, svg)
-check("a concluded record is drawn muted (text-mute, reduced opacity), not "
-      "as an upcoming (--no) bar",
-      row and "var(--text-mute)" in row[0] and 'opacity:.55' in row[0], row)
+check("a concluded record is drawn faded, which is how the figure says "
+      "«already over» now that the fill carries the subject instead",
+      row and "opacity:.55" in row[0], row)
+
+# And a meeting UNDER WAY gets an outline rather than a third fill colour —
+# the fill is spoken for, so the tense needs a channel of its own.
+running = rec("Running Now", "2026-08-13", "2026-08-16", in_progress=True)
+row_running = rects(figures.conference_timeline([running], [], today=TODAY))
+check("a meeting under way is ringed, not given a colour of its own",
+      row_running and "stroke:var(--text)" in row_running[0], row_running)
 
 # A missing `end` falls back to `end = start` — a one-day meeting still gets
 # a mark, at the minimum bar width the code guarantees (4.0).

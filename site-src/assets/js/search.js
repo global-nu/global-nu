@@ -27,8 +27,9 @@
   var elFrom     = $("#q-from");
   var elTo       = $("#q-to");
   var elCollab   = $("#q-collab");
-  var elSort     = $("#q-sort");
   var elResults  = $("#lit-results");
+  var elSortBar  = $("#lit-sort");
+  var elFilters  = $("#lit-filters");
   var elStatus   = $("#lit-status");
   var elOutbound = $("#lit-outbound");
   var elChips    = $("#lit-chips");
@@ -286,7 +287,13 @@
       collab: elCollab.value.trim(),
       from: elFrom.value.trim(),
       to: elTo.value.trim(),
-      sort: elSort.value
+      // What the DATABASES are asked for, which is not the same question as
+      // how the answer is displayed. Only the date axis is worth pushing
+      // upstream: asking for the most recent records genuinely changes which
+      // twenty come back. Citations are not pushed — see the note above
+      // SORTS — and neither is a subfield, which no database indexes the way
+      // this page groups it.
+      sort: sortKey === "date" ? "date" : "relevance"
     };
   }
 
@@ -330,7 +337,7 @@
     if (f.to) filt.push("until-pub-date:" + padDate(f.to, false));
     if (filt.length) p.set("filter", filt.join(","));
     p.set("rows", "20");
-    p.set("select", "title,author,issued,container-title,DOI,URL,type");
+    p.set("select", "title,author,issued,container-title,DOI,URL,type,subject");
     p.set("sort", f.sort === "date" ? "published" : "relevance");
     p.set("order", "desc");
     p.set("mailto", "antonio.marrone@ba.infn.it");
@@ -420,6 +427,22 @@
     return "https://api.datacite.org/dois?" + p.toString();
   }
 
+  /* DataCite carries arXiv's subject headings as prose with the category
+     identifier in brackets — "High Energy Physics - Experiment (hep-ex)",
+     under subjectScheme "arXiv". The bracket is the part that means
+     something; the prose is the same string in every record. Anything
+     deposited under another scheme (DataCite adds "FOS: Physical sciences")
+     is not an arXiv category and is left alone. */
+  function arxivSubjects(list) {
+    var out = [];
+    (list || []).forEach(function (x) {
+      if (!x || String(x.subjectScheme || "").toLowerCase() !== "arxiv") return;
+      var m = /\(([a-z-]+(?:\.[a-z-]+)?)\)\s*$/i.exec(String(x.subject || ""));
+      if (m && out.indexOf(m[1].toLowerCase()) === -1) out.push(m[1].toLowerCase());
+    });
+    return out;
+  }
+
   function fromArxiv(f) {
     return getJSON(dataciteUrl(f)).then(function (d) {
       return (d.data || []).map(function (r) {
@@ -442,6 +465,7 @@
           year: a.publicationYear || "",
           journal: "arXiv" + (id ? ":" + id : ""),
           arxiv: id,
+          cats: arxivSubjects(a.subjects),
           links: compact([
             id && { label: "arXiv", href: "https://arxiv.org/abs/" + id },
             id && { label: "PDF", href: "https://arxiv.org/pdf/" + id },
@@ -496,7 +520,7 @@
     var p = new URLSearchParams({
       q: q, size: "20", page: "1",
       fields: "titles,authors,arxiv_eprints,publication_info,earliest_date," +
-              "dois,citation_count,control_number"
+              "dois,citation_count,control_number,inspire_categories"
     });
     // Relevance mode leaves INSPIRE's own ranking alone: sort=mostcited
     // turned every topic search into "the most cited papers that mention
@@ -524,6 +548,14 @@
             year: pi.year || (m.earliest_date || "").slice(0, 4),
             journal: journal,
             citations: m.citation_count,
+            // Both classifications INSPIRE holds: the arXiv categories the
+            // preprint was deposited under, and INSPIRE's own subject terms
+            // (Phenomenology-HEP, Experiment-HEP, Astrophysics, …), which are
+            // the only ones a record with no eprint carries.
+            cats: (ep && ep.categories) || [],
+            inspireCats: (m.inspire_categories || []).map(function (c) {
+              return c.term;
+            }),
             links: compact([
               ep && { label: "arXiv:" + ep.value, href: "https://arxiv.org/abs/" + ep.value },
               (m.dois || [])[0] && { label: "DOI", href: "https://doi.org/" + m.dois[0].value },
@@ -552,6 +584,9 @@
           year: it.issued && it.issued["date-parts"] &&
                 it.issued["date-parts"][0] ? it.issued["date-parts"][0][0] : "",
           journal: (it["container-title"] || [])[0] || it.type || "",
+          // Present only when the publisher deposited it, which for physics
+          // journals is most of the time not at all. Free when it is there.
+          crSubjects: it.subject || [],
           links: compact([
             it.DOI && { label: "DOI", href: "https://doi.org/" + it.DOI }
           ])
@@ -576,6 +611,13 @@
           year: w.publication_year || "",
           journal: (loc.source && loc.source.display_name) || "",
           citations: w.cited_by_count,
+          // OpenAlex classifies every work in a four-level hierarchy
+          // (domain > field > subfield > topic). The topic is the useful
+          // level — "Neutrino Physics Research" is a topic, while its
+          // subfield is the much coarser "Nuclear and High Energy Physics".
+          topic: (w.primary_topic && w.primary_topic.display_name) || "",
+          topicField: (w.primary_topic && w.primary_topic.subfield &&
+                       w.primary_topic.subfield.display_name) || "",
           links: compact([
             w.doi && { label: "DOI", href: w.doi },
             loc.landing_page_url && { label: "Publisher", href: loc.landing_page_url }
@@ -596,7 +638,7 @@
     p.set("query", q || "neutrino");
     p.set("fieldsOfStudy", "Physics");
     p.set("fields", "paperId,title,authors,year,publicationDate,venue," +
-                    "externalIds,citationCount");
+                    "externalIds,citationCount,s2FieldsOfStudy");
     p.set("limit", "20");
     if (yearOf(f.from) || yearOf(f.to)) {
       p.set("year", (yearOf(f.from) || "") + "-" + (yearOf(f.to) || ""));
@@ -617,6 +659,9 @@
           year: w.year || "",
           journal: w.venue || "",
           citations: w.citationCount,
+          s2fields: (w.s2FieldsOfStudy || []).map(function (x) {
+            return x && x.category;
+          }).filter(Boolean),
           links: compact([
             ext.ArXiv && { label: "arXiv", href: "https://arxiv.org/abs/" + ext.ArXiv },
             ext.DOI && { label: "DOI", href: "https://doi.org/" + ext.DOI },
@@ -669,20 +714,6 @@
       .filter(function (t) { return t.length >= 3 && !DROP.has(t); });
   }
 
-  // Newest first. APIs are asked to sort already, but they disagree on what
-  // "date" means (INSPIRE: earliest announcement, Crossref: issued, OpenAlex:
-  // publication date), so re-sort locally to get one consistent order.
-  function byDateDesc(rows) {
-    return rows.slice().sort(function (a, b) {
-      var da = a.date || (a.year ? a.year + "-01-01" : "");
-      var db = b.date || (b.year ? b.year + "-01-01" : "");
-      if (!da && !db) return 0;
-      if (!da) return 1;
-      if (!db) return -1;
-      return db.localeCompare(da);
-    });
-  }
-
   /* ---------------------------------------------------------------
      Deduplication across databases
      The same paper usually comes back from all three. Merge on DOI,
@@ -707,6 +738,27 @@
     return doi || (arx && "arxiv:" + arx) || "t:" + normTitle(r.title);
   }
 
+  /* Subject information is per-database and none of them has it all:
+     INSPIRE knows the arXiv categories and its own subject terms, OpenAlex
+     knows its topic, Semantic Scholar its fields of study, Crossref whatever
+     the publisher deposited. A merged record must keep every one of them, or
+     the subfield of a paper would depend on which database happened to be
+     first in the list rather than on what is known about the paper. */
+  var TAG_LISTS = ["cats", "inspireCats", "s2fields", "crSubjects"];
+
+  function mergeTags(target, other) {
+    TAG_LISTS.forEach(function (k) {
+      if (!other[k] || !other[k].length) return;
+      var have = target[k] || [];
+      other[k].forEach(function (v) {
+        if (v && have.indexOf(v) === -1) have.push(v);
+      });
+      target[k] = have;
+    });
+    if (!target.topic && other.topic) target.topic = other.topic;
+    if (!target.topicField && other.topicField) target.topicField = other.topicField;
+  }
+
   function mergeAll(groups) {
     var byKey = {};
     var order = [];
@@ -727,6 +779,7 @@
         if (typeof t.citations !== "number" && typeof r.citations === "number") {
           t.citations = r.citations;
         }
+        mergeTags(t, r);
         if (r.authors.length > t.authors.length) { t.authors = r.authors; t.more = r.more; }
         r.links.forEach(function (l) {
           var seen = t.links.some(function (x) {
@@ -764,6 +817,7 @@
       if (typeof first.citations !== "number" && typeof r.citations === "number") {
         first.citations = r.citations;
       }
+      mergeTags(first, r);
       if (r.authors.length > first.authors.length) {
         first.authors = r.authors; first.more = r.more;
       }
@@ -819,6 +873,305 @@
   }
 
   /* ---------------------------------------------------------------
+     Subfield classification
+
+     Which corner of physics a paper belongs to. The scheme is not invented
+     here: it is the arXiv subject taxonomy (arxiv.org/category_taxonomy) —
+     the classification the papers were actually deposited under — collapsed
+     into the handful of groups a reader of this page separates by eye. Each
+     database is asked for whatever part of it it holds:
+
+       INSPIRE           arxiv_eprints[].categories, plus its own
+                         inspire_categories (Phenomenology-HEP,
+                         Experiment-HEP, Astrophysics, Gravitation and
+                         Cosmology, Theory-Nucl, Instrumentation, …), which
+                         is the only classification a record with no eprint
+                         carries
+       arXiv / DataCite  subjects deposited under subjectScheme "arXiv"
+       OpenAlex          primary_topic, from its domain/field/subfield/topic
+                         hierarchy
+       Semantic Scholar  s2FieldsOfStudy
+       Crossref          subject, when the publisher deposited any
+
+     NEUTRINO PHYSICS IS NOT AN ARXIV CATEGORY. It runs through hep-ph,
+     hep-ex, astro-ph.HE and nucl-ex at once — which is precisely why a page
+     on this site needs it as a group of its own. So it is decided separately
+     — from OpenAlex's topic, or from the words of the title and of the venue,
+     the venue being how a proceedings volume of a neutrino conference gives
+     its own subject away — and it OUTRANKS the arXiv bucket: a hep-ph paper
+     on oscillations belongs under neutrinos, not under phenomenology.
+
+     The label is a reading aid over the results of one search. It is not a
+     claim about the paper beyond what the databases themselves say, and a
+     record none of them classified is shown as Unclassified rather than
+     guessed into a group.
+     --------------------------------------------------------------- */
+
+  var SUBFIELDS = [
+    { id: "neutrino", label: "Neutrino physics" },
+    { id: "hep-ph",   label: "Particle phenomenology" },
+    { id: "hep-ex",   label: "Particle experiment" },
+    { id: "hep-th",   label: "Fields, strings & math. physics" },
+    { id: "nucl",     label: "Nuclear physics" },
+    { id: "astro-he", label: "Astroparticle & HE astrophysics" },
+    { id: "cosmo",    label: "Cosmology & gravitation" },
+    { id: "astro",    label: "Astronomy & astrophysics" },
+    { id: "instr",    label: "Instrumentation & data" },
+    { id: "other",    label: "Other physics" },
+    { id: "none",     label: "Unclassified" }
+  ];
+
+  var SUBFIELD_LABEL = {};
+  var SUBFIELD_ORDER = {};
+  SUBFIELDS.forEach(function (s, i) {
+    SUBFIELD_LABEL[s.id] = s.label;
+    SUBFIELD_ORDER[s.id] = i;
+  });
+
+  // arXiv category -> group, keys lower case. A category with a subdivision
+  // ("astro-ph.co") is looked up whole and then by its archive alone, so a
+  // subdivision arXiv adds after this was written lands in its archive's
+  // group instead of falling through to "other".
+  var ARXIV_GROUP = {
+    "hep-ph": "hep-ph",
+    "hep-ex": "hep-ex",
+    "hep-th": "hep-th", "hep-lat": "hep-th", "math-ph": "hep-th",
+    "nucl-th": "nucl", "nucl-ex": "nucl",
+    "astro-ph.he": "astro-he",
+    "astro-ph.co": "cosmo", "gr-qc": "cosmo",
+    "astro-ph": "astro", "astro-ph.ga": "astro",
+    "astro-ph.sr": "astro", "astro-ph.ep": "astro",
+    "astro-ph.im": "instr", "physics.ins-det": "instr",
+    "physics.acc-ph": "instr", "physics.data-an": "instr",
+    "physics.comp-ph": "instr"
+  };
+
+  // INSPIRE's own subject terms, lower-cased. Verified against the live API
+  // rather than recalled: a record's inspire_categories[].term.
+  var INSPIRE_GROUP = {
+    "phenomenology-hep": "hep-ph",
+    "experiment-hep": "hep-ex",
+    "theory-hep": "hep-th",
+    "lattice": "hep-th",
+    "math and math physics": "hep-th",
+    "theory-nucl": "nucl",
+    "experiment-nucl": "nucl",
+    "astrophysics": "astro-he",
+    "gravitation and cosmology": "cosmo",
+    "instrumentation": "instr",
+    "accelerators": "instr",
+    "computing": "instr",
+    "general physics": "other",
+    "other": "other"
+  };
+
+  // Word boundaries, not substrings: "neutron" is not "neutrino", and a
+  // title that merely contains the letters is not a neutrino paper. The
+  // spellings are those that actually appear in titles in this field.
+  var NU_RE = new RegExp(
+    "\\b(?:neutrino|neutrinos|neutrino's|antineutrino|antineutrinos|" +
+    "neutrinoless|cevns|pmns|majoron|majorons)\\b" +
+    "|\\bdouble[\\s-]beta\\b|0\\u03bd\\u03b2\\u03b2|\\b0nubb\\b", "i");
+
+  // Last resort, on OpenAlex's topic wording and Semantic Scholar's fields.
+  // Ordered: the first pattern that matches wins, so the narrower subjects
+  // are listed before the ones whose words they contain.
+  var TOPIC_GROUP = [
+    [/dark matter|cosmic ray|astroparticle|gamma-ray|high[\s-]energy astro/i, "astro-he"],
+    [/cosmolog|dark energy|inflation|cosmic microwave|gravitation|relativit/i, "cosmo"],
+    [/astronom|galax|stellar|solar physic|planet/i, "astro"],
+    [/nuclear/i, "nucl"],
+    [/string theory|quantum field|supersymmetr|conformal|lattice|mathematical physic/i, "hep-th"],
+    [/particle|collider|chromodynamic|hadron|standard model|quark/i, "hep-ph"],
+    [/detector|instrument|accelerator|data analysis/i, "instr"],
+    [/physics/i, "other"]
+  ];
+
+  function subfieldOf(r) {
+    var i;
+    if (NU_RE.test(String(r.title || "") + " " + String(r.journal || ""))) {
+      return "neutrino";
+    }
+    if (/neutrino/i.test(r.topic || "")) return "neutrino";
+
+    var cats = (r.cats || []).map(function (c) { return String(c).toLowerCase(); });
+    for (i = 0; i < cats.length; i++) {
+      var g = ARXIV_GROUP[cats[i]] || ARXIV_GROUP[cats[i].split(".")[0]];
+      if (!g && /^(?:physics|quant-ph|cond-mat|nlin|math)/.test(cats[i])) g = "other";
+      if (g) return g;
+    }
+
+    var ins = (r.inspireCats || []).map(function (c) { return String(c).toLowerCase(); });
+    for (i = 0; i < ins.length; i++) {
+      if (INSPIRE_GROUP[ins[i]]) return INSPIRE_GROUP[ins[i]];
+    }
+
+    var words = [r.topic, r.topicField].concat(r.s2fields || [], r.crSubjects || [])
+                  .filter(Boolean).join(" ");
+    for (i = 0; i < TOPIC_GROUP.length; i++) {
+      if (TOPIC_GROUP[i][0].test(words)) return TOPIC_GROUP[i][1];
+    }
+    return "none";
+  }
+
+  /* ---------------------------------------------------------------
+     Relevance
+
+     Each database ranks in its own way, over its own subset. Once the
+     answers are merged those rankings cannot be compared — the third hit at
+     OpenAlex and the third at INSPIRE are not equally good — so an order
+     that means the same thing for every row has to be computed here, from
+     the query and the record alone. Deliberately simple and bounded, and
+     every term is something visible in the row itself:
+
+       up to 45   the authors asked for, by the fraction actually present
+       up to 40   the title asked for: 40 when it matches, 25 when contained
+       up to 25   the topic words, by the fraction found in title or venue
+                  (a word found only in the journal name counts two fifths)
+              8   a collaboration name matched
+       up to 12   corroboration: 4 for each database that returned the record
+
+     TWO NUMBERS, NOT ONE. Citations and age are returned separately and are
+     consulted ONLY when the match score is exactly equal — a genuine
+     tie-break, not a term. They were a term once, worth up to 10 and 2
+     points, and that quietly made this page do the thing the rest of the
+     file exists to avoid: a paper with 20 000 citations matching four query
+     words out-ranked one with none matching all five. The page says
+     citations only break ties, and this is what makes that sentence true.
+     Sorting BY citations is a button of its own, where it is the question.
+     --------------------------------------------------------------- */
+
+  function relevance(r, f, terms) {
+    var s = 0;
+    if (f.author.length) {
+      var have = r.authors.map(surnameOf);
+      var hit = 0;
+      f.author.forEach(function (want) {
+        var w = surnameOf(want);
+        if (have.some(function (h) { return h === w || h.indexOf(w) === 0; })) hit++;
+      });
+      s += 45 * (hit / f.author.length);
+    }
+    if (f.title) {
+      var a = normTitle(r.title), b = normTitle(f.title);
+      if (a === b) s += 40;
+      else if (b.length > 12 && a.indexOf(b) > -1) s += 25;
+    }
+    if (terms.length) {
+      var inTitle = " " + normTitle(r.title) + " ";
+      var inVenue = " " + normTitle(r.journal || "") + " ";
+      var n = 0;
+      terms.forEach(function (t) {
+        if (inTitle.indexOf(t) > -1) n += 1;
+        else if (inVenue.indexOf(t) > -1) n += 0.4;
+      });
+      s += 25 * Math.min(1, n / terms.length);
+    }
+    if (f.collab) {
+      var hay = normTitle(r.title + " " + (r.journal || ""));
+      if (hay.indexOf(normTitle(f.collab)) > -1) s += 8;
+    }
+    s += Math.min(12, 4 * (r.sources || [r.source]).length);
+    return s;
+  }
+
+  /* The tie-break, on the same bounded scale, consulted only when two rows
+     score exactly the same match. Ten points of citations against two of
+     recency: between two papers the query cannot tell apart, the one the
+     field has actually used comes first. */
+  function tieBreak(r) {
+    var t = 0;
+    if (typeof r.citations === "number" && r.citations > 0) {
+      t += Math.min(10, 4 * Math.log(1 + r.citations) / Math.LN10);
+    }
+    var y = parseInt(String(r.date || r.year || "").slice(0, 4), 10);
+    if (y && y >= THIS_YEAR - 3) t += 2;
+    return t;
+  }
+
+  /* ---------------------------------------------------------------
+     Ordering
+
+     Four keys, each reversible. The ordering is applied HERE, to the merged
+     set already on the page, and changing it never refetches: the answer is
+     already downloaded, and a click that costs five API calls to reorder
+     twenty rows the reader is looking at would be a worse page.
+
+     Which also fixes what "most cited" can honestly mean. Asking INSPIRE for
+     sort=mostcited does not return the most cited papers ON the subject, it
+     returns the most cited papers that MENTION the words — the failure this
+     file already records for topic searches (see fromInspire). The databases
+     are therefore always asked for their own best matches; the citation
+     ranking is over that set, and the status line says how large it is.
+
+     A record missing the key sinks to the bottom in BOTH directions. It is
+     not "the smallest year", and floating undated records to the top of an
+     ascending sort would be a bug dressed as an order.
+     --------------------------------------------------------------- */
+
+  // One key for time, not two. There were a "Year" and a "Month" button, and
+  // the pair was a distinction without a use: the same question asked at two
+  // resolutions, where the finer one answers the coarser as well. A record
+  // known only to the year sorts at its January, so nothing is lost.
+  var SORTS = [
+    { id: "relevance", label: "Relevance",
+      down: "best match first", up: "weakest match first" },
+    { id: "date", label: "Date",
+      down: "newest first", up: "oldest first" },
+    { id: "citations", label: "Citations",
+      down: "most cited first", up: "least cited first" },
+    { id: "subfield", label: "Subfield",
+      down: "largest group first", up: "smallest group first" }
+  ];
+
+  var sortKey = "relevance";
+  var sortDir = -1;                 // -1 descending, +1 ascending
+  var hidden = {};                  // subfield id -> true when filtered out
+
+  // "2025-03-10" and a bare "2025" both order; a year alone is placed at its
+  // January, which is where a record that only says "2025" belongs — that is
+  // also what lets ONE key do the work: a record known only to the year still
+  // sorts against records known to the day, instead of needing a coarser
+  // button of its own.
+  function dateKey(r) {
+    var d = r.date || (r.year ? String(r.year) + "-01-01" : "");
+    if (!/^\d{4}/.test(d)) return null;
+    return (d + "-01-01").slice(0, 10);
+  }
+
+  function citeKey(r) {
+    return typeof r.citations === "number" ? r.citations : null;
+  }
+
+  // Best match first, then the tie-break. The direction is NOT applied here:
+  // this is what "equal for the chosen key" falls back to, and a reader
+  // sorting by year ascending still wants the better match first among the
+  // papers of one year.
+  function byMatch(a, b) {
+    return (b.score - a.score) || (b.tie - a.tie);
+  }
+
+  function compareBy(key, dir) {
+    return function (a, b) {
+      var ka, kb;
+      if (key === "date") { ka = dateKey(a); kb = dateKey(b); }
+      else if (key === "citations") { ka = citeKey(a); kb = citeKey(b); }
+      else {
+        // Relevance: the match decides, the tie-break settles what it
+        // cannot, and BOTH follow the chosen direction.
+        return dir * ((a.score - b.score) || (a.tie - b.tie));
+      }
+      if (ka === null && kb === null) return byMatch(a, b);
+      if (ka === null) return 1;            // always last, both directions
+      if (kb === null) return -1;
+      if (ka === kb) return byMatch(a, b);
+      // A date key is an ISO string, a citation count is a number; `<`
+      // orders both correctly.
+      return dir * (ka < kb ? -1 : 1);
+    };
+  }
+
+  /* ---------------------------------------------------------------
      Rendering
      --------------------------------------------------------------- */
 
@@ -845,7 +1198,27 @@
     "Semantic Scholar": "src--s2"
   };
 
-  function renderItem(r) {
+  /* Eleven subfields cannot each have a legible colour of their own, and a
+     palette that large stops being a code and becomes decoration. So the chip
+     carries the precise label as TEXT and is tinted by the broad family it
+     belongs to — five tones, every one of them an accent token already
+     measured against this section's background in tools/tests/test_theme.js. */
+  var SUBFIELD_TONE = {
+    "neutrino": "nu",
+    "hep-ph": "hep", "hep-ex": "hep",
+    "hep-th": "thy", "nucl": "thy",
+    "astro-he": "sky", "cosmo": "sky", "astro": "sky",
+    "instr": "dim", "other": "dim", "none": "dim"
+  };
+
+  var BUCKET_LABEL = {};
+  BUCKETS.forEach(function (b) { BUCKET_LABEL[b.id] = b.label; });
+
+  // `showMatch` only outside the relevance view. There the rows already sit
+  // under the heading that names their match quality, and repeating it on
+  // every row would be noise; in a flat or subfield-grouped list that heading
+  // is gone and the information would be lost with it.
+  function renderItem(r, showMatch) {
     var authors = r.authors.filter(Boolean).join(", ") + (r.more ? ", et al." : "");
     var when = r.date || (r.year ? String(r.year) : "");
     var meta = compact([
@@ -862,6 +1235,12 @@
     var srcs = (r.sources || [r.source]).map(function (s) {
       return '<span class="src ' + (SRC_CLASS[s] || "") + '">' + esc(s) + "</span>";
     }).join("");
+    var sf = r.subfield || "none";
+    var tags = '<span class="sf sf--' + SUBFIELD_TONE[sf] + '">' +
+               esc(SUBFIELD_LABEL[sf]) + "</span>";
+    if (showMatch && BUCKET_LABEL[r.bucket]) {
+      tags += '<span class="sf sf--match">' + esc(BUCKET_LABEL[r.bucket]) + "</span>";
+    }
     var first = r.links[0];
     var title = first
       ? '<a class="pub__title" href="' + esc(first.href) +
@@ -870,12 +1249,11 @@
     return "<li>" + title +
            '<div class="pub__authors">' + esc(authors) + "</div>" +
            '<div class="pub__ref">' + meta + links + '<span class="src-row">' +
-           srcs + "</span></div></li>";
+           tags + srcs + "</span></div></li>";
   }
 
-  function renderBuckets(rows, f, failures) {
+  function head(failures, rows) {
     var out = [];
-
     if (failures.length) {
       out.push('<div class="notice"><p>' +
         failures.map(function (x) {
@@ -883,21 +1261,83 @@
         }).join("; ") +
         ". The outbound buttons above still work.</p></div>");
     }
-
     if (!rows.length) {
-      out.push('<p class="muted">No results. Try loosening the query or widening the dates.</p>');
-      return out.join("");
+      out.push('<p class="muted">' + (anyHidden()
+        ? "Every result is in a subfield you have switched off."
+        : "No results. Try loosening the query or widening the dates.") +
+        "</p>");
     }
+    return out;
+  }
 
-    BUCKETS.forEach(function (b) {
-      var group = rows.filter(function (r) { return r.bucket === b.id; });
+  // Relevance view: the match buckets, strongest first — the grouping IS the
+  // relevance statement, and the score decides the order inside each group.
+  //
+  // THE SEQUENCE OF BUCKETS REVERSES TOO. It did not, once: ascending
+  // relevance reordered the rows inside each group while leaving the groups
+  // themselves strongest-first, so the best match on the page stayed in
+  // position one — while the status line and the button's accessible name
+  // both announced "weakest match first". A control that says it reversed
+  // and did not is worse than no control.
+  function renderBuckets(rows, failures) {
+    var out = head(failures, rows);
+    if (!rows.length) return out.join("");
+    var cmp = compareBy("relevance", sortDir);
+    var order = sortDir < 0 ? BUCKETS : BUCKETS.slice().reverse();
+    order.forEach(function (b) {
+      var group = rows.filter(function (r) { return r.bucket === b.id; })
+                      .sort(cmp);
       if (!group.length) return;
       out.push(
         '<section class="lit-bucket lit-bucket--' + b.id + '">' +
         '<h3 class="lit-group">' + esc(b.label) +
         '<span class="count">' + group.length + "</span></h3>" +
         '<p class="lit-group__note">' + esc(b.note) + "</p>" +
-        '<ul class="publist">' + group.map(renderItem).join("") + "</ul></section>");
+        '<ul class="publist">' + group.map(function (r) {
+          return renderItem(r, false);
+        }).join("") + "</ul></section>");
+    });
+    return out.join("");
+  }
+
+  // Year, month and citations: one list. Buckets would cut the very ordering
+  // that was asked for into four unrelated runs — a 2027 paper below a 1998
+  // one because they matched differently.
+  function renderFlat(rows, failures) {
+    var out = head(failures, rows);
+    if (!rows.length) return out.join("");
+    var sorted = rows.slice().sort(compareBy(sortKey, sortDir));
+    out.push('<ul class="publist">' + sorted.map(function (r) {
+      return renderItem(r, true);
+    }).join("") + "</ul>");
+    return out.join("");
+  }
+
+  // Subfield view: one section per group. The groups are ordered by size,
+  // reversibly; inside a group the order is relevance, because "the neutrino
+  // papers" is a question about which of them, not about which order.
+  function renderSubfields(rows, failures) {
+    var out = head(failures, rows);
+    if (!rows.length) return out.join("");
+    var by = {};
+    rows.forEach(function (r) { (by[r.subfield] = by[r.subfield] || []).push(r); });
+    var ids = Object.keys(by).sort(function (a, b) {
+      if (by[a].length !== by[b].length) {
+        return sortDir * (by[a].length - by[b].length);
+      }
+      return SUBFIELD_ORDER[a] - SUBFIELD_ORDER[b];
+    });
+    var cmp = compareBy("relevance", -1);
+    ids.forEach(function (id) {
+      var group = by[id].sort(cmp);
+      out.push(
+        '<section class="lit-bucket lit-bucket--sf sf-block--' +
+        SUBFIELD_TONE[id] + '">' +
+        '<h3 class="lit-group">' + esc(SUBFIELD_LABEL[id]) +
+        '<span class="count">' + group.length + "</span></h3>" +
+        '<ul class="publist">' + group.map(function (r) {
+          return renderItem(r, true);
+        }).join("") + "</ul></section>");
     });
     return out.join("");
   }
@@ -922,6 +1362,168 @@
   }
 
   /* ---------------------------------------------------------------
+     The controls over the results, and redrawing without refetching
+
+     Everything below works on `state`, the merged answer of the last search.
+     A click on a sort button or a subfield filter redraws from it; no request
+     leaves the browser. That is what makes the buttons instant, and it is
+     also the honest scope of the ordering: it ranks what was retrieved, and
+     the status line says how much that is.
+     --------------------------------------------------------------- */
+
+  var state = { rows: [], failures: [], dbs: 0, merged: 0, gated: 0 };
+
+  function anyHidden() {
+    return Object.keys(hidden).some(function (k) { return hidden[k]; });
+  }
+
+  function visibleRows() {
+    return state.rows.filter(function (r) { return !hidden[r.subfield]; });
+  }
+
+  /* The sort bar is drawn from the start, before any search has run, and the
+     filter bar only once there is something to filter.
+
+     Not symmetry for its own sake: the order is pushed UPSTREAM for the date
+     keys — a search with Year or Month active asks each database for its most
+     recent records, which changes which twenty come back. Hidden until the
+     first answer arrived, the bar made that unreachable on the query that
+     needed it, and a reader wanting the twenty most recent papers had to
+     search, click, and search again. The filter bar has no such duty: it can
+     only narrow an answer that exists. */
+  function renderControls() {
+    if (!elSortBar || !elFilters) return;
+    var live = !!state.rows.length;
+
+    var bits = ['<span class="lit-sort__label">Sort by</span>'];
+    SORTS.forEach(function (o) {
+      var on = o.id === sortKey;
+      var way = on ? (sortDir < 0 ? o.down : o.up) : o.down;
+      // The arrow is decorative; the direction is in the accessible name, so
+      // a screen reader announces "Year, newest year first" and not "Year".
+      bits.push('<button type="button" class="lit-sort__btn" data-sort="' +
+        o.id + '" aria-pressed="' + (on ? "true" : "false") +
+        '" aria-label="' + esc(o.label + ", " + way +
+        (on ? " (press again to reverse)" : "")) + '" title="' + esc(way) + '">' +
+        esc(o.label) + '<span class="lit-sort__dir" aria-hidden="true">' +
+        (on ? (sortDir < 0 ? "\u2193" : "\u2191") : "") + "</span></button>");
+    });
+    elSortBar.innerHTML = bits.join("");
+    elSortBar.hidden = false;
+
+    if (!live) { elFilters.hidden = true; elFilters.innerHTML = ""; return; }
+
+    // Counts are over ALL rows, not over the visible ones: a filter chip
+    // whose number changed as you switched other chips off would be telling
+    // you about the filter rather than about the answer.
+    var counts = {};
+    state.rows.forEach(function (r) {
+      counts[r.subfield] = (counts[r.subfield] || 0) + 1;
+    });
+    var ids = Object.keys(counts).sort(function (a, b) {
+      return SUBFIELD_ORDER[a] - SUBFIELD_ORDER[b];
+    });
+    if (ids.length < 2) { elFilters.hidden = true; elFilters.innerHTML = ""; return; }
+
+    var f = ['<span class="lit-sort__label">Subfield</span>'];
+    ids.forEach(function (id) {
+      var off = !!hidden[id];
+      f.push('<button type="button" class="lit-filter sf--' + SUBFIELD_TONE[id] +
+        '" data-sf="' + id + '" aria-pressed="' + (off ? "false" : "true") +
+        '" aria-label="' + esc(SUBFIELD_LABEL[id] + ", " + counts[id] +
+        (off ? " papers, hidden — show them" : " papers, shown — hide them")) +
+        '">' + esc(SUBFIELD_LABEL[id]) +
+        '<span class="lit-filter__n">' + counts[id] + "</span></button>");
+    });
+    // No aria-pressed on this one, deliberately: it is a command, not a
+    // toggle, and marking it pressed/unpressed would describe a state it does
+    // not have. The label says what it does instead.
+    if (anyHidden()) {
+      f.push('<button type="button" class="lit-filter lit-filter--all" ' +
+             'data-sf="*" aria-label="Show every subfield again">' +
+             "Show all</button>");
+    }
+    elFilters.innerHTML = f.join("");
+    elFilters.hidden = false;
+  }
+
+  function renderStatus(shown) {
+    if (!state.rows.length) {
+      elStatus.textContent = state.dbs === 0
+        ? "No database could be reached."
+        : "No results. Try loosening the query or widening the dates.";
+      return;
+    }
+    var active = SORTS.filter(function (o) { return o.id === sortKey; })[0];
+    var bits = [];
+    bits.push(state.rows.length + " paper" + (state.rows.length === 1 ? "" : "s") +
+              " from " + state.dbs + " database" + (state.dbs === 1 ? "" : "s"));
+    if (state.merged > 0) {
+      bits.push(state.merged === 1 ? "1 duplicate record merged"
+                                   : state.merged + " duplicate records merged");
+    }
+    if (state.gated > 0) {
+      bits.push(state.gated === 1 ? "1 off-topic record dropped"
+                                  : state.gated + " off-topic records dropped");
+    }
+    if (shown.length !== state.rows.length) {
+      bits.push(shown.length + " shown");
+    }
+    bits.push("ordered by " + active.label.toLowerCase() + ", " +
+              (sortDir < 0 ? active.down : active.up));
+    elStatus.textContent = bits.join(" · ") + ". Links open in a new tab.";
+  }
+
+  /* Both bars are redrawn wholesale on every click, which throws away the
+     focused element — so a reader working by keyboard would press Enter on
+     "Year" and find the focus back at the top of the document, with no way to
+     reverse it without tabbing the whole way down again. Put it back on the
+     button that was just used. */
+  function refocus(bar, sel) {
+    var el = bar && bar.querySelector(sel);
+    if (el && document.activeElement !== el) el.focus();
+  }
+
+  function draw() {
+    renderControls();
+    var rows = visibleRows();
+    elResults.innerHTML =
+      sortKey === "relevance" ? renderBuckets(rows, state.failures)
+      : sortKey === "subfield" ? renderSubfields(rows, state.failures)
+      : renderFlat(rows, state.failures);
+    renderStatus(rows);
+  }
+
+  if (elSortBar) {
+    elSortBar.addEventListener("click", function (ev) {
+      var b = ev.target.closest ? ev.target.closest("[data-sort]") : null;
+      if (!b) return;
+      var id = b.getAttribute("data-sort");
+      // Clicking the active key reverses it; clicking another key starts it
+      // in its natural direction, which for every key here is descending —
+      // newest, most cited, best match, largest group.
+      if (id === sortKey) sortDir = -sortDir;
+      else { sortKey = id; sortDir = -1; }
+      draw();
+      refocus(elSortBar, '[data-sort="' + id + '"]');
+    });
+  }
+
+  if (elFilters) {
+    elFilters.addEventListener("click", function (ev) {
+      var b = ev.target.closest ? ev.target.closest("[data-sf]") : null;
+      if (!b) return;
+      var id = b.getAttribute("data-sf");
+      if (id === "*") hidden = {};
+      else hidden[id] = !hidden[id];
+      draw();
+      // "Show all" disappears the moment it works, so the focus goes to the
+      // chip the reader was last thinking about instead — never to nowhere.
+      refocus(elFilters, id === "*" ? "[data-sf]" : '[data-sf="' + id + '"]');
+    });
+  }
+
+  /* ---------------------------------------------------------------
      Wiring
      --------------------------------------------------------------- */
 
@@ -940,6 +1542,13 @@
     renderOutbound(f, parsed);
     elStatus.innerHTML = '<span class="spin" aria-hidden="true"></span> Querying the databases …';
     elResults.innerHTML = "";
+    // A subfield filter belongs to one answer: keeping "neutrino physics
+    // only" switched on across a search for something else would hide the new
+    // answer behind a decision taken about the old one. The sort key is the
+    // opposite case — it is a standing preference and survives.
+    hidden = {};
+    state = { rows: [], failures: [], dbs: 0, merged: 0, gated: 0 };
+    renderControls();
 
     // Bring the results area into view and give it focus, so the answer is
     // where the eye already is — and so keyboard and screen-reader users land
@@ -980,6 +1589,7 @@
 
       ok.forEach(function (g) { g.rows.forEach(saneDates); });
       var rows = mergeAll(ok);
+      var afterMerge = rows.length;
 
       var terms = gateTerms(f);
       rows = rows.filter(function (r) {
@@ -989,20 +1599,29 @@
         return physicsNative || passesTermGate(r, terms);
       });
 
-      rows.forEach(function (r) { r.bucket = classify(r, f); });
-      if (f.sort === "date") rows = byDateDesc(rows);
+      // Classified and scored ONCE, here. The sort buttons reorder the same
+      // objects afterwards; recomputing a score on every click would be work
+      // for nothing and, worse, a chance for the order to disagree with the
+      // labels the reader is looking at.
+      rows.forEach(function (r) {
+        r.bucket = classify(r, f);
+        r.subfield = subfieldOf(r);
+        r.score = relevance(r, f, terms);
+        r.tie = tieBreak(r);
+      });
 
-      elResults.innerHTML = renderBuckets(rows, f, failures);
-
+      // Two different losses, counted separately. They used to be added
+      // together and reported as duplicates, which credited the merge with
+      // records the physics gate had thrown out.
       var found = ok.reduce(function (n, g) { return n + g.rows.length; }, 0);
-      var merged = found - rows.length;
-      elStatus.textContent = rows.length
-        ? rows.length + " papers from " + ok.length + " database" +
-          (ok.length > 1 ? "s" : "") +
-          (merged > 0 ? " (" + merged + " duplicate records merged)" : "") +
-          ". Links open in a new tab."
-        : (failures.length ? "No database could be reached."
-                           : "No results. Try loosening the query or widening the dates.");
+      state = {
+        rows: rows,
+        failures: failures,
+        dbs: ok.length,
+        merged: found - afterMerge,
+        gated: afterMerge - rows.length
+      };
+      draw();
     });
   }
 
@@ -1011,6 +1630,9 @@
   $("#lit-clear").addEventListener("click", function () {
     form.reset();
     userTouched = {};
+    hidden = {};
+    state = { rows: [], failures: [], dbs: 0, merged: 0, gated: 0 };
+    renderControls();
     elResults.innerHTML = "";
     elOutbound.innerHTML = "";
     elStatus.textContent = "";
@@ -1030,6 +1652,10 @@
   });
 
   // Prefill from ?q= so searches can be linked to.
+  // The sort bar exists before the first search — see renderControls — so it
+  // has to be drawn once at start-up too, not only when an answer arrives.
+  renderControls();
+
   var qs = new URLSearchParams(location.search).get("q");
   if (qs) { elFree.value = qs; applyParse(); run(); }
   else renderChips(null);

@@ -68,10 +68,59 @@ inspire:
     max_fetch: 120
     max_items: 8
   conferences:
+    # ------------------------------------------------------------- sweep
+    # INSPIRE as the BACKBONE of the calendar, not as one keyword search
+    # among several. The reason is availability: nu.to.infn.it has answered
+    # ConnectTimeout every morning since 9 September 2026 (63 records in
+    # var/news/cache/2026-09-08/nu-unbound.json, none from the 9th on) and
+    # agenda.infn.it is behind a bot check, while INSPIRE has never gone
+    # down — and it was the least used source we had, because it was asked
+    # the wrong question.
+    #
+    # `query` asks INSPIRE's free-text index, which does not connect most of
+    # the conference collection to the word "neutrino". The sweep pages the
+    # collection by DATE instead and filters locally with
+    # tools/news/affinity.py, keeping only `core` and `related`.
+    #
+    # The sweep is UNIONED with the query and deduplicated on control_number,
+    # never substituted for it: if the sweep breaks, the page is exactly what
+    # it was before the sweep existed.
+    #
+    # `size`: INSPIRE's documented maximum is 1000 (size=1001 answers HTTP 400
+    # "Maximum search page size of `1000` results exceeded", verified
+    # 2026-09-12). 500 because two pages of 500 already reach back past the
+    # 5-month lookback, and two ~344 kB responses are a kinder thing to ask
+    # for than one of ~700 kB.
+    # `max_pages`: a hard stop, three times the observed need. The loop also
+    # exits on its own once it has paged past the window; this is the bound
+    # that holds when something else goes wrong. An unbounded loop over tens
+    # of thousands of records is how a morning job becomes a morning outage.
+    sweep:
+      enabled: true
+      size: 500
+      max_pages: 6
     query: 'neutrino'
-    upcoming_months: 14      # look this far ahead
+    upcoming_months: 18      # a year and a half ahead — the same horizon
+                             # `general`, `conferences_nu_unbound` and
+                             # `conferences_indico` below already use, so all
+                             # four sources now agree on how far "ahead" is.
     recent_months: 5         # and this far back, for "recently concluded"
     max_items: 20
+    # The ceiling on the "Recent" list of each domain block. The page's
+    # subject is what is AHEAD; the concluded tail is context, not content.
+    # Until the window went from 14 months to 18 that cost nothing, because
+    # "Recent" was a handful of rows either way. It is not any more: the
+    # lookback is five months and the sweep above now finds everything inside
+    # it, so an uncapped tail grows with the sweep and a reader scrolling for
+    # "what is coming" ends up reading an archive.
+    #
+    # UPCOMING IS NEVER CAPPED. A meeting inside the 18-month window that does
+    # not reach the page would mean the window was widened for nothing.
+    #
+    # Six is the same instrument, for the same reason, as `max_recent_rows` in
+    # tools/news/figures.py. The two need not agree: a row costs 30 px in the
+    # figure and one line here.
+    max_recent: 6
     # Conference series worth surfacing even when the title match is weak.
     series_hints:
       - Neutrino
@@ -291,6 +340,75 @@ conferences_indico:
       category: 0
       scope: neutrino
       enabled: true
+
+    # ---- the laboratory instances ------------------------------------
+    # Probed from this project, with this project's own User-Agent and this
+    # file's own keyword filter, on 2026-09-12: root category, the full
+    # 18-month window, one request each. Two numbers per host — events
+    # returned, then events surviving the keyword filter. The second is the
+    # only one that matters, and it is why two of these ship disabled.
+    #
+    #   indico.in2p3.fr     323 -> 5   Cosmic Rays in the Multi-Messenger Era,
+    #                                  IRN Neutrino meeting, JUNO seminar,
+    #                                  3rd IceCube-KM3NeT-JUNO NMO workshop,
+    #                                  LPNHE neutrino group meeting
+    #   indico.ihep.ac.cn    67 -> 4   China-Europe Neutrino Astronomy summer
+    #                                  school, Fall School on Interdisciplinary
+    #                                  Neutrino Science, Neutrino Geoscience
+    #                                  Zhuhai, MEPPA workshop
+    #   indico.nikhef.nl     33 -> 2   LIDINE 2026, a low-energy astrophysics
+    #                                  colloquium
+    #   indico.ph.tum.de     12 -> 1   Future Cosmic Neutrino Experiments
+    #   indico.desy.de      300 -> 0   nothing at all: ~750 kB for no record
+    #   indico.ego-gw.it      —        ConnectionError on the probe, and it is
+    #                                  gravitational waves in any case
+    #
+    # Not fetched, and each for its own reason (same probe, same day):
+    #   indico.fnal.gov     HTTP 403 to a non-browser client
+    #   indico.kek.jp       ConnectTimeout
+    #   indico.ictp.it      ReadTimeout
+    #   agenda.infn.it      HTTP 200 but text/html: an anti-bot interstitial.
+    #                       DELIBERATELY NOT worked around. A site that says it
+    #                       does not want automated clients has said so, and
+    #                       the politeness contract at the top of
+    #                       tools/news/fetch_indico.py is not a formality to
+    #                       route around. It stays unfetched until it offers an
+    #                       API that welcomes us.
+    #
+    # The contract holds unchanged: one request per host per run, a User-Agent
+    # naming the site and a contact address, no retries.
+    - name: IN2P3 — root category
+      host: indico.in2p3.fr
+      category: 0
+      scope: neutrino
+      enabled: true
+    - name: IHEP Beijing — root category
+      host: indico.ihep.ac.cn
+      category: 0
+      scope: neutrino
+      enabled: true
+    - name: Nikhef — root category
+      host: indico.nikhef.nl
+      category: 0
+      scope: neutrino
+      enabled: true
+    - name: TU München (physics) — root category
+      host: indico.ph.tum.de
+      category: 0
+      scope: neutrino
+      enabled: true
+    - name: DESY — root category
+      host: indico.desy.de
+      category: 0
+      scope: neutrino
+      # 300 events, ~750 kB, zero records kept. Enabled it would be a request
+      # a day for nothing.
+      enabled: false
+    - name: EGO / Virgo — root category
+      host: indico.ego-gw.it
+      category: 0
+      scope: neutrino
+      enabled: false          # did not answer the probe; gravitational waves
   keywords:
     - neutrino
     - neutrinos

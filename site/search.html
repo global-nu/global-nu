@@ -16,7 +16,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/archivo-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css?v=e5c59eff">
+<link rel="stylesheet" href="assets/css/site.css?v=615e85cc">
 <script>
 /* Apply the saved theme before the first paint. Inline and blocking on
    purpose: a deferred script runs after the page is drawn, and a reader who
@@ -82,6 +82,12 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
            aria-describedby="lit-chips">
   </div>
 
+  <p class="lit__hint">The results can be re-ordered — by relevance,
+  publication date, citations or subfield, each of them reversible — and
+  narrowed to the subfields you want, with the buttons above them. Choosing
+  the order before you search is worth it for the date: the databases are then
+  asked for their most recent records, which changes which ones come back.</p>
+
   <p class="lit__hint">Recognised automatically: surnames, quoted titles,
   experiment names, arXiv identifiers, and dates written as
   <code>2019-2023</code>, <code>2019-&gt;2023</code>, <code>since 2020</code>, <code>before 2015</code>,
@@ -124,13 +130,6 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
           <label class="lit__label" for="q-to">To</label>
           <input id="q-to" type="text" inputmode="numeric" placeholder="2025">
         </div>
-        <div>
-          <label class="lit__label" for="q-sort">Sort by</label>
-          <select id="q-sort">
-            <option value="relevance" selected>Relevance / citations</option>
-            <option value="date">Most recent first</option>
-          </select>
-        </div>
       </div>
     </div>
   </details>
@@ -169,6 +168,8 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
 </div></section>
 <section class="section section--paper section--alt" id="lit-pane"><div class="wrap">
 <p id="lit-status" class="lit__status" aria-live="polite"></p>
+<div id="lit-sort" class="lit-sort" role="group" aria-label="Order the results" hidden></div>
+<div id="lit-filters" class="lit-sort lit-sort--filters" role="group" aria-label="Show only some subfields" hidden></div>
 <div id="lit-results" class="lit__results"></div>
 
 </div></section>
@@ -194,6 +195,37 @@ arXiv registers a DOI for every preprint with DataCite, under the
 <code>10.48550/arXiv.*</code> prefix, and DataCite's API does send CORS and needs no key.
 So the arXiv results here are arXiv's own metadata, deposited by arXiv, fetched
 from the one place a browser is allowed to read it.</p>
+<p><strong>Ordering, and what "most cited" can honestly mean.</strong> The four sort
+buttons above the results work on what is already on the page: no click
+re-queries anything, so reordering is instant, and the order covers exactly
+the records the status line counts. (A <em>fresh</em> search does ask each database
+for its most recent records while the date order is active, because that
+genuinely changes which twenty come back.) Relevance is computed here rather than
+taken from any one database — once several answers are merged their own
+rankings are no longer comparable — from the authors and the title and topic
+words you asked for, a collaboration name if you gave one, and the number of
+databases that independently returned the paper. Its citations and its age
+are a separate, second number, read only to separate two papers the query
+itself cannot tell apart — never added to the match, so a much-cited paper
+cannot out-rank one that answers your query better. The full weighting is
+written out above <code>relevance()</code> in the page's script. Sorting <em>by</em> citations is a
+button of its own, and it is deliberately not pushed upstream: asking INSPIRE
+for <code>sort=mostcited</code> does not return the most cited papers <em>on</em> a subject, it
+returns the most cited papers that <em>mention</em> the words — which is how a search
+for lecture notes on string theory once came back with the PDG Review.</p>
+<p><strong>How the subfields are decided.</strong> Each result is filed under one subfield,
+and the grouping is not invented here: it is the
+<a href="https://arxiv.org/category_taxonomy" rel="noopener noreferrer" target="_blank">arXiv subject taxonomy</a> — the
+classification under which these papers were actually deposited — collapsed
+into eleven groups. Whatever each database holds of it is used and merged:
+INSPIRE's arXiv categories and its own subject terms, arXiv's own subject
+headings as deposited with DataCite, OpenAlex's topic, Semantic Scholar's
+fields of study, Crossref's subject when a publisher deposited one. Neutrino
+physics is the one group that is <em>not</em> an arXiv category — it runs through
+<code>hep-ph</code>, <code>hep-ex</code>, <code>astro-ph.HE</code> and <code>nucl-ex</code> at once — so it is decided
+from the topic, or from the words of the title or of the journal or conference
+it appeared in, and it takes precedence over the rest. A record no
+database classified is shown as <em>Unclassified</em>, not guessed into a group.</p>
 <p><strong>Why not NASA ADS.</strong> Its search API is public and documented, but it requires
 a personal token, which would have to be published in the page source to work —
 so for ADS the parsed query is turned into a correct search URL and offered as
@@ -261,7 +293,7 @@ tab, so you never lose your place here.</p>
 
 <script src="assets/js/site.js?v=215a304f" defer></script>
 <script src="assets/js/figure.js?v=d7a5dbcf" defer></script>
-<script src="assets/js/search.js?v=6869fecf" defer></script>
+<script src="assets/js/search.js?v=9d5795cc" defer></script>
 <script data-goatcounter="https://global-nu.goatcounter.com/count" async src="assets/vendor/goatcounter/count.js?v=185aa0b9"></script>
 
 </body>
