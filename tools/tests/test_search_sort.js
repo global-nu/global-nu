@@ -497,6 +497,105 @@ async function main() {
     ? ok('le clausole non-autore sono ripetute in tutte e due le letture')
     : bad('query: ' + conData);
 
+  /* --- nomi difficili e identificativi ---------------------------------- */
+  console.log('\n--- come si scrive un nome ---');
+  const casi = [
+    ['de Salas neutrino',            'a de Salas and ft neutrino',
+     'la particella resta attaccata al cognome, non finisce nel topic'],
+    ['Di Valentino cosmology',       'a Di Valentino and ft cosmology',
+     '"Di" e parte del cognome'],
+    ['E. Lisi',                      'a E. Lisi',
+     "l'iniziale si attacca al cognome invece di diventare una parola"],
+    ['2107.00532',                   'arxiv 2107.00532',
+     'un identificativo arXiv nuovo stile diventa una domanda per INSPIRE'],
+    ['hep-ph/0208026',               'arxiv hep-ph/0208026',
+     'e anche quello vecchio stile'],
+    ['10.1103/PhysRevD.111.093006',  'doi 10.1103/PhysRevD.111.093006',
+     'un DOI incollato idem'],
+    ['van der Meer accelerator',     'a van der Meer and ft accelerator',
+     'due particelle di fila'],
+  ];
+  for (const [q, atteso, che] of casi) {
+    const got = await chiediInspire(q);
+    got === atteso ? ok(che) : bad(che + ' — atteso ' + atteso + ', ottenuto ' + got);
+  }
+  // Con un identificativo e basta, i database che non sanno rispondere a un
+  // identificativo NON vengono interrogati: chiesti "2107.00532" ripiegano
+  // sul proprio argomento predefinito e tornano quaranta lavori sui neutrini
+  // che non c'entrano niente — peggio che non rispondere.
+  await chiediInspire('2107.00532');
+  calls.some(u => u.indexOf('semanticscholar') > -1)
+    ? bad('Semantic Scholar interrogato con un identificativo')
+    : ok('con un identificativo Semantic Scholar viene saltato');
+  calls.some(u => u.indexOf('crossref') > -1)
+    ? bad('Crossref interrogato con un id arXiv, che non puo conoscere')
+    : ok('e Crossref pure, visto che arXiv non registra li i propri DOI');
+  calls.some(u => u.indexOf('datacite') > -1 && u.indexOf('10.48550') > -1)
+    ? ok('DataCite riceve il DOI che arXiv registra per quel preprint')
+    : bad('DataCite non ha ricevuto il DOI arXiv: ' +
+          calls.filter(u => u.indexOf('datacite') > -1).join(' '));
+
+  // Una particella senza un nome dietro NON e una particella: "de" in una
+  // frase inglese non deve inghiottire la parola che segue.
+  const soloDe = await chiediInspire('neutrino de');
+  /a de\b/.test(soloDe)
+    ? bad('"de" senza nome e diventato un autore: ' + soloDe)
+    : ok('una particella senza nome dietro resta quello che era');
+
+  /* --- INSPIRE non sparisce: ritenta, e allarga --------------------------- */
+  console.log('\n--- INSPIRE: ritentativo e riassetto ---');
+  // 1. Un errore momentaneo. La prima chiamata fallisce, la seconda risponde:
+  //    i risultati devono arrivare comunque e nessun avviso di guasto.
+  let inspireFails = 1;
+  const fetchBase = w.fetch;
+  w.fetch = function (url) {
+    const u = String(url);
+    if (u.indexOf('inspirehep') > -1 && u.indexOf('fields=citation_count') === -1
+        && inspireFails > 0) {
+      inspireFails--;
+      calls.push(u);
+      return Promise.reject(new Error('HTTP 500'));
+    }
+    return fetchBase(url);
+  };
+  d.getElementById('q-free').value = 'Lisi Marrone';
+  d.getElementById('lit-form')
+   .dispatchEvent(new w.Event('submit', { bubbles: true, cancelable: true }));
+  await settle();
+  const st500 = d.getElementById('lit-status').textContent;
+  /INSPIRE-HEP unavailable/.test(d.getElementById('lit-results').textContent)
+    ? bad('un 500 momentaneo ha tolto INSPIRE dai risultati')
+    : ok('un errore momentaneo viene ritentato, INSPIRE resta nei risultati');
+  /from 5 databases/.test(st500)
+    ? ok('cinque database nella riga di stato, come se nulla fosse')
+    : bad('stato: ' + st500);
+
+  // 2. Una domanda troppo stretta. INSPIRE risponde vuoto finche' la data non
+  //    viene tolta; la pagina deve provare piu' largo e DIRLO.
+  w.fetch = function (url) {
+    const u = String(url);
+    if (u.indexOf('inspirehep') > -1 && u.indexOf('fields=citation_count') === -1) {
+      calls.push(u);
+      const vuota = u.indexOf('de+2019') > -1 || u.indexOf('de%202019') > -1;
+      return Promise.resolve({ ok: true, json: () =>
+        Promise.resolve(vuota ? { hits: { hits: [] } } : INSPIRE) });
+    }
+    return fetchBase(url);
+  };
+  d.getElementById('q-free').value = 'Lisi Marrone 2019-2019';
+  d.getElementById('lit-form')
+   .dispatchEvent(new w.Event('submit', { bubbles: true, cancelable: true }));
+  await settle();
+  const stLarga = d.getElementById('lit-status').textContent;
+  /INSPIRE answered only without the date range/.test(stLarga)
+    ? ok('la riga di stato dice che ha risposto solo senza le date')
+    : bad('stato: ' + stLarga);
+  calls.some(u => u.indexOf('inspirehep') > -1 && u.indexOf('de+2019') === -1 &&
+                  u.indexOf('fields=citation_count') === -1)
+    ? ok('e la domanda piu larga e stata davvero mandata')
+    : bad('la domanda piu larga non risulta mandata');
+  w.fetch = fetchBase;
+
   /* --- forme ostili e la sede come segnale ------------------------------ */
   /* Le API rispondono anche con campi nulli o assenti, e una sola eccezione
    * qui dentro svuoterebbe la pagina invece di degradarla. Qui vengono

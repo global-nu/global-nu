@@ -172,6 +172,20 @@ for `sort=mostcited` does not return the most cited papers *on* a subject, it
 returns the most cited papers that *mention* the words — which is how a search
 for lecture notes on string theory once came back with the PDG Review.
 
+**When INSPIRE says nothing.** INSPIRE does not degrade when a question is
+slightly wrong — it answers zero, which looks exactly like "no such paper".
+So this page never takes one silence for an answer. A momentary failure is
+retried once. A name is read in every spelling it might have: a particle
+stays with its surname (*de Salas*, *van der Meer*), an initial stays with its
+name (*E. Lisi*), and two bare words are sent as both readings at once, since
+*lisi marrone* means two authors and *antonio marrone* means one person and
+nothing in the two strings tells them apart. An arXiv identifier or a DOI,
+pasted on its own, is asked of INSPIRE as an identifier rather than as words.
+And when a question still comes back empty, the constraints come off one at a
+time — the dates, then the last name, then the topic words, then the title —
+until something answers; if a looser question was the one that answered, the
+line above the results says which constraint had to go.
+
 **Where the citation counts come from.** INSPIRE, and nowhere else. Every
 database here counts citations and they do not agree, because they index
 different literature; mixed into one column those numbers stop being
