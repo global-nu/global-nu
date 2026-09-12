@@ -62,11 +62,30 @@ const PAIRS = [
   ['--io', '--surface-2', 3],
   ['--accent-2', '--bg', 4.5],
   ['--accent-2', '--surface', 4.5],
-  /* the conference map's two category colours: dots on the land fill, and
-     the count badge's own text sitting on top of the dot's fill. --dec-4 was
-     tried first for the general-scope dot but --on-accent on it measured
-     4.27:1 in the dark theme, under the 4.5 text minimum; --accent-2 clears
-     it (7.15:1) and is already in the palette, so the marker uses that. */
+  /* The conference map's markers. They used to carry two SCOPE categories
+     (--no for the neutrino calendar, --accent-2 for the general one); since
+     12 September 2026 they carry the five AFFINITY tiers instead, the same
+     scale as the listing chips and the timeline bars, so the page has one
+     colour meaning and not two.
+
+     Two different pairs per tier, and both are needed. The dot is a graphic
+     on the map's land fill (--surface-2), held to the 3:1 of WCAG 1.4.11;
+     the count a multi-conference dot carries is TEXT (--on-accent) on the
+     dot's own colour, held to 4.5:1. --dec-4 is in neither list: see
+     tools/news/affinity.py's docstring for why it is not a tier colour.
+     --accent-2 keeps its own entries below — it is still the hero gradient
+     and the general-scope colour elsewhere on the site. */
+  ['--dec-2', '--surface-2', 3],
+  ['--dec-5', '--surface-2', 3],
+  ['--dec-1', '--surface-2', 3],
+  ['--dec-3', '--surface-2', 3],
+  /* the `unknown` tier's dot is --text-mute, already measured against
+     --surface-2 above at the stricter 4.5 text threshold — not repeated */
+  ['--on-accent', '--dec-2', 4.5],
+  ['--on-accent', '--dec-5', 4.5],
+  ['--on-accent', '--dec-1', 4.5],
+  ['--on-accent', '--dec-3', 4.5],
+  ['--on-accent', '--text-mute', 4.5],
   ['--accent-2', '--surface-2', 3],
   ['--on-accent', '--no', 4.5],
   ['--on-accent', '--accent-2', 4.5],

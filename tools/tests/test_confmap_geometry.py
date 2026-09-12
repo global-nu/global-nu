@@ -27,6 +27,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
+from tools.news import affinity                         # noqa: E402
 from tools.news import figures                           # noqa: E402
 from tools.news import worldmap as wm                    # noqa: E402
 
@@ -134,45 +135,56 @@ check("the city is named on the marker", 'class="map-name"' in svg2)
 single = figures.conference_map([TWO[0]])
 check("a lone conference draws no count badge", ">1</text>" not in single)
 
-# --- two colours, and a legend that explains them ------------------------
+# --- the colours are AFFINITY TIERS, and a legend that explains them ------
+# The map used to colour by SCOPE (the neutrino calendar in --no, the general
+# one in --accent-2). Antonio asked for closeness of the subject instead: the
+# same five tiers the listing chips and the timeline bars already use, so the
+# page carries one colour scale and not two. These checks moved with it.
+def rec(id, title, tier, label, city, place, span="1-5 Sep 2026"):
+    return {"id": id, "title": title, "url": f"https://{id}.example/",
+            "extra": {"place": place, "city": city, "span": span,
+                      "affinity": {"tier": tier, "label": label,
+                                   "why": "fixture"}}}
+
+
 MIXED = [
-    ({"id": "n", "title": "A Neutrino Meeting", "url": "https://n.example/",
-      "extra": {"place": "Bari, Italy", "city": "Bari", "span": "1-5 Sep 2026",
-                "scope": "neutrino"}}, 16.87, 41.12),
-    ({"id": "g", "title": "A General Meeting", "url": "https://g.example/",
-      "extra": {"place": "Tokyo, Japan", "city": "Tokyo", "span": "3-4 Oct 2026",
-                "scope": "general"}}, 139.69, 35.69),
+    (rec("n", "A Neutrino Meeting", "core", "Neutrino physics",
+         "Bari", "Bari, Italy"), 16.87, 41.12),
+    (rec("g", "A General Meeting", "broad", "Particle physics at large",
+         "Tokyo", "Tokyo, Japan", "3-4 Oct 2026"), 139.69, 35.69),
 ]
 svgm = figures.conference_map(MIXED)
 
-check("the neutrino marker uses the blue token", "var(--no)" in svgm)
-check("the general marker uses the accent-2 token",
-      "var(--accent-2)" in svgm,
-      "not --dec-4: --on-accent on it measured 4.27:1 in the dark theme")
-check("amber is not used as a category colour",
-      "var(--io)" not in svgm,
-      "amber already means 'in progress right now' on this page")
-check("the legend names both categories",
-      "Neutrino" in svgm and "General particle physics" in svgm, svgm[-700:])
+check("a core marker wears the core tier token",
+      affinity.TIER_COLOUR["core"] in svgm)
+check("a broad marker wears the broad tier token",
+      affinity.TIER_COLOUR["broad"] in svgm,
+      "two tiers must not share a colour")
+check("--dec-4 is still not used anywhere on the map",
+      "var(--dec-4)" not in svgm,
+      "its count digits measured 4.27:1 in the dark theme")
+check("the legend names the tiers, in the records' own words",
+      "Neutrino physics" in svgm and "Particle physics at large" in svgm,
+      svgm[-700:])
+check("the legend is worded like the section's other one",
+      "Closeness of the subject" in svgm,
+      "the map and the listing must not label one scale two ways")
 
 only_nu = figures.conference_map([MIXED[0]])
 check("a legend entry with nothing to label is not drawn",
-      "General particle physics" not in only_nu)
+      "Particle physics at large" not in only_nu)
 
-# --- a legend must never label a colour that isn't on any dot -------------
-# MIXED above can't catch this: Bari and Tokyo are thousands of units apart,
-# so they never share a cluster. Two conferences at the SAME spot cluster
-# into ONE marker, painted from confs[0] alone (_marker_scope) — so if the
-# legend were built from every raw point instead of that same confs[0], it
-# could draw a swatch for the scope that got folded away, describing a
-# colour that appears nowhere on the map.
+# --- a mixed venue takes the STRONGEST tier present ----------------------
+# Two conferences at the SAME spot cluster into ONE marker. The dot must be
+# painted with the closest tier at that venue, not with whichever record
+# sorts first: a city hosting one neutrino conference and one QCD workshop
+# answers "yes, there is something here for you".
 SAME_SPOT = [
-    ({"id": "n2", "title": "A Neutrino Meeting Here", "url": "https://n2.example/",
-      "extra": {"place": "Bari, Italy", "city": "Bari", "span": "1-5 Sep 2026",
-                "scope": "neutrino"}}, 16.87, 41.12),
-    ({"id": "g2", "title": "A General Meeting Here", "url": "https://g2.example/",
-      "extra": {"place": "Bari, Italy", "city": "Bari", "span": "1-5 Sep 2026",
-                "scope": "general"}}, 16.87, 41.12),
+    # The ADJACENT one first, so a "confs[0] decides" implementation fails.
+    (rec("a2", "A QCD Workshop Here", "adjacent", "Adjacent fields",
+         "Bari", "Bari, Italy"), 16.87, 41.12),
+    (rec("n2", "A Neutrino Meeting Here", "core", "Neutrino physics",
+         "Bari", "Bari, Italy"), 16.87, 41.12),
 ]
 svgs = figures.conference_map(SAME_SPOT)
 
@@ -181,22 +193,70 @@ check("two conferences at the same spot draw ONE marker",
       f'found {svgs.count(chr(34) + "conf-pin" + chr(34))} markers')
 
 # A dot's own circle: <circle r="..." fill="COLOUR" stroke="var(--bg)" ...>.
-# The legend's swatch circle carries cx/cy and no stroke, so this pattern
-# only matches colours actually worn by a marker on the map.
 dot_colours = set(re.findall(
     r'<circle r="[\d.]+" fill="(var\(--[\w-]+\))" stroke="var\(--bg\)"', svgs))
 # The legend's own swatch: <circle cx="..." cy="..." r="4" fill="COLOUR"/>.
 legend_colours = set(re.findall(
     r'<circle cx="[\d.]+" cy="[\d.]+" r="4" fill="(var\(--[\w-]+\))"/>', svgs))
 
-check("only the first conference's colour is actually on the map",
-      dot_colours == {"var(--no)"}, dot_colours)
+check("a mixed venue takes the strongest tier, not the first record",
+      dot_colours == {affinity.TIER_COLOUR["core"]},
+      f"{dot_colours} — the adjacent record is listed first on purpose")
+check("the legend's swatches are actually found by the test",
+      bool(legend_colours), "the regex must match the markup it is checking")
 check("the legend never advertises a colour no dot wears",
       legend_colours <= dot_colours,
       f"legend={legend_colours} dots={dot_colours}")
-check("the general conference is folded into the neutrino dot, so its "
-      "legend entry is not drawn",
-      "General particle physics" not in svgs)
+
+# "Does the legend say X" must be asked of the LEGEND, not of the whole SVG:
+# the folded-away tier still appears in the marker's data attributes and in
+# its <title>, which is exactly what we want.
+legend_words = re.findall(
+    r'<text x="[\d.]+" y="[\d.]+" style="fill:var\(--text-mute\);'
+    r'font-size:9px;[^"]*">([^<]+)</text>', svgs)
+check("the folded-away tier gets no legend entry of its own",
+      "Adjacent fields" not in legend_words, str(legend_words))
+check("the legend lists the tier the dot actually wears",
+      "Neutrino physics" in legend_words, str(legend_words))
+check("but the marker still NAMES the folded-away meeting's tier",
+      'data-tier-label="Adjacent fields"' in svgs,
+      "a mixed venue must not present its meetings under one label")
+check("each meeting carries its own tier for the hover card",
+      svgs.count('data-tier="core"') == 1
+      and svgs.count('data-tier="adjacent"') == 1,
+      "confmap.js reads these to chip each meeting separately")
+check("an untagged record is `unknown`, not a guessed colour",
+      f'fill="{affinity.TIER_COLOUR["unknown"]}"' in figures.conference_map(
+          [({"id": "u", "title": "Untagged", "url": "https://u.example/",
+             "extra": {"place": "Lima, Peru", "city": "Lima"}}, -77.0, -12.0)]))
+
+# --- the legend must fit inside the map ----------------------------------
+# The scope legend this replaced had two short labels and always fitted on
+# one line. The five tier labels do not, so the legend wraps; this is what
+# keeps it wrapping.
+ALL_TIERS = [
+    (rec(t, f"Meeting {t}", t, lab, f"City{i}", f"City{i}, Nowhere"),
+     -150.0 + 40.0 * i, 10.0 + 3.0 * i)
+    for i, (t, lab) in enumerate(
+        [("core", "Neutrino physics"),
+         ("related", "Astroparticle & underground"),
+         ("broad", "Particle physics at large"),
+         ("adjacent", "Adjacent fields"),
+         ("unknown", "Not classified")])
+]
+svga = figures.conference_map(ALL_TIERS)
+legend_text = re.findall(
+    r'<text x="([\d.]+)" y="([\d.]+)"[^>]*font-size:9px[^"]*">([^<]+)</text>',
+    svga)
+check("all five tiers reach the legend when all five are on the map",
+      len(legend_text) == 6, f"{len(legend_text)} entries (5 tiers + the lead)")
+widest = max(float(x) + 6.0 * len(t) for x, _, t in legend_text)
+check("the legend does not run off the right edge of the map",
+      widest <= wm.WIDTH,
+      f"rightmost legend text ends at {widest:.0f}, map is {wm.WIDTH:.0f} wide")
+check("it wraps onto more than one row to manage it",
+      len({y for _, y, _ in legend_text}) > 1,
+      str(sorted({y for _, y, _ in legend_text})))
 
 # --- a marker must never speak for a city it is not in -------------------
 # Every fixture above puts its conferences at ONE place and ONE coordinate,

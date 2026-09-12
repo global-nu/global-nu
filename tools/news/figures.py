@@ -445,15 +445,69 @@ def _lookup_photo(conf: dict, log: logging.Logger) -> dict | None:
     return photos.for_city(city_code[0], city_code[1], log)
 
 
-def _marker_scope(first: dict) -> str:
-    """The scope that decides a marker's colour: always the venue's FIRST
-    conference. A venue hosting both a neutrino and a general meeting gets
-    ONE dot, (arbitrarily) painted for whichever conference sorts first —
-    see _conf_marker's own colour line, which calls this on the same
-    `confs[0]` — so the legend has to ask this same question about the same
-    record, not re-derive an answer from every conference at the venue, or
-    it can advertise a colour the dot never wears."""
-    return (first.get("extra") or {}).get("scope") or "neutrino"
+# ONE COLOUR SCALE ON THE PAGE, and it is topical affinity.
+#
+# Until 12 September 2026 the map painted its dots by SCOPE — which block of
+# the Conferences section a meeting came from: the neutrino calendar
+# (var(--no)) or the general particle-physics one (var(--accent-2)) — while
+# the timeline immediately above it already coloured by affinity. Antonio
+# asked for the map to answer the same question as everything else around it,
+# so a reader meets one scale instead of two.
+#
+# What is lost: scope is no longer carried by colour. It has not left the
+# page — the general meetings are listed under their own heading, which is
+# where that fact reads better than it ever read from a violet dot.
+#
+# `_marker_scope` and the two inline scope->colour literals went with this
+# change; nothing else read them. The --dec-4 note that used to live on the
+# marker's colour line went too: the tier tokens come from
+# affinity.TIER_COLOUR now, and that module's own docstring already records
+# why --dec-4 is not among them.
+
+
+def _tier_of(conf: dict) -> str:
+    """A record's affinity tier, `unknown` when it has not been tagged.
+
+    Tagging is pipeline.py's job (`affinity.tag(events, cfg)`), so in a real
+    run every record reaching this module already carries one. The fallback
+    is for a caller that draws the map from raw records — a test, a script:
+    a declared grey dot beats a colour picked at random.
+    """
+    return ((conf.get("extra") or {}).get("affinity") or {}).get("tier") or "unknown"
+
+
+def _tier_label(conf: dict) -> str:
+    """The tier's label as the RECORD carries it, not as this module guesses.
+
+    `affinity.tag` writes the label produced by `affinity.scheme_from(cfg)`,
+    so if config.yaml ever grows an `affinity:` block with its own wording the
+    map's legend follows it without this file knowing anything about it — and
+    the map and the listing chips can never word one tier two ways, because
+    they read the same field.
+    """
+    aff = (conf.get("extra") or {}).get("affinity") or {}
+    return aff.get("label") or affinity.DEFAULT_LABELS.get(_tier_of(conf), "")
+
+
+def _marker_tier(confs: list[dict]) -> str:
+    """A marker's tier: the STRONGEST (closest) one present at that venue.
+
+    A marker holds every conference at one coordinate, and those can sit in
+    different tiers. It takes the closest rather than the first, because the
+    question a reader asks the map is "is there anything here for me?", and at
+    a city hosting one neutrino conference and one QCD workshop the answer is
+    yes. Taking the first — which is what `_marker_scope` did, and said so —
+    made the colour depend on list order.
+
+    The cost is that one colour stands for several subjects, so the marker's
+    <title> and the hover card name the tier of EVERY meeting rather than
+    letting the dot speak for all of them.
+    """
+    tiers = {_tier_of(c) for c in confs}
+    for tier in affinity.TIERS:              # closest first
+        if tier in tiers:
+            return tier
+    return "unknown"
 
 
 def _conf_marker(confs: list[dict], lon: float, lat: float,
@@ -487,17 +541,17 @@ def _conf_marker(confs: list[dict], lon: float, lat: float,
     city = extra.get("city") or place
     n = len(confs)
     r = 3.2 + 1.5 * min(n - 1, 4)
-    # --dec-4 is the obvious "fourth decorative colour" but its count digits
-    # (--on-accent) measure only 4.27:1 on it in the dark theme — under the
-    # 4.5:1 text threshold. --accent-2 is already in the palette and clears
-    # 7.15:1 for the same pair, so this figure uses that token instead; see
-    # the matching pairs in tools/tests/test_theme.js.
-    colour = ("var(--accent-2)" if _marker_scope(first) == "general"
-              else "var(--no)")
+    colour = affinity.TIER_COLOUR.get(_marker_tier(confs),
+                                      affinity.TIER_COLOUR["unknown"])
 
+    # The <title> names EVERY meeting's own tier, not the marker's: it is the
+    # only reading available without a pointer (and to a screen reader), and a
+    # mixed venue has to be able to say it holds more than one subject even
+    # though its dot shows one colour.
     title = "; ".join(
         _map_title(c.get("title", ""), place,
                    (c.get("extra") or {}).get("span", ""))
+        + (f" [{_tier_label(c)}]" if _tier_label(c) else "")
         for c in confs)
 
     attrs = (
@@ -514,10 +568,15 @@ def _conf_marker(confs: list[dict], lon: float, lat: float,
             f' data-photo-page="{_e(photo["page"])}"'
         )
 
+    # data-tier / data-tier-label: confmap.js chips each meeting in the hover
+    # card separately, so a venue whose dot is blue because ONE of its three
+    # meetings is `core` does not silently present the other two as core too.
     items = "".join(
         f'<g class="conf-item" data-conf="{_e(c.get("id", ""))}"'
         f' data-name="{_e(c.get("title", ""))}"'
         f' data-dates="{_e((c.get("extra") or {}).get("span", ""))}"'
+        f' data-tier="{_e(_tier_of(c))}"'
+        f' data-tier-label="{_e(_tier_label(c))}"'
         f' data-url="{_e(c.get("url", ""))}"></g>'
         for c in confs)
 
@@ -629,15 +688,17 @@ def conference_map(located: list[tuple[dict, float, float]],
     # among same-sized venues (the daily refresh commits this file, and a
     # reshuffle would show up as noise in the diff).
     #
-    # `present` is built here, from each venue's own confs[0], rather than
-    # from every raw point afterwards: a mixed-scope venue draws ONE dot in
-    # ONE colour (_conf_marker's own scope call, below, is on that same
-    # confs[0]), so a legend built from every point's scope could list a
-    # colour that never actually appears on the map — the "a key to something
-    # the reader cannot see is noise" rule, failing on exactly that case.
-    # Reading both the dot and the legend off the same confs[0] makes them
-    # agree by construction instead of by afterwards comparing colour strings.
+    # `present` is built here, from each venue's OWN marker tier — the one the
+    # dot is actually painted with — rather than from every raw point
+    # afterwards: a mixed venue draws ONE dot in ONE colour, so a legend built
+    # from every point's tier could list a colour that never appears on the
+    # map, which is the "a key to something the reader cannot see is noise"
+    # rule failing on exactly that case. Asking `_marker_tier` here, the same
+    # call `_conf_marker` makes, keeps the key and the dots in agreement by
+    # construction instead of by afterwards comparing colour strings.
     present: set[str] = set()
+    # tier -> the wording the records themselves carry for it. See _tier_label.
+    labels: dict[str, str] = {}
     for key in sorted(venues, key=lambda k: (len(venues[k]), k)):
         members = venues[key]
         confs = [points[i][0] for i in members]
@@ -645,27 +706,65 @@ def conference_map(located: list[tuple[dict, float, float]],
         # first conference — everything the marker asserts is true of every
         # member because they are all at this one point.
         _, lon, lat, (x, y) = points[members[0]]
-        present.add(_marker_scope(confs[0]))
+        tier = _marker_tier(confs)
+        present.add(tier)
+        # The label has to come from a record that really carries THIS tier:
+        # confs[0] may be the adjacent meeting at a venue whose dot is core.
+        for c in confs:
+            if _tier_of(c) == tier and _tier_label(c):
+                labels.setdefault(tier, _tier_label(c))
+                break
         parts.append(_conf_marker(confs, lon, lat, x, y,
                                   _lookup_photo(confs[0], log)))
 
-    # A legend, so two colours are not a puzzle. Only categories actually on
-    # the map are listed: a key to something the reader cannot see is noise.
-    lx, ly = 12.0, top + height - 8.0
-    for scope, colour, label in (
-            ("neutrino", "var(--no)", "Neutrino"),
-            # var(--accent-2), not --dec-4 — see the comment on the marker's
-            # own colour choice above; the legend swatch must match the dot.
-            ("general", "var(--accent-2)", "General particle physics")):
-        if scope not in present:
-            continue
-        parts.append(f'<circle cx="{lx + 4:.1f}" cy="{ly - 3:.1f}" r="4" '
-                     f'fill="{colour}"/>')
-        parts.append(
-            f'<text x="{lx + 13:.1f}" y="{ly:.1f}" style="fill:var(--text-mute);'
-            f'font-size:9px;font-family:var(--body,sans-serif)">'
-            f'{_e(label)}</text>')
-        lx += 15 + 6.0 * len(label)
+    # A legend, worded exactly as render.py's `affinity_legend` above the
+    # timeline, so the reader sees ONE scale and not two. The map keeps its
+    # own copy rather than relying on that one because this figure is zoomable
+    # and gets looked at on its own, with nothing else in view.
+    #
+    # Only tiers actually on the map are listed: a key to something the reader
+    # cannot see is noise.
+    #
+    # AND IT WRAPS. The scope legend this replaced had two short labels and
+    # always fitted on one line; the five tier labels are much longer
+    # ("Astroparticle & underground" alone is 27 characters) and on a single
+    # row they run off the right edge of the map. So entries are flowed into
+    # rows anchored to the BOTTOM: the last row sits where the single row used
+    # to, and extra rows grow upward into the empty South Atlantic.
+    # ~6 units per character at font-size 9 is an estimate, and deliberately a
+    # generous one — it only decides where to break, so erring wide costs an
+    # early wrap where erring narrow costs an overflow.
+    CH = 6.0
+    LEAD = "Closeness of the subject:"
+    entries = [(tier, labels.get(tier) or affinity.DEFAULT_LABELS.get(tier, tier))
+               for tier in affinity.TIERS if tier in present]
+    right = wm.WIDTH - 12.0
+    rows: list[list[tuple[str, str]]] = [[]]
+    x = 12.0 + CH * len(LEAD) + 8.0
+    for tier, label in entries:
+        w = 15 + CH * len(label)
+        if rows[-1] and x + w > right:
+            rows.append([])
+            x = 12.0
+        rows[-1].append((tier, label))
+        x += w
+
+    ly0 = top + height - 8.0 - 12.0 * (len(rows) - 1)
+    parts.append(
+        f'<text x="12.0" y="{ly0:.1f}" style="fill:var(--text-mute);'
+        f'font-size:9px;font-weight:600;'
+        f'font-family:var(--body,sans-serif)">{LEAD}</text>')
+    for ri, row in enumerate(rows):
+        ly = ly0 + 12.0 * ri
+        lx = (12.0 + CH * len(LEAD) + 8.0) if ri == 0 else 12.0
+        for tier, label in row:
+            parts.append(f'<circle cx="{lx + 4:.1f}" cy="{ly - 3:.1f}" r="4" '
+                         f'fill="{affinity.TIER_COLOUR[tier]}"/>')
+            parts.append(
+                f'<text x="{lx + 13:.1f}" y="{ly:.1f}" style="fill:var(--text-mute);'
+                f'font-size:9px;font-family:var(--body,sans-serif)">'
+                f'{_e(label)}</text>')
+            lx += 15 + CH * len(label)
 
     parts.append("</svg>")
     return "\n".join(parts)

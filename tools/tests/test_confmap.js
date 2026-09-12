@@ -40,6 +40,7 @@ const SVG = `
       <title>NuFact 2026 — Shanghai, China</title>
       <circle cx="601.6" cy="58.9" r="3.0"/>
       <g class="conf-item" data-conf="conf:2812345" data-name="NuFact 2026"
+         data-tier="core" data-tier-label="Neutrino physics"
          data-dates="31 Aug – 5 Sep 2026" data-url="https://nufact2026.example.org/"></g>
     </g>
     <g class="conf-pin" data-conf="nu:2026-09-14-erice"
@@ -68,8 +69,10 @@ const SVG = `
       <title>First Conference — Bari, Italy — 1-5 Sep 2026</title>
       <circle r="4.7"/><text>2</text>
       <g class="conf-item" data-conf="conf:first" data-name="First Conference"
+         data-tier="core" data-tier-label="Neutrino physics"
          data-dates="1-5 Sep 2026" data-url="https://first.example/"></g>
       <g class="conf-item" data-conf="conf:second" data-name="Second Conference"
+         data-tier="adjacent" data-tier-label="Adjacent fields"
          data-dates="8-9 Sep 2026" data-url="https://second.example/"></g>
     </g>
   </svg>
@@ -274,6 +277,52 @@ hoverPin.dispatchEvent(new d.defaultView.Event('focus', {bubbles: true}));
 const kbTip = d.querySelector('.conf-tip');
 kbTip && !kbTip.hidden
   ? ok('keyboard focus opens the panel too') : bad('keyboard focus opens the panel too');
+
+/* The affinity tier, per meeting rather than per marker.
+ *
+ * A marker is painted with the STRONGEST tier at its venue (figures.py's
+ * _marker_tier), so at a mixed venue the dot's colour is true of one meeting
+ * and not of the others. The card and the hover panel must therefore chip
+ * each meeting separately, or one colour would silently speak for several
+ * subjects — which is the whole reason the map moved off edition scope. The
+ * Bari marker holds one `core` and one `adjacent` meeting for this check.
+ */
+const dm = boot();
+dm.querySelector('[data-place="Bari, Italy"]')
+  .dispatchEvent(new dm.defaultView.Event('click', { bubbles: true }));
+const mixedCard = dm.querySelector('.conf-card');
+const cardChips = mixedCard ? [...mixedCard.querySelectorAll('.conf-aff')] : [];
+cardChips.length === 2
+  ? ok('the card chips every meeting at a mixed venue, not just one')
+  : bad('the card shows ' + cardChips.length + ' tier chip(s), expected 2');
+cardChips.map(c => c.className).join(' ') === 'conf-aff conf-aff--core conf-aff conf-aff--adjacent'
+  ? ok('each chip carries its own meeting\'s tier class')
+  : bad('chip classes: ' + cardChips.map(c => c.className).join(' | '));
+cardChips.map(c => c.textContent).join('|') === 'Neutrino physics|Adjacent fields'
+  ? ok('each chip is labelled as the record labels it')
+  : bad('chip labels: ' + cardChips.map(c => c.textContent).join('|'));
+mixedCard && /1-5 Sep 2026/.test(mixedCard.textContent)
+  ? ok('the dates survive alongside the chip')
+  : bad('the chip displaced the dates');
+
+const dt2 = boot();
+const mixedPin = dt2.querySelector('[data-place="Bari, Italy"]');
+mixedPin.dispatchEvent(new dt2.defaultView.Event('mouseenter', { bubbles: true }));
+const mixedTip = dt2.querySelector('.conf-tip');
+const tipChips = mixedTip ? [...mixedTip.querySelectorAll('.conf-aff')] : [];
+tipChips.length === 2
+  ? ok('the hover panel chips every meeting too')
+  : bad('the hover panel shows ' + tipChips.length + ' tier chip(s), expected 2');
+
+/* A marker whose items carry no tier at all — an older cached page, or a
+ * caller that never tagged — must render without chips, not with empty ones. */
+const dn = boot();
+dn.querySelector('[data-place="Erice, Italy"]')
+  .dispatchEvent(new dn.defaultView.Event('click', { bubbles: true }));
+const untaggedCard = dn.querySelector('.conf-card');
+untaggedCard && untaggedCard.querySelectorAll('.conf-aff').length === 0
+  ? ok('a meeting with no tier gets no chip, not an empty one')
+  : bad('an untagged meeting rendered a chip');
 
 console.log();
 if (fail.length) { console.log(fail.length + ' check(s) failed'); process.exit(1); }

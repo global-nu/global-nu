@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
-"""geocluster.cluster_by_distance — the single-linkage bucketing shared by
-tools/make_map.py's experiments map and tools/news/figures.py's conference
-map, so a change to the merge rule (or the complete-linkage alternative
-make_map.py's own MERGE_DIST comment already contemplates) happens once,
-not twice with nothing keeping the copies honest.
+"""geocluster.cluster_by_distance — the single-linkage bucketing behind
+tools/make_map.py's experiments map, kept in one place so a change to the
+merge rule (or the complete-linkage alternative make_map.py's own MERGE_DIST
+comment already contemplates) happens once.
+
+NOT the conference map, despite what this docstring said for a while.
+tools/news/figures.py briefly used this function and stopped: single linkage
+over a few degrees put Otranto and Corfu in one "cluster" and then told the
+reader the second was the first, so conference venues are grouped by
+IDENTICAL rounded coordinate instead — its MAP_KEY_DP comment has the story.
 
     ./.venv/bin/python3 tools/tests/test_geocluster.py
 """
