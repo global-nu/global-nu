@@ -255,6 +255,19 @@ async function main() {
      'senza la parola nel titolo resta la categoria arXiv: niente deduzioni');
   eq(chipOf(T.nodate), 'Unclassified',
      'nessun segnale: non classificato, non indovinato');
+  // Il bollino del sottocampo sta all'ALTRO CAPO della riga rispetto ai
+  // bollini dei database: su un sito dove le due tavolozze coincidono
+  // finivano affiancati due pillole dello stesso colore.
+  {
+    const li = [...d.querySelectorAll('#lit-results li')]
+      .filter(x => x.querySelector('.pub__title').textContent === T.nu2024)[0];
+    const chip = li.querySelector('.sf');
+    !chip.closest('.src-row') && chip.parentElement.classList.contains('pub__ref')
+      ? ok('il sottocampo apre la riga dei dati, lontano dai bollini dei database')
+      : bad('il sottocampo e ancora accanto ai bollini dei database');
+    li.querySelector('.pub__ref').firstElementChild === chip
+      ? ok('ed e il primo elemento della riga') : bad('non e il primo elemento');
+  }
 
   /* --- le citazioni ------------------------------------------------------ */
   console.log('\n--- citazioni: solo quelle di INSPIRE ---');

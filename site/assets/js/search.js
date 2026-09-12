@@ -1341,7 +1341,17 @@
   function renderItem(r, showMatch) {
     var authors = r.authors.filter(Boolean).join(", ") + (r.more ? ", et al." : "");
     var when = r.date || (r.year ? String(r.year) : "");
+    var sf = r.subfield || "none";
+    // The subfield chip leads the metadata line, at the OPPOSITE END of the
+    // row from the source badges. It used to sit beside them, and on a site
+    // whose subfield tones and source tones are drawn from one palette that
+    // put two same-coloured pills side by side — "Particle phenomenology"
+    // next to "INSPIRE-HEP" in the same blue. Separating them is also the
+    // truer grouping: the subfield is a fact about the PAPER, the badges are
+    // about where we found it.
     var meta = compact([
+      '<span class="sf sf--' + SUBFIELD_TONE[sf] + '">' +
+        esc(SUBFIELD_LABEL[sf]) + "</span>",
       when && '<time class="pub__year" datetime="' + esc(when) + '">' +
               esc(prettyDate(when)) + "</time>",
       r.journal && '<span class="journal">' + esc(r.journal) + "</span>",
@@ -1356,12 +1366,11 @@
     var srcs = (r.sources || [r.source]).map(function (s) {
       return '<span class="src ' + (SRC_CLASS[s] || "") + '">' + esc(s) + "</span>";
     }).join("");
-    var sf = r.subfield || "none";
-    var tags = '<span class="sf sf--' + SUBFIELD_TONE[sf] + '">' +
-               esc(SUBFIELD_LABEL[sf]) + "</span>";
-    if (showMatch && BUCKET_LABEL[r.bucket]) {
-      tags += '<span class="sf sf--match">' + esc(BUCKET_LABEL[r.bucket]) + "</span>";
-    }
+    // Only the match chip stays with the badges: it says why the record came
+    // back, which is of a piece with which database sent it.
+    var tags = (showMatch && BUCKET_LABEL[r.bucket])
+      ? '<span class="sf sf--match">' + esc(BUCKET_LABEL[r.bucket]) + "</span>"
+      : "";
     var first = r.links[0];
     var title = first
       ? '<a class="pub__title" href="' + esc(first.href) +
