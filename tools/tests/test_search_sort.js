@@ -464,6 +464,39 @@ async function main() {
     : bad('Clear: sort hidden=' + d.getElementById('lit-sort').hidden +
           ', filters hidden=' + d.getElementById('lit-filters').hidden);
 
+  /* --- due parole sono due domande -------------------------------------- */
+  /* "lisi marrone" sono due autori, "antonio marrone" e' una persona sola, e
+   * niente nelle due stringhe li distingue. La lettura sbagliata non degrada:
+   * su INSPIRE restituisce ZERO. Chi cercava il proprio nome non otteneva
+   * nessun risultato da INSPIRE e la pagina si riempiva di quello che avevano
+   * i database generalisti — ed e' cosi' che il difetto e' saltato fuori.
+   * Quindi tutte e due le letture vanno nella stessa query, fra parentesi. */
+  console.log('\n--- il nome di una persona ---');
+  const chiediInspire = async (q) => {
+    calls.length = 0;
+    d.getElementById('q-free').value = q;
+    d.getElementById('lit-form')
+     .dispatchEvent(new w.Event('submit', { bubbles: true, cancelable: true }));
+    await settle();
+    return decodeURIComponent(
+      (calls.find(u => u.indexOf('inspirehep') > -1 &&
+                       u.indexOf('fields=citation_count') === -1) || '')
+        .replace(/^.*\?q=/, '').split('&')[0]).replace(/\+/g, ' ');
+  };
+  const due = await chiediInspire('Lisi Marrone');
+  due === '(a Lisi and a Marrone) or (a Lisi Marrone)'
+    ? ok('due parole: INSPIRE riceve tutte e due le letture')
+    : bad('query: ' + due);
+  const uno = await chiediInspire('Feruglio modular forms');
+  uno === 'a Feruglio and ft modular forms'
+    ? ok('un autore solo: nessuna ambiguita, nessuna parentesi')
+    : bad('query: ' + uno);
+  const conData = await chiediInspire('Lisi Marrone modular symmetry 2023-2025');
+  conData === '(a Lisi and a Marrone and ft modular symmetry and de 2023->2025)'
+            + ' or (a Lisi Marrone and ft modular symmetry and de 2023->2025)'
+    ? ok('le clausole non-autore sono ripetute in tutte e due le letture')
+    : bad('query: ' + conData);
+
   /* --- forme ostili e la sede come segnale ------------------------------ */
   /* Le API rispondono anche con campi nulli o assenti, e una sola eccezione
    * qui dentro svuoterebbe la pagina invece di degradarla. Qui vengono

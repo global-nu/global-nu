@@ -307,11 +307,24 @@
   //   de 2019->2023 / de > 2019 / de < 2015  date ranges
   // Chaining several `t <word>` with AND is far too strict (usually 0 hits),
   // so free keywords go through `ft` instead.
+  /* TWO BARE WORDS ARE TWO QUESTIONS, and INSPIRE answers only one of them.
+     "lisi marrone" means two authors — `a Lisi and a Marrone`, 120 papers.
+     "antonio marrone" means one person — `a Antonio Marrone`, 133 papers.
+     Nothing in the two strings tells them apart, and the WRONG reading does
+     not degrade, it returns exactly zero: `a Antonio and a Marrone` is 0 hits,
+     `a Lisi Marrone` is 0 hits (verified live, 2026-09-12). So a reader
+     searching their own name got no INSPIRE results at all, and the page
+     filled up with whatever the generic databases had — which is how this was
+     noticed.
+
+     INSPIRE takes parentheses and `or`, so both readings go in ONE query and
+     the database decides. The clauses that are not about authors are repeated
+     inside each branch, because `or` binds looser than `and` and a trailing
+     date clause would otherwise apply to the second reading only. */
   function inspireQuery(f) {
-    var parts = [];
-    f.author.forEach(function (a) { parts.push("a " + a); });
-    if (f.title) parts.push('t "' + f.title + '"');
-    if (f.collab) parts.push("cn " + f.collab);
+    var rest = [];
+    if (f.title) rest.push('t "' + f.title + '"');
+    if (f.collab) rest.push("cn " + f.collab);
     // Topic terms: BARE when they are the whole query, `ft` otherwise.
     // Verified live, both ways: "lecture notes string theory" bare returns
     // the Les Houches notes ranked by true relevance, while the ft version
@@ -320,11 +333,27 @@
     // "a Feruglio and modular forms" bare (or with abs/parentheses) is 0
     // hits — with an author clause only `ft` combines. Date clauses chain
     // fine with bare terms (also verified).
-    if (f.topic) parts.push(parts.length ? "ft " + f.topic : f.topic);
-    if (f.from && f.to) parts.push("de " + yearOf(f.from) + "->" + yearOf(f.to));
-    else if (f.from) parts.push("de > " + yearOf(f.from));
-    else if (f.to) parts.push("de < " + yearOf(f.to));
-    return parts.join(" and ");
+    if (f.topic) {
+      rest.push((f.author.length || rest.length) ? "ft " + f.topic : f.topic);
+    }
+    if (f.from && f.to) rest.push("de " + yearOf(f.from) + "->" + yearOf(f.to));
+    else if (f.from) rest.push("de > " + yearOf(f.from));
+    else if (f.to) rest.push("de < " + yearOf(f.to));
+
+    if (!f.author.length) return rest.join(" and ");
+
+    var apart = f.author.map(function (a) { return "a " + a; });
+    // Only two single words are ambiguous. One name is unambiguous, three or
+    // more are surnames in practice, and a name the reader already wrote in
+    // full ("Antonio Marrone" in the author box, or a:"Antonio Marrone")
+    // contains a space and is left exactly as typed.
+    var ambiguous = f.author.length === 2 &&
+                    !/\s/.test(f.author[0]) && !/\s/.test(f.author[1]);
+    if (!ambiguous) return apart.concat(rest).join(" and ");
+
+    var asTwo = apart.concat(rest).join(" and ");
+    var asOne = ["a " + f.author[0] + " " + f.author[1]].concat(rest).join(" and ");
+    return "(" + asTwo + ") or (" + asOne + ")";
   }
 
   function crossrefUrl(f) {
