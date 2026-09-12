@@ -213,6 +213,18 @@ button of its own, and it is deliberately not pushed upstream: asking INSPIRE
 for <code>sort=mostcited</code> does not return the most cited papers <em>on</em> a subject, it
 returns the most cited papers that <em>mention</em> the words — which is how a search
 for lecture notes on string theory once came back with the PDG Review.</p>
+<p><strong>Where the citation counts come from.</strong> INSPIRE, and nowhere else. Every
+database here counts citations and they do not agree, because they index
+different literature; mixed into one column those numbers stop being
+comparable and ranking by them would reward the paper indexed by the most
+generous counter. So a record INSPIRE returned carries INSPIRE's number
+whichever database found it first, and a record INSPIRE did <em>not</em> return is
+looked up by its arXiv identifier or DOI — INSPIRE answers twenty results at a
+time, and a paper it knows perfectly well is often simply not among the twenty
+it sent back. What no lookup finds is shown with <strong>no count at all</strong> rather
+than borrowing one, and sorts as unknown. Untick INSPIRE above and no counts
+appear at all: you have asked this page not to use the one source it trusts
+for them.</p>
 <p><strong>How the subfields are decided.</strong> Each result is filed under one subfield,
 and the grouping is not invented here: it is the
 <a href="https://arxiv.org/category_taxonomy" rel="noopener noreferrer" target="_blank">arXiv subject taxonomy</a> — the
@@ -293,7 +305,7 @@ tab, so you never lose your place here.</p>
 
 <script src="assets/js/site.js?v=215a304f" defer></script>
 <script src="assets/js/figure.js?v=d7a5dbcf" defer></script>
-<script src="assets/js/search.js?v=9d5795cc" defer></script>
+<script src="assets/js/search.js?v=8cb1868c" defer></script>
 <script data-goatcounter="https://global-nu.goatcounter.com/count" async src="assets/vendor/goatcounter/count.js?v=185aa0b9"></script>
 
 </body>

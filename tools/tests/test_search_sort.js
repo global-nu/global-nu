@@ -159,11 +159,23 @@ let S2 = { data: [
     s2FieldsOfStudy: [{ category: 'Physics' }] }
 ] };
 
+/* Il lookup dei conteggi e' una SECONDA chiamata a INSPIRE, distinta dalla
+ * ricerca perche' chiede `fields=citation_count`. Qui risponde per due soli
+ * record: quello che OpenAlex conta 300 (INSPIRE ne conta 250, e deve vincere
+ * INSPIRE) e uno che nessun database contava. Per gli altri non risponde: un
+ * lavoro che INSPIRE non conosce deve restare SENZA conteggio, non tenersi
+ * quello di Semantic Scholar. */
+let CITES = { hits: { hits: [
+  { metadata: { citation_count: 250, dois: [{ value: '10.3/a' }], arxiv_eprints: [] } },
+  { metadata: { citation_count: 7,   dois: [{ value: '10.2/a' }], arxiv_eprints: [] } }
+] } };
+
 const calls = [];
 w.fetch = function (url) {
   calls.push(String(url));
   const u = String(url);
-  const body = u.indexOf('inspirehep.net') > -1 ? INSPIRE
+  const body = u.indexOf('fields=citation_count') > -1 ? CITES
+             : u.indexOf('inspirehep.net') > -1 ? INSPIRE
              : u.indexOf('api.crossref.org') > -1 ? CROSSREF
              : u.indexOf('api.openalex.org') > -1 ? OPENALEX
              : u.indexOf('api.datacite.org') > -1 ? DATACITE
@@ -214,8 +226,12 @@ async function main() {
 
   /* --- la ricerca ha prodotto qualcosa --------------------------------- */
   console.log('\n--- la ricerca ---');
-  calls.length === 5 ? ok('cinque database interrogati')
-                     : bad('chiamate: ' + calls.length);
+  calls.filter(u => u.indexOf('fields=citation_count') === -1).length === 5
+    ? ok('cinque database interrogati') : bad('chiamate: ' + calls.length);
+  calls.filter(u => u.indexOf('fields=citation_count') > -1).length === 1
+    ? ok('piu una sola richiesta a INSPIRE per i conteggi mancanti')
+    : bad('richieste di conteggio: ' +
+          calls.filter(u => u.indexOf('fields=citation_count') > -1).length);
   titles().length === 8 ? ok('otto lavori sulla pagina')
                         : bad('righe: ' + titles().length);
 
@@ -239,6 +255,23 @@ async function main() {
      'senza la parola nel titolo resta la categoria arXiv: niente deduzioni');
   eq(chipOf(T.nodate), 'Unclassified',
      'nessun segnale: non classificato, non indovinato');
+
+  /* --- le citazioni ------------------------------------------------------ */
+  console.log('\n--- citazioni: solo quelle di INSPIRE ---');
+  const citaz = t => {
+    const li = [...d.querySelectorAll('#lit-results li')]
+      .filter(x => x.querySelector('.pub__title').textContent === t)[0];
+    if (!li) return '(riga assente)';
+    const c = [...li.querySelectorAll('.muted')].map(x => x.textContent).join('');
+    return c || '(nessun conteggio)';
+  };
+  eq(citaz(T.dm), '250 citations',
+     'OpenAlex ne contava 300: vince il 250 di INSPIRE');
+  eq(citaz(T.mag), '(nessun conteggio)',
+     'i 5 di Semantic Scholar non si mostrano: INSPIRE non conosce il lavoro');
+  eq(citaz(T.bb), '7 citations',
+     'un record che nessun database contava prende il conteggio da INSPIRE');
+  eq(citaz(T.nu2024), '120 citations', 'il conteggio di INSPIRE resta quello di INSPIRE');
 
   /* --- vista di rilevanza: i gruppi di corrispondenza ------------------ */
   console.log('\n--- vista di rilevanza (predefinita) ---');
@@ -293,15 +326,15 @@ async function main() {
   /* --- citazioni -------------------------------------------------------- */
   console.log('\n--- citazioni ---');
   click(sortBtn('citations'));
-  eq(titles().slice(0, 5), [T.dm, T.nu2024, T.str, T.osc, T.mag],
-     'decrescente: 300, 120, 40, 10, 5');
+  eq(titles().slice(0, 5), [T.dm, T.nu2024, T.str, T.osc, T.bb],
+     'decrescente: 250, 120, 40, 10, 7 — tutti conteggi di INSPIRE');
   const tail = titles().slice(5);
-  tail.indexOf(T.bb) > -1 && tail.indexOf(T.nodate) > -1 && tail.indexOf(T.cmb) > -1
-    ? ok('i record senza conteggio di citazioni stanno in coda')
+  tail.indexOf(T.mag) > -1 && tail.indexOf(T.nodate) > -1 && tail.indexOf(T.cmb) > -1
+    ? ok('chi non ha un conteggio di INSPIRE sta in coda, anche se un altro database lo contava')
     : bad('coda: ' + JSON.stringify(tail));
   click(sortBtn('citations'));
-  eq(titles().slice(0, 5), [T.mag, T.osc, T.str, T.nu2024, T.dm],
-     'crescente: 5, 10, 40, 120, 300');
+  eq(titles().slice(0, 5), [T.bb, T.osc, T.str, T.nu2024, T.dm],
+     'crescente: 7, 10, 40, 120, 250');
   titles().slice(5).indexOf(T.nodate) > -1
     ? ok('senza citazioni ancora in coda, non in cima')
     : bad('un record senza citazioni e risalito in cima');
@@ -342,7 +375,11 @@ async function main() {
 
   /* --- che cosa viene chiesto ai database ------------------------------- */
   console.log('\n--- la query mandata ai database ---');
-  const inspireUrl = () => calls.filter(u => u.indexOf('inspirehep.net') > -1).pop();
+  // La ricerca, non il lookup dei conteggi: quest'ultimo e' anche lui una
+  // chiamata a inspirehep.net, ed e' l'ULTIMA, quindi senza questo filtro
+  // il controllo misurerebbe la richiesta sbagliata.
+  const inspireUrl = () => calls.filter(u => u.indexOf('inspirehep.net') > -1 &&
+                                             u.indexOf('fields=citation_count') === -1).pop();
   // La chiave scelta vale per la ricerca SUCCESSIVA: e' quella che decide
   // quali venti record ogni database restituisce. Qui la chiave attiva e'
   // gia' "date", quindi basta rilanciare.

@@ -548,6 +548,7 @@
             year: pi.year || (m.earliest_date || "").slice(0, 4),
             journal: journal,
             citations: m.citation_count,
+            citeFrom: typeof m.citation_count === "number" ? CITE_SOURCE : "",
             // Both classifications INSPIRE holds: the arXiv categories the
             // preprint was deposited under, and INSPIRE's own subject terms
             // (Phenomenology-HEP, Experiment-HEP, Astrophysics, …), which are
@@ -746,6 +747,22 @@
      first in the list rather than on what is known about the paper. */
   var TAG_LISTS = ["cats", "inspireCats", "s2fields", "crSubjects"];
 
+  /* A count from INSPIRE always wins, whichever record happened to lead the
+     merge. Without this the number depended on the order the databases
+     answered in: the same paper showed 93 from INSPIRE or 147 from OpenAlex
+     depending on which one had led. See the note above `fillCitations`. */
+  function mergeCitations(target, other) {
+    if (other.citeFrom === CITE_SOURCE) {
+      target.citations = other.citations;
+      target.citeFrom = other.citeFrom;
+      return;
+    }
+    if (target.citeFrom === CITE_SOURCE) return;
+    if (typeof target.citations !== "number" && typeof other.citations === "number") {
+      target.citations = other.citations;
+    }
+  }
+
   function mergeTags(target, other) {
     TAG_LISTS.forEach(function (k) {
       if (!other[k] || !other[k].length) return;
@@ -776,9 +793,7 @@
         // keep the richest metadata
         if (!t.journal && r.journal) t.journal = r.journal;
         if (!t.date && r.date) t.date = r.date;
-        if (typeof t.citations !== "number" && typeof r.citations === "number") {
-          t.citations = r.citations;
-        }
+        mergeCitations(t, r);
         mergeTags(t, r);
         if (r.authors.length > t.authors.length) { t.authors = r.authors; t.more = r.more; }
         r.links.forEach(function (l) {
@@ -814,9 +829,7 @@
       });
       if (!first.journal && r.journal) first.journal = r.journal;
       if (!first.date && r.date) first.date = r.date;
-      if (typeof first.citations !== "number" && typeof r.citations === "number") {
-        first.citations = r.citations;
-      }
+      mergeCitations(first, r);
       mergeTags(first, r);
       if (r.authors.length > first.authors.length) {
         first.authors = r.authors; first.more = r.more;
@@ -870,6 +883,113 @@
     });
     if (hit === 0) return "topic";
     return hit === f.author.length ? "authors" : "some";
+  }
+
+  /* ---------------------------------------------------------------
+     Citations come from INSPIRE, and from nowhere else
+
+     Every database here counts citations, and they do not agree — the same
+     paper is 93 at INSPIRE, a different number at OpenAlex, a third at
+     Semantic Scholar, because they index different literature. Mixed into one
+     column those numbers are not comparable, and the "Citations" sort stops
+     meaning anything: it would rank a paper high for being indexed by the
+     most generous counter rather than for being used. For high-energy physics
+     INSPIRE is the count the field actually quotes, so it is the only one
+     this page shows.
+
+     Two consequences, both deliberate:
+
+       * a record INSPIRE returned carries INSPIRE's number, whichever
+         database led the merge (see `mergeCitations`);
+       * a record INSPIRE did NOT return is looked up here, by arXiv id or
+         DOI, in one extra request per twenty records. INSPIRE answers 20
+         results per search, so a paper it knows perfectly well is often
+         simply not among the twenty it sent back — dropping its count for
+         that reason would be an artefact of the page size, not a fact about
+         the paper.
+
+     What no lookup finds keeps NO count at all rather than borrowing one:
+     an empty cell is honest, a foreign number wearing INSPIRE's meaning is
+     not. Such a record sorts as unknown, which puts it at the bottom in both
+     directions — the same rule undated records follow.
+
+     With INSPIRE unticked in "Search in", no count is shown anywhere: the
+     reader has asked not to use the one source this page trusts for them.
+     --------------------------------------------------------------- */
+
+  var CITE_SOURCE = "INSPIRE-HEP";
+  var CITE_BATCH = 20;          // ids per lookup request
+  var CITE_MAX_REQUESTS = 3;    // never more than 60 records looked up
+
+  // The identifier INSPIRE can be asked by. arXiv first: it is the one a
+  // preprint always has, and it needs no escaping. A DOI may contain
+  // brackets (10.1007/JHEP09(2020)178) — verified to work as written.
+  function citeTerm(r) {
+    var doi = "", arx = "";
+    (r.links || []).forEach(function (l) {
+      if (!arx && /arxiv\.org\/abs\//i.test(l.href)) {
+        arx = l.href.replace(/^.*abs\//i, "").replace(/v\d+$/, "");
+      }
+      if (!doi && /doi\.org\//i.test(l.href)) {
+        doi = l.href.replace(/^.*doi\.org\//i, "");
+      }
+    });
+    if (arx) return { term: "arxiv " + arx, key: arx.toLowerCase() };
+    if (doi) return { term: "doi " + doi, key: doi.toLowerCase() };
+    return null;
+  }
+
+  function fillCitations(rows, useInspire) {
+    rows.forEach(function (r) {
+      if (r.citeFrom !== CITE_SOURCE) delete r.citations;
+    });
+    if (!useInspire) return Promise.resolve();
+
+    var want = [];
+    rows.forEach(function (r) {
+      if (r.citeFrom === CITE_SOURCE) return;
+      var t = citeTerm(r);
+      if (t) want.push({ row: r, term: t.term, key: t.key });
+    });
+    if (!want.length) return Promise.resolve();
+
+    var batches = [];
+    for (var i = 0; i < want.length; i += CITE_BATCH) {
+      if (batches.length >= CITE_MAX_REQUESTS) break;
+      batches.push(want.slice(i, i + CITE_BATCH));
+    }
+
+    return Promise.all(batches.map(function (b) {
+      var p = new URLSearchParams({
+        q: b.map(function (x) { return x.term; }).join(" or "),
+        size: String(b.length),
+        fields: "citation_count,dois,arxiv_eprints"
+      });
+      return getJSON("https://inspirehep.net/api/literature?" + p.toString())
+        .then(function (d) {
+          var by = {};
+          (d.hits && d.hits.hits ? d.hits.hits : []).forEach(function (h) {
+            var m = h.metadata || {};
+            if (typeof m.citation_count !== "number") return;
+            (m.dois || []).forEach(function (x) {
+              by[String(x.value).toLowerCase()] = m.citation_count;
+            });
+            (m.arxiv_eprints || []).forEach(function (x) {
+              by[String(x.value).toLowerCase()] = m.citation_count;
+            });
+          });
+          b.forEach(function (x) {
+            if (typeof by[x.key] === "number") {
+              x.row.citations = by[x.key];
+              x.row.citeFrom = CITE_SOURCE;
+            }
+          });
+        }, function () {
+          // A failed lookup leaves those rows without a count, which is the
+          // same state they were in a moment ago. It must never take the
+          // search down with it.
+        });
+    }));
   }
 
   /* ---------------------------------------------------------------
@@ -1226,7 +1346,8 @@
               esc(prettyDate(when)) + "</time>",
       r.journal && '<span class="journal">' + esc(r.journal) + "</span>",
       typeof r.citations === "number" &&
-        '<span class="muted">' + r.citations + " citations</span>"
+        '<span class="muted" title="Citation count from INSPIRE-HEP">' +
+          r.citations + " citations</span>"
     ]).join("");
     var links = r.links.map(function (l) {
       return '<a href="' + esc(l.href) + '" target="_blank" rel="noopener noreferrer">' +
@@ -1562,7 +1683,11 @@
     elStatus.focus({ preventScroll: true });
 
     var wanted = [];
-    if ($("#src-inspire").checked) wanted.push(["INSPIRE-HEP", fromInspire(f)]);
+    // Also decides whether the citation lookup may run at all: with INSPIRE
+    // unticked the reader has asked not to use the one source this page
+    // trusts for counts, so no count is shown.
+    var useInspire = $("#src-inspire").checked;
+    if (useInspire) wanted.push(["INSPIRE-HEP", fromInspire(f)]);
     if ($("#src-crossref").checked) wanted.push(["Crossref", fromCrossref(f)]);
     if ($("#src-openalex").checked) wanted.push(["OpenAlex", fromOpenAlex(f)]);
     if ($("#src-arxiv") && $("#src-arxiv").checked) wanted.push(["arXiv", fromArxiv(f)]);
@@ -1599,29 +1724,35 @@
         return physicsNative || passesTermGate(r, terms);
       });
 
-      // Classified and scored ONCE, here. The sort buttons reorder the same
-      // objects afterwards; recomputing a score on every click would be work
-      // for nothing and, worse, a chance for the order to disagree with the
-      // labels the reader is looking at.
-      rows.forEach(function (r) {
-        r.bucket = classify(r, f);
-        r.subfield = subfieldOf(r);
-        r.score = relevance(r, f, terms);
-        r.tie = tieBreak(r);
-      });
+      // The citation counts are settled BEFORE anything is scored: the
+      // relevance tie-break reads them, and a score computed against a
+      // number that is about to be replaced would rank the page by a figure
+      // it never shows.
+      return fillCitations(rows, useInspire).then(function () {
+        // Classified and scored ONCE, here. The sort buttons reorder the
+        // same objects afterwards; recomputing a score on every click would
+        // be work for nothing and, worse, a chance for the order to disagree
+        // with the labels the reader is looking at.
+        rows.forEach(function (r) {
+          r.bucket = classify(r, f);
+          r.subfield = subfieldOf(r);
+          r.score = relevance(r, f, terms);
+          r.tie = tieBreak(r);
+        });
 
-      // Two different losses, counted separately. They used to be added
-      // together and reported as duplicates, which credited the merge with
-      // records the physics gate had thrown out.
-      var found = ok.reduce(function (n, g) { return n + g.rows.length; }, 0);
-      state = {
-        rows: rows,
-        failures: failures,
-        dbs: ok.length,
-        merged: found - afterMerge,
-        gated: afterMerge - rows.length
-      };
-      draw();
+        // Two different losses, counted separately. They used to be added
+        // together and reported as duplicates, which credited the merge with
+        // records the physics gate had thrown out.
+        var found = ok.reduce(function (n, g) { return n + g.rows.length; }, 0);
+        state = {
+          rows: rows,
+          failures: failures,
+          dbs: ok.length,
+          merged: found - afterMerge,
+          gated: afterMerge - rows.length
+        };
+        draw();
+      });
     });
   }
 

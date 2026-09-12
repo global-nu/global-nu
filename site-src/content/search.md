@@ -172,6 +172,19 @@ for `sort=mostcited` does not return the most cited papers *on* a subject, it
 returns the most cited papers that *mention* the words — which is how a search
 for lecture notes on string theory once came back with the PDG Review.
 
+**Where the citation counts come from.** INSPIRE, and nowhere else. Every
+database here counts citations and they do not agree, because they index
+different literature; mixed into one column those numbers stop being
+comparable and ranking by them would reward the paper indexed by the most
+generous counter. So a record INSPIRE returned carries INSPIRE's number
+whichever database found it first, and a record INSPIRE did *not* return is
+looked up by its arXiv identifier or DOI — INSPIRE answers twenty results at a
+time, and a paper it knows perfectly well is often simply not among the twenty
+it sent back. What no lookup finds is shown with **no count at all** rather
+than borrowing one, and sorts as unknown. Untick INSPIRE above and no counts
+appear at all: you have asked this page not to use the one source it trusts
+for them.
+
 **How the subfields are decided.** Each result is filed under one subfield,
 and the grouping is not invented here: it is the
 [arXiv subject taxonomy](https://arxiv.org/category_taxonomy) — the
