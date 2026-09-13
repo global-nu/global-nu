@@ -16,7 +16,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/archivo-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css?v=615e85cc">
+<link rel="stylesheet" href="assets/css/site.css?v=82d6d926">
 <script>
 /* Apply the saved theme before the first paint. Inline and blocking on
    purpose: a deferred script runs after the page is drawn, and a reader who
@@ -79,15 +79,15 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
 <div class="release">
 
 <div class="section-head">
-  <h2>Latest — δm² and sin²θ₁₂ after the first JUNO results</h2>
-  <p>a partial update of the March 2025 release, published 2026</p>
+  <h2>Latest — the six parameters after the first JUNO results</h2>
+  <p>δm² and sin²θ₁₂ revised in 2026, on the March 2025 full release</p>
 </div>
 
 <p class="lede" style="margin-top:0">The first JUNO results and the latest SNO+
-data, added to the 2025 global analysis. They revise the (1,&nbsp;2) sector
-alone: the two values below are the newest published ones, while |Δm²|,
-sin²θ₁₃, sin²θ₂₃ and δ stand as in the <a href="#nu2025">full release
-below</a>.</p>
+data, added to the 2025 global analysis, revise the (1,&nbsp;2) sector alone.
+The table below therefore carries the newest published value for each of the
+six parameters — the two marked 2026 from the update, the other four as they
+stand in the <a href="#nu2025">full release below</a>.</p>
 
 <div class="btn-row">
   <a class="btn btn--sm" href="https://arxiv.org/abs/2511.21650" rel="noopener noreferrer" target="_blank">arXiv:2511.21650</a>
@@ -95,40 +95,58 @@ below</a>.</p>
   <a class="btn btn--sm btn--ghost" href="https://inspirehep.net/literature?q=arxiv:2511.21650" rel="noopener noreferrer" target="_blank">INSPIRE</a>
 </div>
 
-<p class="authors"><strong>F. Capozzi, E. Lisi, F. Marcone, A. Marrone,
-A. Palazzo.</strong></p>
+<p class="authors">The update is by <strong>F. Capozzi, E. Lisi, F. Marcone,
+A. Marrone, A. Palazzo</strong>; the 2025 release the other four rows come from
+adds <strong>W. Giarè</strong> and <strong>A. Melchiorri</strong>.</p>
 
 <div class="release__meta">
-  <span class="tag">partial update</span>
-  <span class="tag">(1, 2) sector only</span>
+  <span class="tag">newest value per parameter</span>
+  <span class="tag">two papers, not one fit</span>
   <span class="tag">JUNO + SNO+ 2025</span>
   <span class="tag">δm² known to 1.3%</span>
 </div>
 
 <div class="table-scroll">
-<table class="data">
-<caption>Table I of Phys. Rev. D 114, 016026 (2026), final row (“w/ SNO+ &amp;
-JUNO 2025”): best-fit values and allowed ranges at N&#8202;σ = 1, 2, 3. Same
-conventions as the table below, including the formal “1σ parameter accuracy” of
-the last column — 1/6 of the 3σ range divided by the best fit, in percent. Both
-parameters take the same value in either ordering. Transcribed from the
-published table; nothing here is estimated or rounded further.</caption>
+<table class="data" id="current">
+<caption><strong>The newest published value for each parameter — not a single
+fit.</strong> δm² and sin²θ₁₂, marked 2026, are the final row (“w/ SNO+ &amp;
+JUNO 2025”) of Table I of
+<a href="https://doi.org/10.1103/cxqw-1bty" rel="noopener noreferrer" target="_blank">Phys. Rev. D 114, 016026
+(2026)</a>, which adds the first JUNO results and the latest SNO+ data to the
+(1,&nbsp;2) sector. The other four are Table I of
+<a href="https://doi.org/10.1103/PhysRevD.111.093006" rel="noopener noreferrer" target="_blank">Phys. Rev. D 111, 093006
+(2025)</a>, the most recent full release, reproduced whole
+<a href="#nu2025">below</a> — the update quotes no new values for them. Ranges
+at N&#8202;σ = 1, 2, 3; the last column is the formal “1σ parameter accuracy”,
+defined the same way in both papers, 1/6 of the 3σ range divided by the
+best-fit value, in percent. δ/π is cyclic (mod 2). Values are transcribed from
+the published tables; nothing here is estimated or rounded
+further.</caption>
 <thead>
-<tr><th scope="col">Parameter</th><th scope="col">Ordering</th><th scope="col">Best fit</th><th scope="col"><span class="sym">1σ</span> range</th><th scope="col"><span class="sym">2σ</span> range</th><th scope="col"><span class="sym">3σ</span> range</th><th scope="col">“<span class="sym">1σ</span>” (%)</th></tr>
+<tr><th scope="col">Parameter</th><th scope="col">Ordering</th><th scope="col">Best fit</th><th scope="col"><span class="sym">1σ</span> range</th><th scope="col"><span class="sym">2σ</span> range</th><th scope="col"><span class="sym">3σ</span> range</th><th scope="col">“<span class="sym">1σ</span>” (%)</th><th scope="col">From</th></tr>
 </thead>
 <tbody>
-<tr><th scope="row">δm² / 10⁻⁵ eV²</th><td class="ord">NO, IO</td><td>7.48</td><td>7.39 – 7.58</td><td>7.30 – 7.68</td><td>7.21 – 7.78</td><td>1.3</td></tr>
-<tr class="row-alt"><th scope="row">sin²θ₁₂ / 10⁻¹</th><td class="ord">NO, IO</td><td>3.085</td><td>3.010 – 3.156</td><td>2.939 – 3.230</td><td>2.866 – 3.303</td><td>2.4</td></tr>
+<tr><th scope="row">δm² / 10⁻⁵ eV²</th><td class="ord">NO, IO</td><td>7.48</td><td>7.39 – 7.58</td><td>7.30 – 7.68</td><td>7.21 – 7.78</td><td>1.3</td><td class="ord src--new"><a href="https://doi.org/10.1103/cxqw-1bty" rel="noopener noreferrer" target="_blank">2026</a></td></tr>
+<tr><th scope="row">sin²θ₁₂ / 10⁻¹</th><td class="ord">NO, IO</td><td>3.085</td><td>3.010 – 3.156</td><td>2.939 – 3.230</td><td>2.866 – 3.303</td><td>2.4</td><td class="ord src--new"><a href="https://doi.org/10.1103/cxqw-1bty" rel="noopener noreferrer" target="_blank">2026</a></td></tr>
+<tr class="row-alt"><th scope="row">|Δm²| / 10⁻³ eV²</th><td class="ord ord--no">NO</td><td>2.495</td><td>2.475 – 2.515</td><td>2.454 – 2.536</td><td>2.433 – 2.558</td><td>0.8</td><td class="ord src--old"><a href="#release-2025">2025</a></td></tr>
+<tr class="row-alt"><th scope="row"></th><td class="ord ord--io">IO</td><td>2.465</td><td>2.444 – 2.485</td><td>2.423 – 2.506</td><td>2.403 – 2.527</td><td>0.8</td><td class="ord src--old"><a href="#release-2025">2025</a></td></tr>
+<tr><th scope="row">sin²θ₁₃ / 10⁻²</th><td class="ord ord--no">NO</td><td>2.23</td><td>2.17 – 2.27</td><td>2.11 – 2.33</td><td>2.06 – 2.38</td><td>2.4</td><td class="ord src--old"><a href="#release-2025">2025</a></td></tr>
+<tr><th scope="row"></th><td class="ord ord--io">IO</td><td>2.23</td><td>2.19 – 2.30</td><td>2.14 – 2.35</td><td>2.08 – 2.41</td><td>2.4</td><td class="ord src--old"><a href="#release-2025">2025</a></td></tr>
+<tr class="row-alt"><th scope="row">sin²θ₂₃ / 10⁻¹</th><td class="ord ord--no">NO</td><td>4.73</td><td>4.60 – 4.96</td><td>4.47 – 5.68</td><td>4.37 – 5.81</td><td>5.1</td><td class="ord src--old"><a href="#release-2025">2025</a></td></tr>
+<tr class="row-alt"><th scope="row"></th><td class="ord ord--io">IO</td><td>5.45</td><td>5.28 – 5.60</td><td>4.58 – 5.73</td><td>4.43 – 5.83</td><td>4.3</td><td class="ord src--old"><a href="#release-2025">2025</a></td></tr>
+<tr><th scope="row">δ/π</th><td class="ord ord--no">NO</td><td>1.20</td><td>1.07 – 1.37</td><td>0.88 – 1.81</td><td>0.73 – 2.03</td><td>18</td><td class="ord src--old"><a href="#release-2025">2025</a></td></tr>
+<tr><th scope="row"></th><td class="ord ord--io">IO</td><td>1.48</td><td>1.36 – 1.61</td><td>1.24 – 1.72</td><td>1.12 – 1.83</td><td>8</td><td class="ord src--old"><a href="#release-2025">2025</a></td></tr>
 </tbody>
 </table>
 </div>
 
-<p class="small" style="margin-top:1.2rem">Against the 2025 analysis — δm² =
-7.37 known to 2.3%, sin²θ₁₂ = 3.03 to 4.5% — the two additions move both best
-fits up and roughly halve both uncertainties. The paper's own intermediate row,
-SNO+ added but not JUNO, gives δm² = 7.44 at 2.1%: most of the tightening is
-JUNO's. δm² is now the second oscillation parameter, after |Δm²|, known to
-better than 2%.</p>
+<p class="small" style="margin-top:1.2rem">What the update changed: against the
+2025 analysis — δm² = 7.37 known to 2.3%, sin²θ₁₂ = 3.03 to 4.5% — the two
+additions move both best fits up and roughly halve both uncertainties. The
+paper's own intermediate row, SNO+ added but not JUNO, gives δm² = 7.44 at
+2.1%: most of the tightening is JUNO's. δm² is now the second oscillation
+parameter, after |Δm²|, known to better than 2%. The ordering preference is
+untouched — normal ordering is favoured at 2.2σ, as in the release below.</p>
 
 </div>
 
@@ -188,7 +206,7 @@ A. Melchiorri, A. Palazzo.</strong> Received 12 March 2025; accepted 21 April
 </div>
 
 <div class="table-scroll">
-<table class="data">
+<table class="data" id="release-2025">
 <caption>Table I of Phys. Rev. D 111, 093006 (2025): best-fit values and allowed
 ranges at N&#8202;σ = 1, 2, 3, for either NO or IO. The last column is the formal
 “1σ parameter accuracy”, defined as 1/6 of the 3σ range divided by the best-fit
