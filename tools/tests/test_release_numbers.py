@@ -238,31 +238,77 @@ def row_2026(pdf: Path, row: str = ROW_2026) -> dict[str, list[str]]:
     sys.exit(f"row {row!r} not found in {pdf}")
 
 
-def check_2026(haystack: set[str]) -> list[str]:
-    """Every number of the quoted row must be on results.html.
-
-    Same rule as the 2025 table above, and for the same reason: the values a
-    reader copies off this page are the ones most easily attributed to the
-    wrong analysis, and these two supersede rows that are still printed
-    further down the same page.
-    """
+def check_prose(html: str) -> list[str]:
+    """The page argues in prose that most of the tightening comes from JUNO
+    rather than SNO+, and cites the paper's intermediate block to say so. A
+    claim resting on two numbers is checked like any other two numbers."""
     if not PDF_2026.exists():
         return [f"the 2026 update's PDF is missing: {PDF_2026}"]
-    problems = []
-    for label, nums in row_2026(PDF_2026).items():
-        print(f"  {label:<20} {len(nums):>2} values from Table I (2026 update)")
-        for n in nums:
-            if n not in haystack:
-                problems.append(f"{label} (2026 update): {n}")
-
-    # The SNO+-without-JUNO block, which the page's prose quotes.
     without = row_2026(PDF_2026, ROW_2026_NO_JUNO)["δm² / 10⁻⁵ eV²"]
+    page = numbers_in(html)
+    problems = []
     for n in PROSE_NO_JUNO:
         if n not in without:
             problems.append(f"the page cites {n} for {ROW_2026_NO_JUNO!r}, "
                             f"but the paper's row reads {without}")
-        elif n not in haystack:
+        elif n not in page:
             problems.append(f"{ROW_2026_NO_JUNO} (cited in prose): {n}")
+    return problems
+
+
+# results.html now carries TWO tables of the same numbers: a current-values
+# table at the top, whose (1,2) rows come from the 2026 update and whose other
+# four come from the 2025 release, and the 2025 Table I itself further down.
+# Every check below is scoped to one of them by id. A page-wide search would
+# pass on the very error this page is built to prevent — the 2025 table
+# quietly carrying a 2026 number, or the current table still showing the
+# superseded one — because the other table would satisfy it.
+PARAMS_FROM_2025 = ["|Δm²| / 10⁻³ eV²", "sin²θ₁₃ / 10⁻²",
+                    "sin²θ₂₃ / 10⁻¹", "δ/π"]
+PARAMS_SUPERSEDED = ["δm² / 10⁻⁵ eV²", "sin²θ₁₂ / 10⁻¹"]
+
+
+def table_block(html: str, table_id: str) -> str:
+    i = html.find(f'<table class="data" id="{table_id}"')
+    if i < 0:
+        return ""
+    return html[i:html.find("</table>", i)]
+
+
+def numbers_in(block: str) -> set[str]:
+    return set(re.findall(r"\d+\.\d+|\b\d+\b", block))
+
+
+def check_current(rows: dict[str, list[str]], html: str) -> list[str]:
+    """The current-values table: newest value per parameter, and ONLY those.
+
+    The four parameters the 2026 update does not touch must read exactly as
+    the 2025 paper prints them, the two it does must read as the 2026 paper
+    prints them, and the superseded 2025 best fits must not appear in this
+    table at all — that last one is the whole reason the table exists.
+    """
+    block = table_block(html, "current")
+    if not block:
+        return ["the current-values table (id=\"current\") is not on results.html"]
+    here = numbers_in(block)
+    problems = []
+
+    for label in PARAMS_FROM_2025:
+        for n in rows[label]:
+            if n not in here:
+                problems.append(f"{label} (current table): {n} missing")
+
+    for label, nums in row_2026(PDF_2026).items():
+        for n in nums:
+            if n not in here:
+                problems.append(f"{label} (current table, 2026 value): {n} missing")
+
+    for label in PARAMS_SUPERSEDED:
+        superseded = rows[label][0]                  # the 2025 best fit
+        if superseded in here:
+            problems.append(
+                f"{label}: the superseded 2025 best fit {superseded} is in the "
+                f"current-values table, which must carry the 2026 value")
     return problems
 
 
@@ -275,8 +321,11 @@ def main() -> None:
         sys.exit(f"{PAGE} not found — run build.py first")
 
     html = PAGE.read_text(encoding="utf-8")
-    # The page writes ranges as "7.21 – 7.52"; compare bare numbers only.
-    haystack = set(re.findall(r"\d+\.\d+|\b\d+\b", html))
+    # The page writes ranges as "7.21 – 7.52"; compare bare numbers only, and
+    # only inside the table that claims to BE the 2025 paper's Table I.
+    haystack = numbers_in(table_block(html, "release-2025"))
+    if not haystack:
+        sys.exit('the 2025 release table (id="release-2025") is not on results.html')
 
     rows = table_numbers(pdf)
     if len(rows) != len(ROWS):
@@ -292,7 +341,8 @@ def main() -> None:
     for label, nums in rows.items():
         print(f"  {label:<20} {len(nums):>2} values from Table I")
 
-    missing += check_2026(haystack)
+    missing += check_current(rows, html)
+    missing += check_prose(html)
     missing += check_home(rows)
     missing += check_hero(rows)
 
@@ -303,8 +353,9 @@ def main() -> None:
             print("      " + m)
         sys.exit(1)
 
-    print(f"\nall {checked} numbers of Table I appear on results.html, "
-          f"as do all 16 of the 2026 update's own row")
+    print(f"\nall {checked} numbers of Table I are in the 2025 release table, "
+          f"and the current-values table above it carries the 2026 row plus "
+          f"the four parameters that update leaves alone")
     print(f"the {len(HOME_CONVERSIONS)} stat cards from the 2025 release and the "
           f"{len(HOME_2026)} from the 2026 (1,2)-sector update match their own papers")
     print(f"the {len(HERO_ROWS)} hero-figure best fits on index.html match the paper")

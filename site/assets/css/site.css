@@ -413,6 +413,15 @@ table.data tbody th{font-weight:600;color:var(--text);white-space:nowrap}
 table.data td{font-family:var(--mono);color:var(--text-soft);white-space:nowrap}
 table.data tbody tr:last-child td,table.data tbody tr:last-child th{border-bottom:0}
 table.data .ord{font-family:var(--mono);font-size:.74rem;font-weight:600}
+/* The "From" column of the current-values table on results.html. Two of its
+   six parameters come from a newer paper than the other four, and which is
+   which is the one thing a reader must not have to infer: the newer rows are
+   marked in the accent, the rest stay muted. Both are links — to the 2026
+   paper and to the 2025 table further down the page — because a year in the
+   site's link colour that did not answer a click would be a small lie. */
+table.data .src--new a{color:var(--accent)}
+table.data .src--old a{color:var(--text-mute)}
+table.data .src--old a:hover,table.data .src--old a:focus-visible{color:var(--accent)}
 table.data .ord--no{color:var(--no)}
 table.data .ord--io{color:var(--io)}
 table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
