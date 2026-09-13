@@ -40,10 +40,19 @@ EXPERIMENTAL_CATS = ("hep-ex", "nucl-ex", "physics.ins-det")
 # called anywhere on their path — while the news narrative is written by one.
 # Both still say, loudly, that the page was generated without a human writing
 # it, because that is what a reader needs to know.
+#
+# The "no model" sentence is a separate string because it is not carried by
+# every page that uses this banner: the digest's banner no longer states it
+# (the page says the narrower, checkable thing further down instead — that
+# the RANKING is deterministic), while the conference calendar still does.
+# Passing it explicitly at each call site keeps that a decision someone made
+# rather than a default nobody looked at.
+NO_MODEL = " No model is involved."
+
 AUTOGEN_SCRIPT = """<div class="autogen">
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the {sources},
-and may contain errors. No model is involved.</b>
+and may contain errors.{note}</b>
 <span class="stamp">Last successful update: {stamp}</span></div>
 </div>"""
 
@@ -333,7 +342,7 @@ def digest(records: list[dict], log: logging.Logger, stamp: str | None = None) -
 
 ::: section
 
-{AUTOGEN_SCRIPT.format(sources="arXiv API", stamp=stamp or _stamp())}
+{AUTOGEN_SCRIPT.format(sources="arXiv API", stamp=stamp or _stamp(), note="")}
 
 <div class="section-head"><h2>Experimental</h2>
 <p>{len(exp)} preprint{"" if len(exp) == 1 else "s"}</p></div>
@@ -636,7 +645,8 @@ def conferences(records: list[dict], log: logging.Logger,
 
 ::: section
 
-{AUTOGEN_SCRIPT.format(sources="conference indexers' APIs", stamp=stamp or _stamp())}
+{AUTOGEN_SCRIPT.format(sources="conference indexers' APIs", stamp=stamp or _stamp(),
+                      note=NO_MODEL)}
 
 {legend}
 {timeline_block}
