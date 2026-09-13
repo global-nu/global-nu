@@ -108,33 +108,76 @@ HOME_2026 = [
 # The hero figure on index.html (ranges-hero.svg) draws one row per
 # parameter, normal ordering only, with its best fit printed exactly as
 # tools/make_figures.py formats it (Python's "%g", so "1.20" prints as
-# "1.2"). No unit conversion — these are the paper's own values, the same
+# "1.2"). No unit conversion — these are the papers' own values, the same
 # ones that appear as the first number of each Table I row.
+#
+# Four rows come from the 2025 full release. The other two are the (1,2)
+# sector, which the 2026 update revises: the figure draws each parameter at
+# its NEWEST published value, so those two must carry the 2026 number and
+# must NOT still carry the superseded one.
 HERO_ROWS = [
-    ("δm²", "δm2=10−5 eV2"),
     ("|Δm²|", "jΔm2j=10−3 eV2"),
-    ("sin²θ₁₂", "sin2 θ12=10−1"),
     ("sin²θ₁₃", "sin2 θ13=10−2"),
     ("sin²θ₂₃", "sin2 θ23=10−1"),
     ("δ/π", "δ=π"),
 ]
+HERO_2026 = [("δm²", "δm2=10−5 eV2", "dm2"),
+             ("sin²θ₁₂", "sin2 θ12=10−1", "sin2_th12")]
+
+
+def hero_block(html: str) -> str:
+    """Just the hero figure's own svg.
+
+    Scoped, like every other check here: index.html carries these numbers in
+    the stat cards and in the sparkline hover text as well, so a page-wide
+    search would be satisfied by a value the figure does not draw — including
+    the superseded one it must no longer draw.
+    """
+    i = html.find("ranges-hero")
+    if i < 0:
+        i = html.find('<svg viewBox="0 0 520')
+    if i < 0:
+        return ""
+    start = html.rfind("<svg", 0, i + 40)
+    return html[start:html.find("</svg>", start)] if start >= 0 else ""
 
 
 def check_hero(rows: dict[str, list[str]]) -> list[str]:
-    """The best-fit values drawn in the home page's hero figure must be the
-    paper's own normal-ordering best fits, present on index.html as drawn."""
+    """The best fits drawn in the hero must be each parameter's newest."""
     home = ROOT / "site" / "index.html"
     if not home.exists():
         return ["site/index.html not found — run build.py first"]
-    html = home.read_text(encoding="utf-8")
-    haystack = set(re.findall(r"\d+\.\d+|\b\d+\b", html))
+    block = hero_block(home.read_text(encoding="utf-8"))
+    if not block:
+        return ["the ranges-hero figure was not found on index.html"]
+    drawn = set(re.findall(r"\d+\.\d+|\b\d+\b", block))
     problems = []
+
     for name, key in HERO_ROWS:
-        best = float(rows[ROWS[key]][0])          # first number = NO / only row
-        shown = f"{best:g}"
-        if shown not in haystack:
+        shown = f"{float(rows[ROWS[key]][0]):g}"   # first number = NO / only row
+        if shown not in drawn:
             problems.append(
-                f"{name} (ranges-hero best fit): {shown} not present on index.html")
+                f"{name} (ranges-hero best fit): {shown} is not drawn")
+
+    sys.path.insert(0, str(ROOT))
+    from tools import history                                  # noqa: E402
+    rel = next((r for r in history.load()["releases"]
+                if r["group"] == "bari" and r["arxiv"] == "2511.21650"), None)
+    if rel is None:
+        return problems + ["the 2026 (1,2)-sector release is not in the register"]
+    for name, key, pname in HERO_2026:
+        entry = ((rel.get("values") or {}).get(pname) or {}).get("any")
+        if not entry:
+            problems.append(f"{name}: the 2026 release records no value for {pname}")
+            continue
+        if f"{entry['best']:g}" not in drawn:
+            problems.append(f"{name} (ranges-hero): the 2026 best fit "
+                            f"{entry['best']:g} is not drawn")
+        superseded = f"{float(rows[ROWS[key]][0]):g}"
+        if superseded in drawn:
+            problems.append(
+                f"{name} (ranges-hero): the superseded 2025 best fit "
+                f"{superseded} is still drawn")
     return problems
 
 

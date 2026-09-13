@@ -68,6 +68,23 @@ def entry(rel: dict, pname: str) -> dict | None:
     return byo.get("no") or byo.get("any")
 
 
+def newest(bari: list[dict], pname: str) -> tuple[dict, dict] | None:
+    """The most recent release that quotes `pname`, and its entry.
+
+    Not the same thing as the release flagged `current`. That flag marks the
+    most recent FULL release — the one whose Table I the results page
+    reproduces — and a partial update published after it revises some
+    parameters and stays silent on the rest. For "what is this parameter
+    today" the answer is per parameter, which is what this returns; for "what
+    did that paper say", the caller wants one release and should not use this.
+    """
+    for rel in reversed(bari):                       # load() sorts by year
+        e = entry(rel, pname)
+        if e and e.get("s3"):
+            return rel, e
+    return None
+
+
 def accuracy(e: dict) -> float | None:
     """The papers' own definition: 1/6 of the 3σ range over the best fit, in
     percent. Derived here rather than transcribed, because it is arithmetic on
@@ -262,7 +279,7 @@ def _rel_axis(L: float, R: float, W: float, top: float, bottom: float,
 def _rel_range_row(pname: str, ordering: str, label: str, tag: str,
                    unit: str | None, e: dict, y: float, colour: str,
                    L: float, R: float, W: float, *, font: float = 12.5,
-                   value_font: float = 12) -> list[str]:
+                   value_font: float = 12, source: str = "") -> list[str]:
     """One row of a ranges figure: label, 3σ line, 1σ band, best-fit point,
     and the numeric best fit — every row on the one shared axis of _rel_axis.
 
@@ -307,7 +324,8 @@ def _rel_range_row(pname: str, ordering: str, label: str, tag: str,
         return f"{'−' if p < 0 else '+'}{abs(p):.0f}%"
 
     out = [
-        f'<g class="rr" data-param="{pname}" data-ordering="{ordering}">',
+        f'<g class="rr" data-param="{pname}" data-ordering="{ordering}"'
+        + (f' data-source="{source}"' if source else "") + ">",
         f'<text x="{L-12}" y="{y+4:.0f}" text-anchor="end" font-size="{font}" '
         f'font-weight="600" fill="currentColor">{label}{unit_suffix(unit)}{tag}</text>',
         f'<line class="s3" x1="{sx(lo3):.1f}" y1="{y:.0f}" x2="{sx(hi3):.1f}" y2="{y:.0f}" '
@@ -344,18 +362,32 @@ def _rel_range_row(pname: str, ordering: str, label: str, tag: str,
 
 
 def hero_ranges_svg(meta: dict, bari: list[dict]) -> str:
-    rel = next(r for r in bari if r.get("current"))
-    rows = [(pname, e) for pname in PARAMS if (e := entry(rel, pname)) and e.get("s3")]
+    """The home page's hero: the newest published value for each parameter.
+
+    Per parameter, not per release. The 2026 (1,2)-sector update revises δm²
+    and sin²θ₁₂ and quotes nothing for the other four, so drawing one release
+    would mean either showing two superseded numbers in the first figure a
+    visitor sees, or dropping four parameters from a figure whose whole claim
+    is "the six parameters, as measured". The home page's stat cards beside it
+    already answer this the same way; this figure now agrees with them instead
+    of contradicting them one panel to the left.
+
+    The cost is that the figure is no longer one fit, and it says so: every
+    row carries its own data-source, and the footer names the paper each set
+    of rows came from.
+    """
+    picked = [(pname, *hit) for pname in PARAMS if (hit := newest(bari, pname))]
+    rows = [(pname, rel, e) for pname, rel, e in picked]
     W = 520
     ROW, TOP = 34, 36
-    H = TOP + ROW * len(rows) + 26
+    H = TOP + ROW * len(rows) + 39          # 13 more than one footer line
     # L holds the longest label — "|Δm²| / 10⁻³ eV²", 87px in Inter at 11.5px —
     # plus its 12px gap and room for a wider fallback face.
     L, R = 124, 58
     top_rule, bot_rule = TOP - 12, TOP + ROW * len(rows)
 
     out = _rel_axis(L, R, W, top_rule, bot_rule)
-    for i, (pname, e) in enumerate(rows):
+    for i, (pname, rel, e) in enumerate(rows):
         y = TOP + i * ROW + ROW / 2
         # Which ordering this row's entry came from — entry() falls back from
         # the normal-ordering value to the one quoted for both, and the row
@@ -364,17 +396,28 @@ def hero_ranges_svg(meta: dict, bari: list[dict]) -> str:
         ordering = "no" if byo.get("no") is e else "any"
         out.extend(_rel_range_row(pname, ordering, meta[pname]["label"], "",
                                   meta[pname].get("unit"), e, y, "var(--no)",
-                                  L, R, W, font=11.5, value_font=11))
+                                  L, R, W, font=11.5, value_font=11,
+                                  source=rel["arxiv"]))
 
-    out.append(f'<text x="{L}" y="{H-6:.0f}" font-size="9.5" fill="currentColor" '
+    out.append(f'<text x="{L}" y="{H-19:.0f}" font-size="9.5" fill="currentColor" '
                f'opacity=".6">width = 3σ range as a percentage of the best fit</text>')
+    # Which paper each row came from, on its own line: with more than one
+    # source in the figure, a single arXiv id in the corner would read as a
+    # claim that all six rows are that paper's.
+    full = next(r for r in bari if r.get("current"))
+    newer = [meta[p]["label"] for p, rel, _ in rows if rel is not full]
+    credit = f'arXiv:{full["arxiv"]}'
+    if newer:
+        other = next(rel for _, rel, _ in rows if rel is not full)
+        credit += f' · {", ".join(newer)} from arXiv:{other["arxiv"]}'
     out.append(f'<text x="{W-R}" y="{H-6:.0f}" text-anchor="end" font-size="9.5" '
                f'font-family="var(--mono)" fill="currentColor" opacity=".5">'
-               f'arXiv:{rel["arxiv"]}</text>')
+               f'{credit}</text>')
 
     body = "\n".join(out)
     return (f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="Best fit with 1σ and 3σ '
-            'ranges for each oscillation parameter, normal ordering, current release. '
+            'ranges for each oscillation parameter, normal ordering, at its newest '
+            'published value. '
             'All six rows share one horizontal scale, measured in percent of each '
             "parameter's own best fit, so the width of a row is how well that "
             'parameter is known: the narrowest is the mass splitting |Δm²| and the '

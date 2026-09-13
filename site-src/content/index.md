@@ -12,7 +12,7 @@ jsonld: site
 <section class="hero hero--split">
   <div class="wrap hero__in">
     <div>
-      <p class="kicker"><b>●</b> Release March 2025 · PRD 111, 093006</p>
+      <p class="kicker"><b>●</b> Release March 2025 · (1,&nbsp;2) sector updated 2026</p>
       <h1>Global analyses of neutrino<br>oscillation data</h1>
       <p class="lede">The Bari global analysis of neutrino oscillation data,
       published openly: best fits, allowed ranges, both mass orderings, and a
@@ -26,13 +26,17 @@ jsonld: site
     <figure class="figure">
       <h4>The six parameters, as measured</h4>
       <!--include:ranges-hero-->
-      <p class="cap">Best fit with 1σ and 3σ ranges, normal ordering, from
-      Table I of <a href="https://doi.org/10.1103/PhysRevD.111.093006">Phys.
-      Rev. D 111, 093006 (2025)</a>. All six rows share one scale, in percent
-      of each parameter's own best fit, so the width of a row is how well that
-      parameter is known: |Δm²| is measured to ±2.5% at 3σ, while δ runs off
-      the axis at −39%/+69%. Absolute values are printed at the right. Full
-      tables and both orderings are on the
+      <p class="cap">Best fit with 1σ and 3σ ranges, normal ordering, each
+      parameter at its newest published value — not one fit: δm² and sin²θ₁₂
+      come from <a href="https://doi.org/10.1103/cxqw-1bty">Phys. Rev. D 114,
+      016026 (2026)</a>, the (1,&nbsp;2)-sector update after the first JUNO
+      results, and the other four from Table I of
+      <a href="https://doi.org/10.1103/PhysRevD.111.093006">Phys. Rev. D 111,
+      093006 (2025)</a>, the most recent full release. All six rows share one
+      scale, in percent of each parameter's own best fit, so the width of a row
+      is how well that parameter is known: |Δm²| is measured to ±2.5% at 3σ,
+      while δ runs off the axis at −39%/+69%. Absolute values are printed at
+      the right. Full tables and both orderings are on the
       <a href="results.html">results page</a>.</p>
     </figure>
   </div>

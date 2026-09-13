@@ -45,8 +45,10 @@ meta, bari = make_figures.load()
 rel = next(r for r in bari if r.get("current"))
 LIM = make_figures.REL_LIMIT
 
+# The attributes after data-ordering are captured too: a row says which paper
+# it came from in data-source, and that claim is checked like any other.
 ROW_RE = re.compile(
-    r'<g class="rr" data-param="([^"]+)" data-ordering="([^"]+)">(.*?)</g>', re.S)
+    r'<g class="rr" data-param="([^"]+)" data-ordering="([^"]+)"([^>]*)>(.*?)</g>', re.S)
 
 
 def line_span(chunk: str, cls: str) -> tuple[float, float] | None:
@@ -59,22 +61,43 @@ def dot_x(chunk: str) -> float | None:
     return float(m.group(1)) if m else None
 
 
-def audit(name: str, svg: str, expect_rows: int) -> None:
-    """Every structural guarantee, asked of one figure."""
+def source_of(pname: str) -> dict:
+    """The release a hero row is expected to have come from: the newest one
+    that quotes the parameter at all. Resolved here from the register rather
+    than by calling make_figures.newest(), so that a change of rule in the
+    figure has to be a deliberate change here too."""
+    return next(r for r in reversed(bari)
+                if ((r.get("values") or {}).get(pname)))
+
+
+def audit(name: str, svg: str, expect_rows: int, resolve=None) -> None:
+    """Every structural guarantee, asked of one figure.
+
+    `resolve` says which release each row's numbers must match — a figure of
+    one release passes the release, one showing the newest value per
+    parameter passes a lookup. Rows also have to SAY where they came from,
+    which is checked against the same answer.
+    """
     rows = ROW_RE.findall(svg)
     check(f"{name}: draws every row it should", len(rows) == expect_rows,
           f"found {len(rows)}, expected {expect_rows}")
     if not rows:
         return
 
-    centres = [dot_x(body) for _, _, body in rows]
+    centres = [dot_x(body) for *_, body in rows]
     check(f"{name}: every best fit sits on one shared centre — one axis, not many",
           all(c is not None for c in centres) and len(set(centres)) == 1,
           f"best-fit x positions: {sorted(set(centres))}")
 
     wanted, drawn = {}, {}
-    for pname, ordering, body in rows:
-        e = ((rel.get("values") or {}).get(pname) or {}).get(ordering)
+    for pname, ordering, attrs, body in rows:
+        src = resolve(pname) if resolve else rel
+        e = ((src.get("values") or {}).get(pname) or {}).get(ordering)
+        if resolve:
+            check(f"{name}: {pname} says which paper it came from, and it is "
+                  f"the newest one quoting it",
+                  f'data-source="{src["arxiv"]}"' in attrs,
+                  f'expected arXiv:{src["arxiv"]} in {attrs!r}')
         check(f"{name}: {pname} ({ordering}) is a row that exists in the data", bool(e))
         if not e:
             continue
@@ -128,10 +151,13 @@ def audit(name: str, svg: str, expect_rows: int) -> None:
           'class="rr__zero"' in svg)
 
 
-# The hero: normal ordering (or the value quoted for both), one row each.
+# The hero: normal ordering (or the value quoted for both), one row each —
+# each at its NEWEST published value, which for two of the six comes from the
+# (1,2)-sector update published after the current full release.
 hero_rows = sum(1 for p in make_figures.PARAMS
-                if (e := make_figures.entry(rel, p)) and e.get("s3"))
-audit("hero", make_figures.hero_ranges_svg(meta, bari), hero_rows)
+                if (e := make_figures.entry(source_of(p), p)) and e.get("s3"))
+audit("hero", make_figures.hero_ranges_svg(meta, bari), hero_rows,
+      resolve=source_of)
 
 print()
 
