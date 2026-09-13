@@ -29,8 +29,22 @@ PAGE = ROOT / "site" / "results.html"
 # The (1,2)-sector update. Two of the six cards on the home page come from
 # this paper, not from the 2025 release, so they must be checked against it —
 # checking them against Table I of the full release would have been checking
-# them against numbers they deliberately supersede.
+# them against numbers they deliberately supersede. results.html now prints
+# that paper's own Table I row in full, at the top of the page, and check_2026
+# below re-extracts it from this PDF the same way the 2025 table is checked.
 PDF_2026 = ROOT / "var" / "history-sources" / "bari-2026-2511.21650.pdf"
+
+# The row of that table the page quotes: the analysis WITH both additions.
+# The paper prints three blocks (2024 alone, + SNO+, + SNO+ and JUNO) whose
+# numbers are similar enough to be mistaken for one another — 7.37, 7.44,
+# 7.48 — which is exactly why the row is named here and matched by name.
+ROW_2026 = "w/ SNO+ & JUNO 2025"
+
+# The page argues, in prose, that most of the tightening comes from JUNO
+# rather than from SNO+, and cites the paper's intermediate block to say so.
+# A claim that rests on two numbers is checked like any other two numbers.
+ROW_2026_NO_JUNO = "w/ SNO+ 2025"
+PROSE_NO_JUNO = ["7.44", "2.1"]
 
 # Row label in the paper -> label as written on the page. Keeping both here
 # makes the mapping explicit rather than implied by ordering.
@@ -188,6 +202,70 @@ def check_home(rows: dict[str, list[str]]) -> list[str]:
     return problems
 
 
+def row_2026(pdf: Path, row: str = ROW_2026) -> dict[str, list[str]]:
+    """The two rows of the 2026 update's Table I that results.html quotes.
+
+    The PDF's text layer runs the block label into the parameter name
+    ("w/ SNO+ & JUNO 2025δm 2/10−5 eV2 7.48 ..."), and the sin²θ₁₂ line that
+    belongs to the same block is the one immediately after it, labelled
+    "[This work]" — the same label the block above it carries. So the δm² row
+    is found by name and the sin²θ₁₂ row is taken as the next line, rather
+    than by a pattern that matches both blocks equally well.
+    """
+    from pypdf import PdfReader
+
+    lines: list[str] = []
+    for page in PdfReader(str(pdf)).pages:
+        t = page.extract_text() or ""
+        if "TABLE I" in t and "Best fit" in t:
+            lines = t.splitlines()
+            break
+    if not lines:
+        sys.exit(f"Table I not found in {pdf}")
+
+    # The block label also appears in the table's own column headings, on a
+    # line carrying no numbers at all; the data line is the one that also
+    # carries the parameter and its unit.
+    for i, line in enumerate(lines):
+        if row not in line or "eV2" not in line:
+            continue
+        dm2 = re.findall(r"\d+\.\d+", line.split("eV2", 1)[-1])
+        th12 = re.findall(r"\d+\.\d+", lines[i + 1].split("10−1", 1)[-1])
+        if len(dm2) == 8 and len(th12) == 8:
+            return {"δm² / 10⁻⁵ eV²": dm2, "sin²θ₁₂ / 10⁻¹": th12}
+        sys.exit(f"parsed {len(dm2)} and {len(th12)} numbers for the "
+                 f"{row!r} rows — expected 8 each, parser needs fixing")
+    sys.exit(f"row {row!r} not found in {pdf}")
+
+
+def check_2026(haystack: set[str]) -> list[str]:
+    """Every number of the quoted row must be on results.html.
+
+    Same rule as the 2025 table above, and for the same reason: the values a
+    reader copies off this page are the ones most easily attributed to the
+    wrong analysis, and these two supersede rows that are still printed
+    further down the same page.
+    """
+    if not PDF_2026.exists():
+        return [f"the 2026 update's PDF is missing: {PDF_2026}"]
+    problems = []
+    for label, nums in row_2026(PDF_2026).items():
+        print(f"  {label:<20} {len(nums):>2} values from Table I (2026 update)")
+        for n in nums:
+            if n not in haystack:
+                problems.append(f"{label} (2026 update): {n}")
+
+    # The SNO+-without-JUNO block, which the page's prose quotes.
+    without = row_2026(PDF_2026, ROW_2026_NO_JUNO)["δm² / 10⁻⁵ eV²"]
+    for n in PROSE_NO_JUNO:
+        if n not in without:
+            problems.append(f"the page cites {n} for {ROW_2026_NO_JUNO!r}, "
+                            f"but the paper's row reads {without}")
+        elif n not in haystack:
+            problems.append(f"{ROW_2026_NO_JUNO} (cited in prose): {n}")
+    return problems
+
+
 def main() -> None:
     pdf = Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_PDF
     if not pdf.exists():
@@ -214,6 +292,7 @@ def main() -> None:
     for label, nums in rows.items():
         print(f"  {label:<20} {len(nums):>2} values from Table I")
 
+    missing += check_2026(haystack)
     missing += check_home(rows)
     missing += check_hero(rows)
 
@@ -224,7 +303,8 @@ def main() -> None:
             print("      " + m)
         sys.exit(1)
 
-    print(f"\nall {checked} numbers of Table I appear on results.html")
+    print(f"\nall {checked} numbers of Table I appear on results.html, "
+          f"as do all 16 of the 2026 update's own row")
     print(f"the {len(HOME_CONVERSIONS)} stat cards from the 2025 release and the "
           f"{len(HOME_2026)} from the 2026 (1,2)-sector update match their own papers")
     print(f"the {len(HERO_ROWS)} hero-figure best fits on index.html match the paper")

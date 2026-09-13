@@ -12,13 +12,74 @@ katex: false
   <div class="wrap hero__in">
     <p class="kicker">Results</p>
     <h1>Results, release by release</h1>
-    <p class="lede">The most recent full release in detail: best-fit values and
-    allowed ranges for the six oscillation parameters, in both mass orderings,
-    with the paper and its figures beside them. Every earlier release is traced
-    parameter by parameter on the <a href="history.html">parameter
-    history</a>.</p>
+    <p class="lede">The newest published values first — δm² and sin²θ₁₂ after
+    the first JUNO results — then the most recent full release in detail:
+    best-fit values and allowed ranges for the six oscillation parameters, in
+    both mass orderings, with the paper and its figures beside them. Every
+    earlier release is traced parameter by parameter on the
+    <a href="history.html">parameter history</a>.</p>
   </div>
 </section>
+
+::: section alt glow #nu2026
+
+<div class="release">
+
+<div class="section-head">
+  <h2>Latest — δm² and sin²θ₁₂ after the first JUNO results</h2>
+  <p>a partial update of the March 2025 release, published 2026</p>
+</div>
+
+<p class="lede" style="margin-top:0">The first JUNO results and the latest SNO+
+data, added to the 2025 global analysis. They revise the (1,&nbsp;2) sector
+alone: the two values below are the newest published ones, while |Δm²|,
+sin²θ₁₃, sin²θ₂₃ and δ stand as in the <a href="#nu2025">full release
+below</a>.</p>
+
+<div class="btn-row">
+  <a class="btn btn--sm" href="https://arxiv.org/abs/2511.21650">arXiv:2511.21650</a>
+  <a class="btn btn--sm btn--ghost" href="https://doi.org/10.1103/cxqw-1bty">Phys. Rev. D 114, 016026</a>
+  <a class="btn btn--sm btn--ghost" href="https://inspirehep.net/literature?q=arxiv:2511.21650">INSPIRE</a>
+</div>
+
+<p class="authors"><strong>F. Capozzi, E. Lisi, F. Marcone, A. Marrone,
+A. Palazzo.</strong></p>
+
+<div class="release__meta">
+  <span class="tag">partial update</span>
+  <span class="tag">(1, 2) sector only</span>
+  <span class="tag">JUNO + SNO+ 2025</span>
+  <span class="tag">δm² known to 1.3%</span>
+</div>
+
+<div class="table-scroll">
+<table class="data">
+<caption>Table I of Phys. Rev. D 114, 016026 (2026), final row (“w/ SNO+ &amp;
+JUNO 2025”): best-fit values and allowed ranges at N&#8202;σ = 1, 2, 3. Same
+conventions as the table below, including the formal “1σ parameter accuracy” of
+the last column — 1/6 of the 3σ range divided by the best fit, in percent. Both
+parameters take the same value in either ordering. Transcribed from the
+published table; nothing here is estimated or rounded further.</caption>
+<thead>
+<tr><th scope="col">Parameter</th><th scope="col">Ordering</th><th scope="col">Best fit</th><th scope="col"><span class="sym">1σ</span> range</th><th scope="col"><span class="sym">2σ</span> range</th><th scope="col"><span class="sym">3σ</span> range</th><th scope="col">“<span class="sym">1σ</span>” (%)</th></tr>
+</thead>
+<tbody>
+<tr><th scope="row">δm² / 10⁻⁵ eV²</th><td class="ord">NO, IO</td><td>7.48</td><td>7.39 – 7.58</td><td>7.30 – 7.68</td><td>7.21 – 7.78</td><td>1.3</td></tr>
+<tr class="row-alt"><th scope="row">sin²θ₁₂ / 10⁻¹</th><td class="ord">NO, IO</td><td>3.085</td><td>3.010 – 3.156</td><td>2.939 – 3.230</td><td>2.866 – 3.303</td><td>2.4</td></tr>
+</tbody>
+</table>
+</div>
+
+<p class="small" style="margin-top:1.2rem">Against the 2025 analysis — δm² =
+7.37 known to 2.3%, sin²θ₁₂ = 3.03 to 4.5% — the two additions move both best
+fits up and roughly halve both uncertainties. The paper's own intermediate row,
+SNO+ added but not JUNO, gives δm² = 7.44 at 2.1%: most of the tightening is
+JUNO's. δm² is now the second oscillation parameter, after |Δm²|, known to
+better than 2%.</p>
+
+</div>
+
+:::
 
 ::: section
 
@@ -83,13 +144,16 @@ A. Melchiorri, A. Palazzo.</strong> Received 12 March 2025; accepted 21 April
 ranges at N&#8202;σ = 1, 2, 3, for either NO or IO. The last column is the formal
 “1σ parameter accuracy”, defined as 1/6 of the 3σ range divided by the best-fit
 value, in percent. δ/π is cyclic (mod 2). Values are transcribed from the
-published table; nothing on this page is estimated or rounded further.</caption>
+published table; nothing on this page is estimated or rounded further.
+<strong>†</strong> δm² and sin²θ₁₂ have since been superseded by the
+<a href="#nu2026">(1,&nbsp;2)-sector update</a> at the top of this
+page.</caption>
 <thead>
 <tr><th scope="col">Parameter</th><th scope="col">Ordering</th><th scope="col">Best fit</th><th scope="col"><span class="sym">1σ</span> range</th><th scope="col"><span class="sym">2σ</span> range</th><th scope="col"><span class="sym">3σ</span> range</th><th scope="col">“<span class="sym">1σ</span>” (%)</th></tr>
 </thead>
 <tbody>
-<tr><th scope="row">δm² / 10⁻⁵ eV²</th><td class="ord">NO, IO</td><td>7.37</td><td>7.21 – 7.52</td><td>7.06 – 7.71</td><td>6.93 – 7.93</td><td>2.3</td></tr>
-<tr><th scope="row">sin²θ₁₂ / 10⁻¹</th><td class="ord">NO, IO</td><td>3.03</td><td>2.91 – 3.17</td><td>2.77 – 3.31</td><td>2.64 – 3.45</td><td>4.5</td></tr>
+<tr><th scope="row">δm² / 10⁻⁵ eV² <sup><a href="#nu2026" title="superseded by the 2026 (1, 2)-sector update">†</a></sup></th><td class="ord">NO, IO</td><td>7.37</td><td>7.21 – 7.52</td><td>7.06 – 7.71</td><td>6.93 – 7.93</td><td>2.3</td></tr>
+<tr><th scope="row">sin²θ₁₂ / 10⁻¹ <sup><a href="#nu2026" title="superseded by the 2026 (1, 2)-sector update">†</a></sup></th><td class="ord">NO, IO</td><td>3.03</td><td>2.91 – 3.17</td><td>2.77 – 3.31</td><td>2.64 – 3.45</td><td>4.5</td></tr>
 <tr class="row-alt"><th scope="row">|Δm²| / 10⁻³ eV²</th><td class="ord ord--no">NO</td><td>2.495</td><td>2.475 – 2.515</td><td>2.454 – 2.536</td><td>2.433 – 2.558</td><td>0.8</td></tr>
 <tr class="row-alt"><th scope="row"></th><td class="ord ord--io">IO</td><td>2.465</td><td>2.444 – 2.485</td><td>2.423 – 2.506</td><td>2.403 – 2.527</td><td>0.8</td></tr>
 <tr><th scope="row">sin²θ₁₃ / 10⁻²</th><td class="ord ord--no">NO</td><td>2.23</td><td>2.17 – 2.27</td><td>2.11 – 2.33</td><td>2.06 – 2.38</td><td>2.4</td></tr>
@@ -171,15 +235,12 @@ under a prior on θ₁₂. SNO+ is nevertheless expected to surpass the present
 
 <div class="callout" style="margin-top:2rem">
 <h4>Since this release: the (1,&nbsp;2) sector, updated</h4>
-<p>A partial update revises two of the six parameters above.
-<a href="https://doi.org/10.1103/cxqw-1bty">Phys. Rev. D 114, 016026
-(2026)</a> (<a href="https://arxiv.org/abs/2511.21650">arXiv:2511.21650</a>)
-adds the first JUNO results and the latest SNO+ data to the 2025 analysis and
-gives δm² = 7.48 (1σ 7.39 – 7.58) in units of 10⁻⁵ eV² and
-sin²θ₁₂ = 0.3085 (1σ 0.3010 – 0.3156). It quotes no new values for |Δm²|,
-sin²θ₁₃, sin²θ₂₃ or δ, which stand as in the table above. Both releases are on
-the <a href="history.html">parameter history</a>, with the table each number
-was transcribed from.</p>
+<p>δm² and sin²θ₁₂ were revised by the
+<a href="#nu2026">partial update at the top of this page</a>, which adds the
+first JUNO results and the latest SNO+ data to this analysis. It quotes no new
+values for |Δm²|, sin²θ₁₃, sin²θ₂₃ or δ, which stand as in the table above.
+Both releases are on the <a href="history.html">parameter history</a>, with the
+table each number was transcribed from.</p>
 </div>
 
 </div>
