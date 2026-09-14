@@ -331,6 +331,25 @@ def digest(records: list[dict], log: logging.Logger, stamp: str | None = None) -
     exp = [r for r in records if is_exp(r)]
     thy = [r for r in records if not is_exp(r)]
 
+    # Where today's list came from. fetch_arxiv tries the API first and reads
+    # the per-category RSS feeds when it refuses; the two answer different
+    # questions — a rolling 168-hour window against one day's announcements —
+    # so a page built from the second must say so. Silently showing a third of
+    # the usual list, under a banner that names the API, would leave a reader
+    # to conclude the field went quiet.
+    route = {(r.get("extra") or {}).get("route") for r in records}
+    via_rss = route == {"rss"}
+    source_name = "arXiv RSS feeds" if via_rss else "arXiv API"
+    fallback_note = ""
+    if via_rss:
+        fallback_note = ("""
+<p class="small muted">arXiv's API was refusing requests when this page was
+built, so today's list comes from its per-category RSS feeds instead: these
+are the preprints <b>announced today</b> — new submissions and papers
+cross-listed into these categories — rather than the rolling seven days the
+API answers. Same categories, same keyword ranking, same everything else.</p>
+""")
+
     body = f"""<section class="hero">
   <div class="wrap hero__in">
     <p class="kicker">Updated daily</p>
@@ -342,8 +361,8 @@ def digest(records: list[dict], log: logging.Logger, stamp: str | None = None) -
 
 ::: section
 
-{AUTOGEN_SCRIPT.format(sources="arXiv API", stamp=stamp or _stamp(), note="")}
-
+{AUTOGEN_SCRIPT.format(sources=source_name, stamp=stamp or _stamp(), note="")}
+{fallback_note}
 <div class="section-head"><h2>Experimental</h2>
 <p>{len(exp)} preprint{"" if len(exp) == 1 else "s"}</p></div>
 
@@ -358,9 +377,9 @@ def digest(records: list[dict], log: logging.Logger, stamp: str | None = None) -
 
 {_digest_list(thy)}
 
-<p class="small muted">Ranking is deterministic: the arXiv API is queried for
-the configured categories, and each record is scored against the fixed keyword
-list below. No model is involved in choosing what appears here. The split
+<p class="small muted">Ranking is deterministic: {source_name.replace("arXiv ", "arXiv's ")}
+{"are" if via_rss else "is"} queried for the configured categories, and each
+record is scored against the fixed keyword list below. No model is involved in choosing what appears here. The split
 between the two streams is by the preprint's primary arXiv category:
 {", ".join(EXPERIMENTAL_CATS)} are read as experimental, everything else as
 theory, so a phenomenology paper cross-listed to an experimental category
