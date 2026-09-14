@@ -10,7 +10,18 @@
 # it). Changing it here and re-running the installer is the supported way.
 schedule:
   hour: 7
-  minute: 30
+  # 45 and not 30. Two other pipelines on this machine query the same arXiv
+  # API from the same address — it.infn.ba.marrone.neutrino-news at 07:30 and
+  # cosmos-news at 07:50 — and this job used to fire in the same minute as the
+  # first of them. arXiv answered "Rate exceeded" (HTTP 429) on 19 and 29
+  # August and on 12, 13 and 14 September 2026, three days running, and the
+  # digest page sat on 12 September's preprints the whole time: the fetch
+  # returns nothing, render.digest leaves the page untouched, and only the
+  # timestamp says so. common.http_get now retries a 429, which recovers the
+  # short ones; not overlapping with the other job in the first place is what
+  # prevents them. Anything from 07:40 to 07:48 keeps this run clear of both
+  # neighbours — the run itself takes about three minutes.
+  minute: 45
 
 # ---------------------------------------------------------------------- arXiv
 # Feeds the compact digest section. Deterministic: query the API, score by
