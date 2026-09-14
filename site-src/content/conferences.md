@@ -25,7 +25,7 @@ scripts:
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the conference indexers' APIs,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 13 September 2026, 07:33 CEST</span></div>
+<span class="stamp">Last successful update: 14 September 2026, 07:32 CEST</span></div>
 </div>
 
 <p class="conf-legend"><span class="conf-legend__lead">Closeness of the subject:</span><span class="conf-aff conf-aff--core">Neutrino physics</span><span class="conf-aff conf-aff--related">Astroparticle &amp; underground</span><span class="conf-aff conf-aff--broad">Particle physics at large</span><span class="conf-aff conf-aff--adjacent">Adjacent fields</span><span class="conf-aff conf-aff--unknown">Not classified</span></p>
@@ -36,60 +36,60 @@ and may contain errors. No model is involved.</b>
 <svg viewBox="0 0 2690 326" role="img" width="3228" height="391" aria-label="Timeline of upcoming and recently concluded neutrino conferences, scrollable sideways from today to a year ahead" xmlns="http://www.w3.org/2000/svg">
 <title>Conference timeline</title>
 <text x="2.0" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
-<line x1="165.0" y1="14" x2="165.0" y2="311" style="stroke:var(--line);stroke-width:1"/>
-<text x="168.0" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Oct</text>
-<line x1="387.3" y1="14" x2="387.3" y2="311" style="stroke:var(--line);stroke-width:1"/>
-<text x="390.3" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Nov</text>
-<line x1="602.5" y1="14" x2="602.5" y2="311" style="stroke:var(--line);stroke-width:1"/>
-<text x="605.5" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Dec</text>
-<line x1="824.8" y1="14" x2="824.8" y2="311" style="stroke:var(--line);stroke-width:1"/>
-<text x="827.8" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Jan &#x27;27</text>
-<line x1="1047.1" y1="14" x2="1047.1" y2="311" style="stroke:var(--line);stroke-width:1"/>
-<text x="1050.1" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Feb</text>
-<line x1="1248.0" y1="14" x2="1248.0" y2="311" style="stroke:var(--line);stroke-width:1"/>
-<text x="1251.0" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Mar</text>
-<line x1="1470.3" y1="14" x2="1470.3" y2="311" style="stroke:var(--line);stroke-width:1"/>
-<text x="1473.3" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Apr</text>
-<line x1="1685.5" y1="14" x2="1685.5" y2="311" style="stroke:var(--line);stroke-width:1"/>
-<text x="1688.5" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">May</text>
-<line x1="1907.8" y1="14" x2="1907.8" y2="311" style="stroke:var(--line);stroke-width:1"/>
-<text x="1910.8" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Jun</text>
-<line x1="2123.0" y1="14" x2="2123.0" y2="311" style="stroke:var(--line);stroke-width:1"/>
-<text x="2126.0" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Jul</text>
-<line x1="2345.3" y1="14" x2="2345.3" y2="311" style="stroke:var(--line);stroke-width:1"/>
-<text x="2348.3" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Aug</text>
-<line x1="2567.6" y1="14" x2="2567.6" y2="311" style="stroke:var(--line);stroke-width:1"/>
-<text x="2570.6" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
+<line x1="157.8" y1="14" x2="157.8" y2="311" style="stroke:var(--line);stroke-width:1"/>
+<text x="160.8" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Oct</text>
+<line x1="380.1" y1="14" x2="380.1" y2="311" style="stroke:var(--line);stroke-width:1"/>
+<text x="383.1" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Nov</text>
+<line x1="595.3" y1="14" x2="595.3" y2="311" style="stroke:var(--line);stroke-width:1"/>
+<text x="598.3" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Dec</text>
+<line x1="817.6" y1="14" x2="817.6" y2="311" style="stroke:var(--line);stroke-width:1"/>
+<text x="820.6" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Jan &#x27;27</text>
+<line x1="1040.0" y1="14" x2="1040.0" y2="311" style="stroke:var(--line);stroke-width:1"/>
+<text x="1043.0" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Feb</text>
+<line x1="1240.8" y1="14" x2="1240.8" y2="311" style="stroke:var(--line);stroke-width:1"/>
+<text x="1243.8" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Mar</text>
+<line x1="1463.1" y1="14" x2="1463.1" y2="311" style="stroke:var(--line);stroke-width:1"/>
+<text x="1466.1" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Apr</text>
+<line x1="1678.3" y1="14" x2="1678.3" y2="311" style="stroke:var(--line);stroke-width:1"/>
+<text x="1681.3" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">May</text>
+<line x1="1900.6" y1="14" x2="1900.6" y2="311" style="stroke:var(--line);stroke-width:1"/>
+<text x="1903.6" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Jun</text>
+<line x1="2115.8" y1="14" x2="2115.8" y2="311" style="stroke:var(--line);stroke-width:1"/>
+<text x="2118.8" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Jul</text>
+<line x1="2338.1" y1="14" x2="2338.1" y2="311" style="stroke:var(--line);stroke-width:1"/>
+<text x="2341.1" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Aug</text>
+<line x1="2560.5" y1="14" x2="2560.5" y2="311" style="stroke:var(--line);stroke-width:1"/>
+<text x="2563.5" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
 <line x1="35.9" y1="8" x2="35.9" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
 <text x="35.9" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
-<rect x="43.0" y="30" width="28.7" height="10" rx="5" style="fill:var(--dec-3);opacity:1"><title>Gravity@Prague 2026: 2026-09-14 → 2026-09-18 — Adjacent fields (title names “gravity”)</title></rect>
-<text x="79.7" y="38.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Gravity@Prague 2026</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Prague, Czech Republic</tspan></text>
-<rect x="43.0" y="50" width="28.7" height="10" rx="5" style="fill:var(--dec-3);opacity:1"><title>New Physics from Galaxy Clustering 2026: 2026-09-14 → 2026-09-18 — Adjacent fields (name names “galaxy”)</title></rect>
-<text x="79.7" y="58.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">New Physics from Galaxy…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Geneva, Switzerland</tspan></text>
-<rect x="43.0" y="70" width="28.7" height="10" rx="5" style="fill:var(--dec-3);opacity:1"><title>NuSym26: 2026-09-14 → 2026-09-18 — Adjacent fields (title names “nuclear symmetry”)</title></rect>
-<text x="79.7" y="78.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">NuSym26</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Catania, Italy</tspan></text>
-<rect x="43.0" y="90" width="28.7" height="10" rx="5" style="fill:var(--dec-3);opacity:1"><title>RPMBT23: 2026-09-14 → 2026-09-18 — Adjacent fields (title names “many-body”)</title></rect>
-<text x="79.7" y="98.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">RPMBT23</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Milano, Italy</tspan></text>
-<rect x="43.0" y="110" width="28.7" height="10" rx="5" style="fill:var(--dec-2);opacity:1"><title>Second Workshop on Neutrinoless double…: 2026-09-14 → 2026-09-18 — Neutrino physics (title names “neutrinoless”)</title></rect>
-<text x="79.7" y="118.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Second Workshop on…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Old Trafford</tspan></text>
-<rect x="236.7" y="130" width="78.9" height="10" rx="5" style="fill:var(--dec-3);opacity:1"><title>ESC26: 2026-10-11 → 2026-10-22 — Adjacent fields (title names “scientific computing”)</title></rect>
-<text x="323.6" y="138.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">ESC26</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Bertinoro…</tspan></text>
-<rect x="444.7" y="150" width="28.7" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>Patras 2026: 2026-11-09 → 2026-11-13 — Astroparticle &amp; underground (title names “axions”)</title></rect>
-<text x="481.4" y="158.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Patras 2026</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Perth, Western Australia</tspan></text>
-<rect x="674.2" y="170" width="21.5" height="10" rx="5" style="fill:var(--text-mute);opacity:1"><title>Workshop on Multi-front Exotic…: 2026-12-11 → 2026-12-14 — Not classified (nothing in the record to judge by)</title></rect>
-<text x="703.7" y="178.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Workshop on Multi-front…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">The Chinese University…</tspan></text>
-<rect x="846.3" y="190" width="43.0" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>TMEX: 2027-01-04 → 2027-01-10 — Astroparticle &amp; underground (title names “particle astrophysics”)</title></rect>
-<text x="897.3" y="198.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">TMEX</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Quy Nhon, Vietnam</tspan></text>
-<rect x="989.8" y="210" width="35.9" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>Dark Matter: 2027-01-24 → 2027-01-29 — Astroparticle &amp; underground (name names “dark matter”)</title></rect>
-<text x="1033.6" y="218.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Dark Matter</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Saas Fee, Switzerland</tspan></text>
-<rect x="1391.4" y="230" width="43.0" height="10" rx="5" style="fill:var(--dec-3);opacity:1"><title>Quark Matter 2027: 2027-03-21 → 2027-03-27 — Adjacent fields (series “Quark Matter”)</title></rect>
-<text x="1442.4" y="238.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Quark Matter 2027</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Seoguipo, South Korea</tspan></text>
-<rect x="1900.6" y="250" width="28.7" height="10" rx="5" style="fill:var(--dec-1);opacity:1"><title>SUSY 2027: 2027-05-31 → 2027-06-04 — Particle physics at large (series “SUSY”)</title></rect>
-<text x="1937.3" y="258.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">SUSY 2027</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Daejeon, South Korea</tspan></text>
-<rect x="2001.0" y="270" width="28.7" height="10" rx="5" style="fill:var(--dec-2);opacity:1"><title>NuINT 2027 during the week of 14 Jun 27…: 2027-06-14 → 2027-06-18 — Neutrino physics (series “NuInt”)</title></rect>
-<text x="2037.7" y="278.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">NuINT 2027 during the week of…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Quy Nhon, Vietnam</tspan></text>
-<rect x="2201.8" y="290" width="14.3" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>ICDMS2027: 2027-07-12 → 2027-07-14 — Astroparticle &amp; underground (title names “multi-messenger”)</title></rect>
-<text x="2224.2" y="298.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">ICDMS2027</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Cambridge, United States</tspan></text>
+<rect x="35.9" y="30" width="28.7" height="10" rx="5" style="fill:var(--dec-3);opacity:1;stroke:var(--text);stroke-width:2"><title>Gravity@Prague 2026: 2026-09-14 → 2026-09-18 · under way — Adjacent fields (title names “gravity”)</title></rect>
+<text x="72.5" y="38.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Gravity@Prague 2026</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Prague, Czech Republic</tspan></text>
+<rect x="35.9" y="50" width="28.7" height="10" rx="5" style="fill:var(--dec-3);opacity:1;stroke:var(--text);stroke-width:2"><title>New Physics from Galaxy Clustering 2026: 2026-09-14 → 2026-09-18 · under way — Adjacent fields (name names “galaxy”)</title></rect>
+<text x="72.5" y="58.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">New Physics from Galaxy…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Geneva, Switzerland</tspan></text>
+<rect x="35.9" y="70" width="28.7" height="10" rx="5" style="fill:var(--dec-3);opacity:1;stroke:var(--text);stroke-width:2"><title>NuSym26: 2026-09-14 → 2026-09-18 · under way — Adjacent fields (title names “nuclear symmetry”)</title></rect>
+<text x="72.5" y="78.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">NuSym26</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Catania, Italy</tspan></text>
+<rect x="35.9" y="90" width="28.7" height="10" rx="5" style="fill:var(--dec-3);opacity:1;stroke:var(--text);stroke-width:2"><title>RPMBT23: 2026-09-14 → 2026-09-18 · under way — Adjacent fields (title names “many-body”)</title></rect>
+<text x="72.5" y="98.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">RPMBT23</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Milano, Italy</tspan></text>
+<rect x="35.9" y="110" width="28.7" height="10" rx="5" style="fill:var(--dec-2);opacity:1;stroke:var(--text);stroke-width:2"><title>Second Workshop on Neutrinoless double…: 2026-09-14 → 2026-09-18 · under way — Neutrino physics (title names “neutrinoless”)</title></rect>
+<text x="72.5" y="118.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Second Workshop on…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Old Trafford</tspan></text>
+<rect x="229.5" y="130" width="78.9" height="10" rx="5" style="fill:var(--dec-3);opacity:1"><title>ESC26: 2026-10-11 → 2026-10-22 — Adjacent fields (title names “scientific computing”)</title></rect>
+<text x="316.4" y="138.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">ESC26</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Bertinoro…</tspan></text>
+<rect x="437.5" y="150" width="28.7" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>Patras 2026: 2026-11-09 → 2026-11-13 — Astroparticle &amp; underground (title names “axions”)</title></rect>
+<text x="474.2" y="158.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Patras 2026</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Perth, Western Australia</tspan></text>
+<rect x="667.0" y="170" width="21.5" height="10" rx="5" style="fill:var(--text-mute);opacity:1"><title>Workshop on Multi-front Exotic…: 2026-12-11 → 2026-12-14 — Not classified (nothing in the record to judge by)</title></rect>
+<text x="696.5" y="178.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Workshop on Multi-front…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">The Chinese University…</tspan></text>
+<rect x="839.1" y="190" width="43.0" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>TMEX: 2027-01-04 → 2027-01-10 — Astroparticle &amp; underground (title names “particle astrophysics”)</title></rect>
+<text x="890.2" y="198.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">TMEX</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Quy Nhon, Vietnam</tspan></text>
+<rect x="982.6" y="210" width="35.9" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>Dark Matter: 2027-01-24 → 2027-01-29 — Astroparticle &amp; underground (name names “dark matter”)</title></rect>
+<text x="1026.4" y="218.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Dark Matter</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Saas Fee, Switzerland</tspan></text>
+<rect x="1384.2" y="230" width="43.0" height="10" rx="5" style="fill:var(--dec-3);opacity:1"><title>Quark Matter 2027: 2027-03-21 → 2027-03-27 — Adjacent fields (series “Quark Matter”)</title></rect>
+<text x="1435.3" y="238.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Quark Matter 2027</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Seoguipo, South Korea</tspan></text>
+<rect x="1893.4" y="250" width="28.7" height="10" rx="5" style="fill:var(--dec-1);opacity:1"><title>SUSY 2027: 2027-05-31 → 2027-06-04 — Particle physics at large (series “SUSY”)</title></rect>
+<text x="1930.1" y="258.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">SUSY 2027</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Daejeon, South Korea</tspan></text>
+<rect x="1993.9" y="270" width="28.7" height="10" rx="5" style="fill:var(--dec-2);opacity:1"><title>NuINT 2027 during the week of 14 Jun 27…: 2027-06-14 → 2027-06-18 — Neutrino physics (series “NuInt”)</title></rect>
+<text x="2030.5" y="278.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">NuINT 2027 during the week of…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Quy Nhon, Vietnam</tspan></text>
+<rect x="2194.7" y="290" width="14.3" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>ICDMS2027: 2027-07-12 → 2027-07-14 — Astroparticle &amp; underground (title names “multi-messenger”)</title></rect>
+<text x="2217.0" y="298.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">ICDMS2027</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Cambridge, United States</tspan></text>
 </svg>
 </div>
 <p class="cap">14 of the 54 upcoming meetings, spread across the year ahead. Bar colour follows the key above; an outlined bar is under way, a faded one has concluded. The next four months are shown — scroll the figure sideways for the rest of the year. 54 upcoming and 65 recent meetings are tracked in full below.</p>
