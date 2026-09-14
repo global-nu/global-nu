@@ -294,7 +294,7 @@ def _run_takedown_through_pipeline() -> dict:
         _orig_root = pipeline.ROOT
         pipeline.ROOT = root
         try:
-            pipeline._push_generated(log)
+            published = pipeline._push_generated(log)
         finally:
             pipeline.ROOT = _orig_root
 
@@ -306,6 +306,7 @@ def _run_takedown_through_pipeline() -> dict:
         gh_pages = _git(remote, "branch", "--list", "gh-pages").stdout
         rebase_probe = _git(root, "pull", "--rebase", "origin", "main")
         return {
+            "published": published,
             "status_after": status_after,
             "tracked_after": tracked_after,
             "head_subject": head_subject,
@@ -351,6 +352,97 @@ check("a genuine git pull --rebase against this same remote, run right "
       "after _push_generated, is not blocked by a dirty tree",
       _r["rebase_probe_rc"] == 0, _r["rebase_probe_out"])
 
+
+# --------------------------------------------------------------------- #
+# a run that cannot publish is not a successful run
+# --------------------------------------------------------------------- #
+# 14 September 2026: a stray `refs/remotes/origin/main 2` — a ref file whose
+# name contains a space, the kind a syncing filesystem leaves behind — made
+# every git fetch in _push_generated fail with "bad object". The run logged
+# the error, marked itself ok, and the site stopped being deployed. Nothing
+# raised an alarm, because the watchdog reads state.json's last_success and
+# that field had been advanced by the very run that failed to publish.
+check("the happy path reports that the site is now current",
+      _r["published"] is True, repr(_r["published"]))
+
+
+def _push_into_a_repo_without_a_remote() -> tuple[bool, str]:
+    """_push_generated against a repo that has nothing to push to."""
+    root, remote = _build_repo_with_a_tracked_photo()
+    try:
+        _git(root, "remote", "remove", "origin")
+        (root / "site" / "conferences.html").write_text("<html>new</html>\n")
+        log = _CollectingLog()
+        _orig_root = pipeline.ROOT
+        pipeline.ROOT = root
+        try:
+            ok = pipeline._push_generated(log)
+            return ok, "\n".join(log.warnings + log.errors)
+        finally:
+            pipeline.ROOT = _orig_root
+    finally:
+        shutil.rmtree(root, ignore_errors=True)
+        shutil.rmtree(remote, ignore_errors=True)
+        shutil.rmtree(remote.parent, ignore_errors=True)
+
+
+_ok, _log_text = _push_into_a_repo_without_a_remote()
+check("a publish that cannot reach a remote reports failure, and does not "
+      "return the same answer as a successful one",
+      _ok is False, f"returned {_ok!r}; log: {_log_text}")
+
+
+def _run_with_a_failing_publish() -> tuple[int, dict]:
+    """pipeline.run() with publishing enabled and _push_generated failing."""
+    state.STATE = Path(tempfile.mkdtemp()) / "state.json"
+    state.mark_run("ok", "a previous, genuinely successful run")
+    before = state.load().get("last_success")
+
+    orig_push, orig_cfg = pipeline._push_generated, common.load_config
+    orig_run = pipeline.subprocess.run
+
+    def _cfg(*a, **k):
+        cfg = orig_cfg(*a, **k)
+        cfg["publish"] = {"push": True}
+        return cfg
+
+    class _Built:
+        returncode, stdout, stderr = 0, "", ""
+
+    # The publish step lives INSIDE the build step, so the build has to run
+    # for this path to be reached at all — it is stubbed rather than skipped.
+    pipeline.subprocess.run = lambda *a, **k: _Built()
+    pipeline._push_generated = lambda log: False
+    common.load_config = _cfg
+    cache.load_records = _fake_load_records
+    render.conferences = _noop_render_ok
+    render.digest = _noop_render_ok
+    render.news = _noop_render_ok
+    archive.merge = lambda store, published: store
+    archive.save = lambda store: None
+    archive.write_pages = lambda store: []
+    archive.update_index = lambda store: True
+    try:
+        rc = pipeline.run(from_cache=True, use_ai=False, do_build=True,
+                          verbose=False)
+    finally:
+        pipeline._push_generated, common.load_config = orig_push, orig_cfg
+        pipeline.subprocess.run = orig_run
+        st = state.load()
+        state.STATE = _orig_state_state
+    return rc, {"before": before, **st}
+
+
+_rc_pub, _st = _run_with_a_failing_publish()
+check("a run whose publish fails does not return 0", _rc_pub != 0, _rc_pub)
+check("...records the run as an error, not as ok",
+      _st.get("last_status") == "error", _st)
+check("...and above all does NOT advance last_success, which is the one "
+      "field the watchdog reads",
+      _st.get("last_success") == _st.get("before"),
+      f"before={_st.get('before')} after={_st.get('last_success')}")
+check("...saying plainly that the pages exist but are not published",
+      "NOT published" in (_st.get("last_message") or ""), _st)
 
 print()
 if problems:

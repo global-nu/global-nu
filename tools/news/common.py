@@ -17,6 +17,7 @@ import logging
 import logging.handlers
 import re
 import sys
+import time
 import unicodedata
 from pathlib import Path
 from typing import Any
@@ -175,29 +176,69 @@ def _set_stderr(log: logging.Logger, verbose: bool) -> None:
 # --------------------------------------------------------------------------- #
 # HTTP
 # --------------------------------------------------------------------------- #
+# Answers worth asking again for, and how long to wait before doing so.
+# 429 is the one that cost a day: arXiv's API answered "Rate exceeded" to the
+# 07:30 run of 14 September 2026, the single attempt returned None, and the
+# digest page silently kept the previous day's papers. A rate limiter is by
+# definition temporary, and so is a 502/503/504 from a source that was fine a
+# minute ago — one attempt turns a hiccup into a missing section.
+#
+# The waits are seconds, and deliberately long enough to be a real pause
+# rather than a burst: hammering a limiter is how a short block becomes a
+# long one. arXiv's own terms ask for a few seconds between requests. A
+# Retry-After header, when the server sends one, wins over these.
+RETRY_STATUS = (429, 500, 502, 503, 504)
+RETRY_WAITS = (5, 20)
+MAX_RETRY_WAIT = 60
+
+
+def _retry_after(r: "requests.Response", fallback: float) -> float:
+    """The server's own Retry-After in seconds, when it sends a usable one."""
+    raw = (r.headers.get("Retry-After") or "").strip()
+    if raw.isdigit():
+        return min(float(raw), MAX_RETRY_WAIT)
+    return fallback
+
+
 def http_get(url: str, *, timeout: int = 30, params: dict | None = None,
-             headers: dict | None = None, log: logging.Logger | None = None
-             ) -> requests.Response | None:
-    """GET that returns None instead of raising.
+             headers: dict | None = None, log: logging.Logger | None = None,
+             retries: tuple[int, ...] = RETRY_WAITS,
+             sleep=time.sleep) -> requests.Response | None:
+    """GET that returns None instead of raising, retrying what is worth retrying.
 
     Every caller treats an unreachable source as "omit this source", never as
     "make something up" — the rule from CLAUDE.md, enforced by giving callers
-    nothing to work with when the fetch fails.
+    nothing to work with when the fetch fails. Retrying does not soften that
+    rule: it only decides how hard we try before concluding the source is
+    unreachable. A 404, a 403 or an unparseable host is still one attempt —
+    asking again cannot change any of those answers.
     """
     hdrs = {"User-Agent": USER_AGENT}
     if headers:
         hdrs.update(headers)
-    try:
-        r = requests.get(url, params=params, headers=hdrs, timeout=timeout)
-    except requests.RequestException as exc:
+    attempts = len(retries) + 1
+    for i in range(attempts):
+        try:
+            r = requests.get(url, params=params, headers=hdrs, timeout=timeout)
+        except requests.RequestException as exc:
+            if log:
+                log.warning("fetch failed: %s (%s)", url, exc.__class__.__name__)
+            return None
+        if r.status_code == 200:
+            return r
+        last = i == attempts - 1
+        if r.status_code in RETRY_STATUS and not last:
+            wait = _retry_after(r, retries[i])
+            if log:
+                log.info("fetch: %s answered HTTP %s — retrying in %gs (%d of %d)",
+                         r.url, r.status_code, wait, i + 1, len(retries))
+            sleep(wait)
+            continue
         if log:
-            log.warning("fetch failed: %s (%s)", url, exc.__class__.__name__)
+            log.warning("fetch failed: %s (HTTP %s%s)", r.url, r.status_code,
+                        f", {attempts} attempts" if r.status_code in RETRY_STATUS else "")
         return None
-    if r.status_code != 200:
-        if log:
-            log.warning("fetch failed: %s (HTTP %s)", r.url, r.status_code)
-        return None
-    return r
+    return None
 
 
 # --------------------------------------------------------------------------- #

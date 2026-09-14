@@ -113,8 +113,18 @@ def fetch(cfg: dict, log: logging.Logger) -> list[dict]:
         "max_results": max_fetch,
     }, timeout=60, log=log)
     if r is None:
+        # Not "falls back to cache", which is what this line used to say and
+        # which nothing in the code does: render.digest sees an empty list,
+        # leaves digest.md untouched, and the page keeps BOTH yesterday's
+        # papers and yesterday's "Last successful update" stamp. That is the
+        # right behaviour — a page that re-stamps itself with today's date
+        # while showing yesterday's papers would be the lie — but the log has
+        # to describe it, or the next person to read it goes looking for a
+        # fallback that was never written (14 September 2026: they did).
         errors.append("arXiv API unreachable")
-        log.warning("arxiv: API unreachable — section will fall back to cache")
+        log.warning("arxiv: API unreachable (%s) — no records today, so the "
+                    "digest page keeps its previous content and its previous "
+                    "timestamp", "HTTP error or timeout")
         cache.store("arxiv", [], errors)
         return []
 
