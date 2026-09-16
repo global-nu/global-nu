@@ -303,19 +303,35 @@ def _keyword_note() -> str:
 
     kw = ((load_config().get("arxiv") or {}).get("keywords") or {})
     high, low = kw.get("high") or [], kw.get("low") or []
+    required = kw.get("require_any") or []
     if not (high or low):
         return ""
     rows = "".join(
         f"<p class=\"small\"><b>{label}</b> — {_esc(', '.join(words))}</p>"
         for label, words in (("Strong terms, counted double", high),
                              ("Supporting terms", low)) if words)
-    rule = (f'<p class="small muted">A term found in the title counts '
-            f'{TITLE_WEIGHT} to the {ABSTRACT_WEIGHT} it counts in the '
-            'abstract, a strong term counts double a supporting one, and the '
-            'scores add.</p>')
+    # The gate belongs on the page for the same reason the list does: without
+    # it the page describes a ranking, and a reader would conclude that a high
+    # enough score is what puts a paper here. It is not — a preprint that
+    # never names the field is refused whatever it scores, because most of the
+    # list above is context ("oscillation", "supernova") that means this field
+    # only inside a paper already about it.
+    gate = ""
+    if required:
+        gate = (f'<p class="small"><b>Admitted only if it says one of these'
+                f'</b> — {_esc(", ".join(required))}</p>'
+                '<p class="small muted">This is a gate, not a weight: a '
+                'preprint that never names the field is left out however well '
+                'it scores, and these words count for nothing in the ranking '
+                'itself. A longer word starting with one of them counts '
+                '(neutrinophilic, neutrino-argon).</p>')
+    rule = (f'<p class="small muted">Among those admitted, a term found in '
+            f'the title counts {TITLE_WEIGHT} to the {ABSTRACT_WEIGHT} it '
+            'counts in the abstract, a strong term counts double a supporting '
+            'one, and the scores add.</p>')
     return ('<details style="margin-top:.6rem"><summary class="small muted">'
-            f'The {len(high) + len(low)} words the score is computed from'
-            f'</summary>{rows}{rule}</details>\n')
+            f'The {len(high) + len(low) + len(required)} words that decide '
+            f'this page</summary>{gate}{rows}{rule}</details>\n')
 
 
 def digest(records: list[dict], log: logging.Logger, stamp: str | None = None) -> bool:
@@ -377,9 +393,11 @@ API answers. Same categories, same keyword ranking, same everything else.</p>
 
 {_digest_list(thy)}
 
-<p class="small muted">Ranking is deterministic: {source_name.replace("arXiv ", "arXiv's ")}
-{"are" if via_rss else "is"} queried for the configured categories, and each
-record is scored against the fixed keyword list below. No model is involved in choosing what appears here. The split
+<p class="small muted">Selection and ranking are deterministic:
+{source_name.replace("arXiv ", "arXiv's ")}
+{"are" if via_rss else "is"} queried for the configured categories, every
+record that names the field is admitted, and those are scored against the
+fixed keyword list below. No model is involved in choosing what appears here. The split
 between the two streams is by the preprint's primary arXiv category:
 {", ".join(EXPERIMENTAL_CATS)} are read as experimental, everything else as
 theory, so a phenomenology paper cross-listed to an experimental category

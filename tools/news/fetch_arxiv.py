@@ -399,7 +399,7 @@ def fetch(cfg: dict, log: logging.Logger) -> list[dict]:
     required = _compile_stem(conf.get("keywords", {}).get("require_any", []))
 
     scored: list[tuple[int, _dt.datetime, dict]] = []
-    seen = 0
+    seen = gated = 0
     for entry in root.findall(f"{ATOM}entry"):
         seen += 1
         published = _published(entry)
@@ -411,7 +411,10 @@ def fetch(cfg: dict, log: logging.Logger) -> list[dict]:
         title = clean_text(entry.findtext(f"{ATOM}title"))
         summary = clean_text(entry.findtext(f"{ATOM}summary"))
         pts, hits = score(title, summary, high, low)
-        if pts <= 0 or not on_topic(title, summary, required):
+        if pts <= 0:
+            continue
+        if not on_topic(title, summary, required):
+            gated += 1
             continue
 
         cats_e = [c.get("term") for c in entry.findall(f"{ATOM}category")
@@ -424,10 +427,17 @@ def fetch(cfg: dict, log: logging.Logger) -> list[dict]:
     scored.sort(key=lambda x: (-x[0], -x[1].timestamp()))
     records = [rec for _, _, rec in scored]
 
-    log.info("arxiv: %d entries scanned, %d in the %dh window and on topic",
-             seen, len(records), int(conf.get("window_hours", 72)))
+    log.info("arxiv: %d entries scanned, %d in the %dh window and on topic "
+             "(%d scored but never named the field)",
+             seen, len(records), int(conf.get("window_hours", 72)), gated)
     if seen and not records:
-        errors.append("no entry matched the keywords inside the window")
+        # Which of the two emptied the page matters to whoever reads this
+        # tomorrow: a quiet week is not the same as a gate that is too tight,
+        # and the page keeps yesterday's content either way.
+        errors.append(
+            f"no entry matched the keywords inside the window (and {gated} "
+            f"scored but were refused for never naming the field)"
+            if gated else "no entry matched the keywords inside the window")
 
     cache.store("arxiv", records, errors)
     return records
