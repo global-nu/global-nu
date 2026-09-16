@@ -46,6 +46,23 @@ arxiv:
   # NOT list both forms: a term whose plural is another entry is dropped, and
   # listing them was how `neutrino`/`neutrinos` used to be handled here.
   keywords:
+    # The gate, applied before the score is even looked at: a record must name
+    # the field somewhere in title or abstract. Everything in `high` and `low`
+    # below is CONTEXT — `oscillation` and `supernova` are ordinary
+    # astrophysics words — and a context word in a title is worth six points,
+    # which is a place on the page. These are the words that ARE the subject.
+    require_any:
+      - neutrino
+      - antineutrino
+      - lepton
+      - neutrinoless
+      - double beta
+      - seesaw
+      - leptogenesis
+      - majorana
+      - pmns
+      - flavon
+      - pontecorvo
     high:
       - neutrino
       - oscillation

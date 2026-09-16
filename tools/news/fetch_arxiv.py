@@ -151,6 +151,45 @@ def score(title: str, summary: str, high: list, low: list) -> tuple[int, list[st
     return total, hits
 
 
+def on_topic(title: str, summary: str, required: list) -> bool:
+    """Does the paper name the field at all?
+
+    Scoring alone cannot answer this. Most of the keyword list is CONTEXT —
+    `oscillation`, `supernova`, `reactor`, `modular`, `mass ordering` — words
+    that mean neutrino physics inside a neutrino paper and something else
+    everywhere else. One of them in a title is worth six points on its own,
+    which is a place on the page: on 16 September 2026 that put "the lags of
+    the quasi-periodic oscillations ... in the black-hole X-ray binary GRS
+    1915+105" into a neutrino digest, on the strength of the word
+    "oscillations". Before the plural rule the same paper scored 0 only
+    because `oscillations` failed to match `oscillation` — the page was being
+    kept clean by a bug.
+
+    So the field's own vocabulary is a gate, not a weight. A paper that never
+    says neutrino, lepton, seesaw or flavon is not a neutrino preprint however
+    many context words it uses, and no score should be able to buy it in.
+    """
+    if not required:
+        return True
+    t, s = title.lower(), summary.lower()
+    return any(pat.search(t) or pat.search(s) for _, pat in required)
+
+
+def _compile_stem(terms: list[str]) -> list[tuple[str, re.Pattern]]:
+    """Like _compile, but the term may continue into a longer word.
+
+    The gate asks a different question from the score, and needs a different
+    match. "Supernova cooling from neutrinophilic dark matter" is a neutrino
+    paper, and `\bneutrino\b` does not see it; nor does it see neutrino-argon
+    scattering. The scorer must stay strict — it is counting occurrences, and
+    a stem would let one word score twice through two terms — but the gate
+    only asks whether the word is there at all, so a prefix is exactly right.
+    A compound still has to START at a word boundary, which is why
+    `antineutrino` is listed separately rather than caught by this."""
+    return [(t, re.compile(r"\b" + re.escape(t.lower()) + r"\w*"))
+            for t in terms if t]
+
+
 # --------------------------------------------------------------------------- #
 def _make(aid: str, title: str, summary: str, authors: str, day: str,
           cats: list[str], pts: int, hits: list[str], route: str,
@@ -253,6 +292,7 @@ def _from_rss(conf: dict, log: logging.Logger, errors: list[str]) -> list[dict]:
     """
     high = _compile(conf.get("keywords", {}).get("high", []))
     low = _compile(conf.get("keywords", {}).get("low", []))
+    required = _compile_stem(conf.get("keywords", {}).get("require_any", []))
     today = _dt.date.today().isoformat()
 
     by_id: dict[str, tuple[int, dict]] = {}
@@ -282,7 +322,7 @@ def _from_rss(conf: dict, log: logging.Logger, errors: list[str]) -> list[dict]:
             title = clean_text(item.findtext("title"))
             summary = _rss_summary(item.findtext("description") or "")
             pts, hits = score(title, summary, high, low)
-            if pts <= 0:
+            if pts <= 0 or not on_topic(title, summary, required):
                 continue
             cats = [c.text.strip() for c in item.findall("category") if c.text]
             authors = _delatex(clean_text(item.findtext(f"{DC_NS}creator")))
@@ -356,6 +396,7 @@ def fetch(cfg: dict, log: logging.Logger) -> list[dict]:
     cutoff = _dt.datetime.now(_dt.timezone.utc) - window
     high = _compile(conf.get("keywords", {}).get("high", []))
     low = _compile(conf.get("keywords", {}).get("low", []))
+    required = _compile_stem(conf.get("keywords", {}).get("require_any", []))
 
     scored: list[tuple[int, _dt.datetime, dict]] = []
     seen = 0
@@ -370,7 +411,7 @@ def fetch(cfg: dict, log: logging.Logger) -> list[dict]:
         title = clean_text(entry.findtext(f"{ATOM}title"))
         summary = clean_text(entry.findtext(f"{ATOM}summary"))
         pts, hits = score(title, summary, high, low)
-        if pts <= 0:
+        if pts <= 0 or not on_topic(title, summary, required):
             continue
 
         cats_e = [c.get("term") for c in entry.findall(f"{ATOM}category")

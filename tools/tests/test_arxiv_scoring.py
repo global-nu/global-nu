@@ -117,6 +117,42 @@ check("no shipped term is already matched by another, by plural or by "
       "containment — either would score one phrase twice",
       not dupes, f"redundant: {dupes}")
 
+# --------------------------------------------------------------------- #
+# the gate: naming the field is not the same as scoring well
+# --------------------------------------------------------------------- #
+print("\nthe on-topic gate")
+
+REQ = ["neutrino", "lepton", "seesaw", "flavon"]
+gate = lambda t, a="": fetch_arxiv.on_topic(t, a, fetch_arxiv._compile_stem(REQ))
+
+check("a paper that never names the field is out, however it scores — "
+      "the X-ray binary whose 'quasi-periodic oscillations' scored 8 and "
+      "reached the page on 16 September 2026",
+      not gate("Compelling evidence of a link between the lags of the "
+               "quasi-periodic oscillations and the radio jet in the "
+               "black-hole X-ray binary GRS 1915+105"), "")
+
+check("...and so is an axion paper that borrows the same word",
+      not gate("(Re)constructing Accurate Axion Oscillations"), "")
+
+check("a supernova paper about supernovae, not about their neutrinos, is out",
+      not gate("Which Type Ia supernova observables best indicate the ages "
+               "of their progenitors?"), "")
+
+check("a supernova paper that IS about the neutrinos stays",
+      gate("Supernova cooling from neutrinophilic dark matter"), "")
+
+check("the field's word in the abstract alone is enough — the gate reads "
+      "both, unlike the title/abstract weighting",
+      gate("Eclectic flavour symmetries without flavons",
+           "a realistic model of lepton masses"), "")
+
+check("an empty requirement list disables the gate rather than emptying "
+      "the page", fetch_arxiv.on_topic("anything at all", "", []), "")
+
+cfg_req = load_config()["arxiv"]["keywords"].get("require_any")
+check("the shipped config actually sets the gate", bool(cfg_req), cfg_req)
+
 print()
 if problems:
     print(f"  ! {len(problems)} of {checks} checks failed")
