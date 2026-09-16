@@ -89,15 +89,48 @@ def _published(entry: ET.Element) -> _dt.datetime | None:
     return None
 
 
+# How the last word of a term is allowed to end. A digest keyword is a noun
+# phrase, and the papers write it either way: "Eclectic flavour symmetries
+# without flavons" carries the config's `flavour symmetry` in the plural, and
+# matching only the singular cost that title three points and dropped it to
+# 61st of 66 on 16 September 2026. The suffix is always followed by \b, so
+# widening it does not license an arbitrary ending: `reactor` still does not
+# match "reactorless".
+_PLURAL = (
+    (("ch", "sh", "s", "x", "z"), "(?:es)?"),   # searches, fluxes
+    (("a",), "(?:e|s)?"),                       # supernova -> supernovae
+)
+
+
+def _plural(word: str) -> str:
+    """The word, as a pattern that also matches its plural."""
+    if len(word) > 1 and word.endswith("y") and word[-2] not in "aeiou":
+        return re.escape(word[:-1]) + "(?:y|ies)"   # hierarchy -> hierarchies
+    for endings, suffix in _PLURAL:
+        if word.endswith(endings):
+            return re.escape(word) + suffix
+    return re.escape(word) + "s?"
+
+
 def _compile(terms: list[str]) -> list[tuple[str, re.Pattern]]:
-    """Word-boundary patterns, so 'nova' does not match 'innovation' and
-    'reactor' does not match 'reactors' only by luck — \\b handles the plural
-    separately because the config lists the forms it wants."""
-    out = []
+    """Word-boundary patterns, so 'nova' does not match 'innovation', with the
+    last word of each term also matching its plural.
+
+    A term whose plural is another term in the same list is dropped: with the
+    plural folded into the pattern, a config that still spells out both forms
+    would fire twice on one word and quietly double that paper's score."""
+    out: list[tuple[str, re.Pattern]] = []
     for t in terms:
         if not t:
             continue
-        out.append((t, re.compile(r"\b" + re.escape(t.lower()) + r"\b")))
+        words = t.lower().split()
+        if not words:
+            continue
+        pat = re.compile(r"\b" + r"\s+".join(
+            [re.escape(w) for w in words[:-1]] + [_plural(words[-1])]) + r"\b")
+        if any(kept.fullmatch(t.lower()) for _, kept in out):
+            continue
+        out.append((t, pat))
     return out
 
 

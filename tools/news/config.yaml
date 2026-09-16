@@ -42,10 +42,12 @@ arxiv:
   max_items: 16           # entries shown on the digest page (two streams)
   # Scoring: a title hit is worth 3, an abstract hit 1. Ordering matters only
   # through the totals, so keep the strong terms in `high`.
+  # Every term also matches its own plural (see fetch_arxiv._compile), so do
+  # NOT list both forms: a term whose plural is another entry is dropped, and
+  # listing them was how `neutrino`/`neutrinos` used to be handled here.
   keywords:
     high:
       - neutrino
-      - neutrinos
       - oscillation
       - neutrinoless
       - double beta
@@ -54,10 +56,24 @@ arxiv:
       - sterile
       - mass ordering
       - mass hierarchy
+    # The flavour-model half of neutrino theory. It was missing entirely until
+    # 16 September 2026, when a paper deriving fermion masses from a flavour
+    # group scored 1 out of 66 and was cut: the list could see an oscillation
+    # measurement but not the model-building literature that predicts what is
+    # measured. These are deliberately `low` — a paper that is only about
+    # flavour groups and never reaches the leptons should rank below one that
+    # measures something, not above it.
     low:
       - flavour symmetry
       - flavor symmetry
+      - lepton mixing
+      - lepton flavour
+      - lepton flavor
+      - fermion mass
+      - mass matrix
+      - flavon
       - modular
+      - discrete symmetry
       - grand unification
       - leptonic CP
       - non-standard interaction
