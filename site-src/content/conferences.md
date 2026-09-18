@@ -25,7 +25,7 @@ scripts:
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the conference indexers' APIs,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 17 September 2026, 07:54 CEST</span></div>
+<span class="stamp">Last successful update: 18 September 2026, 07:47 CEST</span></div>
 </div>
 
 <p class="conf-legend"><span class="conf-legend__lead">Closeness of the subject:</span><span class="conf-aff conf-aff--core">Neutrino physics</span><span class="conf-aff conf-aff--related">Astroparticle &amp; underground</span><span class="conf-aff conf-aff--broad">Particle physics at large</span><span class="conf-aff conf-aff--adjacent">Adjacent fields</span><span class="conf-aff conf-aff--unknown">Not classified</span></p>
@@ -33,7 +33,7 @@ and may contain errors. No model is involved.</b>
 <figure class="figure">
 <h4>Timeline</h4>
 <div class="timeline-scroll">
-<svg viewBox="0 0 2711 326" role="img" width="3253" height="391" aria-label="Timeline of upcoming and recently concluded neutrino conferences, scrollable sideways from today to a year ahead" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 2718 326" role="img" width="3262" height="391" aria-label="Timeline of upcoming and recently concluded neutrino conferences, scrollable sideways from today to a year ahead" xmlns="http://www.w3.org/2000/svg">
 <title>Conference timeline</title>
 <text x="2.0" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
 <line x1="157.8" y1="14" x2="157.8" y2="311" style="stroke:var(--line);stroke-width:1"/>
@@ -60,8 +60,8 @@ and may contain errors. No model is involved.</b>
 <text x="2341.1" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Aug</text>
 <line x1="2560.5" y1="14" x2="2560.5" y2="311" style="stroke:var(--line);stroke-width:1"/>
 <text x="2563.5" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
-<line x1="57.4" y1="8" x2="57.4" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
-<text x="57.4" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
+<line x1="64.5" y1="8" x2="64.5" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
+<text x="64.5" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
 <rect x="35.9" y="30" width="28.7" height="10" rx="5" style="fill:var(--dec-2);opacity:1;stroke:var(--text);stroke-width:2"><title>Second Workshop on Neutrinoless double…: 2026-09-14 → 2026-09-18 · under way — Neutrino physics (title names “neutrinoless”)</title></rect>
 <text x="72.5" y="38.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Second Workshop on…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Old Trafford</tspan></text>
 <rect x="35.9" y="50" width="64.5" height="10" rx="5" style="fill:var(--dec-2);opacity:1;stroke:var(--text);stroke-width:2"><title>The First China-Europe Neutrino…: 2026-09-14 → 2026-09-23 · under way — Neutrino physics (title names “neutrino”)</title></rect>
@@ -76,8 +76,8 @@ and may contain errors. No model is involved.</b>
 <text x="122.8" y="138.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">NBI/RaDIATE 2026</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Batavia, United States</tspan></text>
 <rect x="337.1" y="150" width="28.7" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>SoUP2026: 2026-10-26 → 2026-10-30 — Astroparticle &amp; underground (name names “underground physics”)</title></rect>
 <text x="373.8" y="158.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">SoUP2026</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Bertinoro, Italy</tspan></text>
-<rect x="437.5" y="170" width="28.7" height="10" rx="5" style="fill:var(--dec-3);opacity:1"><title>LCWS2026: 2026-11-09 → 2026-11-13 — Adjacent fields (series “LCWS”)</title></rect>
-<text x="474.2" y="178.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">LCWS2026</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">KEK, Tsukuba, Japan</tspan></text>
+<rect x="451.8" y="170" width="57.4" height="10" rx="5" style="fill:var(--dec-2);opacity:1"><title>Neutrino Geoscience 2026 and 2026 Fall…: 2026-11-11 → 2026-11-19 — Neutrino physics (series “Neutrino”)</title></rect>
+<text x="517.2" y="178.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Neutrino Geoscience 2026 and…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Zhuhai, China</tspan></text>
 <rect x="667.0" y="190" width="21.5" height="10" rx="5" style="fill:var(--text-mute);opacity:1"><title>Workshop on Multi-front Exotic…: 2026-12-11 → 2026-12-14 — Not classified (nothing in the record to judge by)</title></rect>
 <text x="696.5" y="198.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Workshop on Multi-front…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">The Chinese University…</tspan></text>
 <rect x="839.1" y="210" width="43.0" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>TMEX: 2027-01-04 → 2027-01-10 — Astroparticle &amp; underground (title names “particle astrophysics”)</title></rect>
@@ -145,8 +145,8 @@ and may contain errors. No model is involved.</b>
 <li><b>14th International Workshop on Neutrino Beams and Instrumentation and 10th Radiation Damage In Accelerator Target Environments Collaboration Meeting</b><span class="conf-aff conf-aff--core" title="series “NBI”">Neutrino physics</span><span>21–25 September 2026 · Batavia, United States</span><span class="cites"><a href="https://indico.fnal.gov/event/71651/">Details</a></span></li>
 <li><b>Probing new physics beyond the standard model at the HL-LHC and future lepton colliders</b><span class="conf-aff conf-aff--adjacent" title="title names “colliders”">Adjacent fields</span><span>21–24 September 2026</span><span class="cites"><a href="https://indico.cern.ch/event/1677041/">Details</a></span></li>
 <li><b>Neutrino Frontiers: A METU Workshop in memory of Prof. Perihan Tolun</b><span class="conf-aff conf-aff--core" title="title names “neutrino”">Neutrino physics</span><span>21 September 2026 · Kültür Kongre Merkezi, ODTÜ</span><span class="cites"><a href="https://indico.cern.ch/event/1712218/">Details</a></span></li>
-<li><b>LPNHE-neutrino group meeting</b><span class="conf-aff conf-aff--core" title="title names “neutrino”">Neutrino physics</span><span>23 September 2026</span><span class="cites"><a href="https://indico.in2p3.fr/event/40796/">Details</a></span></li>
 <li><b>3rd Joint IceCube-KM3NeT-JUNO NMO Workshop</b><span class="conf-aff conf-aff--unknown" title="nothing in the record to judge by">Not classified</span><span>23–24 September 2026</span><span class="cites"><a href="https://indico.in2p3.fr/event/40032/">Details</a></span></li>
+<li><b>LPNHE-neutrino group meeting</b><span class="conf-aff conf-aff--core" title="title names “neutrino”">Neutrino physics</span><span>23 September 2026</span><span class="cites"><a href="https://indico.in2p3.fr/event/40796/">Details</a></span></li>
 <li><b>Optomechanical Sensing for Subatomic and Astroparticle Physics</b><span class="conf-aff conf-aff--related" title="title names “astroparticle”">Astroparticle &amp; underground</span><span>23–25 September 2026 · 421 Union St., Kingston, Canada</span><span class="cites"><a href="https://indico.global/event/18677/">Details</a></span></li>
 <li><b>Seminar: First results from JUNO by Mathieu Bongrand</b><span class="conf-aff conf-aff--unknown" title="nothing in the record to judge by">Not classified</span><span>2 October 2026 · LAPP</span><span class="cites"><a href="https://indico.in2p3.fr/event/39759/">Details</a></span></li>
 <li><b>COLLOQUIUM - Beyond the Beam: Exploring Low-Energy Astrophysics with DUNE by Laura Paulucci</b><span class="conf-aff conf-aff--unknown" title="nothing in the record to judge by">Not classified</span><span>2 October 2026 · Nikhef</span><span class="cites"><a href="https://indico.nikhef.nl/event/8149/">Details</a></span></li>
