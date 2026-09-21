@@ -22,7 +22,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>The summaries on this page are written automatically with AI from
 fetched records, and may contain errors.</b>
-<span class="stamp">Last successful update: 20 September 2026, 07:54 CEST</span></div>
+<span class="stamp">Last successful update: 21 September 2026, 07:55 CEST</span></div>
 </div>
 <p class="small muted"><b>In summary.</b> This week's experimental neutrino news centres on infrastructure and operations: DUNE was recognised among ambitious international science projects and continues developing AI-based data triggers, a new underwater detector begins testing in the Great Lakes, and the U.S. National Science Foundation renewed its funding for IceCube operations through 2031, alongside continuing IceCube searches for astrophysical neutrino sources. On the theory side, published work this week ranges from a combined atmospheric-oscillation analysis favouring the normal mass ordering, to ab initio limits on the Majorana neutrino mass, models for the origin of light neutrino masses, and continued efforts to interpret the ultra-high-energy neutrino event KM3-230213A. This paragraph summarises the items below; the sources are on the items themselves.</p>
 
