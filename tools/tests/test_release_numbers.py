@@ -51,7 +51,11 @@ PROSE_NO_JUNO = ["7.44", "2.1"]
 ROWS = {
     "δm2=10−5 eV2": "δm² / 10⁻⁵ eV²",
     "sin2 θ12=10−1": "sin²θ₁₂ / 10⁻¹",
-    "jΔm2j=10−3 eV2": "|Δm²| / 10⁻³ eV²",
+    # Il paper stampa il MODULO, |Δm²|; la pagina stampa la quantita' con
+    # segno, negativa in IO. Le CIFRE sono le stesse — il segno e' una
+    # convenzione, non un'altra misura — e numbers_in() le confronta senza
+    # guardare il segno, che e' esattamente il confronto che qui serve.
+    "jΔm2j=10−3 eV2": "Δm² / 10⁻³ eV²",
     "sin2 θ13=10−2": "sin²θ₁₃ / 10⁻²",
     "sin2 θ23=10−1": "sin²θ₂₃ / 10⁻¹",
     "δ=π": "δ/π",
@@ -116,7 +120,7 @@ HOME_2026 = [
 # its NEWEST published value, so those two must carry the 2026 number and
 # must NOT still carry the superseded one.
 HERO_ROWS = [
-    ("|Δm²|", "jΔm2j=10−3 eV2"),
+    ("Δm²", "jΔm2j=10−3 eV2"),
     ("sin²θ₁₃", "sin2 θ13=10−2"),
     ("sin²θ₂₃", "sin2 θ23=10−1"),
     ("δ/π", "δ=π"),
@@ -306,7 +310,7 @@ def check_prose(html: str) -> list[str]:
 # pass on the very error this page is built to prevent — the 2025 table
 # quietly carrying a 2026 number, or the current table still showing the
 # superseded one — because the other table would satisfy it.
-PARAMS_FROM_2025 = ["|Δm²| / 10⁻³ eV²", "sin²θ₁₃ / 10⁻²",
+PARAMS_FROM_2025 = ["Δm² / 10⁻³ eV²", "sin²θ₁₃ / 10⁻²",
                     "sin²θ₂₃ / 10⁻¹", "δ/π"]
 PARAMS_SUPERSEDED = ["δm² / 10⁻⁵ eV²", "sin²θ₁₂ / 10⁻¹"]
 

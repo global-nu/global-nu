@@ -34,7 +34,7 @@ jsonld: site
       <a href="https://doi.org/10.1103/PhysRevD.111.093006">Phys. Rev. D 111,
       093006 (2025)</a>, the most recent full release. All six rows share one
       scale, in percent of each parameter's own best fit, so the width of a row
-      is how well that parameter is known: |Δm²| is measured to ±2.5% at 3σ,
+      is how well that parameter is known: Δm² is measured to ±2.5% at 3σ,
       while δ runs off the axis at −39%/+69%. Absolute values are printed at
       the right. Full tables and both orderings are on the
       <a href="results.html">results page</a>.</p>
@@ -55,13 +55,13 @@ jsonld: site
   <div class="stat"><span class="k">sin²θ₁₃</span><span class="v">0.0223</span><span class="u">formal 1σ accuracy 2.4%</span><!--include:spark-sin2_th13--></div>
   <div class="stat"><span class="k">sin²θ₂₃</span><span class="v">0.473</span><span class="u">formal 1σ accuracy 5.1%</span><!--include:spark-sin2_th23--></div>
   <div class="stat"><span class="k">δm² / 10⁻⁵ eV²</span><span class="v">7.48</span><span class="u">m₂² − m₁² &gt; 0 · 2026</span><!--include:spark-dm2--></div>
-  <div class="stat"><span class="k">|Δm²| / 10⁻³ eV²</span><span class="v">2.495</span><span class="u">m₃² − (m₁²+m₂²)/2</span><!--include:spark-Dm2-abs--></div>
+  <div class="stat"><span class="k">Δm² / 10⁻³ eV²</span><span class="v">2.495</span><span class="u">m₃² − (m₁²+m₂²)/2 · NO</span><!--include:spark-Dm2-abs--></div>
   <div class="stat"><span class="k">δ/π</span><span class="v">1.20</span><span class="u">CP phase, cyclic mod 2</span><!--include:spark-delta_pi--></div>
 </div>
 
 <p class="small muted" style="margin-top:1.1rem">Normal ordering is favoured at
 2.2σ; the χ² offset between the orderings is Δχ²(IO−NO) = +5.0. Four of the six
-values above — sin²θ₁₃, sin²θ₂₃, |Δm²| and δ/π, together with that ordering
+values above — sin²θ₁₃, sin²θ₂₃, Δm² and δ/π, together with that ordering
 preference — are from Table I of
 <a href="https://doi.org/10.1103/PhysRevD.111.093006">Phys. Rev. D 111, 093006
 (2025)</a>, the most recent <em>full</em> release, in the conventions stated

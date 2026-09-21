@@ -98,6 +98,16 @@ def accuracy(e: dict) -> float | None:
 # --------------------------------------------------------------------------- #
 # 1. precision over time
 # --------------------------------------------------------------------------- #
+# Δm² e' con segno: positivo in NO, negativo in IO. Il registro ne tiene il
+# MODULO, perche' le serie storiche confrontano gruppi che pubblicano moduli e
+# perche' una serie IO negativa finirebbe dall'altra parte dell'asse. Dove una
+# figura disegna un ordinamento SOLO, e lo dichiara, il modulo non serve e il
+# simbolo giusto e' quello firmato: e' il caso della figura della home, tutta
+# in ordinamento normale. Dove invece convivono NO e IO sulla stessa scala
+# (ranges.svg, le storie) restano le barre, che dicono cosa sono.
+SIMBOLO_UN_ORDINAMENTO = {"Dm2": "Δm²"}
+
+
 def precision_svg(meta: dict, bari: list[dict]) -> str:
     W, H = 760, 330
     L, R, T, B = 52, 128, 18, 38
@@ -110,7 +120,10 @@ def precision_svg(meta: dict, bari: list[dict]) -> str:
             if a is not None:
                 pts.append((rel["year"], a))
         if len(pts) > 1:
-            series.append((pname, meta[pname]["label"], pts, f"var(--dec-{i % 5 + 1})"))
+            # entry() prende l'ordinamento normale (o il valore unico): questa
+            # serie e' tutta in NO, quindi il simbolo e' quello firmato.
+            series.append((pname, SIMBOLO_UN_ORDINAMENTO.get(pname, meta[pname]["label"]),
+                           pts, f"var(--dec-{i % 5 + 1})"))
 
     years = sorted({y for _, _, pts, _ in series for y, _ in pts})
     x0, x1 = min(years), max(years)
@@ -381,7 +394,7 @@ def hero_ranges_svg(meta: dict, bari: list[dict]) -> str:
     W = 520
     ROW, TOP = 34, 36
     H = TOP + ROW * len(rows) + 39          # 13 more than one footer line
-    # L holds the longest label — "|Δm²| / 10⁻³ eV²", 87px in Inter at 11.5px —
+    # L holds the longest label — "Δm² / 10⁻³ eV²", 87px in Inter at 11.5px —
     # plus its 12px gap and room for a wider fallback face.
     L, R = 124, 58
     top_rule, bot_rule = TOP - 12, TOP + ROW * len(rows)
@@ -394,7 +407,8 @@ def hero_ranges_svg(meta: dict, bari: list[dict]) -> str:
         # has to record which, not guess.
         byo = (rel.get("values") or {}).get(pname) or {}
         ordering = "no" if byo.get("no") is e else "any"
-        out.extend(_rel_range_row(pname, ordering, meta[pname]["label"], "",
+        etichetta = SIMBOLO_UN_ORDINAMENTO.get(pname, meta[pname]["label"])
+        out.extend(_rel_range_row(pname, ordering, etichetta, "",
                                   meta[pname].get("unit"), e, y, "var(--no)",
                                   L, R, W, font=11.5, value_font=11,
                                   source=rel["arxiv"]))
@@ -420,7 +434,7 @@ def hero_ranges_svg(meta: dict, bari: list[dict]) -> str:
             'published value. '
             'All six rows share one horizontal scale, measured in percent of each '
             "parameter's own best fit, so the width of a row is how well that "
-            'parameter is known: the narrowest is the mass splitting |Δm²| and the '
+            'parameter is known: the narrowest is the mass splitting Δm² and the '
             'widest by far is the CP phase δ, which runs past the edge of the axis">\n'
             f'{body}\n</svg>')
 

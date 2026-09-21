@@ -31,14 +31,14 @@
 <circle cx="593.3" cy="209.4" r="3.4" fill="var(--dec-1)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>δm², 2025: 1σ accuracy 2.3%</title></circle>
 <circle cx="632.0" cy="246.5" r="3.4" fill="var(--dec-1)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>δm², 2026: 1σ accuracy 1.3%</title></circle>
 <path d="M52.0 167.7 L90.7 192.3 L129.3 200.3 L245.3 226.5 L284.0 233.7 L322.7 241.6 L438.7 255.8 L593.3 273.5" fill="none" stroke="var(--dec-2)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" opacity=".9"/>
-<circle cx="52.0" cy="167.7" r="3.4" fill="var(--dec-2)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>|Δm²|, 2011: 1σ accuracy 4.3%</title></circle>
-<circle cx="90.7" cy="192.3" r="3.4" fill="var(--dec-2)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>|Δm²|, 2012: 1σ accuracy 2.9%</title></circle>
-<circle cx="129.3" cy="200.3" r="3.4" fill="var(--dec-2)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>|Δm²|, 2013: 1σ accuracy 2.6%</title></circle>
-<circle cx="245.3" cy="226.5" r="3.4" fill="var(--dec-2)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>|Δm²|, 2016: 1σ accuracy 1.7%</title></circle>
-<circle cx="284.0" cy="233.7" r="3.4" fill="var(--dec-2)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>|Δm²|, 2017: 1σ accuracy 1.6%</title></circle>
-<circle cx="322.7" cy="241.6" r="3.4" fill="var(--dec-2)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>|Δm²|, 2018: 1σ accuracy 1.4%</title></circle>
-<circle cx="438.7" cy="255.8" r="3.4" fill="var(--dec-2)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>|Δm²|, 2021: 1σ accuracy 1.1%</title></circle>
-<circle cx="593.3" cy="273.5" r="3.4" fill="var(--dec-2)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>|Δm²|, 2025: 1σ accuracy 0.84%</title></circle>
+<circle cx="52.0" cy="167.7" r="3.4" fill="var(--dec-2)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>Δm², 2011: 1σ accuracy 4.3%</title></circle>
+<circle cx="90.7" cy="192.3" r="3.4" fill="var(--dec-2)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>Δm², 2012: 1σ accuracy 2.9%</title></circle>
+<circle cx="129.3" cy="200.3" r="3.4" fill="var(--dec-2)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>Δm², 2013: 1σ accuracy 2.6%</title></circle>
+<circle cx="245.3" cy="226.5" r="3.4" fill="var(--dec-2)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>Δm², 2016: 1σ accuracy 1.7%</title></circle>
+<circle cx="284.0" cy="233.7" r="3.4" fill="var(--dec-2)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>Δm², 2017: 1σ accuracy 1.6%</title></circle>
+<circle cx="322.7" cy="241.6" r="3.4" fill="var(--dec-2)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>Δm², 2018: 1σ accuracy 1.4%</title></circle>
+<circle cx="438.7" cy="255.8" r="3.4" fill="var(--dec-2)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>Δm², 2021: 1σ accuracy 1.1%</title></circle>
+<circle cx="593.3" cy="273.5" r="3.4" fill="var(--dec-2)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>Δm², 2025: 1σ accuracy 0.84%</title></circle>
 <path d="M52.0 152.9 L90.7 153.1 L129.3 153.3 L245.3 148.5 L284.0 148.5 L322.7 166.0 L438.7 165.0 L593.3 165.8 L632.0 206.7" fill="none" stroke="var(--dec-3)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" opacity=".9"/>
 <circle cx="52.0" cy="152.9" r="3.4" fill="var(--dec-3)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>sin²θ₁₂, 2011: 1σ accuracy 5.4%</title></circle>
 <circle cx="90.7" cy="153.1" r="3.4" fill="var(--dec-3)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>sin²θ₁₂, 2012: 1σ accuracy 5.4%</title></circle>
@@ -82,5 +82,5 @@
 <line x1="638.0" y1="246.5" x2="652.0" y2="246.5" stroke="var(--dec-1)" stroke-width="1" opacity=".45"/>
 <text x="658.0" y="250.5" font-size="12" font-weight="600" fill="var(--dec-1)">δm²</text>
 <line x1="599.3" y1="273.5" x2="652.0" y2="273.5" stroke="var(--dec-2)" stroke-width="1" opacity=".45"/>
-<text x="658.0" y="277.5" font-size="12" font-weight="600" fill="var(--dec-2)">|Δm²|</text>
+<text x="658.0" y="277.5" font-size="12" font-weight="600" fill="var(--dec-2)">Δm²</text>
 </svg>
