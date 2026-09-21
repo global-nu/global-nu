@@ -444,6 +444,94 @@ check("...and above all does NOT advance last_success, which is the one "
 check("...saying plainly that the pages exist but are not published",
       "NOT published" in (_st.get("last_message") or ""), _st)
 
+# --------------------------------------------------------------------- #
+# 21 September 2026: a regenerated page nobody had listed
+# --------------------------------------------------------------------- #
+# The site was not published. The log blamed the remote — "the remote has
+# diverged and the rebase failed" — and the remote was zero commits ahead.
+# Underneath sat git's own reason: "cannot pull with rebase: You have
+# unstaged changes". The one unstaged file was site/history.html, a page
+# build.py rewrites and PUBLISHED_BY_JOB does not name, because that list
+# enumerates the three pages the job MEANS to change. build.py rewrites all
+# ten, so any of the other seven can block the rebase — and what is lost is
+# never the forgotten page, it is the whole day.
+def _regenerate_a_page_nobody_listed() -> dict:
+    root, remote = _build_repo_with_a_tracked_photo()
+    try:
+        # seed the page, the way the real repo already tracks history.html
+        (root / "site" / "history.html").write_text("<html>old</html>\n")
+        _git(root, "add", "-A")
+        _git(root, "commit", "-q", "-m", "seed history")
+        _git(root, "push", "-q", "origin", "main")
+
+        # today's build rewrites it, and no list names it
+        (root / "site" / "history.html").write_text("<html>rebuilt</html>\n")
+        (root / "site" / "conferences.html").write_text("<html>new</html>\n")
+
+        log = _CollectingLog()
+        _orig_root = pipeline.ROOT
+        pipeline.ROOT = root
+        try:
+            published = pipeline._push_generated(log)
+        finally:
+            pipeline.ROOT = _orig_root
+        return {"published": published, "log": log,
+                "status_after": _git(root, "status", "--porcelain").stdout,
+                "remote_page": _git(root, "show",
+                                    "origin/main:site/history.html").stdout,
+                "rebase_probe": _git(root, "pull", "--rebase", "origin", "main")}
+    finally:
+        for p in (root, remote, remote.parent):
+            shutil.rmtree(p, ignore_errors=True)
+
+
+_h = _regenerate_a_page_nobody_listed()
+
+check("a regenerated page outside every list does not stop the publish — "
+      "site/history.html stopped the whole run on 21 September 2026",
+      _h["published"] is True, (_h["published"], _h["log"].errors))
+check("...and nothing is left unstaged to block tomorrow's rebase either",
+      _h["status_after"] == "", _h["status_after"])
+check("...and the rebuilt page reached the remote, not just the index",
+      "rebuilt" in _h["remote_page"], _h["remote_page"])
+check("...with no error logged, in particular no \"diverged\"",
+      _h["log"].errors == [], _h["log"].errors)
+check("a real git pull --rebase right afterwards is not blocked",
+      _h["rebase_probe"].returncode == 0,
+      _h["rebase_probe"].stdout + _h["rebase_probe"].stderr)
+
+
+# site/ is swept; site-src/ deliberately is not, because what Antonio writes
+# there is his. So a half-written site-src page is the case that still
+# reaches the rebase with a dirty tree — and the message it produces is the
+# one a person has to act on. For a whole day that message blamed the remote.
+def _rebase_refused_by_a_dirty_tree() -> _CollectingLog:
+    root, remote = _build_repo_with_a_tracked_photo()
+    try:
+        (root / "site-src" / "content" / "about.md").write_text("mine\n")
+        _git(root, "add", "-A")
+        _git(root, "commit", "-q", "-m", "seed about")
+        _git(root, "push", "-q", "origin", "main")
+        (root / "site" / "conferences.html").write_text("<html>newer</html>\n")
+        (root / "site-src" / "content" / "about.md").write_text("half-written\n")
+        log = _CollectingLog()
+        _orig_root = pipeline.ROOT
+        pipeline.ROOT = root
+        try:
+            pipeline._push_generated(log)
+        finally:
+            pipeline.ROOT = _orig_root
+        return log
+    finally:
+        for p in (root, remote, remote.parent):
+            shutil.rmtree(p, ignore_errors=True)
+
+
+_d = _rebase_refused_by_a_dirty_tree()
+_msgs = " ".join(str(m) for m in _d.errors).lower()
+check("a dirty worktree is never announced as a diverged remote",
+      "diverged" not in _msgs, _msgs or "(nessun errore)")
+
 print()
 if problems:
     print(f"  ! {len(problems)} of {checks} checks failed")

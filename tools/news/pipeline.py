@@ -411,6 +411,45 @@ def _push_generated(log) -> bool:
         if git("add", "--", pattern).returncode != 0:
             log.error("publish: git add failed for %s", pattern)
             return False
+    # UNA LISTA CHE ENUMERA TRE PAGINE NON REGGE UN BUILD CHE NE SCRIVE DIECI.
+    # Il 21 settembre 2026 il sito non e' stato pubblicato. Il log diceva «the
+    # remote has diverged and the rebase failed», e il remoto non era divergente
+    # affatto — zero commit dietro. Sotto quella frase c'era git:
+    #
+    #     error: cannot pull with rebase: You have unstaged changes.
+    #     error: Please commit or stash them.
+    #
+    # L'unica modifica rimasta fuori era site/history.html: una pagina che il
+    # build rigenera e che PUBLISHED_BY_JOB non nomina, perche' quella lista
+    # elenca le tre pagine che il job *intende* cambiare. Ma build.py riscrive
+    # tutto site/, e una qualunque delle altre sette — 404, about, history,
+    # index, resources, results, search — basta a bloccare il rebase. Non la
+    # pagina dimenticata: TUTTO, perche' un albero sporco ferma il rebase prima
+    # di guardare cosa c'e' dentro. E' la stessa trappola descritta trenta
+    # righe piu' su per le fotografie, ripresentata da un file nuovo; finche' si
+    # rattoppa aggiungendo un nome alla lista, tornera' col prossimo.
+    #
+    # Qui si mette in scena tutto quello che e' rimasto sporco in `site/`, e
+    # soltanto li'. Non e' `git add -A`: `site/` e' output del build per intero,
+    # non ci abita niente di scritto a mano. `site-src/` invece si', e resta
+    # fuori — quello che ci mette Antonio e' suo, e la sua meta' generata
+    # (digest.md, news.md, conferences.md, le foto) e' gia' nelle due liste
+    # qui sopra, per nome.
+    sporchi = []
+    for riga in git("status", "--porcelain", "--", "site").stdout.splitlines():
+        if len(riga) < 4:
+            continue
+        stato, nome = riga[:2], riga[3:].strip()
+        if stato == "??" or stato[1] == " ":   # non tracciato, o gia' in scena
+            continue
+        sporchi.append(nome.split(" -> ")[-1].strip('"'))
+    if sporchi:
+        log.info("publish: %d pagine rigenerate fuori dalle liste, messe in "
+                 "scena qui (%s)", len(sporchi), ", ".join(sorted(sporchi)[:8]))
+        if git("add", "--", *sporchi).returncode != 0:
+            log.error("publish: git add delle pagine rigenerate e' fallito")
+            return False
+
     # `git diff --cached --quiet` exits 0 when the index matches HEAD.
     if git("diff", "--cached", "--quiet").returncode == 0:
         log.info("publish: the regenerated pages are unchanged — nothing to push")
@@ -432,9 +471,23 @@ def _push_generated(log) -> bool:
     rebase = git("pull", "--rebase", "origin", "main")
     if rebase.returncode:
         git("rebase", "--abort")
-        log.error("publish: the remote has diverged and the rebase failed — "
-                  "nothing pushed, resolve by hand:\n%s",
-                  (rebase.stdout + rebase.stderr)[-800:])
+        # DUE GUASTI DIVERSI VANNO DETTI CON PAROLE DIVERSE. Per un'intera
+        # giornata questo ramo ha dato la colpa al remoto — «the remote has
+        # diverged» — mentre il remoto era zero commit avanti e il vero motivo
+        # stava nella riga sotto: «cannot pull with rebase: You have unstaged
+        # changes». Chi legge il log va a cercare una divergenza che non c'e',
+        # e il file sporco resta li' a bloccare anche il giorno dopo.
+        testo = rebase.stdout + rebase.stderr
+        dietro = git("rev-list", "--count", "main..origin/main").stdout.strip()
+        if "unstaged changes" in testo or "cannot pull with rebase" in testo:
+            motivo = ("l'albero di lavoro e' sporco fuori da site/ — nessuna "
+                      "divergenza col remoto")
+        elif dietro and dietro != "0":
+            motivo = f"il remoto e' avanti di {dietro} commit e il rebase ha un conflitto"
+        else:
+            motivo = "il rebase e' fallito e il remoto non e' avanti"
+        log.error("publish: %s — nothing pushed, resolve by hand:\n%s",
+                  motivo, testo[-800:])
         return False
 
     push = git("push", "origin", "main")
