@@ -25,7 +25,7 @@ scripts:
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the conference indexers' APIs,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 21 September 2026, 10:54 CEST</span></div>
+<span class="stamp">Last successful update: 21 September 2026, 10:59 CEST</span></div>
 </div>
 
 <p class="conf-legend"><span class="conf-legend__lead">Closeness of the subject:</span><span class="conf-aff conf-aff--core">Neutrino physics</span><span class="conf-aff conf-aff--related">Astroparticle &amp; underground</span><span class="conf-aff conf-aff--broad">Particle physics at large</span><span class="conf-aff conf-aff--adjacent">Adjacent fields</span><span class="conf-aff conf-aff--unknown">Not classified</span></p>
