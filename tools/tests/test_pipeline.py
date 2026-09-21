@@ -527,6 +527,43 @@ def _rebase_refused_by_a_dirty_tree() -> _CollectingLog:
             shutil.rmtree(p, ignore_errors=True)
 
 
+# "Nothing staged" is not "nothing to push". After two runs had died at the
+# rebase, main sat two commits ahead of origin/main with yesterday's pages
+# live; the index matched HEAD, so _push_generated answered "the site IS
+# current" and returned True before ever fetching. The caller recorded a
+# success and the watchdog read a fresh last_success.
+def _commits_never_pushed() -> dict:
+    root, remote = _build_repo_with_a_tracked_photo()
+    try:
+        (root / "site" / "conferences.html").write_text("<html>newer</html>\n")
+        _git(root, "add", "-A")
+        _git(root, "commit", "-q", "-m", "Daily refresh — a run that died later")
+        # not pushed: exactly the state the two failed rebases left behind
+        log = _CollectingLog()
+        _orig_root = pipeline.ROOT
+        pipeline.ROOT = root
+        try:
+            published = pipeline._push_generated(log)
+        finally:
+            pipeline.ROOT = _orig_root
+        return {"published": published, "log": log,
+                "local": _git(root, "rev-parse", "HEAD").stdout.strip(),
+                "remote": _git(remote, "rev-parse", "main").stdout.strip()}
+    finally:
+        for p in (root, remote, remote.parent):
+            shutil.rmtree(p, ignore_errors=True)
+
+
+_p = _commits_never_pushed()
+check("a commit that never reached origin is pushed, not reported as "
+      "\"nothing to push\" — two such commits sat unpushed while the live "
+      "site showed yesterday",
+      _p["local"] == _p["remote"] and bool(_p["local"]),
+      (_p["local"], _p["remote"], _p["log"].infos if hasattr(_p["log"], "infos") else ""))
+check("...and the run still reports the site as current afterwards",
+      _p["published"] is True, _p["published"])
+
+
 _d = _rebase_refused_by_a_dirty_tree()
 _msgs = " ".join(str(m) for m in _d.errors).lower()
 check("a dirty worktree is never announced as a diverged remote",
