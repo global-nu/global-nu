@@ -25,7 +25,7 @@ scripts:
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the conference indexers' APIs,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 22 September 2026, 08:34 CEST</span></div>
+<span class="stamp">Last successful update: 22 September 2026, 10:02 CEST</span></div>
 </div>
 
 <p class="conf-legend"><span class="conf-legend__lead">Closeness of the subject:</span><span class="conf-aff conf-aff--core">Neutrino physics</span><span class="conf-aff conf-aff--related">Astroparticle &amp; underground</span><span class="conf-aff conf-aff--broad">Particle physics at large</span><span class="conf-aff conf-aff--adjacent">Adjacent fields</span><span class="conf-aff conf-aff--unknown">Not classified</span></p>
@@ -173,8 +173,8 @@ and may contain errors. No model is involved.</b>
 <div class="section-head section-head--sub"><h3>Recent</h3><p>6 of 22</p></div>
 <ul class="list list--news">
 <li><b>10th Roma International Conference on Astroparticle Physics</b><span class="conf-aff conf-aff--related" title="series “RICAP”">Astroparticle &amp; underground</span><span>7–11 September 2026 · Roma, Italy</span><span class="cites"><a href="https://agenda.infn.it/event/51859/">Details</a></span></li>
-<li><b>27th International Workshop on Neutrinos from Accelerators (NuFact2026)</b><span class="conf-aff conf-aff--core" title="series “NuFact”">Neutrino physics</span><span>31 August – 5 September 2026 · Shanghai, China</span><span class="cites"><a href="https://indico-tdli.sjtu.edu.cn/event/4693/">Details</a></span></li>
 <li><b>Neutrino Oscillation Workshop 2026</b><span class="conf-aff conf-aff--core" title="series “NOW”">Neutrino physics</span><span>31 August – 6 September 2026 · Otranto, Lecce, Italy</span><span class="cites"><a href="https://www.ba.infn.it/now">Details</a></span></li>
+<li><b>27th International Workshop on Neutrinos from Accelerators (NuFact2026)</b><span class="conf-aff conf-aff--core" title="series “NuFact”">Neutrino physics</span><span>31 August – 5 September 2026 · Shanghai, China</span><span class="cites"><a href="https://indico-tdli.sjtu.edu.cn/event/4693/">Details</a></span></li>
 <li><b>COSMO-26</b><span class="conf-aff conf-aff--related" title="series “COSMO”">Astroparticle &amp; underground</span><span>24–28 August 2026 · Leiden, Netherlands</span><span class="cites"><a href="https://cosmo-26.lorentz.leidenuniv.nl/">Details</a></span></li>
 <li><b>The Fifth International Conference on Axion Physics and Experiment (Axion 2026)</b><span class="conf-aff conf-aff--related" title="title names “axion”">Astroparticle &amp; underground</span><span>9–13 August 2026 · Qingdao, China</span><span class="cites"><a href="https://indico.itp.ac.cn/event/416/">Details</a></span></li>
 <li><b>Axions in Seoul 2026</b><span class="conf-aff conf-aff--related" title="name names “axion”">Astroparticle &amp; underground</span><span>27–30 July 2026 · Seoul, South Korea</span><span class="cites"><a href="https://indico.ibs.re.kr/event/1091/">Details</a></span></li>
