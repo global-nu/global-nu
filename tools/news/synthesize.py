@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import re
 import subprocess
 import sys
@@ -38,6 +39,37 @@ DISALLOWED = ["Bash", "Read", "Write", "Edit", "WebFetch", "WebSearch",
 
 URL_RE = re.compile(r"https?://\S+|\bwww\.\S+", re.I)
 FENCE_RE = re.compile(r"^\s*```(?:json)?\s*|\s*```\s*$", re.S)
+
+# A timeout is a bet on who else is using the machine. On 22 September 2026
+# this call died at 300 s and the page went out carrying YESTERDAY's narrative
+# without anybody noticing. Nothing was broken: the Mac was at load average
+# 230 on 24 cores, running a legitimate JUNO analysis, and the model never got
+# enough CPU to answer inside five minutes. A 24-core machine busy with
+# physics is a machine being used well — the pipeline is what has to adapt.
+#
+# So the budget stretches with the load, up to LOAD_FACTOR_MAX times and never
+# past TIMEOUT_MAX. Beyond that the problem is no longer haste, and reusing
+# the last good narrative is the right answer again.
+LOAD_FACTOR_MAX = 3.0
+TIMEOUT_MAX = 20 * 60
+
+
+def machine_load() -> tuple[float, int]:
+    """One-minute load average and core count. (0.0, n) when unavailable."""
+    cores = os.cpu_count() or 1
+    try:
+        return os.getloadavg()[0], cores
+    except (OSError, AttributeError):
+        return 0.0, cores
+
+
+def load_aware(base: int) -> int:
+    """`base` on an idle machine, stretched in proportion to the load."""
+    load, cores = machine_load()
+    if load <= cores:
+        return base
+    return int(min(base * min(load / cores, LOAD_FACTOR_MAX), TIMEOUT_MAX))
+
 
 # A URL is not the only way to name a source falsely. A bare DOI or arXiv
 # number in the prose reads exactly like a citation, and nothing downstream
@@ -179,19 +211,28 @@ def call_claude(prompt: str, cfg: dict, log: logging.Logger) -> str | None:
         "--append-system-prompt", SYSTEM,
         "--disallowed-tools", *DISALLOWED,
     ]
-    log.info("synthesis: calling %s (%d chars of prompt)",
-             " ".join(cmd[:5]), len(prompt))
+    budget = load_aware(int(conf.get("timeout", 300)))
+    load, cores = machine_load()
+    # The load goes in the log even when it is not a problem. On 22 September
+    # 2026 the only line was "timed out after 300s", and from that you could
+    # not tell whether the model was slow or the machine was full; finding out
+    # by hand cost half a morning.
+    log.info("synthesis: calling %s (%d chars of prompt, %ds budget, "
+             "load %.1f on %d cores)",
+             " ".join(cmd[:5]), len(prompt), budget, load, cores)
     try:
         proc = subprocess.run(
             cmd, input=prompt, capture_output=True, text=True,
-            timeout=int(conf.get("timeout", 300)),
+            timeout=budget,
         )
     except FileNotFoundError:
         log.warning("synthesis: the `claude` CLI is not on PATH — "
                     "a LaunchAgent needs ~/.local/bin added explicitly")
         return None
     except subprocess.TimeoutExpired:
-        log.warning("synthesis: timed out after %ss", conf.get("timeout", 300))
+        log.warning("synthesis: timed out after %ss (load %.1f on %d cores) — "
+                    "the page will carry the last good narrative, not today's",
+                    budget, load, cores)
         return None
     if proc.returncode != 0:
         log.warning("synthesis: claude exited %s: %s",
