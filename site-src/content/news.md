@@ -22,7 +22,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>The summaries on this page are written automatically with AI from
 fetched records, and may contain errors.</b>
-<span class="stamp">Last successful update: 22 September 2026, 10:02 CEST</span></div>
+<span class="stamp">Last successful update: 22 September 2026, 10:06 CEST</span></div>
 </div>
 <p class="small muted"><b>In summary.</b> This week's neutrino-physics news is dominated by IceCube: a renewed five-year NSF operating contract, new Upgrade strings deployed at the Pole, and fresh source searches using DeepCore data, alongside commissioning progress on T2K's ND280 upgrade and a first MicroBooNE cross-section measurement on argon. On the theory side, a combined multi-experiment atmospheric-oscillation fit and an ab initio reassessment of neutrinoless double-beta decay limits stand out among several new proposals for neutrino mass generation. This paragraph summarises the items below; the sources are on the items themselves.</p>
 
