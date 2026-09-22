@@ -25,7 +25,7 @@ scripts:
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the conference indexers' APIs,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 21 September 2026, 10:59 CEST</span></div>
+<span class="stamp">Last successful update: 22 September 2026, 08:34 CEST</span></div>
 </div>
 
 <p class="conf-legend"><span class="conf-legend__lead">Closeness of the subject:</span><span class="conf-aff conf-aff--core">Neutrino physics</span><span class="conf-aff conf-aff--related">Astroparticle &amp; underground</span><span class="conf-aff conf-aff--broad">Particle physics at large</span><span class="conf-aff conf-aff--adjacent">Adjacent fields</span><span class="conf-aff conf-aff--unknown">Not classified</span></p>
@@ -33,7 +33,7 @@ and may contain errors. No model is involved.</b>
 <figure class="figure">
 <h4>Timeline</h4>
 <div class="timeline-scroll">
-<svg viewBox="0 0 2740 326" role="img" width="3288" height="391" aria-label="Timeline of upcoming and recently concluded neutrino conferences, scrollable sideways from today to a year ahead" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 2747 326" role="img" width="3296" height="391" aria-label="Timeline of upcoming and recently concluded neutrino conferences, scrollable sideways from today to a year ahead" xmlns="http://www.w3.org/2000/svg">
 <title>Conference timeline</title>
 <text x="2.0" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
 <line x1="157.8" y1="14" x2="157.8" y2="311" style="stroke:var(--line);stroke-width:1"/>
@@ -60,8 +60,8 @@ and may contain errors. No model is involved.</b>
 <text x="2341.1" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Aug</text>
 <line x1="2560.5" y1="14" x2="2560.5" y2="311" style="stroke:var(--line);stroke-width:1"/>
 <text x="2563.5" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
-<line x1="86.1" y1="8" x2="86.1" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
-<text x="86.1" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
+<line x1="93.2" y1="8" x2="93.2" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
+<text x="93.2" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
 <rect x="35.9" y="30" width="64.5" height="10" rx="5" style="fill:var(--dec-2);opacity:1;stroke:var(--text);stroke-width:2"><title>The First China-Europe Neutrino…: 2026-09-14 → 2026-09-23 · under way — Neutrino physics (title names “neutrino”)</title></rect>
 <text x="108.4" y="38.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">The First China-Europe…</tspan></text>
 <rect x="50.2" y="50" width="43.0" height="10" rx="5" style="fill:var(--dec-2);opacity:1;stroke:var(--text);stroke-width:2"><title>Erice International School/Workshop of…: 2026-09-16 → 2026-09-22 · under way — Neutrino physics (title names “neutrinos”)</title></rect>
@@ -78,8 +78,8 @@ and may contain errors. No model is involved.</b>
 <text x="531.6" y="158.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">9th High Power Targetry…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">CERN</tspan></text>
 <rect x="667.0" y="170" width="21.5" height="10" rx="5" style="fill:var(--text-mute);opacity:1"><title>Workshop on Multi-front Exotic…: 2026-12-11 → 2026-12-14 — Not classified (nothing in the record to judge by)</title></rect>
 <text x="696.5" y="178.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Workshop on Multi-front…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">The Chinese University…</tspan></text>
-<rect x="839.1" y="190" width="43.0" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>TMEX: 2027-01-04 → 2027-01-10 — Astroparticle &amp; underground (title names “particle astrophysics”)</title></rect>
-<text x="890.2" y="198.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">TMEX</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Quy Nhon, Vietnam</tspan></text>
+<rect x="903.7" y="190" width="14.3" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>XSCRC2027: 2027-01-13 → 2027-01-15 — Astroparticle &amp; underground (title names “cosmic rays”)</title></rect>
+<text x="926.0" y="198.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">XSCRC2027</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Prevessin (CERN)…</tspan></text>
 <rect x="1140.4" y="210" width="28.7" height="10" rx="5" style="fill:var(--dec-2);opacity:1"><title>Neutel 27: 2027-02-15 → 2027-02-19 — Neutrino physics (series “Neutel”)</title></rect>
 <text x="1177.1" y="218.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Neutel 27</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Padova, Italy</tspan></text>
 <rect x="1384.2" y="230" width="43.0" height="10" rx="5" style="fill:var(--dec-3);opacity:1"><title>Quark Matter 2027: 2027-03-21 → 2027-03-27 — Adjacent fields (series “Quark Matter”)</title></rect>
@@ -92,7 +92,7 @@ and may contain errors. No model is involved.</b>
 <text x="2217.0" y="298.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">ICDMS2027</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Cambridge, United States</tspan></text>
 </svg>
 </div>
-<p class="cap">14 of the 38 upcoming meetings, spread across the year ahead. Bar colour follows the key above; an outlined bar is under way, a faded one has concluded. The next four months are shown — scroll the figure sideways for the rest of the year. 38 upcoming and 37 recent meetings are tracked in full below.</p>
+<p class="cap">14 of the 37 upcoming meetings, spread across the year ahead. Bar colour follows the key above; an outlined bar is under way, a faded one has concluded. The next four months are shown — scroll the figure sideways for the rest of the year. 37 upcoming and 37 recent meetings are tracked in full below.</p>
 </figure>
 
 
@@ -132,19 +132,18 @@ and may contain errors. No model is involved.</b>
 <circle cx="16.0" cy="285.0" r="4" fill="var(--dec-3)"/>
 <text x="25.0" y="288.0" style="fill:var(--text-mute);font-size:9px;font-family:var(--body,sans-serif)">Adjacent fields</text>
 </svg>
-<p class="cap">22 of 38 upcoming meetings placed on the map from a venue the source published; the other 16 stay in the list below without a dot rather than a guess.</p>
+<p class="cap">22 of 37 upcoming meetings placed on the map from a venue the source published; the other 15 stay in the list below without a dot rather than a guess.</p>
 </figure>
 
-<div class="section-head"><h2>Neutrino conferences</h2><p>54 meetings</p></div>
-<div class="section-head section-head--sub"><h3>Upcoming</h3><p>32 meetings</p></div>
+<div class="section-head"><h2>Neutrino conferences</h2><p>53 meetings</p></div>
+<div class="section-head section-head--sub"><h3>Upcoming</h3><p>31 meetings</p></div>
 <ul class="list list--news">
 <li><b>The First China-Europe Neutrino Astronomy Summer School</b><span class="conf-aff conf-aff--core" title="title names “neutrino”">Neutrino physics</span><span>14–23 September 2026</span><span class="cites"><a href="https://indico.ihep.ac.cn/event/29330/">Details</a></span></li>
 <li><b>Erice International School/Workshop of Nuclear Physics, 47th course on 'Neutrinos in Cosmology,in Astro-, Particle- and Nuclear Physics'</b><span class="conf-aff conf-aff--core" title="title names “neutrinos”">Neutrino physics</span><span>16–22 September 2026 · Erice, Sicily, Italy</span><span class="cites"><a href="https://indico.gsi.de/event/23757/">Details</a></span></li>
 <li><b>36th International School “Francesco Romano” on Nuclear, Subnuclear and Astroparticle Physics</b><span class="conf-aff conf-aff--related" title="title names “astroparticle”">Astroparticle &amp; underground</span><span>20–27 September 2026 · Bari, Italy</span><span class="cites"><a href="https://isfr.ba.infn.it/isfr2026/">Details</a></span></li>
 <li><b>14th International Workshop on Neutrino Beams and Instrumentation and 10th Radiation Damage In Accelerator Target Environments Collaboration Meeting</b><span class="conf-aff conf-aff--core" title="series “NBI”">Neutrino physics</span><span>21–25 September 2026 · Batavia, United States</span><span class="cites"><a href="https://indico.fnal.gov/event/71651/">Details</a></span></li>
 <li><b>Probing new physics beyond the standard model at the HL-LHC and future lepton colliders</b><span class="conf-aff conf-aff--adjacent" title="title names “colliders”">Adjacent fields</span><span>21–24 September 2026</span><span class="cites"><a href="https://indico.cern.ch/event/1677041/">Details</a></span></li>
-<li><b>Neutrino Frontiers: A METU Workshop in memory of Prof. Perihan Tolun</b><span class="conf-aff conf-aff--core" title="title names “neutrino”">Neutrino physics</span><span>21 September 2026 · Kültür Kongre Merkezi, ODTÜ</span><span class="cites"><a href="https://indico.cern.ch/event/1712218/">Details</a></span></li>
-<li><b>3rd Joint IceCube-KM3NeT-JUNO NMO Workshop</b><span class="conf-aff conf-aff--unknown" title="nothing in the record to judge by">Not classified</span><span>23–24 September 2026</span><span class="cites"><a href="https://indico.in2p3.fr/event/40032/">Details</a></span></li>
+<li><b>3rd Joint IceCube-KM3NeT-JUNO NMO Workshop</b><span class="conf-aff conf-aff--unknown" title="nothing in the record to judge by">Not classified</span><span>23–24 September 2026 · Building 25</span><span class="cites"><a href="https://indico.in2p3.fr/event/40032/">Details</a></span></li>
 <li><b>LPNHE-neutrino group meeting</b><span class="conf-aff conf-aff--core" title="title names “neutrino”">Neutrino physics</span><span>23 September 2026</span><span class="cites"><a href="https://indico.in2p3.fr/event/40796/">Details</a></span></li>
 <li><b>Optomechanical Sensing for Subatomic and Astroparticle Physics</b><span class="conf-aff conf-aff--related" title="title names “astroparticle”">Astroparticle &amp; underground</span><span>23–25 September 2026 · 421 Union St., Kingston, Canada</span><span class="cites"><a href="https://indico.global/event/18677/">Details</a></span></li>
 <li><b>Seminar: First results from JUNO by Mathieu Bongrand</b><span class="conf-aff conf-aff--unknown" title="nothing in the record to judge by">Not classified</span><span>2 October 2026 · LAPP</span><span class="cites"><a href="https://indico.in2p3.fr/event/39759/">Details</a></span></li>
@@ -174,8 +173,8 @@ and may contain errors. No model is involved.</b>
 <div class="section-head section-head--sub"><h3>Recent</h3><p>6 of 22</p></div>
 <ul class="list list--news">
 <li><b>10th Roma International Conference on Astroparticle Physics</b><span class="conf-aff conf-aff--related" title="series “RICAP”">Astroparticle &amp; underground</span><span>7–11 September 2026 · Roma, Italy</span><span class="cites"><a href="https://agenda.infn.it/event/51859/">Details</a></span></li>
-<li><b>Neutrino Oscillation Workshop 2026</b><span class="conf-aff conf-aff--core" title="series “NOW”">Neutrino physics</span><span>31 August – 6 September 2026 · Otranto, Lecce, Italy</span><span class="cites"><a href="https://www.ba.infn.it/now">Details</a></span></li>
 <li><b>27th International Workshop on Neutrinos from Accelerators (NuFact2026)</b><span class="conf-aff conf-aff--core" title="series “NuFact”">Neutrino physics</span><span>31 August – 5 September 2026 · Shanghai, China</span><span class="cites"><a href="https://indico-tdli.sjtu.edu.cn/event/4693/">Details</a></span></li>
+<li><b>Neutrino Oscillation Workshop 2026</b><span class="conf-aff conf-aff--core" title="series “NOW”">Neutrino physics</span><span>31 August – 6 September 2026 · Otranto, Lecce, Italy</span><span class="cites"><a href="https://www.ba.infn.it/now">Details</a></span></li>
 <li><b>COSMO-26</b><span class="conf-aff conf-aff--related" title="series “COSMO”">Astroparticle &amp; underground</span><span>24–28 August 2026 · Leiden, Netherlands</span><span class="cites"><a href="https://cosmo-26.lorentz.leidenuniv.nl/">Details</a></span></li>
 <li><b>The Fifth International Conference on Axion Physics and Experiment (Axion 2026)</b><span class="conf-aff conf-aff--related" title="title names “axion”">Astroparticle &amp; underground</span><span>9–13 August 2026 · Qingdao, China</span><span class="cites"><a href="https://indico.itp.ac.cn/event/416/">Details</a></span></li>
 <li><b>Axions in Seoul 2026</b><span class="conf-aff conf-aff--related" title="name names “axion”">Astroparticle &amp; underground</span><span>27–30 July 2026 · Seoul, South Korea</span><span class="cites"><a href="https://indico.ibs.re.kr/event/1091/">Details</a></span></li>
