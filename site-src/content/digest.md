@@ -22,15 +22,14 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors.</b>
-<span class="stamp">Last successful update: 23 September 2026, 07:56 CEST</span></div>
+<span class="stamp">Last successful update: 24 September 2026, 07:49 CEST</span></div>
 </div>
 
 <div class="section-head"><h2>Experimental</h2>
-<p>2 preprints</p></div>
+<p>1 preprint</p></div>
 
 <ul class="list list--news">
 <li><b><a href="https://arxiv.org/abs/2609.20117">Commissioning and Performance of the Time-of-Flight Detector for the T2K Neutrino Oscillation Experiment</a></b><span>C. Alt, L. Amziane, N. Baudis et al. · 17 Sep 2026</span><span class="tags"><span class="tag">physics.ins-det</span><span class="tag">hep-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2609.20552">Mineral Detection of Neutrinos and Dark Matter 2026 Proceedings</a></b><span>Alexey Elykov, Patrick Stengel, Natsue Abe et al. · 17 Sep 2026</span><span class="tags"><span class="tag">physics.ins-det</span><span class="tag">astro-ph.CO</span><span class="tag">astro-ph.IM</span></span></li>
 </ul>
 
 
@@ -39,23 +38,24 @@ and may contain errors.</b>
 ::: section alt
 
 <div class="section-head"><h2>Theory</h2>
-<p>14 preprints</p></div>
+<p>15 preprints</p></div>
 
 <ul class="list list--news">
 <li><b><a href="https://arxiv.org/abs/2609.26027">Testable neutrino mass and TeV-scale leptogenesis in a D₄ inverse seesaw model</a></b><span>Qiu Yan, Yakefu Reyimuaji · 22 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2609.27540">Earth-density effects in long-baseline neutrino experiments in a four-flavor (3+1) sterile-neutrino framework</a></b><span>Bipin Singh Koranga, Aditya Pant, Pranav Kumar et al. · 23 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.20033">On the Maximal CP Violation in Leptogenesis with Two Right Handed Neutrinos</a></b><span>Swapnil Dutta · 17 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2609.26965">Tension between MiniBooNE and MicroBooNE within a 3+1 Sterile Neutrino Framework using Simulation-Based Inference</a></b><span>Julia P. Woodward, Austin Schneider, Joshua Villarreal et al. · 22 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.21408">Anomalous Matter Potentials in Earth's Inner Core: A Phenomenological Probe of Dark Matter and Light Sterile Neutrinos</a></b><span>Bipin Singh Koranga, Vivek Kumar Nautiyal · 18 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.21768">AGN and DSNB Neutrino Oscillation in Dark Matter Background</a></b><span>Po-Yan Tseng, Yu-Min Yeh · 18 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2609.28457">Sterile Neutrino Dark Matter Cries for GeV Heavy Neutral Leptons</a></b><span>Marco Drewes, Yannis Georis, Juraj Klarić et al. · 23 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2609.27670">CP asymmetry and visible decay in 3+1 neutrino oscillations on a quantum computer</a></b><span>Amartya Sengupta, Sidhartha Samtani, Ani Girgvliani et al. · 23 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">quant-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2609.26908">Supernova Gamma-Ray Echo as an Astrophysical Near Detector for Galactic Neutrino Propagation</a></b><span>Garv Chauhan, Yago Porto · 22 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.22806">Gamma-Ray Echo as a Probe of Supernova Neutrino Emission Anisotropy and Long-Baseline Effects</a></b><span>Garv Chauhan, Cecilia Lunardini, Yago Porto · 19 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.25592">Restoring minimal modular neutrino masses via Kähler R-parity violation</a></b><span>Anjan S. Joshipura, Ketan M. Patel · 22 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-th</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2609.19271">Probing Scalar-Induced First-Order Phase Transitions with the Diffuse Supernova Neutrino Background</a></b><span>Sudipta Das, Shamik Niyogi, Manibrata Sen · 16 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2609.28057">A Diagnostic Method for Proto-Neutron Star Magnetic Fields by Supernova Fallback Neutrinos</a></b><span>Akihiro Inoue, Yudai Suwa, Ryuichiro Akaho et al. · 23 Sep 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2609.27697">Response of Hellinger-distance based coherence to weak decoherence in two-flavor neutrino oscillations</a></b><span>Saurabh Rai, Nilakshi Das, Tejhas Kapoor · 23 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">quant-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.24990">Three-Flavoured Thermal Leptogenesis Without Tuning</a></b><span>Angus Spalding · 21 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.22063">Resurrecting Electroweak Dark Matter via Type-II Seesaw in light of recent LZ Event</a></b><span>Partha Kumar Paul, Sujit Kumar Sahoo, Narendra Sahu et al. · 18 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span><span class="tag">hep-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2609.26773">Resonant neutrino flavor conversion within dark matter spikes</a></b><span>P. S. Bhupal Dev, Elisa Gaido, Alejandro Ibarra et al. · 22 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2609.25229">Fast Surrogate for the Earth Matter Effect on Solar Neutrinos</a></b><span>Saeed Ansarifard · 21 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">physics.comp-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2609.21745">Leptogenesis and Planck-scale black hole remnants in a Pati-Salam cosmology</a></b><span>Arnab Chaudhuri, Erdenebulgan Lkhagvadorj, Satyabrata Mahapatra · 18 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2609.19198">Interpreting quantum coherence of neutrinos in asymptotically flat spacetimes via effective distances: Solution to the paradoxes of the Leggett-Garg inequality and quantum information quantities</a></b><span>Shan Wu, Shu-Jun Rong · 16 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">gr-qc</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2609.19256">Collective flavor conversion in dense neutrino plasmas</a></b><span>Damiano F. G. Fiorillo · 16 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span><span class="tag">astro-ph.HE</span></span></li>
 </ul>
 
 
@@ -77,7 +77,8 @@ still appears under theory.</p>
 
 <!-- ARCHIVE:BEGIN -->
 <ul class="archive">
-  <li><time datetime="2026-09-22">22 September 2026</time><a href="digest/2026-09-22.html">Digest of 2026-09-22</a><span class="count">3 papers</span></li>
+  <li><time datetime="2026-09-23">23 September 2026</time><a href="digest/2026-09-23.html">Digest of 2026-09-23</a><span class="count">5 papers</span></li>
+  <li><time datetime="2026-09-22">22 September 2026</time><a href="digest/2026-09-22.html">Digest of 2026-09-22</a><span class="count">5 papers</span></li>
   <li><time datetime="2026-09-21">21 September 2026</time><a href="digest/2026-09-21.html">Digest of 2026-09-21</a><span class="count">4 papers</span></li>
   <li><time datetime="2026-09-19">19 September 2026</time><a href="digest/2026-09-19.html">Digest of 2026-09-19</a><span class="count">2 papers</span></li>
   <li><time datetime="2026-09-18">18 September 2026</time><a href="digest/2026-09-18.html">Digest of 2026-09-18</a><span class="count">5 papers</span></li>
@@ -86,8 +87,7 @@ still appears under theory.</p>
   <li><time datetime="2026-09-15">15 September 2026</time><a href="digest/2026-09-15.html">Digest of 2026-09-15</a><span class="count">19 papers</span></li>
   <li><time datetime="2026-09-14">14 September 2026</time><a href="digest/2026-09-14.html">Digest of 2026-09-14</a><span class="count">22 papers</span></li>
   <li><time datetime="2026-09-13">13 September 2026</time><a href="digest/2026-09-13.html">Digest of 2026-09-13</a><span class="count">1 paper</span></li>
-  <li><time datetime="2026-09-12">12 September 2026</time><a href="digest/2026-09-12.html">Digest of 2026-09-12</a><span class="count">2 papers</span></li>
-  <li><time datetime="2026-09">September 2026</time><a href="digest/2026-09.html">All of September 2026</a><span class="count">108 papers</span></li>
+  <li><time datetime="2026-09">September 2026</time><a href="digest/2026-09.html">All of September 2026</a><span class="count">115 papers</span></li>
   <li><time datetime="2026-08">August 2026</time><a href="digest/2026-08.html">All of August 2026</a><span class="count">76 papers</span></li>
 </ul>
 <!-- ARCHIVE:END -->
