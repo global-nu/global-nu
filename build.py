@@ -633,6 +633,12 @@ def build_pages(cfg: dict, with_drafts: bool = False) -> tuple[list[str], list[s
         # so <title> is fine too.
         page = render_template(tpl_cache[tpl_name], {
             "title": html.escape(fm.get("title", cfg["site_name"]), quote=True),
+            # What the tab, search results and link previews show. "Home —
+            # global-nu" said nothing to someone who does not know the name; a
+            # page can set head_title to say more.
+            "head_title": html.escape(
+                fm.get("head_title") or f'{fm.get("title", cfg["site_name"])} — {cfg["site_name"]}',
+                quote=True),
             "description": html.escape(fm.get("description", ""), quote=True),
             "url": url,
             "base": base,
@@ -651,7 +657,11 @@ def build_pages(cfg: dict, with_drafts: bool = False) -> tuple[list[str], list[s
         page = externalize_links(page, cfg)
         page = version_assets(page, versions)
         (OUT / url).parent.mkdir(parents=True, exist_ok=True)
-        (OUT / url).write_text(page, encoding="utf-8")
+        target = OUT / url
+        old_page = target.read_text(encoding="utf-8") if target.exists() else None
+        if old_page is None or _content(old_page) != _content(page):
+            CHANGED.add(url)
+        target.write_text(page, encoding="utf-8")
         written.append(url)
         # A page can ask to stay out of the sitemap. 404.html is the case
         # this exists for: it must be built and its links must be checked,
@@ -660,6 +670,37 @@ def build_pages(cfg: dict, with_drafts: bool = False) -> tuple[list[str], list[s
             in_sitemap.append(url)
         print(f"    page {path.name} -> {url}")
     return written, in_sitemap
+
+
+# --------------------------------------------------------------------------- #
+# Honest lastmod in sitemap.xml
+#
+# The daily refresh rebuilds every page, so "today" on every URL — what the
+# sitemap used to say — told a search engine that all 56 pages changed every
+# morning, and Google ignores lastmod that is not "consistently and verifiably
+# accurate". Many pages here are generated from data, so a source file's mtime
+# would not do either. The test is the output itself: a page is dated today
+# only when the HTML it produced differs from the HTML already published;
+# otherwise it keeps the date the previous sitemap gave it. The ?v= asset
+# fingerprints are ignored: a stylesheet change is not a content change.
+
+CHANGED: set[str] = set()
+_ASSET_V = re.compile(r"\?v=[0-9a-f]{6,}")
+
+
+def _content(page: str) -> str:
+    return _ASSET_V.sub("", page)
+
+
+def _previous_lastmods(site_url: str) -> dict[str, str]:
+    f = OUT / "sitemap.xml"
+    if not f.exists():
+        return {}
+    prefix = site_url.rstrip("/") + "/"
+    return {loc[len(prefix):]: mod
+            for loc, mod in re.findall(r"<loc>([^<]+)</loc><lastmod>([^<]+)</lastmod>",
+                                       f.read_text(encoding="utf-8"))
+            if loc.startswith(prefix)}
 
 
 def check_links(written: list[str]) -> None:
@@ -738,6 +779,8 @@ def main() -> None:
     if args.out:
         OUT = Path(args.out)
 
+    # Read before anything under site/ is touched (--clean removes it).
+    prev_lastmod = _previous_lastmods(cfg["site_url"])
     if args.clean and OUT.exists():
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True, exist_ok=True)
@@ -798,8 +841,10 @@ def main() -> None:
 
     now = _dt.date.today().isoformat()
     urls = "\n".join(
-        f"  <url><loc>{cfg['site_url']}/{u}</loc><lastmod>{now}</lastmod></url>"
+        f"  <url><loc>{cfg['site_url']}/{u}</loc>"
+        f"<lastmod>{now if u in CHANGED or u not in prev_lastmod else prev_lastmod[u]}</lastmod></url>"
         for u in in_sitemap)
+    print(f"  sitemap: {len(CHANGED)} of {len(in_sitemap)} pages changed since the last build")
     (OUT / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

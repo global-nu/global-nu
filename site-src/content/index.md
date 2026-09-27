@@ -1,5 +1,6 @@
 ---
 title: Home
+head_title: global-nu — Global analyses of neutrino oscillation data (Bari group)
 url: index.html
 description: >-
   Global analyses of neutrino oscillation data by the Bari group: best fits and
