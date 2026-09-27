@@ -844,7 +844,7 @@ def main() -> None:
         f"  <url><loc>{cfg['site_url']}/{u}</loc>"
         f"<lastmod>{now if u in CHANGED or u not in prev_lastmod else prev_lastmod[u]}</lastmod></url>"
         for u in in_sitemap)
-    print(f"  sitemap: {len(CHANGED)} of {len(in_sitemap)} pages changed since the last build")
+    print(f"  sitemap: {len(CHANGED & set(in_sitemap))} of {len(in_sitemap)} pages changed since the last build")
     (OUT / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
