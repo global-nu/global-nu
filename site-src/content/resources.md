@@ -99,7 +99,6 @@ them, read the <a href="results.html">conventions note</a>.</p>
 <div>
 <div class="section-head"><h2>Also from Bari</h2></div>
 <ul class="list">
-<li><b><a href="https://home.ba.infn.it/~marrone/">Antonio Marrone</a></b><span>personal page · teaching and publications</span></li>
 <li><b><a href="https://www.ba.infn.it/now">NOW — Neutrino Oscillation Workshop</a></b><span>Otranto, Italy</span></li>
 </ul>
 </div>

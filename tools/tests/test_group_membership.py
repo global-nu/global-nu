@@ -70,6 +70,10 @@ check("the About page marks its group list, so it can be checked at all", bool(m
 
 if m:
     block = " ".join(m.group(1).split())
+    # A member's name may link to their own page (Antonio Marrone's does, and
+    # this is the only place on the site where it may): the rule is about who
+    # is listed and with which affiliation, so the link is taken off first.
+    block = re.sub(r"</?a\b[^>]*>", "", block)
     names = re.findall(r"<strong>([^<]+)</strong>", block)
     surnames = [n.split()[-1] for n in names]
     check("the About page lists exactly the group, in order",

@@ -35,8 +35,8 @@ The global analyses published here are the work of the Bari group:
 
 <p class="group-list"><strong>Francesco Capozzi</strong> (L’Aquila and INFN
 LNGS), <strong>Eligio Lisi</strong> (INFN Bari), <strong>Francesco
-Marcone</strong> (Università di Bari and INFN Bari), <strong>Antonio
-Marrone</strong> (Università di Bari and INFN Bari) and <strong>Antonio
+Marcone</strong> (Università di Bari and INFN Bari), <strong><a
+href="https://home.ba.infn.it/~marrone/">Antonio Marrone</a></strong> (Università di Bari and INFN Bari) and <strong>Antonio
 Palazzo</strong> (Università di Bari and INFN Bari).</p>
 
 The most recent release,
