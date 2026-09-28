@@ -349,7 +349,7 @@ absent = sorted(c for c in used if f".{c}" not in CSS)
 check("every class the chips and the legend emit exists in site.css",
       not absent, str(absent))
 
-rows = markup.count("<li>")
+rows = markup.count("<li ")  # rows carry conf_attrs
 n_legend = len(affinity.tiers_present(tagged))
 check("every row carries its own chip, plus one per tier in the legend",
       rows > 0 and markup.count('class="conf-aff conf-aff--') == rows + n_legend,
@@ -515,8 +515,8 @@ done = [c for c in own if not c["extra"].get("upcoming")]
 cap = int(((cfg.get("inspire") or {}).get("conferences") or {})
           .get("max_recent", render.MAX_RECENT))
 html = render._scope_block(own, "Neutrino conferences", "nothing", cap)
-shown_up = html.split("<h3>Recent</h3>")[0].count("<li>")
-shown_done = html.count("<li>") - shown_up
+shown_up = html.split("<h3>Recent</h3>")[0].count("<li ")
+shown_done = html.count("<li ") - shown_up
 check(f"the concluded tail stops at max_recent={cap}", shown_done <= cap,
       f"{shown_done} shown of {len(done)}")
 check("UPCOMING is never cut: every meeting inside the window reaches the page",

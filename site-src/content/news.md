@@ -22,7 +22,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>The summaries on this page are written automatically with AI from
 fetched records, and may contain errors.</b>
-<span class="stamp">Last successful update: 28 September 2026, 07:47 CEST</span></div>
+<span class="stamp">Last successful update: 28 September 2026, 13:22 CEST</span></div>
 </div>
 <p class="small muted"><b>In summary.</b> This week's news is dominated by hardware progress and source searches rather than new oscillation results: DUNE's cryostat steel installation and KM3NeT's ARCA62 sea campaign both advanced, while IceCube continued hunting for the origin of KM3NeT's record-breaking 220 PeV neutrino candidate and other astrophysical sources. On the theory side, a combined atmospheric-neutrino analysis spanning four experiments reported a 3-sigma preference for the normal mass ordering, alongside new global limits on the Majorana neutrino mass from ab initio nuclear theory. This paragraph summarises the items below; the sources are on the items themselves.</p>
 

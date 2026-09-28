@@ -484,11 +484,13 @@ def affinity_legend(*groups: list[dict]) -> str:
 def _conf_list(records: list[dict], empty: str) -> str:
     if not records:
         return f'<p class="small muted">{empty}</p>\n'
-    out = ['<ul class="list list--news">\n']
+    out = ['<ul class="list list--news conf-list">\n']
     for rec in records:
         extra = rec.get("extra") or {}
         meta = " · ".join(x for x in (extra.get("span"), extra.get("place")) if x)
-        out.append(f'<li><b>{_title(rec)}</b>'
+        # conf_attrs: the map card's own data, so a click on the row opens
+        # that card (confmap.js). Without the script "Details" stays a link.
+        out.append(f'<li{figures.conf_attrs(rec)}><b>{_title(rec)}</b>'
                    f'{_affinity_chip(rec)}'
                    f'<span>{_esc(meta)}</span>'
                    f'<span class="cites"><a href="{_esc(rec["url"])}">Details</a></span></li>\n')

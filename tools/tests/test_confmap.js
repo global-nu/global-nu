@@ -324,6 +324,105 @@ untaggedCard && untaggedCard.querySelectorAll('.conf-aff').length === 0
   ? ok('a meeting with no tier gets no chip, not an empty one')
   : bad('an untagged meeting rendered a chip');
 
+/* The timeline and the lists open the SAME card. Their bars (with the label
+ * that travels beside each one) and rows carry one conference's data-*
+ * (figures.conf_attrs); when the map has a marker for that conference, the
+ * card borrows its coordinates and photo. */
+const ROWS = `
+<figure class="figure"><div class="timeline-scroll"><svg>
+  <g class="conf-bar" data-conf="conf:2812345" data-name="NuFact 2026" data-dates="31 Aug – 5 Sep 2026"
+     data-place="Shanghai" data-url="https://nufact2026.example.org/" data-tier="core"
+     data-tier-label="Neutrino physics"><rect x="1" y="1" width="9" height="10"/><text>NuFact 2026</text></g>
+  <g class="conf-bar" data-conf="conf:trieste-photo" data-name="Neutrino Physics in Trieste"
+     data-dates="3–7 Nov 2026" data-place="SISSA, Trieste" data-url="https://trieste.example.org/"
+     data-tier="" data-tier-label=""><rect x="20" y="1" width="9" height="10"/><text>NuTrieste</text></g>
+  <g class="conf-bar" data-conf="conf:nomap" data-name="Unplaced Workshop" data-dates="1 Dec 2026"
+     data-place="" data-url="" data-tier="" data-tier-label=""><rect x="40" y="1" width="9" height="10"/></g>
+</svg></div></figure>
+<ul class="list list--news conf-list">
+  <li data-conf="conf:erice" data-name="Erice School 2026" data-dates="14–22 Sep 2026"
+      data-place="Erice, Italy" data-url="https://erice.example.org/" data-tier="" data-tier-label=""><b>Erice School 2026</b><span>14–22 Sep 2026 · Erice</span><span class="cites"><a href="https://erice.example.org/">Details</a></span></li>
+</ul>`;
+
+function bootRows(withMap) {
+  const dom = new JSDOM(`<!doctype html><body>${withMap ? SVG : ''}${ROWS}</body>`,
+                        { runScripts: 'outside-only', pretendToBeVisual: true });
+  dom.window.eval(js);
+  dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));
+  return dom.window.document;
+}
+const click = (doc, el, extra) => {
+  const ev = new doc.defaultView.MouseEvent('click', Object.assign({ bubbles: true, cancelable: true }, extra || {}));
+  el.dispatchEvent(ev);
+  return ev;
+};
+
+let dr = bootRows(true);
+click(dr, dr.querySelector('.conf-bar rect'));
+let rc = dr.querySelector('.conf-card');
+rc && /NuFact 2026/.test(rc.textContent)
+  && [...rc.querySelectorAll('a')].some(a => a.href === 'https://nufact2026.example.org/')
+  ? ok('a timeline bar opens the card, linking to the conference site')
+  : bad('a timeline bar did not open a card with the conference link');
+rc && [...rc.querySelectorAll('a')].some(a => a.href.indexOf('query=31.23,121.47') > -1)
+  ? ok('the bar\'s card borrows the map marker\'s coordinates for Google Maps')
+  : bad('the bar\'s card has no Google Maps link from the marker');
+rc && rc.classList.contains('conf-card--float') && rc.parentNode === dr.body
+  ? ok('a card opened outside the map floats in <body>, not inside the map')
+  : bad('the row card is not a floating card in <body>');
+
+click(dr, dr.querySelector('.conf-bar[data-conf="conf:trieste-photo"] text'));
+rc = dr.querySelector('.conf-card');
+dr.querySelectorAll('.conf-card').length === 1 && rc && /Neutrino Physics in Trieste/.test(rc.textContent)
+  ? ok('a bar\'s label opens the card too, replacing the previous one')
+  : bad('a bar label did not open its card (or left the old one open)');
+rc && rc.querySelector('.conf-card__photo img') && /SISSA, Trieste/.test(rc.textContent)
+  ? ok('the card shows the city photo from the marker and the row\'s own place')
+  : bad('the label card lost the photo or the place');
+
+const nm = dr.querySelector('.conf-bar[data-conf="conf:nomap"]');
+nm.getAttribute('role') === 'button' && nm.getAttribute('tabindex') === '0'
+  ? ok('timeline bars become keyboard buttons') : bad('timeline bars are not focusable');
+nm.focus();
+nm.dispatchEvent(new dr.defaultView.KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+rc = dr.querySelector('.conf-card');
+rc && /Unplaced Workshop/.test(rc.textContent) && !rc.querySelector('a[href*="google.com/maps"]')
+  && !rc.querySelector('.conf-card__title a')
+  ? ok('Enter opens it; with no marker and no URL there is no Maps link and no title link')
+  : bad('the unplaced, unlinked card is wrong');
+dr.dispatchEvent(new dr.defaultView.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+!dr.querySelector('.conf-card')
+  ? ok('Escape closes it') : bad('Escape did not close the row card');
+
+click(dr, dr.querySelector('.conf-list b'));
+rc = dr.querySelector('.conf-card');
+rc && /Erice School 2026/.test(rc.textContent)
+  && [...rc.querySelectorAll('a')].some(a => a.href === 'https://erice.example.org/')
+  ? ok('a click on a list row opens the card with the conference link')
+  : bad('a list row click did not open the card');
+click(dr, dr.body);
+!dr.querySelector('.conf-card') ? ok('a click elsewhere closes it') : bad('the card stayed open');
+const la = dr.querySelector('.conf-list a');
+let ev = click(dr, la);
+ev.defaultPrevented && dr.querySelector('.conf-card')
+  ? ok('a plain click on "Details" opens the card instead of navigating')
+  : bad('"Details" did not open the card');
+click(dr, dr.body);
+ev = click(dr, la, { metaKey: true });
+!ev.defaultPrevented && !dr.querySelector('.conf-card')
+  ? ok('a modifier-click on "Details" is left to the browser (new tab)')
+  : bad('a modifier-click was intercepted');
+la.closest('li').hasAttribute('tabindex')
+  ? bad('a linked row got an extra tab stop')
+  : ok('a linked row adds no tab stop of its own');
+
+const d0 = bootRows(false);
+click(d0, d0.querySelector('.conf-bar rect'));
+rc = d0.querySelector('.conf-card');
+rc && /NuFact 2026/.test(rc.textContent) && !rc.querySelector('a[href*="google.com/maps"]')
+  ? ok('with no map on the page the timeline still opens the card (no Maps link)')
+  : bad('without the map the timeline card fails');
+
 console.log();
 if (fail.length) { console.log(fail.length + ' check(s) failed'); process.exit(1); }
 console.log('all checks pass');

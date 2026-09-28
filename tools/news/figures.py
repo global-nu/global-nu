@@ -51,6 +51,31 @@ def _e(text: str) -> str:
     return html.escape(str(text or ""), quote=True)
 
 
+def conf_attrs(conf: dict) -> str:
+    """The attributes confmap.js builds ONE conference's card from.
+
+    The same names a map `<g class="conf-item">` carries (data-conf,
+    data-name, data-dates, data-url, data-tier, data-tier-label), plus
+    data-place, which on the map sits on the marker. The timeline's bars and
+    the conference lists carry them, so a click on either opens the same card
+    the map does — and one place decides what goes into it.
+
+    The URL passes only if it is http(s): the card puts it in an href built in
+    script, where a `javascript:` URL would run.
+    """
+    extra = conf.get("extra") or {}
+    url = (conf.get("url") or "").strip()
+    if not url.lower().startswith(("http://", "https://")):
+        url = ""
+    return (f' data-conf="{_e(conf.get("id", ""))}"'
+            f' data-name="{_e(conf.get("title", ""))}"'
+            f' data-dates="{_e(extra.get("span", ""))}"'
+            f' data-place="{_e(extra.get("place", ""))}"'
+            f' data-url="{_e(url)}"'
+            f' data-tier="{_e(_tier_of(conf))}"'
+            f' data-tier-label="{_e(_tier_label(conf))}"')
+
+
 # --------------------------------------------------------------------------- #
 # the conference timeline
 # --------------------------------------------------------------------------- #
@@ -351,6 +376,10 @@ def conference_timeline(upcoming: list[dict], recent: list[dict],
         tail = ((f" — {aff['label']}" if aff.get("label") else "")
                 + (f" ({aff['why']})" if aff.get("why") else ""))
 
+        # The bar and its label sit in one <g class="conf-bar"> carrying the
+        # card's data (conf_attrs): a click on either opens the same card the
+        # map does (confmap.js, wireRows).
+        parts.append(f'<g class="conf-bar"{conf_attrs(c)}>')
         parts.append(
             f'<rect x="{x1:.1f}" y="{y + 4}" width="{w:.1f}" height="10" rx="5" '
             f'style="fill:{colour};opacity:{opacity}{ring}"><title>'
@@ -382,6 +411,7 @@ def conference_timeline(upcoming: list[dict], recent: list[dict],
             f'<text x="{text_x:.1f}" y="{y + 12.5}" text-anchor="{anchor}" '
             f'style="opacity:{opacity};font-family:var(--body,sans-serif)">'
             f'{label}</text>')
+        parts.append('</g>')
 
     parts.append("</svg>")
     return "\n".join(parts)

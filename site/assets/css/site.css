@@ -961,6 +961,11 @@ a.card:hover .card__go{color:var(--text)}
   width:min(21rem,calc(100% - 1.6rem));max-height:min(60vh,20rem);overflow-y:auto;
   background:var(--bg);border:1px solid var(--line-strong);border-radius:var(--r);
   box-shadow:var(--shadow-strong);padding:1rem 1.15rem}
+/* The same card opened from the timeline or a conference list (confmap.js,
+   wireRows): appended to <body> and placed just under the bar or row that
+   opened it, so it has a top and a left of its own and no bottom. */
+.conf-card--float{bottom:auto;width:min(21rem,calc(100vw - 1.6rem))}
+.conf-bar,.conf-list li[data-name]{cursor:pointer}
 .conf-card__close{position:absolute;top:.6rem;right:.6rem;width:1.6rem;height:1.6rem;
   display:flex;align-items:center;justify-content:center;border:none;
   background:transparent;color:var(--text-mute);font-size:1.1rem;line-height:1;
