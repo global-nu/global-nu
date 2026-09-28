@@ -12,10 +12,11 @@
  * Same conventions as site.js: an
  * IIFE, "use strict", var, no build step, no dependency, and every
  * enhancement guarded so a missing API disables the one thing that needs it
- * rather than taking the rest down. It touches exactly one figure —
- * `.confmap-figure` — and does nothing at all if the page has none, because
- * this file is loaded only by conferences.md but must survive being loaded
- * anywhere else too.
+ * rather than taking the rest down. It touches the map (`.confmap-figure`),
+ * the conference timeline (`.timeline-scroll`) and the conference lists
+ * (`.conf-list`) — all three open the same card, see wireRows — and does
+ * nothing at all if the page has none of them, because this file is loaded
+ * only by conferences.md but must survive being loaded anywhere else too.
  *
  * The SVG itself (figures.conference_map) is content: every marker carries a
  * <title>, and with this script never running the map still draws and still
@@ -45,21 +46,23 @@
   "use strict";
 
   function init() {
+    // One card for the whole page: the map, the timeline and the list all
+    // open it, and opening it from one closes it wherever it was.
+    var card = makeCard();
+
     var fig = document.querySelector(".confmap-figure");
-    if (!fig) return;
-    var svg = fig.querySelector("svg");
-    if (!svg) return;
-    var pins = svg.querySelectorAll(".conf-pin");
-    if (!pins.length) return;
-
-    // The card is positioned against the map, not the whole figure (which
-    // also carries a heading above it and a caption below) — so the SVG is
-    // wrapped in its own positioning box first, the same idea as map.js's
-    // ensureStage, just without anything to zoom or pan.
-    var stage = ensureStage(svg);
-
-    wireCard(stage, svg, pins);
-    wireTip(fig, stage, svg, pins);
+    var svg = fig ? fig.querySelector("svg") : null;
+    var pins = svg ? svg.querySelectorAll(".conf-pin") : [];
+    if (pins.length) {
+      // The card is positioned against the map, not the whole figure (which
+      // also carries a heading above it and a caption below) — so the SVG is
+      // wrapped in its own positioning box first, the same idea as map.js's
+      // ensureStage, just without anything to zoom or pan.
+      var stage = ensureStage(svg);
+      wireCard(card, stage, svg, pins);
+      wireTip(fig, stage, svg, pins);
+    }
+    wireRows(card, svg);
   }
 
   function ensureStage(svg) {
@@ -101,7 +104,15 @@
     return out;
   }
 
-  function wireCard(fig, svg, pins) {
+  /* The card itself, independent of what opened it. show(spec, host, anchor)
+   * takes a plain description — the conferences to list, the venue, the
+   * element carrying the data-photo* attributes — so the map, the timeline
+   * and the list all build the same card from their own markup. `host` is
+   * where the card is appended; with `anchor` given, the card floats in the
+   * document just under that element (the timeline and the list have no
+   * positioned stage of their own, and the timeline's scroll box would clip
+   * a card placed inside it). */
+  function makeCard() {
     var current = null;
     // Whatever was focused at the moment the open card was opened — normally
     // the marker itself, reached either by a click (which focuses a
@@ -160,20 +171,16 @@
       return figure;
     }
 
-    function open(pin) {
+    function show(spec, host, anchor) {
       remove();
       lastFocus = document.activeElement;
 
-      // data-place/data-lat/data-lon and the five data-photo* attributes are
-      // per VENUE, not per conference — they stay on the pin exactly as
-      // before. Only the name, dates and URL moved: they now live one per
-      // <g class="conf-item"> child, because a marker can hold several
-      // conferences at the same venue (figures.py's _conf_marker).
-      var confs = items(pin);
-      var place = pin.getAttribute("data-place") || "";
-      var lat = pin.getAttribute("data-lat") || "";
-      var lon = pin.getAttribute("data-lon") || "";
-      var photo = pin.getAttribute("data-photo") || "";
+      var confs = spec.confs;
+      var place = spec.place || "";
+      var lat = spec.lat || "";
+      var lon = spec.lon || "";
+      var pin = spec.photoEl;
+      var photo = pin ? (pin.getAttribute("data-photo") || "") : "";
 
       var names = [], ci;
       for (ci = 0; ci < confs.length; ci++) {
@@ -202,7 +209,7 @@
       // signal of that before they ever need to notice the scrollbar.
       var placeBits = [];
       if (place) placeBits.push(place);
-      if (confs.length) {
+      if (confs.length && spec.count) {
         placeBits.push(confs.length + " conference" + (confs.length === 1 ? "" : "s"));
       }
       if (placeBits.length) {
@@ -270,8 +277,10 @@
       }
       if (actions.childNodes.length) card.appendChild(actions);
 
-      fig.appendChild(card);
+      if (anchor) card.classList.add("conf-card--float");
+      host.appendChild(card);
       current = card;
+      if (anchor) place_(card, anchor);
 
       // .conf-card--scrollable turns on the fade site.css paints at the
       // bottom of the card (see the rule there) — only when this card's own
@@ -290,6 +299,71 @@
       // but does not behave like one; move focus onto its close button so a
       // keyboard or screen-reader user lands inside it immediately.
       closeBtn.focus();
+    }
+
+    // Just under the element that opened it, left edges aligned, and
+    // pulled back inside the viewport when the element sits near its right
+    // edge (a timeline bar far along the scroll box). Coordinates are the
+    // document's, because the card is appended to <body>.
+    function place_(card, anchor) {
+      var r = anchor.getBoundingClientRect();
+      var sx = window.pageXOffset || 0, sy = window.pageYOffset || 0;
+      var vw = document.documentElement.clientWidth || window.innerWidth || 0;
+      var left = r.left;
+      var w = card.offsetWidth;
+      if (vw && left + w > vw - 12) left = vw - 12 - w;
+      if (left < 12) left = 12;
+      card.style.left = (left + sx) + "px";
+      card.style.top = (r.bottom + sy + 6) + "px";
+      if (typeof card.scrollIntoView === "function") {
+        try { card.scrollIntoView({ block: "nearest" }); } catch (e) { /* old API */ }
+      }
+    }
+
+    document.addEventListener("click", function (e) {
+      if (current && !current.contains(e.target)) close();
+    });
+
+    // A minimal Tab trap: while the card is open, Tab and Shift+Tab cycle
+    // among its own focusable elements instead of walking out into the rest
+    // of the page behind it.
+    function trapFocus(e) {
+      var focusable = current.querySelectorAll(
+        'button, a[href], [tabindex]:not([tabindex="-1"])');
+      if (!focusable.length) return;
+      var first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+
+    document.addEventListener("keydown", function (e) {
+      if (!current) return;
+      if (e.key === "Escape") { close(); return; }
+      if (e.key === "Tab") trapFocus(e);
+    });
+
+    return { show: show };
+  }
+
+  function wireCard(card, stage, svg, pins) {
+    // data-place/data-lat/data-lon and the five data-photo* attributes are
+    // per VENUE, not per conference — they stay on the pin. The name, dates
+    // and URL live one per <g class="conf-item"> child, because a marker can
+    // hold several conferences at the same venue (figures.py's _conf_marker).
+    function open(pin) {
+      card.show({
+        confs: items(pin),
+        count: true,
+        place: pin.getAttribute("data-place") || "",
+        lat: pin.getAttribute("data-lat") || "",
+        lon: pin.getAttribute("data-lon") || "",
+        photoEl: pin
+      }, stage, null);
     }
 
     // Every marker becomes a keyboard target HERE, and only here: figures.py
@@ -346,33 +420,90 @@
       e.stopPropagation();
       open(pin);
     });
+  }
 
-    document.addEventListener("click", function (e) {
-      if (current && !current.contains(e.target)) close();
-    });
+  /* The timeline (its bars and its names) and the conference lists open the
+   * same card as the map. Each of those elements carries the one conference's
+   * own data-* attributes (figures.conf_attrs): the same names a map
+   * .conf-item carries, plus data-place. When the map has a marker for that
+   * conference, the card also takes the marker's coordinates and city photo,
+   * so it reads exactly as the map's does — the Google Maps link and the
+   * photo are never guessed for a meeting the map could not place.
+   *
+   * In the lists "Details" is still a plain link: with this script never
+   * running it goes straight to the conference site. With it, a plain click
+   * anywhere on the row opens the card (whose title is that same link); a
+   * middle- or modifier-click on the link is left alone, so "open in a new
+   * tab" still works. */
+  function wireRows(card, svg) {
+    var hosts = document.querySelectorAll(".timeline-scroll, .conf-list");
+    if (!hosts.length) return;
+    var SEL = ".conf-bar[data-name], .conf-tl__n[data-name], li[data-name]";
 
-    // A minimal Tab trap: while the card is open, Tab and Shift+Tab cycle
-    // among its own focusable elements instead of walking out into the rest
-    // of the page behind it.
-    function trapFocus(e) {
-      var focusable = current.querySelectorAll(
-        'button, a[href], [tabindex]:not([tabindex="-1"])');
-      if (!focusable.length) return;
-      var first = focusable[0], last = focusable[focusable.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
+    function pinFor(id) {
+      if (!svg || !id) return null;
+      var its = svg.querySelectorAll(".conf-item"), i;
+      for (i = 0; i < its.length; i++) {
+        if (its[i].getAttribute("data-conf") === id) {
+          return its[i].closest ? its[i].closest(".conf-pin") : its[i].parentNode;
+        }
+      }
+      return null;
+    }
+
+    function open(el) {
+      var pin = pinFor(el.getAttribute("data-conf"));
+      card.show({
+        confs: [{
+          name: el.getAttribute("data-name") || "",
+          dates: el.getAttribute("data-dates") || "",
+          url: el.getAttribute("data-url") || "",
+          tier: el.getAttribute("data-tier") || "",
+          tierLabel: el.getAttribute("data-tier-label") || ""
+        }],
+        count: false,
+        place: el.getAttribute("data-place") ||
+               (pin ? pin.getAttribute("data-place") || "" : ""),
+        lat: pin ? pin.getAttribute("data-lat") || "" : "",
+        lon: pin ? pin.getAttribute("data-lon") || "" : "",
+        photoEl: pin
+      }, document.body, el);
+    }
+
+    function onClick(e) {
+      if (!e.target.closest) return;
+      var el = e.target.closest(SEL);
+      if (!el || !this.contains(el)) return;
+      var a = e.target.closest("a");
+      if (a && (e.button > 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) return;
+      if (a) e.preventDefault();
+      e.stopPropagation();       // or the document listener closes it at once
+      open(el);
+    }
+
+    function onKey(e) {
+      if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
         e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
+        open(this);
       }
     }
 
-    document.addEventListener("keydown", function (e) {
-      if (!current) return;
-      if (e.key === "Escape") { close(); return; }
-      if (e.key === "Tab") trapFocus(e);
-    });
+    var i, j, els;
+    for (i = 0; i < hosts.length; i++) {
+      hosts[i].addEventListener("click", onClick);
+      // Keyboard: a list row with a "Details" link is already reachable, and
+      // Enter on the link fires the click above. A timeline bar (its label
+      // travels with it inside the same <g>) and a row with no URL are not,
+      // so they become buttons here — and only here, for the same reason the
+      // map's markers do (see wireCard).
+      els = hosts[i].querySelectorAll(".conf-bar[data-name], li[data-name]");
+      for (j = 0; j < els.length; j++) {
+        if (els[j].querySelector("a")) continue;
+        els[j].setAttribute("role", "button");
+        els[j].setAttribute("tabindex", "0");
+        els[j].addEventListener("keydown", onKey);
+      }
+    }
   }
 
   /* A light panel: the place, then one line per conference with its name
