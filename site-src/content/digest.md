@@ -22,7 +22,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors.</b>
-<span class="stamp">Last successful update: 27 September 2026, 07:48 CEST</span></div>
+<span class="stamp">Last successful update: 28 September 2026, 07:47 CEST</span></div>
 </div>
 
 <div class="section-head"><h2>Experimental</h2>
@@ -41,6 +41,7 @@ and may contain errors.</b>
 <ul class="list list--news">
 <li><b><a href="https://arxiv.org/abs/2609.26027">Testable neutrino mass and TeV-scale leptogenesis in a D₄ inverse seesaw model</a></b><span>Qiu Yan, Yakefu Reyimuaji · 22 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.27540">Earth-density effects in long-baseline neutrino experiments in a four-flavor (3+1) sterile-neutrino framework</a></b><span>Bipin Singh Koranga, Aditya Pant, Pranav Kumar et al. · 23 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2609.31340">Natural Saturation Of The Sterile Neutrino Dark Matter Resonant Production By a High Lepton Flavor Asymmetry In Primordial Plasma</a></b><span>Dmitry Gorbunov, Dmitry Kalashnikov · 25 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.26965">Tension between MiniBooNE and MicroBooNE within a 3+1 Sterile Neutrino Framework using Simulation-Based Inference</a></b><span>Julia P. Woodward, Austin Schneider, Joshua Villarreal et al. · 22 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.28686">Quantum field-theoretical description of solar neutrino oscillations</a></b><span>Vadim Egorov, Igor Volobuev · 23 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-th</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.28457">Sterile Neutrino Dark Matter Cries for GeV Heavy Neutral Leptons</a></b><span>Marco Drewes, Yannis Georis, Juraj Klarić et al. · 23 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span><span class="tag">hep-ex</span></span></li>
@@ -53,8 +54,7 @@ and may contain errors.</b>
 <li><b><a href="https://arxiv.org/abs/2609.30136">High-quality axion from chain seesaw</a></b><span>Pei-Hong Gu · 24 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.26773">Resonant neutrino flavor conversion within dark matter spikes</a></b><span>P. S. Bhupal Dev, Elisa Gaido, Alejandro Ibarra et al. · 22 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2609.25229">Fast Surrogate for the Earth Matter Effect on Solar Neutrinos</a></b><span>Saeed Ansarifard · 21 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">physics.comp-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2609.30255">A Narrow Neutrino Window for the LZ Event</a></b><span>Vedran Brdar, Dibya S. Chattopadhyay · 24 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2609.26545">Probing dark matter below the neutrino floor through NMSSM Higgs cascade decays at the HL-LHC</a></b><span>Yabo Dong, Kun Wang, Haijun Yang et al. · 22 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2609.31611">A Multidimensional General-Relativistic Boltzmann Solver for Neutrino Transport: Implementation, Discretization and Optimization</a></b><span>Arthur Offermans, Harry Ho-Yin Ng, Patrick Chi-Kit Cheong et al. · 25 Sep 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">gr-qc</span><span class="tag">hep-ph</span></span></li>
 </ul>
 
 
@@ -76,6 +76,7 @@ still appears under theory.</p>
 
 <!-- ARCHIVE:BEGIN -->
 <ul class="archive">
+  <li><time datetime="2026-09-25">25 September 2026</time><a href="digest/2026-09-25.html">Digest of 2026-09-25</a><span class="count">2 papers</span></li>
   <li><time datetime="2026-09-24">24 September 2026</time><a href="digest/2026-09-24.html">Digest of 2026-09-24</a><span class="count">2 papers</span></li>
   <li><time datetime="2026-09-23">23 September 2026</time><a href="digest/2026-09-23.html">Digest of 2026-09-23</a><span class="count">6 papers</span></li>
   <li><time datetime="2026-09-22">22 September 2026</time><a href="digest/2026-09-22.html">Digest of 2026-09-22</a><span class="count">6 papers</span></li>
@@ -85,8 +86,7 @@ still appears under theory.</p>
   <li><time datetime="2026-09-17">17 September 2026</time><a href="digest/2026-09-17.html">Digest of 2026-09-17</a><span class="count">4 papers</span></li>
   <li><time datetime="2026-09-16">16 September 2026</time><a href="digest/2026-09-16.html">Digest of 2026-09-16</a><span class="count">5 papers</span></li>
   <li><time datetime="2026-09-15">15 September 2026</time><a href="digest/2026-09-15.html">Digest of 2026-09-15</a><span class="count">19 papers</span></li>
-  <li><time datetime="2026-09-14">14 September 2026</time><a href="digest/2026-09-14.html">Digest of 2026-09-14</a><span class="count">22 papers</span></li>
-  <li><time datetime="2026-09">September 2026</time><a href="digest/2026-09.html">All of September 2026</a><span class="count">119 papers</span></li>
+  <li><time datetime="2026-09">September 2026</time><a href="digest/2026-09.html">All of September 2026</a><span class="count">121 papers</span></li>
   <li><time datetime="2026-08">August 2026</time><a href="digest/2026-08.html">All of August 2026</a><span class="count">76 papers</span></li>
 </ul>
 <!-- ARCHIVE:END -->

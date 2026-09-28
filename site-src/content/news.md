@@ -22,61 +22,61 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>The summaries on this page are written automatically with AI from
 fetched records, and may contain errors.</b>
-<span class="stamp">Last successful update: 27 September 2026, 07:48 CEST</span></div>
+<span class="stamp">Last successful update: 28 September 2026, 07:47 CEST</span></div>
 </div>
-<p class="small muted"><b>In summary.</b> This week's experimental news is dominated by hardware progress at DUNE and KM3NeT and a cluster of IceCube analyses covering steady-state sources, tidal disruption events, extra dimensions and the ongoing Upgrade deployment, alongside status reports from T2K's upgraded near detector and Baikal-GVD. On the theory side, a combined atmospheric-oscillation fit reports a preference for the normal mass ordering, and new global limits sharpen what current neutrinoless double-beta decay searches can say about the Majorana mass scale. This paragraph summarises the items below; the sources are on the items themselves.</p>
+<p class="small muted"><b>In summary.</b> This week's news is dominated by hardware progress and source searches rather than new oscillation results: DUNE's cryostat steel installation and KM3NeT's ARCA62 sea campaign both advanced, while IceCube continued hunting for the origin of KM3NeT's record-breaking 220 PeV neutrino candidate and other astrophysical sources. On the theory side, a combined atmospheric-neutrino analysis spanning four experiments reported a 3-sigma preference for the normal mass ordering, alongside new global limits on the Majorana neutrino mass from ab initio nuclear theory. This paragraph summarises the items below; the sources are on the items themselves.</p>
 
 <div class="section-head"><h2>Experiments and results</h2></div>
 <div class="tiles">
 <article class="tile">
-<div class="stamp stamp--no">DUNE cryostat construction</div>
-<p>Crews at the Sanford Underground Research Facility have installed about 39% of the I-beam steel needed for DUNE's cryostat, nearly two million pounds of steel that now fills the facility's south cavern. Collaborators separately gathered at Unicamp for the DUNE Collaboration Meeting to review progress on the project.</p>
+<div class="stamp stamp--no">DUNE cryostat steel</div>
+<p>Crews at the Sanford Underground Research Facility have installed about 39% of the I-beam steel needed for the DUNE cryostat, close to 2 million pounds now filling the 500-foot-long south cavern. The milestone was reported alongside a DUNE Collaboration Meeting held at Unicamp to review progress on the project.</p>
 <div class="cites"><span class="cite">SURF crews move 39% of steel for DUNE — <a href="https://www.bhpioneer.com/local_news/surf-crews-move-5m-pounds-of-steel-for-dune/article_60b90b96-4608-4bb5-9ee6-149aa22a086f.html">Read it</a></span><span class="cite">Project DUNE has an evaluation day and awaits cultural attractions. — <a href="https://jornal.unicamp.br/en/noticias/2026/09/22/projeto-dune-tem-dia-de-avaliacao-e-espera-por-atracoes-culturais/">Read it</a></span></div>
 </article>
 <article class="tile">
 <div class="stamp stamp--no">KM3NeT ARCA62 campaign</div>
-<p>A two-week sea campaign at the KM3NeT ARCA site marked a significant step forward in construction, enlarging both the submarine infrastructure and the detector itself.</p>
+<p>A sea campaign at the KM3NeT ARCA site enlarged the submarine infrastructure and added detector elements, described by the collaboration as a significant step forward in construction.</p>
 <div class="cites"><span class="cite">Welcome, ARCA62! — <a href="https://www.km3net.org/welcome-arca62/">Read it</a></span></div>
 </article>
 <article class="tile">
-<div class="stamp stamp--no">IceCube tracks KM3NeT event</div>
-<p>Following KM3NeT's report of the highest-energy neutrino candidate yet detected, at 220 PeV, IceCube has searched its own data for the source of this event.</p>
+<div class="stamp stamp--no">IceCube follows KM3NeT event</div>
+<p>IceCube has searched for the source of the highest-energy neutrino candidate ever recorded, the 220 PeV event reported by the KM3NeT ARCA telescope.</p>
 <div class="cites"><span class="cite">IceCube search for the source of KM3NeT’s record-breaking event — <a href="https://icecube.wisc.edu/news/research/2026/09/icecube-search-for-the-source-of-km3nets-record-breaking-event/">Read it</a></span></div>
 </article>
 <article class="tile">
-<div class="stamp stamp--no">IceCube steady-state search</div>
-<p>Using DeepCore data, the collaboration searched for steady-state neutrino emission from active galactic nuclei of the type exemplified by NGC 1068, where IceCube reported evidence of high-energy neutrino emission four years ago.</p>
-<div class="cites"><span class="cite">Search for steady-state neutrino emission using IceCube DeepCore — <a href="https://icecube.wisc.edu/news/research/2026/09/search-for-steady-state-neutrino-emission-using-icecube-deepcore/">Read it</a></span></div>
-</article>
-<article class="tile">
-<div class="stamp stamp--no">IceCube tidal disruptions</div>
-<p>IceCube searched its dataset for neutrino emission associated with tidal disruption events, transient phenomena occurring on timescales of weeks, continuing the collaboration's hunt for astrophysical neutrino sources beyond the two galaxies and the Milky Way already identified.</p>
-<div class="cites"><span class="cite">Search for neutrino emission from tidal disruption events — <a href="https://icecube.wisc.edu/news/research/2026/09/search-for-neutrino-emission-from-tidal-disruption-events/">Read it</a></span></div>
-</article>
-<article class="tile">
-<div class="stamp stamp--no">IceCube extra dimensions</div>
-<p>IceCube also used its data to search for signatures of extra spatial dimensions, motivated by the long-standing hierarchy problem between the weak force and gravity.</p>
-<div class="cites"><span class="cite">Searching for extra dimensions with IceCube — <a href="https://icecube.wisc.edu/news/research/2026/09/searching-for-extra-dimensions-with-icecube/">Read it</a></span></div>
-</article>
-<article class="tile">
 <div class="stamp stamp--no">IceCube Upgrade deployment</div>
-<p>During the 2025/26 austral summer, five new strings equipped with new photosensor designs were deployed as a dense infill at the centre of IceCube, the hardware step of the IceCube Upgrade. The collaboration has also projected the sensitivities this Upgrade will bring to its search for astrophysical neutrino sources.</p>
+<p>During the 2025/26 austral summer, five new strings carrying new photosensor designs were deployed as a dense infill in the existing IceCube array. The collaboration has also reported projected sensitivities for the IceCube Upgrade, building on evidence that active galaxies are sources of high-energy neutrinos.</p>
 <div class="cites"><span class="cite">IceCube Upgrade status and perspectives — <a href="https://arxiv.org/abs/2609.24387">arXiv</a></span><span class="cite">Projected sensitivities of the IceCube Upgrade — <a href="https://icecube.wisc.edu/news/research/2026/08/projected-sensitivities-of-the-icecube-upgrade/">Read it</a></span></div>
 </article>
 <article class="tile">
-<div class="stamp stamp--no">T2K near detector upgrade</div>
-<p>T2K's ND280 near detector, upgraded with new tracking modules completed in 2024, now offers significantly enhanced tracking capability. Recent work exploits this with a deep neural network for particle identification in the new SuperFGD sub-detector and a dedicated selection of muon-neutrino charged-current interactions with single pion production, aimed at better constraining the neutrino-interaction models that feed T2K's oscillation analysis.</p>
+<div class="stamp stamp--no">IceCube source searches</div>
+<p>IceCube has reported a new search for steady-state neutrino emission with DeepCore, following its earlier evidence for high-energy neutrinos from the active galaxy NGC 1068, and a separate search for neutrino emission from tidal disruption events, extending its hunt for the origins of the astrophysical neutrino flux.</p>
+<div class="cites"><span class="cite">Search for steady-state neutrino emission using IceCube DeepCore — <a href="https://icecube.wisc.edu/news/research/2026/09/search-for-steady-state-neutrino-emission-using-icecube-deepcore/">Read it</a></span><span class="cite">Search for neutrino emission from tidal disruption events — <a href="https://icecube.wisc.edu/news/research/2026/09/search-for-neutrino-emission-from-tidal-disruption-events/">Read it</a></span></div>
+</article>
+<article class="tile">
+<div class="stamp stamp--no">IceCube extra-dimensions search</div>
+<p>IceCube data have also been used to search for signatures of extra dimensions, motivated by the unresolved hierarchy problem between the weak force and gravity.</p>
+<div class="cites"><span class="cite">Searching for extra dimensions with IceCube — <a href="https://icecube.wisc.edu/news/research/2026/09/searching-for-extra-dimensions-with-icecube/">Read it</a></span></div>
+</article>
+<article class="tile">
+<div class="stamp stamp--no">T2K near-detector upgrade</div>
+<p>Two papers report progress on T2K's upgraded ND280 near detector: a deep-learning particle-identification method for the new SuperFGD sub-detector, and a new event selection for muon-neutrino charged-current interactions with single pion production using the ND280 modules completed in 2024. Both aim to reduce the systematic uncertainties that dominate T2K's oscillation analysis.</p>
 <div class="cites"><span class="cite">Particle Identification in Highly Segmented Detector SuperFGD of the T2K Neutrino … — <a href="https://inspirehep.net/literature/3207723">INSPIRE</a> · <a href="https://doi.org/10.1134/S1547477126700500">DOI</a></span><span class="cite">Selection of Muon Neutrino Charge-Current Interactions with Single Pion Production in the … — <a href="https://inspirehep.net/literature/3207726">INSPIRE</a> · <a href="https://doi.org/10.1134/S1547477126700494">DOI</a></span></div>
 </article>
 <article class="tile">
-<div class="stamp stamp--no">Baikal-GVD point sources</div>
-<p>Baikal-GVD, a cubic-kilometre-scale neutrino telescope under construction in Lake Baikal, is now about 70% complete. A search for point-like astrophysical neutrino sources using a five-year track-like event dataset from 2019-2024 found no significant source, and the collaboration set upper limits for a selection of candidate objects, comparing them with published IceCube, ANTARES and KM3NeT results.</p>
+<div class="stamp stamp--no">Baikal-GVD point-source search</div>
+<p>Baikal-GVD, a cubic-kilometre-scale detector under construction in Lake Baikal and now 70% complete, has searched for point-like astrophysical neutrino sources using a five-year track-like dataset from 2019-2024. No significant source was found, and the resulting upper limits were compared with published IceCube, ANTARES and KM3NeT results.</p>
 <div class="cites"><span class="cite">Search for Point-Like Neutrino Sources with Baikal-GVD — <a href="https://inspirehep.net/literature/3207629">INSPIRE</a> · <a href="https://doi.org/10.1134/S1547477126700421">DOI</a></span></div>
 </article>
 <article class="tile">
-<div class="stamp stamp--no">KM3NeT highest-energy event</div>
-<p>A review of KM3-230213A, the ultra-high-energy neutrino event detected by KM3NeT with an inferred parent-neutrino energy of order 10^17 eV, summarises the event's properties and surveys possible astrophysical and cosmological interpretations. Despite extensive follow-up observations, no unambiguous electromagnetic counterpart has been identified.</p>
-<div class="cites"><span class="cite">KM3-230213A: The Highest-Energy Cosmic Neutrino — <a href="https://inspirehep.net/literature/3203436">INSPIRE</a> · <a href="https://doi.org/10.53941/pac.2026.100009">DOI</a></span></div>
+<div class="stamp stamp--no">SHiP detector design</div>
+<p>The SHiP/NA67 collaboration has described the detector subsystems for its planned experiment at the CERN SPS, which will search for feebly interacting GeV-scale particles and carry out all-flavour neutrino measurements at the HI-ECN3 beam facility. Commissioning and first physics runs are planned for 2032-2033.</p>
+<div class="cites"><span class="cite">The detector system of the SHiP/NA67 experiment at CERN — <a href="https://arxiv.org/abs/2609.24378">arXiv</a></span></div>
+</article>
+<article class="tile">
+<div class="stamp stamp--no">MiniBooNE-MicroBooNE tension</div>
+<p>A new analysis applies simulation-based inference to jointly fit MiniBooNE and MicroBooNE data within a 3+1 sterile-neutrino framework, using MicroBooNE data from both the Booster Neutrino Beam and NuMI beamlines. The study evaluates the statistical tension between the MiniBooNE low-energy excess and its exclusion by MicroBooNE.</p>
+<div class="cites"><span class="cite">Tension between MiniBooNE and MicroBooNE within a 3+1 Sterile Neutrino Framework using … — <a href="https://arxiv.org/abs/2609.26965">arXiv</a></span></div>
 </article>
 </div>
 :::
@@ -84,12 +84,12 @@ fetched records, and may contain errors.</b>
 ::: section alt
 <div class="section-head"><h2>Theory highlights</h2><p>recently published, with the links each record carries</p></div>
 <ul class="list list--news">
-<li><p>A combined oscillation analysis brings together atmospheric neutrino data from Super-Kamiokande, IceCube-DeepCore and KM3NeT/ORCA with reactor data from Daya Bay, fitting 839,048 events in a single unified model. The authors show the combination, long considered infeasible outside the individual collaborations, describes all datasets with no significant parameter tensions and prefers the normal over the inverted mass ordering at 3σ.</p><span class="cites"><span class="cite">Atmospheric neutrino oscillations: The full picture — <a href="https://arxiv.org/abs/2606.09714">arXiv</a> · <a href="https://inspirehep.net/literature/3166344">INSPIRE</a> · <a href="https://doi.org/10.1103/v4hl-pbpn">DOI</a></span></span></li>
-<li><p>This paper derives global limits on the Majorana neutrino mass by combining likelihoods from several neutrinoless double-beta decay experiments with nuclear matrix elements computed ab initio within the in-medium similarity renormalization group approach, in a Bayesian framework. Unlike results based on more phenomenological nuclear models, the ab initio calculation indicates that current-generation 0νββ experiments have likely not yet reached the sensitivity needed to probe the relevant mass region.</p><span class="cites"><span class="cite">Global ab initio neutrino mass limits from neutrinoless double-beta decay — <a href="https://arxiv.org/abs/2606.09288">arXiv</a> · <a href="https://inspirehep.net/literature/3166340">INSPIRE</a> · <a href="https://doi.org/10.1103/rsw5-57fz">DOI</a></span></span></li>
-<li><p>This paper presents TAMBO, a proposed mountain-based neutrino observatory aimed at mapping the high-energy neutrino sky, a picture the field has struggled to complete over the past decade despite the growth of neutrino astronomy. The authors frame it as a route to both characterising the astrophysical neutrino flux and searching for new physics.</p><span class="cites"><span class="cite">Measuring the high-energy neutrino sky using the deep-valley neutrino observatory TAMBO — <a href="https://inspirehep.net/literature/3185371">INSPIRE</a> · <a href="https://doi.org/10.1038/s41550-026-02916-4">DOI</a></span></span></li>
-<li><p>The authors propose a minimal Standard Model extension in which a single U(1)PQ symmetry simultaneously sets the scales of an inverse seesaw mechanism and stabilises a fermionic dark matter candidate, with symmetry breaking producing an axion-like particle that mediates between the two sectors. The model generates light neutrino masses at the TeV scale, avoiding inaccessibly high energy scales, and predicts a correlation between the effective Majorana mass and a CP-violating phase that could be probed by future experiments.</p><span class="cites"><span class="cite">Fermionic dark matter and neutrino masses in a minimal U(1)PQ inverse seesaw framework — <a href="https://inspirehep.net/literature/3204242">INSPIRE</a> · <a href="https://doi.org/10.1016/j.nuclphysb.2026.117658">DOI</a></span></span></li>
-<li><p>This study examines how invisible decay of the heaviest neutrino mass state into a sterile state, under the normal mass hierarchy, could be constrained using NOνA and DUNE. The authors find that the assumed true value of θ23 significantly affects the achievable constraint on the decay parameter, with a higher-octant value improving the sensitivity.</p><span class="cites"><span class="cite">Constraining invisible neutrino decay at NOνA and DUNE — <a href="https://inspirehep.net/literature/3188867">INSPIRE</a> · <a href="https://doi.org/10.1007/s12043-026-03167-8">DOI</a></span></span></li>
-<li><p>The authors construct composite neutrino models in which heavy neutrinos arise as bound states of a near-conformal strongly coupled sector, with an inverse seesaw mechanism suppressing light neutrino masses to sub-eV scales. This framework predicts electromagnetic transition dipole couplings parametrically larger than those of minimal Dirac or Majorana seesaw models, giving composite neutrinos a distinctive radiative signature to search for.</p><span class="cites"><span class="cite">Neutrino dipole moments and radiative signatures from partial compositeness — <a href="https://arxiv.org/abs/2606.20987">arXiv</a> · <a href="https://inspirehep.net/literature/3170873">INSPIRE</a> · <a href="https://doi.org/10.1007/JHEP09(2026)234">DOI</a></span></span></li>
+<li><p>This paper presents the first combined oscillation analysis using recent atmospheric neutrino data from Super-Kamiokande, IceCube-DeepCore and KM3NeT/ORCA together with reactor data from Daya Bay, fitting 839,048 events across 1536 bins with 91 parameters. The unified model describes all four datasets with no significant tensions and prefers the normal over the inverted mass ordering at 3-sigma, a cross-collaboration combination long considered infeasible outside the experiments themselves.</p><span class="cites"><span class="cite">Atmospheric neutrino oscillations: The full picture — <a href="https://arxiv.org/abs/2606.09714">arXiv</a> · <a href="https://inspirehep.net/literature/3166344">INSPIRE</a> · <a href="https://doi.org/10.1103/v4hl-pbpn">DOI</a></span></span></li>
+<li><p>The authors derive global limits on the Majorana neutrino mass by combining likelihoods from multiple neutrinoless double-beta decay experiments with nuclear matrix elements computed ab initio from chiral effective field theory. In contrast to phenomenological nuclear models, their ab initio results indicate that the current generation of 0-nu-beta-beta experiments has likely not yet reached the sensitivity needed to probe the relevant mass range.</p><span class="cites"><span class="cite">Global ab initio neutrino mass limits from neutrinoless double-beta decay — <a href="https://arxiv.org/abs/2606.09288">arXiv</a> · <a href="https://inspirehep.net/literature/3166340">INSPIRE</a> · <a href="https://doi.org/10.1103/rsw5-57fz">DOI</a></span></span></li>
+<li><p>This paper introduces TAMBO, a mountain-based neutrino observatory designed to help map the high-energy neutrino sky, a goal that has remained elusive despite a decade of progress in neutrino astronomy. The authors present it as a route to filling gaps in the observed sky while also searching for new physics.</p><span class="cites"><span class="cite">Measuring the high-energy neutrino sky using the deep-valley neutrino observatory TAMBO — <a href="https://inspirehep.net/literature/3185371">INSPIRE</a> · <a href="https://doi.org/10.1038/s41550-026-02916-4">DOI</a></span></span></li>
+<li><p>This review summarises the properties of KM3-230213A, the ultra-high-energy neutrino event detected by KM3NeT with an inferred parent-neutrino energy of order 10^17 eV, and surveys its possible astrophysical and cosmological interpretations. Despite extensive follow-up, no unambiguous electromagnetic counterpart has been identified, leaving the event's origin open.</p><span class="cites"><span class="cite">KM3-230213A: The Highest-Energy Cosmic Neutrino — <a href="https://inspirehep.net/literature/3203436">INSPIRE</a> · <a href="https://doi.org/10.53941/pac.2026.100009">DOI</a></span></span></li>
+<li><p>This paper proposes a minimal extension of the Standard Model in which a single U(1)PQ symmetry simultaneously sets the inverse-seesaw scales for neutrino mass and stabilises a fermionic dark matter candidate, with an associated axion-like particle mediating between the two sectors. The model generates neutrino masses at the TeV scale and predicts a correlation between the effective Majorana mass and a CP-violating phase, giving it testable consequences for double-beta decay searches.</p><span class="cites"><span class="cite">Fermionic dark matter and neutrino masses in a minimal U(1)PQ inverse seesaw framework — <a href="https://inspirehep.net/literature/3204242">INSPIRE</a> · <a href="https://doi.org/10.1016/j.nuclphysb.2026.117658">DOI</a></span></span></li>
+<li><p>The authors study composite neutrino models in which heavy neutrinos arise as bound states of a near-conformal strongly coupled sector, mixing with Standard Model neutrinos via an inverse seesaw. The setup predicts electromagnetic transition dipole couplings parametrically larger than those of minimal Dirac or Majorana models, with simulated production-and-decay signatures relevant to future searches.</p><span class="cites"><span class="cite">Neutrino dipole moments and radiative signatures from partial compositeness — <a href="https://arxiv.org/abs/2606.20987">arXiv</a> · <a href="https://inspirehep.net/literature/3170873">INSPIRE</a> · <a href="https://doi.org/10.1007/JHEP09(2026)234">DOI</a></span></span></li>
 </ul>
 
 <div class="btn-row"><a class="btn btn--sm btn--ghost" href="digest.html">The full arXiv digest →</a></div>
