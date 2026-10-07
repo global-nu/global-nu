@@ -31,6 +31,7 @@ from . import cache, conferences as conf_mod, fetch_arxiv, fetch_feeds
 from . import archive, fetch_indico, fetch_inspire, fetch_nu_unbound, linkcheck, render
 from . import state, synthesize
 from .common import ROOT, get_logger, load_config, now_iso
+from . import landmark
 from .lock import LockBusy, run_lock
 
 # What the Experiments narrative may be written from. Deliberately WIDER than
@@ -206,6 +207,13 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
     events = [r for r in events if r["id"] in alive_ids]
     known = cache.index(alive)
 
+    # A Nobel prize leads the page whatever the model wrote — and also when
+    # the narrative is yesterday's. See landmark.py.
+    landmarks = landmark.fresh(
+        landmark.tag([r for r in feeds if r["id"] in alive_ids], cfg), cfg)
+    narrative = landmark.enforce(narrative, landmarks, cfg,
+                                 landmark_sections(cfg), log)
+
     # ----------------------------------------------------------- 4. render --
     # Topical affinity is written here, at the LAST possible moment, and not
     # one line earlier. Two things upstream would otherwise leave untagged
@@ -302,6 +310,13 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
                 log.error("run finished at %s with the live site stale",
                           now_iso())
                 return 1
+            if landmarks:
+                # What the hourly --if-landmark check compares against: a
+                # landmark counts as handled only once a push carried it.
+                st = state.load()
+                state.update(landmarks_published=sorted(
+                    set(st.get("landmarks_published") or [])
+                    | {r["id"] for r in landmarks})[-200:])
 
     state.mark_run("ok", f"wrote {', '.join(wrote) or 'nothing'}")
     log.info("run finished at %s", now_iso())
@@ -535,6 +550,53 @@ def _push_generated(log) -> bool:
     return True
 
 
+def landmark_sections(cfg: dict) -> list[dict]:
+    conf = cfg.get("synthesis", {}) or {}
+    return [{"key": "experiments", "kind": "news",
+             "max": int(conf.get("max_experiments", 10))},
+            {"key": "theory", "kind": "paper",
+             "max": int(conf.get("max_theory", 6))}]
+
+
+def landmark_check(args) -> int:
+    """The hourly agent: is there a landmark the site does not carry yet?
+
+    The daily run fires once, at a fixed hour, and the news of the year does
+    not wait for it: the 2026 Nobel prize was announced four hours after that
+    morning's run. This check fetches the feeds only — no AI call, no build —
+    and starts a full run only when a fresh landmark is not among those a
+    successful push has already carried. Every other hour it exits 0 without
+    writing a line to the log: twenty-four checks a day are harmless only if
+    the normal case is silent.
+    """
+    import logging
+    cfg = load_config()
+    if not landmark.enabled(cfg):
+        return 0
+    quiet = logging.getLogger("landmark-check-quiet")
+    quiet.addHandler(logging.NullHandler())
+    quiet.propagate = False
+    try:
+        with run_lock():
+            try:
+                feeds = fetch_feeds.fetch(cfg, quiet)
+            except Exception:
+                return 0            # the daily run and the watchdog cover it
+            todo = landmark.pending(
+                feeds, cfg, state.load().get("landmarks_published") or [])
+            if not todo:
+                return 0
+            log = get_logger("news", verbose=not args.quiet)
+            for rec in todo:
+                log.warning("landmark: not yet on the site — %s (%s, %s); "
+                            "running the full pipeline now", rec["title"][:90],
+                            rec["extra"].get("feed"), rec.get("date"))
+            return run(dry_run=args.dry_run, use_ai=not args.no_ai,
+                       do_build=not args.no_build, verbose=not args.quiet)
+    except LockBusy:
+        return 0                    # a run is already going; it will see it
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="global-nu daily update")
     ap.add_argument("--dry-run", action="store_true",
@@ -546,7 +608,13 @@ def main(argv: list[str] | None = None) -> int:
                     help="re-render from the last cached fetch: no API call, "
                          "no model call, no link check")
     ap.add_argument("--quiet", action="store_true", help="log to file only")
+    ap.add_argument("--if-landmark", action="store_true",
+                    help="fetch the feeds only; run the full pipeline only if "
+                         "a fresh landmark (a Nobel prize…) is not yet "
+                         "published. Silent otherwise. For the hourly agent.")
     args = ap.parse_args(argv)
+    if args.if_landmark:
+        return landmark_check(args)
 
     try:
         with run_lock():

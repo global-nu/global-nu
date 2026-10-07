@@ -24,9 +24,12 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 DAILY="org.global-nu.daily"
 WATCHDOG="org.global-nu.watchdog"
+# Hourly: runs the full pipeline only when a landmark (a Nobel prize…) is
+# not yet on the live site. See tools/news/landmark.py.
+LANDMARK="org.global-nu.landmark-watch"
 
 if [ "${1:-}" = "--remove" ]; then
-  for LABEL in "$DAILY" "$WATCHDOG"; do
+  for LABEL in "$DAILY" "$WATCHDOG" "$LANDMARK"; do
     launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null || true
     rm -f "$HOME/Library/LaunchAgents/$LABEL.plist"
     echo "removed $LABEL"
@@ -79,11 +82,16 @@ install_agent() {
 
   launchctl bootout "gui/$(id -u)/$label" 2>/dev/null || true
   launchctl bootstrap "gui/$(id -u)" "$plist"
-  printf 'installed %s — runs daily at %02d:%02d\n' "$label" "$hour" "$minute"
+  if [ -n "$hour" ]; then
+    printf 'installed %s — runs daily at %02d:%02d\n' "$label" "$hour" "$minute"
+  else
+    printf 'installed %s — runs every hour, silent unless a landmark is new\n' "$label"
+  fi
 }
 
 install_agent "$DAILY" "$HOUR" "$MINUTE"
 install_agent "$WATCHDOG" "$WD_HOUR" "$WD_MINUTE"
+install_agent "$LANDMARK" "" ""
 
 echo
 echo "logs:      $ROOT/var/news/logs/news.log  (and watchdog.log)"

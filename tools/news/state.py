@@ -21,6 +21,7 @@ EMPTY: dict[str, Any] = {
     "linkcheck": None,       # {"at":…, "checked":n, "failed":[{url,reason}]}
     "deploy": None,          # {"at":…, "ok":bool, "detail":str}
     "counts": {},            # per-source record counts of the last fetch
+    "landmarks_published": [],  # landmark ids a successful push carried
 }
 
 

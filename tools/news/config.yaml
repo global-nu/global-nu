@@ -294,6 +294,19 @@ feeds:
       url: https://www.nature.com/nphys.rss
       enabled: false          # mostly paywalled, off by default
       weight: 1
+    # General-physics outlets, filtered by the keywords below like every
+    # other feed. Added on 7 October 2026: the Nobel prize to Francis Halzen
+    # was on Physics World at 11:52 CEST on the 6th, while the lab feeds had
+    # it only in the evening (IceCube 21:20) — the labs report their own
+    # news, and the field's biggest news is not always a lab's to report.
+    - name: Physics World
+      url: https://physicsworld.com/feed/
+      enabled: true
+      weight: 2
+    - name: CERN Courier
+      url: https://cerncourier.com/feed/
+      enabled: true
+      weight: 2
   # An item must mention one of these to be considered neutrino-adjacent.
   keywords:
     - neutrino
@@ -322,6 +335,17 @@ feeds:
 # ----------------------------------------------------------------- synthesis
 # One AI call per day, no more. The model receives compacted records and must
 # answer with JSON citing record ids; it never emits a URL. See synthesize.py.
+# Items the page may never miss, bury or wait a day for — see
+# tools/news/landmark.py. A feed record whose TITLE matches one of these is
+# exempt from the caps, leads Experiments and is named in the overview,
+# whatever the model wrote; and the hourly agent (org.global-nu.landmark-watch)
+# runs the full pipeline as soon as one appears that the live site does not
+# carry. Prizes only: a word that fires every week ("discovery") would turn
+# the pin into noise. `keywords` omitted = landmark.DEFAULT_KEYWORDS.
+landmarks:
+  enabled: true
+  pin_days: 7
+
 synthesis:
   enabled: true
   model: sonnet

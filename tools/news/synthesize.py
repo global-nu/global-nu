@@ -187,12 +187,22 @@ def build_prompt(cfg: dict, experiment_records: list[dict],
     # bumper crop of preprints crowd the news out entirely.
     exp = experiment_records[:max(10, cap // 2)]
     thy = theory_records[:max(10, cap - len(exp))]
-    return PROMPT.format(
+    prompt = PROMPT.format(
         max_experiments=int(conf.get("max_experiments", 10)),
         max_theory=int(conf.get("max_theory", 6)),
         experiment_records=compact(exp, chars),
         theory_records=compact(thy, chars),
     )
+    # A landmark (a Nobel prize…) is announced to the model as well as
+    # enforced on its output by landmark.enforce — the code guarantees the
+    # outcome, this makes it likely the guarantee reads as the model's prose.
+    from . import landmark
+    block = landmark.prompt_block(landmark.fresh(exp, cfg))
+    if block:
+        cut = prompt.rfind("## Output")
+        prompt = (prompt[:cut] + block + prompt[cut:]) if cut >= 0 \
+            else prompt + "\n\n" + block
+    return prompt
 
 
 # --------------------------------------------------------------------------- #

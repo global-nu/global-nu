@@ -33,7 +33,7 @@ import re
 import xml.etree.ElementTree as ET
 from email.utils import parsedate_to_datetime
 
-from . import cache
+from . import cache, landmark
 from .common import clean_text, get_logger, http_get, load_config, today, truncate
 
 SUMMARY_CHARS = 600
@@ -225,7 +225,7 @@ def _entry_record(el: ET.Element, *, name: str, weight: int) -> dict | None:
 
 def _fetch_source(src: dict, *, pats: list[re.Pattern], window_days: int,
                   per_feed_max: int, timeout: int, log: logging.Logger,
-                  errors: list[str]) -> list[dict]:
+                  errors: list[str], cfg: dict | None = None) -> list[dict]:
     """Fetch and filter one source. Never raises: a bad feed costs its own
     records and nothing else."""
     name = str(src.get("name") or src.get("url") or "?")
@@ -284,7 +284,10 @@ def _fetch_source(src: dict, *, pats: list[re.Pattern], window_days: int,
         kept.append(rec)
 
     kept.sort(key=lambda r: r["date"], reverse=True)
-    trimmed = kept[:max(per_feed_max, 0)]
+    # A fresh landmark (a Nobel prize…) is never cut by the per-feed cap:
+    # see landmark.py for the morning that rule was paid for.
+    landmark.tag(kept, cfg or {})
+    trimmed = landmark.pin(kept, cfg or {}, max(per_feed_max, 0))
     log.info("feed %s: %d entries -> %d kept (dropped %d off-topic, "
              "%d older than %dd, %d undated, %d duplicate%s)",
              name, len(entries), len(trimmed), n_offtopic, n_old, window_days,
@@ -323,7 +326,7 @@ def fetch(cfg: dict, log: logging.Logger) -> list[dict]:
             continue
         records.extend(_fetch_source(
             src, pats=pats, window_days=window_days, per_feed_max=per_feed_max,
-            timeout=timeout, log=log, errors=errors))
+            timeout=timeout, log=log, errors=errors, cfg=cfg))
 
     # Recency first, weight only to break ties — which is what config.yaml has
     # always said. Sorting by weight first meant a six-week-old item from a
@@ -352,7 +355,10 @@ def fetch(cfg: dict, log: logging.Logger) -> list[dict]:
     if len(records) > max_items:
         log.info("feeds: %d records -> %d after the overall cap",
                  len(records), max_items)
-        records = records[:max_items]
+    records = landmark.pin(records, cfg, max_items)
+    for rec in landmark.fresh(records, cfg):
+        log.info("feeds: landmark pinned — %s (%s)", rec["title"][:90],
+                 rec["extra"].get("feed"))
 
     cache.store("feeds", records, errors)
     log.info("feeds: %d records from %d source(s), %d error(s)",
