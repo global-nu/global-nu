@@ -25,7 +25,7 @@ scripts:
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the conference indexers' APIs,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 06 October 2026, 07:46 CEST</span></div>
+<span class="stamp">Last successful update: 07 October 2026, 05:43 CEST</span></div>
 </div>
 
 <p class="conf-legend"><span class="conf-legend__lead">Closeness of the subject:</span><span class="conf-aff conf-aff--core">Neutrino physics</span><span class="conf-aff conf-aff--related">Astroparticle &amp; underground</span><span class="conf-aff conf-aff--broad">Particle physics at large</span><span class="conf-aff conf-aff--adjacent">Adjacent fields</span><span class="conf-aff conf-aff--unknown">Not classified</span></p>
@@ -33,7 +33,7 @@ and may contain errors. No model is involved.</b>
 <figure class="figure">
 <h4>Timeline</h4>
 <div class="timeline-scroll">
-<svg viewBox="0 0 2675 326" role="img" width="3210" height="391" aria-label="Timeline of upcoming and recently concluded neutrino conferences, scrollable sideways from today to a year ahead" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 2682 326" role="img" width="3218" height="391" aria-label="Timeline of upcoming and recently concluded neutrino conferences, scrollable sideways from today to a year ahead" xmlns="http://www.w3.org/2000/svg">
 <title>Conference timeline</title>
 <text x="2.0" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
 <line x1="7.1" y1="14" x2="7.1" y2="311" style="stroke:var(--line);stroke-width:1"/>
@@ -62,8 +62,8 @@ and may contain errors. No model is involved.</b>
 <text x="2393.2" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
 <line x1="2603.7" y1="14" x2="2603.7" y2="311" style="stroke:var(--line);stroke-width:1"/>
 <text x="2606.7" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Oct</text>
-<line x1="42.7" y1="8" x2="42.7" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
-<text x="42.7" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
+<line x1="49.8" y1="8" x2="49.8" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
+<text x="49.8" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
 <g class="conf-bar" data-conf="nu:20261005-aiphy2" data-name="School on Bayesian statistics" data-dates="5–9 October 2026" data-place="Gran Sasso Science Institute, L&#x27;Aquila, Italy" data-url="https://agenda.infn.it/event/51770/" data-tier="adjacent" data-tier-label="Adjacent fields">
 <rect x="35.6" y="30" width="28.5" height="10" rx="5" style="fill:var(--dec-3);opacity:1;stroke:var(--text);stroke-width:2"><title>AIPHY2: 2026-10-05 → 2026-10-09 · under way — Adjacent fields (title names “bayesian”)</title></rect>
 <text x="72.0" y="38.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">AIPHY2</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Gran Sasso Science…</tspan></text>
@@ -77,7 +77,7 @@ and may contain errors. No model is involved.</b>
 <text x="72.0" y="78.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">LIDINE 2026</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Nikhef, Amsterdam…</tspan></text>
 </g>
 <g class="conf-bar" data-conf="indico:in2p3:40971" data-name="LPNHE-neutrino group meeting" data-dates="7 October 2026" data-place="" data-url="https://indico.in2p3.fr/event/40971/" data-tier="core" data-tier-label="Neutrino physics">
-<rect x="49.8" y="90" width="4.0" height="10" rx="5" style="fill:var(--dec-2);opacity:1"><title>LPNHE-neutrino group meeting: 2026-10-07 → 2026-10-07 — Neutrino physics (title names “neutrino”)</title></rect>
+<rect x="49.8" y="90" width="4.0" height="10" rx="5" style="fill:var(--dec-2);opacity:1;stroke:var(--text);stroke-width:2"><title>LPNHE-neutrino group meeting: 2026-10-07 → 2026-10-07 · under way — Neutrino physics (title names “neutrino”)</title></rect>
 <text x="61.8" y="98.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">LPNHE-neutrino group meeting</tspan></text>
 </g>
 <g class="conf-bar" data-conf="nu:20261109-patras-2026" data-name="21st Patras Workshop on Axions, WIMPs, and WISPs" data-dates="9–13 November 2026" data-place="Perth, Western Australia" data-url="https://indico.global/event/16402/" data-tier="related" data-tier-label="Astroparticle &amp; underground">
