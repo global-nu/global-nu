@@ -22,7 +22,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>The summaries on this page are written automatically with AI from
 fetched records, and may contain errors.</b>
-<span class="stamp">Last successful update: 07 October 2026, 05:43 CEST</span></div>
+<span class="stamp">Last successful update: 07 October 2026, 05:44 CEST</span></div>
 </div>
 <p class="small muted"><b>In summary.</b> The 2026 Nobel Prize in Physics has been awarded to Francis Halzen, principal investigator of IceCube, for decisive contributions to the IceCube Neutrino Observatory and the discovery of high-energy neutrinos of astrophysical origin. Elsewhere this week, KM3NeT reported progress on the construction of ARCA, DUNE's cryostat steel work continues at SURF, and PandaX-4T published a first search for the diffuse supernova neutrino background of all flavours using coherent elastic neutrino-nucleus scattering. This paragraph summarises the items below; the sources are on the items themselves.</p>
 
