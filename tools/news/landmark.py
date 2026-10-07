@@ -230,12 +230,49 @@ def prompt_block(landmarks: list[dict]) -> str:
 # the hourly check
 # --------------------------------------------------------------------------- #
 def pending(feeds: list[dict], cfg: dict, published: list[str],
+            families: dict[str, str] | None = None,
             today: _dt.date | None = None) -> list[dict]:
-    """Fresh landmarks whose id is not among those already published.
+    """Fresh landmarks the published page does not carry yet.
 
-    Keyed on the record id, which is a hash of the URL: the same story from a
-    second outlet is a second id and triggers a second run. That is the safe
-    side of the trade — one extra rebuild — and the run is idempotent.
+    Two keys, and the second is the one that matters. `published` holds
+    record ids (a hash of the URL); `families` maps a prize family to the day
+    a deploy last carried it. A fourth outlet reporting the same Nobel is a
+    new id but not new news: measured on 7 October 2026, "CERN congratulates
+    Nobel Prize winner Francis Halzen" turned up in the hourly fetch after the
+    page already led with the Nobel, triggered a full run with AI call and
+    push — and that run's own fetch did not even see the item, so keyed on
+    ids alone the check would have fired again every hour. A family counts as
+    carried for `pin_days`; next year's Nobel is a new event.
     """
     seen = set(published or [])
-    return [r for r in fresh(tag(feeds, cfg), cfg, today) if r["id"] not in seen]
+    fams = families or {}
+    today = today or _dt.date.today()
+    pin_days = int(_conf(cfg).get("pin_days", DEFAULT_PIN_DAYS))
+    out = []
+    for r in fresh(tag(feeds, cfg), cfg, today):
+        if r["id"] in seen:
+            continue
+        day = fams.get(family(r, cfg) or "")
+        try:
+            if day and (today - _dt.date.fromisoformat(day)).days <= pin_days:
+                continue
+        except ValueError:
+            pass
+        out.append(r)
+    return out
+
+
+def mark_published(st: dict, landmarks: list[dict], cfg: dict,
+                   today: _dt.date | None = None) -> dict:
+    """Record in the state that a deploy carried these landmarks."""
+    if not landmarks:
+        return st
+    day = (today or _dt.date.today()).isoformat()
+    st["landmarks_published"] = sorted(
+        set(st.get("landmarks_published") or [])
+        | {r["id"] for r in landmarks})[-200:]
+    fams = dict(st.get("landmark_families_published") or {})
+    for r in landmarks:
+        fams[family(r, cfg) or r["id"]] = day
+    st["landmark_families_published"] = fams
+    return st

@@ -313,10 +313,7 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
             if landmarks:
                 # What the hourly --if-landmark check compares against: a
                 # landmark counts as handled only once a push carried it.
-                st = state.load()
-                state.update(landmarks_published=sorted(
-                    set(st.get("landmarks_published") or [])
-                    | {r["id"] for r in landmarks})[-200:])
+                state.save(landmark.mark_published(state.load(), landmarks, cfg))
 
     state.mark_run("ok", f"wrote {', '.join(wrote) or 'nothing'}")
     log.info("run finished at %s", now_iso())
@@ -582,8 +579,10 @@ def landmark_check(args) -> int:
                 feeds = fetch_feeds.fetch(cfg, quiet)
             except Exception:
                 return 0            # the daily run and the watchdog cover it
+            st = state.load()
             todo = landmark.pending(
-                feeds, cfg, state.load().get("landmarks_published") or [])
+                feeds, cfg, st.get("landmarks_published") or [],
+                st.get("landmark_families_published") or {})
             if not todo:
                 return 0
             log = get_logger("news", verbose=not args.quiet)
@@ -591,8 +590,16 @@ def landmark_check(args) -> int:
                 log.warning("landmark: not yet on the site — %s (%s, %s); "
                             "running the full pipeline now", rec["title"][:90],
                             rec["extra"].get("feed"), rec.get("date"))
-            return run(dry_run=args.dry_run, use_ai=not args.no_ai,
+            code = run(dry_run=args.dry_run, use_ai=not args.no_ai,
                        do_build=not args.no_build, verbose=not args.quiet)
+            # run() returns 1 when the push failed, so 0 means the site is
+            # current. Mark what triggered us too, even if the run's own fetch
+            # lost it: a flickering feed item must cost one run, not one an
+            # hour (7 October 2026, "CERN congratulates…"). The daily run
+            # still pins it if it is really there.
+            if code == 0 and not args.dry_run and not args.no_build:
+                state.save(landmark.mark_published(state.load(), todo, cfg))
+            return code
     except LockBusy:
         return 0                    # a run is already going; it will see it
 

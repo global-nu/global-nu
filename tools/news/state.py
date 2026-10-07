@@ -22,6 +22,7 @@ EMPTY: dict[str, Any] = {
     "deploy": None,          # {"at":…, "ok":bool, "detail":str}
     "counts": {},            # per-source record counts of the last fetch
     "landmarks_published": [],  # landmark ids a successful push carried
+    "landmark_families_published": {},  # prize family -> day last carried
 }
 
 

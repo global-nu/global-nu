@@ -155,8 +155,13 @@ def test_hourly_check_is_silent_and_fires_once():
     lm = rec(1, NOBEL)
     calls = []
     orig = (fetch_feeds.fetch, pipeline.run, pipeline.state.load,
-            pipeline.load_config, pipeline.get_logger)
+            pipeline.state.save, pipeline.load_config, pipeline.get_logger)
     pipeline.load_config = lambda: CFG
+    # Never the real state either. On 7 Oct 2026 this test, before save was
+    # replaced, wrote its fake landmark over global-nu's var/news/state.json
+    # and erased the narrative and last_success the watchdog reads.
+    saved = []
+    pipeline.state.save = saved.append
     # Never the real logger: a test that writes "landmark: not yet on the
     # page" into var/news/…/news.log plants a false alarm in the log a person
     # reads on the day something goes wrong. It happened, once, on 7 Oct 2026.
@@ -180,9 +185,34 @@ def test_hourly_check_is_silent_and_fires_once():
         pipeline.state.load = lambda: {"landmarks_published": ["feed:x:1"]}
         pipeline.landmark_check(A())
         check(len(calls) == 1, "an already published landmark does not")
+
+        # 7 Oct 2026: a fourth outlet on the same Nobel is not new news.
+        cern = rec(9, "CERN congratulates Nobel Prize winner Francis Halzen")
+        fetch_feeds.fetch = lambda cfg, log: [dict(cern, extra=dict(cern["extra"]))]
+        pipeline.state.load = lambda: {
+            "landmarks_published": ["feed:x:1"],
+            "landmark_families_published": {"nobel": TODAY.isoformat()}}
+        pipeline.landmark_check(A())
+        check(len(calls) == 1,
+              "another outlet on a prize already carried does not trigger a run")
+        old = (TODAY - _dt.timedelta(days=30)).isoformat()
+        pipeline.state.load = lambda: {
+            "landmark_families_published": {"nobel": old}}
+        pipeline.landmark_check(A())
+        check(len(calls) == 2, "the same prize a month later is a new event")
     finally:
         (fetch_feeds.fetch, pipeline.run, pipeline.state.load,
-         pipeline.load_config, pipeline.get_logger) = orig
+         pipeline.state.save, pipeline.load_config, pipeline.get_logger) = orig
+
+
+def test_mark_published_records_ids_and_families():
+    lms = [rec(1, NOBEL), rec(2, "Breakthrough Prize in Fundamental Physics")]
+    landmark.tag(lms, CFG)
+    st = landmark.mark_published({}, lms, CFG, TODAY)
+    check(st["landmarks_published"] == ["feed:x:1", "feed:x:2"]
+          and st["landmark_families_published"]
+          == {"nobel": TODAY.isoformat(), "breakthrough": TODAY.isoformat()},
+          "a deploy records both the ids and the prize families")
 
 
 def test_the_wiring_is_real():
@@ -216,6 +246,7 @@ def main() -> int:
                test_enforce_without_any_narrative,
                test_prompt_announces_it,
                test_hourly_check_is_silent_and_fires_once,
+               test_mark_published_records_ids_and_families,
                test_the_wiring_is_real):
         fn()
     failed = [n for ok, n in _results if not ok]
