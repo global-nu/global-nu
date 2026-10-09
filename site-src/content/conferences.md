@@ -25,7 +25,7 @@ scripts:
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the conference indexers' APIs,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 08 October 2026, 07:46 CEST</span></div>
+<span class="stamp">Last successful update: 09 October 2026, 07:46 CEST</span></div>
 </div>
 
 <p class="conf-legend"><span class="conf-legend__lead">Closeness of the subject:</span><span class="conf-aff conf-aff--core">Neutrino physics</span><span class="conf-aff conf-aff--related">Astroparticle &amp; underground</span><span class="conf-aff conf-aff--broad">Particle physics at large</span><span class="conf-aff conf-aff--adjacent">Adjacent fields</span><span class="conf-aff conf-aff--unknown">Not classified</span></p>
@@ -33,7 +33,7 @@ and may contain errors. No model is involved.</b>
 <figure class="figure">
 <h4>Timeline</h4>
 <div class="timeline-scroll">
-<svg viewBox="0 0 2689 326" role="img" width="3227" height="391" aria-label="Timeline of upcoming and recently concluded neutrino conferences, scrollable sideways from today to a year ahead" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 2696 326" role="img" width="3235" height="391" aria-label="Timeline of upcoming and recently concluded neutrino conferences, scrollable sideways from today to a year ahead" xmlns="http://www.w3.org/2000/svg">
 <title>Conference timeline</title>
 <text x="2.0" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
 <line x1="7.1" y1="14" x2="7.1" y2="311" style="stroke:var(--line);stroke-width:1"/>
@@ -62,8 +62,8 @@ and may contain errors. No model is involved.</b>
 <text x="2393.2" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
 <line x1="2603.7" y1="14" x2="2603.7" y2="311" style="stroke:var(--line);stroke-width:1"/>
 <text x="2606.7" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Oct</text>
-<line x1="56.9" y1="8" x2="56.9" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
-<text x="56.9" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
+<line x1="64.0" y1="8" x2="64.0" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
+<text x="64.0" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
 <g class="conf-bar" data-conf="nu:20261005-aiphy2" data-name="School on Bayesian statistics" data-dates="5–9 October 2026" data-place="Gran Sasso Science Institute, L&#x27;Aquila, Italy" data-url="https://agenda.infn.it/event/51770/" data-tier="adjacent" data-tier-label="Adjacent fields">
 <rect x="35.6" y="30" width="28.5" height="10" rx="5" style="fill:var(--dec-3);opacity:1;stroke:var(--text);stroke-width:2"><title>AIPHY2: 2026-10-05 → 2026-10-09 · under way — Adjacent fields (title names “bayesian”)</title></rect>
 <text x="72.0" y="38.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">AIPHY2</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Gran Sasso Science…</tspan></text>
@@ -88,9 +88,9 @@ and may contain errors. No model is involved.</b>
 <rect x="284.6" y="130" width="28.5" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>Patras 2026: 2026-11-09 → 2026-11-13 — Astroparticle &amp; underground (title names “axions”)</title></rect>
 <text x="321.0" y="138.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Patras 2026</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Perth, Western Australia</tspan></text>
 </g>
-<g class="conf-bar" data-conf="nu:20261130-3rd-ai-infn-advanced-hackathon" data-name="Advanced Artificial Intelligence Hackathon" data-dates="30 November – 3 December 2026" data-place="Ferrara" data-url="https://agenda.infn.it/event/53025/" data-tier="unknown" data-tier-label="Not classified">
-<rect x="433.9" y="150" width="21.3" height="10" rx="5" style="fill:var(--text-mute);opacity:1"><title>3rd AI-INFN Advanced Hackathon: 2026-11-30 → 2026-12-03 — Not classified (nothing in the record to judge by)</title></rect>
-<text x="463.3" y="158.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">3rd AI-INFN Advanced Hackathon</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Ferrara</tspan></text>
+<g class="conf-bar" data-conf="nu:20261202-infn-in2p3-bi-national-conference-on-detector-r-d" data-name="INFN-IN2P3 bi-national conference on detector R&amp;D" data-dates="2–4 December 2026" data-place="Laboratori Nazionali di Frascati" data-url="https://agenda.infn.it/event/52777/" data-tier="adjacent" data-tier-label="Adjacent fields">
+<rect x="448.2" y="150" width="14.2" height="10" rx="5" style="fill:var(--dec-3);opacity:1"><title>INFN-IN2P3 bi-national conference on…: 2026-12-02 → 2026-12-04 — Adjacent fields (title names “detector”)</title></rect>
+<text x="470.4" y="158.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">INFN-IN2P3 bi-national…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Laboratori Nazionali di…</tspan></text>
 </g>
 <g class="conf-bar" data-conf="conf:3199757" data-name="Theory meeting experiments: particle astrophysics and cosmology" data-dates="4–10 January 2027" data-place="Quy Nhon, Vietnam" data-url="http://vietnam.in2p3.fr/2027/tmex/" data-tier="related" data-tier-label="Astroparticle &amp; underground">
 <rect x="682.9" y="170" width="42.7" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>TMEX: 2027-01-04 → 2027-01-10 — Astroparticle &amp; underground (title names “particle astrophysics”)</title></rect>
@@ -112,9 +112,9 @@ and may contain errors. No model is involved.</b>
 <rect x="1579.3" y="250" width="28.5" height="10" rx="5" style="fill:var(--dec-3);opacity:1"><title>DIS2027: 2027-05-10 → 2027-05-14 — Adjacent fields (series “DIS”)</title></rect>
 <text x="1615.7" y="258.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">DIS2027</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Philadelphia, United…</tspan></text>
 </g>
-<g class="conf-bar" data-conf="nu:20270531-dark-matter-2027" data-name="From the Smallest to the Largest Scales" data-dates="31 May – 4 June 2027" data-place="Santander, Spain" data-url="https://indico.ifca.es/event/3675/" data-tier="related" data-tier-label="Astroparticle &amp; underground">
-<rect x="1728.7" y="270" width="28.5" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>Dark Matter 2027: 2027-05-31 → 2027-06-04 — Astroparticle &amp; underground (name names “dark matter”)</title></rect>
-<text x="1765.1" y="278.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Dark Matter 2027</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Santander, Spain</tspan></text>
+<g class="conf-bar" data-conf="nu:20270614-nuint-2027-during-the-week-of-14-jun-27-quy-nhon-vietnam" data-name="16th International Workshop on Neutrino-Nucleus Interactions" data-dates="14–18 June 2027" data-place="Quy Nhon, Vietnam" data-url="https://nustec.fnal.gov/nuint-conference-series/" data-tier="core" data-tier-label="Neutrino physics">
+<rect x="1828.3" y="270" width="28.5" height="10" rx="5" style="fill:var(--dec-2);opacity:1"><title>NuINT 2027 during the week of 14 Jun 27…: 2027-06-14 → 2027-06-18 — Neutrino physics (series “NuInt”)</title></rect>
+<text x="1864.7" y="278.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">NuINT 2027 during the week of…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Quy Nhon, Vietnam</tspan></text>
 </g>
 <g class="conf-bar" data-conf="conf:3095737" data-name="Dark Matter and Stars: Multi-Messenger Probes of Dark Matter and Modified Gravity" data-dates="12–14 July 2027" data-place="Cambridge, United States" data-url="https://indico.cern.ch/event/1606005" data-tier="related" data-tier-label="Astroparticle &amp; underground">
 <rect x="2027.4" y="290" width="14.2" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>ICDMS2027: 2027-07-12 → 2027-07-14 — Astroparticle &amp; underground (title names “multi-messenger”)</title></rect>
@@ -122,7 +122,7 @@ and may contain errors. No model is involved.</b>
 </g>
 </svg>
 </div>
-<p class="cap">14 of the 44 upcoming meetings, spread across the year ahead. Bar colour follows the key above; an outlined bar is under way, a faded one has concluded. The next four months are shown — scroll the figure sideways for the rest of the year. 44 upcoming and 72 recent meetings are tracked in full below.</p>
+<p class="cap">14 of the 44 upcoming meetings, spread across the year ahead. Bar colour follows the key above; an outlined bar is under way, a faded one has concluded. The next four months are shown — scroll the figure sideways for the rest of the year. 44 upcoming and 69 recent meetings are tracked in full below.</p>
 </figure>
 
 
@@ -168,7 +168,7 @@ and may contain errors. No model is involved.</b>
 <p class="cap">27 of 44 upcoming meetings placed on the map from a venue the source published; the other 17 stay in the list below without a dot rather than a guess.</p>
 </figure>
 
-<div class="section-head"><h2>Neutrino conferences</h2><p>90 meetings</p></div>
+<div class="section-head"><h2>Neutrino conferences</h2><p>89 meetings</p></div>
 <div class="section-head section-head--sub"><h3>Upcoming</h3><p>34 meetings</p></div>
 <ul class="list list--news conf-list">
 <li data-conf="nu:20261005-aiphy2" data-name="School on Bayesian statistics" data-dates="5–9 October 2026" data-place="Gran Sasso Science Institute, L&#x27;Aquila, Italy" data-url="https://agenda.infn.it/event/51770/" data-tier="adjacent" data-tier-label="Adjacent fields"><b>School on Bayesian statistics</b><span class="conf-aff conf-aff--adjacent" title="title names “bayesian”">Adjacent fields</span><span>5–9 October 2026 · Gran Sasso Science Institute, L'Aquila, Italy</span><span class="cites"><a href="https://agenda.infn.it/event/51770/">Details</a></span></li>
@@ -206,7 +206,7 @@ and may contain errors. No model is involved.</b>
 <li data-conf="conf:3095737" data-name="Dark Matter and Stars: Multi-Messenger Probes of Dark Matter and Modified Gravity" data-dates="12–14 July 2027" data-place="Cambridge, United States" data-url="https://indico.cern.ch/event/1606005" data-tier="related" data-tier-label="Astroparticle &amp; underground"><b>Dark Matter and Stars: Multi-Messenger Probes of Dark Matter and Modified Gravity</b><span class="conf-aff conf-aff--related" title="title names “multi-messenger”">Astroparticle &amp; underground</span><span>12–14 July 2027 · Cambridge, United States</span><span class="cites"><a href="https://indico.cern.ch/event/1606005">Details</a></span></li>
 <li data-conf="conf:3201330" data-name="TeV Particle Astrophysics 2027 (TeVPA 2027)" data-dates="12–16 July 2027" data-place="Madison, United States" data-url="https://inspirehep.net/conferences/3201330" data-tier="related" data-tier-label="Astroparticle &amp; underground"><b>TeV Particle Astrophysics 2027 (TeVPA 2027)</b><span class="conf-aff conf-aff--related" title="title names “particle astrophysics”">Astroparticle &amp; underground</span><span>12–16 July 2027 · Madison, United States</span><span class="cites"><a href="https://inspirehep.net/conferences/3201330">Details</a></span></li>
 </ul>
-<div class="section-head section-head--sub"><h3>Recent</h3><p>6 of 56</p></div>
+<div class="section-head section-head--sub"><h3>Recent</h3><p>6 of 55</p></div>
 <ul class="list list--news conf-list">
 <li data-conf="conf:3195501" data-name="Optomechanical Sensing for Subatomic and Astroparticle Physics" data-dates="23–25 September 2026" data-place="421 Union St., Kingston, Canada" data-url="https://indico.global/event/18677/" data-tier="related" data-tier-label="Astroparticle &amp; underground"><b>Optomechanical Sensing for Subatomic and Astroparticle Physics</b><span class="conf-aff conf-aff--related" title="title names “astroparticle”">Astroparticle &amp; underground</span><span>23–25 September 2026 · 421 Union St., Kingston, Canada</span><span class="cites"><a href="https://indico.global/event/18677/">Details</a></span></li>
 <li data-conf="nu:20260921-18th-international-school-on-neutrino-physics-and-astrophysics" data-name="18th International School on Neutrino Physics and Astrophysics" data-dates="21–25 September 2026" data-place="Sarov, Nizhny Novgorod Region, Russia" data-url="https://school.lomcon.ru/" data-tier="core" data-tier-label="Neutrino physics"><b>18th International School on Neutrino Physics and Astrophysics</b><span class="conf-aff conf-aff--core" title="series “Neutrino”">Neutrino physics</span><span>21–25 September 2026 · Sarov, Nizhny Novgorod Region, Russia</span><span class="cites"><a href="https://school.lomcon.ru/">Details</a></span></li>
@@ -221,7 +221,7 @@ and may contain errors. No model is involved.</b>
 
 ::: section alt
 
-<div class="section-head"><h2>General particle physics</h2><p>26 meetings</p></div>
+<div class="section-head"><h2>General particle physics</h2><p>24 meetings</p></div>
 <div class="section-head section-head--sub"><h3>Upcoming</h3><p>10 meetings</p></div>
 <ul class="list list--news conf-list">
 <li data-conf="conf:3157998" data-name="Physics in Collision 2026" data-dates="5–9 October 2026" data-place="Quy Nhon, Vietnam" data-url="http://vietnam.in2p3.fr/2026/pic" data-tier="broad" data-tier-label="Particle physics at large"><b>Physics in Collision 2026</b><span class="conf-aff conf-aff--broad" title="series “PIC”">Particle physics at large</span><span>5–9 October 2026 · Quy Nhon, Vietnam</span><span class="cites"><a href="http://vietnam.in2p3.fr/2026/pic">Details</a></span></li>
@@ -235,7 +235,7 @@ and may contain errors. No model is involved.</b>
 <li data-conf="conf:3157559" data-name="34th International Conference on Supersymmetry and Unification of Fundamental Interactions (SUSY 2027)" data-dates="31 May – 4 June 2027" data-place="Daejeon, South Korea" data-url="https://indico.ibs.re.kr/event/1301" data-tier="broad" data-tier-label="Particle physics at large"><b>34th International Conference on Supersymmetry and Unification of Fundamental Interactions (SUSY 2027)</b><span class="conf-aff conf-aff--broad" title="series “SUSY”">Particle physics at large</span><span>31 May – 4 June 2027 · Daejeon, South Korea</span><span class="cites"><a href="https://indico.ibs.re.kr/event/1301">Details</a></span></li>
 <li data-conf="conf:3162201" data-name="15th Large Hadron Collider Physics Conference (LHCP2027)" data-dates="31 May – 4 June 2027" data-place="Vancouver, Canada" data-url="https://indico.cern.ch/event/1689315/" data-tier="broad" data-tier-label="Particle physics at large"><b>15th Large Hadron Collider Physics Conference (LHCP2027)</b><span class="conf-aff conf-aff--broad" title="title names “large hadron collider physics”">Particle physics at large</span><span>31 May – 4 June 2027 · Vancouver, Canada</span><span class="cites"><a href="https://indico.cern.ch/event/1689315/">Details</a></span></li>
 </ul>
-<div class="section-head section-head--sub"><h3>Recent</h3><p>6 of 16</p></div>
+<div class="section-head section-head--sub"><h3>Recent</h3><p>6 of 14</p></div>
 <ul class="list list--news conf-list">
 <li data-conf="conf:3208688" data-name="11th International Conference on Charged &amp; Neutral Particles Channeling Phenomena" data-dates="20–25 September 2026" data-place="Brindisi, Italy" data-url="https://agenda.infn.it/event/49991/" data-tier="broad" data-tier-label="Particle physics at large"><b>11th International Conference on Charged &amp; Neutral Particles Channeling Phenomena</b><span class="conf-aff conf-aff--broad" title="INSPIRE category “Experiment-HEP”">Particle physics at large</span><span>20–25 September 2026 · Brindisi, Italy</span><span class="cites"><a href="https://agenda.infn.it/event/49991/">Details</a></span></li>
 <li data-conf="conf:3122555" data-name="Higgs Hunting 2026" data-dates="16–18 September 2026" data-place="Orsay &amp; Paris, France" data-url="http://www.higgshunting.fr/" data-tier="adjacent" data-tier-label="Adjacent fields"><b>Higgs Hunting 2026</b><span class="conf-aff conf-aff--adjacent" title="series “Higgs Hunting”">Adjacent fields</span><span>16–18 September 2026 · Orsay &amp; Paris, France</span><span class="cites"><a href="http://www.higgshunting.fr/">Details</a></span></li>
