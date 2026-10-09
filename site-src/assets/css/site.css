@@ -368,6 +368,23 @@ h4{font-weight:700;font-size:.98rem}
 .list span{font-family:var(--mono);font-size:.72rem;color:var(--text-mute)}
 .tile .more{display:inline-block;margin-top:.9rem;font-size:.85rem;font-weight:600}
 
+/* Symmetry. News tiles: every row the same height (the daily text varies a
+   lot in length), citations pinned to the foot of the tile. Resources tiles
+   (.tiles--cols): make_experiments.py deals them into four columns of equal
+   length and flags the first tile of each; here the columns are laid out and
+   below 4 columns the forced breaks are dropped so the browser balances. */
+.tiles:not(.tiles--cols){grid-auto-rows:1fr}
+.tiles:not(.tiles--cols) .tile{display:flex;flex-direction:column}
+.tiles:not(.tiles--cols) .tile .cites{margin-top:auto}
+.tiles--cols{display:block;columns:4;column-gap:1.2rem}
+.tiles--cols .tile{break-inside:avoid;margin-bottom:1.2rem}
+.tiles--cols .tile[data-first]:not(:first-child){break-before:column}
+@media (max-width:1100px){
+  .tiles--cols{columns:2}
+  .tiles--cols .tile[data-first]{break-before:auto!important}
+}
+@media (max-width:640px){.tiles--cols{columns:1}}
+
 /* ---------- archive index (digest.md, between the ARCHIVE markers) ----------
    tools/news/archive.py emits <li><time>…</time><a>…</a><span class="count">
    …</span></li> — a row, not the title-plus-meta shape .list carries, so it
