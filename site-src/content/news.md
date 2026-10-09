@@ -1,5 +1,6 @@
 ---
 title: News
+head_title: "Neutrino physics news: results and experiments — global-nu"
 url: news.html
 description: >-
   What is happening in neutrino physics: experiments and their results, recently

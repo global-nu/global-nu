@@ -1,5 +1,6 @@
 ---
 title: arXiv digest
+head_title: Daily arXiv digest of neutrino papers — global-nu
 url: digest.html
 description: >-
   The day's neutrino preprints on arXiv, experimental and theoretical, ranked by

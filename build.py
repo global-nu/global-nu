@@ -234,12 +234,48 @@ def head_extra(fm: dict, cfg: dict, url: str) -> str:
     """
     kind = fm.get("jsonld")
     if not kind:
-        return ""
+        return _page_head(fm, cfg, url)
     if kind not in ("dataset", "site"):
         sys.exit(f"{url}: unknown 'jsonld: {kind}' — expected 'dataset' or 'site'")
     if kind == "dataset":
-        return _dataset_head(fm, cfg, url)
+        return _dataset_head(fm, cfg, url) + "\n" + _page_head(fm, cfg, url)
     return _site_head(cfg)
+
+
+def _page_head(fm: dict, cfg: dict, url: str) -> str:
+    """WebPage and BreadcrumbList for every page that has no block of its own.
+
+    Both are plain facts about where the page sits: the crumbs come from the
+    navigation in site.yaml (and, for a digest day, its parent the digest), so
+    nothing here can drift from what a reader sees. The home page carries the
+    site block instead and the 404 is not a page worth describing.
+    """
+    if url in ("index.html", "404.html"):
+        return ""
+    base = cfg["site_url"]
+    labels = {n["url"]: n["label"] for n in cfg.get("nav", [])}
+    desc = " ".join((fm.get("description") or "").split())
+    trail = [("Home", f"{base}/index.html")]
+    if url.startswith("digest/"):
+        trail.append((labels.get("digest.html", "arXiv digest"), f"{base}/digest.html"))
+    trail.append((fm.get("title", url), f"{base}/{url}"))
+    page = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": fm.get("title", ""),
+        "url": f"{base}/{url}",
+        "isPartOf": {"@type": "WebSite", "name": cfg["site_name"], "url": base},
+    }
+    if desc:
+        page["description"] = desc
+    crumbs = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": i, "name": n, "item": u}
+            for i, (n, u) in enumerate(trail, 1)],
+    }
+    return _json_ld(page) + "\n" + _json_ld(crumbs)
 
 
 def _dataset_head(fm: dict, cfg: dict, url: str) -> str:

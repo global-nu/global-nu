@@ -1,5 +1,6 @@
 ---
 title: Search
+head_title: "Neutrino literature search: INSPIRE, arXiv — global-nu"
 url: search.html
 description: >-
   A free-form physics literature search across INSPIRE-HEP, arXiv, Semantic

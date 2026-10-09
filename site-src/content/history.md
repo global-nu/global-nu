@@ -1,5 +1,6 @@
 ---
 title: Parameter history
+head_title: "Neutrino parameters over time: Bari, NuFit, Valencia — global-nu"
 url: history.html
 description: >-
   How the neutrino oscillation parameters moved across the Bari, NuFit and

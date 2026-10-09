@@ -1,5 +1,6 @@
 ---
 title: About
+head_title: About the Bari global analysis, and how to cite it — global-nu
 url: about.html
 description: >-
   Who publishes global-nu.org, what a global analysis is, and how to cite the

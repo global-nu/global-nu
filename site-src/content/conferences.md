@@ -1,5 +1,6 @@
 ---
 title: Conferences
+head_title: Neutrino conferences, workshops and schools — global-nu
 url: conferences.html
 description: >-
   Upcoming and recent neutrino conferences, workshops and schools, with dates,

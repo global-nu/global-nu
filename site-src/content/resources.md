@@ -1,5 +1,6 @@
 ---
 title: Resources
+head_title: Neutrino experiments, data and literature — global-nu
 url: resources.html
 description: >-
   A starting point for navigating neutrino physics: experiments, global

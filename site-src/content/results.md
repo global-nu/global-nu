@@ -1,5 +1,6 @@
 ---
 title: Results
+head_title: Neutrino oscillation best-fit values and 3σ ranges — global-nu
 url: results.html
 description: >-
   Results of the Bari global analyses of neutrino oscillation data — best-fit

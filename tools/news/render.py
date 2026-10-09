@@ -175,6 +175,7 @@ def _page(path: Path, frontmatter: str, body: str) -> None:
 # --------------------------------------------------------------------------- #
 NEWS_FRONTMATTER = """---
 title: News
+head_title: "Neutrino physics news: results and experiments — global-nu"
 url: news.html
 description: >-
   What is happening in neutrino physics: experiments and their results, recently
@@ -253,6 +254,7 @@ def news(narrative: dict | None, known: dict[str, dict], log: logging.Logger,
 # --------------------------------------------------------------------------- #
 DIGEST_FRONTMATTER = """---
 title: arXiv digest
+head_title: Daily arXiv digest of neutrino papers — global-nu
 url: digest.html
 description: >-
   The day's neutrino preprints on arXiv, experimental and theoretical, ranked by
