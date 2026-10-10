@@ -23,7 +23,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors.</b>
-<span class="stamp">Last successful update: 09 October 2026, 07:46 CEST</span></div>
+<span class="stamp">Last successful update: 10 October 2026, 07:46 CEST</span></div>
 </div>
 
 <div class="section-head"><h2>Experimental</h2>
