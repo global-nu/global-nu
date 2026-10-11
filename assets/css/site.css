@@ -684,7 +684,9 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
   .hero--split .hero__in{grid-template-columns:1fr}
   .split{grid-template-columns:minmax(0,1fr)}
 }
-@media (max-width:48rem){
+/* The nine links stop fitting beside the brand below ~1090px; collapse before
+   they wrap into a second row and double the sticky header's height. */
+@media (max-width:69rem){
   .nav{display:none;width:100%;flex-direction:column;gap:.55rem;
     padding-top:.6rem;border-top:1px solid var(--line);margin-top:.4rem}
   .nav.is-open{display:flex}
