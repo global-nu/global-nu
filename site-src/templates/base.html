@@ -30,6 +30,7 @@
    chose light would see a flash of dark on every navigation. try/catch
    because localStorage throws outright in Safari's private mode rather than
    returning null. */
+document.documentElement.classList.add("js");
 (function(){try{var t=localStorage.getItem("gnu-theme");
 if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
 </script>
