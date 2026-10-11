@@ -1232,3 +1232,38 @@ a.card:hover .card__go{color:var(--text)}
 @media (prefers-reduced-motion:reduce){
   .figbox__stage{will-change:auto}
 }
+
+/* ---------- figures and maps on phones ----------
+   Measured at 390px: the UA stylesheet's 40px side margin on <figure>, plus
+   the card padding, left an svg drawn for 520-760 viewBox units only 233px,
+   so its 10.5-11px labels rendered 4-6px tall. Take the figure to within 8px
+   of the screen edge, then enlarge each label about its own anchor with the
+   `scale` property, which keeps the drawing's type hierarchy. The factors are
+   the largest at which no two labels overlap and none leaves its svg (checked
+   at 320, 360 and 390px): the hero's two stacked footnotes touch at any
+   enlargement at 360px, so the hero gains width only; the wide charts'
+   line-end labels collide above 1.2. Maps keep their glyphs as drawn --
+   cluster counts must stay inside their dots, and the conference map's
+   in-svg legend collides above 1.1 but is repeated in HTML above the map --
+   and the timeline has its own
+   fixed scale (see .timeline-scroll). */
+@media (max-width:40rem){
+  figure.figure{margin-inline:calc(var(--gutter)*-1 + .5rem);padding:.9rem .75rem .8rem}
+  figure.figure svg text{transform-box:fill-box;transform-origin:left center;scale:1.4}
+  figure.figure svg text[text-anchor=end]{transform-origin:right center}
+  figure.figure svg text[text-anchor=middle]{transform-origin:center}
+  figure.figure--wide svg text{scale:1.2}
+  .hero figure.figure svg text{scale:none}
+  figure.map-figure svg text,figure.confmap-figure svg text,
+  figure.figure .timeline-scroll svg text{scale:none}
+  /* The world map renders ~150px tall here; three stacked overlay buttons
+     covered half of it. A row above the map, as svgzoom.js already does for
+     the conference map, cannot cover a marker. */
+  .map-stage{display:flex;flex-direction:column}
+  .map-ctl{position:static;order:-1;flex-direction:row;align-self:flex-end;margin-bottom:.5rem}
+  /* and the card, an overlay capped at 75% of a 157px map, scrolled inside a
+     slot a few lines tall and reached up over that row. Below the map, in
+     flow, it is read at full width and covers nothing. relative, not static,
+     so its close button still anchors to the card. */
+  .map-card{position:relative;left:auto;bottom:auto;width:auto;max-height:none;margin-top:.6rem}
+}
