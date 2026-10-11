@@ -23,13 +23,14 @@
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="../assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/archivo-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../assets/css/site.css?v=81a1d8f8">
+<link rel="stylesheet" href="../assets/css/site.css?v=73acfbce">
 <script>
 /* Apply the saved theme before the first paint. Inline and blocking on
    purpose: a deferred script runs after the page is drawn, and a reader who
    chose light would see a flash of dark on every navigation. try/catch
    because localStorage throws outright in Safari's private mode rather than
    returning null. */
+document.documentElement.classList.add("js");
 (function(){try{var t=localStorage.getItem("gnu-theme");
 if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
 </script>
