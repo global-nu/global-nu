@@ -23,7 +23,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors.</b>
-<span class="stamp">Last successful update: 11 October 2026, 07:46 CEST</span></div>
+<span class="stamp">Last successful update: 12 October 2026, 07:47 CEST</span></div>
 </div>
 
 <div class="section-head"><h2>Experimental</h2>
@@ -46,6 +46,7 @@ and may contain errors.</b>
 
 <ul class="list list--news">
 <li><b><a href="https://arxiv.org/abs/2610.07159">Magnus: neutrino oscillation probabilities for any Hermitian Hamiltonian, any number of flavors, and any matter profile</a></b><span>Mauricio Bustamante · 5 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.13231">Non-resonant Flavoured leptogenesis with aligned two-Higgs doublet model and right-handed neutrinos</a></b><span>Km Pranjali, Indrani Chakraborty · 9 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.11789">Minimally Modified Frampton--Glashow--Yanagida Ansatz and Its Leptogenesis Consequences: In Light of Recent JUNO's Result</a></b><span>Xing-Yu Wang, Zhen-hua Zhao · 8 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.11319">Neutrino oscillations inside ultrarelativistic matter: on the role of the Tolman VI spacetime</a></b><span>Daniele Gregoris · 8 Oct 2026</span><span class="tags"><span class="tag">gr-qc</span><span class="tag">hep-ph</span></span><span class="cites"><a href="https://doi.org/10.1140/epjc/s10052-026-16462-w">DOI</a></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.10685">Neutrino flavor conversion alters the lepton-emission self-sustained asymmetry in core-collapse supernovae</a></b><span>Noah Roux, Irene Tamborra, Maryna Mesiura · 7 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span></span></li>
@@ -56,7 +57,6 @@ and may contain errors.</b>
 <li><b><a href="https://arxiv.org/abs/2610.06738">Novel dependence between neutrino mass splittings strongly supported by initial JUNO results</a></b><span>I. Alikhanov · 5 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.08462">Predicting High-Energy neutrino emission from X-ray absorption in CSM-interacting SNe</a></b><span>Silvia Gagliardini, Simone Dall'Osso, Dafne Guetta · 6 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.07735">Mass as pairing: an explicit Majorana mass on half of a generation does not seesaw in symmetric mass generation</a></b><span>Piotr S. Topa · 6 Oct 2026</span><span class="tags"><span class="tag">hep-lat</span><span class="tag">hep-ph</span><span class="tag">hep-th</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.12334">Quantum Co-Design of Inhomogeneous Many-Body Neutrino Fast Flavor Transformation</a></b><span>Zoha Laraib, Sherwood Richers, Alessandro Baroni et al. · 8 Oct 2026</span><span class="tags"><span class="tag">quant-ph</span><span class="tag">astro-ph.HE</span></span></li>
 </ul>
 
 
@@ -78,6 +78,7 @@ still appears under theory.</p>
 
 <!-- ARCHIVE:BEGIN -->
 <ul class="archive">
+  <li><time datetime="2026-10-09">9 October 2026</time><a href="digest/2026-10-09.html">Digest of 2026-10-09</a><span class="count">1 paper</span></li>
   <li><time datetime="2026-10-08">8 October 2026</time><a href="digest/2026-10-08.html">Digest of 2026-10-08</a><span class="count">6 papers</span></li>
   <li><time datetime="2026-10-07">7 October 2026</time><a href="digest/2026-10-07.html">Digest of 2026-10-07</a><span class="count">3 papers</span></li>
   <li><time datetime="2026-10-06">6 October 2026</time><a href="digest/2026-10-06.html">Digest of 2026-10-06</a><span class="count">16 papers</span></li>
@@ -87,8 +88,7 @@ still appears under theory.</p>
   <li><time datetime="2026-10-01">1 October 2026</time><a href="digest/2026-10-01.html">Digest of 2026-10-01</a><span class="count">5 papers</span></li>
   <li><time datetime="2026-09-30">30 September 2026</time><a href="digest/2026-09-30.html">Digest of 2026-09-30</a><span class="count">6 papers</span></li>
   <li><time datetime="2026-09-29">29 September 2026</time><a href="digest/2026-09-29.html">Digest of 2026-09-29</a><span class="count">5 papers</span></li>
-  <li><time datetime="2026-09-28">28 September 2026</time><a href="digest/2026-09-28.html">Digest of 2026-09-28</a><span class="count">3 papers</span></li>
-  <li><time datetime="2026-10">October 2026</time><a href="digest/2026-10.html">All of October 2026</a><span class="count">39 papers</span></li>
+  <li><time datetime="2026-10">October 2026</time><a href="digest/2026-10.html">All of October 2026</a><span class="count">40 papers</span></li>
   <li><time datetime="2026-09">September 2026</time><a href="digest/2026-09.html">All of September 2026</a><span class="count">137 papers</span></li>
   <li><time datetime="2026-08">August 2026</time><a href="digest/2026-08.html">All of August 2026</a><span class="count">76 papers</span></li>
 </ul>
