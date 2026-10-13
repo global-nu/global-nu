@@ -191,8 +191,20 @@ check("when the API answers, its records are what comes back",
       len(recs) == 1 and recs[0]["id"] == "arxiv:2609.09999", recs)
 check("...marked as having come by the API route",
       recs and recs[0]["extra"].get("route") == "api", recs[0]["extra"] if recs else None)
-check("...and no RSS feed is fetched at all",
-      not any("rss" in u for u in asked), asked)
+check("...and only one RSS feed is read, to learn that arXiv did announce "
+      "something today",
+      sum("rss" in u for u in asked) == 1, asked)
+
+# The API answers on a holiday too, with the same rolling window as the day
+# before: only the feeds can tell that nothing was announced.
+FEEDS.update({cat: feed() for cat in FEEDS})
+recs, asked, log, stored = run_fetch(api_answers=API_ATOM.format(published=_now))
+FEEDS.update({"hep-ex": HEP_EX, "hep-ph": HEP_PH})
+check("when the API answers but every feed is empty, the API's records are "
+      "kept and the cache says arXiv made no announcement",
+      len(recs) == 1
+      and fetch_arxiv.NO_ANNOUNCEMENT in (stored.get("errors") or []),
+      stored.get("errors"))
 
 # --------------------------------------------------------------------- #
 # the API refuses: the feeds answer instead
@@ -290,6 +302,84 @@ check("with the API refusing and no feed reachable, nothing is returned — "
       recs == [], recs)
 check("...and the log says both routes were tried, not just the first",
       any("feeds gave nothing" in line for line in log.lines), log.lines)
+
+# --------------------------------------------------------------------- #
+# the feeds answer, and are empty: arXiv announced nothing that night
+# --------------------------------------------------------------------- #
+# What happened on 13 October 2026, the morning after arXiv's Monday
+# 12 October announcement holiday: the API answered 429 and every feed came
+# back as a channel with no items.
+FEEDS.update({cat: feed() for cat in _real_feeds})
+recs, asked, log, stored = run_fetch(api_answers=None)
+FEEDS.update(_real_feeds)
+check("feeds that answer with no items give no records", recs == [], recs)
+check("...and the cache says arXiv made no announcement, which the digest "
+      "turns into a note",
+      fetch_arxiv.NO_ANNOUNCEMENT in (stored.get("errors") or []),
+      stored.get("errors"))
+
+# One feed unreachable and the other empty is not proof of a quiet day.
+FEEDS.clear()
+FEEDS["hep-ex"] = feed()
+recs, asked, log, stored = run_fetch(api_answers=None)
+FEEDS.clear()
+FEEDS.update(_real_feeds)
+check("one feed empty and another unreachable is NOT read as a quiet day",
+      fetch_arxiv.NO_ANNOUNCEMENT not in (stored.get("errors") or []),
+      stored.get("errors"))
+
+# --------------------------------------------------------------------- #
+# render: the note goes into the page, nothing else changes
+# --------------------------------------------------------------------- #
+import tempfile                                                 # noqa: E402
+from tools.news import render                                   # noqa: E402
+
+_orig_page = render.DIGEST_PAGE
+_tmp = Path(tempfile.mkdtemp()) / "digest.md"
+render.DIGEST_PAGE = _tmp
+try:
+    # A page rendered before the markers existed — today's real one.
+    _old = _orig_page.read_text(encoding="utf-8")
+    _tmp.write_text(_old.replace(render.QUIET_BEGIN + "\n" + render.QUIET_END + "\n", ""),
+                    encoding="utf-8")
+    _before = _tmp.read_text(encoding="utf-8")
+    ok = render.digest([], _Log(), no_announcement=True)
+    _after = _tmp.read_text(encoding="utf-8")
+    check("on a quiet day the digest reports that it wrote the page", ok)
+    check("...the note is on the page, linking arXiv's schedule",
+          "arXiv made no announcement" in _after
+          and "info.arxiv.org/help/availability.html" in _after)
+    check("...and removing the note gives back the page as it was: same "
+          "papers, same stamp",
+          _after.split(render.QUIET_BEGIN)[0].rstrip("\n")
+          + _after.split(render.QUIET_END)[1]
+          == _before, "")
+    render.digest([], _Log(), no_announcement=True)
+    check("a second quiet day replaces the note rather than adding another",
+          _tmp.read_text(encoding="utf-8").count("arXiv made no announcement") == 1)
+
+    _tmp.write_text(_before, encoding="utf-8")
+    ok = render.digest([], _Log())
+    check("an empty list that is NOT a quiet day still leaves the page untouched",
+          not ok and _tmp.read_text(encoding="utf-8") == _before)
+
+    _rec = run_fetch(api_answers=API_ATOM.format(published=_now))[0]
+    render.digest(_rec, _Log(), no_announcement=True)
+    _fresh = _tmp.read_text(encoding="utf-8")
+    check("a full render on a quiet day (the API answered) carries the note "
+          "between the markers",
+          _fresh.count("arXiv made no announcement") == 1
+          and _fresh.index(render.QUIET_BEGIN)
+          < _fresh.index("arXiv made no announcement")
+          < _fresh.index(render.QUIET_END))
+
+    # The next real announcement: a normal render clears the note.
+    render.digest(_rec, _Log())
+    _fresh = _tmp.read_text(encoding="utf-8")
+    check("the next normal render carries empty markers and no note",
+          render.QUIET_BEGIN in _fresh and "arXiv made no announcement" not in _fresh)
+finally:
+    render.DIGEST_PAGE = _orig_page
 
 print()
 if problems:

@@ -336,9 +336,54 @@ def _keyword_note() -> str:
             f'this page</summary>{gate}{rows}{rule}</details>\n')
 
 
-def digest(records: list[dict], log: logging.Logger, stamp: str | None = None) -> bool:
+QUIET_BEGIN, QUIET_END = "<!-- QUIET:BEGIN -->", "<!-- QUIET:END -->"
+
+QUIET_NOTE = """<p class="small muted"><b>arXiv made no announcement for
+{day}.</b> Its listing feeds are empty, as they are at weekends and on
+<a href="https://info.arxiv.org/help/availability.html">arXiv's announcement
+holidays</a>, so nothing below is new today: the list will change with the
+next announcement.</p>"""
+
+
+def _quiet_day(log: logging.Logger, day: _dt.date | None = None) -> bool:
+    """Put the no-announcement note into the existing digest.md, leaving its
+    papers and its "Last successful update" stamp exactly as they were: the
+    list is still the latest arXiv published, and the stamp still says when
+    it was fetched. Only the note is new, so a reader can tell a quiet day
+    from a broken job."""
+    if not DIGEST_PAGE.exists():
+        return False
+    text = DIGEST_PAGE.read_text(encoding="utf-8")
+    block = (f"{QUIET_BEGIN}\n"
+             + QUIET_NOTE.format(day=(day or _dt.date.today()).strftime("%-d %B %Y"))
+             + f"\n{QUIET_END}")
+    if QUIET_BEGIN in text and QUIET_END in text:
+        head, rest = text.split(QUIET_BEGIN, 1)
+        text = head + block + rest.split(QUIET_END, 1)[1]
+    else:
+        # A page rendered before the markers existed: right after the
+        # autogen banner, the first thing a reader looks at.
+        anchor = '<span class="stamp">'
+        i = text.find(anchor)
+        j = text.find("</div>\n</div>", i) if i >= 0 else -1
+        if j < 0:
+            log.warning("render: digest.md has no autogen banner — quiet-day "
+                        "note not added")
+            return False
+        j += len("</div>\n</div>")
+        text = text[:j] + "\n" + block + text[j:]
+    DIGEST_PAGE.write_text(text, encoding="utf-8")
+    log.info("render: digest.md — arXiv made no announcement; note added, "
+             "papers and stamp kept")
+    return True
+
+
+def digest(records: list[dict], log: logging.Logger, stamp: str | None = None,
+           no_announcement: bool = False) -> bool:
     """Rewrite digest.md, keeping experiment and theory streams apart."""
     if not records:
+        if no_announcement:
+            return _quiet_day(log)
         log.warning("render: no arXiv records — digest.md left untouched")
         return False
 
@@ -348,6 +393,8 @@ def digest(records: list[dict], log: logging.Logger, stamp: str | None = None) -
 
     exp = [r for r in records if is_exp(r)]
     thy = [r for r in records if not is_exp(r)]
+    quiet_note = (QUIET_NOTE.format(day=_dt.date.today().strftime("%-d %B %Y")) + "\n"
+                  if no_announcement else "")
 
     # Where today's list came from. fetch_arxiv tries the API first and reads
     # the per-category RSS feeds when it refuses; the two answer different
@@ -380,6 +427,8 @@ API answers. Same categories, same keyword ranking, same everything else.</p>
 ::: section
 
 {AUTOGEN_SCRIPT.format(sources=source_name, stamp=stamp or _stamp(), note="")}
+{QUIET_BEGIN}
+{quiet_note}{QUIET_END}
 {fallback_note}
 <div class="section-head"><h2>Experimental</h2>
 <p>{len(exp)} preprint{"" if len(exp) == 1 else "s"}</p></div>

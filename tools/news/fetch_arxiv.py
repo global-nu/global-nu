@@ -51,6 +51,12 @@ DC_NS = "{http://purl.org/dc/elements/1.1/}"
 # years ago; the digest is a list of what is new.
 ANNOUNCE_KINDS = ("new", "cross")
 
+# Left in the cache's errors when every feed answered and none of them held a
+# single item: arXiv announced nothing that night (an announcement holiday, or
+# a weekend), which is not the same as arXiv being unreachable. The pipeline
+# reads it so the digest can say so instead of merely looking stale.
+NO_ANNOUNCEMENT = "arXiv made no announcement"
+
 TITLE_WEIGHT = 3
 ABSTRACT_WEIGHT = 1
 
@@ -335,6 +341,10 @@ def _from_rss(conf: dict, log: logging.Logger, errors: list[str]) -> list[dict]:
 
     if not reached:
         return []
+    if not seen and reached == len(conf.get("categories") or ["hep-ph"]):
+        errors.append(NO_ANNOUNCEMENT)
+        log.warning("arxiv: every feed answered and every one is empty — "
+                    "arXiv made no announcement today (holiday or weekend)")
     records = [rec for _, rec in sorted(by_id.values(), key=lambda kv: -kv[0])]
     log.warning("arxiv: fell back to the RSS feeds — %d announcement(s) across "
                 "%d of %d feed(s), %d new or cross-listed and on topic. This is "
@@ -342,6 +352,27 @@ def _from_rss(conf: dict, log: logging.Logger, errors: list[str]) -> list[dict]:
                 seen, reached, len(conf.get("categories") or []), len(records),
                 int(conf.get("window_hours", 72)))
     return records
+
+
+def _announced_nothing(conf: dict, log: logging.Logger) -> bool:
+    """True only when every configured feed answers and holds no item.
+
+    Asked after the API has answered, because the API's rolling window looks
+    the same the morning after a holiday as the morning after a normal day.
+    The first feed with an item settles it, so a normal day costs one request;
+    a feed that cannot be read makes the answer "don't know", which is False.
+    """
+    for cat in (conf.get("categories") or ["hep-ph"]):
+        r = http_get(RSS.format(category=cat), timeout=45, log=log)
+        if r is None:
+            return False
+        try:
+            root = ET.fromstring(r.content)
+        except ET.ParseError:
+            return False
+        if root.find(".//item") is not None:
+            return False
+    return True
 
 
 def fetch(cfg: dict, log: logging.Logger) -> list[dict]:
@@ -438,6 +469,10 @@ def fetch(cfg: dict, log: logging.Logger) -> list[dict]:
             f"no entry matched the keywords inside the window (and {gated} "
             f"scored but were refused for never naming the field)"
             if gated else "no entry matched the keywords inside the window")
+    if _announced_nothing(conf, log):
+        errors.append(NO_ANNOUNCEMENT)
+        log.warning("arxiv: the feeds are all empty — arXiv made no "
+                    "announcement today (holiday or weekend)")
 
     cache.store("arxiv", records, errors)
     return records

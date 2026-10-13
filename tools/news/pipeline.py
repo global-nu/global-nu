@@ -112,6 +112,7 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
              dry_run, use_ai, do_build, from_cache)
 
     # ------------------------------------------------------------ 1. fetch --
+    no_announcement = False
     if from_cache:
         # Re-render the three pages from the records already on disk, calling
         # no API and no model. This exists because the pages are generated
@@ -136,6 +137,9 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
                  day or "today", len(arxiv), len(feeds), len(papers), len(events))
     else:
         arxiv = _safe("arxiv", lambda: fetch_arxiv.fetch(cfg, log), log, [])
+        # Read now: the cache.store below rewrites the file without errors.
+        no_announcement = (fetch_arxiv.NO_ANNOUNCEMENT
+                           in cache.load("arxiv").get("errors", []))
         feeds = _safe("feeds", lambda: fetch_feeds.fetch(cfg, log), log, [])
         papers = _safe("inspire",
                        lambda: fetch_inspire.fetch_literature(cfg, log), log, [])
@@ -246,7 +250,9 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
     # step that now does the most work.
     wrote = []
     published = fetch_arxiv.top(arxiv, int(cfg["arxiv"].get("max_items", 12)))
-    if _safe("render digest", lambda: render.digest(published, log), log, False):
+    if _safe("render digest",
+             lambda: render.digest(published, log, no_announcement=no_announcement),
+             log, False):
         wrote.append("digest")
     if _safe("render conferences", lambda: render.conferences(events, log), log, False):
         wrote.append("conferences")
