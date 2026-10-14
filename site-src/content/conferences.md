@@ -25,7 +25,7 @@ scripts:
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the conference indexers' APIs,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 13 October 2026, 07:47 CEST</span></div>
+<span class="stamp">Last successful update: 14 October 2026, 07:46 CEST</span></div>
 </div>
 
 <p class="conf-legend"><span class="conf-legend__lead">Closeness of the subject:</span><span class="conf-aff conf-aff--core">Neutrino physics</span><span class="conf-aff conf-aff--related">Astroparticle &amp; underground</span><span class="conf-aff conf-aff--broad">Particle physics at large</span><span class="conf-aff conf-aff--adjacent">Adjacent fields</span><span class="conf-aff conf-aff--unknown">Not classified</span></p>
@@ -33,7 +33,7 @@ and may contain errors. No model is involved.</b>
 <figure class="figure">
 <h4>Timeline</h4>
 <div class="timeline-scroll">
-<svg viewBox="0 0 2682 326" role="img" width="3218" height="391" aria-label="Timeline of upcoming and recently concluded neutrino conferences, scrollable sideways from today to a year ahead" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 2689 326" role="img" width="3227" height="391" aria-label="Timeline of upcoming and recently concluded neutrino conferences, scrollable sideways from today to a year ahead" xmlns="http://www.w3.org/2000/svg">
 <title>Conference timeline</title>
 <text x="2.0" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Oct</text>
 <line x1="185.0" y1="14" x2="185.0" y2="311" style="stroke:var(--line);stroke-width:1"/>
@@ -60,8 +60,8 @@ and may contain errors. No model is involved.</b>
 <text x="2350.6" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
 <line x1="2561.0" y1="14" x2="2561.0" y2="311" style="stroke:var(--line);stroke-width:1"/>
 <text x="2564.0" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Oct</text>
-<line x1="49.8" y1="8" x2="49.8" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
-<text x="49.8" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
+<line x1="56.9" y1="8" x2="56.9" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
+<text x="56.9" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
 <g class="conf-bar" data-conf="nu:20261011-esc26" data-name="XVII INFN International School on Efficient Scientific Computing" data-dates="11–22 October 2026" data-place="Bertinoro, Forli-Cesena, Italy" data-url="https://agenda.infn.it/event/50802/" data-tier="adjacent" data-tier-label="Adjacent fields">
 <rect x="35.6" y="30" width="78.3" height="10" rx="5" style="fill:var(--dec-3);opacity:1;stroke:var(--text);stroke-width:2"><title>ESC26: 2026-10-11 → 2026-10-22 · under way — Adjacent fields (title names “scientific computing”)</title></rect>
 <text x="121.8" y="38.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">ESC26</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Bertinoro…</tspan></text>
@@ -74,41 +74,41 @@ and may contain errors. No model is involved.</b>
 <rect x="49.8" y="70" width="28.5" height="10" rx="5" style="fill:var(--dec-1);opacity:1;stroke:var(--text);stroke-width:2"><title>DISCRETE 2026: 2026-10-13 → 2026-10-17 · under way — Particle physics at large (series “DISCRETE”)</title></rect>
 <text x="86.3" y="78.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">DISCRETE 2026</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Bratislava, Slovakia</tspan></text>
 </g>
+<g class="conf-bar" data-conf="indico:indico.global:19462" data-name="Neutrino Group Meeting" data-dates="16 October 2026" data-place="ExWi" data-url="https://indico.global/event/19462/" data-tier="core" data-tier-label="Neutrino physics">
+<rect x="71.1" y="90" width="4.0" height="10" rx="5" style="fill:var(--dec-2);opacity:1"><title>Neutrino Group Meeting: 2026-10-16 → 2026-10-16 — Neutrino physics (title names “neutrino”)</title></rect>
+<text x="83.1" y="98.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Neutrino Group Meeting</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">ExWi</tspan></text>
+</g>
 <g class="conf-bar" data-conf="nu:20261019-conferenza-nazionale-sul-calcolo" data-name="Conferenza Nazionale sul Calcolo" data-dates="19–21 October 2026" data-place="Villa Mondragone - Monte Porzio Catone" data-url="https://agenda.infn.it/event/52618/" data-tier="unknown" data-tier-label="Not classified">
-<rect x="92.5" y="90" width="14.2" height="10" rx="5" style="fill:var(--text-mute);opacity:1"><title>Conferenza Nazionale sul Calcolo: 2026-10-19 → 2026-10-21 — Not classified (nothing in the record to judge by)</title></rect>
-<text x="114.7" y="98.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Conferenza Nazionale sul…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Villa Mondragone -…</tspan></text>
+<rect x="92.5" y="110" width="14.2" height="10" rx="5" style="fill:var(--text-mute);opacity:1"><title>Conferenza Nazionale sul Calcolo: 2026-10-19 → 2026-10-21 — Not classified (nothing in the record to judge by)</title></rect>
+<text x="114.7" y="118.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Conferenza Nazionale sul…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Villa Mondragone -…</tspan></text>
 </g>
-<g class="conf-bar" data-conf="nu:20261026-galactic-science-and-cmb-foregrounds-2026" data-name="3rd Conference" data-dates="26–29 October 2026" data-place="Tenerife, Canary Islands, Spain" data-url="https://meetings.iac.es/cmbforegrounds2026/" data-tier="adjacent" data-tier-label="Adjacent fields">
-<rect x="142.3" y="110" width="21.3" height="10" rx="5" style="fill:var(--dec-3);opacity:1"><title>Galactic Science and CMB Foregrounds…: 2026-10-26 → 2026-10-29 — Adjacent fields (name names “galactic”)</title></rect>
-<text x="171.6" y="118.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Galactic Science and CMB…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Tenerife, Canary…</tspan></text>
-</g>
-<g class="conf-bar" data-conf="nu:20261026-soup-2026" data-name="4th edition of the International INFN &quot;School of Underground Physics: Theory and Experiments&quot;" data-dates="26–30 October 2026" data-place="Bertinoro, FC, Italy" data-url="https://soup2026.ca.infn.it/" data-tier="related" data-tier-label="Astroparticle &amp; underground">
-<rect x="142.3" y="130" width="28.5" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>SoUP 2026: 2026-10-26 → 2026-10-30 — Astroparticle &amp; underground (title names “underground physics”)</title></rect>
-<text x="178.7" y="138.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">SoUP 2026</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Bertinoro, FC, Italy</tspan></text>
-</g>
-<g class="conf-bar" data-conf="nu:20261109-patras-2026" data-name="21st Patras Workshop on Axions, WIMPs, and WISPs" data-dates="9–13 November 2026" data-place="Perth, Western Australia" data-url="https://indico.global/event/16402/" data-tier="related" data-tier-label="Astroparticle &amp; underground">
-<rect x="241.9" y="150" width="28.5" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>Patras 2026: 2026-11-09 → 2026-11-13 — Astroparticle &amp; underground (title names “axions”)</title></rect>
-<text x="278.3" y="158.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Patras 2026</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Perth, Western Australia</tspan></text>
+<g class="conf-bar" data-conf="conf:3185090" data-name="Neutrino Geoscience 2026 and 2026 Fall School on Interdisciplinary Neutrino Science" data-dates="11–19 November 2026" data-place="Zhuhai, China" data-url="https://ifcen.sysu.edu.cn/nu-geoscience2026/" data-tier="core" data-tier-label="Neutrino physics">
+<rect x="256.1" y="130" width="56.9" height="10" rx="5" style="fill:var(--dec-2);opacity:1"><title>Neutrino Geoscience 2026 and 2026 Fall…: 2026-11-11 → 2026-11-19 — Neutrino physics (series “Neutrino”)</title></rect>
+<text x="321.0" y="138.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Neutrino Geoscience 2026 and…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Zhuhai, China</tspan></text>
 </g>
 <g class="conf-bar" data-conf="indico:ihep:30088" data-name="Workshop on Multi-front Exotic phenomena in Particle and Astrophysics (MEPA 2026)" data-dates="11–14 December 2026" data-place="The Chinese University of Hong Kong, Shenzhen" data-url="https://indico.ihep.ac.cn/event/30088/" data-tier="unknown" data-tier-label="Not classified">
-<rect x="469.5" y="170" width="21.3" height="10" rx="5" style="fill:var(--text-mute);opacity:1"><title>Workshop on Multi-front Exotic…: 2026-12-11 → 2026-12-14 — Not classified (nothing in the record to judge by)</title></rect>
-<text x="498.9" y="178.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Workshop on Multi-front…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">The Chinese University…</tspan></text>
+<rect x="469.5" y="150" width="21.3" height="10" rx="5" style="fill:var(--text-mute);opacity:1"><title>Workshop on Multi-front Exotic…: 2026-12-11 → 2026-12-14 — Not classified (nothing in the record to judge by)</title></rect>
+<text x="498.9" y="158.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Workshop on Multi-front…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">The Chinese University…</tspan></text>
 </g>
 <g class="conf-bar" data-conf="conf:3199757" data-name="Theory meeting experiments: particle astrophysics and cosmology" data-dates="4–10 January 2027" data-place="Quy Nhon, Vietnam" data-url="http://vietnam.in2p3.fr/2027/tmex/" data-tier="related" data-tier-label="Astroparticle &amp; underground">
-<rect x="640.2" y="190" width="42.7" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>TMEX: 2027-01-04 → 2027-01-10 — Astroparticle &amp; underground (title names “particle astrophysics”)</title></rect>
-<text x="690.9" y="198.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">TMEX</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Quy Nhon, Vietnam</tspan></text>
+<rect x="640.2" y="170" width="42.7" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>TMEX: 2027-01-04 → 2027-01-10 — Astroparticle &amp; underground (title names “particle astrophysics”)</title></rect>
+<text x="690.9" y="178.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">TMEX</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Quy Nhon, Vietnam</tspan></text>
 </g>
 <g class="conf-bar" data-conf="indico:indico.global:19171" data-name="Joe Formaggio (MIT): Neutrino mass measurements" data-dates="28 January 2027" data-place="" data-url="https://indico.global/event/19171/" data-tier="core" data-tier-label="Neutrino physics">
-<rect x="811.0" y="210" width="4.0" height="10" rx="5" style="fill:var(--dec-2);opacity:1"><title>Joe Formaggio (MIT): Neutrino mass…: 2027-01-28 → 2027-01-28 — Neutrino physics (title names “neutrino”)</title></rect>
-<text x="823.0" y="218.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Joe Formaggio (MIT): Neutrino…</tspan></text>
+<rect x="811.0" y="190" width="4.0" height="10" rx="5" style="fill:var(--dec-2);opacity:1"><title>Joe Formaggio (MIT): Neutrino mass…: 2027-01-28 → 2027-01-28 — Neutrino physics (title names “neutrino”)</title></rect>
+<text x="823.0" y="198.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Joe Formaggio (MIT): Neutrino…</tspan></text>
 </g>
 <g class="conf-bar" data-conf="conf:2779154" data-name="32nd International Conference on Ultra-relativistic Nucleus-Nucleus Collisions" data-dates="21–27 March 2027" data-place="Seoguipo, South Korea" data-url="https://inspirehep.net/conferences/2779154" data-tier="adjacent" data-tier-label="Adjacent fields">
-<rect x="1180.9" y="230" width="42.7" height="10" rx="5" style="fill:var(--dec-3);opacity:1"><title>Quark Matter 2027: 2027-03-21 → 2027-03-27 — Adjacent fields (series “Quark Matter”)</title></rect>
-<text x="1231.6" y="238.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Quark Matter 2027</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Seoguipo, South Korea</tspan></text>
+<rect x="1180.9" y="210" width="42.7" height="10" rx="5" style="fill:var(--dec-3);opacity:1"><title>Quark Matter 2027: 2027-03-21 → 2027-03-27 — Adjacent fields (series “Quark Matter”)</title></rect>
+<text x="1231.6" y="218.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Quark Matter 2027</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Seoguipo, South Korea</tspan></text>
 </g>
 <g class="conf-bar" data-conf="conf:3205011" data-name="34th International Workshop on Deep Inelastic Scattering and Related Subjects" data-dates="10–14 May 2027" data-place="Philadelphia, United States" data-url="https://indico.bnl.gov/event/30823" data-tier="adjacent" data-tier-label="Adjacent fields">
-<rect x="1536.6" y="250" width="28.5" height="10" rx="5" style="fill:var(--dec-3);opacity:1"><title>DIS2027: 2027-05-10 → 2027-05-14 — Adjacent fields (series “DIS”)</title></rect>
-<text x="1573.0" y="258.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">DIS2027</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Philadelphia, United…</tspan></text>
+<rect x="1536.6" y="230" width="28.5" height="10" rx="5" style="fill:var(--dec-3);opacity:1"><title>DIS2027: 2027-05-10 → 2027-05-14 — Adjacent fields (series “DIS”)</title></rect>
+<text x="1573.0" y="238.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">DIS2027</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Philadelphia, United…</tspan></text>
+</g>
+<g class="conf-bar" data-conf="nu:20270531-dark-matter-2027" data-name="From the Smallest to the Largest Scales" data-dates="31 May – 4 June 2027" data-place="Santander, Spain" data-url="https://indico.ifca.es/event/3675/" data-tier="related" data-tier-label="Astroparticle &amp; underground">
+<rect x="1686.0" y="250" width="28.5" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>Dark Matter 2027: 2027-05-31 → 2027-06-04 — Astroparticle &amp; underground (name names “dark matter”)</title></rect>
+<text x="1722.4" y="258.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Dark Matter 2027</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Santander, Spain</tspan></text>
 </g>
 <g class="conf-bar" data-conf="nu:20270614-nuint-2027-during-the-week-of-14-jun-27-quy-nhon-vietnam" data-name="16th International Workshop on Neutrino-Nucleus Interactions" data-dates="14–18 June 2027" data-place="Quy Nhon, Vietnam" data-url="https://nustec.fnal.gov/nuint-conference-series/" data-tier="core" data-tier-label="Neutrino physics">
 <rect x="1785.6" y="270" width="28.5" height="10" rx="5" style="fill:var(--dec-2);opacity:1"><title>NuINT 2027 during the week of 14 Jun 27…: 2027-06-14 → 2027-06-18 — Neutrino physics (series “NuInt”)</title></rect>
@@ -120,7 +120,7 @@ and may contain errors. No model is involved.</b>
 </g>
 </svg>
 </div>
-<p class="cap">14 of the 41 upcoming meetings, spread across the year ahead. Bar colour follows the key above; an outlined bar is under way, a faded one has concluded. The next four months are shown — scroll the figure sideways for the rest of the year. 41 upcoming and 72 recent meetings are tracked in full below.</p>
+<p class="cap">14 of the 42 upcoming meetings, spread across the year ahead. Bar colour follows the key above; an outlined bar is under way, a faded one has concluded. The next four months are shown — scroll the figure sideways for the rest of the year. 42 upcoming and 73 recent meetings are tracked in full below.</p>
 </figure>
 
 
@@ -162,14 +162,15 @@ and may contain errors. No model is involved.</b>
 <circle cx="16.0" cy="285.0" r="4" fill="var(--dec-3)"/>
 <text x="25.0" y="288.0" style="fill:var(--text-mute);font-size:9px;font-family:var(--body,sans-serif)">Adjacent fields</text>
 </svg>
-<p class="cap">25 of 41 upcoming meetings placed on the map from a venue the source published; the other 16 stay in the list below without a dot rather than a guess.</p>
+<p class="cap">25 of 42 upcoming meetings placed on the map from a venue the source published; the other 17 stay in the list below without a dot rather than a guess.</p>
 </figure>
 
-<div class="section-head"><h2>Neutrino conferences</h2><p>89 meetings</p></div>
-<div class="section-head section-head--sub"><h3>Upcoming</h3><p>31 meetings</p></div>
+<div class="section-head"><h2>Neutrino conferences</h2><p>91 meetings</p></div>
+<div class="section-head section-head--sub"><h3>Upcoming</h3><p>32 meetings</p></div>
 <ul class="list list--news conf-list">
 <li data-conf="conf:3092370" data-name="5th Astro-COLIBRI Multi-Messenger Astrophysics Workshop" data-dates="12–16 October 2026" data-place="Paris-Saclay, France, Metropolitan" data-url="https://www.multimessenger-astrophysics.com" data-tier="related" data-tier-label="Astroparticle &amp; underground"><b>5th Astro-COLIBRI Multi-Messenger Astrophysics Workshop</b><span class="conf-aff conf-aff--related" title="title names “multi-messenger”">Astroparticle &amp; underground</span><span>12–16 October 2026 · Paris-Saclay, France, Metropolitan</span><span class="cites"><a href="https://www.multimessenger-astrophysics.com">Details</a></span></li>
 <li data-conf="nu:20261013-discrete-2026" data-name="Tenth DISCRETE Conference" data-dates="13–17 October 2026" data-place="Bratislava, Slovakia" data-url="https://conference.uniba.sk/event/2/" data-tier="broad" data-tier-label="Particle physics at large"><b>Tenth DISCRETE Conference</b><span class="conf-aff conf-aff--broad" title="series “DISCRETE”">Particle physics at large</span><span>13–17 October 2026 · Bratislava, Slovakia</span><span class="cites"><a href="https://conference.uniba.sk/event/2/">Details</a></span></li>
+<li data-conf="indico:indico.global:19462" data-name="Neutrino Group Meeting" data-dates="16 October 2026" data-place="ExWi" data-url="https://indico.global/event/19462/" data-tier="core" data-tier-label="Neutrino physics"><b>Neutrino Group Meeting</b><span class="conf-aff conf-aff--core" title="title names “neutrino”">Neutrino physics</span><span>16 October 2026 · ExWi</span><span class="cites"><a href="https://indico.global/event/19462/">Details</a></span></li>
 <li data-conf="nu:20261026-galactic-science-and-cmb-foregrounds-2026" data-name="3rd Conference" data-dates="26–29 October 2026" data-place="Tenerife, Canary Islands, Spain" data-url="https://meetings.iac.es/cmbforegrounds2026/" data-tier="adjacent" data-tier-label="Adjacent fields"><b>3rd Conference</b><span class="conf-aff conf-aff--adjacent" title="name names “galactic”">Adjacent fields</span><span>26–29 October 2026 · Tenerife, Canary Islands, Spain</span><span class="cites"><a href="https://meetings.iac.es/cmbforegrounds2026/">Details</a></span></li>
 <li data-conf="nu:20261026-soup-2026" data-name="4th edition of the International INFN &quot;School of Underground Physics: Theory and Experiments&quot;" data-dates="26–30 October 2026" data-place="Bertinoro, FC, Italy" data-url="https://soup2026.ca.infn.it/" data-tier="related" data-tier-label="Astroparticle &amp; underground"><b>4th edition of the International INFN "School of Underground Physics: Theory and Experiments"</b><span class="conf-aff conf-aff--related" title="title names “underground physics”">Astroparticle &amp; underground</span><span>26–30 October 2026 · Bertinoro, FC, Italy</span><span class="cites"><a href="https://soup2026.ca.infn.it/">Details</a></span></li>
 <li data-conf="nu:20261027-icppa-2026" data-name="8th International Conference on Particle Physics and Astrophysics" data-dates="27–30 October 2026" data-place="Moscow, Russia" data-url="https://indico.particle.mephi.ru/e/ICPPA2026" data-tier="broad" data-tier-label="Particle physics at large"><b>8th International Conference on Particle Physics and Astrophysics</b><span class="conf-aff conf-aff--broad" title="title names “particle physics”">Particle physics at large</span><span>27–30 October 2026 · Moscow, Russia</span><span class="cites"><a href="https://indico.particle.mephi.ru/e/ICPPA2026">Details</a></span></li>
@@ -200,7 +201,7 @@ and may contain errors. No model is involved.</b>
 <li data-conf="conf:3095737" data-name="Dark Matter and Stars: Multi-Messenger Probes of Dark Matter and Modified Gravity" data-dates="12–14 July 2027" data-place="Cambridge, United States" data-url="https://indico.cern.ch/event/1606005" data-tier="related" data-tier-label="Astroparticle &amp; underground"><b>Dark Matter and Stars: Multi-Messenger Probes of Dark Matter and Modified Gravity</b><span class="conf-aff conf-aff--related" title="title names “multi-messenger”">Astroparticle &amp; underground</span><span>12–14 July 2027 · Cambridge, United States</span><span class="cites"><a href="https://indico.cern.ch/event/1606005">Details</a></span></li>
 <li data-conf="conf:3201330" data-name="TeV Particle Astrophysics 2027 (TeVPA 2027)" data-dates="12–16 July 2027" data-place="Madison, United States" data-url="https://inspirehep.net/conferences/3201330" data-tier="related" data-tier-label="Astroparticle &amp; underground"><b>TeV Particle Astrophysics 2027 (TeVPA 2027)</b><span class="conf-aff conf-aff--related" title="title names “particle astrophysics”">Astroparticle &amp; underground</span><span>12–16 July 2027 · Madison, United States</span><span class="cites"><a href="https://inspirehep.net/conferences/3201330">Details</a></span></li>
 </ul>
-<div class="section-head section-head--sub"><h3>Recent</h3><p>6 of 58</p></div>
+<div class="section-head section-head--sub"><h3>Recent</h3><p>6 of 59</p></div>
 <ul class="list list--news conf-list">
 <li data-conf="nu:20261006-lidine-2026" data-name="LIght Detection In Noble Elements" data-dates="6–9 October 2026" data-place="Nikhef, Amsterdam, Netherlands" data-url="https://indico.nikhef.nl/event/7584/" data-tier="related" data-tier-label="Astroparticle &amp; underground"><b>LIght Detection In Noble Elements</b><span class="conf-aff conf-aff--related" title="title names “noble elements”">Astroparticle &amp; underground</span><span>6–9 October 2026 · Nikhef, Amsterdam, Netherlands</span><span class="cites"><a href="https://indico.nikhef.nl/event/7584/">Details</a></span></li>
 <li data-conf="nu:20261005-aiphy2" data-name="School on Bayesian statistics" data-dates="5–9 October 2026" data-place="Gran Sasso Science Institute, L&#x27;Aquila, Italy" data-url="https://agenda.infn.it/event/51770/" data-tier="adjacent" data-tier-label="Adjacent fields"><b>School on Bayesian statistics</b><span class="conf-aff conf-aff--adjacent" title="title names “bayesian”">Adjacent fields</span><span>5–9 October 2026 · Gran Sasso Science Institute, L'Aquila, Italy</span><span class="cites"><a href="https://agenda.infn.it/event/51770/">Details</a></span></li>
