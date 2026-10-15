@@ -29,7 +29,7 @@
   --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
 
   --wide:80rem;
-  --measure:40rem;
+  --measure:36rem;
   --gutter:clamp(1.15rem,4.5vw,3rem);
   --sec-y:clamp(3rem,7vw,5.5rem);
   --r:16px;
@@ -182,8 +182,8 @@ body{
   background:var(--bg);
   color:var(--text);
   font-family:var(--body);
-  font-size:clamp(.98rem,.35vw + .9rem,1.03rem);
-  line-height:1.62;
+  font-size:clamp(1rem,.955rem + .2vw,1.075rem);
+  line-height:1.72;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
 }
@@ -195,7 +195,7 @@ a:hover{text-decoration:underline}
 .wrap{width:min(100% - 2*var(--gutter),var(--wide));margin-inline:auto}
 .prose{max-width:var(--measure)}
 .prose p{margin:0 0 1rem}
-.small{font-size:.86rem}
+.small{font-size:.87rem}
 .muted{color:var(--text-mute)}
 .mono{font-family:var(--mono)}
 
@@ -208,12 +208,12 @@ h1,h2,h3,h4{font-family:var(--display);letter-spacing:-.015em;margin:0}
 /* An academic page, not a poster: the display sizes are a step down from
    where they started, and the tracking is looser, so a heading reads as a
    heading rather than as a slogan. */
-h1{font-weight:700;font-size:clamp(1.9rem,3.4vw,2.75rem);line-height:1.12;
+h1{font-weight:700;font-size:clamp(1.95rem,1.35rem + 2.6vw,3.25rem);line-height:1.12;
   letter-spacing:-.02em}
-h2{font-weight:700;font-size:clamp(1.35rem,2.2vw,1.8rem);line-height:1.2;
+h2{font-weight:700;font-size:clamp(1.5rem,1.1rem + 1.6vw,2.2rem);line-height:1.2;
   letter-spacing:-.015em}
-h3{font-weight:700;font-size:1.1rem;letter-spacing:-.02em}
-h4{font-weight:700;font-size:.98rem}
+h3{font-weight:700;font-size:clamp(1.18rem,1.05rem + .6vw,1.5rem);letter-spacing:-.02em}
+h4{font-weight:700;font-size:1.02rem}
 
 /* ---------- header ---------- */
 .site-header{position:sticky;top:0;z-index:10;
@@ -230,7 +230,7 @@ h4{font-weight:700;font-size:.98rem}
    them and the name read as "global" above "-nu". */
 .brand b{font-weight:inherit;white-space:nowrap}
 .brand i{font-style:normal;color:var(--accent)}
-.brand span{font-family:var(--body);font-size:.68rem;font-weight:400;
+.brand span{font-family:var(--body);font-size:.74rem;font-weight:400;
   letter-spacing:0;color:var(--text-mute)}
 .nav{display:flex;gap:1rem;margin-left:auto;flex-wrap:wrap;
   font-size:.85rem;font-weight:500}
@@ -273,7 +273,7 @@ h4{font-weight:700;font-size:.98rem}
   color:var(--text-mute);border:1px solid var(--line);border-radius:999px;
   padding:.28rem .8rem;margin:0 0 1.3rem}
 .kicker b{color:var(--no);font-weight:700}
-.lede{color:var(--text-soft);font-size:clamp(1rem,1.4vw,1.08rem);
+.lede{color:var(--text-soft);font-size:1.1em;
   margin:1.1rem 0 0;max-width:38rem}
 .btn-row{display:flex;gap:.65rem;flex-wrap:wrap;margin-top:1.8rem}
 .btn{border-radius:999px;padding:.6rem 1.15rem;font-size:.88rem;font-weight:600;
@@ -291,7 +291,7 @@ h4{font-weight:700;font-size:.98rem}
 .section--alt{background:var(--surface);border-block:1px solid var(--line)}
 .section-head{display:flex;align-items:flex-end;gap:1rem;flex-wrap:wrap;
   margin-bottom:1.7rem}
-.section-head p{margin:0;color:var(--text-mute);font-size:.86rem;
+.section-head p{margin:0;color:var(--text-mute);font-size:.87rem;
   font-family:var(--mono)}
 .section-head .more{margin-left:auto;font-size:.88rem;font-weight:600}
 /* A sub-heading inside a domain block (Upcoming / Recent within Neutrino
@@ -303,9 +303,9 @@ h4{font-weight:700;font-size:.98rem}
 .autogen{display:flex;gap:.7rem;align-items:flex-start;
   background:var(--surface-2);border:1px solid var(--line);
   border-left:3px solid var(--warn);border-radius:var(--r-sm);
-  padding:.85rem 1rem;font-size:.85rem;color:var(--text-soft);margin:0 0 1.8rem}
+  padding:.85rem 1rem;font-size:.87rem;color:var(--text-soft);margin:0 0 1.8rem}
 .autogen b{color:var(--text)}
-.autogen .stamp{font-family:var(--mono);font-size:.76rem;color:var(--text-mute);
+.autogen .stamp{font-family:var(--mono);font-size:.8rem;color:var(--text-mute);
   display:block;margin-top:.2rem}
 
 /* ---------- figures ---------- */
@@ -315,7 +315,7 @@ h4{font-weight:700;font-size:.98rem}
 .figure h4{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;
   text-transform:uppercase;color:var(--text-mute);margin:0 0 .7rem;font-weight:600}
 .figure svg{width:100%;height:auto;display:block}
-.figure .cap{font-size:.74rem;color:var(--text-mute);margin:.5rem 0 0}
+.figure .cap{font-size:.85rem;color:var(--text-mute);margin:.5rem 0 0}
 /* The conference timeline is the one figure on the site that must NOT fit its
    card. figures.conference_timeline draws a year of calendar at a fixed scale
    — 520 viewBox units to four months — and states that scale in the svg's own
@@ -334,7 +334,7 @@ h4{font-weight:700;font-size:.98rem}
 .figure .timeline-scroll{overflow-x:auto;overscroll-behavior-x:contain}
 .figure .timeline-scroll svg{width:auto;max-width:none;min-width:0;
   height:auto;display:block;margin-inline:0}
-.legend{display:flex;gap:1.1rem;font-family:var(--mono);font-size:.72rem;
+.legend{display:flex;gap:1.1rem;font-family:var(--mono);font-size:.8rem;
   color:var(--text-mute);margin-top:.7rem;flex-wrap:wrap}
 .legend i{display:inline-block;width:1.6rem;height:2px;vertical-align:middle;
   margin-right:.35rem}
@@ -350,11 +350,11 @@ h4{font-weight:700;font-size:.98rem}
 .section--alt .stat{background:var(--surface-2)}
 .stat::after{content:"";position:absolute;inset:auto 0 0 0;height:3px;
   background:linear-gradient(90deg,var(--accent),var(--accent-2));opacity:.65}
-.stat .k{font-family:var(--mono);font-size:.75rem;color:var(--text-mute);
+.stat .k{font-family:var(--mono);font-size:.8rem;color:var(--text-mute);
   display:block;margin-bottom:.45rem}
 .stat .v{font-family:var(--display);font-weight:800;font-size:2rem;
   letter-spacing:-.045em;display:block;line-height:1;color:var(--text)}
-.stat .u{font-family:var(--mono);font-size:.72rem;color:var(--text-mute);
+.stat .u{font-family:var(--mono);font-size:.8rem;color:var(--text-mute);
   display:block;margin-top:.5rem}
 
 /* ---------- tiles / feed ---------- */
@@ -362,15 +362,15 @@ h4{font-weight:700;font-size:.98rem}
 .tile{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);
   padding:1.25rem 1.3rem}
 .section--alt .tile{background:var(--surface-2)}
-.tile .stamp{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;
+.tile .stamp{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;
   text-transform:uppercase;color:var(--accent-2);margin-bottom:.55rem;font-weight:600}
 .tile .stamp--no{color:var(--no)}
 .tile h3{margin:0 0 .8rem}
-.list{list-style:none;margin:0;padding:0;font-size:.9rem}
+.list{list-style:none;margin:0;padding:0;font-size:.93rem}
 .list li{padding:.55rem 0;border-top:1px solid var(--line);color:var(--text-soft)}
 .list li:first-child{border-top:0}
 .list b{display:block;color:var(--text);font-weight:600}
-.list span{font-family:var(--mono);font-size:.72rem;color:var(--text-mute)}
+.list span{font-size:.87rem;color:var(--text-mute);font-variant-numeric:tabular-nums}
 .tile .more{display:inline-block;margin-top:.9rem;font-size:.85rem;font-weight:600}
 
 /* Symmetry. News tiles: every row the same height (the daily text varies a
@@ -396,15 +396,15 @@ h4{font-weight:700;font-size:.98rem}
    gets its own rules rather than reusing .list. Rows wrap onto two lines
    below ~420px rather than truncating: every field here is the whole reason
    the row exists, so nothing in it is a candidate for ellipsis. */
-.archive{list-style:none;margin:0;padding:0;font-size:.9rem}
+.archive{list-style:none;margin:0;padding:0;font-size:.93rem}
 .archive li{display:flex;flex-wrap:wrap;align-items:baseline;gap:.25rem 1rem;
   padding:.65rem 0;border-top:1px solid var(--line)}
 .archive li:first-child{border-top:0}
 .archive time{flex:0 0 auto;min-width:9rem;font-family:var(--mono);
-  font-size:.78rem;color:var(--text-mute)}
+  font-size:.85rem;color:var(--text-mute)}
 .archive a{flex:1 1 14rem;font-weight:600}
 .archive .count{flex:0 0 auto;margin-left:auto;font-family:var(--mono);
-  font-size:.72rem;color:var(--text-mute)}
+  font-size:.8rem;color:var(--text-mute)}
 
 /* ---------- link strip ---------- */
 .strip{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
@@ -416,24 +416,24 @@ h4{font-weight:700;font-size:.98rem}
 .strip a:hover{text-decoration:none;border-color:var(--accent);box-shadow:var(--shadow-strong)}
 .strip .t{font-family:var(--display);font-weight:700;display:block;
   margin-bottom:.2rem;letter-spacing:-.02em}
-.strip .d{font-size:.85rem;color:var(--text-mute)}
+.strip .d{font-size:.87rem;color:var(--text-mute)}
 
 /* ---------- data tables ---------- */
 .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);
   background:var(--bg)}
 .section--alt .table-scroll{background:var(--surface-2)}
-table.data{width:100%;border-collapse:collapse;font-size:.92rem;min-width:44rem}
-table.data caption{caption-side:bottom;text-align:left;font-size:.78rem;
+table.data{width:100%;border-collapse:collapse;font-size:.93rem;min-width:44rem}
+table.data caption{caption-side:bottom;text-align:left;font-size:.85rem;
   color:var(--text-mute);padding:.9rem 1rem;line-height:1.55}
 table.data th,table.data td{padding:.6rem .9rem;text-align:left;
   border-bottom:1px solid var(--line)}
-table.data thead th{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
+table.data thead th{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;
   text-transform:uppercase;color:var(--text-mute);font-weight:600;
   border-bottom:1px solid var(--line-strong);white-space:nowrap}
 table.data tbody th{font-weight:600;color:var(--text);white-space:nowrap}
 table.data td{font-family:var(--mono);color:var(--text-soft);white-space:nowrap}
 table.data tbody tr:last-child td,table.data tbody tr:last-child th{border-bottom:0}
-table.data .ord{font-family:var(--mono);font-size:.74rem;font-weight:600}
+table.data .ord{font-family:var(--mono);font-size:.8rem;font-weight:600}
 /* The "From" column of the current-values table on results.html. Two of its
    six parameters come from a newer paper than the other four, and which is
    which is the one thing a reader must not have to infer: the newer rows are
@@ -452,19 +452,19 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
 /* ---------- callout / conventions ---------- */
 .callout{background:var(--surface);border:1px solid var(--line);
   border-left:3px solid var(--accent);border-radius:var(--r-sm);
-  padding:1.1rem 1.2rem;font-size:.92rem;color:var(--text-soft)}
+  padding:1.1rem 1.2rem;font-size:.955rem;color:var(--text-soft)}
 .section--alt .callout{background:var(--bg)}
 .callout h4{color:var(--text);margin:0 0 .5rem}
-.callout p{margin:0 0 .6rem}
+.callout p{margin:0 0 .6rem;max-width:75ch}
 .callout p:last-child{margin:0}
 
 /* ---------- release entry ---------- */
 .release{border-top:1px solid var(--line);padding-top:1.8rem;margin-top:2.4rem}
 .release:first-of-type{border-top:0;padding-top:0;margin-top:0}
 .release__meta{display:flex;gap:.5rem;flex-wrap:wrap;font-family:var(--mono);
-  font-size:.75rem;color:var(--text-mute);margin:.6rem 0 1.2rem}
+  font-size:.82rem;color:var(--text-mute);margin:.6rem 0 1.2rem}
 .tag{border:1px solid var(--line);border-radius:999px;padding:.18rem .65rem}
-.authors{font-size:.88rem;color:var(--text-mute);margin:.4rem 0 0}
+.authors{font-size:.89rem;color:var(--text-mute);margin:.4rem 0 0}
 .authors strong{color:var(--text-soft)}
 
 /* ---------- two-column split ---------- */
@@ -473,7 +473,7 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
 
 /* ---------- footer ---------- */
 .site-footer{border-top:1px solid var(--line);background:var(--bg-deep);
-  padding-block:2.6rem;font-size:.88rem;color:var(--text-soft)}
+  padding-block:2.6rem;font-size:.9rem;color:var(--text-soft)}
 .site-footer__inner{display:grid;gap:2rem;
   grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
 .site-footer h4{color:var(--text);margin:0 0 .6rem}
@@ -481,7 +481,7 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
 .site-footer li{padding:.15rem 0}
 .site-footer a{color:var(--text-soft)}
 .site-footer a:hover{color:var(--accent)}
-.site-footer__base{margin:2rem 0 0;color:var(--text-mute);font-size:.82rem}
+.site-footer__base{margin:2rem 0 0;color:var(--text-mute);font-size:.85rem}
 
 /* ---------- accordion ---------- */
 .acc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);
@@ -503,7 +503,7 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
    the same search.js, restyled onto this site's tokens (gold→accent,
    cyan→no, violet→io) so it belongs here rather than looking transplanted. */
 .lit{max-width:52rem;margin-inline:auto}
-.lit__label{display:block;font-family:var(--display);font-size:.7rem;font-weight:600;
+.lit__label{display:block;font-family:var(--display);font-size:.72rem;font-weight:600;
   letter-spacing:.17em;text-transform:uppercase;color:var(--accent);margin:0 0 .6rem}
 .lit__free{width:100%;font-family:var(--display);font-size:clamp(1rem,.9rem + .5vw,1.25rem);
   padding:.95rem 1.2rem;color:var(--text);background:var(--surface);
@@ -516,16 +516,16 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
   padding:.6rem .85rem;color:var(--text);background:var(--bg);
   border:1px solid var(--line-strong);border-radius:var(--r-sm)}
 .lit input[type=text]:focus,.lit select:focus{outline:none;border-color:var(--no)}
-.lit__hint{font-size:.86rem;color:var(--text-mute);margin:.85rem 0 0;line-height:1.6}
+.lit__hint{font-size:.87rem;color:var(--text-mute);margin:.85rem 0 0;line-height:1.6}
 .lit__hint code{font-size:.85em;font-family:var(--mono)}
-.lit__note{display:block;font-size:.78rem;color:var(--text-mute);margin-top:.35rem}
+.lit__note{display:block;font-size:.85rem;color:var(--text-mute);margin-top:.35rem}
 .lit__grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr))}
 .lit__acc{margin-top:1.25rem}
 .lit__chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.1rem;min-height:1.9rem}
 .chip{display:inline-flex;align-items:center;gap:.5rem;font-size:.83rem;
   background:var(--surface);border:1px solid var(--line-strong);border-radius:999px;
   padding:.32rem .85rem;color:var(--text-soft)}
-.chip__k{font-family:var(--mono);font-size:.66rem;letter-spacing:.13em;
+.chip__k{font-family:var(--mono);font-size:.69rem;letter-spacing:.13em;
   text-transform:uppercase;color:var(--accent)}
 .lit__sources{border:0;padding:0;margin:1.5rem 0 0;display:flex;flex-wrap:wrap;
   gap:.5rem 1.4rem;align-items:center}
@@ -543,10 +543,10 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
   font-family:var(--mono);color:var(--accent);text-transform:uppercase;
   letter-spacing:.1em;margin:0 0 .35rem;padding-bottom:.6rem;
   border-bottom:1px solid var(--line)}
-.lit-group .count{margin-left:auto;font-family:var(--body);font-size:.78rem;
+.lit-group .count{margin-left:auto;font-family:var(--body);font-size:.82rem;
   letter-spacing:0;text-transform:none;color:var(--text-mute);
   background:var(--surface-2);border-radius:999px;padding:.1rem .6rem}
-.lit-group__note{font-size:.84rem;color:var(--text-mute);margin:0 0 1.1rem}
+.lit-group__note{font-size:.87rem;color:var(--text-mute);margin:0 0 1.1rem}
 
 /* match buckets, strongest first — colour-coded down the left edge */
 .lit-bucket{border-left:2px solid transparent;padding-left:1.1rem}
@@ -570,7 +570,7 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
    empty, above a page with no results. */
 .lit-sort[hidden]{display:none}
 .lit-sort--filters{margin-bottom:1.6rem}
-.lit-sort__label{font-family:var(--display);font-size:.66rem;font-weight:600;
+.lit-sort__label{font-family:var(--display);font-size:.69rem;font-weight:600;
   letter-spacing:.15em;text-transform:uppercase;color:var(--text-mute);
   margin-right:.35rem}
 .lit-sort__btn,.lit-filter{display:inline-flex;align-items:center;gap:.4rem;
@@ -590,14 +590,14 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
    that looks different: dimmed and struck through, not merely unhighlighted,
    because "no papers in that group" and "you hid that group" must not look
    alike. */
-.lit-filter{text-transform:none;letter-spacing:.02em;font-size:.76rem}
+.lit-filter{text-transform:none;letter-spacing:.02em;font-size:.8rem}
 .lit-filter[aria-pressed="false"]{color:var(--text-mute);border-style:dashed;
   text-decoration:line-through}
 /* No background of its own: the count is text, and left on the section's own
    --surface it is the --text-mute/--surface pair already measured in
    tools/tests/test_theme.js. A tinted pill would have shifted the backdrop
    under it and made the measured pair the wrong one. */
-.lit-filter__n{font-family:var(--body);font-size:.72rem;letter-spacing:0;
+.lit-filter__n{font-family:var(--body);font-size:.76rem;letter-spacing:0;
   color:var(--text-mute);font-variant-numeric:tabular-nums}
 .lit-filter--all{color:var(--accent);border-color:var(--accent)}
 
@@ -622,7 +622,7 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
    The background under all of it is --surface: #lit-pane is `::: section alt`,
    that is .section--alt, and .publist li repeats the same --surface. Every
    tone below is measured against it in tools/tests/test_theme.js. */
-.sf{font-family:var(--display);font-size:.66rem;letter-spacing:.06em;
+.sf{font-family:var(--display);font-size:.69rem;letter-spacing:.06em;
   padding:.1rem .5rem;border-radius:999px;border:1px solid var(--line-strong);
   color:var(--text-mute)}
 .sf--nu{color:var(--dec-1)}
@@ -648,7 +648,7 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
 
 /* which database(s) returned a given record */
 .src-row{display:inline-flex;gap:.35rem;flex-wrap:wrap;margin-left:auto}
-.src{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;
+.src{font-family:var(--mono);font-size:.69rem;letter-spacing:.1em;
   text-transform:uppercase;padding:.1rem .5rem;border-radius:999px;
   border:1px solid var(--line-strong);color:var(--text-mute)}
 .src--inspire{color:var(--no);border-color:color-mix(in srgb,var(--no) 40%,transparent)}
@@ -695,9 +695,9 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
 
 /* ---------- parameter-history panels ---------- */
 .panels{display:grid;gap:1.2rem;margin-top:1.6rem;
-  grid-template-columns:repeat(auto-fit,minmax(20rem,1fr))}
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,28rem),1fr))}
 .panels .figure{color:var(--text-soft)}          /* axes inherit currentColor */
-.figure__unit{font-family:var(--mono);font-size:.68rem;color:var(--text-mute);
+.figure__unit{font-family:var(--mono);font-size:.76rem;color:var(--text-mute);
   text-transform:none;letter-spacing:0}
 /* Notation, inside a label the design sets in capitals.
    text-transform:uppercase applies the Unicode uppercase mapping, which does
@@ -709,33 +709,33 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
    Letter-spacing is deliberately NOT reset: the label's tracking is part of
    the design, and a symbol keeps its own case, not its own spacing. */
 .sym{text-transform:none}
-.legend--chart{gap:1.4rem;font-size:.78rem}
+.legend--chart{gap:1.4rem;font-size:.85rem}
 .legend .k-any{background:var(--text-soft)}
 .legend .k-bari{background:var(--grp-bari)}
 .legend .k-nufit{background:var(--grp-nufit)}
 .legend .k-valencia{background:var(--grp-valencia)}
 table.data--refs td{white-space:normal;font-family:var(--body)}
 table.data--refs td.ref{min-width:20rem;color:var(--text)}
-.ref__meta{display:block;font-family:var(--mono);font-size:.72rem;
+.ref__meta{display:block;font-size:.87rem;
   color:var(--text-mute);margin-top:.2rem}
 
 /* ---------- automated pages: citations under an item ---------- */
 .list--news li{padding:1.05rem 0}
 .list--news b{margin-bottom:.15rem}
 .cites{display:flex;flex-wrap:wrap;gap:.35rem .9rem;margin-top:.4rem;
-  font-family:var(--mono);font-size:.72rem;color:var(--text-mute)}
+  font-family:var(--mono);font-size:.82rem;color:var(--text-mute)}
 .cites a{color:var(--no)}
 .cites a:hover{color:var(--text)}
 .cite{display:inline-flex;gap:.4rem;flex-wrap:wrap}
 .tile .cites{margin-top:.7rem;padding-top:.7rem;border-top:1px solid var(--line)}
-.tile p{margin:0;color:var(--text-soft);font-size:.92rem}
+.tile p{margin:0;color:var(--text-soft);font-size:.955rem}
 .list--news li > p{margin:0 0 .1rem;color:var(--text-soft)}
 
 /* The digest entry, given room. The categories were a comma-joined string
    inside the grey meta line; as pills they are scannable, and .tag already
    exists (see the badge rules above) so this only has to lay them out. */
 .list--news .tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.4rem}
-.list--news .tags .tag{font-family:var(--mono);font-size:.72rem;
+.list--news .tags .tag{font-family:var(--mono);font-size:.78rem;
   color:var(--text-mute)}
 .list--news .cites{margin-top:.35rem}
 
@@ -762,9 +762,9 @@ table.data--refs td.ref{min-width:20rem;color:var(--text)}
    chip in the listing came out grey and monospaced while the legend, which is
    not inside a .list, came out right. Adding the element name ties the
    specificity and this block wins on order. */
-span.conf-aff{display:inline-block;font-family:var(--body);font-size:.7rem;
+span.conf-aff{display:inline-block;font-family:var(--body);font-size:.76rem;
   font-weight:600;letter-spacing:.02em;line-height:1.35;padding:.12rem .55rem;
-  margin:.15rem 0 .1rem;border:1px solid currentColor;border-radius:999px;
+  margin:.15rem .6rem .1rem 0;border:1px solid currentColor;border-radius:999px;
   white-space:nowrap;color:var(--text-mute)}
 span.conf-aff--core{color:var(--dec-2)}
 span.conf-aff--related{color:var(--dec-5)}
@@ -773,7 +773,7 @@ span.conf-aff--adjacent{color:var(--dec-3)}
 span.conf-aff--unknown{color:var(--text-mute)}
 .conf-legend{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .55rem;
   margin:0 0 1.6rem}
-.conf-legend__lead{font-size:.82rem;color:var(--text-mute)}
+.conf-legend__lead{font-size:.87rem;color:var(--text-mute)}
 
 /* ============================================================
    Richer surfaces
@@ -810,7 +810,7 @@ span.conf-aff--unknown{color:var(--text-mute)}
 .card--5::before{background:var(--dec-5)}
 a.card:hover{border-color:var(--line-strong);
   box-shadow:var(--shadow-strong);text-decoration:none}
-.card__tag{display:inline-block;font-family:var(--mono);font-size:.64rem;font-weight:600;
+.card__tag{display:inline-block;font-family:var(--mono);font-size:.69rem;font-weight:600;
   letter-spacing:.15em;text-transform:uppercase;color:var(--text-mute);
   background:var(--surface-2);border:1px solid var(--line);border-radius:999px;
   padding:.28rem .7rem;margin-bottom:.9rem;align-self:flex-start}
@@ -828,7 +828,7 @@ a.card:hover{border-color:var(--line-strong);
 .card--3 .card__list li::before{color:var(--dec-3)}
 .card--4 .card__list li::before{color:var(--dec-4)}
 .card--5 .card__list li::before{color:var(--dec-5)}
-.card__go{margin-top:auto;font-family:var(--mono);font-size:.72rem;font-weight:600;
+.card__go{margin-top:auto;font-family:var(--mono);font-size:.78rem;font-weight:600;
   letter-spacing:.12em;text-transform:uppercase;color:var(--dec-1)}
 .card--2 .card__go{color:var(--dec-2)}
 .card--3 .card__go{color:var(--dec-3)}
@@ -849,7 +849,7 @@ a.card:hover .card__go{color:var(--text)}
   stroke-linecap:round}
 .stat__spark .band{fill:var(--no);opacity:.14}
 .stat__spark .dot{fill:var(--no)}
-.stat__sparklabel{font-family:var(--mono);font-size:.64rem;color:var(--text-mute);
+.stat__sparklabel{font-family:var(--mono);font-size:.72rem;color:var(--text-mute);
   display:block;margin-top:.25rem}
 
 /* ---------- wide figure band ---------- */
@@ -857,7 +857,7 @@ a.card:hover .card__go{color:var(--text)}
 .figure--wide svg{max-height:26rem}
 .figure__head{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap;margin-bottom:.9rem}
 .figure__head h3{margin:0}
-.figure__head p{margin:0;font-family:var(--mono);font-size:.72rem;color:var(--text-mute)}
+.figure__head p{margin:0;font-family:var(--mono);font-size:.8rem;color:var(--text-mute)}
 
 /* ---------- back to top ---------- */
 .to-top{position:fixed;right:1.1rem;bottom:1.1rem;z-index:15;width:2.6rem;height:2.6rem;
@@ -924,14 +924,14 @@ a.card:hover .card__go{color:var(--text)}
 .map-card__name{margin:0;font-weight:600;color:var(--text)}
 .map-card__name a{color:var(--accent);text-decoration:none}
 .map-card__name a:hover{text-decoration:underline}
-.map-card__meta{margin:.2rem 0 0;font-family:var(--mono);font-size:.72rem;
+.map-card__meta{margin:.2rem 0 0;font-family:var(--mono);font-size:.8rem;
   color:var(--text-mute)}
-.map-card__note{margin:.3rem 0 0;font-size:.82rem;color:var(--text-soft)}
+.map-card__note{margin:.3rem 0 0;font-size:.87rem;color:var(--text-soft)}
 .map-card__photo{margin:.7rem 0 0}
 .map-card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;
   background:var(--surface-2);border-radius:var(--r-sm)}
 .map-card__credit{display:block;margin-top:.45rem;font-family:var(--mono);
-  font-size:.68rem;color:var(--text-mute);line-height:1.5}
+  font-size:.76rem;color:var(--text-mute);line-height:1.5}
 .map-card__credit a{color:var(--text-mute);text-decoration:underline}
 .map-card__credit a:hover{color:var(--accent)}
 
@@ -1013,10 +1013,10 @@ a.card:hover .card__go{color:var(--text)}
    var(--text) — correctly reading as NOT a link. */
 .conf-card__title a{color:var(--accent);text-decoration:none}
 .conf-card__title a:hover{text-decoration:underline}
-.conf-card__meta{margin:0;font-family:var(--mono);font-size:.72rem;
+.conf-card__meta{margin:0;font-family:var(--mono);font-size:.8rem;
   color:var(--text-mute)}
 .conf-card__actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.75rem}
-.conf-card__actions a{font-size:.82rem;font-weight:600;color:var(--accent);
+.conf-card__actions a{font-size:.87rem;font-weight:600;color:var(--accent);
   text-decoration:none}
 .conf-card__actions a:hover{text-decoration:underline}
 /* A marker can hold several conferences (Task 6); the card's own
@@ -1052,7 +1052,7 @@ a.card:hover .card__go{color:var(--text)}
 .conf-card__photo img{width:100%;aspect-ratio:5/2;object-fit:cover;display:block;
   background:var(--surface-2);border-radius:var(--r-sm)}
 .conf-card__credit{display:block;margin-top:.45rem;font-family:var(--mono);
-  font-size:.68rem;color:var(--text-mute);line-height:1.5}
+  font-size:.76rem;color:var(--text-mute);line-height:1.5}
 .conf-card__credit a{color:var(--text-mute);text-decoration:underline}
 .conf-card__credit a:hover{color:var(--accent)}
 
@@ -1081,8 +1081,8 @@ a.card:hover .card__go{color:var(--text)}
   padding:.5rem .7rem;border:1px solid var(--line);border-radius:var(--r-sm);
   background:var(--surface);box-shadow:var(--shadow);pointer-events:none}
 .conf-tip[hidden]{display:none}
-.conf-tip b{display:block;font-size:.8rem;color:var(--text)}
-.conf-tip p{margin:.2rem 0 0;font-size:.78rem;color:var(--text-soft)}
+.conf-tip b{display:block;font-size:.87rem;color:var(--text)}
+.conf-tip p{margin:.2rem 0 0;font-size:.85rem;color:var(--text-soft)}
 /* confmap.js flips to this corner when the default top-left placement
    would sit on top of the very marker it names (real, not hypothetical —
    Vancouver's marker sits under the default spot on this map's actual
@@ -1148,19 +1148,19 @@ a.card:hover .card__go{color:var(--text)}
 .chi2__bar{display:flex;flex-wrap:wrap;gap:.7rem 1.4rem;align-items:center;
   margin-bottom:1.1rem}
 .chi2__group{display:flex;flex-wrap:wrap;gap:.4rem}
-.chi2__chip{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;
+.chi2__chip{font-family:var(--mono);font-size:.76rem;letter-spacing:.04em;
   border:1px solid var(--line-strong);background:var(--bg);color:var(--text-soft);
   border-radius:999px;padding:.3rem .8rem;cursor:pointer}
 .section--alt .chi2__chip{background:var(--surface-2)}
 .chi2__chip:hover{border-color:var(--accent);color:var(--text)}
 .chi2__chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);
   color:var(--on-accent)}
-.chi2__switch{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;
+.chi2__switch{display:inline-flex;align-items:center;gap:.5rem;font-size:.87rem;
   color:var(--text-soft);cursor:pointer}
 .chi2__switch input{accent-color:var(--accent);width:1rem;height:1rem}
 .chi2__plot{color:var(--text-soft)}
 .chi2__svg{width:100%;height:auto;display:block}
-.chi2__readout{font-family:var(--mono);font-size:.78rem;color:var(--text);
+.chi2__readout{font-family:var(--mono);font-size:.82rem;color:var(--text);
   background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-sm);
   padding:.55rem .8rem;margin:.9rem 0 0;min-height:1.2rem}
 
@@ -1205,8 +1205,8 @@ a.card:hover .card__go{color:var(--text)}
   background:var(--surface);box-shadow:var(--shadow);pointer-events:none}
 .figtip[hidden]{display:none}
 .figtip--right{left:auto;right:.6rem}
-.figtip b{display:block;font-size:.8rem;color:var(--text)}
-.figtip p{margin:.2rem 0 0;font-size:.78rem;color:var(--text-soft)}
+.figtip b{display:block;font-size:.87rem;color:var(--text)}
+.figtip p{margin:.2rem 0 0;font-size:.85rem;color:var(--text-soft)}
 .figtip__val{font-size:.92rem!important;color:var(--text)!important;
   font-variant-numeric:tabular-nums}
 /* The points themselves, in the enlarged view only: on the page they are not
@@ -1253,6 +1253,9 @@ a.card:hover .card__go{color:var(--text)}
   figure.figure svg text[text-anchor=end]{transform-origin:right center}
   figure.figure svg text[text-anchor=middle]{transform-origin:center}
   figure.figure--wide svg text{scale:1.2}
+  /* history panels: one tick per release year, so consecutive years
+     ("24 25 26") touch above 1.15 at phone width */
+  .panels figure.figure svg text{scale:1.15}
   .hero figure.figure svg text{scale:none}
   figure.map-figure svg text,figure.confmap-figure svg text,
   figure.figure .timeline-scroll svg text{scale:none}
