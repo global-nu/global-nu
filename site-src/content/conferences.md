@@ -25,7 +25,7 @@ scripts:
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the conference indexers' APIs,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 14 October 2026, 07:46 CEST</span></div>
+<span class="stamp">Last successful update: 15 October 2026, 07:46 CEST</span></div>
 </div>
 
 <p class="conf-legend"><span class="conf-legend__lead">Closeness of the subject:</span><span class="conf-aff conf-aff--core">Neutrino physics</span><span class="conf-aff conf-aff--related">Astroparticle &amp; underground</span><span class="conf-aff conf-aff--broad">Particle physics at large</span><span class="conf-aff conf-aff--adjacent">Adjacent fields</span><span class="conf-aff conf-aff--unknown">Not classified</span></p>
@@ -33,7 +33,7 @@ and may contain errors. No model is involved.</b>
 <figure class="figure">
 <h4>Timeline</h4>
 <div class="timeline-scroll">
-<svg viewBox="0 0 2689 326" role="img" width="3227" height="391" aria-label="Timeline of upcoming and recently concluded neutrino conferences, scrollable sideways from today to a year ahead" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 2696 326" role="img" width="3235" height="391" aria-label="Timeline of upcoming and recently concluded neutrino conferences, scrollable sideways from today to a year ahead" xmlns="http://www.w3.org/2000/svg">
 <title>Conference timeline</title>
 <text x="2.0" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Oct</text>
 <line x1="185.0" y1="14" x2="185.0" y2="311" style="stroke:var(--line);stroke-width:1"/>
@@ -60,8 +60,8 @@ and may contain errors. No model is involved.</b>
 <text x="2350.6" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
 <line x1="2561.0" y1="14" x2="2561.0" y2="311" style="stroke:var(--line);stroke-width:1"/>
 <text x="2564.0" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Oct</text>
-<line x1="56.9" y1="8" x2="56.9" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
-<text x="56.9" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
+<line x1="64.0" y1="8" x2="64.0" y2="311" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
+<text x="64.0" y="323" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
 <g class="conf-bar" data-conf="nu:20261011-esc26" data-name="XVII INFN International School on Efficient Scientific Computing" data-dates="11–22 October 2026" data-place="Bertinoro, Forli-Cesena, Italy" data-url="https://agenda.infn.it/event/50802/" data-tier="adjacent" data-tier-label="Adjacent fields">
 <rect x="35.6" y="30" width="78.3" height="10" rx="5" style="fill:var(--dec-3);opacity:1;stroke:var(--text);stroke-width:2"><title>ESC26: 2026-10-11 → 2026-10-22 · under way — Adjacent fields (title names “scientific computing”)</title></rect>
 <text x="121.8" y="38.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">ESC26</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Bertinoro…</tspan></text>
@@ -74,9 +74,9 @@ and may contain errors. No model is involved.</b>
 <rect x="49.8" y="70" width="28.5" height="10" rx="5" style="fill:var(--dec-1);opacity:1;stroke:var(--text);stroke-width:2"><title>DISCRETE 2026: 2026-10-13 → 2026-10-17 · under way — Particle physics at large (series “DISCRETE”)</title></rect>
 <text x="86.3" y="78.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">DISCRETE 2026</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Bratislava, Slovakia</tspan></text>
 </g>
-<g class="conf-bar" data-conf="indico:indico.global:19462" data-name="Neutrino Group Meeting" data-dates="16 October 2026" data-place="ExWi" data-url="https://indico.global/event/19462/" data-tier="core" data-tier-label="Neutrino physics">
-<rect x="71.1" y="90" width="4.0" height="10" rx="5" style="fill:var(--dec-2);opacity:1"><title>Neutrino Group Meeting: 2026-10-16 → 2026-10-16 — Neutrino physics (title names “neutrino”)</title></rect>
-<text x="83.1" y="98.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Neutrino Group Meeting</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">ExWi</tspan></text>
+<g class="conf-bar" data-conf="indico:indico.global:19462" data-name="Neutrino Group Meeting" data-dates="15 October 2026" data-place="ExWi" data-url="https://indico.global/event/19462/" data-tier="core" data-tier-label="Neutrino physics">
+<rect x="64.0" y="90" width="4.0" height="10" rx="5" style="fill:var(--dec-2);opacity:1;stroke:var(--text);stroke-width:2"><title>Neutrino Group Meeting: 2026-10-15 → 2026-10-15 · under way — Neutrino physics (title names “neutrino”)</title></rect>
+<text x="76.0" y="98.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Neutrino Group Meeting</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">ExWi</tspan></text>
 </g>
 <g class="conf-bar" data-conf="nu:20261019-conferenza-nazionale-sul-calcolo" data-name="Conferenza Nazionale sul Calcolo" data-dates="19–21 October 2026" data-place="Villa Mondragone - Monte Porzio Catone" data-url="https://agenda.infn.it/event/52618/" data-tier="unknown" data-tier-label="Not classified">
 <rect x="92.5" y="110" width="14.2" height="10" rx="5" style="fill:var(--text-mute);opacity:1"><title>Conferenza Nazionale sul Calcolo: 2026-10-19 → 2026-10-21 — Not classified (nothing in the record to judge by)</title></rect>
@@ -170,7 +170,7 @@ and may contain errors. No model is involved.</b>
 <ul class="list list--news conf-list">
 <li data-conf="conf:3092370" data-name="5th Astro-COLIBRI Multi-Messenger Astrophysics Workshop" data-dates="12–16 October 2026" data-place="Paris-Saclay, France, Metropolitan" data-url="https://www.multimessenger-astrophysics.com" data-tier="related" data-tier-label="Astroparticle &amp; underground"><b>5th Astro-COLIBRI Multi-Messenger Astrophysics Workshop</b><span class="conf-aff conf-aff--related" title="title names “multi-messenger”">Astroparticle &amp; underground</span><span>12–16 October 2026 · Paris-Saclay, France, Metropolitan</span><span class="cites"><a href="https://www.multimessenger-astrophysics.com">Details</a></span></li>
 <li data-conf="nu:20261013-discrete-2026" data-name="Tenth DISCRETE Conference" data-dates="13–17 October 2026" data-place="Bratislava, Slovakia" data-url="https://conference.uniba.sk/event/2/" data-tier="broad" data-tier-label="Particle physics at large"><b>Tenth DISCRETE Conference</b><span class="conf-aff conf-aff--broad" title="series “DISCRETE”">Particle physics at large</span><span>13–17 October 2026 · Bratislava, Slovakia</span><span class="cites"><a href="https://conference.uniba.sk/event/2/">Details</a></span></li>
-<li data-conf="indico:indico.global:19462" data-name="Neutrino Group Meeting" data-dates="16 October 2026" data-place="ExWi" data-url="https://indico.global/event/19462/" data-tier="core" data-tier-label="Neutrino physics"><b>Neutrino Group Meeting</b><span class="conf-aff conf-aff--core" title="title names “neutrino”">Neutrino physics</span><span>16 October 2026 · ExWi</span><span class="cites"><a href="https://indico.global/event/19462/">Details</a></span></li>
+<li data-conf="indico:indico.global:19462" data-name="Neutrino Group Meeting" data-dates="15 October 2026" data-place="ExWi" data-url="https://indico.global/event/19462/" data-tier="core" data-tier-label="Neutrino physics"><b>Neutrino Group Meeting</b><span class="conf-aff conf-aff--core" title="title names “neutrino”">Neutrino physics</span><span>15 October 2026 · ExWi</span><span class="cites"><a href="https://indico.global/event/19462/">Details</a></span></li>
 <li data-conf="nu:20261026-galactic-science-and-cmb-foregrounds-2026" data-name="3rd Conference" data-dates="26–29 October 2026" data-place="Tenerife, Canary Islands, Spain" data-url="https://meetings.iac.es/cmbforegrounds2026/" data-tier="adjacent" data-tier-label="Adjacent fields"><b>3rd Conference</b><span class="conf-aff conf-aff--adjacent" title="name names “galactic”">Adjacent fields</span><span>26–29 October 2026 · Tenerife, Canary Islands, Spain</span><span class="cites"><a href="https://meetings.iac.es/cmbforegrounds2026/">Details</a></span></li>
 <li data-conf="nu:20261026-soup-2026" data-name="4th edition of the International INFN &quot;School of Underground Physics: Theory and Experiments&quot;" data-dates="26–30 October 2026" data-place="Bertinoro, FC, Italy" data-url="https://soup2026.ca.infn.it/" data-tier="related" data-tier-label="Astroparticle &amp; underground"><b>4th edition of the International INFN "School of Underground Physics: Theory and Experiments"</b><span class="conf-aff conf-aff--related" title="title names “underground physics”">Astroparticle &amp; underground</span><span>26–30 October 2026 · Bertinoro, FC, Italy</span><span class="cites"><a href="https://soup2026.ca.infn.it/">Details</a></span></li>
 <li data-conf="nu:20261027-icppa-2026" data-name="8th International Conference on Particle Physics and Astrophysics" data-dates="27–30 October 2026" data-place="Moscow, Russia" data-url="https://indico.particle.mephi.ru/e/ICPPA2026" data-tier="broad" data-tier-label="Particle physics at large"><b>8th International Conference on Particle Physics and Astrophysics</b><span class="conf-aff conf-aff--broad" title="title names “particle physics”">Particle physics at large</span><span>27–30 October 2026 · Moscow, Russia</span><span class="cites"><a href="https://indico.particle.mephi.ru/e/ICPPA2026">Details</a></span></li>
