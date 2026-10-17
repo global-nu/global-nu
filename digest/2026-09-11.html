@@ -21,9 +21,17 @@
 <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="global-nu">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="alternate" type="application/atom+xml" title="global-nu releases" href="../data/feeds/releases.atom">
+<link rel="alternate" type="application/atom+xml" title="global-nu arXiv digest" href="../data/feeds/digest.atom">
+<link rel="alternate" type="application/atom+xml" title="global-nu news (AI-generated summaries)" href="../data/feeds/news.atom">
 <link rel="preload" href="../assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/archivo-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../assets/css/site.css?v=0cba760e">
+<link rel="stylesheet" href="../assets/css/site.css?v=6f84bde2">
 <script>
 /* Apply the saved theme before the first paint. Inline and blocking on
    purpose: a deferred script runs after the page is drawn, and a reader who
@@ -43,7 +51,22 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
 
 <header class="site-header">
   <div class="wrap site-header__inner">
-    <a class="brand" href="../index.html"><b>global<i>-nu</i></b><span>Neutrino oscillation global analyses · Bari</span></a>
+    <a class="brand" href="../index.html" aria-label="global-nu — home">
+      <svg class="brand__mark" viewBox="10 26 120 52" aria-hidden="true" focusable="false">
+        <defs><linearGradient id="brand-wave" gradientUnits="userSpaceOnUse" x1="56" y1="0" x2="126" y2="0">
+          <stop offset="0" style="stop-color:var(--logo-nu)"/><stop offset=".45" style="stop-color:var(--logo-w1)"/><stop offset="1" style="stop-color:var(--logo-w2)"/>
+        </linearGradient></defs>
+        <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 32 C20 28 27 42 36 74 C44 56 50 30 56 30" style="stroke:var(--logo-nu)" stroke-width="7"/>
+          <path d="M56 30 C61 30 65 68 70 68" stroke="url(#brand-wave)" stroke-width="7"/>
+          <path d="M70 68 C75 68 79 41 84 41" stroke="url(#brand-wave)" stroke-width="5.5"/>
+          <path d="M84 41 C89 41 93 60 98 60" stroke="url(#brand-wave)" stroke-width="4.5"/>
+          <path d="M98 60 C103 60 107 47 112 47" stroke="url(#brand-wave)" stroke-width="3.5"/>
+          <path d="M112 47 C117 47 121 55 126 55" stroke="url(#brand-wave)" stroke-width="2.5"/>
+        </g>
+      </svg>
+      <span class="brand__text"><b>global-nu</b><span>Neutrino oscillation global analyses · Bari</span></span>
+    </a>
     <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme" title="Switch theme">
       <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true">
         <circle cx="12" cy="12" r="4.4"/>
@@ -60,11 +83,12 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
       <a href="../index.html">Home</a>
       <a href="../results.html">Results</a>
       <a href="../history.html">Parameter history</a>
+      <a href="../data.html">Data</a>
+      <a href="../resources.html">Resources</a>
+      <a href="../search.html">Search</a>
       <a href="../digest.html">arXiv digest</a>
       <a href="../news.html">News</a>
       <a href="../conferences.html">Conferences</a>
-      <a href="../resources.html">Resources</a>
-      <a href="../search.html">Search</a>
       <a href="../about.html">About</a>
     </nav>
   </div>
@@ -91,10 +115,10 @@ and may contain errors. No model is involved.</b></div>
 <p>4 preprints</p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2609.12323" rel="noopener noreferrer" target="_blank">Simple Modular S₃ Models for Lepton Masses and Mixing</a></b><span>V. V. Vien, Mayengbam Kishan Singh · 11 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2609.12542" rel="noopener noreferrer" target="_blank">Leptogenesis Determined By Low Energy Parameters</a></b><span>Xiao-Gang He, Zhong-Lv Huang, Raymond R. Volkas et al. · 11 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2609.12941" rel="noopener noreferrer" target="_blank">Searches for Non-Standard Neutrino Oscillations with the IceCube Neutrino Observatory</a></b><span>Philip L. R. Weigel · 11 Sep 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2609.13038" rel="noopener noreferrer" target="_blank">Can a minimal radiative seesaw explain the LZ 248 keV event?</a></b><span>Hiroshi Okada, Yoshihiro Shigekami, Jia-Jun Wu · 11 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2609.12323" rel="noopener noreferrer" target="_blank">Simple Modular S₃ Models for Lepton Masses and Mixing</a></b><span>V. V. Vien, Mayengbam Kishan Singh · first submitted 11 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2609.12542" rel="noopener noreferrer" target="_blank">Leptogenesis Determined By Low Energy Parameters</a></b><span>Xiao-Gang He, Zhong-Lv Huang, Raymond R. Volkas et al. · first submitted 11 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2609.12941" rel="noopener noreferrer" target="_blank">Searches for Non-Standard Neutrino Oscillations with the IceCube Neutrino Observatory</a></b><span>Philip L. R. Weigel · first submitted 11 Sep 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2609.13038" rel="noopener noreferrer" target="_blank">Can a minimal radiative seesaw explain the LZ 248 keV event?</a></b><span>Hiroshi Okada, Yoshihiro Shigekami, Jia-Jun Wu · first submitted 11 Sep 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 </ul>
 
 <p class="small muted"><a href="../digest.html">Back to the current
@@ -134,15 +158,18 @@ digest</a></p>
           <li><a href="../index.html">Home</a></li>
           <li><a href="../results.html">Results</a></li>
           <li><a href="../history.html">Parameter history</a></li>
+          <li><a href="../data.html">Data</a></li>
+          <li><a href="../resources.html">Resources</a></li>
+          <li><a href="../search.html">Search</a></li>
           <li><a href="../digest.html">arXiv digest</a></li>
           <li><a href="../news.html">News</a></li>
           <li><a href="../conferences.html">Conferences</a></li>
-          <li><a href="../resources.html">Resources</a></li>
-          <li><a href="../search.html">Search</a></li>
           <li><a href="../about.html">About</a></li>
         </ul>
       </div>
     </div>
+    <p class="app-install" hidden><button type="button" class="btn btn--ghost app-install__btn">Install global-nu as an app</button>
+    <span class="app-install__ios" hidden>On iPhone or iPad: tap Share, then “Add to Home Screen”.</span></p>
     <p class="site-footer__base">© 2026 the Bari group · The parameter
     register and the data files are CC BY 4.0; the text and the code are all
     rights reserved; reproduced figures and photographs carry the terms
@@ -158,8 +185,8 @@ digest</a></p>
     stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
 
-<script src="../assets/js/site.js?v=215a304f" defer></script>
-<script src="../assets/js/figure.js?v=d7a5dbcf" defer></script>
+<script src="../assets/js/site.js?v=239a5c47" defer></script>
+<script src="../assets/js/figure.js?v=778f8d08" defer></script>
 
 <script data-goatcounter="https://global-nu.goatcounter.com/count" async src="../assets/vendor/goatcounter/count.js?v=185aa0b9"></script>
 

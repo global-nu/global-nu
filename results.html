@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Neutrino oscillation best-fit values and 3σ ranges — global-nu</title>
-<meta name="description" content="Results of the Bari global analyses of neutrino oscillation data — best-fit values, allowed ranges at 1σ, 2σ and 3σ, for both mass orderings, from the most recent full release.">
+<title>Bari release 2026.a — neutrino oscillation results (preliminary) — global-nu</title>
+<meta name="description" content="Preliminary: Bari release 2026.a, after the second JUNO data release.">
 <link rel="canonical" href="https://global-nu.org/results.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="global-nu">
-<meta property="og:title" content="Neutrino oscillation best-fit values and 3σ ranges — global-nu">
-<meta property="og:description" content="Results of the Bari global analyses of neutrino oscillation data — best-fit values, allowed ranges at 1σ, 2σ and 3σ, for both mass orderings, from the most recent full release.">
+<meta property="og:title" content="Bari release 2026.a — neutrino oscillation results (preliminary) — global-nu">
+<meta property="og:description" content="Preliminary: Bari release 2026.a, after the second JUNO data release.">
 <meta property="og:url" content="https://global-nu.org/results.html">
 <!-- The card a link preview shows (chats, social sites, Slack): the
      wordmark and the tagline, nothing that goes stale. 1200×630. -->
@@ -21,9 +21,17 @@
 <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="global-nu">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="alternate" type="application/atom+xml" title="global-nu releases" href="data/feeds/releases.atom">
+<link rel="alternate" type="application/atom+xml" title="global-nu arXiv digest" href="data/feeds/digest.atom">
+<link rel="alternate" type="application/atom+xml" title="global-nu news (AI-generated summaries)" href="data/feeds/news.atom">
 <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/archivo-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css?v=0cba760e">
+<link rel="stylesheet" href="assets/css/site.css?v=6f84bde2">
 <script>
 /* Apply the saved theme before the first paint. Inline and blocking on
    purpose: a deferred script runs after the page is drawn, and a reader who
@@ -34,16 +42,31 @@ document.documentElement.classList.add("js");
 (function(){try{var t=localStorage.getItem("gnu-theme");
 if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
 </script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Results","url":"https://global-nu.org/results.html","isPartOf":{"@type":"WebSite","name":"global-nu","url":"https://global-nu.org"},"description":"Results of the Bari global analyses of neutrino oscillation data — best-fit values, allowed ranges at 1σ, 2σ and 3σ, for both mass orderings, from the most recent full release."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Results","url":"https://global-nu.org/results.html","isPartOf":{"@type":"WebSite","name":"global-nu","url":"https://global-nu.org"},"description":"Preliminary: Bari release 2026.a, after the second JUNO data release."}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://global-nu.org/index.html"},{"@type":"ListItem","position":2,"name":"Results","item":"https://global-nu.org/results.html"}]}</script>
 
 </head>
-<body>
+<body data-preliminary="2026.a">
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="wrap site-header__inner">
-    <a class="brand" href="index.html"><b>global<i>-nu</i></b><span>Neutrino oscillation global analyses · Bari</span></a>
+    <a class="brand" href="index.html" aria-label="global-nu — home">
+      <svg class="brand__mark" viewBox="10 26 120 52" aria-hidden="true" focusable="false">
+        <defs><linearGradient id="brand-wave" gradientUnits="userSpaceOnUse" x1="56" y1="0" x2="126" y2="0">
+          <stop offset="0" style="stop-color:var(--logo-nu)"/><stop offset=".45" style="stop-color:var(--logo-w1)"/><stop offset="1" style="stop-color:var(--logo-w2)"/>
+        </linearGradient></defs>
+        <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 32 C20 28 27 42 36 74 C44 56 50 30 56 30" style="stroke:var(--logo-nu)" stroke-width="7"/>
+          <path d="M56 30 C61 30 65 68 70 68" stroke="url(#brand-wave)" stroke-width="7"/>
+          <path d="M70 68 C75 68 79 41 84 41" stroke="url(#brand-wave)" stroke-width="5.5"/>
+          <path d="M84 41 C89 41 93 60 98 60" stroke="url(#brand-wave)" stroke-width="4.5"/>
+          <path d="M98 60 C103 60 107 47 112 47" stroke="url(#brand-wave)" stroke-width="3.5"/>
+          <path d="M112 47 C117 47 121 55 126 55" stroke="url(#brand-wave)" stroke-width="2.5"/>
+        </g>
+      </svg>
+      <span class="brand__text"><b>global-nu</b><span>Neutrino oscillation global analyses · Bari</span></span>
+    </a>
     <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme" title="Switch theme">
       <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true">
         <circle cx="12" cy="12" r="4.4"/>
@@ -60,379 +83,1184 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
       <a href="index.html">Home</a>
       <a href="results.html" aria-current="page">Results</a>
       <a href="history.html">Parameter history</a>
+      <a href="data.html">Data</a>
+      <a href="resources.html">Resources</a>
+      <a href="search.html">Search</a>
       <a href="digest.html">arXiv digest</a>
       <a href="news.html">News</a>
       <a href="conferences.html">Conferences</a>
-      <a href="resources.html">Resources</a>
-      <a href="search.html">Search</a>
       <a href="about.html">About</a>
     </nav>
   </div>
 </header>
 
-<main id="main">
-<section class="hero">
-  <div class="wrap hero__in">
-    <p class="kicker">Results</p>
-    <h1>Results, release by release</h1>
-    <p class="lede">The newest published values first — δm² and sin²θ₁₂ after
-    the first JUNO results — then the most recent full release in detail:
-    best-fit values and allowed ranges for the six oscillation parameters, in
-    both mass orderings, with the paper and its figures beside them. Every
-    earlier release is traced parameter by parameter on the
-    <a href="history.html">parameter history</a>.</p>
+<main id="main"><div class="prelim-banner" role="note"><div class="wrap"><strong class="prelim">Preliminary</strong><span>Bari Release 2026.a: preliminary results, the paper is in preparation. Values may still change; no data files are distributed yet.</span></div></div>
+
+
+<div class="relpage">
+<style>
+.relpage{--panel:var(--surface);--panel2:var(--surface-2);--ink:var(--text);
+--dim:var(--text-soft);--accent2:var(--accent);--no:#4d84ff;--io:#ff5a5a;
+--serif:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif}
+:root[data-theme="light"] .relpage{--no:#1f4dbf;--io:#c81919}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .relpage{--no:#1f4dbf;--io:#c81919}}
+.relpage .rp-hero{border-bottom:1px solid var(--line);
+  background:linear-gradient(160deg,var(--surface) 0%,var(--bg) 70%)}
+.relpage .rp-hero>.wrap{padding:40px 20px 32px}
+@media (prefers-color-scheme: light){}
+.relpage{margin:0;background:var(--bg);color:var(--ink);
+     font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+     -webkit-font-smoothing:antialiased}
+.relpage a{color:var(--accent2);text-decoration:none}
+.relpage a:hover{text-decoration:underline}
+.relpage .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.relpage .rp-hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);
+       background:linear-gradient(160deg,var(--panel) 0%,var(--bg) 70%)}
+.relpage .rp-hero .wrap{padding:56px 20px 44px;position:relative;z-index:1}
+.relpage .eyebrow{font:600 12px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;
+         color:var(--accent)}
+.relpage h1{font-family:var(--serif);font-size:clamp(30px,5vw,46px);line-height:1.15;
+   margin:14px 0 10px;font-weight:600}
+.relpage .sub{color:var(--dim);font-size:17px;max-width:60ch;margin:0}
+.relpage .rp-hero .wrap.hero{max-width:1240px}
+.relpage .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:34px;align-items:center}
+@media (max-width:900px){.relpage .hero{grid-template-columns:1fr}}
+.relpage .glance{background:color-mix(in srgb,var(--panel) 88%,transparent);border:1px solid var(--line);
+  border-radius:18px;padding:18px 18px 14px;backdrop-filter:blur(6px);
+  box-shadow:0 12px 40px rgba(0,0,0,.18)}
+.relpage .glance .gk{font:600 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.relpage .glance .gc{color:var(--dim);font-size:13px;margin:6px 0 10px}
+.relpage .glance .gmo{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.25;
+  padding:10px 14px;border-radius:12px;background:var(--panel2);border-left:4px solid currentColor}
+.relpage .glance .gmo b{font-size:1.25em}
+.relpage .glance .gmo span{display:block;font:500 12.5px var(--mono);color:var(--dim);margin-top:3px}
+.relpage .glance .gg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0 10px}
+@media (max-width:520px){.relpage .glance .gg{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.relpage .glance .gt{background:var(--panel2);border:1px solid var(--line);border-radius:12px;
+  padding:10px 11px 8px;transition:border-color .15s,transform .15s}
+.relpage .glance .gt:hover{border-color:var(--accent);transform:translateY(-2px)}
+.relpage .glance .gs{font-size:13.5px;color:var(--dim)}
+.relpage .glance .gu{font-size:10.5px;opacity:.85;white-space:nowrap}
+.relpage .glance .gv{font:600 19px/1.2 var(--mono);color:var(--ink);margin:3px 0 5px;white-space:nowrap}
+.relpage .glance .ge{font-size:11px;font-weight:500;color:var(--dim);margin-left:4px}
+.relpage .glance .ae{display:inline-flex;flex-direction:column;vertical-align:middle;line-height:1.05}
+.relpage .glance .ae sup,.relpage .glance .ae sub{font-size:10.5px;vertical-align:baseline}
+.relpage .glance svg{width:100%;height:42px;display:block;overflow:visible}
+.relpage .glance .gb{fill:var(--no);opacity:.14}
+.relpage .glance .g1{stroke:var(--line);stroke-dasharray:2 3;stroke-width:1}
+.relpage .glance .gno{fill:none;stroke:var(--no);stroke-width:2;vector-effect:non-scaling-stroke}
+.relpage .glance .gio{fill:none;stroke:var(--io);stroke-width:1.6;stroke-dasharray:4 3;opacity:.85;vector-effect:non-scaling-stroke}
+.relpage .glance .gp{font:500 11px var(--mono);color:var(--accent);margin-top:4px}
+.relpage .glance .gl{font-size:11.5px;color:var(--dim);line-height:1.5}
+.relpage .glance .gl i{display:inline-block;width:16px;height:0;border-top:2px solid var(--no);vertical-align:middle;margin-right:4px}
+.relpage .glance .gl i.lio{border-top:2px dashed var(--io);margin-left:6px}
+.relpage .toc{padding:34px 0 10px}
+.relpage .toc-h{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:0 0 16px}
+.relpage .toc-h h2{font-family:var(--serif);font-size:24px;margin:0;font-weight:600}
+.relpage .toc-h span{color:var(--dim);font-size:13.5px}
+.relpage .toc-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:22px;row-gap:10px}
+.relpage .toc-g > div{display:grid;grid-row:span 5;grid-template-rows:subgrid;row-gap:10px}
+.relpage .toc-g > div > .toc-c{display:contents}
+.relpage .toc-a{height:100%;box-sizing:border-box}
+@media (max-width:900px){.relpage .toc-g{grid-template-columns:1fr}
+.relpage .toc-g > div{grid-row:auto}}
+.relpage .toc-gt{font:700 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent);
+  margin:0 0 10px;display:flex;align-items:center;gap:10px}
+.relpage .toc-gt::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+.relpage .toc-c{display:grid;gap:10px}
+.relpage .toc-a{position:relative;display:grid;grid-template-columns:40px 1fr 16px;align-items:center;gap:12px;
+  padding:12px 14px;border-radius:14px;background:var(--panel);border:1px solid var(--line);color:var(--ink);
+  overflow:hidden;transition:transform .2s cubic-bezier(.2,.8,.2,1),border-color .2s,box-shadow .2s;
+  opacity:0;transform:translateY(10px);animation:toc-in .5s cubic-bezier(.2,.8,.2,1) forwards}
+.relpage .toc-a::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 140% at 0% 0%,
+  color-mix(in srgb,var(--accent) 14%,transparent),transparent 55%);opacity:0;transition:opacity .25s}
+.relpage .toc-a:hover{text-decoration:none;border-color:color-mix(in srgb,var(--accent) 70%,var(--line));
+  transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.18)}
+.relpage .toc-a:hover::before{opacity:1}
+.relpage .toc-i{position:relative;width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
+  background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 22%,var(--panel2)),var(--panel2));
+  border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line))}
+.relpage .toc-i svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.relpage .toc-x{position:relative;min-width:0}
+.relpage .toc-x b{display:block;font-size:15px;font-weight:600;line-height:1.25}
+.relpage .toc-x small{display:block;color:var(--dim);font-size:12.5px;line-height:1.35;margin-top:2px}
+.relpage .toc-n{display:none}
+.relpage .toc-r{position:relative;color:var(--dim);transition:transform .2s,color .2s}
+.relpage .toc-a:hover .toc-r{transform:translateX(3px);color:var(--accent)}
+@keyframes toc-in{to{opacity:1;transform:none}}
+.relpage .tb{position:fixed;top:0;left:0;right:0;z-index:60;transform:translateY(-110%);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1);
+  background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.4) blur(12px);
+  -webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line);
+  box-shadow:0 8px 24px rgba(0,0,0,.16)}
+.relpage .tb.tb--su{transform:none}
+.relpage .tb .wrap{max-width:1240px;display:flex;align-items:center;gap:12px;padding:8px 20px}
+.relpage .tb-b{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:10px;cursor:pointer;
+  background:var(--panel);border:1px solid var(--line);color:var(--ink);font:600 13px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.relpage .tb-b:hover{border-color:var(--accent)}
+.relpage .tb-b svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round}
+.relpage .tb-s{flex:1;min-width:0;display:flex;align-items:baseline;gap:10px;overflow:hidden}
+.relpage .tb-s .n{font:600 11px var(--mono);color:var(--accent)}
+.relpage .tb-s .t{font-family:var(--serif);font-size:17px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.relpage .tb-p,.relpage .tb-n{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;cursor:pointer;
+  background:var(--panel);border:1px solid var(--line);color:var(--dim)}
+.relpage .tb-p:hover,.relpage .tb-n:hover{color:var(--ink);border-color:var(--accent)}
+.relpage .tb-p svg,.relpage .tb-n svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.relpage .tb-bar{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.relpage .tb-d{position:absolute;left:0;right:0;top:100%;max-height:0;overflow:hidden;
+  transition:max-height .35s cubic-bezier(.2,.8,.2,1);background:var(--bg);border-bottom:1px solid var(--line)}
+.relpage .tb.tb--open .tb-d{max-height:80vh;overflow:auto}
+.relpage .tb-d .wrap{display:block;padding:18px 20px 22px}
+.relpage .tb-d .toc-a{animation:none;opacity:1;transform:none}
+.relpage .toc-a.on{border-color:var(--accent)}
+.relpage .toc-a.on .toc-n{color:var(--accent);opacity:1}
+.relpage section{padding:76px 0 66px;border-top:0;position:relative;scroll-margin-top:62px}
+.relpage section::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:min(1080px,92%);height:1px;background:linear-gradient(90deg,transparent,var(--line) 15%,var(--line) 85%,transparent)}
+.relpage section h2{display:flex;align-items:center;gap:12px}
+.relpage section h2::before{content:"";width:5px;height:24px;border-radius:3px;flex:0 0 auto;
+  background:linear-gradient(180deg,var(--accent),var(--accent2))}
+@media (prefers-reduced-motion: reduce){.relpage .toc-a{animation:none;opacity:1;transform:none}
+.relpage .tb,.relpage .tb-d,.relpage .toc-a,.relpage .toc-r{transition:none}}
+.relpage .toc{padding:40px 0 18px;position:relative}
+.relpage .toc::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(60% 80% at 15% 0%,color-mix(in srgb,var(--g0) 10%,transparent),transparent 70%),
+             radial-gradient(50% 70% at 85% 10%,color-mix(in srgb,var(--g2) 8%,transparent),transparent 70%)}
+.relpage .toc .wrap{position:relative}
+.relpage .toc-h h2{font-size:30px;letter-spacing:.01em}
+.relpage .toc-gt{font-size:11.5px}
+.relpage .toc-gt b{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 6px;border-radius:999px;
+  font:700 10.5px var(--mono);color:var(--bg);background:var(--gc)}
+.relpage .toc-g > div:nth-child(1){--gc:var(--g0)}
+.relpage .toc-g > div:nth-child(2){--gc:var(--g1)}
+.relpage .toc-g > div:nth-child(3){--gc:var(--g2)}
+.relpage .toc-g .toc-gt{color:var(--gc)}
+.relpage .toc-a{background:linear-gradient(135deg,color-mix(in srgb,var(--gc) 9%,var(--panel)) 0%,var(--panel) 60%);
+  border-color:color-mix(in srgb,var(--gc) 22%,var(--line));padding:14px 16px 14px 18px}
+.relpage .toc-a > .toc-bar{position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:0 3px 3px 0;background:var(--gc);opacity:.85}
+.relpage .toc-a::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:45%;pointer-events:none;
+  background:linear-gradient(100deg,transparent,color-mix(in srgb,#fff 16%,transparent),transparent);
+  transform:skewX(-18deg);transition:left .7s cubic-bezier(.2,.8,.2,1)}
+.relpage .toc-a:hover::after{left:120%}
+.relpage .toc-a:hover{border-color:var(--gc);box-shadow:0 12px 30px color-mix(in srgb,var(--gc) 22%,transparent)}
+.relpage .toc-a::before{background:radial-gradient(120% 140% at 0% 0%,color-mix(in srgb,var(--gc) 20%,transparent),transparent 55%)}
+.relpage .toc-i{width:44px;height:44px;border-radius:12px;border:0;
+  background:linear-gradient(145deg,var(--gc),color-mix(in srgb,var(--gc) 55%,#000));
+  box-shadow:0 6px 16px color-mix(in srgb,var(--gc) 35%,transparent),inset 0 1px 0 rgba(255,255,255,.25);
+  transition:transform .25s,box-shadow .25s}
+.relpage .toc-i svg{stroke:#fff;width:21px;height:21px}
+.relpage .toc-a:hover .toc-i{transform:scale(1.07) rotate(-3deg);
+  box-shadow:0 8px 22px color-mix(in srgb,var(--gc) 55%,transparent),inset 0 1px 0 rgba(255,255,255,.3)}
+.relpage .toc-a{grid-template-columns:44px 1fr}
+.relpage .toc-x b{font-size:15.5px}
+.relpage .toc-tag{position:relative;display:inline-block;margin-top:7px;font:700 11px/1 var(--mono);white-space:nowrap;
+  padding:5px 8px;border-radius:999px;color:var(--gc);background:color-mix(in srgb,var(--gc) 14%,transparent);
+  border:1px solid color-mix(in srgb,var(--gc) 35%,transparent)}
+.relpage .toc-tag:empty{display:none}
+.relpage .toc-r{display:none}
+.relpage .tb-seg{display:flex;gap:3px;padding:0 20px 7px;max-width:1240px;margin:0 auto}
+.relpage .tb-seg i{flex:1;height:4px;border-radius:2px;cursor:pointer;background:color-mix(in srgb,var(--sc) 22%,var(--line));
+  transition:background .25s,transform .25s}
+.relpage .tb-seg i.fatto{background:color-mix(in srgb,var(--sc) 55%,var(--line))}
+.relpage .tb-seg i.on{background:var(--sc);transform:scaleY(1.6)}
+.relpage .tb-seg i:hover{background:var(--sc)}
+.relpage .tb-bar{display:none}
+.relpage .tb-s .n{padding:3px 7px;border-radius:999px;color:var(--bg);background:var(--sc,var(--accent))}
+.relpage .tb .wrap{padding:9px 20px 7px}
+.relpage .tb-d .toc-tag{display:none}
+.relpage .deco{position:absolute;inset:0;z-index:0;opacity:.5}
+.relpage .headline{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+          gap:14px;margin:26px 0 0}
+.relpage .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+      padding:18px 20px}
+.relpage .card .lab{font:600 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+           color:var(--dim)}
+.relpage .card .big{font-family:var(--serif);font-size:34px;font-weight:600;margin:8px 0 2px}
+.relpage .card .note{color:var(--dim);font-size:13px}
+.relpage .no{color:var(--no)}
+.relpage .io{color:var(--io)}
+.relpage section{padding:44px 0;border-top:1px solid var(--line)}
+.relpage h2{font-family:var(--serif);font-size:27px;margin:0 0 6px;font-weight:600}
+.relpage h3{font-size:16px;margin:26px 0 8px;letter-spacing:.01em}
+.relpage .lede{color:var(--dim);margin:0 0 20px;max-width:72ch}
+.relpage .tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.relpage table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:520px}
+.relpage th,.relpage td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line)}
+.relpage th{font:600 11.5px/1.3 var(--mono);letter-spacing:.06em;
+   color:var(--dim);background:var(--panel2)}
+.relpage tr:last-child td{border-bottom:0}
+.relpage td.num{font-family:var(--mono);text-align:right}
+.relpage th.num{text-align:right}
+.relpage .dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.relpage .file{display:flex;gap:13px;align-items:flex-start;background:var(--panel);
+      border:1px solid var(--line);border-radius:12px;padding:15px 16px;
+      transition:border-color .15s,transform .15s}
+.relpage .file:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.relpage .ext{flex:0 0 auto;font:700 10px/1 var(--mono);letter-spacing:.06em;padding:7px 8px;
+     border-radius:7px;background:var(--panel2);color:var(--accent);border:1px solid var(--line)}
+.relpage .file .n{display:block;font-weight:600;font-size:14.5px;color:var(--ink)}
+.relpage .file .d{display:block;color:var(--dim);font-size:12.5px;margin-top:3px}
+.relpage .gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+.relpage figure{margin:0;background:var(--panel);border:1px solid var(--line);
+       border-radius:12px;overflow:hidden}
+.relpage figure img{width:100%;display:block;background:#fff}
+.relpage figcaption{padding:11px 14px;font-size:13px;color:var(--dim);
+           display:flex;justify-content:space-between;gap:10px;align-items:center}
+.relpage figcaption b{color:var(--ink);font-weight:600}
+.relpage pre{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:15px 17px;overflow-x:auto;font:13px/1.55 var(--mono);color:var(--ink)}
+.relpage code{font-family:var(--mono);font-size:.93em;background:var(--panel2);
+     padding:1px 5px;border-radius:5px;border:1px solid var(--line)}
+.relpage pre code{background:none;border:0;padding:0}
+.relpage .warn{border-left:3px solid var(--accent);background:var(--panel);padding:13px 17px;
+      border-radius:0 10px 10px 0;color:var(--dim);font-size:14.5px}
+.relpage .warn b{color:var(--ink)}
+.relpage footer{padding:34px 0 60px;color:var(--dim);font-size:13.5px}
+.relpage .toggle{position:absolute;top:18px;right:20px;z-index:2;background:var(--panel);
+        border:1px solid var(--line);color:var(--dim);border-radius:9px;
+        padding:7px 11px;cursor:pointer;font:600 12px var(--mono)}
+.relpage .dlset{border:1px solid var(--line);border-radius:12px;padding:14px 16px 10px;
+  margin:12px 0;background:var(--panel)}
+.relpage .dlset__t{font:600 14.5px/1.3 var(--mono);letter-spacing:.02em;
+  color:var(--ink)}
+.relpage .dlset__d{color:var(--dim);font-size:13px;line-height:1.5;margin:4px 0 10px}
+.relpage .dlset .dl{margin:0}
+.relpage .gd-tw{margin:18px 0 0}
+.relpage .gd-tab{min-width:760px}
+.relpage .gd-tab thead th span{display:block;font-weight:400;color:var(--dim);letter-spacing:0;font-size:11px;margin-top:2px}
+.relpage .gd-tab tbody th{font:600 14px/1.35 var(--mono);color:var(--ink);background:var(--panel);
+  padding:13px 14px;letter-spacing:0;vertical-align:top}
+.relpage .gd-ds{white-space:nowrap;font-size:14.5px}
+.relpage .gd-j{display:inline-block;margin-top:4px;font:600 11px var(--mono);padding:2px 7px;border-radius:6px;
+  color:var(--accent);border:1px solid var(--accent)}
+.relpage .gd-j0{color:var(--dim);border-color:var(--line)}
+.relpage .gd-sub{font:400 11.5px var(--mono);color:var(--dim)}
+.relpage .gd-tab td{vertical-align:top;padding:13px 14px}
+.relpage .gd-f{display:inline-block;margin:0 6px 6px 0;padding:6px 10px;border-radius:8px;border:1px solid var(--line);
+  background:var(--panel2);color:var(--ink);font:13px var(--mono);white-space:nowrap}
+.relpage .gd-f b{color:var(--accent)}
+.relpage .gd-f:hover{border-color:var(--accent);text-decoration:none}
+.relpage .gd-no{color:var(--dim)}
+.relpage .gd-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;margin:16px 0}
+.relpage .gd-c,.relpage .gd-read>div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+  font-size:13.5px;color:var(--dim);line-height:1.55}
+.relpage .gd-c b,.relpage .gd-read b{color:var(--ink)}
+.relpage .gd-ct{font:600 12px var(--mono);letter-spacing:.06em;color:var(--ink);margin-bottom:6px}
+.relpage .gd-read{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:14px;margin:0 0 8px}
+.relpage .gd-read pre{margin:0;background:var(--panel2)}
+@media (max-width:760px){.relpage .gd-read{grid-template-columns:1fr}}
+.relpage .cta{display:inline-block;margin:18px 10px 0 0;padding:10px 16px;border-radius:10px;
+  font:600 14px var(--mono);border:1px solid var(--accent);color:var(--ink);background:var(--panel)}
+.relpage .cta:hover{text-decoration:none;border-color:var(--accent2)}
+.relpage .gloss{display:grid;grid-template-columns:max-content max-content max-content;justify-content:start;gap:6px 30px;margin:22px 0 26px;font-size:13.5px;line-height:1.45}
+.relpage .gloss .gl-h{color:var(--dim);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding-bottom:2px}
+.relpage .gloss .gl-k{color:var(--ink);white-space:nowrap;font-weight:600}
+.relpage .gloss .gl-v{color:var(--ink)}
+.relpage .gloss .gl-b{color:var(--dim);white-space:nowrap}
+@media (max-width:560px){.relpage .gloss{grid-template-columns:auto 1fr}
+.relpage .gloss .gl-h:last-child,.relpage .gloss .gl-b{display:none}}
+.relpage .cards3{display:grid;gap:18px;margin:26px 0;grid-template-columns:repeat(3,1fr)}
+.relpage .cards3 + .cards3{margin-top:26px}
+.relpage .cards3 .sym{text-transform:none}
+.relpage .cards3 .cont{color:var(--ink);font-size:15px;line-height:1.45;margin:0 0 6px;min-height:2.9em;font-weight:600}
+.relpage .cards3 .lab--sotto{color:var(--dim);margin-bottom:4px}
+@media (max-width:820px){.relpage .cards3{grid-template-columns:1fr}}
+.relpage .gn-tabelle{--gn-bg:#ffffff;--gn-bg-deep:#f2f4f8;--gn-surface:#f7f9fc;--gn-line:rgba(10,15,25,.13);--gn-line-strong:rgba(10,15,25,.26);--gn-text:#0b0e14;--gn-text-soft:#39414f;--gn-text-mute:#5c6472;--gn-no:#0b62a4;--gn-io:#96590a}
+@media (prefers-color-scheme:dark){.relpage .gn-tabelle{--gn-bg:#0d0f14;--gn-bg-deep:#08090d;--gn-surface:#151922;--gn-line:rgba(255,255,255,.10);--gn-line-strong:rgba(255,255,255,.20);--gn-text:#f0f2f7;--gn-text-soft:#b9c0cd;--gn-text-mute:#8d95a4;--gn-no:#1f9fd4;--gn-io:#c67f28}}
+.relpage .gn-tabelle{color:var(--gn-text);font-family:var(--body,"Inter",ui-sans-serif,system-ui,"Segoe UI",Roboto,sans-serif)}
+.relpage .gn-tabelle .table-scroll{overflow-x:auto;border:1px solid var(--gn-line);
+  border-radius:var(--r,16px);background:var(--gn-bg);margin:22px 0}
+.relpage .gn-tabelle table.data{width:100%;border-collapse:collapse;font-size:.92rem;
+  min-width:44rem}
+.relpage .gn-tabelle table.data caption{caption-side:bottom;text-align:left;
+  font-size:.78rem;color:var(--gn-text-mute);padding:.9rem 1rem;line-height:1.55}
+.relpage .gn-tabelle table.data th,.relpage .gn-tabelle table.data td{padding:.6rem .9rem;
+  text-align:left;border-bottom:1px solid var(--gn-line)}
+.relpage .gn-tabelle table.data thead th{font-family:var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace);font-size:.72rem;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--gn-text-mute);
+  font-weight:600;border-bottom:1px solid var(--gn-line-strong);white-space:nowrap}
+.relpage .gn-tabelle table.data tbody th{font-weight:600;color:var(--gn-text);
+  white-space:nowrap}
+.relpage .gn-tabelle table.data td{font-family:var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace);color:var(--gn-text-soft);
+  white-space:nowrap}
+.relpage .gn-tabelle table.data tbody tr:last-child td,.relpage .gn-tabelle table.data tbody tr:last-child th{border-bottom:0}
+.relpage .gn-tabelle table.data .ord{font-family:var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace);font-size:.74rem;
+  font-weight:600}
+.relpage .gn-tabelle table.data .ord--no{color:var(--gn-no)}
+.relpage .gn-tabelle table.data .ord--io{color:var(--gn-io)}
+.relpage .gn-tabelle table.data tr.row-alt th,.relpage .gn-tabelle table.data tr.row-alt td{background:var(--gn-surface)}
+.relpage .gn-tabelle .rs-bf{color:var(--gn-text);font-weight:600}
+.relpage .gn-tabelle .rs-err{display:inline-flex;flex-direction:column;font-size:.62rem;
+  line-height:1.05;vertical-align:middle;margin-left:.3em;color:var(--gn-text-mute)}
+.relpage .gn-tabelle .rs-mark{color:var(--gn-text-mute)}
+.relpage .gn-tabelle .sym{text-transform:none}
+.relpage .gn-tabelle .rq-griglia{display:grid;gap:12px;margin:18px 0 6px;
+  grid-template-columns:repeat(3,1fr)}
+@media (max-width:900px){.relpage .gn-tabelle .rq-griglia{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.relpage .gn-tabelle .rq-griglia{grid-template-columns:1fr}}
+.relpage .gn-tabelle .rq{display:flex;flex-direction:column;gap:2px;padding:12px 14px 10px;
+  border:1px solid var(--gn-line);border-radius:var(--r-sm,10px);
+  background:var(--gn-surface)}
+.relpage .gn-tabelle .rq-k{font:600 11px/1.4 var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace);letter-spacing:.06em;
+  color:var(--gn-text-mute)}
+.relpage .gn-tabelle .rq-v{font-size:1.6rem;font-weight:600;color:var(--gn-text);
+  line-height:1.15}
+.relpage .gn-tabelle .rq-u{font-size:.72rem;color:var(--gn-text-mute)}
+.relpage .gn-tabelle .rq-bar{display:block;width:100%;height:auto;margin-top:6px}
+.relpage .gn-tabelle .rq-lab{font-size:.62rem;color:var(--gn-text-mute);opacity:.8}
+.relpage .gn-tabelle .rq--largo{border-style:dashed}
+.relpage .gn-tabelle .rq--largo .rq-lab{opacity:1}
+.relpage .gn-tabelle .rq-nota{font-size:.72rem;color:var(--gn-text-mute);margin:2px 0 0}
+.relpage .gn-tabelle .gn-caso{padding:44px 0 34px;border-top:2px solid var(--gn-line)}
+.relpage .gn-tabelle .gn-caso--primo{padding-top:10px}
+.relpage .gn-tabelle .gn-caso-t{margin:0 0 3px;font-size:1.0rem;line-height:1.45;font-weight:600;color:var(--gn-text)}
+.relpage .gn-tabelle .gn-caso-s{margin:0 0 10px;font:600 11px/1.4 var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace);letter-spacing:.08em;text-transform:uppercase;color:var(--gn-text-mute)}
+.relpage .gn-tabelle .gn-caso:first-of-type{border-top:none;padding-top:8px}
+.relpage .gn-tabelle .gn-caso + .gn-caso .gn-caso-t{font-size:1.0rem}
+.relpage .gn-tabelle .gn-rrbox{margin:14px 0 22px;padding:14px 16px 10px;
+  border:1px solid var(--gn-line);border-radius:var(--r,16px);background:var(--gn-bg)}
+.relpage .gn-tabelle .gn-rr{display:block;width:100%;height:auto;color:var(--gn-text)}
+.relpage .gn-tabelle .gn-rrbox figcaption{display:block;color:var(--gn-text-mute);
+  font-size:.78rem;line-height:1.55;padding:.6rem 0 0;max-width:78ch}
+.relpage .gn-tabelle .rs-lede{color:var(--gn-text-soft);max-width:42rem}
+.relpage .gn-tabelle .gn-nota{color:var(--gn-text-mute);font-size:.82rem;
+  line-height:1.65;max-width:60ch;margin:14px 0 26px;
+  padding-left:14px;border-left:2px solid var(--gn-line-strong)}
+.relpage .gn-tabelle .gn-nota b{color:var(--gn-text-soft)}
+.relpage .kn-tab td{font-size:14px;line-height:1.45}
+.relpage .kn-d{display:block;color:var(--dim);font:11.5px var(--mono);margin-top:3px}
+.relpage .cf{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0 6px}
+.relpage .cf-c{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.relpage .cf-t{font:600 12px var(--mono);letter-spacing:.06em;color:var(--ink);margin-bottom:6px}
+.relpage .cf ul{margin:0;padding-left:18px;color:var(--dim);font-size:14px;line-height:1.55}
+.relpage .cf li{margin:5px 0}
+.relpage .cf b{color:var(--ink);font-weight:600}
+@media (max-width:760px){.relpage .cf{grid-template-columns:1fr}}
+.relpage #risultati-sezione,.relpage #sinossi-sezione{padding:44px 0;
+  border-top:1px solid var(--line)}
+.relpage .rs-elenco{list-style:none;padding:0;font:14px var(--mono)}
+.relpage .rs-elenco li{padding:6px 0;border-top:1px solid var(--line)}
+.relpage .rs-griglia{display:block;margin-top:18px;max-width:1000px}
+.relpage .rs-fig + .rs-fig{margin-top:26px}
+.relpage .rs-fig{margin:0}
+.relpage .rs-fig img{width:100%;height:auto;border:1px solid var(--line);border-radius:8px;
+  background:var(--panel)}
+.relpage .rs-fig figcaption{color:var(--dim);font-size:12px;margin-top:6px}
+.relpage .nv{display:grid;gap:10px;margin:8px 0 6px}
+.relpage .nv-v{display:grid;grid-template-columns:140px 1fr;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.relpage .nv-d{font:600 13px var(--mono);color:var(--accent)}
+.relpage .nv-v ul{margin:0;padding-left:18px;color:var(--dim);font-size:14px;line-height:1.55}
+@media (max-width:620px){.relpage .nv-v{grid-template-columns:1fr}}
+.relpage #chi2-6d-sezione{padding:44px 0;border-top:1px solid var(--line)}
+.relpage .c6-wrap{margin-top:20px}
+.relpage .c6-testa{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.relpage .c6-testa label{color:var(--dim);font:600 11px/1 var(--mono);letter-spacing:.14em;
+  text-transform:uppercase}
+.relpage .c6-wrap select,.relpage .c6-wrap input,.relpage .c6-btn{background:var(--panel2);color:var(--ink);
+  border:1px solid var(--line);border-radius:8px;padding:6px 9px;font:14px var(--mono)}
+.relpage .c6-wrap input[type=range]{padding:0;background:none;border:none;flex:1;min-width:120px}
+.relpage .c6-btn{cursor:pointer;font-weight:600}
+.relpage .c6-btn:hover{border-color:var(--accent)}
+.relpage .c6-stato{color:var(--dim);font-size:13px}
+.relpage .c6-par,.relpage .c6-exp{display:grid;gap:8px;margin:14px 0;
+  background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+.relpage .c6-riga{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.relpage .c6-nome{min-width:78px;font:14px var(--mono);color:var(--ink)}
+.relpage .c6-num{width:110px}
+.relpage .c6-unita{color:var(--dim);font-size:12px;min-width:82px}
+.relpage .c6-lettura{margin:14px 0;max-width:100%}
+.relpage .c6-scorre{overflow-x:auto;max-width:100%}
+.relpage .c6-tab{border-collapse:collapse;font:14px var(--mono)}
+.relpage .c6-tab th{color:var(--dim);font:600 11px/1.4 var(--mono);letter-spacing:.08em;
+  text-align:right;padding:4px 14px 8px;white-space:normal;max-width:16em;vertical-align:bottom}
+.relpage .c6-tab td{text-align:right;padding:3px 14px;border-top:1px solid var(--line)}
+.relpage .c6-tab tr.c6-no td:first-child{color:var(--no);font-weight:600}
+.relpage .c6-tab tr.c6-io td:first-child{color:var(--io);font-weight:600}
+.relpage .c6-nota{color:var(--dim);font-size:13px;max-width:76ch;margin:8px 0}
+.relpage .c6-avviso{color:var(--ink);font-size:13px;max-width:76ch;margin:8px 0;
+  border-left:3px solid var(--accent);padding-left:10px}
+.relpage .c6-fuori{color:var(--io);font-size:13px;max-width:76ch;margin:8px 0}
+.relpage .c6-barra{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0}
+@media (max-width:620px){.relpage .c6-riga{flex-wrap:wrap}
+.relpage .c6-num{width:88px}}
+.relpage{--g0:#5BC0F0;--g1:#F07A7A;--g2:#F2C94C}
+:root[data-theme="light"] .relpage{--g0:#1F7FB8;--g1:#C23B3B;--g2:#9A7000}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .relpage{--g0:#1F7FB8;--g1:#C23B3B;--g2:#9A7000}}
+.relpage .toc-a{background:color-mix(in srgb,var(--gc) 10%,var(--surface));
+  border-color:color-mix(in srgb,var(--gc) 38%,var(--line))}
+.relpage .toc-a::before{display:none}
+.relpage .toc-a:hover{border-color:var(--gc);box-shadow:none;
+  background:color-mix(in srgb,var(--gc) 15%,var(--surface))}
+.relpage .toc-i{color:var(--gc);background:color-mix(in srgb,var(--gc) 18%,transparent);
+  border-color:color-mix(in srgb,var(--gc) 45%,transparent)}
+.relpage .toc-i svg{stroke:var(--gc)}
+.relpage .toc-tag{color:var(--gc);border-color:color-mix(in srgb,var(--gc) 50%,transparent);background:color-mix(in srgb,var(--gc) 10%,transparent)}
+.relpage .toc-a > .toc-bar{width:4px;opacity:1}
+.relpage .rp-earlier{margin:1rem 0 0;font-size:.9em}.relpage .rp-earlier a{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}.relpage .rp-earlier a:hover{border-bottom-color:var(--accent)}
+.relpage .tb{top:var(--gn-header,61px)!important}
+.relpage > section:not(.rp-hero){padding-top:88px;padding-bottom:88px;border-top:1px solid color-mix(in srgb,var(--ink) 18%,transparent)}
+@media (max-width:700px){.relpage > section:not(.rp-hero){padding-top:56px;padding-bottom:56px}}
+.relpage > section h2{margin-bottom:14px}
+.relpage > section h3{margin-top:40px}
+.relpage .rs-lede{margin:20px 0}
+.relpage .rq-griglia{margin-bottom:40px}
+.relpage .gn-caso{margin-top:48px;padding-top:40px;border-top:1px dashed color-mix(in srgb,var(--ink) 16%,transparent)}
+.relpage .toc{padding-bottom:56px}
+.relpage .gal{grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr))}
+@media (max-width:860px){.relpage .gd-read{grid-template-columns:minmax(0,1fr)!important}}
+.relpage .gd-fmt{min-width:0;max-width:100%;overflow-x:auto}
+.relpage .gd-fmt code,.relpage .gd-fmt b{overflow-wrap:anywhere}
+.relpage figure,.relpage select,.relpage input,.relpage img,.relpage svg,.relpage canvas,.relpage video{max-width:100%}
+.relpage figure{margin-left:0;margin-right:0}
+.relpage pre{max-width:100%;overflow-x:auto}
+.relpage a{overflow-wrap:anywhere}
+.relpage :where(.wrap,section) > *{min-width:0}
+@media (max-width:700px){
+.relpage .tb .wrap{gap:8px;padding:6px 12px}
+.relpage .tb-b{font-size:0;gap:0;padding:8px}
+.relpage .tb-s{align-items:center;gap:8px}
+.relpage .tb-s .n{white-space:nowrap;flex:none}
+.relpage .tb-s .t{font-size:15px;line-height:1.2;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+}
+.relpage .swipe-hint{display:none;margin:0 0 6px;font:500 12px var(--mono);color:var(--muted,var(--text-mute))}
+@media (max-width:760px){
+.relpage .swipe-hint{display:block}
+.relpage .is-scrollable:not(.at-end){-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent)}
+.relpage .is-scrollable table tr > :first-child{position:sticky;left:0;z-index:1;background:var(--bg);box-shadow:1px 0 0 var(--line)}
+.relpage .is-scrollable table tr > :first-child,.relpage .is-scrollable table tr > :first-child *{white-space:normal;overflow-wrap:anywhere}
+.relpage .is-scrollable table tr > :first-child{min-width:0;width:38vw;max-width:38vw}
+}
+.relpage .tb:not(.tb--su){transform:translateY(calc(-100% - var(--gn-header,61px) - 8px));visibility:hidden;pointer-events:none}
+.relpage section,.relpage [id]{scroll-margin-top:calc(var(--gn-header,61px) + 64px)}
+
+</style>
+<section class="rp-hero">
+  
+  
+  <div class="wrap hero"><div class="hero-t">
+    <div class="eyebrow">Bari group &middot; global analysis</div>
+    <h1>Neutrino oscillation parameters<br>Bari Group 2026.a <span class="prelim prelim--badge">Preliminary</span></h1>
+    <p class="sub">Bari Release <strong>2026.a</strong>, after the second JUNO data release. Tabulated
+      &Delta;&chi;&sup2; for the six oscillation parameters, both mass orderings,
+      in three progressive data sets. These results are <strong>preliminary</strong>: the paper is in preparation, and the
+      tables, the notebook and the data files will be published with it.</p>
+    <p class="rp-earlier"><a href="earlier-releases.html">Earlier releases: the 2026 (1,&nbsp;2)-sector update and the March 2025 full release &rarr;</a></p>
+    <p class="sub" style="font-size:0.9em;opacity:0.8">Preliminary version of 2026-10-15</p>
+  </div>
+  
+  <aside class="glance" aria-label="Results at a glance">
+    <div class="gk">At a glance &middot; final combination</div>
+    <div class="gc">LBL Acc + Solar + Reac + Atmos</div>
+    <div class="gmo no">Normal ordering favoured at <b>3.9&sigma;</b><span>&Delta;&chi;&sup2;(IO&minus;NO) = +15.34</span></div>
+    <div class="gg">
+      <div class="gt">
+        <div class="gs">sin&sup2;&theta;<sub>12</sub></div>
+        <div class="gv">0.3047<span class="ge">&plusmn;0.0055</span></div>
+        <svg viewBox="0 0 200 64" preserveAspectRatio="none" aria-hidden="true"><rect x="76.8" y="0" width="35.5" height="64" class="gb"/><line x1="0" x2="200" y1="51.2" y2="51.2" class="g1"/><line x1="0" x2="200" y1="25.6" y2="25.6" class="g1"/><polyline points="37.7,0.0 37.9,0.1 41.4,1.7 44.8,3.3 48.3,4.7 51.7,6.1 55.2,7.4 58.6,8.6 62.1,9.7 65.5,10.6 69.0,11.4 72.4,12.1 75.9,12.7 79.3,13.2 82.8,13.5 86.2,13.8 89.7,13.9 93.1,13.8 96.6,13.7 100.0,13.4 103.4,13.0 106.9,12.6 110.3,12.0 113.8,11.3 117.2,10.5 120.7,9.6 124.1,8.6 127.6,7.6 131.0,6.4 134.5,5.2 137.9,3.9 141.4,2.6 144.8,1.2 147.6,0.0" class="gio"/><polyline points="10.8,0.0 13.8,2.4 17.2,5.1 20.7,7.9 24.1,10.6 27.6,13.3 31.0,16.0 34.5,18.7 37.9,21.4 41.4,24.1 44.8,26.8 48.3,29.5 51.7,32.2 55.2,34.9 58.6,37.5 62.1,40.2 65.5,42.7 69.0,45.3 72.4,47.9 75.9,50.5 79.3,53.1 82.8,55.5 86.2,58.1 89.7,60.6 93.1,63.2 96.6,62.3 100.0,59.9 103.4,57.5 106.9,55.0 110.3,52.6 113.8,50.2 117.2,47.7 120.7,45.2 124.1,42.8 127.6,40.4 131.0,37.9 134.5,35.5 137.9,33.1 141.4,30.7 144.8,28.3 148.3,25.9 151.7,23.5 155.2,21.1 158.6,18.8 162.1,16.4 165.5,14.1 169.0,11.7 172.4,9.4 175.9,7.1 179.3,4.8 182.8,2.5 186.2,0.2 186.5,0.0" class="gno"/></svg>
+        <div class="gp">1&sigma; accuracy 1.8%</div>
+      </div>
+      <div class="gt">
+        <div class="gs">&delta;m&sup2; <span class="gu">[10<sup>&minus;5</sup> eV&sup2;]</span></div>
+        <div class="gv">7.465<span class="ge">&plusmn;0.076</span></div>
+        <svg viewBox="0 0 200 64" preserveAspectRatio="none" aria-hidden="true"><rect x="86.0" y="0" width="37.1" height="64" class="gb"/><line x1="0" x2="200" y1="51.2" y2="51.2" class="g1"/><line x1="0" x2="200" y1="25.6" y2="25.6" class="g1"/><polyline points="42.9,0.0 43.6,0.3 44.8,0.8 46.0,1.4 47.3,1.9 48.5,2.4 49.7,2.9 50.9,3.4 52.2,3.8 53.4,4.3 54.6,4.8 55.8,5.2 57.0,5.7 58.3,6.1 59.5,6.5 60.7,7.0 61.9,7.4 63.1,7.8 64.4,8.2 65.6,8.5 66.8,8.9 68.0,9.3 69.3,9.6 70.5,10.0 71.7,10.3 72.9,10.6 74.1,10.9 75.4,11.2 76.6,11.4 77.8,11.7 79.0,11.9 80.3,12.2 81.5,12.4 82.7,12.6 83.9,12.8 85.1,13.0 86.4,13.1 87.6,13.2 88.8,13.4 90.0,13.5 91.3,13.6 92.5,13.7 93.7,13.7 94.9,13.8 96.1,13.8 97.4,13.9 98.6,13.9 99.8,13.9 101.0,13.8 102.2,13.8 103.5,13.8 104.7,13.7 105.9,13.6 107.1,13.6 108.4,13.5 109.6,13.4 110.8,13.2 112.0,13.1 113.2,12.9 114.5,12.8 115.7,12.6 116.9,12.4 118.1,12.2 119.4,12.0 120.6,11.7 121.8,11.5 123.0,11.2 124.2,11.0 125.5,10.7 126.7,10.4 127.9,10.0 129.1,9.7 130.4,9.3 131.6,9.0 132.8,8.6 134.0,8.2 135.2,7.8 136.5,7.4 137.7,7.0 138.9,6.6 140.1,6.2 141.3,5.7 142.6,5.3 143.8,4.8 145.0,4.3 146.2,3.9 147.5,3.4 148.7,2.9 149.9,2.4 151.1,1.9 152.3,1.3 153.6,0.8 154.8,0.3 155.4,0.0" class="gio"/><polyline points="13.8,0.0 14.3,0.4 15.5,1.2 16.7,2.1 17.9,2.9 19.2,3.8 20.4,4.7 21.6,5.5 22.8,6.4 24.0,7.2 25.3,8.1 26.5,9.0 27.7,9.8 28.9,10.7 30.2,11.6 31.4,12.4 32.6,13.3 33.8,14.2 35.0,15.0 36.3,15.9 37.5,16.8 38.7,17.6 39.9,18.5 41.2,19.4 42.4,20.2 43.6,21.1 44.8,21.9 46.0,22.8 47.3,23.7 48.5,24.5 49.7,25.4 50.9,26.3 52.2,27.1 53.4,28.0 54.6,28.8 55.8,29.7 57.0,30.6 58.3,31.4 59.5,32.3 60.7,33.1 61.9,34.0 63.1,34.9 64.4,35.8 65.6,36.7 66.8,37.6 68.0,38.4 69.3,39.3 70.5,40.2 71.7,41.0 72.9,41.9 74.1,42.8 75.4,43.7 76.6,44.6 77.8,45.4 79.0,46.3 80.3,47.2 81.5,48.1 82.7,48.9 83.9,49.8 85.1,50.7 86.4,51.5 87.6,52.4 88.8,53.2 90.0,54.0 91.3,54.9 92.5,55.7 93.7,56.5 94.9,57.4 96.1,58.2 97.4,59.1 98.6,59.9 99.8,60.7 101.0,61.4 102.2,62.1 103.5,62.8 104.7,63.4 105.9,63.5 107.1,62.5 108.4,61.5 109.6,60.8 110.8,59.9 112.0,59.0 113.2,58.1 114.5,57.2 115.7,56.3 116.9,55.5 118.1,54.7 119.4,53.8 120.6,53.0 121.8,52.1 123.0,51.2 124.2,50.3 125.5,49.4 126.7,48.5 127.9,47.6 129.1,46.7 130.4,45.8 131.6,44.9 132.8,44.0 134.0,43.1 135.2,42.2 136.5,41.3 137.7,40.4 138.9,39.6 140.1,38.7 141.3,37.8 142.6,36.9 143.8,36.0 145.0,35.1 146.2,34.2 147.5,33.3 148.7,32.5 149.9,31.6 151.1,30.7 152.3,29.8 153.6,28.9 154.8,28.0 156.0,27.1 157.2,26.3 158.5,25.4 159.7,24.5 160.9,23.6 162.1,22.7 163.3,21.8 164.6,20.9 165.8,20.0 167.0,19.1 168.2,18.2 169.5,17.4 170.7,16.5 171.9,15.6 173.1,14.7 174.3,13.8 175.6,12.9 176.8,11.9 178.0,11.0 179.2,10.1 180.4,9.2 181.7,8.3 182.9,7.4 184.1,6.5 185.3,5.6 186.6,4.7 187.8,3.8 189.0,2.9 190.2,2.0 191.4,1.1 192.7,0.2 192.9,0.0" class="gno"/></svg>
+        <div class="gp">1&sigma; accuracy 1.0%</div>
+      </div>
+      <div class="gt">
+        <div class="gs">sin&sup2;&theta;<sub>13</sub></div>
+        <div class="gv">0.02218<span class="ge">&plusmn;0.00055</span></div>
+        <svg viewBox="0 0 200 64" preserveAspectRatio="none" aria-hidden="true"><rect x="84.3" y="0" width="34.9" height="64" class="gb"/><line x1="0" x2="200" y1="51.2" y2="51.2" class="g1"/><line x1="0" x2="200" y1="25.6" y2="25.6" class="g1"/><polyline points="51.6,0.0 53.6,0.9 56.9,2.3 60.2,3.7 63.5,5.0 66.8,6.3 70.2,7.4 73.5,8.5 76.8,9.5 80.1,10.4 83.4,11.2 86.7,11.9 90.1,12.5 93.4,13.0 96.7,13.4 100.0,13.7 103.3,13.8 106.6,13.9 109.9,13.8 113.3,13.6 116.6,13.3 119.9,12.8 123.2,12.3 126.5,11.6 129.8,10.9 133.2,10.1 136.5,9.1 139.8,8.1 143.1,7.0 146.4,5.8 149.7,4.5 153.0,3.2 156.4,1.7 159.7,0.3 160.3,0.0" class="gio"/><polyline points="13.1,0.0 13.8,0.5 17.1,2.9 20.4,5.2 23.7,7.6 27.1,9.9 30.4,12.3 33.7,14.7 37.0,17.0 40.3,19.4 43.6,21.7 46.9,24.1 50.3,26.4 53.6,28.8 56.9,31.1 60.2,33.5 63.5,35.8 66.8,38.1 70.2,40.5 73.5,42.9 76.8,45.3 80.1,47.7 83.4,50.1 86.7,52.5 90.1,54.9 93.4,57.3 96.7,59.7 100.0,62.1 103.3,63.5 106.6,61.1 109.9,58.7 113.3,56.3 116.6,53.9 119.9,51.4 123.2,49.0 126.5,46.6 129.8,44.2 133.2,41.8 136.5,39.4 139.8,37.0 143.1,34.6 146.4,32.2 149.7,29.8 153.0,27.3 156.4,24.8 159.7,22.3 163.0,19.9 166.3,17.6 169.6,15.4 172.9,13.3 176.3,11.0 179.6,8.6 182.9,5.9 186.2,2.8 189.1,0.0" class="gno"/></svg>
+        <div class="gp">1&sigma; accuracy 2.5%</div>
+      </div>
+      <div class="gt">
+        <div class="gs">&Delta;m&sup2; <span class="gu">[10<sup>&minus;3</sup> eV&sup2;]</span></div>
+        <div class="gv">2.4720<span class="ge">&plusmn;0.0134</span></div>
+        <svg viewBox="0 0 200 64" preserveAspectRatio="none" aria-hidden="true"><rect x="79.2" y="0" width="31.5" height="64" class="gb"/><line x1="0" x2="200" y1="51.2" y2="51.2" class="g1"/><line x1="0" x2="200" y1="25.6" y2="25.6" class="g1"/><polyline points="41.4,0.0 42.0,0.2 45.1,1.1 48.3,2.0 51.4,2.9 54.5,3.9 57.7,4.8 60.8,5.8 64.0,6.7 67.1,7.6 70.2,8.5 73.4,9.3 76.5,10.1 79.6,10.9 82.8,11.6 85.9,12.2 89.0,12.7 92.2,13.1 95.3,13.4 98.4,13.6 101.6,13.8 104.7,13.9 107.8,13.8 111.0,13.7 114.1,13.5 117.2,13.2 120.4,12.8 123.5,12.3 126.6,11.8 129.8,11.2 132.9,10.6 136.0,9.9 139.2,9.0 142.3,8.1 145.5,7.2 148.6,6.2 151.7,5.1 154.9,4.0 158.0,2.8 161.1,1.4 164.3,0.1 164.4,0.0" class="gio"/><polyline points="11.9,0.0 13.8,1.3 16.9,3.4 20.1,5.5 23.2,7.7 26.3,9.9 29.5,12.1 32.6,14.3 35.7,16.6 38.9,18.9 42.0,21.3 45.1,23.7 48.3,26.2 51.4,28.7 54.5,31.2 57.7,33.7 60.8,36.2 64.0,38.7 67.1,41.3 70.2,43.9 73.4,46.5 76.5,49.1 79.6,51.6 82.8,54.1 85.9,56.6 89.0,59.1 92.2,61.6 95.3,63.7 98.4,61.1 101.6,58.4 104.7,55.8 107.8,53.3 111.0,50.9 114.1,48.7 117.2,46.5 120.4,44.3 123.5,42.1 126.6,39.9 129.8,37.7 132.9,35.6 136.0,33.5 139.2,31.5 142.3,29.5 145.5,27.5 148.6,25.5 151.7,23.5 154.9,21.4 158.0,19.4 161.1,17.4 164.3,15.4 167.4,13.3 170.5,11.3 173.7,9.2 176.8,7.1 179.9,5.0 183.1,2.9 186.2,0.9 187.6,0.0" class="gno"/></svg>
+        <div class="gp">1&sigma; accuracy 0.6%</div>
+      </div>
+      <div class="gt">
+        <div class="gs">sin&sup2;&theta;<sub>23</sub></div>
+        <div class="gv">0.491<span class="ge"><span class="ae"><sup>+0.047</sup><sub>&minus;0.021</sub></span></span></div>
+        <svg viewBox="0 0 200 64" preserveAspectRatio="none" aria-hidden="true"><rect x="60.5" y="0" width="69.4" height="64" class="gb"/><line x1="0" x2="200" y1="51.2" y2="51.2" class="g1"/><line x1="0" x2="200" y1="25.6" y2="25.6" class="g1"/><polyline points="29.1,0.0 31.6,1.7 34.6,3.4 37.6,5.0 40.5,6.3 43.5,7.4 46.5,8.3 49.5,9.1 52.4,9.8 55.4,10.3 58.4,10.7 61.4,11.0 64.3,11.3 67.3,11.4 70.3,11.5 73.2,11.5 76.2,11.5 79.2,11.5 82.2,11.5 85.1,11.5 88.1,11.4 91.1,11.5 94.1,11.5 97.0,11.6 100.0,11.7 103.0,11.8 105.9,12.0 108.9,12.2 111.9,12.4 114.9,12.6 117.8,12.8 120.8,13.1 123.8,13.3 126.8,13.5 129.7,13.7 132.7,13.8 135.7,13.9 138.6,13.8 141.6,13.7 144.6,13.5 147.6,13.0 150.5,12.4 153.5,11.7 156.5,10.7 159.5,9.6 162.4,8.4 165.4,7.0 168.4,5.2 171.3,3.1 174.3,0.9 175.4,0.0" class="gio"/><polyline points="12.9,0.0 13.8,1.3 16.8,5.2 19.7,8.9 22.7,12.6 25.7,16.2 28.7,19.9 31.6,23.4 34.6,26.9 37.6,30.2 40.5,33.4 43.5,36.4 46.5,39.2 49.5,42.0 52.4,44.6 55.4,47.1 58.4,49.5 61.4,51.9 64.3,54.1 67.3,56.3 70.3,58.2 73.2,60.0 76.2,61.5 79.2,63.0 82.2,63.7 85.1,62.4 88.1,61.3 91.1,60.4 94.1,59.6 97.0,58.9 100.0,58.3 103.0,57.6 105.9,57.0 108.9,56.4 111.9,55.8 114.9,55.2 117.8,54.6 120.8,53.9 123.8,53.2 126.8,52.3 129.7,51.3 132.7,50.0 135.7,48.6 138.6,47.1 141.6,45.4 144.6,43.5 147.6,41.4 150.5,39.1 153.5,36.7 156.5,34.2 159.5,31.5 162.4,28.8 165.4,26.0 168.4,22.9 171.3,19.6 174.3,16.1 177.3,12.6 180.3,9.0 183.2,5.4 186.2,1.7 187.5,0.0" class="gno"/></svg>
+        <div class="gp">1&sigma; accuracy 4.4%</div>
+      </div>
+      <div class="gt">
+        <div class="gs">&delta;/&pi;</div>
+        <div class="gv">1.19<span class="ge">&plusmn;0.15</span></div>
+        <svg viewBox="0 0 200 64" preserveAspectRatio="none" aria-hidden="true"><rect x="105.0" y="0" width="29.0" height="64" class="gb"/><line x1="0" x2="200" y1="51.2" y2="51.2" class="g1"/><line x1="0" x2="200" y1="25.6" y2="25.6" class="g1"/><polyline points="114.4,0.0 114.6,0.2 116.9,1.6 119.1,3.1 121.3,4.4 123.6,5.6 125.8,6.8 128.1,7.9 130.3,8.9 132.6,9.9 134.8,10.7 137.1,11.4 139.3,12.1 141.6,12.7 143.8,13.1 146.1,13.5 148.3,13.7 150.6,13.9 152.8,13.9 155.1,13.7 157.3,13.5 159.6,13.2 161.8,12.7 164.0,12.0 166.3,11.2 168.5,10.3 170.8,9.3 173.0,8.1 175.3,6.8 177.5,5.4 179.8,3.9 182.0,2.2 184.3,0.5 184.8,0.0" class="gio"/><polyline points="0.0,22.6 2.2,21.3 4.5,19.9 6.7,18.5 9.0,17.2 11.2,16.0 13.5,15.0 15.7,13.9 18.0,12.9 20.2,11.9 22.5,11.0 24.7,10.3 27.0,9.5 29.2,8.8 31.5,8.2 33.7,7.8 36.0,7.5 38.2,7.2 40.4,7.0 42.7,7.1 44.9,7.2 47.2,7.5 49.4,7.9 51.7,8.4 53.9,9.1 56.2,10.0 58.4,10.9 60.7,12.0 62.9,13.3 65.2,14.6 67.4,16.1 69.7,17.7 71.9,19.5 74.2,21.3 76.4,23.2 78.7,25.2 80.9,27.3 83.1,29.5 85.4,31.7 87.6,33.9 89.9,36.2 92.1,38.5 94.4,40.8 96.6,43.0 98.9,45.3 101.1,47.5 103.4,49.6 105.6,51.6 107.9,53.7 110.1,55.8 112.4,58.0 114.6,60.2 116.9,62.4 119.1,63.5 121.3,61.4 123.6,59.4 125.8,57.6 128.1,55.8 130.3,54.1 132.6,52.4 134.8,50.9 137.1,49.5 139.3,48.2 141.6,47.0 143.8,45.7 146.1,44.7 148.3,43.8 150.6,42.9 152.8,42.0 155.1,41.2 157.3,40.6 159.6,40.0 161.8,39.3 164.0,38.6 166.3,37.9 168.5,37.3 170.8,36.7 173.0,35.9 175.3,35.1 177.5,34.3 179.8,33.5 182.0,32.5 184.3,31.4 186.5,30.3 188.8,29.2 191.0,28.0 193.3,26.7 195.5,25.4 197.8,24.0 200.0,22.6" class="gno"/></svg>
+        <div class="gp">1&sigma; accuracy 16.3%</div>
+      </div>
+    </div>
+    <div class="gl"><i class="lno"></i>NO <i class="lio"></i>IO &nbsp;N&sigma; profiles up to 5&sigma;, on the common NO+IO scale; shaded: 1&sigma; range. Values: normal ordering, best fit &plusmn; 1&sigma;; 1&sigma; accuracy = one sixth of the 3&sigma; range over the best fit, as in our tables. <a href="#results">All numbers &darr;</a></div>
+  </aside>
+  
   </div>
 </section>
 
-<section class="section section--paper section--alt section--glow" id="nu2026"><div class="wrap">
-<div class="release">
 
-<div class="section-head">
-  <h2>Latest — the six parameters after the first JUNO results</h2>
-  <p>δm² and sin²θ₁₂ revised in 2026, on the March 2025 full release</p>
-</div>
+<div class="toc" id="contents"><div class="wrap">
+  <div class="toc-h"><h2>Contents</h2><span>Everything on this page, at a glance</span></div>
+  <div class="toc-g" id="toc-g"></div>
+</div></div>
+<div class="tb" id="tb" aria-label="Page navigation"><div class="wrap">
+  <button class="tb-b" id="tb-b" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Contents</button>
+  <div class="tb-s"><span class="n" id="tb-n"></span><span class="t" id="tb-t"></span></div>
+  <button class="tb-p" id="tb-p" aria-label="Previous section"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+  <button class="tb-n" id="tb-x" aria-label="Next section"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+</div><span class="tb-bar" id="tb-bar"></span>
+<div class="tb-d" id="tb-d"><div class="wrap"><div class="toc-g" id="tb-g"></div></div></div></div>
 
-<p class="lede" style="margin-top:0">The first JUNO results and the latest SNO+
-data, added to the 2025 global analysis, revise the (1,&nbsp;2) sector alone.
-The table below therefore carries the newest published value for each of the
-six parameters — the two marked 2026 from the update, the other four as they
-stand in the <a href="#nu2025">full release below</a>.</p>
 
-<div class="btn-row">
-  <a class="btn btn--sm" href="https://arxiv.org/abs/2511.21650" rel="noopener noreferrer" target="_blank">arXiv:2511.21650</a>
-  <a class="btn btn--sm btn--ghost" href="https://doi.org/10.1103/cxqw-1bty" rel="noopener noreferrer" target="_blank">Phys. Rev. D 114, 016026</a>
-  <a class="btn btn--sm btn--ghost" href="https://inspirehep.net/literature?q=arxiv:2511.21650" rel="noopener noreferrer" target="_blank">INSPIRE</a>
-</div>
 
-<p class="authors">The update is by <strong>F. Capozzi, E. Lisi, F. Marcone,
-A. Marrone, A. Palazzo</strong>; the 2025 release the other four rows come from
-adds <strong>W. Giarè</strong> and <strong>A. Melchiorri</strong>.</p>
 
-<div class="release__meta">
-  <span class="tag">newest value per parameter</span>
-  <span class="tag">two papers, not one fit</span>
-  <span class="tag">JUNO + SNO+ 2025</span>
-  <span class="tag">δm² known to 1.3%</span>
-</div>
-
-<div class="table-scroll">
-<table class="data" id="current">
-<caption><strong>The newest published value for each parameter — not a single
-fit.</strong> δm² and sin²θ₁₂, marked 2026, are the final row (“w/ SNO+ &amp;
-JUNO 2025”) of Table I of
-<a href="https://doi.org/10.1103/cxqw-1bty" rel="noopener noreferrer" target="_blank">Phys. Rev. D 114, 016026
-(2026)</a>, which adds the first JUNO results and the latest SNO+ data to the
-(1,&nbsp;2) sector. The other four are Table I of
-<a href="https://doi.org/10.1103/PhysRevD.111.093006" rel="noopener noreferrer" target="_blank">Phys. Rev. D 111, 093006
-(2025)</a>, the most recent full release, reproduced whole
-<a href="#nu2025">below</a> — the update quotes no new values for them. Ranges
-at N&#8202;σ = 1, 2, 3; the last column is the formal “1σ parameter accuracy”,
-defined the same way in both papers, 1/6 of the 3σ range divided by the
-best-fit value, in percent. δ/π is cyclic (mod 2). Values are transcribed from
-the published tables; nothing here is estimated or rounded further.  Δm² is <strong>signed</strong>, so the inverted-ordering rows read negative: the papers print the magnitude, |Δm²|, and the sign here is the convention stated <a href="#conventions">below</a>, not a different measurement.</caption>
-<thead>
-<tr><th scope="col">Parameter</th><th scope="col">Ordering</th><th scope="col">Best fit</th><th scope="col"><span class="sym">1σ</span> range</th><th scope="col"><span class="sym">2σ</span> range</th><th scope="col"><span class="sym">3σ</span> range</th><th scope="col">“<span class="sym">1σ</span>” (%)</th><th scope="col">From</th></tr>
-</thead>
-<tbody>
-<tr><th scope="row">δm² / 10⁻⁵ eV²</th><td class="ord">NO, IO</td><td>7.48</td><td>7.39 – 7.58</td><td>7.30 – 7.68</td><td>7.21 – 7.78</td><td>1.3</td><td class="ord src--new"><a href="https://doi.org/10.1103/cxqw-1bty" rel="noopener noreferrer" target="_blank">2026</a></td></tr>
-<tr><th scope="row">sin²θ₁₂ / 10⁻¹</th><td class="ord">NO, IO</td><td>3.085</td><td>3.010 – 3.156</td><td>2.939 – 3.230</td><td>2.866 – 3.303</td><td>2.4</td><td class="ord src--new"><a href="https://doi.org/10.1103/cxqw-1bty" rel="noopener noreferrer" target="_blank">2026</a></td></tr>
-<tr class="row-alt"><th scope="row">Δm² / 10⁻³ eV²</th><td class="ord ord--no">NO</td><td>2.495</td><td>2.475 – 2.515</td><td>2.454 – 2.536</td><td>2.433 – 2.558</td><td>0.8</td><td class="ord src--old"><a href="#release-2025">2025</a></td></tr>
-<tr class="row-alt"><th scope="row"></th><td class="ord ord--io">IO</td><td>−2.465</td><td>−2.485 – −2.444</td><td>−2.506 – −2.423</td><td>−2.527 – −2.403</td><td>0.8</td><td class="ord src--old"><a href="#release-2025">2025</a></td></tr>
-<tr><th scope="row">sin²θ₁₃ / 10⁻²</th><td class="ord ord--no">NO</td><td>2.23</td><td>2.17 – 2.27</td><td>2.11 – 2.33</td><td>2.06 – 2.38</td><td>2.4</td><td class="ord src--old"><a href="#release-2025">2025</a></td></tr>
-<tr><th scope="row"></th><td class="ord ord--io">IO</td><td>2.23</td><td>2.19 – 2.30</td><td>2.14 – 2.35</td><td>2.08 – 2.41</td><td>2.4</td><td class="ord src--old"><a href="#release-2025">2025</a></td></tr>
-<tr class="row-alt"><th scope="row">sin²θ₂₃ / 10⁻¹</th><td class="ord ord--no">NO</td><td>4.73</td><td>4.60 – 4.96</td><td>4.47 – 5.68</td><td>4.37 – 5.81</td><td>5.1</td><td class="ord src--old"><a href="#release-2025">2025</a></td></tr>
-<tr class="row-alt"><th scope="row"></th><td class="ord ord--io">IO</td><td>5.45</td><td>5.28 – 5.60</td><td>4.58 – 5.73</td><td>4.43 – 5.83</td><td>4.3</td><td class="ord src--old"><a href="#release-2025">2025</a></td></tr>
-<tr><th scope="row">δ/π</th><td class="ord ord--no">NO</td><td>1.20</td><td>1.07 – 1.37</td><td>0.88 – 1.81</td><td>0.73 – 2.03</td><td>18</td><td class="ord src--old"><a href="#release-2025">2025</a></td></tr>
-<tr><th scope="row"></th><td class="ord ord--io">IO</td><td>1.48</td><td>1.36 – 1.61</td><td>1.24 – 1.72</td><td>1.12 – 1.83</td><td>8</td><td class="ord src--old"><a href="#release-2025">2025</a></td></tr>
-</tbody>
-</table>
-</div>
-
-<p class="small" style="margin-top:1.2rem">What the update changed: against the
-2025 analysis — δm² = 7.37 known to 2.3%, sin²θ₁₂ = 3.03 to 4.5% — the two
-additions move both best fits up and roughly halve both uncertainties. The
-paper's own intermediate row, SNO+ added but not JUNO, gives δm² = 7.44 at
-2.1%: most of the tightening is JUNO's. δm² is now the second oscillation
-parameter, after Δm², known to better than 2%. The ordering preference is
-untouched — normal ordering is favoured at 2.2σ, as in the release below.</p>
-
-</div>
-
+<section id="key-numbers"><div class="wrap">
+  <h2>Key numbers</h2>
+  <p class="lede">The questions the data are asked most often, answered for each data set. Every number is read from the 1D profiles, on the common scale of the two orderings (&Delta;&chi;&sup2; from the overall best fit), with one degree of freedom: N&sigma; = &radic;&Delta;&chi;&sup2;.</p>
+  <div class="tw"><table class="gd-tab kn-tab">
+    <thead><tr><th>Data set</th><th>Mass ordering<span>favoured, and by how much</span></th><th>&theta;<sub>23</sub> octant<span>favoured; the other one at</span></th><th>Maximal mixing<span>sin&sup2;&theta;<sub>23</sub> = 1/2 disfavoured at</span></th><th>CP conservation<span>disfavoured at</span></th></tr></thead>
+    <tbody>
+      <tr><th scope="row"><span class="gd-ds">LBL Acc + Solar + Reac + Atmos</span><br><span class="gd-j">with JUNO</span></th><td><b class="no">NO</b> at 3.9&sigma;<span class="kn-d">&Delta;&chi;&sup2; = 15.34</span></td><td>first (&theta;<sub>23</sub> &lt; 45&deg;)<span class="kn-d">other octant: 0.3&sigma; (&Delta;&chi;&sup2; = 0.08)</span></td><td>0.3&sigma;<span class="kn-d">&Delta;&chi;&sup2; = 0.08</span></td><td>&delta; = 0: 3.2&sigma;<br>&delta; = &pi;: 1.4&sigma;<span class="kn-d">&Delta;&chi;&sup2; = 10.48 and 1.90</span></td></tr>
+      <tr><th scope="row"><span class="gd-ds">LBL Acc + Solar + Reac</span><br><span class="gd-j">with JUNO</span></th><td><b class="no">NO</b> at 2.0&sigma;<span class="kn-d">&Delta;&chi;&sup2; = 3.99</span></td><td>first (&theta;<sub>23</sub> &lt; 45&deg;)<span class="kn-d">other octant: 0.5&sigma; (&Delta;&chi;&sup2; = 0.21)</span></td><td>0.5&sigma;<span class="kn-d">&Delta;&chi;&sup2; = 0.21</span></td><td>&delta; = 0: 2.7&sigma;<br>&delta; = &pi;: 1.2&sigma;<span class="kn-d">&Delta;&chi;&sup2; = 7.08 and 1.46</span></td></tr>
+      <tr><th scope="row"><span class="gd-ds">LBL Acc + Solar + LBL Reac</span><br><span class="gd-j gd-j0">without JUNO</span></th><td><b class="io">IO</b> at 1.6&sigma;<span class="kn-d">&Delta;&chi;&sup2; = 2.64</span></td><td>first (&theta;<sub>23</sub> &lt; 45&deg;)<span class="kn-d">other octant: 0.7&sigma; (&Delta;&chi;&sup2; = 0.52)</span></td><td>0.7&sigma;<span class="kn-d">&Delta;&chi;&sup2; = 0.52</span></td><td>&delta; = 0: 3.1&sigma;<br>&delta; = &pi;: 1.9&sigma;<span class="kn-d">&Delta;&chi;&sup2; = 9.46 and 3.58</span></td></tr>
+    </tbody>
+  </table></div>
+  
 </div></section>
-<section class="section section--paper"><div class="wrap">
-<div class="callout" id="conventions">
-<h4>Conventions used throughout this site</h4>
-<p>The two squared mass gaps are δm² = m₂² − m₁² &gt; 0 and
-Δm² = m₃² − ½(m₁² + m₂²), with α = sign(Δm²) distinguishing normal ordering
-(NO, α = +1) from inverted ordering (IO, α = −1). Equivalently, our Δm² is the
-<strong>half-sum</strong> of the two larger splittings, Δm² = ½(Δm²₃₁ + Δm²₃₂),
-which is the form the conversion is easiest to read from: since
-Δm²₃₁ − Δm²₃₂ = δm², passing to either of them is a shift of ±δm²/2.</p>
-<p>Other groups quote Δm²₃₁ or Δm²₂₃ instead: <strong>those numbers are not
-comparable with ours at a glance.</strong> Wherever this site compares
-analyses, it states the conversion it applied.</p>
-<p><strong>And the errors move differently from the values.</strong> Because
-the offset carries its own uncertainty, the converted interval is wider than
-the published one: the central value moves by more than one standard deviation
-while the uncertainty grows by a fraction of a percent. Both numbers are computed from the register and quoted on the
-<a href="history.html#compare">parameter-history page</a>, which also records
-that the propagation still omits the δm²–Δm² correlation, and gives the formula — the published
-papers do not carry the joint information a rigorous reprojection would need.
-The <a href="history.html#data">exported register</a> carries every interval in
-both conventions, and an <code>interval_method</code> column saying which
-treatment produced it.</p>
-</div>
+<section id="risultati-sezione">
+<div class="wrap">
 
-</div></section>
-<section class="section section--paper section--alt section--glow" id="nu2025"><div class="wrap">
-<div class="release">
-
-<div class="section-head">
-  <h2>March 2025 — Entering the era of subpercent precision</h2>
-</div>
-
-<p class="lede" style="margin-top:0">Updated global analysis of the known and
-unknown parameters of the standard three-neutrino framework, using data
-available at the beginning of 2025: solar, KamLAND, atmospheric, short-baseline
-reactor and long-baseline accelerator data.</p>
-
-<div class="btn-row">
-  <a class="btn btn--sm" href="https://arxiv.org/abs/2503.07752" rel="noopener noreferrer" target="_blank">arXiv:2503.07752</a>
-  <a class="btn btn--sm btn--ghost" href="https://doi.org/10.1103/PhysRevD.111.093006" rel="noopener noreferrer" target="_blank">Phys. Rev. D 111, 093006</a>
-  <a class="btn btn--sm btn--ghost" href="https://inspirehep.net/literature?q=arxiv:2503.07752" rel="noopener noreferrer" target="_blank">INSPIRE</a>
-</div>
-
-<p class="authors"><strong>F. Capozzi, W. Giarè, E. Lisi, A. Marrone,
-A. Melchiorri, A. Palazzo.</strong> Received 12 March 2025; accepted 21 April
-2025; published 19 May 2025.</p>
-
-<div class="release__meta">
-  <span class="tag">both orderings</span>
-  <span class="tag">1σ · 2σ · 3σ ranges</span>
-  <span class="tag">NO favoured at 2.2σ</span>
-  <span class="tag">Δχ²(IO−NO) = +5.0</span>
-</div>
-
-<div class="table-scroll">
-<table class="data" id="release-2025">
-<caption>Table I of Phys. Rev. D 111, 093006 (2025): best-fit values and allowed
-ranges at N&#8202;σ = 1, 2, 3, for either NO or IO. The last column is the formal
-“1σ parameter accuracy”, defined as 1/6 of the 3σ range divided by the best-fit
-value, in percent. δ/π is cyclic (mod 2). Values are transcribed from the
-published table; nothing on this page is estimated or rounded further.  Δm² is <strong>signed</strong>, so the inverted-ordering rows read negative: the papers print the magnitude, |Δm²|, and the sign here is the convention stated <a href="#conventions">below</a>, not a different measurement.
-<strong>†</strong> δm² and sin²θ₁₂ have since been superseded by the
-<a href="#nu2026">(1,&nbsp;2)-sector update</a> at the top of this
-page.</caption>
-<thead>
-<tr><th scope="col">Parameter</th><th scope="col">Ordering</th><th scope="col">Best fit</th><th scope="col"><span class="sym">1σ</span> range</th><th scope="col"><span class="sym">2σ</span> range</th><th scope="col"><span class="sym">3σ</span> range</th><th scope="col">“<span class="sym">1σ</span>” (%)</th></tr>
-</thead>
-<tbody>
-<tr><th scope="row">δm² / 10⁻⁵ eV² <sup><a href="#nu2026" title="superseded by the 2026 (1, 2)-sector update">†</a></sup></th><td class="ord">NO, IO</td><td>7.37</td><td>7.21 – 7.52</td><td>7.06 – 7.71</td><td>6.93 – 7.93</td><td>2.3</td></tr>
-<tr><th scope="row">sin²θ₁₂ / 10⁻¹ <sup><a href="#nu2026" title="superseded by the 2026 (1, 2)-sector update">†</a></sup></th><td class="ord">NO, IO</td><td>3.03</td><td>2.91 – 3.17</td><td>2.77 – 3.31</td><td>2.64 – 3.45</td><td>4.5</td></tr>
-<tr class="row-alt"><th scope="row">Δm² / 10⁻³ eV²</th><td class="ord ord--no">NO</td><td>2.495</td><td>2.475 – 2.515</td><td>2.454 – 2.536</td><td>2.433 – 2.558</td><td>0.8</td></tr>
-<tr class="row-alt"><th scope="row"></th><td class="ord ord--io">IO</td><td>−2.465</td><td>−2.485 – −2.444</td><td>−2.506 – −2.423</td><td>−2.527 – −2.403</td><td>0.8</td></tr>
-<tr><th scope="row">sin²θ₁₃ / 10⁻²</th><td class="ord ord--no">NO</td><td>2.23</td><td>2.17 – 2.27</td><td>2.11 – 2.33</td><td>2.06 – 2.38</td><td>2.4</td></tr>
-<tr><th scope="row"></th><td class="ord ord--io">IO</td><td>2.23</td><td>2.19 – 2.30</td><td>2.14 – 2.35</td><td>2.08 – 2.41</td><td>2.4</td></tr>
-<tr class="row-alt"><th scope="row">sin²θ₂₃ / 10⁻¹</th><td class="ord ord--no">NO</td><td>4.73</td><td>4.60 – 4.96</td><td>4.47 – 5.68</td><td>4.37 – 5.81</td><td>5.1</td></tr>
-<tr class="row-alt"><th scope="row"></th><td class="ord ord--io">IO</td><td>5.45</td><td>5.28 – 5.60</td><td>4.58 – 5.73</td><td>4.43 – 5.83</td><td>4.3</td></tr>
-<tr><th scope="row">δ/π</th><td class="ord ord--no">NO</td><td>1.20</td><td>1.07 – 1.37</td><td>0.88 – 1.81</td><td>0.73 – 2.03</td><td>18</td></tr>
-<tr><th scope="row"></th><td class="ord ord--io">IO</td><td>1.48</td><td>1.36 – 1.61</td><td>1.24 – 1.72</td><td>1.12 – 1.83</td><td>8</td></tr>
-</tbody>
-</table>
-</div>
-
-<figure class="figure figure--wide reveal" style="margin-top:2rem">
-<div class="figure__head">
-  <h3>Δχ² projections, all data included</h3>
-  <p>Fig. 3 of the paper · NO in blue, IO in red</p>
-</div>
-<img src="images/prd111-093006-fig3-global-projections.png" alt="Six panels
-showing Nσ as a function of δm², |Δm²|, δ/π, sin²θ₁₂, sin²θ₁₃ and sin²θ₂₃, for
-normal and inverted ordering, with all oscillation data included." loading="lazy">
-<p class="cap">Figure 3 from F. Capozzi, W. Giarè, E. Lisi, A. Marrone,
-A. Melchiorri and A. Palazzo, <em>Neutrino masses and mixing: Entering the era
-of subpercent precision</em>, Phys. Rev. D <strong>111</strong>, 093006 (2025),
-<a href="https://doi.org/10.1103/PhysRevD.111.093006" rel="noopener noreferrer" target="_blank">doi:10.1103/PhysRevD.111.093006</a>.
-Published by the American Physical Society under the terms of the
-<a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener noreferrer" target="_blank">Creative Commons
-Attribution 4.0 International</a> license; reproduced here under those terms.</p>
-</figure>
-
-<figure class="figure figure--wide reveal" style="margin-top:1.6rem">
-<div class="figure__head">
-  <h3>Where θ₂₃ and θ₁₃ meet</h3>
-  <p>Fig. 4 of the paper · increasingly rich datasets</p>
-</div>
-<img src="images/prd111-093006-fig4-th23-th13.png" alt="Regions allowed in the
-sin²θ₂₃–sin²θ₁₃ plane for increasingly rich datasets, in normal ordering (top)
-and inverted ordering (bottom)." loading="lazy">
-<p class="cap">Figure 4 from the same paper, same citation and licence as
-above.</p>
-</figure>
-
-<figure class="figure figure--wide reveal" style="margin-top:1.6rem">
-<div class="figure__head">
-  <h3>The same table, seen at a glance</h3>
-  <p>best fit · 1σ · 3σ · one shared scale, in % of each best fit</p>
-</div>
-<svg viewBox="0 0 760 460" role="img" aria-label="Best fit with 1σ and 3σ ranges for each oscillation parameter of the current release, each row labelled with the parameter and the units its values are given in. All rows share one horizontal scale, measured in percent of each row's own best fit, so the width of a row is how well that parameter is known: the narrowest is the mass splitting |Δm²| and the widest by far is the CP phase δ in normal ordering, which runs past the edge of the axis">
-<line class="rr__grid" x1="216.2" y1="26" x2="216.2" y2="438" stroke="currentColor" stroke-width="1" opacity=".14" stroke-dasharray="3 5"/>
-<text x="216.2" y="20" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".62">-20%</text>
-<line class="rr__grid" x1="320.6" y1="26" x2="320.6" y2="438" stroke="currentColor" stroke-width="1" opacity=".14" stroke-dasharray="3 5"/>
-<text x="320.6" y="20" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".62">-10%</text>
-<line class="rr__zero" x1="425.0" y1="26" x2="425.0" y2="438" stroke="currentColor" stroke-width="1" opacity=".35"/>
-<text x="425.0" y="20" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".62">best fit</text>
-<line class="rr__grid" x1="529.4" y1="26" x2="529.4" y2="438" stroke="currentColor" stroke-width="1" opacity=".14" stroke-dasharray="3 5"/>
-<text x="529.4" y="20" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".62">+10%</text>
-<line class="rr__grid" x1="633.8" y1="26" x2="633.8" y2="438" stroke="currentColor" stroke-width="1" opacity=".14" stroke-dasharray="3 5"/>
-<text x="633.8" y="20" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".62">+20%</text>
-<g class="rr" data-param="dm2" data-ordering="any">
-<text x="152" y="62" text-anchor="end" font-size="12.5" font-weight="600" fill="currentColor">δm² / 10⁻⁵ eV²</text>
-<line class="s3" x1="362.7" y1="58" x2="504.3" y2="58" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" opacity=".28"><title>3σ: 6.93 – 7.93  (−6% / +8%)</title></line>
-<line class="s1" x1="402.3" y1="58" x2="446.2" y2="58" stroke="var(--accent)" stroke-width="7" stroke-linecap="round" opacity=".55"><title>1σ: 7.21 – 7.52  (−2% / +2%)</title></line>
-<circle class="best" cx="425.0" cy="58" r="5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2" paint-order="stroke"><title>best fit 7.37</title></circle>
-<text x="696" y="62" font-size="12" font-family="var(--mono)" fill="currentColor" opacity=".75">7.37</text>
-</g>
-<g class="rr" data-param="Dm2" data-ordering="no">
-<text x="152" y="102" text-anchor="end" font-size="12.5" font-weight="600" fill="currentColor">|Δm²| / 10⁻³ eV² (NO)</text>
-<line class="s3" x1="399.1" y1="98" x2="451.4" y2="98" stroke="var(--no)" stroke-width="3" stroke-linecap="round" opacity=".28"><title>3σ: 2.433 – 2.558  (−2% / +3%)</title></line>
-<line class="s1" x1="416.6" y1="98" x2="433.4" y2="98" stroke="var(--no)" stroke-width="7" stroke-linecap="round" opacity=".55"><title>1σ: 2.475 – 2.515  (−1% / +1%)</title></line>
-<circle class="best" cx="425.0" cy="98" r="5" fill="var(--no)" stroke="var(--surface)" stroke-width="2" paint-order="stroke"><title>best fit 2.495</title></circle>
-<text x="696" y="102" font-size="12" font-family="var(--mono)" fill="currentColor" opacity=".75">2.495</text>
-</g>
-<g class="rr" data-param="Dm2" data-ordering="io">
-<text x="152" y="142" text-anchor="end" font-size="12.5" font-weight="600" fill="currentColor">|Δm²| / 10⁻³ eV² (IO)</text>
-<line class="s3" x1="398.7" y1="138" x2="451.3" y2="138" stroke="var(--io)" stroke-width="3" stroke-linecap="round" opacity=".28"><title>3σ: 2.403 – 2.527  (−3% / +3%)</title></line>
-<line class="s1" x1="416.1" y1="138" x2="433.5" y2="138" stroke="var(--io)" stroke-width="7" stroke-linecap="round" opacity=".55"><title>1σ: 2.444 – 2.485  (−1% / +1%)</title></line>
-<circle class="best" cx="425.0" cy="138" r="5" fill="var(--io)" stroke="var(--surface)" stroke-width="2" paint-order="stroke"><title>best fit 2.465</title></circle>
-<text x="696" y="142" font-size="12" font-family="var(--mono)" fill="currentColor" opacity=".75">2.465</text>
-</g>
-<g class="rr" data-param="sin2_th12" data-ordering="any">
-<text x="152" y="182" text-anchor="end" font-size="12.5" font-weight="600" fill="currentColor">sin²θ₁₂ / 10⁻¹</text>
-<line class="s3" x1="290.6" y1="178" x2="569.7" y2="178" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" opacity=".28"><title>3σ: 2.64 – 3.45  (−13% / +14%)</title></line>
-<line class="s1" x1="383.7" y1="178" x2="473.2" y2="178" stroke="var(--accent)" stroke-width="7" stroke-linecap="round" opacity=".55"><title>1σ: 2.91 – 3.17  (−4% / +5%)</title></line>
-<circle class="best" cx="425.0" cy="178" r="5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2" paint-order="stroke"><title>best fit 3.03</title></circle>
-<text x="696" y="182" font-size="12" font-family="var(--mono)" fill="currentColor" opacity=".75">3.03</text>
-</g>
-<g class="rr" data-param="sin2_th13" data-ordering="no">
-<text x="152" y="222" text-anchor="end" font-size="12.5" font-weight="600" fill="currentColor">sin²θ₁₃ / 10⁻² (NO)</text>
-<line class="s3" x1="345.4" y1="218" x2="495.2" y2="218" stroke="var(--no)" stroke-width="3" stroke-linecap="round" opacity=".28"><title>3σ: 2.06 – 2.38  (−8% / +7%)</title></line>
-<line class="s1" x1="396.9" y1="218" x2="443.7" y2="218" stroke="var(--no)" stroke-width="7" stroke-linecap="round" opacity=".55"><title>1σ: 2.17 – 2.27  (−3% / +2%)</title></line>
-<circle class="best" cx="425.0" cy="218" r="5" fill="var(--no)" stroke="var(--surface)" stroke-width="2" paint-order="stroke"><title>best fit 2.23</title></circle>
-<text x="696" y="222" font-size="12" font-family="var(--mono)" fill="currentColor" opacity=".75">2.23</text>
-</g>
-<g class="rr" data-param="sin2_th13" data-ordering="io">
-<text x="152" y="262" text-anchor="end" font-size="12.5" font-weight="600" fill="currentColor">sin²θ₁₃ / 10⁻² (IO)</text>
-<line class="s3" x1="354.8" y1="258" x2="509.3" y2="258" stroke="var(--io)" stroke-width="3" stroke-linecap="round" opacity=".28"><title>3σ: 2.08 – 2.41  (−7% / +8%)</title></line>
-<line class="s1" x1="406.3" y1="258" x2="457.8" y2="258" stroke="var(--io)" stroke-width="7" stroke-linecap="round" opacity=".55"><title>1σ: 2.19 – 2.3  (−2% / +3%)</title></line>
-<circle class="best" cx="425.0" cy="258" r="5" fill="var(--io)" stroke="var(--surface)" stroke-width="2" paint-order="stroke"><title>best fit 2.23</title></circle>
-<text x="696" y="262" font-size="12" font-family="var(--mono)" fill="currentColor" opacity=".75">2.23</text>
-</g>
-<g class="rr" data-param="sin2_th23" data-ordering="no">
-<text x="152" y="302" text-anchor="end" font-size="12.5" font-weight="600" fill="currentColor">sin²θ₂₃ / 10⁻¹ (NO)</text>
-<line class="s3" x1="345.5" y1="298" x2="663.4" y2="298" stroke="var(--no)" stroke-width="3" stroke-linecap="round" opacity=".28"><title>3σ: 4.37 – 5.81  (−8% / +23%)</title></line>
-<line class="s1" x1="396.3" y1="298" x2="475.8" y2="298" stroke="var(--no)" stroke-width="7" stroke-linecap="round" opacity=".55"><title>1σ: 4.6 – 4.96  (−3% / +5%)</title></line>
-<circle class="best" cx="425.0" cy="298" r="5" fill="var(--no)" stroke="var(--surface)" stroke-width="2" paint-order="stroke"><title>best fit 4.73</title></circle>
-<text x="696" y="302" font-size="12" font-family="var(--mono)" fill="currentColor" opacity=".75">4.73</text>
-</g>
-<g class="rr" data-param="sin2_th23" data-ordering="io">
-<text x="152" y="342" text-anchor="end" font-size="12.5" font-weight="600" fill="currentColor">sin²θ₂₃ / 10⁻¹ (IO)</text>
-<line class="s3" x1="229.6" y1="338" x2="497.8" y2="338" stroke="var(--io)" stroke-width="3" stroke-linecap="round" opacity=".28"><title>3σ: 4.43 – 5.83  (−19% / +7%)</title></line>
-<line class="s1" x1="392.4" y1="338" x2="453.7" y2="338" stroke="var(--io)" stroke-width="7" stroke-linecap="round" opacity=".55"><title>1σ: 5.28 – 5.6  (−3% / +3%)</title></line>
-<circle class="best" cx="425.0" cy="338" r="5" fill="var(--io)" stroke="var(--surface)" stroke-width="2" paint-order="stroke"><title>best fit 5.45</title></circle>
-<text x="696" y="342" font-size="12" font-family="var(--mono)" fill="currentColor" opacity=".75">5.45</text>
-</g>
-<g class="rr" data-param="delta_pi" data-ordering="no">
-<text x="152" y="382" text-anchor="end" font-size="12.5" font-weight="600" fill="currentColor">δ/π (NO)</text>
-<line class="s3" x1="164.0" y1="378" x2="686.0" y2="378" stroke="var(--no)" stroke-width="3" stroke-linecap="round" opacity=".28"><title>3σ: 0.73 – 2.03  (−39% / +69%)</title></line>
-<line class="s1" x1="311.9" y1="378" x2="572.9" y2="378" stroke="var(--no)" stroke-width="7" stroke-linecap="round" opacity=".55"><title>1σ: 1.07 – 1.37  (−11% / +14%)</title></line>
-<circle class="best" cx="425.0" cy="378" r="5" fill="var(--no)" stroke="var(--surface)" stroke-width="2" paint-order="stroke"><title>best fit 1.2</title></circle>
-<text x="696" y="382" font-size="12" font-family="var(--mono)" fill="currentColor" opacity=".75">1.2</text>
-<path class="rr__off" d="M169.0 374L160.0 378L169.0 382" fill="none" stroke="var(--no)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text class="rr__offpct" x="175.0" y="369" text-anchor="start" font-size="9" font-family="var(--mono)" fill="currentColor" opacity=".7">−39%</text>
-<path class="rr__off" d="M681.0 374L690.0 378L681.0 382" fill="none" stroke="var(--no)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text class="rr__offpct" x="675.0" y="369" text-anchor="end" font-size="9" font-family="var(--mono)" fill="currentColor" opacity=".7">+69%</text>
-</g>
-<g class="rr" data-param="delta_pi" data-ordering="io">
-<text x="152" y="422" text-anchor="end" font-size="12.5" font-weight="600" fill="currentColor">δ/π (IO)</text>
-<line class="s3" x1="171.1" y1="418" x2="671.9" y2="418" stroke="var(--io)" stroke-width="3" stroke-linecap="round" opacity=".28"><title>3σ: 1.12 – 1.83  (−24% / +24%)</title></line>
-<line class="s1" x1="340.4" y1="418" x2="516.7" y2="418" stroke="var(--io)" stroke-width="7" stroke-linecap="round" opacity=".55"><title>1σ: 1.36 – 1.61  (−8% / +9%)</title></line>
-<circle class="best" cx="425.0" cy="418" r="5" fill="var(--io)" stroke="var(--surface)" stroke-width="2" paint-order="stroke"><title>best fit 1.48</title></circle>
-<text x="696" y="422" font-size="12" font-family="var(--mono)" fill="currentColor" opacity=".75">1.48</text>
-</g>
-<text x="164" y="456" font-size="10" fill="currentColor" opacity=".6">width = 3σ range as a percentage of the best fit</text>
+<div class="gn-tabelle">
+<h2>Best fits and allowed ranges</h2>
+<p class="rs-lede">The oscillation parameters of the three data sets, for either mass ordering. Every value is read from the analysis output, not transcribed.</p>
+<p class="gn-nota"><b>How the quoted values are obtained.</b> Every number comes from exact profiles of the χ²: at each node all the other parameters and all the nuisances are minimised over. The quoted best fit is the continuous minimum of the profile — the vertex of the parabola through the lowest node and its two neighbours — not the lowest node itself; the 1σ, 2σ and 3σ ranges are where the profile crosses Δχ² = 1, 4, 9, taken linearly between neighbouring nodes. The figures show the profiles as computed.</p>
+<p class="rq-nota">The bars share one axis: <b>per cent of the best fit</b>, so their length <i>is</i> the precision &mdash; a short bar means a well measured parameter. sin&sup2;&theta;&#8322;&#8323; and &delta; sit on a wider scale, drawn dashed: they are an order of magnitude less constrained, and one is bimodal, the other cyclic. Arrowheads mean the interval continues past the edge.</p><div class="rq-griglia"><div class="rq"><span class="rq-k">δm² / 10⁻⁵ eV²</span><span class="rq-v">7.465</span><span class="rq-u">1σ accuracy 1.02% · NO</span><svg class="rq-bar" viewBox="0 0 240 30" role="img" aria-label="Allowed ranges on a common scale, percent of the best fit"><line x1="120.0" y1="4" x2="120.0" y2="27" stroke="var(--gn-line)" stroke-width="1"/><line x1="82.0" y1="6" x2="82.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="158.0" y1="6" x2="158.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="44.0" y1="6" x2="44.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="196.0" y1="6" x2="196.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="81.5" y1="10.0" x2="156.6" y2="10.0" stroke="var(--gn-no)" stroke-width="2.0" stroke-linecap="round" opacity="0.3"><title>NO 3σ: 7.239 – 7.681  (-3.0% / +2.9%)</title></line><line x1="106.5" y1="10.0" x2="132.3" y2="10.0" stroke="var(--gn-no)" stroke-width="5.0" stroke-linecap="round" opacity="0.6"><title>NO 1σ: 7.386 – 7.538  (-1.1% / +1.0%)</title></line><circle cx="120.0" cy="10.0" r="3" fill="var(--gn-no)"><title>NO best fit 7.465</title></circle><line x1="78.0" y1="21.0" x2="153.4" y2="21.0" stroke="var(--gn-io)" stroke-width="2.0" stroke-linecap="round" opacity="0.3"><title>IO 3σ: 7.218 – 7.662  (-3.3% / +2.6%)</title></line><line x1="102.9" y1="21.0" x2="128.6" y2="21.0" stroke="var(--gn-io)" stroke-width="5.0" stroke-linecap="round" opacity="0.6"><title>IO 1σ: 7.364 – 7.516  (-1.4% / +0.7%)</title></line><circle cx="115.5" cy="21.0" r="3" fill="var(--gn-io)"><title>IO best fit 7.439</title></circle></svg><span class="rq-lab">scale ±9% of the best fit · 1σ thick, 3σ thin</span></div><div class="rq"><span class="rq-k">sin²θ₁₂</span><span class="rq-v">0.3047</span><span class="rq-u">1σ accuracy 1.81% · NO</span><svg class="rq-bar" viewBox="0 0 240 30" role="img" aria-label="Allowed ranges on a common scale, percent of the best fit"><line x1="120.0" y1="4" x2="120.0" y2="27" stroke="var(--gn-line)" stroke-width="1"/><line x1="82.0" y1="6" x2="82.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="158.0" y1="6" x2="158.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="44.0" y1="6" x2="44.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="196.0" y1="6" x2="196.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="53.9" y1="10.0" x2="190.7" y2="10.0" stroke="var(--gn-no)" stroke-width="2.0" stroke-linecap="round" opacity="0.3"><title>NO 3σ: 0.2888 – 0.3217  (-5.2% / +5.6%)</title></line><line x1="97.4" y1="10.0" x2="143.4" y2="10.0" stroke="var(--gn-no)" stroke-width="5.0" stroke-linecap="round" opacity="0.6"><title>NO 1σ: 0.2993 – 0.3104  (-1.8% / +1.8%)</title></line><circle cx="120.0" cy="10.0" r="3" fill="var(--gn-no)"><title>NO best fit 0.3047</title></circle><line x1="49.0" y1="21.0" x2="186.7" y2="21.0" stroke="var(--gn-io)" stroke-width="2.0" stroke-linecap="round" opacity="0.3"><title>IO 3σ: 0.2876 – 0.3208  (-5.6% / +5.3%)</title></line><line x1="92.6" y1="21.0" x2="138.7" y2="21.0" stroke="var(--gn-io)" stroke-width="5.0" stroke-linecap="round" opacity="0.6"><title>IO 1σ: 0.2981 – 0.3092  (-2.2% / +1.5%)</title></line><circle cx="115.4" cy="21.0" r="3" fill="var(--gn-io)"><title>IO best fit 0.3036</title></circle></svg><span class="rq-lab">scale ±9% of the best fit · 1σ thick, 3σ thin</span></div><div class="rq"><span class="rq-k">Δm² / 10⁻³ eV²</span><span class="rq-v">2.4720</span><span class="rq-u">1σ accuracy 0.54% · NO</span><svg class="rq-bar" viewBox="0 0 240 30" role="img" aria-label="Allowed ranges on a common scale, percent of the best fit"><line x1="120.0" y1="4" x2="120.0" y2="27" stroke="var(--gn-line)" stroke-width="1"/><line x1="82.0" y1="6" x2="82.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="158.0" y1="6" x2="158.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="44.0" y1="6" x2="44.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="196.0" y1="6" x2="196.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="99.4" y1="10.0" x2="143.3" y2="10.0" stroke="var(--gn-no)" stroke-width="2.0" stroke-linecap="round" opacity="0.3"><title>NO 3σ: |Δm²| 2.4317 – 2.5174  (-1.6% / +1.8%)</title></line><line x1="113.1" y1="10.0" x2="126.8" y2="10.0" stroke="var(--gn-no)" stroke-width="5.0" stroke-linecap="round" opacity="0.6"><title>NO 1σ: |Δm²| 2.4586 – 2.4853  (-0.5% / +0.5%)</title></line><circle cx="120.0" cy="10.0" r="3" fill="var(--gn-no)"><title>NO best fit |Δm²| 2.4720</title></circle><line x1="98.0" y1="21.0" x2="149.4" y2="21.0" stroke="var(--gn-io)" stroke-width="2.0" stroke-linecap="round" opacity="0.3"><title>IO 3σ: |Δm²| 2.4291 – 2.5293  (-1.7% / +2.3%)</title></line><line x1="116.3" y1="21.0" x2="132.6" y2="21.0" stroke="var(--gn-io)" stroke-width="5.0" stroke-linecap="round" opacity="0.6"><title>IO 1σ: |Δm²| 2.4648 – 2.4965  (-0.3% / +1.0%)</title></line><circle cx="124.6" cy="21.0" r="3" fill="var(--gn-io)"><title>IO best fit |Δm²| 2.4810</title></circle></svg><span class="rq-lab">scale ±9% of the best fit · 1σ thick, 3σ thin</span></div><div class="rq"><span class="rq-k">sin²θ₁₃</span><span class="rq-v">0.0222</span><span class="rq-u">1σ accuracy 2.50% · NO</span><svg class="rq-bar" viewBox="0 0 240 30" role="img" aria-label="Allowed ranges on a common scale, percent of the best fit"><line x1="120.0" y1="4" x2="120.0" y2="27" stroke="var(--gn-line)" stroke-width="1"/><line x1="82.0" y1="6" x2="82.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="158.0" y1="6" x2="158.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="44.0" y1="6" x2="44.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="196.0" y1="6" x2="196.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="23.6" y1="10.0" x2="214.8" y2="10.0" stroke="var(--gn-no)" stroke-width="2.0" stroke-linecap="round" opacity="0.3"><title>NO 3σ: 0.0205 – 0.0238  (-7.6% / +7.5%)</title></line><line x1="88.3" y1="10.0" x2="151.6" y2="10.0" stroke="var(--gn-no)" stroke-width="5.0" stroke-linecap="round" opacity="0.6"><title>NO 1σ: 0.0216 – 0.0227  (-2.5% / +2.5%)</title></line><circle cx="120.0" cy="10.0" r="3" fill="var(--gn-no)"><title>NO best fit 0.0222</title></circle><line x1="31.6" y1="21.0" x2="220.2" y2="21.0" stroke="var(--gn-io)" stroke-width="2.0" stroke-linecap="round" opacity="0.3"><title>IO 3σ: 0.0206 – 0.0239  (-7.0% / +7.9%)</title></line><line x1="94.7" y1="21.0" x2="157.3" y2="21.0" stroke="var(--gn-io)" stroke-width="5.0" stroke-linecap="round" opacity="0.6"><title>IO 1σ: 0.0217 – 0.0228  (-2.0% / +2.9%)</title></line><circle cx="126.0" cy="21.0" r="3" fill="var(--gn-io)"><title>IO best fit 0.0223</title></circle></svg><span class="rq-lab">scale ±9% of the best fit · 1σ thick, 3σ thin</span></div><div class="rq rq--largo"><span class="rq-k">sin²θ₂₃</span><span class="rq-v">0.4908</span><span class="rq-u">1σ accuracy 6.93% · NO</span><svg class="rq-bar" viewBox="0 0 240 30" role="img" aria-label="Allowed ranges on a common scale, percent of the best fit"><line x1="120.0" y1="4" x2="120.0" y2="27" stroke="var(--gn-line)" stroke-width="1"/><line x1="101.0" y1="6" x2="101.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="139.0" y1="6" x2="139.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="63.0" y1="6" x2="63.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="177.0" y1="6" x2="177.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="101.8" y1="10.0" x2="152.0" y2="10.0" stroke="var(--gn-no)" stroke-width="2.0" stroke-linecap="round" opacity="0.3"><title>NO 3σ: 0.4439 – 0.5735  (-9.6% / +16.8%)</title></line><line x1="112.1" y1="10.0" x2="138.4" y2="10.0" stroke="var(--gn-no)" stroke-width="5.0" stroke-linecap="round" opacity="0.6"><title>NO 1σ: 0.4703 – 0.5383  (-4.2% / +9.7%)</title></line><circle cx="120.0" cy="10.0" r="3" fill="var(--gn-no)"><title>NO best fit 0.4908</title></circle><line x1="100.6" y1="21.0" x2="155.2" y2="21.0" stroke="var(--gn-io)" stroke-width="2.0" stroke-linecap="round" opacity="0.3"><title>IO 3σ: 0.4408 – 0.5819  (-10.2% / +18.5%)</title></line><line x1="130.8" y1="21.0" x2="146.4" y2="21.0" stroke="var(--gn-io)" stroke-width="5.0" stroke-linecap="round" opacity="0.6"><title>IO 1σ: 0.5188 – 0.5592  (+5.7% / +13.9%)</title></line><circle cx="140.8" cy="21.0" r="3" fill="var(--gn-io)"><title>IO best fit 0.5446</title></circle></svg><span class="rq-lab"><b>different scale</b>: ±60% · 1σ thick, 3σ thin</span></div><div class="rq rq--largo"><span class="rq-k">δ/π</span><span class="rq-v">1.19</span><span class="rq-u">1σ accuracy 12.30% · NO</span><svg class="rq-bar" viewBox="0 0 240 30" role="img" aria-label="Allowed ranges on a common scale, percent of the best fit"><line x1="120.0" y1="4" x2="120.0" y2="27" stroke="var(--gn-line)" stroke-width="1"/><line x1="101.0" y1="6" x2="101.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="139.0" y1="6" x2="139.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="63.0" y1="6" x2="63.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="177.0" y1="6" x2="177.0" y2="25" stroke="var(--gn-line)" stroke-width="1" stroke-dasharray="1.5 2.5" opacity=".7"/><line x1="56.6" y1="10.0" x2="234.0" y2="10.0" stroke="var(--gn-no)" stroke-width="2.0" stroke-linecap="round" opacity="0.3"><title>NO 3σ: 0.79 – 1.95  (-33.4% / +64.5%)</title></line><path d="M 234.0 6.0 l 5 4 l -5 4 z" fill="var(--gn-no)" opacity="0.3"/><line x1="98.5" y1="10.0" x2="145.2" y2="10.0" stroke="var(--gn-no)" stroke-width="5.0" stroke-linecap="round" opacity="0.6"><title>NO 1σ: 1.05 – 1.34  (-11.3% / +13.3%)</title></line><circle cx="120.0" cy="10.0" r="3" fill="var(--gn-no)"><title>NO best fit 1.19</title></circle><line x1="115.3" y1="21.0" x2="224.4" y2="21.0" stroke="var(--gn-io)" stroke-width="2.0" stroke-linecap="round" opacity="0.3"><title>IO 3σ: 1.16 – 1.84  (-2.5% / +54.9%)</title></line><line x1="154.1" y1="21.0" x2="191.4" y2="21.0" stroke="var(--gn-io)" stroke-width="5.0" stroke-linecap="round" opacity="0.6"><title>IO 1σ: 1.40 – 1.63  (+18.0% / +37.6%)</title></line><circle cx="173.0" cy="21.0" r="3" fill="var(--gn-io)"><title>IO best fit 1.52</title></circle></svg><span class="rq-lab"><b>different scale</b>: ±60% · 1σ thick, 3σ thin</span></div></div>
+<p class="rs-lede">LBL + Solar + Reac + Atmos (combined), favoured ordering. The three data sets in detail follow.</p>
+<div class="gn-caso">
+<h3 class="gn-caso-t">LBL + Solar + Reac + Atmos</h3>
+<p class="gn-caso-s">combined</p>
+<figure class="gn-rrbox">
+<svg class="gn-rr" viewBox="0 0 780 302" role="img" aria-label="Allowed ranges of the six parameters, as a percentage of each parameter’s own best fit">
+<line x1="172.0" y1="26" x2="172.0" y2="286" stroke="currentColor" stroke-width="1" opacity="0.13" stroke-dasharray="3 5"/>
+<text x="172.0" y="19" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".6">-40%</text>
+<line x1="288.0" y1="26" x2="288.0" y2="286" stroke="currentColor" stroke-width="1" opacity="0.13" stroke-dasharray="3 5"/>
+<text x="288.0" y="19" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".6">-20%</text>
+<line x1="404.0" y1="26" x2="404.0" y2="286" stroke="currentColor" stroke-width="1" opacity="0.32"/>
+<text x="404.0" y="19" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".6">best fit</text>
+<line x1="520.0" y1="26" x2="520.0" y2="286" stroke="currentColor" stroke-width="1" opacity="0.13" stroke-dasharray="3 5"/>
+<text x="520.0" y="19" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".6">+20%</text>
+<line x1="636.0" y1="26" x2="636.0" y2="286" stroke="currentColor" stroke-width="1" opacity="0.13" stroke-dasharray="3 5"/>
+<text x="636.0" y="19" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".6">+40%</text>
+<text x="152" y="44" text-anchor="end" font-size="12" font-weight="600" fill="currentColor">δm² / 10⁻⁵ eV²</text>
+<text x="160" y="44" font-size="9.5" font-weight="600" fill="var(--gn-no)" opacity=".85">NO</text>
+<line x1="386.4" y1="40" x2="420.8" y2="40" stroke="var(--gn-no)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 7.239 – 7.681  (-3% / +3%)</title></line>
+<line x1="397.8" y1="40" x2="409.6" y2="40" stroke="var(--gn-no)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 7.386 – 7.538  (-1% / +1%)</title></line>
+<circle cx="404.0" cy="40" r="4.5" fill="var(--gn-no)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 7.465</title></circle>
+<text x="646" y="44" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">7.465</text>
+<text x="160" y="65" font-size="9.5" font-weight="600" fill="var(--gn-io)" opacity=".85">IO</text>
+<line x1="386.7" y1="61" x2="421.4" y2="61" stroke="var(--gn-io)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 7.218 – 7.662  (-3% / +3%)</title></line>
+<line x1="398.2" y1="61" x2="410.0" y2="61" stroke="var(--gn-io)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 7.364 – 7.516  (-1% / +1%)</title></line>
+<circle cx="404.0" cy="61" r="4.5" fill="var(--gn-io)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 7.439</title></circle>
+<text x="646" y="65" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">7.439</text>
+<text x="152" y="86" text-anchor="end" font-size="12" font-weight="600" fill="currentColor">sin²θ₁₂</text>
+<text x="160" y="86" font-size="9.5" font-weight="600" fill="var(--gn-no)" opacity=".85">NO</text>
+<line x1="373.8" y1="82" x2="436.4" y2="82" stroke="var(--gn-no)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.2888 – 0.3217  (-5% / +6%)</title></line>
+<line x1="393.7" y1="82" x2="414.7" y2="82" stroke="var(--gn-no)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 0.2993 – 0.3104  (-2% / +2%)</title></line>
+<circle cx="404.0" cy="82" r="4.5" fill="var(--gn-no)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 0.3047</title></circle>
+<text x="646" y="86" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">0.3047</text>
+<text x="160" y="107" font-size="9.5" font-weight="600" fill="var(--gn-io)" opacity=".85">IO</text>
+<line x1="373.5" y1="103" x2="436.8" y2="103" stroke="var(--gn-io)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.2876 – 0.3208  (-5% / +6%)</title></line>
+<line x1="393.5" y1="103" x2="414.7" y2="103" stroke="var(--gn-io)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 0.2981 – 0.3092  (-2% / +2%)</title></line>
+<circle cx="404.0" cy="103" r="4.5" fill="var(--gn-io)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 0.3036</title></circle>
+<text x="646" y="107" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">0.3036</text>
+<text x="152" y="128" text-anchor="end" font-size="12" font-weight="600" fill="currentColor">Δm² / 10⁻³ eV²</text>
+<text x="160" y="128" font-size="9.5" font-weight="600" fill="var(--gn-no)" opacity=".85">NO</text>
+<line x1="394.5" y1="124" x2="414.7" y2="124" stroke="var(--gn-no)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 2.4317 – 2.5174  (-2% / +2%)</title></line>
+<line x1="400.8" y1="124" x2="407.1" y2="124" stroke="var(--gn-no)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 2.4586 – 2.4853  (-1% / +1%)</title></line>
+<circle cx="404.0" cy="124" r="4.5" fill="var(--gn-no)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 2.4720</title></circle>
+<text x="646" y="128" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">2.4720</text>
+<text x="160" y="149" font-size="9.5" font-weight="600" fill="var(--gn-io)" opacity=".85">IO</text>
+<line x1="392.7" y1="145" x2="416.1" y2="145" stroke="var(--gn-io)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: −2.5293 – −2.4291  (-2% / +2%)</title></line>
+<line x1="400.4" y1="145" x2="407.8" y2="145" stroke="var(--gn-io)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: −2.4965 – −2.4648  (-1% / +1%)</title></line>
+<circle cx="404.0" cy="145" r="4.5" fill="var(--gn-io)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit −2.4810</title></circle>
+<text x="646" y="149" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">−2.4810</text>
+<text x="152" y="170" text-anchor="end" font-size="12" font-weight="600" fill="currentColor">sin²θ₁₃</text>
+<text x="160" y="170" font-size="9.5" font-weight="600" fill="var(--gn-no)" opacity=".85">NO</text>
+<line x1="359.9" y1="166" x2="447.4" y2="166" stroke="var(--gn-no)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.0205 – 0.0238  (-8% / +7%)</title></line>
+<line x1="389.5" y1="166" x2="418.5" y2="166" stroke="var(--gn-no)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 0.0216 – 0.0227  (-3% / +2%)</title></line>
+<circle cx="404.0" cy="166" r="4.5" fill="var(--gn-no)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 0.0222</title></circle>
+<text x="646" y="170" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">0.0222</text>
+<text x="160" y="191" font-size="9.5" font-weight="600" fill="var(--gn-io)" opacity=".85">IO</text>
+<line x1="361.0" y1="187" x2="446.9" y2="187" stroke="var(--gn-io)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.0206 – 0.0239  (-7% / +7%)</title></line>
+<line x1="389.7" y1="187" x2="418.3" y2="187" stroke="var(--gn-io)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 0.0217 – 0.0228  (-2% / +2%)</title></line>
+<circle cx="404.0" cy="187" r="4.5" fill="var(--gn-io)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 0.0223</title></circle>
+<text x="646" y="191" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">0.0223</text>
+<text x="152" y="212" text-anchor="end" font-size="12" font-weight="600" fill="currentColor">sin²θ₂₃</text>
+<text x="160" y="212" font-size="9.5" font-weight="600" fill="var(--gn-no)" opacity=".85">NO</text>
+<line x1="348.5" y1="208" x2="501.7" y2="208" stroke="var(--gn-no)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.4439 – 0.5735  (-10% / +17%)</title></line>
+<line x1="379.7" y1="208" x2="460.1" y2="208" stroke="var(--gn-no)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 0.4703 – 0.5383  (-4% / +10%)</title></line>
+<circle cx="404.0" cy="208" r="4.5" fill="var(--gn-no)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 0.4908</title></circle>
+<text x="646" y="212" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">0.4908</text>
+<text x="160" y="233" font-size="9.5" font-weight="600" fill="var(--gn-io)" opacity=".85">IO</text>
+<line x1="293.4" y1="229" x2="443.7" y2="229" stroke="var(--gn-io)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.4408 – 0.5819  (-19% / +7%)</title></line>
+<line x1="376.5" y1="229" x2="419.5" y2="229" stroke="var(--gn-io)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 0.5188 – 0.5592  (-5% / +3%)</title></line>
+<circle cx="404.0" cy="229" r="4.5" fill="var(--gn-io)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 0.5446</title></circle>
+<text x="646" y="233" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">0.5446</text>
+<text x="152" y="254" text-anchor="end" font-size="12" font-weight="600" fill="currentColor">δ/π</text>
+<text x="160" y="254" font-size="9.5" font-weight="600" fill="var(--gn-no)" opacity=".85">NO</text>
+<line x1="210.5" y1="250" x2="636.0" y2="250" stroke="var(--gn-no)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.79 – 1.95  (-33% / +65%)</title></line>
+<path d="M 636.0 246 l 5 4 l -5 4 z" fill="var(--gn-no)" opacity="0.3"/>
+<line x1="338.3" y1="250" x2="481.0" y2="250" stroke="var(--gn-no)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 1.05 – 1.34  (-11% / +13%)</title></line>
+<circle cx="404.0" cy="250" r="4.5" fill="var(--gn-no)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 1.19</title></circle>
+<text x="646" y="254" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">1.19</text>
+<text x="160" y="275" font-size="9.5" font-weight="600" fill="var(--gn-io)" opacity=".85">IO</text>
+<line x1="266.3" y1="271" x2="526.7" y2="271" stroke="var(--gn-io)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 1.16 – 1.84  (-24% / +21%)</title></line>
+<line x1="358.9" y1="271" x2="448.0" y2="271" stroke="var(--gn-io)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 1.40 – 1.63  (-8% / +8%)</title></line>
+<circle cx="404.0" cy="271" r="4.5" fill="var(--gn-io)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 1.52</title></circle>
+<text x="646" y="275" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">1.52</text>
 </svg>
-<p class="cap">Every row is centred on its own best fit and measured
-outward in percent of it, on one shared axis, so the width of a row is how well
-that parameter is known: |Δm²| is measured to ±2.5% at 3σ, while δ in normal
-ordering runs off the axis at −39%/+69% and is marked where it leaves. Absolute
-values are printed at the right. Values are those of Table I above; the figure
-is generated from them by <code>tools/make_figures.py</code>, not drawn by
-hand.</p>
+<figcaption>The same numbers seen at a glance: each row is one parameter and one ordering, on a scale of per cent of <b>its own best fit</b> — so the width of a row is how well that parameter is known. Thin line: 3σ. Thick line: 1σ. Dot: the best fit. A row that runs past the edge ends in a triangle; its true range is in the table below and in the tooltip.</figcaption>
 </figure>
+<div class="table-scroll">
+<table class="data">
+<caption><b>combined</b> — ordering: Δχ²(IO−NO) = +15.34, NO favoured at 3.92σ. Each parameter is profiled, i.e. minimised over the other five and over all nuisances (Δχ² &lt; 1, 4, 9 for one degree of freedom); the 1σ range and the ± error are the same information, written two ways. Octant of θ₂₃ — NO: both octants allowed up to 3σ; IO: both octants allowed up to 3σ.</caption>
+<thead>
+<tr><th scope="col">Parameter</th><th scope="col">Ordering</th>
+    <th scope="col">Best fit ±<span class="sym">1σ</span></th>
+    <th scope="col"><span class="sym">1σ</span> range</th>
+    <th scope="col"><span class="sym">2σ</span> range</th>
+    <th scope="col"><span class="sym">3σ</span> range</th></tr>
+</thead>
+<tbody>
+<tr><th scope="row">δm² / 10⁻⁵ eV²</th><td class="ord ord--no">NO</td><td class="rs-bf">7.465<span class="rs-err"><span>+0.072</span><span>−0.080</span></span></td><td>7.386 – 7.538</td><td>7.312 – 7.609</td><td>7.239 – 7.681</td></tr>
+<tr><th scope="row"></th><td class="ord ord--io">IO</td><td class="rs-bf">7.439<span class="rs-err"><span>+0.077</span><span>−0.075</span></span></td><td>7.364 – 7.516</td><td>7.292 – 7.589</td><td>7.218 – 7.662</td></tr>
+<tr class="row-alt"><th scope="row">sin²θ₁₂</th><td class="ord ord--no">NO</td><td class="rs-bf">0.3047<span class="rs-err"><span>+0.0056</span><span>−0.0054</span></span></td><td>0.2993 – 0.3104</td><td>0.2940 – 0.3160</td><td>0.2888 – 0.3217</td></tr>
+<tr class="row-alt"><th scope="row"></th><td class="ord ord--io">IO</td><td class="rs-bf">0.3036<span class="rs-err"><span>+0.0056</span><span>−0.0055</span></span></td><td>0.2981 – 0.3092</td><td>0.2928 – 0.3150</td><td>0.2876 – 0.3208</td></tr>
+<tr><th scope="row">Δm² / 10⁻³ eV²</th><td class="ord ord--no">NO</td><td class="rs-bf">2.4720<span class="rs-err"><span>+0.0132</span><span>−0.0135</span></span></td><td>2.4586 – 2.4853</td><td>2.4454 – 2.5007</td><td>2.4317 – 2.5174</td></tr>
+<tr><th scope="row"></th><td class="ord ord--io">IO</td><td class="rs-bf">−2.4810<span class="rs-err"><span>+0.0162</span><span>−0.0155</span></span></td><td>−2.4965 – −2.4648</td><td>−2.5134 – −2.4487</td><td>−2.5293 – −2.4291</td></tr>
+<tr class="row-alt"><th scope="row">sin²θ₁₃</th><td class="ord ord--no">NO</td><td class="rs-bf">0.0222<span class="rs-err"><span>+0.0006</span><span>−0.0006</span></span></td><td>0.0216 – 0.0227</td><td>0.0211 – 0.0233</td><td>0.0205 – 0.0238</td></tr>
+<tr class="row-alt"><th scope="row"></th><td class="ord ord--io">IO</td><td class="rs-bf">0.0223<span class="rs-err"><span>+0.0005</span><span>−0.0005</span></span></td><td>0.0217 – 0.0228</td><td>0.0212 – 0.0234</td><td>0.0206 – 0.0239</td></tr>
+<tr><th scope="row">sin²θ₂₃</th><td class="ord ord--no">NO</td><td class="rs-bf">0.4908<span class="rs-err"><span>+0.0475</span><span>−0.0205</span></span></td><td>0.4703 – 0.5383</td><td>0.4557 – 0.5594</td><td>0.4439 – 0.5735</td></tr>
+<tr><th scope="row"></th><td class="ord ord--io">IO</td><td class="rs-bf">0.5446<span class="rs-err"><span>+0.0145</span><span>−0.0258</span></span></td><td>0.5188 – 0.5592</td><td>0.4546 – 0.5716</td><td>0.4408 – 0.5819</td></tr>
+<tr class="row-alt"><th scope="row">δ/π</th><td class="ord ord--no">NO</td><td class="rs-bf">1.19<span class="rs-err"><span>+0.16</span><span>−0.13</span></span></td><td>1.05 – 1.34</td><td>0.92 – 1.65</td><td>0.79 – 1.95</td></tr>
+<tr class="row-alt"><th scope="row"></th><td class="ord ord--io">IO</td><td class="rs-bf">1.52<span class="rs-err"><span>+0.12</span><span>−0.12</span></span></td><td>1.40 – 1.63</td><td>1.28 – 1.74</td><td>1.16 – 1.84</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="gn-caso">
+<h3 class="gn-caso-t">LBL Acc + Solar + LBL Reac</h3>
+<p class="gn-caso-s">without JUNO</p>
+<figure class="gn-rrbox">
+<svg class="gn-rr" viewBox="0 0 780 302" role="img" aria-label="Allowed ranges of the six parameters, as a percentage of each parameter’s own best fit">
+<line x1="172.0" y1="26" x2="172.0" y2="286" stroke="currentColor" stroke-width="1" opacity="0.13" stroke-dasharray="3 5"/>
+<text x="172.0" y="19" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".6">-40%</text>
+<line x1="288.0" y1="26" x2="288.0" y2="286" stroke="currentColor" stroke-width="1" opacity="0.13" stroke-dasharray="3 5"/>
+<text x="288.0" y="19" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".6">-20%</text>
+<line x1="404.0" y1="26" x2="404.0" y2="286" stroke="currentColor" stroke-width="1" opacity="0.32"/>
+<text x="404.0" y="19" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".6">best fit</text>
+<line x1="520.0" y1="26" x2="520.0" y2="286" stroke="currentColor" stroke-width="1" opacity="0.13" stroke-dasharray="3 5"/>
+<text x="520.0" y="19" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".6">+20%</text>
+<line x1="636.0" y1="26" x2="636.0" y2="286" stroke="currentColor" stroke-width="1" opacity="0.13" stroke-dasharray="3 5"/>
+<text x="636.0" y="19" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".6">+40%</text>
+<text x="152" y="44" text-anchor="end" font-size="12" font-weight="600" fill="currentColor">δm² / 10⁻⁵ eV²</text>
+<text x="160" y="44" font-size="9.5" font-weight="600" fill="var(--gn-no)" opacity=".85">NO</text>
+<line x1="368.8" y1="40" x2="439.5" y2="40" stroke="var(--gn-no)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 7.274 – 8.218  (-6% / +6%)</title></line>
+<line x1="392.6" y1="40" x2="416.1" y2="40" stroke="var(--gn-no)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 7.592 – 7.906  (-2% / +2%)</title></line>
+<circle cx="404.0" cy="40" r="4.5" fill="var(--gn-no)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 7.744</title></circle>
+<text x="646" y="44" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">7.744</text>
+<text x="160" y="65" font-size="9.5" font-weight="600" fill="var(--gn-io)" opacity=".85">IO</text>
+<line x1="368.8" y1="61" x2="439.6" y2="61" stroke="var(--gn-io)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 7.273 – 8.218  (-6% / +6%)</title></line>
+<line x1="392.5" y1="61" x2="416.1" y2="61" stroke="var(--gn-io)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 7.590 – 7.905  (-2% / +2%)</title></line>
+<circle cx="404.0" cy="61" r="4.5" fill="var(--gn-io)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 7.743</title></circle>
+<text x="646" y="65" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">7.743</text>
+<text x="152" y="86" text-anchor="end" font-size="12" font-weight="600" fill="currentColor">sin²θ₁₂</text>
+<text x="160" y="86" font-size="9.5" font-weight="600" fill="var(--gn-no)" opacity=".85">NO</text>
+<line x1="344.3" y1="82" x2="467.8" y2="82" stroke="var(--gn-no)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.2801 – 0.3466  (-10% / +11%)</title></line>
+<line x1="383.6" y1="82" x2="424.3" y2="82" stroke="var(--gn-no)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 0.3013 – 0.3232  (-4% / +4%)</title></line>
+<circle cx="404.0" cy="82" r="4.5" fill="var(--gn-no)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 0.3123</title></circle>
+<text x="646" y="86" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">0.3123</text>
+<text x="160" y="107" font-size="9.5" font-weight="600" fill="var(--gn-io)" opacity=".85">IO</text>
+<line x1="344.0" y1="103" x2="468.4" y2="103" stroke="var(--gn-io)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.2810 – 0.3482  (-10% / +11%)</title></line>
+<line x1="383.5" y1="103" x2="424.6" y2="103" stroke="var(--gn-io)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 0.3023 – 0.3245  (-4% / +4%)</title></line>
+<circle cx="404.0" cy="103" r="4.5" fill="var(--gn-io)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 0.3134</title></circle>
+<text x="646" y="107" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">0.3134</text>
+<text x="152" y="128" text-anchor="end" font-size="12" font-weight="600" fill="currentColor">Δm² / 10⁻³ eV²</text>
+<text x="160" y="128" font-size="9.5" font-weight="600" fill="var(--gn-no)" opacity=".85">NO</text>
+<line x1="385.4" y1="124" x2="423.8" y2="124" stroke="var(--gn-no)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 2.4052 – 2.5701  (-3% / +3%)</title></line>
+<line x1="397.6" y1="124" x2="410.4" y2="124" stroke="var(--gn-no)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 2.4576 – 2.5126  (-1% / +1%)</title></line>
+<circle cx="404.0" cy="124" r="4.5" fill="var(--gn-no)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 2.4851</title></circle>
+<text x="646" y="128" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">2.4851</text>
+<text x="160" y="149" font-size="9.5" font-weight="600" fill="var(--gn-io)" opacity=".85">IO</text>
+<line x1="383.6" y1="145" x2="423.1" y2="145" stroke="var(--gn-io)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: −2.5358 – −2.3690  (-4% / +3%)</title></line>
+<line x1="397.4" y1="145" x2="410.5" y2="145" stroke="var(--gn-io)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: −2.4778 – −2.4223  (-1% / +1%)</title></line>
+<circle cx="404.0" cy="145" r="4.5" fill="var(--gn-io)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit −2.4497</title></circle>
+<text x="646" y="149" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">−2.4497</text>
+<text x="152" y="170" text-anchor="end" font-size="12" font-weight="600" fill="currentColor">sin²θ₁₃</text>
+<text x="160" y="170" font-size="9.5" font-weight="600" fill="var(--gn-no)" opacity=".85">NO</text>
+<line x1="176.8" y1="166" x2="636.0" y2="166" stroke="var(--gn-no)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.0142 – 0.0328  (-39% / +41%)</title></line>
+<path d="M 636.0 162 l 5 4 l -5 4 z" fill="var(--gn-no)" opacity="0.3"/>
+<line x1="306.6" y1="166" x2="479.6" y2="166" stroke="var(--gn-no)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 0.0194 – 0.0263  (-17% / +13%)</title></line>
+<circle cx="404.0" cy="166" r="4.5" fill="var(--gn-no)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 0.0233</title></circle>
+<text x="646" y="170" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">0.0233</text>
+<text x="160" y="191" font-size="9.5" font-weight="600" fill="var(--gn-io)" opacity=".85">IO</text>
+<line x1="208.2" y1="187" x2="605.9" y2="187" stroke="var(--gn-io)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.0180 – 0.0365  (-34% / +35%)</title></line>
+<line x1="335.0" y1="187" x2="466.8" y2="187" stroke="var(--gn-io)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 0.0239 – 0.0300  (-12% / +11%)</title></line>
+<circle cx="404.0" cy="187" r="4.5" fill="var(--gn-io)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 0.0271</title></circle>
+<text x="646" y="191" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">0.0271</text>
+<text x="152" y="212" text-anchor="end" font-size="12" font-weight="600" fill="currentColor">sin²θ₂₃</text>
+<text x="160" y="212" font-size="9.5" font-weight="600" fill="var(--gn-no)" opacity=".85">NO</text>
+<line x1="346.6" y1="208" x2="536.2" y2="208" stroke="var(--gn-no)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.4318 – 0.5885  (-10% / +23%)</title></line>
+<line x1="380.0" y1="208" x2="491.3" y2="208" stroke="var(--gn-no)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 0.4594 – 0.5514  (-4% / +15%)</title></line>
+<circle cx="404.0" cy="208" r="4.5" fill="var(--gn-no)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 0.4792</title></circle>
+<text x="646" y="212" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">0.4792</text>
+<text x="160" y="233" font-size="9.5" font-weight="600" fill="var(--gn-io)" opacity=".85">IO</text>
+<line x1="347.3" y1="229" x2="536.7" y2="229" stroke="var(--gn-io)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.4306 – 0.5864  (-10% / +23%)</title></line>
+<line x1="380.6" y1="229" x2="480.4" y2="229" stroke="var(--gn-io)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 0.4580 – 0.5401  (-4% / +13%)</title></line>
+<circle cx="404.0" cy="229" r="4.5" fill="var(--gn-io)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 0.4772</title></circle>
+<text x="646" y="233" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">0.4772</text>
+<text x="152" y="254" text-anchor="end" font-size="12" font-weight="600" fill="currentColor">δ/π</text>
+<text x="160" y="254" font-size="9.5" font-weight="600" fill="var(--gn-no)" opacity=".85">NO</text>
+<line x1="178.8" y1="250" x2="636.0" y2="250" stroke="var(--gn-no)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.69 – 2.11  (-39% / +85%)</title></line>
+<path d="M 636.0 246 l 5 4 l -5 4 z" fill="var(--gn-no)" opacity="0.3"/>
+<line x1="332.7" y1="250" x2="488.1" y2="250" stroke="var(--gn-no)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 1.00 – 1.30  (-12% / +15%)</title></line>
+<circle cx="404.0" cy="250" r="4.5" fill="var(--gn-no)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 1.14</title></circle>
+<text x="646" y="254" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">1.14</text>
+<text x="160" y="275" font-size="9.5" font-weight="600" fill="var(--gn-io)" opacity=".85">IO</text>
+<line x1="242.9" y1="271" x2="548.8" y2="271" stroke="var(--gn-io)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 1.11 – 1.92  (-28% / +25%)</title></line>
+<line x1="347.6" y1="271" x2="456.5" y2="271" stroke="var(--gn-io)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 1.39 – 1.68  (-10% / +9%)</title></line>
+<circle cx="404.0" cy="271" r="4.5" fill="var(--gn-io)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 1.54</title></circle>
+<text x="646" y="275" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">1.54</text>
+</svg>
+<figcaption>The same numbers seen at a glance: each row is one parameter and one ordering, on a scale of per cent of <b>its own best fit</b> — so the width of a row is how well that parameter is known. Thin line: 3σ. Thick line: 1σ. Dot: the best fit. A row that runs past the edge ends in a triangle; its true range is in the table below and in the tooltip.</figcaption>
+</figure>
+<div class="table-scroll">
+<table class="data">
+<caption><b>without JUNO</b> — ordering: Δχ²(IO−NO) = −2.64, IO favoured at 1.62σ. Each parameter is profiled, i.e. minimised over the other five and over all nuisances (Δχ² &lt; 1, 4, 9 for one degree of freedom); the 1σ range and the ± error are the same information, written two ways. Ranges for δ/π are given modulo 2: an upper edge above 2 means the allowed region wraps through δ = 0. Octant of θ₂₃ — NO: both octants allowed up to 3σ; IO: both octants allowed up to 3σ.</caption>
+<thead>
+<tr><th scope="col">Parameter</th><th scope="col">Ordering</th>
+    <th scope="col">Best fit ±<span class="sym">1σ</span></th>
+    <th scope="col"><span class="sym">1σ</span> range</th>
+    <th scope="col"><span class="sym">2σ</span> range</th>
+    <th scope="col"><span class="sym">3σ</span> range</th></tr>
+</thead>
+<tbody>
+<tr><th scope="row">δm² / 10⁻⁵ eV²</th><td class="ord ord--no">NO</td><td class="rs-bf">7.744<span class="rs-err"><span>+0.162</span><span>−0.152</span></span></td><td>7.592 – 7.906</td><td>7.431 – 8.064</td><td>7.274 – 8.218</td></tr>
+<tr><th scope="row"></th><td class="ord ord--io">IO</td><td class="rs-bf">7.743<span class="rs-err"><span>+0.162</span><span>−0.153</span></span></td><td>7.590 – 7.905</td><td>7.429 – 8.063</td><td>7.273 – 8.218</td></tr>
+<tr class="row-alt"><th scope="row">sin²θ₁₂</th><td class="ord ord--no">NO</td><td class="rs-bf">0.3123<span class="rs-err"><span>+0.0109</span><span>−0.0110</span></span></td><td>0.3013 – 0.3232</td><td>0.2905 – 0.3346</td><td>0.2801 – 0.3466</td></tr>
+<tr class="row-alt"><th scope="row"></th><td class="ord ord--io">IO</td><td class="rs-bf">0.3134<span class="rs-err"><span>+0.0111</span><span>−0.0111</span></span></td><td>0.3023 – 0.3245</td><td>0.2915 – 0.3360</td><td>0.2810 – 0.3482</td></tr>
+<tr><th scope="row">Δm² / 10⁻³ eV²</th><td class="ord ord--no">NO</td><td class="rs-bf">2.4851<span class="rs-err"><span>+0.0275</span><span>−0.0275</span></span></td><td>2.4576 – 2.5126</td><td>2.4309 – 2.5412</td><td>2.4052 – 2.5701</td></tr>
+<tr><th scope="row"></th><td class="ord ord--io">IO</td><td class="rs-bf">−2.4497<span class="rs-err"><span>+0.0274</span><span>−0.0280</span></span></td><td>−2.4778 – −2.4223</td><td>−2.5067 – −2.3952</td><td>−2.5358 – −2.3690</td></tr>
+<tr class="row-alt"><th scope="row">sin²θ₁₃</th><td class="ord ord--no">NO</td><td class="rs-bf">0.0233<span class="rs-err"><span>+0.0030</span><span>−0.0039</span></span></td><td>0.0194 – 0.0263</td><td>0.0163 – 0.0295</td><td>0.0142 – 0.0328</td></tr>
+<tr class="row-alt"><th scope="row"></th><td class="ord ord--io">IO</td><td class="rs-bf">0.0271<span class="rs-err"><span>+0.0029</span><span>−0.0032</span></span></td><td>0.0239 – 0.0300</td><td>0.0202 – 0.0332</td><td>0.0180 – 0.0365</td></tr>
+<tr><th scope="row">sin²θ₂₃</th><td class="ord ord--no">NO</td><td class="rs-bf">0.4792<span class="rs-err"><span>+0.0721</span><span>−0.0198</span></span></td><td>0.4594 – 0.5514</td><td>0.4445 – 0.5739</td><td>0.4318 – 0.5885</td></tr>
+<tr><th scope="row"></th><td class="ord ord--io">IO</td><td class="rs-bf">0.4772<span class="rs-err"><span>+0.0629</span><span>−0.0192</span></span></td><td>0.4580 – 0.5401</td><td>0.4433 – 0.5712</td><td>0.4306 – 0.5864</td></tr>
+<tr class="row-alt"><th scope="row">δ/π</th><td class="ord ord--no">NO</td><td class="rs-bf">1.14<span class="rs-err"><span>+0.16</span><span>−0.14</span></span></td><td>1.00 – 1.30</td><td>0.86 – 1.73</td><td>0.69 – 2.11</td></tr>
+<tr class="row-alt"><th scope="row"></th><td class="ord ord--io">IO</td><td class="rs-bf">1.54<span class="rs-err"><span>+0.14</span><span>−0.15</span></span></td><td>1.39 – 1.68</td><td>1.24 – 1.80</td><td>1.11 – 1.92</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="gn-caso">
+<h3 class="gn-caso-t">LBL Acc + Solar + Reac</h3>
+<p class="gn-caso-s">with JUNO</p>
+<figure class="gn-rrbox">
+<svg class="gn-rr" viewBox="0 0 780 302" role="img" aria-label="Allowed ranges of the six parameters, as a percentage of each parameter’s own best fit">
+<line x1="172.0" y1="26" x2="172.0" y2="286" stroke="currentColor" stroke-width="1" opacity="0.13" stroke-dasharray="3 5"/>
+<text x="172.0" y="19" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".6">-40%</text>
+<line x1="288.0" y1="26" x2="288.0" y2="286" stroke="currentColor" stroke-width="1" opacity="0.13" stroke-dasharray="3 5"/>
+<text x="288.0" y="19" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".6">-20%</text>
+<line x1="404.0" y1="26" x2="404.0" y2="286" stroke="currentColor" stroke-width="1" opacity="0.32"/>
+<text x="404.0" y="19" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".6">best fit</text>
+<line x1="520.0" y1="26" x2="520.0" y2="286" stroke="currentColor" stroke-width="1" opacity="0.13" stroke-dasharray="3 5"/>
+<text x="520.0" y="19" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".6">+20%</text>
+<line x1="636.0" y1="26" x2="636.0" y2="286" stroke="currentColor" stroke-width="1" opacity="0.13" stroke-dasharray="3 5"/>
+<text x="636.0" y="19" text-anchor="middle" font-size="9.5" fill="currentColor" opacity=".6">+40%</text>
+<text x="152" y="44" text-anchor="end" font-size="12" font-weight="600" fill="currentColor">δm² / 10⁻⁵ eV²</text>
+<text x="160" y="44" font-size="9.5" font-weight="600" fill="var(--gn-no)" opacity=".85">NO</text>
+<line x1="386.4" y1="40" x2="420.8" y2="40" stroke="var(--gn-no)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 7.240 – 7.682  (-3% / +3%)</title></line>
+<line x1="397.9" y1="40" x2="409.6" y2="40" stroke="var(--gn-no)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 7.387 – 7.539  (-1% / +1%)</title></line>
+<circle cx="404.0" cy="40" r="4.5" fill="var(--gn-no)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 7.466</title></circle>
+<text x="646" y="44" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">7.466</text>
+<text x="160" y="65" font-size="9.5" font-weight="600" fill="var(--gn-io)" opacity=".85">IO</text>
+<line x1="386.6" y1="61" x2="421.3" y2="61" stroke="var(--gn-io)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 7.228 – 7.674  (-3% / +3%)</title></line>
+<line x1="398.0" y1="61" x2="410.0" y2="61" stroke="var(--gn-io)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 7.376 – 7.530  (-1% / +1%)</title></line>
+<circle cx="404.0" cy="61" r="4.5" fill="var(--gn-io)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 7.453</title></circle>
+<text x="646" y="65" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">7.453</text>
+<text x="152" y="86" text-anchor="end" font-size="12" font-weight="600" fill="currentColor">sin²θ₁₂</text>
+<text x="160" y="86" font-size="9.5" font-weight="600" fill="var(--gn-no)" opacity=".85">NO</text>
+<line x1="373.7" y1="82" x2="436.4" y2="82" stroke="var(--gn-no)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.2890 – 0.3220  (-5% / +6%)</title></line>
+<line x1="393.6" y1="82" x2="414.7" y2="82" stroke="var(--gn-no)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 0.2995 – 0.3106  (-2% / +2%)</title></line>
+<circle cx="404.0" cy="82" r="4.5" fill="var(--gn-no)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 0.3050</title></circle>
+<text x="646" y="86" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">0.3050</text>
+<text x="160" y="107" font-size="9.5" font-weight="600" fill="var(--gn-io)" opacity=".85">IO</text>
+<line x1="373.3" y1="103" x2="436.8" y2="103" stroke="var(--gn-io)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.2883 – 0.3216  (-5% / +6%)</title></line>
+<line x1="393.4" y1="103" x2="414.8" y2="103" stroke="var(--gn-io)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 0.2989 – 0.3101  (-2% / +2%)</title></line>
+<circle cx="404.0" cy="103" r="4.5" fill="var(--gn-io)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 0.3044</title></circle>
+<text x="646" y="107" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">0.3044</text>
+<text x="152" y="128" text-anchor="end" font-size="12" font-weight="600" fill="currentColor">Δm² / 10⁻³ eV²</text>
+<text x="160" y="128" font-size="9.5" font-weight="600" fill="var(--gn-no)" opacity=".85">NO</text>
+<line x1="394.1" y1="124" x2="416.2" y2="124" stroke="var(--gn-no)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 2.4350 – 2.5295  (-2% / +2%)</title></line>
+<line x1="400.7" y1="124" x2="407.6" y2="124" stroke="var(--gn-no)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 2.4631 – 2.4929  (-1% / +1%)</title></line>
+<circle cx="404.0" cy="124" r="4.5" fill="var(--gn-no)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 2.4773</title></circle>
+<text x="646" y="128" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">2.4773</text>
+<text x="160" y="149" font-size="9.5" font-weight="600" fill="var(--gn-io)" opacity=".85">IO</text>
+<line x1="392.9" y1="145" x2="416.4" y2="145" stroke="var(--gn-io)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: −2.5497 – −2.4486  (-2% / +2%)</title></line>
+<line x1="399.9" y1="145" x2="408.3" y2="145" stroke="var(--gn-io)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: −2.5199 – −2.4834  (-1% / +1%)</title></line>
+<circle cx="404.0" cy="145" r="4.5" fill="var(--gn-io)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit −2.5020</title></circle>
+<text x="646" y="149" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">−2.5020</text>
+<text x="152" y="170" text-anchor="end" font-size="12" font-weight="600" fill="currentColor">sin²θ₁₃</text>
+<text x="160" y="170" font-size="9.5" font-weight="600" fill="var(--gn-no)" opacity=".85">NO</text>
+<line x1="359.7" y1="166" x2="447.3" y2="166" stroke="var(--gn-no)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.0205 – 0.0239  (-8% / +7%)</title></line>
+<line x1="389.5" y1="166" x2="418.4" y2="166" stroke="var(--gn-no)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 0.0216 – 0.0227  (-2% / +2%)</title></line>
+<circle cx="404.0" cy="166" r="4.5" fill="var(--gn-no)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 0.0222</title></circle>
+<text x="646" y="170" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">0.0222</text>
+<text x="160" y="191" font-size="9.5" font-weight="600" fill="var(--gn-io)" opacity=".85">IO</text>
+<line x1="360.9" y1="187" x2="446.9" y2="187" stroke="var(--gn-io)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.0206 – 0.0239  (-7% / +7%)</title></line>
+<line x1="389.7" y1="187" x2="418.2" y2="187" stroke="var(--gn-io)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 0.0217 – 0.0228  (-2% / +2%)</title></line>
+<circle cx="404.0" cy="187" r="4.5" fill="var(--gn-io)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 0.0222</title></circle>
+<text x="646" y="191" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">0.0222</text>
+<text x="152" y="212" text-anchor="end" font-size="12" font-weight="600" fill="currentColor">sin²θ₂₃</text>
+<text x="160" y="212" font-size="9.5" font-weight="600" fill="var(--gn-no)" opacity=".85">NO</text>
+<line x1="346.2" y1="208" x2="520.9" y2="208" stroke="var(--gn-no)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.4366 – 0.5827  (-10% / +20%)</title></line>
+<line x1="379.4" y1="208" x2="474.1" y2="208" stroke="var(--gn-no)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 0.4644 – 0.5436  (-4% / +12%)</title></line>
+<circle cx="404.0" cy="208" r="4.5" fill="var(--gn-no)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 0.4850</title></circle>
+<text x="646" y="212" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">0.4850</text>
+<text x="160" y="233" font-size="9.5" font-weight="600" fill="var(--gn-io)" opacity=".85">IO</text>
+<line x1="270.1" y1="229" x2="441.9" y2="229" stroke="var(--gn-io)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.4318 – 0.5980  (-23% / +7%)</title></line>
+<line x1="385.8" y1="229" x2="418.6" y2="229" stroke="var(--gn-io)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 0.5437 – 0.5755  (-3% / +3%)</title></line>
+<circle cx="404.0" cy="229" r="4.5" fill="var(--gn-io)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 0.5614</title></circle>
+<text x="646" y="233" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">0.5614</text>
+<text x="152" y="254" text-anchor="end" font-size="12" font-weight="600" fill="currentColor">δ/π</text>
+<text x="160" y="254" font-size="9.5" font-weight="600" fill="var(--gn-no)" opacity=".85">NO</text>
+<line x1="189.7" y1="250" x2="636.0" y2="250" stroke="var(--gn-no)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 0.74 – 2.09  (-37% / +79%)</title></line>
+<path d="M 636.0 246 l 5 4 l -5 4 z" fill="var(--gn-no)" opacity="0.3"/>
+<line x1="338.5" y1="250" x2="475.6" y2="250" stroke="var(--gn-no)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 1.04 – 1.31  (-11% / +12%)</title></line>
+<circle cx="404.0" cy="250" r="4.5" fill="var(--gn-no)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 1.17</title></circle>
+<text x="646" y="254" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">1.17</text>
+<text x="160" y="275" font-size="9.5" font-weight="600" fill="var(--gn-io)" opacity=".85">IO</text>
+<line x1="252.6" y1="271" x2="528.8" y2="271" stroke="var(--gn-io)" stroke-width="3" stroke-linecap="round" opacity="0.3"><title>3σ: 1.16 – 1.90  (-26% / +22%)</title></line>
+<line x1="354.0" y1="271" x2="449.2" y2="271" stroke="var(--gn-io)" stroke-width="7" stroke-linecap="round" opacity="0.55"><title>1σ: 1.43 – 1.69  (-9% / +8%)</title></line>
+<circle cx="404.0" cy="271" r="4.5" fill="var(--gn-io)" stroke="var(--gn-bg)" stroke-width="2" paint-order="stroke"><title>best fit 1.57</title></circle>
+<text x="646" y="275" font-size="11" font-family="var(--mono,"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace)" fill="currentColor" opacity=".72">1.57</text>
+</svg>
+<figcaption>The same numbers seen at a glance: each row is one parameter and one ordering, on a scale of per cent of <b>its own best fit</b> — so the width of a row is how well that parameter is known. Thin line: 3σ. Thick line: 1σ. Dot: the best fit. A row that runs past the edge ends in a triangle; its true range is in the table below and in the tooltip.</figcaption>
+</figure>
+<div class="table-scroll">
+<table class="data">
+<caption><b>with JUNO</b> — ordering: Δχ²(IO−NO) = +3.99, NO favoured at 2.00σ. Each parameter is profiled, i.e. minimised over the other five and over all nuisances (Δχ² &lt; 1, 4, 9 for one degree of freedom); the 1σ range and the ± error are the same information, written two ways. Ranges for δ/π are given modulo 2: an upper edge above 2 means the allowed region wraps through δ = 0. Octant of θ₂₃ — NO: both octants allowed up to 3σ; IO: both octants allowed up to 3σ.</caption>
+<thead>
+<tr><th scope="col">Parameter</th><th scope="col">Ordering</th>
+    <th scope="col">Best fit ±<span class="sym">1σ</span></th>
+    <th scope="col"><span class="sym">1σ</span> range</th>
+    <th scope="col"><span class="sym">2σ</span> range</th>
+    <th scope="col"><span class="sym">3σ</span> range</th></tr>
+</thead>
+<tbody>
+<tr><th scope="row">δm² / 10⁻⁵ eV²</th><td class="ord ord--no">NO</td><td class="rs-bf">7.466<span class="rs-err"><span>+0.073</span><span>−0.079</span></span></td><td>7.387 – 7.539</td><td>7.314 – 7.610</td><td>7.240 – 7.682</td></tr>
+<tr><th scope="row"></th><td class="ord ord--io">IO</td><td class="rs-bf">7.453<span class="rs-err"><span>+0.077</span><span>−0.077</span></span></td><td>7.376 – 7.530</td><td>7.303 – 7.602</td><td>7.228 – 7.674</td></tr>
+<tr class="row-alt"><th scope="row">sin²θ₁₂</th><td class="ord ord--no">NO</td><td class="rs-bf">0.3050<span class="rs-err"><span>+0.0056</span><span>−0.0055</span></span></td><td>0.2995 – 0.3106</td><td>0.2942 – 0.3163</td><td>0.2890 – 0.3220</td></tr>
+<tr class="row-alt"><th scope="row"></th><td class="ord ord--io">IO</td><td class="rs-bf">0.3044<span class="rs-err"><span>+0.0057</span><span>−0.0056</span></span></td><td>0.2989 – 0.3101</td><td>0.2935 – 0.3158</td><td>0.2883 – 0.3216</td></tr>
+<tr><th scope="row">Δm² / 10⁻³ eV²</th><td class="ord ord--no">NO</td><td class="rs-bf">2.4773<span class="rs-err"><span>+0.0155</span><span>−0.0142</span></span></td><td>2.4631 – 2.4929</td><td>2.4493 – 2.5108</td><td>2.4350 – 2.5295</td></tr>
+<tr><th scope="row"></th><td class="ord ord--io">IO</td><td class="rs-bf">−2.5020<span class="rs-err"><span>+0.0186</span><span>−0.0179</span></span></td><td>−2.5199 – −2.4834</td><td>−2.5354 – −2.4660</td><td>−2.5497 – −2.4486</td></tr>
+<tr class="row-alt"><th scope="row">sin²θ₁₃</th><td class="ord ord--no">NO</td><td class="rs-bf">0.0222<span class="rs-err"><span>+0.0005</span><span>−0.0006</span></span></td><td>0.0216 – 0.0227</td><td>0.0211 – 0.0233</td><td>0.0205 – 0.0239</td></tr>
+<tr class="row-alt"><th scope="row"></th><td class="ord ord--io">IO</td><td class="rs-bf">0.0222<span class="rs-err"><span>+0.0005</span><span>−0.0005</span></span></td><td>0.0217 – 0.0228</td><td>0.0211 – 0.0233</td><td>0.0206 – 0.0239</td></tr>
+<tr><th scope="row">sin²θ₂₃</th><td class="ord ord--no">NO</td><td class="rs-bf">0.4850<span class="rs-err"><span>+0.0586</span><span>−0.0206</span></span></td><td>0.4644 – 0.5436</td><td>0.4494 – 0.5677</td><td>0.4366 – 0.5827</td></tr>
+<tr><th scope="row"></th><td class="ord ord--io">IO</td><td class="rs-bf">0.5614<span class="rs-err"><span>+0.0141</span><span>−0.0176</span></span></td><td>0.5437 – 0.5755</td><td>0.4500 – 0.5873</td><td>0.4318 – 0.5980</td></tr>
+<tr class="row-alt"><th scope="row">δ/π</th><td class="ord ord--no">NO</td><td class="rs-bf">1.17<span class="rs-err"><span>+0.14</span><span>−0.13</span></span></td><td>1.04 – 1.31</td><td>0.89 – 1.67</td><td>0.74 – 2.09</td></tr>
+<tr class="row-alt"><th scope="row"></th><td class="ord ord--io">IO</td><td class="rs-bf">1.57<span class="rs-err"><span>+0.12</span><span>−0.13</span></span></td><td>1.43 – 1.69</td><td>1.29 – 1.80</td><td>1.16 – 1.90</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 
-<div class="split" style="margin-top:2rem">
-<div>
-<h3>What changed</h3>
-<p class="small">Δm² is now constrained at the 0.8% level — the first
-oscillation parameter to enter the subpercent precision era — against 1.1% in
-the previous update; the paper underlines in the same breath that there are
-issues about systematics which might affect that error estimate. The
-uncertainty on sin²θ₁₃ falls to 2.4%, from about 3%.
-For sin²θ₂₃ the two quasi-degenerate minima are closer than before, differing
-by roughly 15% against about 25% previously. Constraints on δ are similar to
-before within large uncertainties, with a weaker rejection of CP conservation
-in NO. The overall offset between the orderings is now Nσ = √5.0 = 2.2, down
-from 2.5σ.</p>
 </div>
-<div class="callout">
-<h4>Not included</h4>
-<p>The first published SNO+ reactor results are not included: they constrain
-δm² with an error larger than the one above by a factor of about 6, and only
-under a prior on θ₁₂. SNO+ is nevertheless expected to surpass the present
-δm² accuracy on (δm², θ₁₂) within a few years.</p>
+</section>
+<section id="sinossi-sezione">
+<div class="wrap">
+<h2>Synopsis figures</h2>
+<p class="rs-lede">One panel per parameter, Nσ = √(Δχ²) against the parameter,
+both orderings on the joint scale.</p>
+<div class="rs-griglia">
+<figure class="rs-fig"><img src="release-2026a/figures/synopsis/fig3c_synopsis_grid.png?v=593f8b9d" alt="LBL Acc + Solar + Reac + Atmos — with JUNO + atmospheric" loading="lazy"><figcaption>LBL Acc + Solar + Reac + Atmos — with JUNO + atmospheric</figcaption></figure>
+<figure class="rs-fig"><img src="release-2026a/figures/synopsis/fig3b_synopsis_grid.png?v=c37501ed" alt="LBL Acc + Solar + Reac — with JUNO" loading="lazy"><figcaption>LBL Acc + Solar + Reac — with JUNO</figcaption></figure>
+<figure class="rs-fig"><img src="release-2026a/figures/synopsis/fig3a_synopsis_LBL_solar_KL.png?v=17960af7" alt="LBL Acc + Solar + LBL Reac — without JUNO" loading="lazy"><figcaption>LBL Acc + Solar + LBL Reac — without JUNO</figcaption></figure>
 </div>
 </div>
-
-<div class="callout" style="margin-top:2rem">
-<h4>Since this release: the (1,&nbsp;2) sector, updated</h4>
-<p>δm² and sin²θ₁₂ were revised by the
-<a href="#nu2026">partial update at the top of this page</a>, which adds the
-first JUNO results and the latest SNO+ data to this analysis. It quotes no new
-values for Δm², sin²θ₁₃, sin²θ₂₃ or δ, which stand as in the table above.
-Both releases are on the <a href="history.html">parameter history</a>, with the
-table each number was transcribed from.</p>
-</div>
-
-</div>
-
+</section>
+<section><div class="wrap">
+  <h2>Two-dimensional planes</h2>
+  <p class="lede">The five planes of the &Delta;&chi;&sup2; surfaces, one figure per
+    plane, both mass orderings overlaid. Produced by the notebook from the tables
+    above.  The one-dimensional profiles are the synopsis figures
+    just above.</p>
+  <div class="gal" id="gal2"></div>
 </div></section>
-<section class="section section--paper" id="data"><div class="wrap">
-<div class="section-head">
-  <h2>Machine-readable data</h2>
-  <p>planned for this release</p>
-</div>
 
-<div class="prose">
-<p>Δχ² profiles and the tables above will be published here as documented files
-at stable URLs — the kind of thing you can fetch from a script and cite — under
-<code>data/&lt;release&gt;/</code>. They are exported from the analysis by a
-dedicated step; the analysis code itself stays where it belongs and is never
-part of this site.</p>
-<p>Nothing is linked from this section yet: the export runs when the release
-material is prepared, and a link that does not resolve is worse than no link.
-What does exist today is the parameter register — every value on this site,
-with its source — published as JSON and CSV on the
-<a href="history.html#data">parameter history page</a>.</p>
-</div>
-
+<section id="data"><div class="wrap"><h2>Data files</h2><span id="data-6d"></span><span id="chi2-6d-sezione"></span><p class="prelim-files"><strong class="prelim">Preliminary</strong> The Δχ² tables (1D, 2D and the full 6D χ²), the tables as PDF, the notebook and the release package will be published with the paper. Until then the values on this site are preliminary and may change.</p></div></section>
+<section><div class="wrap">
+  <h2>The three data sets</h2>
+  <p class="lede">Named by the <em>baseline</em> of the reactor sector rather than by
+    experiment, because that is what the physics depends on. The tags below are the
+    ones the figures carry; every experiment is listed once, here.</p>
+  
+  <div class="gloss">
+      <div class="gl-h">tag</div><div class="gl-h">experiments</div><div class="gl-h">baseline</div>
+      <div class="gl-k">LBL Acc</div><div class="gl-v">T2K, NO&nu;A, MINOS</div><div class="gl-b">accelerators</div>
+      <div class="gl-k">Solar</div><div class="gl-v">solar data + KamLAND</div><div class="gl-b">&mdash;</div>
+      <div class="gl-k">LBL Reac</div><div class="gl-v">KamLAND, SNO+, SK-Gd</div><div class="gl-b">~180&ndash;240 km</div>
+      <div class="gl-k">SBL Reac</div><div class="gl-v">Daya Bay, RENO, Double Chooz</div><div class="gl-b">~0.4&ndash;1.5 km</div>
+      <div class="gl-k">MBL Reac</div><div class="gl-v"><b>JUNO</b></div><div class="gl-b">~53 km</div>
+      <div class="gl-k">Reac</div><div class="gl-v">all three reactor baselines together</div><div class="gl-b">&mdash;</div>
+      <div class="gl-k">Atmos</div><div class="gl-v">Super-Kamiokande, IceCube/DeepCore, KM3NeT/ORCA6</div><div class="gl-b">&mdash;</div>
+  </div>
+  
+  <div class="cards3">
+    <div class="card">
+      <div class="cont">LBL Acc + Solar + Reac + Atmos</div>
+      <div class="lab lab--sotto">with JUNO + atmospheric</div>
+      <div class="big no">NO at 3.92&sigma;</div>
+      <div class="note">mass ordering; &Delta;&chi;&sup2;(IO&minus;NO) = +15.34</div>
+    </div>
+    <div class="card">
+      <div class="cont">LBL Acc + Solar + Reac</div>
+      <div class="lab lab--sotto">with JUNO</div>
+      <div class="big no">NO at 2.00&sigma;</div>
+      <div class="note">mass ordering; &Delta;&chi;&sup2;(IO&minus;NO) = +3.99</div>
+    </div>
+    <div class="card">
+      <div class="cont">LBL Acc + Solar + LBL Reac</div>
+      <div class="lab lab--sotto">without JUNO</div>
+      <div class="big io">IO at 1.62&sigma;</div>
+      <div class="note">mass ordering; &Delta;&chi;&sup2;(IO&minus;NO) = &minus;2.64</div>
+    </div>
+  </div>
+  <div class="cards3">
+    <div class="card">
+      <div class="lab">Atmospheric splitting &mdash; best known</div>
+      <div class="big">2.4720</div>
+      <div class="note">&Delta;m&sup2; [10<sup>&minus;3</sup> eV&sup2;], normal ordering; known to <strong>0.54%</strong>, the tightest of the six</div>
+    </div>
+    <div class="card">
+      <div class="lab">Solar splitting &mdash; final combination</div>
+      <div class="big">7.465</div>
+      <div class="note">&delta;m&sup2; [10<sup>&minus;5</sup> eV&sup2;]; JUNO tightens it from 2.02% to <strong>1.02%</strong></div>
+    </div>
+    <div class="card">
+      <div class="lab"><span class="sym">&theta;<sub>23</sub></span> octant</div>
+      <div class="big">undetermined</div>
+      <div class="note">both octants allowed up to 3&sigma; in every data set</div>
+    </div>
+  </div>
+  
+  
 </div></section>
+<section><div class="wrap">
+  <h2>How to read the tables</h2>
+  <p class="lede">One point deserves attention before any use of these files.</p>
+  <div class="warn">
+    <b>Each ordering is referred to its own minimum.</b> Both &Delta;&chi;&sup2;
+    columns start from zero, so the two orderings are <b>not</b> directly comparable
+    as printed. The ordering preference lives entirely in the <code>offset</code>
+    written in the header of every file:
+    <pre style="margin:11px 0 0"><code>offset = J_IO &minus; J_NO          (positive &rarr; NO favoured)
+
+Dchi2_joint_NO = Dchi2_NO + max(0, &minus;offset)
+Dchi2_joint_IO = Dchi2_IO + max(0, +offset)</code></pre>
+  </div>
+  <h3>Conventions</h3>
+  <p class="lede" style="margin-top:0">
+    N&sigma; = &radic;(&Delta;&chi;&sup2;) with one degree of freedom, as in our papers.
+    The six parameters live on <em>different</em> grids, so the tables are in long
+    format: one row per node, columns <code>parameter value unit Dchi2_NO Dchi2_IO</code>.
+    All three data sets give exact <b>profiles</b>, in 1D and in 2D: at every
+    node all the other parameters and all the nuisances are minimised over
+    &mdash; each file states it in its header.</p>
+</div></section>
+<section><div class="wrap">
+  <h2>Notation, and how to translate it</h2>
+  <p class="lede">Different global analyses use different mass-squared variables.
+    Getting the translation wrong is the single easiest way to misread a
+    comparison, so we state ours explicitly.</p>
+
+  <h3>What we use</h3>
+  <div class="warn">
+    <pre style="margin:0"><code>δm² = m₂² − m₁²                                   (positive by definition)
+
+Δm² = m₃² − (m₁² + m₂²)/2  =  (Δm²₃₁ + Δm²₃₂)/2      ( > 0 in NO,  < 0 in IO )</code></pre>
+  </div>
+  <p class="lede">&Delta;m&sup2; is the <em>semisum</em> of the two atmospheric
+    splittings, and we quote it <strong>with its sign</strong>: positive in the
+    normal ordering, negative in the inverted one. Every IO row below therefore
+    carries a negative &Delta;m&sup2;. A bare magnitude would not say which
+    ordering a number belongs to, and the two best fits are different numbers
+    with different precisions, so wherever a single value appears on this page
+    the ordering is named beside it. Our LaTeX tables carry
+    the same sign. Where a symbol appears <strong>between bars</strong> it is a
+    magnitude on purpose: that is what the comparison with NuFIT and Valencia
+    needs, since those groups quote |&Delta;m&sup2;&#8323;&#8322;| and
+    |&Delta;m&sup2;&#8323;&#8321;|.</p>
+
+  <h3>Translating to &Delta;m&sup2;&#8323;&#8321; and &Delta;m&sup2;&#8323;&#8322;</h3>
+  <div class="warn">
+    <pre style="margin:0"><code>Δm²₃₁ = Δm² + δm²/2        Δm²₃₂ = Δm² − δm²/2        (both orderings)
+
+IO, on magnitudes:   |Δm²₃₂| = |Δm²| + δm²/2       |Δm²₃₁| = |Δm²| − δm²/2</code></pre>
+  </div>
+  <p class="lede">These are exact identities. They follow from
+    &Delta;m&sup2;&#8323;&#8321; = &Delta;m&sup2;&#8323;&#8322; + &delta;m&sup2;,
+    which is the definition of &delta;m&sup2; rearranged: the semisum then gives
+    &Delta;m&sup2; = &Delta;m&sup2;&#8323;&#8321; &minus; &delta;m&sup2;/2 =
+    &Delta;m&sup2;&#8323;&#8322; + &delta;m&sup2;/2. Because &Delta;m&sup2;
+    carries its sign, the first line holds in both orderings. In the inverted
+    one &Delta;m&sup2; and both &Delta;m&sup2;&#8323;<sub>&ell;</sub> are
+    negative, so taking magnitudes exchanges the two roles and the plus sign
+    passes to the &laquo;32&raquo;.</p>
+  <p class="lede"><strong>NuFIT</strong> quotes &Delta;m&sup2;&#8323;&#8321; for
+    NO and &Delta;m&sup2;&#8323;&#8322; for IO; the <strong>Valencia</strong> fit
+    quotes |&Delta;m&sup2;&#8323;&#8321;| for <em>both</em>. The comparison table
+    below is labelled accordingly.</p>
+
+  <h3>Propagating the error</h3>
+  <p class="lede">For y = |&Delta;m&sup2;| + &delta;m&sup2;/2 &mdash; that is
+    &Delta;m&sup2;&#8323;&#8321; in NO and |&Delta;m&sup2;&#8323;&#8322;| in IO
+    &mdash; the full Gaussian formula is
+    <code>var(y) = var(&Delta;m&sup2;) + var(&delta;m&sup2;)/4 + cov(&Delta;m&sup2;, &delta;m&sup2;)</code>.
+    The variances are those of the tables above; the correlation &rho; is
+    <strong>measured, not assumed zero</strong>. It turns out small, and the
+    last column shows how little it matters &mdash; but that is a result, not
+    an assumption.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Ord.</th><th>Quantity</th><th class="num">&Delta;m&sup2;</th>
+      <th class="num">&delta;m&sup2;</th><th class="num">converted &plusmn; 1&sigma;</th>
+      <th class="num">&rho;</th><th class="num">effect on &sigma;</th></tr></thead>
+    <tbody>
+<tr><td>NO</td><td>&Delta;m&sup2;<sub>31</sub></td><td class='num'>2.4720</td><td class='num'>7.47</td><td class='num'><strong>2.5093 &plusmn; 0.0134</strong></td><td class='num'>+0.052</td><td class='num'>+0.19%</td></tr>
+<tr><td>IO</td><td>|&Delta;m&sup2;<sub>32</sub>|</td><td class='num'>&minus;2.4810</td><td class='num'>7.44</td><td class='num'><strong>2.5182 &plusmn; 0.0159</strong></td><td class='num'>+0.094</td><td class='num'>+0.25%</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 id="results">Our results &mdash; final combination (with JUNO + atmospheric)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Parameter</th><th>Ord.</th><th class="num">best fit &plusmn; 1&sigma;</th>
+      <th class="num">rel. 1&sigma;</th><th class="num">1&sigma; range</th><th class="num">2&sigma; range</th>
+      <th class="num">3&sigma; range</th></tr></thead>
+    <tbody>
+<tr><td>&delta;m&sup2; [10<sup>&minus;5</sup> eV&sup2;]</td><td>NO</td><td class='num'>7.465<sup>+0.072</sup><sub>&minus;0.080</sub></td><td class='num'>1.02%</td><td class='num'>7.386&ndash;7.538</td><td class='num'>7.312&ndash;7.609</td><td class='num'>7.239&ndash;7.681</td></tr>
+<tr><td></td><td>IO</td><td class='num'>7.439<sup>+0.077</sup><sub>&minus;0.075</sub></td><td class='num'>1.02%</td><td class='num'>7.364&ndash;7.516</td><td class='num'>7.292&ndash;7.589</td><td class='num'>7.218&ndash;7.662</td></tr>
+<tr><td>sin&sup2;&theta;<sub>12</sub></td><td>NO</td><td class='num'>0.3047<sup>+0.0056</sup><sub>&minus;0.0054</sub></td><td class='num'>1.81%</td><td class='num'>0.2993&ndash;0.3104</td><td class='num'>0.2940&ndash;0.3160</td><td class='num'>0.2888&ndash;0.3217</td></tr>
+<tr><td></td><td>IO</td><td class='num'>0.3036<sup>+0.0056</sup><sub>&minus;0.0055</sub></td><td class='num'>1.83%</td><td class='num'>0.2981&ndash;0.3092</td><td class='num'>0.2928&ndash;0.3150</td><td class='num'>0.2876&ndash;0.3208</td></tr>
+<tr><td>&Delta;m&sup2; [10<sup>&minus;3</sup> eV&sup2;]</td><td>NO</td><td class='num'>2.4720<sup>+0.0132</sup><sub>&minus;0.0135</sub></td><td class='num'>0.54%</td><td class='num'>2.4586&ndash;2.4853</td><td class='num'>2.4454&ndash;2.5007</td><td class='num'>2.4317&ndash;2.5174</td></tr>
+<tr><td></td><td>IO</td><td class='num'>&minus;2.4810<sup>+0.0162</sup><sub>&minus;0.0155</sub></td><td class='num'>0.64%</td><td class='num'>&minus;2.4965 &ndash; &minus;2.4648</td><td class='num'>&minus;2.5134 &ndash; &minus;2.4487</td><td class='num'>&minus;2.5293 &ndash; &minus;2.4291</td></tr>
+<tr><td>sin&sup2;&theta;<sub>13</sub></td><td>NO</td><td class='num'>0.0222<sup>+0.0006</sup><sub>&minus;0.0006</sub></td><td class='num'>2.50%</td><td class='num'>0.0216&ndash;0.0227</td><td class='num'>0.0211&ndash;0.0233</td><td class='num'>0.0205&ndash;0.0238</td></tr>
+<tr><td></td><td>IO</td><td class='num'>0.0223<sup>+0.0005</sup><sub>&minus;0.0005</sub></td><td class='num'>2.46%</td><td class='num'>0.0217&ndash;0.0228</td><td class='num'>0.0212&ndash;0.0234</td><td class='num'>0.0206&ndash;0.0239</td></tr>
+<tr><td>sin&sup2;&theta;<sub>23</sub></td><td>NO</td><td class='num'>0.4908<sup>+0.0475</sup><sub>&minus;0.0205</sub></td><td class='num'>6.93%</td><td class='num'>0.4703&ndash;0.5383</td><td class='num'>0.4557&ndash;0.5594</td><td class='num'>0.4439&ndash;0.5735</td></tr>
+<tr><td></td><td>IO</td><td class='num'>0.5446<sup>+0.0145</sup><sub>&minus;0.0258</sub></td><td class='num'>3.71%</td><td class='num'>0.5188&ndash;0.5592</td><td class='num'>0.4546&ndash;0.5716</td><td class='num'>0.4408&ndash;0.5819</td></tr>
+<tr><td>&delta;/&pi;</td><td>NO</td><td class='num'>1.19<sup>+0.16</sup><sub>&minus;0.13</sub></td><td class='num'>12.30%</td><td class='num'>1.05&ndash;1.34</td><td class='num'>0.92&ndash;1.65</td><td class='num'>0.79&ndash;1.95</td></tr>
+<tr><td></td><td>IO</td><td class='num'>1.52<sup>+0.12</sup><sub>&minus;0.12</sub></td><td class='num'>7.68%</td><td class='num'>1.40&ndash;1.63</td><td class='num'>1.28&ndash;1.74</td><td class='num'>1.16&ndash;1.84</td></tr>
+    </tbody>
+  </table></div>
+  <p class="lede" style="font-size:14px">The relative uncertainty uses the
+    symmetrised 1&sigma; error, (&sigma;<sub>+</sub>+&sigma;<sub>&minus;</sub>)/2.
+    &oplus; separates disjoint allowed intervals.</p>
+
+  <h3>Comparison with other global analyses</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Parameter</th><th>Ord.</th><th class="num">This work</th>
+      <th class="num">NuFIT 6.1</th><th class="num">Valencia</th></tr></thead>
+    <tbody>
+<tr><td>&delta;m&sup2; [10<sup>&minus;5</sup> eV&sup2;]</td><td>NO</td><td class='num'>7.465<sup>+0.072</sup><sub>&minus;0.080</sub><br><span style='opacity:.65;font-size:.85em'>7.239&ndash;7.681</span></td><td class='num'>7.53<sup>+0.10</sup><sub>&minus;0.10</sub><br><span style='opacity:.65;font-size:.85em'>7.24&ndash;7.82</span></td><td class='num'>7.55<sup>+0.22</sup><sub>&minus;0.20</sub><br><span style='opacity:.65;font-size:.85em'>6.98&ndash;8.19</span></td></tr>
+<tr><td></td><td>IO</td><td class='num'>7.439<sup>+0.077</sup><sub>&minus;0.075</sub><br><span style='opacity:.65;font-size:.85em'>7.218&ndash;7.662</span></td><td class='num'>7.53<sup>+0.10</sup><sub>&minus;0.10</sub><br><span style='opacity:.65;font-size:.85em'>7.24&ndash;7.82</span></td><td class='num'>7.55<sup>+0.22</sup><sub>&minus;0.20</sub><br><span style='opacity:.65;font-size:.85em'>6.98&ndash;8.19</span></td></tr>
+<tr><td>sin&sup2;&theta;<sub>12</sub></td><td>NO</td><td class='num'>0.3047<sup>+0.0056</sup><sub>&minus;0.0054</sub><br><span style='opacity:.65;font-size:.85em'>0.2888&ndash;0.3217</span></td><td class='num'>0.3081<sup>+0.0075</sup><sub>&minus;0.0060</sub><br><span style='opacity:.65;font-size:.85em'>0.2893&ndash;0.3295</span></td><td class='num'>0.304<sup>+0.016</sup><sub>&minus;0.016</sub><br><span style='opacity:.65;font-size:.85em'>0.257&ndash;0.355</span></td></tr>
+<tr><td></td><td>IO</td><td class='num'>0.3036<sup>+0.0056</sup><sub>&minus;0.0055</sub><br><span style='opacity:.65;font-size:.85em'>0.2876&ndash;0.3208</span></td><td class='num'>0.3080<sup>+0.0076</sup><sub>&minus;0.0059</sub><br><span style='opacity:.65;font-size:.85em'>0.2892&ndash;0.3295</span></td><td class='num'>0.304<sup>+0.016</sup><sub>&minus;0.016</sub><br><span style='opacity:.65;font-size:.85em'>0.257&ndash;0.355</span></td></tr>
+<tr><td>&Delta;m&sup2;<sub>31</sub> / |&Delta;m&sup2;<sub>32</sub>| [10<sup>&minus;3</sup>]</td><td>NO</td><td class='num'>2.5093<sup>+0.0134</sup><sub>&minus;0.0134</sub><br><span style='opacity:.65;font-size:.85em'>2.4691&ndash;2.5547</span></td><td class='num'>2.5102<sup>+0.0226</sup><sub>&minus;0.0189</sub><br><span style='opacity:.65;font-size:.85em'>2.4500&ndash;2.5764</span></td><td class='num'>2.51<sup>+0.02</sup><sub>&minus;0.03</sub><br><span style='opacity:.65;font-size:.85em'>2.43&ndash;2.58</span></td></tr>
+<tr><td></td><td>IO</td><td class='num'>2.5182<sup>+0.0159</sup><sub>&minus;0.0159</sub><br><span style='opacity:.65;font-size:.85em'>2.4663&ndash;2.5665</span></td><td class='num'>2.4848<sup>+0.0188</sup><sub>&minus;0.0222</sub><br><span style='opacity:.65;font-size:.85em'>2.4211&ndash;2.5466</span></td><td class='num'>2.49<sup>+0.03</sup><sub>&minus;0.02</sub><br><span style='opacity:.65;font-size:.85em'>2.42&ndash;2.57</span></td></tr>
+<tr><td>sin&sup2;&theta;<sub>13</sub></td><td>NO</td><td class='num'>0.0222<sup>+0.0006</sup><sub>&minus;0.0006</sub><br><span style='opacity:.65;font-size:.85em'>0.0205&ndash;0.0238</span></td><td class='num'>0.0225<sup>+0.0005</sup><sub>&minus;0.0006</sub><br><span style='opacity:.65;font-size:.85em'>0.0206&ndash;0.0242</span></td><td class='num'>0.0220<sup>+0.0005</sup><sub>&minus;0.0006</sub><br><span style='opacity:.65;font-size:.85em'>0.0203&ndash;0.0238</span></td></tr>
+<tr><td></td><td>IO</td><td class='num'>0.0223<sup>+0.0005</sup><sub>&minus;0.0005</sub><br><span style='opacity:.65;font-size:.85em'>0.0206&ndash;0.0239</span></td><td class='num'>0.0226<sup>+0.0006</sup><sub>&minus;0.0005</sub><br><span style='opacity:.65;font-size:.85em'>0.0209&ndash;0.0244</span></td><td class='num'>0.0220<sup>+0.0007</sup><sub>&minus;0.0004</sub><br><span style='opacity:.65;font-size:.85em'>0.0204&ndash;0.0238</span></td></tr>
+<tr><td>sin&sup2;&theta;<sub>23</sub></td><td>NO</td><td class='num'>0.4908<sup>+0.0475</sup><sub>&minus;0.0205</sub><br><span style='opacity:.65;font-size:.85em'>0.4439&ndash;0.5735</span></td><td class='num'>0.4701<sup>+0.0170</sup><sub>&minus;0.0137</sub><br><span style='opacity:.65;font-size:.85em'>0.4350&ndash;0.5844</span></td><td class='num'>0.564<sup>+0.015</sup><sub>&minus;0.021</sub><br><span style='opacity:.65;font-size:.85em'>0.423&ndash;0.604</span></td></tr>
+<tr><td></td><td>IO</td><td class='num'>0.5446<sup>+0.0145</sup><sub>&minus;0.0258</sub><br><span style='opacity:.65;font-size:.85em'>0.4408&ndash;0.5819</span></td><td class='num'>0.5499<sup>+0.0132</sup><sub>&minus;0.0156</sub><br><span style='opacity:.65;font-size:.85em'>0.4391&ndash;0.5839</span></td><td class='num'>0.564<sup>+0.015</sup><sub>&minus;0.018</sub><br><span style='opacity:.65;font-size:.85em'>0.427&ndash;0.603</span></td></tr>
+<tr><td>&delta;/&pi;</td><td>NO</td><td class='num'>1.19<sup>+0.16</sup><sub>&minus;0.13</sub><br><span style='opacity:.65;font-size:.85em'>0.79&ndash;1.95</span></td><td class='num'>1.17<sup>+0.15</sup><sub>&minus;0.19</sub><br><span style='opacity:.65;font-size:.85em'>0.70&ndash;2.03</span></td><td class='num'>1.12<sup>+0.16</sup><sub>&minus;0.12</sub><br><span style='opacity:.65;font-size:.85em'>0.76&ndash;2.00</span></td></tr>
+<tr><td></td><td>IO</td><td class='num'>1.52<sup>+0.12</sup><sub>&minus;0.12</sub><br><span style='opacity:.65;font-size:.85em'>1.16&ndash;1.84</span></td><td class='num'>1.53<sup>+0.12</sup><sub>&minus;0.14</sub><br><span style='opacity:.65;font-size:.85em'>1.12&ndash;1.86</span></td><td class='num'>1.50<sup>+0.13</sup><sub>&minus;0.14</sub><br><span style='opacity:.65;font-size:.85em'>1.11&ndash;1.87</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="lede" style="font-size:14px">Upper line: best fit with 1&sigma;
+    errors. Lower line, in grey: the 3&sigma; range.</p>
+
+  <figure style="margin:26px 0 0">
+    <img src="release-2026a/figures/confronto_gruppi.svg" style="width:100%;height:auto"
+         alt="Three global analyses compared with ours. Five observables are
+              shown as a ratio to our best fit; the CP phase is shown as a
+              difference, in units of pi. Each point carries its 1 sigma
+              error bar.">
+  </figure>
+  <div class="cf">
+    <div class="cf-c"><div class="cf-t">How to read it</div><ul>
+      <li><b>One axis for six quantities.</b> Each observable is referred to our own best fit:
+        the vertical line is us.</li>
+      <li><b>Bars are 1&sigma;</b>, for every analysis.</li>
+      <li><b>&delta;<sub>CP</sub> is a difference, not a ratio:</b> it is a phase, so its zero
+        is a convention and a percentage would mean nothing.</li>
+    </ul></div>
+    <div class="cf-c"><div class="cf-t">What not to over-read</div><ul>
+      <li><b>sin&sup2;&theta;<sub>23</sub> in normal ordering:</b> the offset is a choice of
+        octant, not a tension; our 3&sigma; range covers both octants.</li>
+      <li><b>Different data, different treatments:</b> the three analyses do not use the same
+        data sets, nor treat them in the same way.</li>
+      <li><b>So differences beyond the bars</b> are expected, and are not by themselves
+        discrepancies.</li>
+    </ul></div>
+  </div>
+  
+
+  <div class="warn">
+    <b>References and caveats.</b>
+    <p style="margin:9px 0 0">&bull; <b>NuFIT.</b> NuFIT 6.1 (2025), <a href="https://www.nu-fit.org/?q=node/309" rel="noopener noreferrer" target="_blank">www.nu-fit.org</a>, to be cited with JHEP 12 (2024) 216 [<a href="https://arxiv.org/abs/2410.05380" rel="noopener noreferrer" target="_blank">arXiv:2410.05380</a>]. Values <strong>derived by us</strong> from the official &chi;<sup>2</sup> tables with the same procedure as our own (PCHIP on the &chi;<sup>2</sup>, crossings at &Delta;&chi;<sup>2</sup> = 1, 4, 9), not transcribed.
+    <br><b>Source file:</b> <code>v61.release-TByes-NO.txt</code> and
+    <code>v61.release-TByes-IO.txt</code>, the &chi;<sup>2</sup> tables of the
+    NuFIT 6.1 analysis <em>including</em> the tabulated Super-Kamiokande and
+    IceCube atmospheric data, like our data set c (NuFIT also distributes the
+    analysis without them).</p>
+    <p style="margin:9px 0 0">&bull; <b>Valencia.</b> M. T&oacute;rtola, <em>Global fits to neutrino oscillation parameters</em>, Neutrino 2024, Milano, slide 12 (&laquo;Valencia Global Fit, Pre-Nu2024&raquo;, SSM HZ MB22m, with SK atmospheric). <a href="https://zenodo.org/records/12704823" rel="noopener noreferrer" target="_blank">zenodo.org/records/12704823</a><br><b>Converted for IO.</b> Valencia quotes |&Delta;m&sup2;<sub>31</sub>| in <em>both</em> orderings, while we and NuFIT quote |&Delta;m&sup2;<sub>32</sub>| for IO &mdash; a difference of &delta;m&sup2;, three times the error. Their IO entry is therefore shown converted, |&Delta;m&sup2;<sub>32</sub>| = |&Delta;m&sup2;<sub>31</sub>| + &delta;m&sup2;, with the errors combined <em>assuming independence</em>: their covariance is not published. The NO entry needs no conversion.</p>
+    <p style="margin:9px 0 0">&bull; <b>The three analyses do not use identical
+    data sets</b>, nor identical treatments of the same data. Differences
+    exceeding the quoted errors are expected and are not evidence of a
+    discrepancy. Read the table as a comparison of published results, each with
+    its own source stated above, not as a consistency test.</p>
+  </div>
+</div></section>
+
+
+<section id="news"><div class="wrap">
+  <h2>What&rsquo;s new, and how to cite</h2>
+  <p class="lede">New data in release 2026.a, with respect to our previous analysis:</p>
+  <div class="nv">
+    <div class="nv-v"><div class="nv-d">JUNO</div><ul><li>The second JUNO data release, 207 days, from the collaboration&rsquo;s paper <a href="https://arxiv.org/abs/2609.37895" rel="noopener noreferrer" target="_blank">arXiv:2609.37895</a>: the measured spectrum, with the backgrounds and the statistical treatment of the paper.</li></ul></div>
+    <div class="nv-v"><div class="nv-d">SK-Gd reactors</div><ul><li>Reactor antineutrinos in Super-Kamiokande with gadolinium (phases SK-VI and SK-VII, 411.52 live days), from the collaboration&rsquo;s paper &ldquo;First observation of electron antineutrinos from nuclear reactors at Super-Kamiokande&rdquo; (<a href="https://arxiv.org/abs/2610.03143" rel="noopener noreferrer" target="_blank">arXiv:2610.03143</a>), reproduced by the group and added to the long-baseline reactors of all three data sets.</li></ul></div>
+    <div class="nv-v"><div class="nv-d">T2K</div><ul><li>The new T2K oscillation results, appearance and disappearance, presented by S. King for the T2K Collaboration, &ldquo;Recent results and perspectives from the T2K experiment&rdquo;, Neutrino 2026, 4 June 2026.</li></ul></div>
+    <div class="nv-v"><div class="nv-d">KM3NeT/ORCA6</div><ul><li>Atmospheric neutrinos in KM3NeT/ORCA6, 433 kton-years, from the collaboration&rsquo;s open data release (KM3NeT Collaboration, JHEP 10 (2024) 206, <a href="https://arxiv.org/abs/2408.07015" rel="noopener noreferrer" target="_blank">arXiv:2408.07015</a>).</li></ul></div>
+  </div>
+  <h3>How to cite</h3>
+  <p class="lede">Please cite the paper that accompanies this release; its reference will appear here. To point to these tables themselves, cite the release with its version:</p>
+  <pre><code>@misc{BariGroup2026a,
+  author       = {{Bari Group}},
+  title        = {Global analysis of neutrino oscillation data, release 2026.a},
+  year         = {2026},
+  note         = {Preliminary version of 2026-10-15},
+  howpublished = {\url{https://global-nu.org/results.html}}
+}</code></pre>
+  <p class="lede" style="font-size:14px">Questions, problems with a file, requests: <a href="mailto:antonio.marrone@ba.infn.it">antonio.marrone@ba.infn.it</a>.</p>
+  
+</div></section>
+
+
+
+
+
+
+</div>
+
+
 <section class="section section--paper section--alt"><div class="wrap">
-<div class="strip reveal">
-  <a href="history.html"><span class="t">Parameter history</span><span class="d">How these numbers moved over a quarter century, and how other groups’ compare</span></a>
-  <a href="about.html#cite"><span class="t">How to cite</span><span class="d">BibTeX for the current release</span></a>
-  <a href="resources.html"><span class="t">Resources</span><span class="d">The experiments and data releases that feed a global analysis</span></a>
-</div>
+<div class="earlier-link"><a class="btn btn--ghost" href="earlier-releases.html">Earlier releases: the 2026 (1,&nbsp;2)-sector update and the March 2025 full release →</a></div>
 
 </div></section>
 </main>
@@ -468,15 +1296,18 @@ with its source — published as JSON and CSV on the
           <li><a href="index.html">Home</a></li>
           <li><a href="results.html">Results</a></li>
           <li><a href="history.html">Parameter history</a></li>
+          <li><a href="data.html">Data</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="search.html">Search</a></li>
           <li><a href="digest.html">arXiv digest</a></li>
           <li><a href="news.html">News</a></li>
           <li><a href="conferences.html">Conferences</a></li>
-          <li><a href="resources.html">Resources</a></li>
-          <li><a href="search.html">Search</a></li>
           <li><a href="about.html">About</a></li>
         </ul>
       </div>
     </div>
+    <p class="app-install" hidden><button type="button" class="btn btn--ghost app-install__btn">Install global-nu as an app</button>
+    <span class="app-install__ios" hidden>On iPhone or iPad: tap Share, then “Add to Home Screen”.</span></p>
     <p class="site-footer__base">© 2026 the Bari group · The parameter
     register and the data files are CC BY 4.0; the text and the code are all
     rights reserved; reproduced figures and photographs carry the terms
@@ -492,9 +1323,9 @@ with its source — published as JSON and CSV on the
     stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
 
-<script src="assets/js/site.js?v=215a304f" defer></script>
-<script src="assets/js/figure.js?v=d7a5dbcf" defer></script>
-
+<script src="assets/js/site.js?v=239a5c47" defer></script>
+<script src="assets/js/figure.js?v=778f8d08" defer></script>
+<script src="data/relpage/relpage.js?v=b1038120" defer></script>
 <script data-goatcounter="https://global-nu.goatcounter.com/count" async src="assets/vendor/goatcounter/count.js?v=185aa0b9"></script>
 
 </body>

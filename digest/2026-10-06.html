@@ -21,9 +21,17 @@
 <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="global-nu">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="alternate" type="application/atom+xml" title="global-nu releases" href="../data/feeds/releases.atom">
+<link rel="alternate" type="application/atom+xml" title="global-nu arXiv digest" href="../data/feeds/digest.atom">
+<link rel="alternate" type="application/atom+xml" title="global-nu news (AI-generated summaries)" href="../data/feeds/news.atom">
 <link rel="preload" href="../assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/archivo-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../assets/css/site.css?v=0cba760e">
+<link rel="stylesheet" href="../assets/css/site.css?v=6f84bde2">
 <script>
 /* Apply the saved theme before the first paint. Inline and blocking on
    purpose: a deferred script runs after the page is drawn, and a reader who
@@ -43,7 +51,22 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
 
 <header class="site-header">
   <div class="wrap site-header__inner">
-    <a class="brand" href="../index.html"><b>global<i>-nu</i></b><span>Neutrino oscillation global analyses · Bari</span></a>
+    <a class="brand" href="../index.html" aria-label="global-nu — home">
+      <svg class="brand__mark" viewBox="10 26 120 52" aria-hidden="true" focusable="false">
+        <defs><linearGradient id="brand-wave" gradientUnits="userSpaceOnUse" x1="56" y1="0" x2="126" y2="0">
+          <stop offset="0" style="stop-color:var(--logo-nu)"/><stop offset=".45" style="stop-color:var(--logo-w1)"/><stop offset="1" style="stop-color:var(--logo-w2)"/>
+        </linearGradient></defs>
+        <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 32 C20 28 27 42 36 74 C44 56 50 30 56 30" style="stroke:var(--logo-nu)" stroke-width="7"/>
+          <path d="M56 30 C61 30 65 68 70 68" stroke="url(#brand-wave)" stroke-width="7"/>
+          <path d="M70 68 C75 68 79 41 84 41" stroke="url(#brand-wave)" stroke-width="5.5"/>
+          <path d="M84 41 C89 41 93 60 98 60" stroke="url(#brand-wave)" stroke-width="4.5"/>
+          <path d="M98 60 C103 60 107 47 112 47" stroke="url(#brand-wave)" stroke-width="3.5"/>
+          <path d="M112 47 C117 47 121 55 126 55" stroke="url(#brand-wave)" stroke-width="2.5"/>
+        </g>
+      </svg>
+      <span class="brand__text"><b>global-nu</b><span>Neutrino oscillation global analyses · Bari</span></span>
+    </a>
     <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme" title="Switch theme">
       <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true">
         <circle cx="12" cy="12" r="4.4"/>
@@ -60,11 +83,12 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
       <a href="../index.html">Home</a>
       <a href="../results.html">Results</a>
       <a href="../history.html">Parameter history</a>
+      <a href="../data.html">Data</a>
+      <a href="../resources.html">Resources</a>
+      <a href="../search.html">Search</a>
       <a href="../digest.html">arXiv digest</a>
       <a href="../news.html">News</a>
       <a href="../conferences.html">Conferences</a>
-      <a href="../resources.html">Resources</a>
-      <a href="../search.html">Search</a>
       <a href="../about.html">About</a>
     </nav>
   </div>
@@ -91,22 +115,22 @@ and may contain errors. No model is involved.</b></div>
 <p>16 preprints</p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2610.04265" rel="noopener noreferrer" target="_blank">Pseudo-Nambu-Goldstone Boson Motion from Thermal Thresholds</a></b><span>Mussawir Khan, Ali Muhammad, Tianjun Li · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.04909" rel="noopener noreferrer" target="_blank">The Phenomenology of the Dark Dimension and Non-Supersymmetric Strings</a></b><span>Cumrun Vafa · 6 Oct 2026</span><span class="tags"><span class="tag">hep-th</span><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.05377" rel="noopener noreferrer" target="_blank">Exploring Anomaly-Free Dark Photon Models Through Solar Neutrino-Electron Scattering in Ton-Scale Dark Matter Detectors</a></b><span>Mehmet Demirci, Gürsel Kaz\il, M. Fauzi Mustamin · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.05893" rel="noopener noreferrer" target="_blank">Environment-Dependent Annihilation of Axion-Coupled Higgsino Dark Matter</a></b><span>Kwang Sik Jeong, Fuminobu Takahashi · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.05980" rel="noopener noreferrer" target="_blank">Search for Diffuse Supernova Neutrino Background of All Flavors with PandaX-4T</a></b><span>Yingxin Zhang, PandaX Collaboration · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.06014" rel="noopener noreferrer" target="_blank">A non-invertible Fibonacci selection rule for two-Higgs-doublet models</a></b><span>Yu Hamada · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-th</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.06022" rel="noopener noreferrer" target="_blank">Interplay between final-state nucleon distortion, nuclear transparency and intranuclear cascade models in neutrino event generators</a></b><span>R. González-Jiménez, A. Nikolakopoulos, J. McKean et al. · 6 Oct 2026</span><span class="tags"><span class="tag">nucl-th</span><span class="tag">hep-ph</span><span class="tag">nucl-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.06151" rel="noopener noreferrer" target="_blank">Revisiting neutrino-assisted self-interacting dark matter</a></b><span>Luqi Wang, Shu-Yuan Guo, Xuewen Liu et al. · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.06159" rel="noopener noreferrer" target="_blank">Learning Astrophysical Uncertainties in Dark Matter Direct Detection with Simulation-Based Inference</a></b><span>Felix Kahlhoefer, Niklas Reus · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.06738" rel="noopener noreferrer" target="_blank">Novel dependence between neutrino mass splittings strongly supported by initial JUNO results</a></b><span>I. Alikhanov · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.07735" rel="noopener noreferrer" target="_blank">Mass as pairing: an explicit Majorana mass on half of a generation does not seesaw in symmetric mass generation</a></b><span>Piotr S. Topa · 6 Oct 2026</span><span class="tags"><span class="tag">hep-lat</span><span class="tag">hep-ph</span><span class="tag">hep-th</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.08139" rel="noopener noreferrer" target="_blank">The neutrino magnetic moment and supernovae with strong magnetic fields</a></b><span>Clément Ehrhardt, Maria Cristina Volpe, Miguel Ángel Aloy et al. · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span><span class="tag">astro-ph.SR</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.08175" rel="noopener noreferrer" target="_blank">Flavor decoherence and washout timing in nonthermal leptogenesis after inflation</a></b><span>Boliang Yu, Ruixin Zhou · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.08201" rel="noopener noreferrer" target="_blank">Evolution of neutrino distributions under repeated electron scattering</a></b><span>Jens Chluba, Bryce Cyr, Michiru Uwabo-Niibo et al. · 6 Oct 2026</span><span class="tags"><span class="tag">astro-ph.CO</span><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.08354" rel="noopener noreferrer" target="_blank">Charge exchange reactions with central and tensor interactions and nuclear matrix elements associated with double-beta-decay neutrinos and astro neutrinos</a></b><span>Hiroyasu Ejiri, Yoritaka Iwata · 6 Oct 2026</span><span class="tags"><span class="tag">nucl-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.08462" rel="noopener noreferrer" target="_blank">Predicting High-Energy neutrino emission from X-ray absorption in CSM-interacting SNe</a></b><span>Silvia Gagliardini, Simone Dall'Osso, Dafne Guetta · 6 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.04265" rel="noopener noreferrer" target="_blank">Pseudo-Nambu-Goldstone Boson Motion from Thermal Thresholds</a></b><span>Mussawir Khan, Ali Muhammad, Tianjun Li · announced 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.04909" rel="noopener noreferrer" target="_blank">The Phenomenology of the Dark Dimension and Non-Supersymmetric Strings</a></b><span>Cumrun Vafa · announced 6 Oct 2026</span><span class="tags"><span class="tag">hep-th</span><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.05377" rel="noopener noreferrer" target="_blank">Exploring Anomaly-Free Dark Photon Models Through Solar Neutrino-Electron Scattering in Ton-Scale Dark Matter Detectors</a></b><span>Mehmet Demirci, Gürsel Kaz\il, M. Fauzi Mustamin · announced 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.05893" rel="noopener noreferrer" target="_blank">Environment-Dependent Annihilation of Axion-Coupled Higgsino Dark Matter</a></b><span>Kwang Sik Jeong, Fuminobu Takahashi · announced 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.05980" rel="noopener noreferrer" target="_blank">Search for Diffuse Supernova Neutrino Background of All Flavors with PandaX-4T</a></b><span>Yingxin Zhang, PandaX Collaboration · announced 6 Oct 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.06014" rel="noopener noreferrer" target="_blank">A non-invertible Fibonacci selection rule for two-Higgs-doublet models</a></b><span>Yu Hamada · announced 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-th</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.06022" rel="noopener noreferrer" target="_blank">Interplay between final-state nucleon distortion, nuclear transparency and intranuclear cascade models in neutrino event generators</a></b><span>R. González-Jiménez, A. Nikolakopoulos, J. McKean et al. · announced 6 Oct 2026</span><span class="tags"><span class="tag">nucl-th</span><span class="tag">hep-ph</span><span class="tag">nucl-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.06151" rel="noopener noreferrer" target="_blank">Revisiting neutrino-assisted self-interacting dark matter</a></b><span>Luqi Wang, Shu-Yuan Guo, Xuewen Liu et al. · announced 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.06159" rel="noopener noreferrer" target="_blank">Learning Astrophysical Uncertainties in Dark Matter Direct Detection with Simulation-Based Inference</a></b><span>Felix Kahlhoefer, Niklas Reus · announced 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.06738" rel="noopener noreferrer" target="_blank">Novel dependence between neutrino mass splittings strongly supported by initial JUNO results</a></b><span>I. Alikhanov · announced 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.07735" rel="noopener noreferrer" target="_blank">Mass as pairing: an explicit Majorana mass on half of a generation does not seesaw in symmetric mass generation</a></b><span>Piotr S. Topa · first submitted 6 Oct 2026</span><span class="tags"><span class="tag">hep-lat</span><span class="tag">hep-ph</span><span class="tag">hep-th</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.08139" rel="noopener noreferrer" target="_blank">The neutrino magnetic moment and supernovae with strong magnetic fields</a></b><span>Clément Ehrhardt, Maria Cristina Volpe, Miguel Ángel Aloy et al. · first submitted 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span><span class="tag">astro-ph.SR</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.08175" rel="noopener noreferrer" target="_blank">Flavor decoherence and washout timing in nonthermal leptogenesis after inflation</a></b><span>Boliang Yu, Ruixin Zhou · first submitted 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.08201" rel="noopener noreferrer" target="_blank">Evolution of neutrino distributions under repeated electron scattering</a></b><span>Jens Chluba, Bryce Cyr, Michiru Uwabo-Niibo et al. · first submitted 6 Oct 2026</span><span class="tags"><span class="tag">astro-ph.CO</span><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.08354" rel="noopener noreferrer" target="_blank">Charge exchange reactions with central and tensor interactions and nuclear matrix elements associated with double-beta-decay neutrinos and astro neutrinos</a></b><span>Hiroyasu Ejiri, Yoritaka Iwata · first submitted 6 Oct 2026</span><span class="tags"><span class="tag">nucl-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.08462" rel="noopener noreferrer" target="_blank">Predicting High-Energy neutrino emission from X-ray absorption in CSM-interacting SNe</a></b><span>Silvia Gagliardini, Simone Dall'Osso, Dafne Guetta · first submitted 6 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
 </ul>
 
 <p class="small muted"><a href="../digest.html">Back to the current
@@ -146,15 +170,18 @@ digest</a></p>
           <li><a href="../index.html">Home</a></li>
           <li><a href="../results.html">Results</a></li>
           <li><a href="../history.html">Parameter history</a></li>
+          <li><a href="../data.html">Data</a></li>
+          <li><a href="../resources.html">Resources</a></li>
+          <li><a href="../search.html">Search</a></li>
           <li><a href="../digest.html">arXiv digest</a></li>
           <li><a href="../news.html">News</a></li>
           <li><a href="../conferences.html">Conferences</a></li>
-          <li><a href="../resources.html">Resources</a></li>
-          <li><a href="../search.html">Search</a></li>
           <li><a href="../about.html">About</a></li>
         </ul>
       </div>
     </div>
+    <p class="app-install" hidden><button type="button" class="btn btn--ghost app-install__btn">Install global-nu as an app</button>
+    <span class="app-install__ios" hidden>On iPhone or iPad: tap Share, then “Add to Home Screen”.</span></p>
     <p class="site-footer__base">© 2026 the Bari group · The parameter
     register and the data files are CC BY 4.0; the text and the code are all
     rights reserved; reproduced figures and photographs carry the terms
@@ -170,8 +197,8 @@ digest</a></p>
     stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
 
-<script src="../assets/js/site.js?v=215a304f" defer></script>
-<script src="../assets/js/figure.js?v=d7a5dbcf" defer></script>
+<script src="../assets/js/site.js?v=239a5c47" defer></script>
+<script src="../assets/js/figure.js?v=778f8d08" defer></script>
 
 <script data-goatcounter="https://global-nu.goatcounter.com/count" async src="../assets/vendor/goatcounter/count.js?v=185aa0b9"></script>
 
