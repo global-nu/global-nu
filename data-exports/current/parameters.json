@@ -31,7 +31,7 @@
   "delta_pi": "δ/π, cyclic mod 2",
   "ranges": "1, 2, 3σ ranges for one degree of freedom: Δχ² = 1, 4, 9 from the minimum of the same ordering",
   "units": "each value is in the unit of its row, e.g. best_fit 3.085 with unit 1e-1 means 0.3085",
-  "accuracy_1sigma_percent": "one sixth of the 3σ range divided by the best fit, in percent"
+  "accuracy_1sigma_percent": "one sixth of the 3σ range divided by the best fit, in percent, as in the tables of our papers"
  },
  "license": "CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/",
  "parameters": [

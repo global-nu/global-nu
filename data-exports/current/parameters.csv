@@ -1,7 +1,7 @@
 # global-nu current values — Newest published value per parameter — values from two publications, not a single fit.
 # source: 2026 (1, 2)-sector update — Phys. Rev. D 114, 016026 (2026)
 # source: March 2025 full release — Phys. Rev. D 111, 093006 (2025)
-# conventions: dm2: δm² = m₂² − m₁² > 0; absDm2: |Δm²| with Δm² = m₃² − (m₁² + m₂²)/2 = (Δm²₃₁ + Δm²₃₂)/2; Δm² > 0 in NO, < 0 in IO; delta_pi: δ/π, cyclic mod 2; ranges: 1, 2, 3σ ranges for one degree of freedom: Δχ² = 1, 4, 9 from the minimum of the same ordering; units: each value is in the unit of its row, e.g. best_fit 3.085 with unit 1e-1 means 0.3085; accuracy_1sigma_percent: one sixth of the 3σ range divided by the best fit, in percent
+# conventions: dm2: δm² = m₂² − m₁² > 0; absDm2: |Δm²| with Δm² = m₃² − (m₁² + m₂²)/2 = (Δm²₃₁ + Δm²₃₂)/2; Δm² > 0 in NO, < 0 in IO; delta_pi: δ/π, cyclic mod 2; ranges: 1, 2, 3σ ranges for one degree of freedom: Δχ² = 1, 4, 9 from the minimum of the same ordering; units: each value is in the unit of its row, e.g. best_fit 3.085 with unit 1e-1 means 0.3085; accuracy_1sigma_percent: one sixth of the 3σ range divided by the best fit, in percent, as in the tables of our papers
 # licence: CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/
 # pandas.read_csv(path, comment='#', dtype=str) keeps the printed digits
 parameter,ordering,unit,best_fit,range_1sigma_low,range_1sigma_high,range_2sigma_low,range_2sigma_high,range_3sigma_low,range_3sigma_high,accuracy_1sigma_percent,accuracy_source,same_in_both_orderings,source_release,source_doi,source_arxiv,source_table

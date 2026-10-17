@@ -48,6 +48,10 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from tools import accuracy as acc_rule   # noqa: E402
+# The public build knows only published releases: their papers' definition.
+# run(drafts=True) switches to the note that also states release 2026.a's.
+ACC_NOTE = "1σ accuracy: " + acc_rule.NOTE_PAPERS + "."
 from tools.make_figures import _rel_axis, _rel_range_row  # noqa: E402
 
 SRC = ROOT / "site-src" / "data" / "releases.yaml"
@@ -60,8 +64,6 @@ DRAFT_RELEASES = ROOT / "drafts" / "data" / "releases"
 LICENSE = "CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/"
 SCHEMA_VERSION = 1
 LEVELS = (("s1", "1σ"), ("s2", "2σ"), ("s3", "3σ"))
-ACC_NOTE = ("1σ accuracy: one sixth of the 3σ range divided by the best "
-            "fit, in percent, as in the tables of our papers.")
 # Δm² is exported as its magnitude, the quantity the papers print.
 CSV_NAME = {"Dm2": "absDm2"}
 
@@ -678,7 +680,7 @@ CONVENTIONS = {
     "delta_pi": "δ/π, cyclic mod 2",
     "ranges": "1, 2, 3σ ranges for one degree of freedom: Δχ² = 1, 4, 9 from the minimum of the same ordering",
     "units": "each value is in the unit of its row, e.g. best_fit 3.085 with unit 1e-1 means 0.3085",
-    "accuracy_1sigma_percent": "one sixth of the 3σ range divided by the best fit, in percent",
+    "accuracy_1sigma_percent": acc_rule.NOTE_PAPERS,
 }
 
 
@@ -854,8 +856,9 @@ def release_notes(D: dict, rel: dict) -> str:
              f"Source of the numbers: {rel['table']}.", "",
              f"Mass ordering: {rel['ordering_preference']}; Δχ²(IO−NO) = {rel['chi2_io_minus_no']}.", ""]
     if rel.get("acc_computed"):
-        lines += ["The 1σ accuracy is computed from the unrounded 3σ ranges "
-                  "(one sixth of the range over the best fit); the paper has no table yet.", ""]
+        lines += ["The 1σ accuracy is computed from the unrounded ranges: the 1σ error "
+                  "divided by the best fit, δ/π included; for sin²θ23 one sixth of the 3σ "
+                  "range divided by the best fit (tools/accuracy.py).", ""]
     if rel.get("draft"):
         lines += ["DRAFT — not published. Authors, title and citation will be completed from "
                   "the paper.", ""]
@@ -966,6 +969,10 @@ def write_feed(D: dict, path: Path) -> None:
 
 
 def run(drafts: bool = False, verbose: bool = True) -> None:
+    global ACC_NOTE
+    ACC_NOTE = (acc_rule.NOTE if drafts else "1σ accuracy: " + acc_rule.NOTE_PAPERS + ".")
+    CONVENTIONS["accuracy_1sigma_percent"] = (
+        acc_rule.NOTE.removeprefix("1σ accuracy, in percent. ") if drafts else acc_rule.NOTE_PAPERS)
     D = load(drafts)
     if drafts:
         names = write_fragments(D, FIG_DRAFT)

@@ -17,7 +17,12 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import sys
+
 import yaml
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from tools import accuracy as acc_rule  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "site-src" / "data" / "history.yaml"
@@ -85,14 +90,12 @@ def newest(bari: list[dict], pname: str) -> tuple[dict, dict] | None:
     return None
 
 
-def accuracy(e: dict) -> float | None:
-    """The papers' own definition: 1/6 of the 3σ range over the best fit, in
-    percent. Derived here rather than transcribed, because it is arithmetic on
-    two numbers that are already verified."""
-    if not e.get("s3") or not e.get("best"):
-        return None
-    lo, hi = e["s3"]
-    return (hi - lo) / 6.0 / abs(e["best"]) * 100.0
+def accuracy(e: dict, pname: str, rule: str = "papers") -> float | None:
+    """The 1σ accuracy of tools/accuracy.py: for a published release the
+    papers' own (1/6 of the 3σ range over the best fit), for release 2026.a its
+    own rule. Derived here rather than transcribed, because it is arithmetic on
+    numbers that are already verified."""
+    return acc_rule.accuracy(pname, e.get("best"), e.get("s1"), e.get("s3"), rule)
 
 
 # --------------------------------------------------------------------------- #
@@ -116,7 +119,7 @@ def precision_svg(meta: dict, bari: list[dict]) -> str:
         pts = []
         for rel in bari:
             e = entry(rel, pname)
-            a = accuracy(e) if e else None
+            a = accuracy(e, pname, rel.get("accuracy_rule", "papers")) if e else None
             if a is not None:
                 pts.append((rel["year"], a))
         if len(pts) > 1:

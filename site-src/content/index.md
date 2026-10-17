@@ -70,9 +70,11 @@ orderings are on the <a href="results.html">results page</a>.</p>
   <p>1σ accuracy · logarithmic scale</p>
 </div>
 <!--include:precision-->
-<p class="cap">Each line is one parameter’s 1σ accuracy — a sixth of its
-3σ range over its best fit — as published in each release. Computed from the
-same tables the <a href="history.html">parameter history</a> is built on.</p>
+<p class="cap">Each line is one parameter’s 1σ accuracy in each release — a
+sixth of its 3σ range over its best fit, as in the tables of our papers; for Bari
+Release 2026.a its 1σ error over its best fit (sin²θ₂₃: a sixth of the 3σ range),
+see the note under the results. Computed from the same tables the
+<a href="history.html">parameter history</a> is built on.</p>
 </figure>
 
 :::
