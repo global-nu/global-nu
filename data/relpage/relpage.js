@@ -6,7 +6,7 @@ const F2=[["s23_s13","sin&sup2;&theta;<sub>23</sub> &ndash; sin&sup2;&theta;<sub
           ["dm2ee_dm2sol","&Delta;m&sup2;<sub>ee</sub> &ndash; &delta;m&sup2;"],
           ["s12_dm2sol","sin&sup2;&theta;<sub>12</sub> &ndash; &delta;m&sup2;"]];
 const card=(src,tit,pdf)=>`<figure><a href="${src}" target="_blank" rel="noopener">
-  <img src="${src}" alt="${tit.replace(/<[^>]*>/g,'')}" loading="lazy"></a>
+  <img src="${src}" width="2524" height="1670" alt="${tit.replace(/<[^>]*>/g,'')}" loading="lazy"></a>
   <figcaption><b>${tit}</b></figcaption></figure>`;
 document.getElementById('gal2').innerHTML = F2.map(([k,t])=>
   card(`release-2026a/figures/2D/bari2026_2D_${k}.png`,t,`release-2026a/figures/2D/bari2026_2D_${k}.pdf`)).join('');
@@ -255,23 +255,57 @@ document.getElementById('gal2').innerHTML = F2.map(([k,t])=>
 })();
 
 (function(){
-  var id = decodeURIComponent(location.hash.slice(1));
-  if (!id || !document.getElementById(id) || !window.ResizeObserver) return;
-  var moved = false, done = false;
+  /* A link to a section (results.html#chi2-6d-sezione) must land on it even
+     though the page above keeps growing after the jump: figures, the tables'
+     scripts and the fonts add some 2000 px. Keep the target in place on every
+     resize until the page is settled -- loaded, fonts ready, every image above
+     the target decoded, and one second without a resize -- or until the reader
+     scrolls; at most 15 s. Again on hashchange and on pageshow (back/forward). */
+  var timer = null, ro = null, moved = false, t0 = 0;
   function stop(){ moved = true; }
   ["wheel","touchstart","keydown","mousedown"].forEach(function(e){
-    addEventListener(e, stop, {passive:true, once:true});
+    addEventListener(e, stop, {passive:true});
   });
-  function go(){
-    if (moved || done) return;
-    var t = document.getElementById(id);
-    if (t) t.scrollIntoView({block:"start"});
+  function target(){
+    var id = decodeURIComponent(location.hash.slice(1));
+    return id ? document.getElementById(id) : null;
   }
-  var ro = new ResizeObserver(go);
-  ro.observe(document.body);
-  addEventListener("load", go);
-  setTimeout(function(){
-    go(); done = true; ro.disconnect();
+  function settled(t){
+    if (document.readyState !== "complete") return false;
+    if (document.fonts && document.fonts.status !== "loaded") return false;
+    var y = t.getBoundingClientRect().top;
+    return [].every.call(document.images, function(im){
+      return im.complete || im.getBoundingClientRect().top > y;
+    });
+  }
+  function finish(){
+    if (ro) ro.disconnect(); ro = null; clearTimeout(timer);
     dispatchEvent(new Event("scroll"));
-  }, 5000);
+  }
+  function go(){
+    var t = target();
+    if (!t || moved) return finish();
+    t.scrollIntoView({block:"start"});
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+      if (settled(t) || Date.now() - t0 > 15000) { t.scrollIntoView({block:"start"}); finish(); }
+      else go();
+    }, 1000);
+  }
+  function start(){
+    if (!target() || !window.ResizeObserver) return;
+    moved = false; t0 = Date.now();
+    /* images above the target: load them now, so they take their height
+       before the reader arrives, not while reading */
+    var y = target().getBoundingClientRect().top;
+    [].forEach.call(document.images, function(im){
+      if (im.getBoundingClientRect().top < y) im.loading = "eager";
+    });
+    if (ro) ro.disconnect();
+    ro = new ResizeObserver(go); ro.observe(document.body);
+    go();
+  }
+  start();
+  addEventListener("hashchange", start);
+  addEventListener("pageshow", function(e){ if (e.persisted) start(); });
 })();
