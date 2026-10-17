@@ -50,6 +50,9 @@
   function levelText(l) { return l ? String(l).replace("sigma", "σ") : ""; }
 
   /* ---- one explorer ---- */
+  /* A release placed between years (2026.a at 2026.5) carries its name. */
+  function yearOf(r) { return r.year_label || String(r.year); }
+
   function build(box, rows) {
     var id = "explorer" + (++uid);
     var st = { param: "Dm2", ord: "no", groups: { bari: true, nufit: true, valencia: true },
@@ -133,7 +136,11 @@
     /* ---- downloads: what is on screen, as a figure or as a table ---- */
     var dl = el("div", "explorer__dl");
     dl.appendChild(el("span", "explorer__dl-label", "Download what is shown:"));
-    [["svg", "Figure (SVG)"], ["png", "Figure (PNG)"], ["csv", "Table (CSV)"]].forEach(function (d) {
+    /* A preliminary release is shown, never handed out as a file. */
+    if (box.hasAttribute("data-no-download")) {
+      dl.replaceChildren(el("span", "explorer__dl-label",
+        box.getAttribute("data-no-download")));
+    } else [["svg", "Figure (SVG)"], ["png", "Figure (PNG)"], ["csv", "Table (CSV)"]].forEach(function (d) {
       var b = el("button", "explorer__btn", d[1]);
       b.type = "button";
       b.addEventListener("click", function () { download(d[0]); });
@@ -428,7 +435,7 @@
         var cx = X(r.year) + p.dx, cy = Y(p.v), col = "var(--grp-" + r.group + ")";
         var g = sv("g", { "class": "explorer__pt", tabindex: "0", role: "button",
                           transform: "translate(" + cx + "," + cy + ")", "data-idx": p.idx,
-                          "aria-label": groupName(r.group) + " " + r.year + ", " + fmtVal(p) + (limit ? "" : ", " + fmtRange(p)) });
+                          "aria-label": groupName(r.group) + " " + yearOf(r) + ", " + fmtVal(p) + (limit ? "" : ", " + fmtRange(p)) });
         if (limit) {
           var ly = Y(ya) - cy;
           g.appendChild(sv("line", { x1: 0, x2: 0, y1: 0, y2: ly, style: "stroke:" + col + ";stroke-width:2" }));
@@ -475,7 +482,7 @@
       }
       var r = cur.row;
       var head = el("p", "explorer__who");
-      head.appendChild(el("strong", null, groupName(r.group) + " " + r.year));
+      head.appendChild(el("strong", null, groupName(r.group) + " " + yearOf(r)));
       if (r.ordering === "any") head.appendChild(document.createTextNode(" (quoted for both orderings)"));
       readout.appendChild(head);
       var dl = el("dl", "explorer__facts");
@@ -505,7 +512,7 @@
       var body = el("tbody");
       pts.forEach(function (p) {
         var tr = el("tr");
-        tr.appendChild(el("th", null, String(p.row.year)));
+        tr.appendChild(el("th", null, yearOf(p.row)));
         tr.appendChild(el("td", null, groupName(p.row.group) + (p.row.ordering === "any" ? " (both orderings)" : "")));
         tr.appendChild(el("td", null, fmtVal(p)));
         tr.appendChild(el("td", null, p.row.kind === "limit" ? "—" : p.lo == null ? "none published" : num(p.rawLo) + " to " + num(p.rawHi)));
@@ -539,6 +546,10 @@
     var boxes = document.querySelectorAll(".explorer[data-src]");
     Array.prototype.forEach.call(boxes, function (box) {
       try {
+        /* Rows written into the page (the register plus a preliminary
+           release, which has no data file) come first. */
+        var inline = box.querySelector("script.explorer__data");
+        if (inline) { build(box, JSON.parse(inline.textContent).rows); return; }
         if (!window.fetch) { failed(box); return; }
         window.fetch(box.getAttribute("data-src"))
           .then(function (res) {
