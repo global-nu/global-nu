@@ -26,6 +26,11 @@ and may contain errors.</b>
 <span class="stamp">Last successful update: 16 October 2026, 07:46 CEST</span></div>
 </div>
 <!-- QUIET:BEGIN -->
+<p class="small muted"><b>arXiv made no announcement for
+17 October 2026.</b> Its listing feeds are empty, as they are at weekends and on
+<a href="https://info.arxiv.org/help/availability.html">arXiv's announcement
+holidays</a>, so nothing below is new today: the list will change with the
+next announcement.</p>
 <!-- QUIET:END -->
 
 <div class="section-head"><h2>Experimental</h2>
