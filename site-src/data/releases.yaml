@@ -85,7 +85,7 @@ releases:
     label: "2026 (1, 2)-sector update"
     badge: "2026 update"
     kind: partial
-    date: "2026"                  # Phys. Rev. D 114, 016026 (2026)
+    date: "2026-07-27"            # published online in Phys. Rev. D 114, 016026 (Crossref record of 10.1103/cxqw-1bty)
     title: "Updated bounds on the (1, 2) neutrino oscillation parameters after first JUNO results"
     authors: ["F. Capozzi", "E. Lisi", "F. Marcone", "A. Marrone", "A. Palazzo"]
     journal: "Phys. Rev. D 114, 016026 (2026)"

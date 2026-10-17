@@ -337,6 +337,8 @@ from tools.news import render                                   # noqa: E402
 _orig_page = render.DIGEST_PAGE
 _tmp = Path(tempfile.mkdtemp()) / "digest.md"
 render.DIGEST_PAGE = _tmp
+# the feeds the renderer writes beside the page: never the real ones
+render.FEEDS_DIR = _tmp.parent / "feeds"
 try:
     # A page rendered before the markers existed — today's real one.
     _old = _orig_page.read_text(encoding="utf-8")

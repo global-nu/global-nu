@@ -17,6 +17,11 @@ run() {  # label, command...
 }
 run "build site/"        "$PY" build.py
 run "build site-draft/"  "$PY" build.py --drafts
+# A test must never write into what gets published: snapshot data-exports/
+# after the builds and compare once the tests are done (a renderer test once
+# replaced the real conferences.ics with its one-event fixture).
+snap() { find data-exports -type f -print0 | sort -z | xargs -0 shasum | shasum; }
+before="$(snap)"
 for t in tools/tests/test_*.py; do
   echo "=== $t" >>"$LOG"
   run "$(basename "$t")" "$PY" "$t"
@@ -25,5 +30,7 @@ for t in tools/tests/test_*.js; do
   echo "=== $t" >>"$LOG"
   run "$(basename "$t")" node "$t"
 done
+if [ "$(snap)" = "$before" ]; then echo "ok   tests left data-exports/ untouched"
+else echo "FAIL a test wrote into data-exports/"; fail=$((fail+1)); fi
 echo "failures: $fail"
 exit $(( fail > 0 ))

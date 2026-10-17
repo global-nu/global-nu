@@ -286,6 +286,9 @@ check("with fewer meetings than rows, every one of them is still drawn",
 # --------------------------------------------------------------------- #
 
 render.CONFERENCES_PAGE = Path(tempfile.mkdtemp()) / "conferences.md"
+# the calendar and feeds the renderer writes beside the page: never the real ones
+render.ICS_PATH = render.CONFERENCES_PAGE.parent / "conferences.ics"
+render.FEEDS_DIR = render.CONFERENCES_PAGE.parent / "feeds"
 
 
 def _upcoming_recs(n, start=_dt.date(2026, 8, 15)):

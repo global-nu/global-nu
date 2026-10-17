@@ -90,6 +90,9 @@ check("the merged entry records both providers",
 # the field DOMAIN, never the tense). Redirected to a scratch file so this
 # does not overwrite the real site-src/content/conferences.md.
 render.CONFERENCES_PAGE = Path(tempfile.mkdtemp()) / "conferences.md"
+# the calendar and feeds the renderer writes beside the page: never the real ones
+render.ICS_PATH = render.CONFERENCES_PAGE.parent / "conferences.ics"
+render.FEEDS_DIR = render.CONFERENCES_PAGE.parent / "feeds"
 
 
 def _render_page(records):
