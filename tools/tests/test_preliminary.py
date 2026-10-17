@@ -91,6 +91,32 @@ def main() -> None:
         check("every <img> on every page resolves to a published file", not broken,
               ", ".join(broken[:5]))
 
+        # The latest data everywhere. A component that reads a published data
+        # file (data/history.json …) cannot show the preliminary release, which
+        # has no file: on a page that shows the release, every such component
+        # must carry its rows in the page. The history chart once read the
+        # public register only, and 2026.a was missing from it.
+        import json
+        for u in shows:
+            for m in re.finditer(r'<div class="explorer"[^>]*>', pages[u]):
+                tail = pages[u][m.end():m.end() + 200]
+                check(f"{u}: the interactive chart carries its rows in the page",
+                      tail.startswith('<script type="application/json" class="explorer__data">'))
+        hist = pages.get("history.html", "")
+        m = re.search(r'class="explorer__data">(.*?)</script>', hist, re.S)
+        rows = json.loads(m.group(1))["rows"] if m else []
+        have = {(r["group"], str(r.get("year_label") or r["year"]), r["parameter"]) for r in rows}
+        for key in [("bari", rid, p) for p in ("dm2", "sin2_th12", "Dm2", "sin2_th13", "sin2_th23", "delta_pi")] \
+                + [("nufit", "2025", p) for p in ("dm2", "sin2_th12", "Dm2", "sin2_th13", "sin2_th23")]:
+            check(f"history chart has {key[0]} {key[1]} {key[2]}", key in have)
+        check("history panels show Bari " + rid, f"Bari, {rid}:" in hist)
+        check("history panels show NuFit 2025 (NuFIT 6.1)", "NuFit, 2025:" in hist)
+        check("history chart: downloads off", 'data-no-download=' in hist)
+        check("no page calls an older release 'current release'",
+              not any('<span class="tag">current release</span>' in pages[u] for u in shows))
+        check("home precision chart has the release's point", f"{rid}: 1σ accuracy" in pages["index.html"])
+        check("results comparison is with NuFIT 6.1", "NuFIT 6.1</th>" in pages["results.html"])
+
         res = pages["results.html"]
         for marker in ('<section id="chi2-6d-sezione"', "Run it in the browser", "Quick start",
                        "The same tables as PDF", "relpage/engine.js", "relpage/panel.js",

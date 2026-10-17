@@ -145,6 +145,9 @@ def apply(page: str, url: str, rid: str) -> str:
                      ("results (draft) —", "results (preliminary) —"),
                      ("Draft, not published; values as of", "Preliminary; values as of"),
                      ("Draft: Bari release", "Preliminary: Bari release"),
+                     # the register's "current release" is the latest PUBLISHED one
+                     ('<span class="tag">current release</span>',
+                      '<span class="tag">latest published release</span>'),
                      (f"https://global-nu.org/data/releases/{rid}/", "https://global-nu.org/results.html")):
         page = page.replace(old, new)
 
