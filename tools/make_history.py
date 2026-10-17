@@ -272,6 +272,14 @@ def dm2_of(rel: dict, ordering: str) -> dict | None:
     return v.get(ordering) or v.get("any")
 
 
+def half_up(x: float, nd: int) -> str:
+    """Round half up, as every printed number on the site: σ(u) = 0.000775
+    exactly is 0.00078, where float formatting gives 0.00077."""
+    from decimal import Decimal, ROUND_HALF_UP
+    # round(x, 12) first: the float of 0.31/400 is 0.000774999…
+    return str(Decimal(repr(round(x, 12))).quantize(Decimal(1).scaleb(-nd), ROUND_HALF_UP))
+
+
 def to_our_Dm2(rel: dict, ordering: str, value: float) -> float:
     """Convert a splitting reported in another convention into ours.
 
@@ -1025,7 +1033,7 @@ ellipse, equivalently the off-diagonal element of the inverse Hessian at the
 minimum. It is exactly what a group has in hand and does not publish.</p>
 <p><strong>And the correlation term dominates.</strong> On the
 {scale['year']} release σ(X) = {scale['sigma_Dm2']:.4f} and
-σ(u) = {scale['sigma_offset']:.5f} (10⁻³ eV²). Setting ρ = 0 changes the error
+σ(u) = {half_up(scale['sigma_offset'], 5)} (10⁻³ eV²). Setting ρ = 0 changes the error
 by {scale['error_inflation_pct']:+.2f}%; letting ρ run over its full range
 moves it between <strong>{format(scale['corr_swing_pct'], '+.1f').replace('-', '−')}%</strong> and
 <strong>{format(scale['corr_swing_pct_neg'], '+.1f').replace('-', '−')}%</strong>. Neglecting the

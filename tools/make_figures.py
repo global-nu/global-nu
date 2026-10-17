@@ -18,6 +18,7 @@ from __future__ import annotations
 from pathlib import Path
 
 import sys
+from decimal import Decimal, ROUND_HALF_UP
 
 import yaml
 
@@ -90,6 +91,35 @@ def newest(bari: list[dict], pname: str) -> tuple[dict, dict] | None:
     return None
 
 
+def shown_accuracy(rel: dict, pname: str, a: float) -> str:
+    """The number a point's tooltip prints: for a release on the Results page
+    (releases.yaml) the value printed there — its paper's, as published — so
+    the same quantity reads the same on every page; otherwise one decimal."""
+    key = "2026a" if rel.get("accuracy_rule") == "2026a" else rel.get("arxiv")
+    printed = _PUBLISHED_ACC.get((key, pname))
+    return printed if printed else f"{a:.1f}"
+
+
+def _published_acc() -> dict:
+    root = Path(__file__).absolute().parents[1]
+    out = {}
+    # published releases: the paper's printed value; release 2026.a (draft
+    # data): the value computed from its unrounded ranges by make_release_draft
+    for src, key in ((root / "site-src/data/releases.yaml", None),
+                     (root / "drafts/data/releases.yaml", "2026a")):
+        if not src.exists():
+            continue
+        for r in yaml.safe_load(src.read_text(encoding="utf-8"))["releases"]:
+            for p, by in (r.get("values") or {}).items():
+                e = by.get("NO") or by.get("any")
+                if e and e.get("acc"):
+                    out[(key or r.get("arxiv"), p)] = str(e["acc"])
+    return out
+
+
+_PUBLISHED_ACC = _published_acc()
+
+
 def accuracy(e: dict, pname: str, rule: str = "papers") -> float | None:
     """The 1σ accuracy of tools/accuracy.py: for a published release the
     papers' own (1/6 of the 3σ range over the best fit), for release 2026.a its
@@ -121,18 +151,18 @@ def precision_svg(meta: dict, bari: list[dict]) -> str:
             e = entry(rel, pname)
             a = accuracy(e, pname, rel.get("accuracy_rule", "papers")) if e else None
             if a is not None:
-                pts.append((rel["year"], a))
+                pts.append((rel["year"], a, shown_accuracy(rel, pname, a)))
         if len(pts) > 1:
             # entry() prende l'ordinamento normale (o il valore unico): questa
             # serie e' tutta in NO, quindi il simbolo e' quello firmato.
             series.append((pname, SIMBOLO_UN_ORDINAMENTO.get(pname, meta[pname]["label"]),
                            pts, f"var(--dec-{i % 5 + 1})"))
 
-    years = sorted({y for _, _, pts, _ in series for y, _ in pts})
+    years = sorted({y for _, _, pts, _ in series for y, _, _ in pts})
     x0, x1 = min(years), max(years)
     # A log scale: the whole point is that these span 0.8% to 20%.
     import math
-    vals = [v for _, _, pts, _ in series for _, v in pts]
+    vals = [v for _, _, pts, _ in series for _, v, _ in pts]
     lo, hi = min(vals) * 0.75, max(vals) * 1.3
 
     def sx(y: float) -> float:
@@ -161,14 +191,14 @@ def precision_svg(meta: dict, bari: list[dict]) -> str:
     ends = []
     for pname, label, pts, colour in series:
         d = " ".join(f'{"M" if i == 0 else "L"}{sx(y):.1f} {sy(v):.1f}'
-                     for i, (y, v) in enumerate(pts))
+                     for i, (y, v, _) in enumerate(pts))
         out.append(f'<path d="{d}" fill="none" stroke="{colour}" stroke-width="2.4" '
                    'stroke-linejoin="round" stroke-linecap="round" opacity=".9"/>')
-        for y, v in pts:
+        for y, v, txt in pts:
             out.append(f'<circle cx="{sx(y):.1f}" cy="{sy(v):.1f}" r="3.4" fill="{colour}" '
                        f'stroke="var(--bg)" stroke-width="1.6" paint-order="stroke">'
-                       f'<title>{label}, {y}: 1σ accuracy {v:.2g}%</title></circle>')
-        ly, lv = pts[-1]
+                       f'<title>{label}, {y}: 1σ accuracy {txt}%</title></circle>')
+        ly, lv, _ = pts[-1]
         ends.append([sx(ly), sy(lv), label, colour])
 
     # Direct labels live in a fixed column in the right margin, pushed apart
@@ -295,7 +325,8 @@ def _rel_axis(L: float, R: float, W: float, top: float, bottom: float,
 def _rel_range_row(pname: str, ordering: str, label: str, tag: str,
                    unit: str | None, e: dict, y: float, colour: str,
                    L: float, R: float, W: float, *, font: float = 12.5,
-                   value_font: float = 12, source: str = "") -> list[str]:
+                   value_font: float = 12, source: str = "",
+                   shown: dict | None = None, exact: dict | None = None) -> list[str]:
     """One row of a ranges figure: label, 3σ line, 1σ band, best-fit point,
     and the numeric best fit — every row on the one shared axis of _rel_axis.
 
@@ -325,9 +356,20 @@ def _rel_range_row(pname: str, ordering: str, label: str, tag: str,
     best = e["best"]
     half = (W - R - L) / 2.0
     centre = L + half
+    # `shown`: the numbers as the tables print them (strings, trailing zeros
+    # kept); `exact`: unrounded values, when the release has them, so the
+    # percentages are the ones the results page computes from the same data.
+    t = shown or {"best": f"{best:g}", "s1": [f"{lo1:g}", f"{hi1:g}"],
+                  "s3": [f"{lo3:g}", f"{hi3:g}"]}
+    x = exact or e
+    xl1, xh1 = x.get("s1") or x["s3"]
+    xl3, xh3 = x["s3"]
 
     def pct(v: float) -> float:
         return (v - best) / best * 100.0
+
+    def xpct(v: float) -> float:
+        return (v - x["best"]) / x["best"] * 100.0
 
     def sx(v: float) -> float:
         x = centre + pct(v) / REL_LIMIT * half
@@ -337,7 +379,8 @@ def _rel_range_row(pname: str, ordering: str, label: str, tag: str,
     off_lo, off_hi = lo_pct < -REL_LIMIT, hi_pct > REL_LIMIT
 
     def num(p: float) -> str:
-        return f"{'−' if p < 0 else '+'}{abs(p):.0f}%"
+        r = int(Decimal(str(abs(p))).quantize(Decimal(1), ROUND_HALF_UP))
+        return f"{'−' if p < 0 else '+'}{r}%"
 
     out = [
         f'<g class="rr" data-param="{pname}" data-ordering="{ordering}"'
@@ -346,15 +389,15 @@ def _rel_range_row(pname: str, ordering: str, label: str, tag: str,
         f'font-weight="600" fill="currentColor">{label}{unit_suffix(unit)}{tag}</text>',
         f'<line class="s3" x1="{sx(lo3):.1f}" y1="{y:.0f}" x2="{sx(hi3):.1f}" y2="{y:.0f}" '
         f'stroke="{colour}" stroke-width="3" stroke-linecap="round" opacity=".28">'
-        f'<title>3σ: {lo3:g} – {hi3:g}  ({num(lo_pct)} / {num(hi_pct)})</title></line>',
+        f'<title>3σ: {t["s3"][0]} – {t["s3"][1]}  ({num(xpct(xl3))} / {num(xpct(xh3))})</title></line>',
         f'<line class="s1" x1="{sx(lo1):.1f}" y1="{y:.0f}" x2="{sx(hi1):.1f}" y2="{y:.0f}" '
         f'stroke="{colour}" stroke-width="7" stroke-linecap="round" opacity=".55">'
-        f'<title>1σ: {lo1:g} – {hi1:g}  ({num(pct(lo1))} / {num(pct(hi1))})</title></line>',
+        f'<title>1σ: {t["s1"][0]} – {t["s1"][1]}  ({num(xpct(xl1))} / {num(xpct(xh1))})</title></line>',
         f'<circle class="best" cx="{centre:.1f}" cy="{y:.0f}" r="5" fill="{colour}" '
         f'stroke="var(--surface)" stroke-width="2" paint-order="stroke">'
-        f'<title>best fit {best:g}</title></circle>',
+        f'<title>best fit {t["best"]}</title></circle>',
         f'<text x="{W-R+10}" y="{y+4:.0f}" font-size="{value_font}" '
-        f'font-family="var(--mono)" fill="currentColor" opacity=".75">{best:g}</text>',
+        f'font-family="var(--mono)" fill="currentColor" opacity=".75">{t["best"]}</text>',
     ]
 
     # The arrow head is drawn as two strokes rather than a filled triangle so

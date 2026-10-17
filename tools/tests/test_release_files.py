@@ -124,8 +124,16 @@ def check_rest(D: dict, tag: str, tree: Path) -> None:
     grid = tokens(block(home, '<dl class="relgrid', "</dl>"))
     for p in D["params"]:
         e = mr.entry(D["rels"][D["current"]["from"][p]], p, "NO")
-        check(f"{tag}: home panel shows {p} = {mr.plain(D, p, e['best'])}",
-              mr.plain(D, p, e["best"]) in grid)
+        want = mr.plain(D, p, e["best"])
+        # The panel may print the value with the digits of its ±1σ error
+        # (0.02218 ±0.00055 where the table has 0.0222): the same number when
+        # either is rounded to the other's precision.
+        def same(a: str, b: str) -> bool:
+            da, db = Decimal(a), Decimal(b)
+            hi = max(da.as_tuple().exponent, db.as_tuple().exponent)
+            return da.quantize(Decimal(1).scaleb(hi)) == db.quantize(Decimal(1).scaleb(hi))
+        check(f"{tag}: home panel shows {p} = {want}",
+              any(same(t, want) for t in grid if re.fullmatch(r"\d+\.\d+", t)))
 
     # 4. packages
     rels_dir = tree / "data/releases"

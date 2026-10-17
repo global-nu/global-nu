@@ -252,7 +252,7 @@ def panel(D: dict) -> str:
         cells.append(
             f'<div class="relcell" data-param="{p}">'
             f'<dt>{esc(meta["label"])}{f" <span class=u>/ {esc(u)}</span>" if u else ""}</dt>'
-            f'<dd class="relcell__v">{esc(plain(D, p, no["best"]))}'
+            f'<dd class="relcell__v">{esc((glance.get(p) or {}).get("val") or plain(D, p, no["best"]))}'
             + (f'<span class="relcell__err">{glance[p]["err"]}</span>' if p in glance else "")
             + '</dd>'
             + (f'<dd class="relcell__curve">{glance[p]["svg"]}</dd>' if p in glance else "")
@@ -373,8 +373,8 @@ def changes(D: dict) -> str:
             items.append('<li><b>Ordering preference</b> unchanged — the update does not '
                          'refit it</li>')
             against = f'{esc(rel["label"])} against the {esc(base["label"])}'
-    foot = ('<p class="small muted">* computed from the release ranges, with the '
-            'definition of our papers\' tables.</p>') if computed else ""
+    foot = ('<p class="small muted">* computed from the release\'s unrounded ranges, with '
+            'its definition stated above.</p>') if computed else ""
     return (f'<div class="changes" aria-labelledby="ch-h"><h3 id="ch-h">What changed</h3>'
             f'<p class="changes__ctx">{against}</p><ul>{"".join(items)}</ul>'
             f'<p class="changes__def">{esc(ACC_NOTE)}</p>{foot}</div>')
@@ -399,7 +399,9 @@ def ranges_svg(D: dict) -> str:
         label = "Δm²" if p == "Dm2" else D["params"][p]["label"]
         out.extend(_rel_range_row(p, "no" if not same_both(rel, p) else "any", label, "",
                                   unit_for_fig(D, p), f, y, "var(--no)", L, R, W,
-                                  font=11.5, value_font=11, source=rel.get("arxiv") or rel["id"]))
+                                  font=11.5, value_font=11, source=rel.get("arxiv") or rel["id"],
+                                  shown={"best": e["best"], "s1": e["s1"], "s3": e["s3"]},
+                                  exact=e.get("exact")))
         if rel["id"] not in credits:
             credits.append(rel["id"])
     out.append(f'<text x="{L}" y="{H-19:.0f}" font-size="9.5" fill="currentColor" '
