@@ -24,3 +24,4 @@ var/photo-candidates/
 # somewhere else on purpose.
 drafts/
 site-draft/
+/drafts
