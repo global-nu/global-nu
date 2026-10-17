@@ -394,6 +394,13 @@ for rel in doc["releases"]:
         continue                       # absent cache is the numbers test's problem
     text = thn.pdf_text(pdf)
     field = rel.get("table", "")
+    if rel.get("source_pdf"):
+        # A web release's source PDF is the table itself (NuFIT 6.1): what can
+        # be checked is that it is the release the record names.
+        name = rel["title"].split(":")[0]
+        if name not in text:
+            missing.append(f'{rel["group"]} {rel["year"]}: "{name}" not in {pdf.name}')
+        continue
     ident = re.match(r"(Table\s+[IVXLC0-9]+)", field, re.I)
     if not ident:
         # Not every release quotes a table: bari 2008 is a focused analysis

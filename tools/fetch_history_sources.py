@@ -20,6 +20,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CACHE = ROOT / "var" / "history-sources"
+CACHE_WEB = ROOT / "var" / "history-sources-web"
 
 # group, year, arXiv id. Order is the order of the timeline.
 SOURCES = [
@@ -55,6 +56,37 @@ SOURCES = [
 UA = "global-nu-site/0.1 (https://global-nu.org; antonio.marrone@ba.infn.it)"
 
 
+# Releases with no paper of their own: group, year, URL of the table their
+# numbers are transcribed from, and its sha256. nu-fit.org's certificate had
+# expired when this was added (2026-10-17), so the file is fetched over plain
+# HTTP and accepted only if its hash is the one recorded here.
+WEB_SOURCES = [
+    ("nufit", 2025, "http://www.nu-fit.org/sites/default/files/v61.tbl-parameters.pdf",
+     "a22a4538894dd911f0988831c8a857fc3d3b405806e0ccaa25a4b5d3458bcc61"),
+]
+
+
+def fetch_web() -> int:
+    import hashlib
+    CACHE_WEB.mkdir(parents=True, exist_ok=True)
+    failed = 0
+    for group, year, url, sha in WEB_SOURCES:
+        name = url.rsplit("/", 1)[-1].removesuffix(".pdf")
+        dest = CACHE_WEB / f"{group}-{year}-{name}.pdf"
+        if dest.exists() and hashlib.sha256(dest.read_bytes()).hexdigest() == sha:
+            continue
+        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=90) as r:
+            data = r.read()
+        if hashlib.sha256(data).hexdigest() != sha:
+            print(f"  FAIL {url}: sha256 differs from the recorded one — the table changed?")
+            failed += 1
+            continue
+        dest.write_bytes(data)
+        print(f"  ok   {url} -> {dest.name}")
+    return failed
+
+
 def slug(group: str, year: int, eprint: str) -> str:
     return f"{group}-{year}-{eprint.replace('/', '_')}"
 
@@ -85,6 +117,7 @@ def main() -> None:
         got += 1
         time.sleep(3)          # arXiv asks for a gap between automated requests
 
+    failed += fetch_web()
     print(f"\n{got} downloaded, {skipped} already cached, {failed} failed")
     sys.exit(1 if failed else 0)
 

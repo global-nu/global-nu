@@ -1,25 +1,25 @@
-<svg viewBox="0 0 760 330" role="img" aria-label="Formal 1σ accuracy of each oscillation parameter, by year of publication, on a logarithmic scale">
+<svg viewBox="0 0 760 330" role="img" aria-label="1σ accuracy of each oscillation parameter, by year of publication, on a logarithmic scale">
 <line x1="52" y1="292" x2="632" y2="292" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="52" y1="18" x2="52" y2="292" stroke="currentColor" stroke-width="1" opacity=".35"/>
 <line x1="52" y1="261.9" x2="632" y2="261.9" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="44" y="265.4" text-anchor="end" font-size="11" fill="currentColor" opacity=".62">1%</text>
+<text x="44" y="265.4" text-anchor="end" font-size="11" fill="currentColor" opacity=".85">1%</text>
 <line x1="52" y1="217.3" x2="632" y2="217.3" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="44" y="220.8" text-anchor="end" font-size="11" fill="currentColor" opacity=".62">2%</text>
+<text x="44" y="220.8" text-anchor="end" font-size="11" fill="currentColor" opacity=".85">2%</text>
 <line x1="52" y1="158.4" x2="632" y2="158.4" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="44" y="161.9" text-anchor="end" font-size="11" fill="currentColor" opacity=".62">5%</text>
+<text x="44" y="161.9" text-anchor="end" font-size="11" fill="currentColor" opacity=".85">5%</text>
 <line x1="52" y1="113.8" x2="632" y2="113.8" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="44" y="117.3" text-anchor="end" font-size="11" fill="currentColor" opacity=".62">10%</text>
+<text x="44" y="117.3" text-anchor="end" font-size="11" fill="currentColor" opacity=".85">10%</text>
 <line x1="52" y1="69.2" x2="632" y2="69.2" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".18"/>
-<text x="44" y="72.7" text-anchor="end" font-size="11" fill="currentColor" opacity=".62">20%</text>
-<text x="52.0" y="310" text-anchor="middle" font-size="11" fill="currentColor" opacity=".62">2011</text>
-<text x="90.7" y="310" text-anchor="middle" font-size="11" fill="currentColor" opacity=".62">2012</text>
-<text x="129.3" y="310" text-anchor="middle" font-size="11" fill="currentColor" opacity=".62">2013</text>
-<text x="245.3" y="310" text-anchor="middle" font-size="11" fill="currentColor" opacity=".62">2016</text>
-<text x="284.0" y="310" text-anchor="middle" font-size="11" fill="currentColor" opacity=".62">2017</text>
-<text x="322.7" y="310" text-anchor="middle" font-size="11" fill="currentColor" opacity=".62">2018</text>
-<text x="438.7" y="310" text-anchor="middle" font-size="11" fill="currentColor" opacity=".62">2021</text>
-<text x="593.3" y="310" text-anchor="middle" font-size="11" fill="currentColor" opacity=".62">2025</text>
-<text x="632.0" y="310" text-anchor="middle" font-size="11" fill="currentColor" opacity=".62">2026</text>
+<text x="44" y="72.7" text-anchor="end" font-size="11" fill="currentColor" opacity=".85">20%</text>
+<text x="52.0" y="310" text-anchor="middle" font-size="11" fill="currentColor" opacity=".85">2011</text>
+<text x="90.7" y="310" text-anchor="middle" font-size="11" fill="currentColor" opacity=".85">2012</text>
+<text x="129.3" y="310" text-anchor="middle" font-size="11" fill="currentColor" opacity=".85">2013</text>
+<text x="245.3" y="310" text-anchor="middle" font-size="11" fill="currentColor" opacity=".85">2016</text>
+<text x="284.0" y="310" text-anchor="middle" font-size="11" fill="currentColor" opacity=".85">2017</text>
+<text x="322.7" y="310" text-anchor="middle" font-size="11" fill="currentColor" opacity=".85">2018</text>
+<text x="438.7" y="310" text-anchor="middle" font-size="11" fill="currentColor" opacity=".85">2021</text>
+<text x="593.3" y="310" text-anchor="middle" font-size="11" fill="currentColor" opacity=".85">2025</text>
+<text x="632.0" y="310" text-anchor="middle" font-size="11" fill="currentColor" opacity=".85">2026</text>
 <path d="M52.0 200.0 L90.7 199.7 L129.3 199.7 L245.3 206.9 L284.0 207.5 L322.7 209.8 L438.7 209.3 L593.3 209.4 L632.0 246.5" fill="none" stroke="var(--dec-1)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" opacity=".9"/>
 <circle cx="52.0" cy="200.0" r="3.4" fill="var(--dec-1)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>δm², 2011: 1σ accuracy 2.6%</title></circle>
 <circle cx="90.7" cy="199.7" r="3.4" fill="var(--dec-1)" stroke="var(--bg)" stroke-width="1.6" paint-order="stroke"><title>δm², 2012: 1σ accuracy 2.6%</title></circle>

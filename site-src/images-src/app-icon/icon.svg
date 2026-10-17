@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- App icon: the site logo (ν and its damped wave) on the dark background.
+       Full bleed so it also serves as the maskable icon: the mark sits inside
+       the central 80% safe zone. Rendered by tools/make_app_icons.py. -->
+  <defs><linearGradient id="w" gradientUnits="userSpaceOnUse" x1="56" y1="0" x2="126" y2="0">
+    <stop offset="0" stop-color="#F4F6FB"/><stop offset=".45" stop-color="#4CC9F0"/><stop offset="1" stop-color="#9BE3F7"/>
+  </linearGradient></defs>
+  <rect width="512" height="512" fill="#0d0f14"/>
+  <g transform="translate(256 256) scale(2.75) translate(-70 -52)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 32 C20 28 27 42 36 74 C44 56 50 30 56 30" stroke="#F4F6FB" stroke-width="7"/>
+    <path d="M56 30 C61 30 65 68 70 68" stroke="url(#w)" stroke-width="7"/>
+    <path d="M70 68 C75 68 79 41 84 41" stroke="url(#w)" stroke-width="5.5"/>
+    <path d="M84 41 C89 41 93 60 98 60" stroke="url(#w)" stroke-width="4.5"/>
+    <path d="M98 60 C103 60 107 47 112 47" stroke="url(#w)" stroke-width="3.5"/>
+    <path d="M112 47 C117 47 121 55 126 55" stroke="url(#w)" stroke-width="2.5"/>
+  </g>
+</svg>

@@ -50,12 +50,18 @@ from tools import history                              # noqa: E402
 
 DATA = ROOT / "site-src" / "data" / "history.yaml"
 CACHE = ROOT / "var" / "history-sources"
+CACHE_WEB = ROOT / "var" / "history-sources-web"
 
 UNIT_EXP = {"1e-1": -1, "1e-2": -2, "1e-3": -3, "1e-5": -5, "1": 0}
 
 
 def pdf_for(rel: dict) -> Path:
-    """The cached-PDF path a release's own group/year/arxiv fields point to."""
+    """The cached-PDF path a release's own group/year/arxiv fields point to.
+    A release with no paper of its own (NuFIT 6.1, a web release) names the
+    PDF its numbers come from in source_pdf; that file is the source then."""
+    if rel.get("source_pdf"):
+        name = rel["source_pdf"].rsplit("/", 1)[-1].removesuffix(".pdf")
+        return CACHE_WEB / f"{rel['group']}-{rel['year']}-{name}.pdf"
     slug = f"{rel['group']}-{rel['year']}-{rel['arxiv'].replace('/', '_')}"
     return CACHE / f"{slug}.pdf"
 

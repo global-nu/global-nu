@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<id>https://global-nu.org/data/feeds/releases.atom</id>
+<title>global-nu — Bari global-analysis releases</title>
+<subtitle>Each release of the Bari global analysis of neutrino oscillation data.</subtitle>
+<link rel="alternate" type="text/html" href="https://global-nu.org/results.html"/>
+<link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/releases.atom"/>
+<updated>2026-10-17T13:00:21+00:00</updated>
+<author><name>global-nu.org, Bari group</name></author>
+<entry>
+<id>https://global-nu.org/releases/bari-2026-12</id>
+<title>2026 (1, 2)-sector update — Updated bounds on the (1, 2) neutrino oscillation parameters after first JUNO results</title>
+<link rel="alternate" href="https://doi.org/10.1103/cxqw-1bty"/>
+<updated>2026-10-17T13:00:21+00:00</updated>
+<author><name>F. Capozzi</name></author>
+<author><name>E. Lisi</name></author>
+<author><name>F. Marcone</name></author>
+<author><name>A. Marrone</name></author>
+<author><name>A. Palazzo</name></author>
+<summary type="text">2026 (1, 2)-sector update (partial update). Phys. Rev. D 114, 016026 (2026). Parameters: δm², sin²θ₁₂.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/releases/bari-2025</id>
+<title>March 2025 full release — Neutrino masses and mixing: Entering the era of subpercent precision</title>
+<link rel="alternate" href="https://doi.org/10.1103/PhysRevD.111.093006"/>
+<updated>2025-05-19T00:00:00Z</updated>
+<author><name>F. Capozzi</name></author>
+<author><name>W. Giarè</name></author>
+<author><name>E. Lisi</name></author>
+<author><name>A. Marrone</name></author>
+<author><name>A. Melchiorri</name></author>
+<author><name>A. Palazzo</name></author>
+<summary type="text">March 2025 full release (full release). Phys. Rev. D 111, 093006 (2025). Parameters: δm², sin²θ₁₂, Δm², sin²θ₁₃, sin²θ₂₃, δ/π. Normal ordering favoured at 2.2σ</summary>
+</entry>
+</feed>

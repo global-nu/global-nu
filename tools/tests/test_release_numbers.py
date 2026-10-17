@@ -137,9 +137,9 @@ def hero_block(html: str) -> str:
     search would be satisfied by a value the figure does not draw — including
     the superseded one it must no longer draw.
     """
-    i = html.find("ranges-hero")
-    if i < 0:
-        i = html.find('<svg viewBox="0 0 520')
+    # The six-parameter chart is written by tools/make_release.py
+    # (current-ranges.svg) and identified by its own aria-label.
+    i = html.find("ordering, current values, on one scale")
     if i < 0:
         return ""
     start = html.rfind("<svg", 0, i + 40)
@@ -186,17 +186,17 @@ def check_hero(rows: dict[str, list[str]]) -> list[str]:
 
 
 def stats_block(html: str) -> str:
-    """Just the six stat cards.
+    """Just the six best fits of the home page's release panel.
 
     A bare `shown in html` would be satisfied by the same digits appearing
-    anywhere on the page — and they do: every sparkline's <title> carries the
-    historical values, so a card could be changed to a wrong number and still
-    "be present". The check is scoped to the block the cards live in.
+    anywhere on the page — the "what changed" strip, the chart, the sparkline
+    hover text — so a panel value could be changed to a wrong number and still
+    "be present". The check is scoped to the panel's own grid.
     """
-    i = html.find('<div class="stats')
+    i = html.find('<dl class="relgrid')
     if i < 0:
         return ""
-    return html[i:html.find("</div>", html.rfind('<!--include:spark-delta_pi'))]
+    return html[i:html.find("</dl>", i)]
 
 
 def check_home(rows: dict[str, list[str]]) -> list[str]:
@@ -215,7 +215,7 @@ def check_home(rows: dict[str, list[str]]) -> list[str]:
     html = home.read_text(encoding="utf-8")
     cards = stats_block(html)
     if not cards:
-        return ["the stat-card block was not found on index.html"]
+        return ["the release-panel grid was not found on index.html"]
     problems = []
 
     for name, key, exponent, shown in HOME_CONVERSIONS:
@@ -364,6 +364,12 @@ def main() -> None:
     if not pdf.exists():
         sys.exit(f"source PDF not found: {pdf}\n"
                  "Pass the path as an argument, or place the published paper there.")
+    global PAGE
+    # A release published as preliminary takes results.html; the published
+    # releases' tables move to earlier-releases.html.
+    preliminary = PAGE.exists() and 'id="release-2025"' not in PAGE.read_text(encoding="utf-8")
+    if preliminary:
+        PAGE = PAGE.with_name("earlier-releases.html")
     if not PAGE.exists():
         sys.exit(f"{PAGE} not found — run build.py first")
 
@@ -388,10 +394,15 @@ def main() -> None:
     for label, nums in rows.items():
         print(f"  {label:<20} {len(nums):>2} values from Table I")
 
-    missing += check_current(rows, html)
     missing += check_prose(html)
-    missing += check_home(rows)
-    missing += check_hero(rows)
+    if preliminary:
+        # The home page and the current values show the preliminary release;
+        # test_release_files.py checks them against its source.
+        print("  preliminary release on the home page: home and current-values checks skipped")
+    else:
+        missing += check_current(rows, html)
+        missing += check_home(rows)
+        missing += check_hero(rows)
 
     if missing:
         print("\n  ! a value in the paper table is missing from the page,\n"
@@ -400,6 +411,9 @@ def main() -> None:
             print("      " + m)
         sys.exit(1)
 
+    if preliminary:
+        print(f"\nall {checked} numbers of Table I are in the 2025 release table")
+        return
     print(f"\nall {checked} numbers of Table I are in the 2025 release table, "
           f"and the current-values table above it carries the 2026 row plus "
           f"the four parameters that update leaves alone")

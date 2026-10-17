@@ -344,6 +344,9 @@ PUBLISHED_BY_JOB = [
     "site-src/content/digest", "site/digest",
     "site/digest.html", "site/news.html", "site/conferences.html",
     "site/sitemap.xml",
+    # The calendar (and the feeds) the renderers write beside the data
+    # exports, and their published copies.
+    "data-exports/feeds", "site/data/feeds",
 ]
 
 # tools.news.photos writes one photograph per city on the conference map,

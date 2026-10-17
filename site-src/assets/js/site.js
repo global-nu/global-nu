@@ -83,9 +83,129 @@
   var navToggle = document.querySelector(".nav-toggle");
   var nav = document.getElementById("nav");
   if (navToggle && nav) {
-    navToggle.addEventListener("click", function () {
-      var open = nav.classList.toggle("is-open");
+    var setOpen = function (open) {
+      nav.classList.toggle("is-open", open);
       navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+    navToggle.addEventListener("click", function () {
+      setOpen(!nav.classList.contains("is-open"));
     });
+    /* The menu is an overlay, so it must also close the ways overlays do:
+       Escape (focus back on the button), a click outside, or following a link
+       to a section of the same page. */
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.classList.contains("is-open")) {
+        setOpen(false);
+        navToggle.focus();
+      }
+    });
+    document.addEventListener("click", function (e) {
+      if (nav.classList.contains("is-open") && !nav.contains(e.target) &&
+          !navToggle.contains(e.target)) setOpen(false);
+    });
+    nav.addEventListener("click", function (e) {
+      if (e.target.closest("a")) setOpen(false);
+    });
+  }
+})();
+
+/* Copy buttons and the "More details" toggle of the Results summary.
+   Progressive: without JS the citation link goes to data.html#cite, the
+   copy buttons do nothing harmful, and every column of the summary table is
+   shown (the hiding rule is scoped to .js). */
+(function () {
+  "use strict";
+
+  function flash(el, text) {
+    var old = el.textContent;
+    el.classList.add("is-done");
+    el.textContent = text;
+    setTimeout(function () { el.classList.remove("is-done"); el.textContent = old; }, 1600);
+  }
+
+  function copy(text, el, ev) {
+    if (!navigator.clipboard) return false;
+    if (ev) ev.preventDefault();
+    navigator.clipboard.writeText(text).then(
+      function () { flash(el, "Copied"); },
+      function () { flash(el, "Copy failed"); });
+    return true;
+  }
+
+  document.addEventListener("click", function (ev) {
+    var el = ev.target.closest("[data-copy],[data-copy-cite]");
+    if (!el) return;
+    if (el.hasAttribute("data-copy")) {
+      copy(el.getAttribute("data-copy"), el, ev);
+      return;
+    }
+    var tpl = document.getElementById("cite-" + el.getAttribute("data-copy-cite"));
+    if (!tpl) return;                     /* no template here: follow the link */
+    var text = (tpl.content ? tpl.content.textContent : tpl.textContent).trim() + "\n";
+    copy(text, el, ev);
+  });
+
+  var toggles = document.querySelectorAll(".more-toggle");
+  for (var i = 0; i < toggles.length; i++) {
+    (function (btn) {
+      var box = btn.closest(".lvl1");
+      btn.hidden = false;
+      btn.addEventListener("click", function () {
+        var on = box.classList.toggle("is-more");
+        btn.setAttribute("aria-expanded", on ? "true" : "false");
+        btn.textContent = on ? "Fewer details" : "More details: 2σ and accuracy";
+      });
+    })(toggles[i]);
+  }
+})();
+
+/* Hide the right-edge shadow of a scrolling table once it is scrolled to the end. */
+(function () {
+  "use strict";
+  var boxes = document.querySelectorAll(".ts-wrap > .table-scroll");
+  for (var i = 0; i < boxes.length; i++) {
+    (function (box) {
+      var upd = function () {
+        box.parentNode.classList.toggle("is-end",
+          box.scrollLeft + box.clientWidth >= box.scrollWidth - 2);
+      };
+      box.addEventListener("scroll", upd, { passive: true });
+      window.addEventListener("resize", upd);
+      upd();
+    })(boxes[i]);
+  }
+})();
+
+/* Installable app (see sw.js at the site root): register the service worker,
+   and offer "Install" where the browser allows it. Only over https or on
+   localhost — browsers refuse a service worker anywhere else. */
+(function () {
+  "use strict";
+  var me = document.currentScript && document.currentScript.src;
+  var standalone = matchMedia("(display-mode: standalone)").matches || navigator.standalone;
+  if ("serviceWorker" in navigator && me &&
+      (location.protocol === "https:" || /^(localhost|127\.0\.0\.1)$/.test(location.hostname))) {
+    navigator.serviceWorker.register(new URL("../../sw.js", me).href).catch(function () {});
+  }
+  var box = document.querySelector(".app-install");
+  if (!box || standalone) return;
+  var btn = box.querySelector(".app-install__btn");
+  var deferred = null;
+  window.addEventListener("beforeinstallprompt", function (e) {
+    e.preventDefault();
+    deferred = e;
+    box.hidden = false;
+  });
+  btn.addEventListener("click", function () {
+    if (!deferred) return;
+    deferred.prompt();
+    deferred.userChoice.then(function () { deferred = null; box.hidden = true; });
+  });
+  window.addEventListener("appinstalled", function () { box.hidden = true; });
+  // Safari on iPhone and iPad has no install prompt: say how instead.
+  if (/iPhone|iPad|iPod/.test(navigator.userAgent) && "standalone" in navigator) {
+    box.hidden = false;
+    btn.hidden = true;
+    box.querySelector(".app-install__ios").hidden = false;
   }
 })();

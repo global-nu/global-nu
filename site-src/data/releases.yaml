@@ -1,0 +1,133 @@
+# Releases of the Bari global analysis — the single source for every page,
+# CSV and JSON that states a current or released value.
+#
+# tools/make_release.py reads this file and writes the home-page panel, the
+# Results tables, the "what changed" strip and the downloadable snapshot
+# (data-exports/current/). Nothing on those pages is typed by hand.
+#
+# Values are transcribed from the table named in `table` of each paper, in the
+# normalisation that table prints (`unit` below), magnitudes only: Δm² is
+# printed as |Δm²| by the papers, and the minus sign the site shows in inverted
+# ordering is a display convention applied by the generator, not data.
+# `acc` is the paper's own "1σ parameter accuracy" column, in percent, defined
+# as 1/6 of the 3σ range over the best fit; tools/tests/test_releases_data.py
+# recomputes it from the ranges and checks it against the printed value.
+#
+# tools/tests/test_releases_data.py also checks best fit, 1σ and 3σ here
+# against site-src/data/history.yaml, and tools/tests/test_release_numbers.py
+# checks the built pages against the PDFs.
+#
+# A draft release (unpublished) is never written here: it goes in
+# drafts/data/releases.yaml, which only `build.py --drafts` reads.
+
+schema_version: 1
+
+parameters:
+  # order = order of the rows on every page
+  dm2:       {label: "δm²",     unit: "10⁻⁵ eV²", scale: 1.0e-5, unit_csv: "1e-5 eV^2", signed: false, definition: "m₂² − m₁² > 0"}
+  sin2_th12: {label: "sin²θ₁₂", unit: "10⁻¹",     scale: 1.0e-1, unit_csv: "1e-1",      signed: false, definition: ""}
+  Dm2:       {label: "Δm²",     unit: "10⁻³ eV²", scale: 1.0e-3, unit_csv: "1e-3 eV^2", signed: true,  definition: "m₃² − (m₁² + m₂²)/2, negative in IO"}
+  sin2_th13: {label: "sin²θ₁₃", unit: "10⁻²",     scale: 1.0e-2, unit_csv: "1e-2",      signed: false, definition: ""}
+  sin2_th23: {label: "sin²θ₂₃", unit: "10⁻¹",     scale: 1.0e-1, unit_csv: "1e-1",      signed: false, definition: ""}
+  delta_pi:  {label: "δ/π",     unit: "",         scale: 1.0,    unit_csv: "1",         signed: false, definition: "CP phase in units of π, cyclic mod 2"}
+
+releases:
+
+  - id: bari-2025
+    label: "March 2025 full release"
+    badge: "2025 full release"
+    kind: full
+    date: "2025-05-19"            # published in Phys. Rev. D
+    title: "Neutrino masses and mixing: Entering the era of subpercent precision"
+    authors: ["F. Capozzi", "W. Giarè", "E. Lisi", "A. Marrone", "A. Melchiorri", "A. Palazzo"]
+    journal: "Phys. Rev. D 111, 093006 (2025)"
+    doi: "10.1103/PhysRevD.111.093006"
+    arxiv: "2503.07752"
+    table: "Table I"
+    chi2_io_minus_no: "+5.0"
+    ordering_preference: "Normal ordering favoured at 2.2σ"
+    package: null                 # historical release: no machine-readable package
+    # INSPIRE record, fetched 2026-10-16 from
+    # https://inspirehep.net/api/literature?q=arxiv:2503.07752&format=bibtex
+    bibtex: |
+      @article{Capozzi:2025wyn,
+          author = "Capozzi, Francesco and Giar{\`e}, William and Lisi, Eligio and Marrone, Antonio and Melchiorri, Alessandro and Palazzo, Antonio",
+          title = "{Neutrino masses and mixing: Entering the era of subpercent precision}",
+          eprint = "2503.07752",
+          archivePrefix = "arXiv",
+          primaryClass = "hep-ph",
+          doi = "10.1103/PhysRevD.111.093006",
+          journal = "Phys. Rev. D",
+          volume = "111",
+          number = "9",
+          pages = "093006",
+          year = "2025"
+      }
+    values:
+      dm2:
+        any: {best: "7.37",  s1: ["7.21", "7.52"],   s2: ["7.06", "7.71"],   s3: ["6.93", "7.93"],   acc: "2.3"}
+      sin2_th12:
+        any: {best: "3.03",  s1: ["2.91", "3.17"],   s2: ["2.77", "3.31"],   s3: ["2.64", "3.45"],   acc: "4.5"}
+      Dm2:
+        "NO": {best: "2.495", s1: ["2.475", "2.515"], s2: ["2.454", "2.536"], s3: ["2.433", "2.558"], acc: "0.8"}
+        "IO": {best: "2.465", s1: ["2.444", "2.485"], s2: ["2.423", "2.506"], s3: ["2.403", "2.527"], acc: "0.8"}
+      sin2_th13:
+        "NO": {best: "2.23",  s1: ["2.17", "2.27"],   s2: ["2.11", "2.33"],   s3: ["2.06", "2.38"],   acc: "2.4"}
+        "IO": {best: "2.23",  s1: ["2.19", "2.30"],   s2: ["2.14", "2.35"],   s3: ["2.08", "2.41"],   acc: "2.4"}
+      sin2_th23:
+        "NO": {best: "4.73",  s1: ["4.60", "4.96"],   s2: ["4.47", "5.68"],   s3: ["4.37", "5.81"],   acc: "5.1"}
+        "IO": {best: "5.45",  s1: ["5.28", "5.60"],   s2: ["4.58", "5.73"],   s3: ["4.43", "5.83"],   acc: "4.3"}
+      delta_pi:
+        "NO": {best: "1.20",  s1: ["1.07", "1.37"],   s2: ["0.88", "1.81"],   s3: ["0.73", "2.03"],   acc: "18"}
+        "IO": {best: "1.48",  s1: ["1.36", "1.61"],   s2: ["1.24", "1.72"],   s3: ["1.12", "1.83"],   acc: "8"}
+
+  - id: bari-2026-12
+    label: "2026 (1, 2)-sector update"
+    badge: "2026 update"
+    kind: partial
+    date: "2026"                  # Phys. Rev. D 114, 016026 (2026)
+    title: "Updated bounds on the (1, 2) neutrino oscillation parameters after first JUNO results"
+    authors: ["F. Capozzi", "E. Lisi", "F. Marcone", "A. Marrone", "A. Palazzo"]
+    journal: "Phys. Rev. D 114, 016026 (2026)"
+    doi: "10.1103/cxqw-1bty"
+    arxiv: "2511.21650"
+    table: "Table I, row “w/ SNO+ & JUNO 2025”"
+    updates: [dm2, sin2_th12]
+    base: bari-2025               # the release the other parameters stand on
+    chi2_io_minus_no: null        # the update does not refit the ordering
+    ordering_preference: null
+    package: null
+    bibtex: |
+      @article{Capozzi:2025ovi,
+          author = "Capozzi, Francesco and Lisi, Eligio and Marcone, Francesco and Marrone, Antonio and Palazzo, Antonio",
+          title = "{Updated bounds on the (1, 2) neutrino oscillation parameters after first JUNO results}",
+          eprint = "2511.21650",
+          archivePrefix = "arXiv",
+          primaryClass = "hep-ph",
+          doi = "10.1103/cxqw-1bty",
+          journal = "Phys. Rev. D",
+          volume = "114",
+          number = "1",
+          pages = "016026",
+          year = "2026"
+      }
+    values:
+      dm2:
+        any: {best: "7.48",  s1: ["7.39", "7.58"],   s2: ["7.30", "7.68"],   s3: ["7.21", "7.78"],   acc: "1.3"}
+      sin2_th12:
+        any: {best: "3.085", s1: ["3.010", "3.156"], s2: ["2.939", "3.230"], s3: ["2.866", "3.303"], acc: "2.4"}
+
+# What the site presents as "current": for each parameter, the release its
+# value is taken from. A mixed snapshot (more than one release) is shown with
+# the banner "values from two publications, not a single fit".
+current:
+  id: snapshot-2026
+  label: "Current values"
+  from:
+    dm2: bari-2026-12
+    sin2_th12: bari-2026-12
+    Dm2: bari-2025
+    sin2_th13: bari-2025
+    sin2_th23: bari-2025
+    delta_pi: bari-2025
+  ordering_from: bari-2025

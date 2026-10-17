@@ -36,7 +36,8 @@ def expected(rel: dict, ordering: str) -> float | None:
         # any kind (see that release's own "note" field). dm2 itself may be
         # absent too in that case, so it must not be looked up below.
         return None
-    dm2_half = v["dm2"]["any"]["best"] / 200.0
+    dm2 = v["dm2"].get(ordering) or v["dm2"]["any"]     # NuFIT 6.1: one per ordering
+    dm2_half = dm2["best"] / 200.0
 
     if kind == "Dm2_3l":
         # Dm2_31 (>0) for NO; Dm2_32 (<0) for IO, and Dm2_31 = Dm2_32 + dm2.

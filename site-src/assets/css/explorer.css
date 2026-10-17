@@ -1,0 +1,68 @@
+/* global-nu — history explorer. Only the tokens defined in site.css, so the
+   light and dark themes need nothing here. */
+.explorer{max-width:100%;min-width:0}
+.explorer__controls{display:flex;flex-wrap:wrap;gap:.9rem 1.6rem;margin-bottom:.8rem}
+.explorer__ctl{display:flex;flex-direction:column;gap:.35rem;min-width:0}
+.explorer__label{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--text-mute)}
+.explorer__seg{display:flex;flex-wrap:wrap;gap:.35rem}
+.explorer__btn{min-width:44px;min-height:44px;padding:.4rem .85rem;font:inherit;font-size:.9rem;
+  color:var(--text-soft);background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-sm);cursor:pointer;
+  transition:border-color .16s var(--ease-out),color .16s var(--ease-out),background .16s var(--ease-out)}
+.explorer__btn:hover{border-color:var(--line-strong);color:var(--text)}
+.explorer__btn[aria-pressed="true"]{color:var(--text);background:var(--surface-2);
+  border-color:var(--accent);font-weight:600}
+.explorer__glyph{margin-right:.4rem}
+.explorer__glyph--bari{color:var(--grp-bari)}
+.explorer__glyph--nufit{color:var(--grp-nufit)}
+.explorer__glyph--valencia{color:var(--grp-valencia)}
+
+.explorer__hint{min-height:1.2em;margin:0 0 .3rem;font-size:.85rem;color:var(--text-mute)}
+.explorer__summary{margin:0 0 .5rem;font-size:.9rem;color:var(--text-soft)}
+.explorer__chart{width:100%;min-width:0;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r);padding:.4rem}
+.explorer__svg{display:block;width:100%;height:auto;min-height:260px;max-height:none;overflow:visible}
+.explorer__grid{stroke:var(--line);stroke-width:1}
+.explorer__axis{stroke:var(--line-strong);stroke-width:1}
+.explorer__tick{fill:var(--text-soft);font-family:var(--mono);font-size:11px}
+.explorer__title{fill:var(--text-soft);font-family:var(--body);font-size:12px}
+.explorer__lbl{paint-order:stroke;stroke:var(--surface);stroke-width:3px}
+
+.explorer__pt{cursor:pointer;outline:none}
+.explorer__hit{fill:transparent}
+.explorer__ring{fill:none;stroke:var(--accent);stroke-width:2;opacity:0;
+  transition:opacity .16s var(--ease-out)}
+.explorer__pt:hover .explorer__ring,
+.explorer__pt:focus .explorer__ring,
+.explorer__pt.is-sel .explorer__ring{opacity:1}
+.explorer__pt.is-sel .explorer__ring{stroke-width:3}
+
+.explorer__note,.explorer__key{margin:.6rem 0 0;font-size:.85rem;color:var(--text-soft)}
+.explorer__note a{color:var(--accent)}
+.explorer__key{color:var(--text-mute)}
+.explorer__readout{margin-top:.8rem;padding:.9rem 1.1rem;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r);min-height:3.2rem;overflow-wrap:anywhere}
+.explorer__readout p{margin:0}
+.explorer__who{color:var(--text);margin-bottom:.4rem !important}
+.explorer__empty{color:var(--text-mute);font-size:.9rem}
+.explorer__facts{display:grid;grid-template-columns:max-content 1fr;gap:.25rem 1rem;margin:0;font-size:.9rem}
+.explorer__facts dt{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--text-mute);padding-top:.15rem}
+.explorer__facts dd{margin:0;color:var(--text-soft);min-width:0}
+.explorer__facts a{color:var(--accent)}
+.explorer__toggle{margin-top:.8rem}
+.explorer .table-scroll{margin-top:.6rem}
+.explorer__fail{margin:0;color:var(--text-mute);font-size:.9rem}
+
+@media (max-width:44rem){
+  .explorer__controls{flex-direction:column;gap:.8rem}
+  .explorer__ctl{width:100%}
+  .explorer__seg{width:100%}
+  .explorer__btn{flex:1 1 auto}
+  .explorer__facts{grid-template-columns:1fr;gap:0}
+  .explorer__facts dd{margin-bottom:.4rem}
+}
+.explorer .explorer__svg{max-height:none}
+.explorer__dl{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:.8rem 0}
+.explorer__dl-label{font-size:.85rem;color:var(--text-soft)}

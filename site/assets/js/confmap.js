@@ -291,6 +291,19 @@
       // reads them here rather than before the appendChild above; jsdom (no
       // layout engine) reports 0 for both, so this is a no-op there, not a
       // false positive.
+      //
+      // The 20rem CSS cap is for short viewports. On a desktop the stage is
+      // taller, and one conference with its photo (~360px) was cut at the
+      // cap with its dates under the fade. A card anchored in the stage may
+      // grow upward to the stage's top (same margin as at the bottom), never
+      // past it, so it still cannot reach the sticky header.
+      if (!anchor && card.offsetParent === host && card.scrollHeight > card.clientHeight) {
+        var gap = host.clientHeight - card.offsetTop - card.offsetHeight;
+        var room = card.offsetTop + card.offsetHeight - gap;
+        if (room > card.offsetHeight) {
+          card.style.maxHeight = Math.min(room, card.scrollHeight + 2) + "px";
+        }
+      }
       if (card.scrollHeight > card.clientHeight) {
         card.classList.add("conf-card--scrollable");
       }

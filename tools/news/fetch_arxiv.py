@@ -83,6 +83,14 @@ def _arxiv_id(entry: ET.Element) -> str:
     return m.group(1) if m else raw.strip()
 
 
+def _updated(entry: ET.Element) -> _dt.datetime | None:
+    raw = entry.findtext(f"{ATOM}updated")
+    try:
+        return _dt.datetime.fromisoformat(raw.replace("Z", "+00:00")) if raw else None
+    except ValueError:
+        return None
+
+
 def _published(entry: ET.Element) -> _dt.datetime | None:
     for tag in (f"{ATOM}published", f"{ATOM}updated"):
         raw = entry.findtext(tag)
@@ -199,7 +207,7 @@ def _compile_stem(terms: list[str]) -> list[tuple[str, re.Pattern]]:
 # --------------------------------------------------------------------------- #
 def _make(aid: str, title: str, summary: str, authors: str, day: str,
           cats: list[str], pts: int, hits: list[str], route: str,
-          doi: str = "") -> dict:
+          doi: str = "", dates: dict | None = None) -> dict:
     """The one record shape the digest reads, whichever route found it."""
     return cache.make_record(
         id=f"arxiv:{aid}",
@@ -214,8 +222,13 @@ def _make(aid: str, title: str, summary: str, authors: str, day: str,
         authors=authors,
         date=day,
         summary=truncate(summary, 1200),
+        # The dates are kept apart because they answer different questions:
+        # `submitted` is when the first version reached arXiv (API route),
+        # `updated` when the newest version did, `announced` the day arXiv
+        # listed it (RSS route). A digest of "today" that printed only one
+        # undifferentiated date looked as if it listed old papers.
         extra={"categories": cats[:4], "score": pts, "hits": hits[:8],
-               "route": route},
+               "route": route, **(dates or {})},
     )
 
 
@@ -335,9 +348,9 @@ def _from_rss(conf: dict, log: logging.Logger, errors: list[str]) -> list[dict]:
             names = [n.strip() for n in authors.split(",") if n.strip()]
             if len(names) > 3:
                 authors = ", ".join(names[:3]) + " et al."
-            by_id[aid] = (pts, _make(aid, title, summary, authors,
-                                     _rss_day(item, channel_day), cats, pts,
-                                     hits, "rss"))
+            day = _rss_day(item, channel_day)
+            by_id[aid] = (pts, _make(aid, title, summary, authors, day, cats,
+                                     pts, hits, "rss", dates={"announced": day}))
 
     if not reached:
         return []
@@ -450,9 +463,13 @@ def fetch(cfg: dict, log: logging.Logger) -> list[dict]:
 
         cats_e = [c.get("term") for c in entry.findall(f"{ATOM}category")
                   if c.get("term")]
+        dates = {"submitted": published.date().isoformat()}
+        upd = _updated(entry)
+        if upd is not None and upd.date() != published.date():
+            dates["updated"] = upd.date().isoformat()
         rec = _make(aid, title, summary, _authors(entry),
                     published.date().isoformat(), cats_e, pts, hits, "api",
-                    doi=entry.findtext(f"{ARXIV_NS}doi") or "")
+                    doi=entry.findtext(f"{ARXIV_NS}doi") or "", dates=dates)
         scored.append((pts, published, rec))
 
     scored.sort(key=lambda x: (-x[0], -x[1].timestamp()))

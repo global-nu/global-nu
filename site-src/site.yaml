@@ -3,6 +3,11 @@ site_name: "global-nu"
 site_url: "https://global-nu.org"
 tagline: "Global analyses of neutrino oscillation data — Bari group"
 
+# A release shown before its paper is out: built from drafts/ (which must be
+# present in this checkout), marked PRELIMINARY everywhere, and published
+# without any of its files. Remove the line when the paper is out.
+preliminary: "2026.a"
+
 # Navigation order. Each entry must match the `url` of a content file.
 nav:
   - url: index.html
@@ -11,16 +16,18 @@ nav:
     label: Results
   - url: history.html
     label: Parameter history
+  - url: data.html
+    label: Data
+  - url: resources.html
+    label: Resources
+  - url: search.html
+    label: Search
   - url: digest.html
     label: arXiv digest
   - url: news.html
     label: News
   - url: conferences.html
     label: Conferences
-  - url: resources.html
-    label: Resources
-  - url: search.html
-    label: Search
   - url: about.html
     label: About
 

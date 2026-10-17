@@ -1,0 +1,363 @@
+{
+ "schema_version": 1,
+ "release": {
+  "id": "snapshot-2026",
+  "kind": "snapshot",
+  "note": "Newest published value per parameter — values from two publications, not a single fit.",
+  "sources": [
+   {
+    "release": "bari-2026-12",
+    "label": "2026 (1, 2)-sector update",
+    "doi": "10.1103/cxqw-1bty",
+    "arxiv": "2511.21650",
+    "journal": "Phys. Rev. D 114, 016026 (2026)"
+   },
+   {
+    "release": "bari-2025",
+    "label": "March 2025 full release",
+    "doi": "10.1103/PhysRevD.111.093006",
+    "arxiv": "2503.07752",
+    "journal": "Phys. Rev. D 111, 093006 (2025)"
+   }
+  ],
+  "ordering": {
+   "preference": "Normal ordering favoured at 2.2σ",
+   "chi2_io_minus_no": "+5.0"
+  }
+ },
+ "conventions": {
+  "dm2": "δm² = m₂² − m₁² > 0",
+  "absDm2": "|Δm²| with Δm² = m₃² − (m₁² + m₂²)/2 = (Δm²₃₁ + Δm²₃₂)/2; Δm² > 0 in NO, < 0 in IO",
+  "delta_pi": "δ/π, cyclic mod 2",
+  "ranges": "1, 2, 3σ ranges for one degree of freedom: Δχ² = 1, 4, 9 from the minimum of the same ordering",
+  "units": "each value is in the unit of its row, e.g. best_fit 3.085 with unit 1e-1 means 0.3085",
+  "accuracy_1sigma_percent": "one sixth of the 3σ range divided by the best fit, in percent"
+ },
+ "license": "CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/",
+ "parameters": [
+  {
+   "parameter": "dm2",
+   "ordering": "NO",
+   "unit": "1e-5 eV^2",
+   "best_fit": 7.48,
+   "range_1sigma": [
+    7.39,
+    7.58
+   ],
+   "range_2sigma": [
+    7.3,
+    7.68
+   ],
+   "range_3sigma": [
+    7.21,
+    7.78
+   ],
+   "accuracy_1sigma_percent": 1.3,
+   "accuracy_source": "paper",
+   "same_in_both_orderings": true,
+   "source": {
+    "release": "bari-2026-12",
+    "doi": "10.1103/cxqw-1bty",
+    "arxiv": "2511.21650",
+    "table": "Table I, row “w/ SNO+ & JUNO 2025”"
+   }
+  },
+  {
+   "parameter": "dm2",
+   "ordering": "IO",
+   "unit": "1e-5 eV^2",
+   "best_fit": 7.48,
+   "range_1sigma": [
+    7.39,
+    7.58
+   ],
+   "range_2sigma": [
+    7.3,
+    7.68
+   ],
+   "range_3sigma": [
+    7.21,
+    7.78
+   ],
+   "accuracy_1sigma_percent": 1.3,
+   "accuracy_source": "paper",
+   "same_in_both_orderings": true,
+   "source": {
+    "release": "bari-2026-12",
+    "doi": "10.1103/cxqw-1bty",
+    "arxiv": "2511.21650",
+    "table": "Table I, row “w/ SNO+ & JUNO 2025”"
+   }
+  },
+  {
+   "parameter": "sin2_th12",
+   "ordering": "NO",
+   "unit": "1e-1",
+   "best_fit": 3.085,
+   "range_1sigma": [
+    3.01,
+    3.156
+   ],
+   "range_2sigma": [
+    2.939,
+    3.23
+   ],
+   "range_3sigma": [
+    2.866,
+    3.303
+   ],
+   "accuracy_1sigma_percent": 2.4,
+   "accuracy_source": "paper",
+   "same_in_both_orderings": true,
+   "source": {
+    "release": "bari-2026-12",
+    "doi": "10.1103/cxqw-1bty",
+    "arxiv": "2511.21650",
+    "table": "Table I, row “w/ SNO+ & JUNO 2025”"
+   }
+  },
+  {
+   "parameter": "sin2_th12",
+   "ordering": "IO",
+   "unit": "1e-1",
+   "best_fit": 3.085,
+   "range_1sigma": [
+    3.01,
+    3.156
+   ],
+   "range_2sigma": [
+    2.939,
+    3.23
+   ],
+   "range_3sigma": [
+    2.866,
+    3.303
+   ],
+   "accuracy_1sigma_percent": 2.4,
+   "accuracy_source": "paper",
+   "same_in_both_orderings": true,
+   "source": {
+    "release": "bari-2026-12",
+    "doi": "10.1103/cxqw-1bty",
+    "arxiv": "2511.21650",
+    "table": "Table I, row “w/ SNO+ & JUNO 2025”"
+   }
+  },
+  {
+   "parameter": "absDm2",
+   "ordering": "NO",
+   "unit": "1e-3 eV^2",
+   "best_fit": 2.495,
+   "range_1sigma": [
+    2.475,
+    2.515
+   ],
+   "range_2sigma": [
+    2.454,
+    2.536
+   ],
+   "range_3sigma": [
+    2.433,
+    2.558
+   ],
+   "accuracy_1sigma_percent": 0.8,
+   "accuracy_source": "paper",
+   "same_in_both_orderings": false,
+   "source": {
+    "release": "bari-2025",
+    "doi": "10.1103/PhysRevD.111.093006",
+    "arxiv": "2503.07752",
+    "table": "Table I"
+   }
+  },
+  {
+   "parameter": "absDm2",
+   "ordering": "IO",
+   "unit": "1e-3 eV^2",
+   "best_fit": 2.465,
+   "range_1sigma": [
+    2.444,
+    2.485
+   ],
+   "range_2sigma": [
+    2.423,
+    2.506
+   ],
+   "range_3sigma": [
+    2.403,
+    2.527
+   ],
+   "accuracy_1sigma_percent": 0.8,
+   "accuracy_source": "paper",
+   "same_in_both_orderings": false,
+   "source": {
+    "release": "bari-2025",
+    "doi": "10.1103/PhysRevD.111.093006",
+    "arxiv": "2503.07752",
+    "table": "Table I"
+   }
+  },
+  {
+   "parameter": "sin2_th13",
+   "ordering": "NO",
+   "unit": "1e-2",
+   "best_fit": 2.23,
+   "range_1sigma": [
+    2.17,
+    2.27
+   ],
+   "range_2sigma": [
+    2.11,
+    2.33
+   ],
+   "range_3sigma": [
+    2.06,
+    2.38
+   ],
+   "accuracy_1sigma_percent": 2.4,
+   "accuracy_source": "paper",
+   "same_in_both_orderings": false,
+   "source": {
+    "release": "bari-2025",
+    "doi": "10.1103/PhysRevD.111.093006",
+    "arxiv": "2503.07752",
+    "table": "Table I"
+   }
+  },
+  {
+   "parameter": "sin2_th13",
+   "ordering": "IO",
+   "unit": "1e-2",
+   "best_fit": 2.23,
+   "range_1sigma": [
+    2.19,
+    2.3
+   ],
+   "range_2sigma": [
+    2.14,
+    2.35
+   ],
+   "range_3sigma": [
+    2.08,
+    2.41
+   ],
+   "accuracy_1sigma_percent": 2.4,
+   "accuracy_source": "paper",
+   "same_in_both_orderings": false,
+   "source": {
+    "release": "bari-2025",
+    "doi": "10.1103/PhysRevD.111.093006",
+    "arxiv": "2503.07752",
+    "table": "Table I"
+   }
+  },
+  {
+   "parameter": "sin2_th23",
+   "ordering": "NO",
+   "unit": "1e-1",
+   "best_fit": 4.73,
+   "range_1sigma": [
+    4.6,
+    4.96
+   ],
+   "range_2sigma": [
+    4.47,
+    5.68
+   ],
+   "range_3sigma": [
+    4.37,
+    5.81
+   ],
+   "accuracy_1sigma_percent": 5.1,
+   "accuracy_source": "paper",
+   "same_in_both_orderings": false,
+   "source": {
+    "release": "bari-2025",
+    "doi": "10.1103/PhysRevD.111.093006",
+    "arxiv": "2503.07752",
+    "table": "Table I"
+   }
+  },
+  {
+   "parameter": "sin2_th23",
+   "ordering": "IO",
+   "unit": "1e-1",
+   "best_fit": 5.45,
+   "range_1sigma": [
+    5.28,
+    5.6
+   ],
+   "range_2sigma": [
+    4.58,
+    5.73
+   ],
+   "range_3sigma": [
+    4.43,
+    5.83
+   ],
+   "accuracy_1sigma_percent": 4.3,
+   "accuracy_source": "paper",
+   "same_in_both_orderings": false,
+   "source": {
+    "release": "bari-2025",
+    "doi": "10.1103/PhysRevD.111.093006",
+    "arxiv": "2503.07752",
+    "table": "Table I"
+   }
+  },
+  {
+   "parameter": "delta_pi",
+   "ordering": "NO",
+   "unit": "1",
+   "best_fit": 1.2,
+   "range_1sigma": [
+    1.07,
+    1.37
+   ],
+   "range_2sigma": [
+    0.88,
+    1.81
+   ],
+   "range_3sigma": [
+    0.73,
+    2.03
+   ],
+   "accuracy_1sigma_percent": 18.0,
+   "accuracy_source": "paper",
+   "same_in_both_orderings": false,
+   "source": {
+    "release": "bari-2025",
+    "doi": "10.1103/PhysRevD.111.093006",
+    "arxiv": "2503.07752",
+    "table": "Table I"
+   }
+  },
+  {
+   "parameter": "delta_pi",
+   "ordering": "IO",
+   "unit": "1",
+   "best_fit": 1.48,
+   "range_1sigma": [
+    1.36,
+    1.61
+   ],
+   "range_2sigma": [
+    1.24,
+    1.72
+   ],
+   "range_3sigma": [
+    1.12,
+    1.83
+   ],
+   "accuracy_1sigma_percent": 8.0,
+   "accuracy_source": "paper",
+   "same_in_both_orderings": false,
+   "source": {
+    "release": "bari-2025",
+    "doi": "10.1103/PhysRevD.111.093006",
+    "arxiv": "2503.07752",
+    "table": "Table I"
+   }
+  }
+ ]
+}

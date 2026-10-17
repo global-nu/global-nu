@@ -44,6 +44,8 @@ try:
 except ImportError:  # pragma: no cover
     sys.exit("Missing dependency: markdown  ->  pip3 install markdown")
 
+from tools import preliminary
+
 ROOT = Path(__file__).resolve().parent
 SRC = ROOT / "site-src"
 CONTENT = SRC / "content"
@@ -59,6 +61,10 @@ OUT = ROOT / "site"
 # an embargoed result into the tree that gets published.
 DRAFTS = ROOT / "drafts"
 OUT_DRAFT = ROOT / "site-draft"
+# The one deliberate exception: site.yaml `preliminary: <release id>` publishes
+# that release from drafts/ as PRELIMINARY, pages and figures only — never its
+# files (tools/preliminary.py; tools/tests/test_preliminary.py checks site/).
+PRELIM = ""
 
 MD_EXTENSIONS = ["extra", "attr_list", "md_in_html", "tables", "sane_lists", "footnotes"]
 
@@ -512,7 +518,14 @@ def build_images(cfg: dict, verbose: bool = True) -> None:
     print(f"  images: {n_done} processed, {n_skip} up to date")
 
 
-def copy_tree(src: Path, dst: Path) -> int:
+def copy_tree(src: Path, dst: Path, overlay: bool = False) -> int:
+    """Copy src into dst, skipping files that are already current.
+
+    `overlay=True` is for a tree laid OVER one already copied (drafts/data
+    over data-exports): there the source must win whenever its bytes differ,
+    whatever the mtimes say. Comparing mtimes alone let an older draft file
+    lose to the newer public one it was meant to replace.
+    """
     if not src.exists():
         return 0
     n = 0
@@ -521,7 +534,11 @@ def copy_tree(src: Path, dst: Path) -> int:
             continue
         target = dst / p.relative_to(src)
         target.parent.mkdir(parents=True, exist_ok=True)
-        if not target.exists() or target.stat().st_mtime < p.stat().st_mtime:
+        if overlay:
+            stale = not target.exists() or target.read_bytes() != p.read_bytes()
+        else:
+            stale = not target.exists() or target.stat().st_mtime < p.stat().st_mtime
+        if stale:
             shutil.copy2(p, target)
             n += 1
     return n
@@ -551,6 +568,63 @@ def version_assets(page: str, versions: dict[str, str]) -> str:
         v = versions.get(m.group(2))
         return m.group(0) if v is None else f'{m.group(1)}{m.group(2)}?v={v}"'
     return _ASSET_REF.sub(sub, page)
+
+
+def write_app(cfg: dict) -> None:
+    """The files that make the site installable as an app: the web app
+    manifest and the service worker (site-src/sw.js, see its header). The
+    worker's VERSION is a hash of everything it precaches, so a deploy that
+    changes a stylesheet, a script or an icon replaces the old cache."""
+    versions = asset_versions()
+    pre = ["./", "index.html", "offline.html", "manifest.webmanifest"]
+    pre += [f"{a}?v={v}" for a, v in sorted(versions.items())
+            if not a.startswith("assets/vendor/")]
+    for d in ("fonts", "icons"):
+        pre += sorted("assets/" + p.relative_to(ASSETS).as_posix()
+                      for p in (ASSETS / d).glob("*") if p.is_file())
+    pre.append("assets/favicon.svg")
+    h = hashlib.sha1()
+    for u in pre:
+        f = OUT / u.split("?")[0] if u not in ("./",) else OUT / "index.html"
+        h.update(u.encode())
+        if f.is_file() and u not in ("./", "index.html", "offline.html"):
+            h.update(f.read_bytes())
+    sw = (SRC / "sw.js").read_text(encoding="utf-8")
+    sw = sw.replace("{{version}}", h.hexdigest()[:10]).replace(
+        "{{precache}}", json.dumps(pre, indent=2).replace("\n", "\n  "))
+    _write_if_changed(OUT / "sw.js", sw)
+
+    manifest = {
+        "id": "./",
+        "name": "global-nu — neutrino oscillation global analyses",
+        "short_name": "global-nu",
+        "description": cfg.get("tagline", ""),
+        "start_url": "./",
+        "scope": "./",
+        "display": "standalone",
+        "background_color": "#0d0f14",
+        "theme_color": "#0d0f14",
+        "icons": [
+            {"src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png"},
+            {"src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png"},
+            {"src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png",
+             "purpose": "maskable"},
+        ],
+        # The app is for reading: no shortcut to the data downloads.
+        "shortcuts": [
+            {"name": "Results", "url": "results.html"},
+            {"name": "Parameter history", "url": "history.html"},
+            {"name": "arXiv digest", "url": "digest.html"},
+            {"name": "Search", "url": "search.html"},
+        ],
+    }
+    _write_if_changed(OUT / "manifest.webmanifest",
+                      json.dumps(manifest, indent=2, ensure_ascii=False) + "\n")
+
+
+def _write_if_changed(path: Path, text: str) -> None:
+    if not path.exists() or path.read_text(encoding="utf-8") != text:
+        path.write_text(text, encoding="utf-8")
 
 
 def content_dirs(with_drafts: bool) -> list[Path]:
@@ -692,6 +766,8 @@ def build_pages(cfg: dict, with_drafts: bool = False) -> tuple[list[str], list[s
         })
         page = externalize_links(page, cfg)
         page = version_assets(page, versions)
+        if PRELIM:
+            page = preliminary.apply(page, url, PRELIM)
         (OUT / url).parent.mkdir(parents=True, exist_ok=True)
         target = OUT / url
         old_page = target.read_text(encoding="utf-8") if target.exists() else None
@@ -702,6 +778,10 @@ def build_pages(cfg: dict, with_drafts: bool = False) -> tuple[list[str], list[s
         # A page can ask to stay out of the sitemap. 404.html is the case
         # this exists for: it must be built and its links must be checked,
         # but announcing an error page to search engines is nonsense.
+        # A draft page overrides the public one with the same url, so its own
+        # front matter decides, and the url is listed once.
+        if url in in_sitemap:
+            in_sitemap.remove(url)
         if fm.get("sitemap", True) is not False:
             in_sitemap.append(url)
         print(f"    page {path.name} -> {url}")
@@ -808,10 +888,20 @@ def main() -> None:
 
     cfg = load_config(Path(args.config) if args.config else None)
 
-    global OUT
+    global OUT, PRELIM
     if args.drafts:
         OUT = OUT_DRAFT
         print("DRAFT BUILD — includes unpublished material, never deploy this tree")
+    else:
+        PRELIM = str(cfg.get("preliminary") or "").strip()
+    if PRELIM:
+        # Missing drafts/ must stop the build, not quietly publish the site
+        # without the release the home page has been announcing.
+        if not (DRAFTS / "content").is_dir() or not (DRAFTS / "release-2026a").is_dir():
+            sys.exit(f"site.yaml publishes release {PRELIM} as preliminary, "
+                     f"but {DRAFTS} is missing or incomplete — copy it here first")
+        print(f"PRELIMINARY: release {PRELIM} published as preliminary, without its files")
+    with_drafts = args.drafts or bool(PRELIM)
     if args.out:
         OUT = Path(args.out)
 
@@ -822,6 +912,15 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
 
     print("building ->", OUT)
+    # Every current or released value — home panel, Results tables, the CSV and
+    # JSON beside them — is regenerated from releases.yaml on every build, so a
+    # page and its download cannot come from different inputs. The public run
+    # always happens: a draft build reads the public fragments too, and only
+    # overrides them from drafts/figures/.
+    from tools import make_release
+    make_release.run(drafts=False)
+    if with_drafts:
+        make_release.run(drafts=True)
     n = copy_tree(ASSETS, OUT / "assets")
     print(f"  assets: {n} files copied")
 
@@ -834,10 +933,20 @@ def main() -> None:
         build_images(cfg)
 
     if args.drafts:
-        n = copy_tree(DRAFTS / "data", OUT / "data")
+        n = copy_tree(DRAFTS / "data", OUT / "data", overlay=True)
         print(f"  drafts: {n} data files copied")
+    if PRELIM:
+        # Of drafts/data only the Results page's own script, and the figures
+        # as images; the release's tables, package and 6D χ² stay behind.
+        js = preliminary.relpage_js(
+            (DRAFTS / "data" / "relpage" / "relpage.js").read_text(encoding="utf-8"))
+        (OUT / "data" / "relpage").mkdir(parents=True, exist_ok=True)
+        _write_if_changed(OUT / "data" / "relpage" / "relpage.js", js)
+        preliminary.RELPAGE_V = hashlib.sha1(js.encode()).hexdigest()[:8]
+        n = copy_tree(DRAFTS / "release-2026a", OUT / "release-2026a")
+        print(f"  preliminary: relpage.js + {n} figure files copied")
 
-    written, in_sitemap = build_pages(cfg, with_drafts=args.drafts)
+    written, in_sitemap = build_pages(cfg, with_drafts=with_drafts)
     # The crawler policy is data, not a string in the middle of code: the list
     # of named agents is a public position of this site and has to be
     # reviewable in a diff. Only the Sitemap line is derived, so the domain
@@ -863,6 +972,8 @@ def main() -> None:
             "dataset_doi_line":
                 f"Permanent identifier: https://doi.org/{doi}\n" if doi else "",
         }), encoding="utf-8")
+    write_app(cfg)
+
     # GitHub Pages runs Jekyll on the published tree unless told not to; an
     # empty .nojekyll stops it touching files whose names start with _.
     (OUT / ".nojekyll").write_text("", encoding="utf-8")

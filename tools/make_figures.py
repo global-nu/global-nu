@@ -150,10 +150,10 @@ def precision_svg(meta: dict, bari: list[dict]) -> str:
                        'stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" '
                        'opacity=".18"/>')
             out.append(f'<text x="{L-8}" y="{yy+3.5:.1f}" text-anchor="end" font-size="11" '
-                       f'fill="currentColor" opacity=".62">{gv}%</text>')
+                       f'fill="currentColor" opacity=".85">{gv}%</text>')
     for y in years:
         out.append(f'<text x="{sx(y):.1f}" y="{H-B+18}" text-anchor="middle" font-size="11" '
-                   f'fill="currentColor" opacity=".62">{y}</text>')
+                   f'fill="currentColor" opacity=".85">{y}</text>')
 
     ends = []
     for pname, label, pts, colour in series:
@@ -185,7 +185,7 @@ def precision_svg(meta: dict, bari: list[dict]) -> str:
                    f'font-weight="600" fill="{colour}">{label}</text>')
 
     body = "\n".join(out)
-    return (f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="Formal 1σ accuracy of each '
+    return (f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="1σ accuracy of each '
             'oscillation parameter, by year of publication, on a logarithmic scale">\n'
             f'{body}\n</svg>')
 
@@ -247,7 +247,7 @@ def ranges_svg(meta: dict, bari: list[dict]) -> str:
                                   meta[pname].get("unit"), e, y, colour, L, R, W))
 
     out.append(f'<text x="{L}" y="{H-4:.0f}" font-size="10" fill="currentColor" '
-               f'opacity=".6">width = 3σ range as a percentage of the best fit</text>')
+               f'opacity=".82">width = 3σ range as a percentage of the best fit</text>')
 
     body = "\n".join(out)
     return (f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="Best fit with 1σ and 3σ '
@@ -284,7 +284,7 @@ def _rel_axis(L: float, R: float, W: float, top: float, bottom: float,
                    f'stroke="currentColor" stroke-width="1" '
                    f'opacity="{".35" if zero else ".14"}"{dash}/>')
         out.append(f'<text x="{x:.1f}" y="{top - 6:.0f}" text-anchor="middle" '
-                   f'font-size="{font}" fill="currentColor" opacity=".62">'
+                   f'font-size="{font}" fill="currentColor" opacity=".85">'
                    f'{"best fit" if zero else f"{t:+d}%"}</text>')
     return out
 
@@ -414,7 +414,7 @@ def hero_ranges_svg(meta: dict, bari: list[dict]) -> str:
                                   source=rel["arxiv"]))
 
     out.append(f'<text x="{L}" y="{H-19:.0f}" font-size="9.5" fill="currentColor" '
-               f'opacity=".6">width = 3σ range as a percentage of the best fit</text>')
+               f'opacity=".82">width = 3σ range as a percentage of the best fit</text>')
     # Which paper each row came from, on its own line: with more than one
     # source in the figure, a single arXiv id in the corner would read as a
     # claim that all six rows are that paper's.
@@ -425,7 +425,7 @@ def hero_ranges_svg(meta: dict, bari: list[dict]) -> str:
         other = next(rel for _, rel, _ in rows if rel is not full)
         credit += f' · {", ".join(newer)} from arXiv:{other["arxiv"]}'
     out.append(f'<text x="{W-R}" y="{H-6:.0f}" text-anchor="end" font-size="9.5" '
-               f'font-family="var(--mono)" fill="currentColor" opacity=".5">'
+               f'font-family="var(--mono)" fill="currentColor" opacity=".75">'
                f'{credit}</text>')
 
     body = "\n".join(out)

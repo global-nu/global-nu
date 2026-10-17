@@ -218,6 +218,53 @@
     frame.addEventListener("focusin", showTip);
     frame.addEventListener("focusout", hideTip);
 
+    /* Tap to read. On a touch screen there is no hover, so a tap on a point
+       opens its panel and leaves it open; a tap on empty space closes it. A
+       tap that ended a pan (the pointer moved) is not a tap. */
+    var downX = 0, downY = 0;
+    frame.addEventListener("pointerdown", function (e) { downX = e.clientX; downY = e.clientY; });
+    frame.addEventListener("click", function (e) {
+      if (Math.abs(e.clientX - downX) + Math.abs(e.clientY - downY) > 8) return;
+      if (pointAt(e)) showTip(e); else hideTip();
+    });
+
+    /* The same points as a small table, under the plot. Built from the data-
+       attributes fill() reads, so it says exactly what the panel would. */
+    if (points.length) {
+      var tbtn = document.createElement("button");
+      tbtn.type = "button";
+      tbtn.className = "figbox__table-btn";
+      tbtn.textContent = "Table";
+      tbtn.setAttribute("aria-expanded", "false");
+      bar.insertBefore(tbtn, close);
+      var tbox = document.createElement("div");
+      tbox.className = "figbox__table table-scroll";
+      tbox.hidden = true;
+      var t = document.createElement("table");
+      t.className = "data";
+      var hr = t.createTHead().insertRow();
+      ["Group", "Year", "Value", "Range", "Ordering"].forEach(function (h) {
+        var th = document.createElement("th");
+        th.scope = "col";
+        th.textContent = h;
+        hr.appendChild(th);
+      });
+      var tb = t.createTBody();
+      Array.prototype.forEach.call(points, function (pt) {
+        var g = function (k) { return pt.getAttribute("data-" + k) || ""; };
+        if (!g("value")) return;
+        var row = tb.insertRow();
+        [g("group"), g("year"), g("value"),
+         g("range"), g("ordering")].forEach(function (v) { row.insertCell().textContent = v; });
+      });
+      tbox.appendChild(t);
+      box.appendChild(tbox);
+      tbtn.addEventListener("click", function () {
+        tbox.hidden = !tbox.hidden;
+        tbtn.setAttribute("aria-expanded", tbox.hidden ? "false" : "true");
+      });
+    }
+
     function apply() {
       stage.style.transform = "translate(" + tx.toFixed(1) + "px," +
                               ty.toFixed(1) + "px) scale(" + scale.toFixed(3) + ")";
@@ -305,6 +352,7 @@
       if (fig.classList.contains("map-figure")) return;   /* has its own click */
       if (fig.classList.contains("confmap-figure")) return; /* ditto — confmap.js */
       if (fig.querySelector(".timeline-scroll")) return;    /* scrolls; see header */
+      if (fig.querySelector(".explorer")) return;           /* its click reads a point */
       if (!drawingIn(fig)) return;                        /* nothing to enlarge */
       fig.setAttribute("tabindex", "0");
       fig.setAttribute("role", "button");

@@ -17,7 +17,9 @@ today's.
 from __future__ import annotations
 
 import datetime as _dt
+import hashlib
 import html
+import urllib.parse
 import logging
 from pathlib import Path
 
@@ -166,6 +168,22 @@ def _cited(ids: list[str], known: dict[str, dict]) -> str:
     return "".join(parts)
 
 
+FEEDS_DIR = Path(__file__).resolve().parents[2] / "data-exports" / "feeds"
+
+
+def _write_feed(name: str, title: str, page: str, subtitle: str, entries: list[dict],
+                log: logging.Logger) -> None:
+    """An Atom feed beside the page. Never allowed to cost the page."""
+    try:
+        from tools import atom
+        FEEDS_DIR.mkdir(parents=True, exist_ok=True)
+        (FEEDS_DIR / name).write_text(
+            atom.feed(f"data/feeds/{name}", title, page, f"data/feeds/{name}", subtitle, entries),
+            encoding="utf-8")
+    except Exception as exc:                       # noqa: BLE001
+        log.warning("render: feed %s not written (%s)", name, exc)
+
+
 def _page(path: Path, frontmatter: str, body: str) -> None:
     path.write_text(frontmatter.rstrip() + "\n\n" + body.strip() + "\n", encoding="utf-8")
 
@@ -182,6 +200,72 @@ description: >-
   published theory papers, milestones and new projects.
 katex: false
 ---"""
+
+
+# Where a reader reports an error in a summary. The address the About page
+# already publishes for the site.
+CORRECTIONS = "antonio.marrone@ba.infn.it"
+
+
+def _source_label(rec: dict) -> str:
+    """Who published a cited record, as a reader would name them."""
+    x = rec.get("extra") or {}
+    if rec.get("source") == "feed":
+        return x.get("feed") or "news feed"
+    if rec.get("source") == "inspire":
+        return "INSPIRE-HEP" + (f", {x['reference']}" if x.get("reference") else "")
+    if rec.get("source") == "arxiv":
+        return "arXiv"
+    return str(rec.get("source") or "source")
+
+
+def _news_meta(item: dict, known: dict[str, dict], written: str) -> str:
+    """The provenance line under one summary: what it is, where it comes from,
+    when the source said it and when the summary was written, and how to
+    report an error. A summary must never read like one of the group's own
+    results, so the AI label comes first, on every item."""
+    srcs = []
+    for rid in item.get("ids") or []:
+        rec = known.get(rid)
+        if rec:
+            d = _human_date(rec.get("date", "")) if rec.get("date") else ""
+            label = _esc(_source_label(rec)) + (f", {_esc(d)}" if d else "")
+            if label not in srcs:
+                srcs.append(label)
+    badges = '<span class="vbadge vbadge--ai">AI-generated</span>'
+    if item.get("reviewed"):
+        badges += ' <span class="vbadge vbadge--human">human reviewed</span>'
+    subject = f"global-nu news correction: {item.get('heading') or item.get('text', '')[:60]}"
+    href = _attr(f"mailto:{CORRECTIONS}?subject={urllib.parse.quote(subject)}")
+    parts = [badges]
+    if written:
+        parts.append(f"Summary written {_esc(written)}")
+    parts.append(f'<a href="{href}">Report a correction</a>')
+    return '<p class="newsmeta">' + " · ".join(parts) + "</p>"
+
+
+def _news_item(item: dict, known: dict[str, dict], written: str, heading: str | None) -> str:
+    """One news entry: heading, summary, the sources as buttons, and the
+    provenance line. Theory items have no heading of their own; they take the
+    title of the paper they summarise."""
+    recs = [known[i] for i in item.get("ids") or [] if i in known]
+    if not heading and recs:
+        heading = _title(recs[0])
+    srcs = []
+    for rec in recs:
+        url = (rec.get("links") or {}).get("arxiv") or rec.get("url") or ""
+        if not url:
+            continue
+        d = _human_date(rec.get("date", "")) if rec.get("date") else ""
+        srcs.append(f'<a class="news-src" href="{_attr(url)}">'
+                    f'<span class="news-src__who">{_esc(_source_label(rec))}</span>'
+                    f'{f"<span class=news-src__when>{_esc(d)}</span>" if d else ""}'
+                    f'<span class="news-src__go" aria-hidden="true">↗</span></a>')
+    head = f'<h3 class="news-item__h">{_esc(heading)}</h3>' if heading else ""
+    return ('<article class="news-item">'
+            f'{head}<p class="news-item__text">{_esc(item["text"])}</p>'
+            f'{"<div class=news-item__src>" + "".join(srcs) + "</div>" if srcs else ""}'
+            f'{_news_meta(item, known, written)}</article>\n')
 
 
 def news(narrative: dict | None, known: dict[str, dict], log: logging.Logger,
@@ -209,6 +293,8 @@ def news(narrative: dict | None, known: dict[str, dict], log: logging.Logger,
 
 """ + AUTOGEN_AI.format(stamp=stamp or _stamp())]
 
+    written = _human_date(str(narrative.get("generated_at", ""))[:10]) if narrative.get("generated_at") else ""
+
     if narrative.get("overview"):
         body.append(
             '\n<p class="small muted"><b>In summary.</b> '
@@ -217,14 +303,9 @@ def news(narrative: dict | None, known: dict[str, dict], log: logging.Logger,
 
     if narrative.get("experiments"):
         body.append('\n<div class="section-head"><h2>Experiments and results</h2></div>\n')
-        body.append('<div class="tiles">\n')
+        body.append('<div class="news-feed">\n')
         for item in narrative["experiments"]:
-            body.append(
-                '<article class="tile">\n'
-                f'<div class="stamp stamp--no">{_esc(item.get("heading", "Experiment"))}</div>\n'
-                f'<p>{_esc(item["text"])}</p>\n'
-                f'<div class="cites">{_cited(item["ids"], known)}</div>\n'
-                '</article>\n')
+            body.append(_news_item(item, known, written, item.get("heading")))
         body.append('</div>\n')
 
     body.append(":::\n")
@@ -234,16 +315,29 @@ def news(narrative: dict | None, known: dict[str, dict], log: logging.Logger,
         body.append('<div class="section-head"><h2>Theory highlights</h2>'
                     '<p>recently published, with the links each record '
                     'carries</p></div>\n')
-        body.append('<ul class="list list--news">\n')
+        body.append('<div class="news-feed">\n')
         for item in narrative["theory"]:
-            body.append(f'<li><p>{_esc(item["text"])}</p>'
-                        f'<span class="cites">{_cited(item["ids"], known)}</span></li>\n')
-        body.append('</ul>\n')
+            body.append(_news_item(item, known, written, None))
+        body.append('</div>\n')
         body.append('\n<div class="btn-row"><a class="btn btn--sm btn--ghost" '
                     'href="digest.html">The full arXiv digest →</a></div>\n')
         body.append(':::\n')
 
     _page(NEWS_PAGE, NEWS_FRONTMATTER, "".join(body))
+    gen = str(narrative.get("generated_at") or "")
+    entries = []
+    for item in (narrative.get("experiments") or []) + (narrative.get("theory") or []):
+        first = next((known[i] for i in item.get("ids") or [] if i in known), None)
+        text = item.get("text", "")
+        entries.append({
+            "id": "https://global-nu.org/news/" + hashlib.sha1(text.encode()).hexdigest()[:16],
+            "title": item.get("heading") or (text.split(". ")[0][:110]),
+            "link": (first or {}).get("url") or "https://global-nu.org/news.html",
+            "updated": gen,
+            "summary": "AI-generated summary of the linked source; may contain errors. " + text})
+    _write_feed("news.atom", "global-nu — neutrino news (AI-generated summaries)", "news.html",
+                "Summaries written automatically with AI from fetched sources; each links to its source.",
+                entries, log)
     log.info("render: news.md — %d experiment items, %d theory items",
              len(narrative.get("experiments") or []), len(narrative.get("theory") or []))
     return True
@@ -257,10 +351,56 @@ title: arXiv digest
 head_title: Daily arXiv digest of neutrino papers — global-nu
 url: digest.html
 description: >-
-  The day's neutrino preprints on arXiv, experimental and theoretical, ranked by
-  relevance — updated automatically every day.
+  The newest neutrino preprints on arXiv, experimental and theoretical, ranked
+  by relevance — updated automatically every day.
 katex: false
 ---"""
+
+
+def _record_dates(rec: dict) -> str:
+    """The dates of one preprint, each named for what it is.
+
+    Records written before the dates were kept apart carry only `date`, which
+    the API route filled with the first-submission date and the RSS route with
+    the announcement day — so `route` says which it was.
+    """
+    x = rec.get("extra") or {}
+    submitted = x.get("submitted") or (rec.get("date") if x.get("route") == "api" else "")
+    announced = x.get("announced") or (rec.get("date") if x.get("route") == "rss" else "")
+    parts = []
+    if submitted:
+        parts.append(f"first submitted {_human_date(submitted)}")
+    if x.get("updated"):
+        parts.append(f"updated {_human_date(x['updated'])}")
+    if announced:
+        parts.append(f"announced {_human_date(announced)}")
+    if not parts and rec.get("date"):
+        parts.append(_human_date(rec["date"]))
+    return " · ".join(parts)
+
+
+def _digest_window(records: list[dict], via_rss: bool) -> str:
+    """One line saying which dates this edition covers, and which kind.
+
+    The two routes answer different questions, so they get different words:
+    the RSS feeds are one arXiv announcement, the API a rolling window of
+    first submissions. Both ranges are read from the records themselves.
+    """
+    if via_rss:
+        days = sorted({(r.get("extra") or {}).get("announced") or r.get("date", "") for r in records} - {""})
+        what = "arXiv announcement of " + (_human_date(days[-1]) if days else "today")
+        tail = "Submission dates are not in the announcement feed."
+    else:
+        days = sorted({(r.get("extra") or {}).get("submitted") or r.get("date", "") for r in records} - {""})
+        span = (_human_date(days[0]) if len(days) == 1 or days[0] == days[-1]
+                else f"{_human_date(days[0])} – {_human_date(days[-1])}")
+        what = f"preprints first submitted {span}"
+        tail = ("arXiv announces submissions on its own schedule, so the newest "
+                "of these may not have been announced yet.")
+    return (f'<p class="digest-dates small"><b>This edition:</b> {_esc(what)}. '
+            f'Each entry gives its own dates: first submission, latest update '
+            f'when there is one, and announcement when the source states it. '
+            f'{_esc(tail)}</p>')
 
 
 def _digest_list(records: list[dict]) -> str:
@@ -276,8 +416,7 @@ def _digest_list(records: list[dict]) -> str:
         # A record with no arXiv link keeps a plain title and an untouched
         # row — nothing is lost for the records this does not apply to.
         head = f'<a href="{_esc(arxiv)}">{title}</a>' if arxiv else title
-        meta = " · ".join(x for x in (rec.get("authors"),
-                                      _human_date(rec.get("date", ""))) if x)
+        meta = " · ".join(x for x in (rec.get("authors"), _record_dates(rec)) if x)
         tags = "".join(
             f'<span class="tag">{_esc(c)}</span>'
             for c in (rec.get("extra") or {}).get("categories", [])[:3])
@@ -418,15 +557,17 @@ API answers. Same categories, same keyword ranking, same everything else.</p>
     body = f"""<section class="hero">
   <div class="wrap hero__in">
     <p class="kicker">Updated daily</p>
-    <h1>The day's preprints on arXiv</h1>
-    <p class="lede">Neutrino preprints ranked by relevance to the field, with
-    experimental and theoretical work kept apart.</p>
+    <h1>Recent neutrino preprints on arXiv</h1>
+    <p class="lede">The newest neutrino preprints, ranked by relevance to the
+    field, with experimental and theoretical work kept apart. Rebuilt every
+    morning; the dates covered are stated below.</p>
   </div>
 </section>
 
 ::: section
 
 {AUTOGEN_SCRIPT.format(sources=source_name, stamp=stamp or _stamp(), note="")}
+{_digest_window(records, via_rss)}
 {QUIET_BEGIN}
 {quiet_note}{QUIET_END}
 {fallback_note}
@@ -465,6 +606,16 @@ still appears under theory.</p>
 :::
 """
     _page(DIGEST_PAGE, DIGEST_FRONTMATTER, body)
+    _write_feed("digest.atom", "global-nu — recent neutrino preprints on arXiv", "digest.html",
+                "Neutrino preprints ranked by relevance, rebuilt every morning. Selected by "
+                "keyword score; no model involved.",
+                [{"id": (r.get("links") or {}).get("arxiv") or r.get("url") or r["id"],
+                  "title": r.get("title", ""), "link": (r.get("links") or {}).get("arxiv") or r.get("url", ""),
+                  "updated": (r.get("extra") or {}).get("updated") or (r.get("extra") or {}).get("submitted")
+                             or r.get("date", ""),
+                  "authors": [a.strip() for a in (r.get("authors") or "").split(",") if a.strip()][:3],
+                  "categories": (r.get("extra") or {}).get("categories", [])[:3],
+                  "summary": r.get("summary", "")} for r in records], log)
     log.info("render: digest.md — %d experimental, %d theory", len(exp), len(thy))
     return True
 
@@ -482,6 +633,7 @@ katex: false
 scripts:
   - assets/js/confmap.js
   - assets/js/svgzoom.js
+  - assets/js/confilter.js
 ---"""
 
 
@@ -532,19 +684,42 @@ def affinity_legend(*groups: list[dict]) -> str:
             'Closeness of the subject:</span>' + items + '</p>')
 
 
+def _conf_row(rec: dict) -> str:
+    """One meeting's row, with the facets the page's filters read."""
+    extra = rec.get("extra") or {}
+    meta = " · ".join(x for x in (extra.get("span"), extra.get("place")) if x)
+    facets = (f' data-kind="{conf_mod.kind_of(rec)}"'
+              f' data-continent="{_attr(conf_mod.continent_of(rec))}"'
+              f' data-status="{conf_mod.status_of(rec)}"'
+              f' data-scope="{_attr(extra.get("scope", ""))}"'
+              f' data-start="{_attr(extra.get("opening") or rec.get("date") or "")}"'
+              f' data-end="{_attr(extra.get("closing") or extra.get("opening") or "")}"'
+              f' data-place="{_attr(extra.get("place") or "")}"'
+              f' data-url="{_attr(rec.get("url") or "")}"'
+              f' data-title="{_attr(rec.get("title") or "")}"')
+    # conf_attrs: the map card's own data, so a click on the row opens
+    # that card (confmap.js). Without the script "Details" stays a link.
+    return (f'<li{figures.conf_attrs(rec)}{facets}><b>{_title(rec)}</b>'
+            f'{_affinity_chip(rec)}'
+            f'<span>{_esc(meta)}</span>'
+            f'<span class="cites"><a href="{_esc(rec["url"])}">Details</a></span>')
+
+
 def _conf_list(records: list[dict], empty: str) -> str:
     if not records:
         return f'<p class="small muted">{empty}</p>\n'
+    # Schools, workshops and satellite events of a conference are listed
+    # under it rather than beside it: three rows for one meeting read as
+    # three meetings. conferences.group_related says when that is safe.
+    top, kids = conf_mod.group_related(records)
     out = ['<ul class="list list--news conf-list">\n']
-    for rec in records:
-        extra = rec.get("extra") or {}
-        meta = " · ".join(x for x in (extra.get("span"), extra.get("place")) if x)
-        # conf_attrs: the map card's own data, so a click on the row opens
-        # that card (confmap.js). Without the script "Details" stays a link.
-        out.append(f'<li{figures.conf_attrs(rec)}><b>{_title(rec)}</b>'
-                   f'{_affinity_chip(rec)}'
-                   f'<span>{_esc(meta)}</span>'
-                   f'<span class="cites"><a href="{_esc(rec["url"])}">Details</a></span></li>\n')
+    for rec in top:
+        sub = kids.get(rec["id"]) or []
+        tail = ""
+        if sub:
+            tail = ('<ul class="conf-sub" aria-label="Related events">'
+                    + "".join(_conf_row(k) + "</li>" for k in sub) + "</ul>")
+        out.append(_conf_row(rec) + tail + "</li>\n")
     out.append('</ul>\n')
     return "".join(out)
 
@@ -583,7 +758,8 @@ def _scope_block(records: list[dict], title: str, empty_upcoming: str,
     """
     upcoming, recent = fetch_inspire.split(records)
     shown_recent = recent[:max(0, max_recent)]
-    out = [f'<div class="section-head"><h2>{_esc(title)}</h2>'
+    out = [f'<div class="conf-scope" data-scope="{_attr((records[0].get("extra") or {}).get("scope", "") if records else "")}">',
+           f'<div class="section-head"><h2>{_esc(title)}</h2>'
           f'<p>{len(records)} meeting{"" if len(records) == 1 else "s"}</p></div>\n']
     out.append('<div class="section-head section-head--sub"><h3>Upcoming</h3>'
                f'<p>{len(upcoming)} meeting{"" if len(upcoming) == 1 else "s"}</p></div>\n')
@@ -594,7 +770,30 @@ def _scope_block(records: list[dict], title: str, empty_upcoming: str,
     out.append('<div class="section-head section-head--sub"><h3>Recent</h3>'
                f'<p>{count}</p></div>\n')
     out.append(_conf_list(shown_recent, "No meeting in this window has ended yet."))
+    out.append("</div>\n")
     return "".join(out)
+
+
+# The calendar file of every meeting on the page, written beside the data
+# exports so build.py publishes it at data/feeds/conferences.ics.
+ICS_PATH = Path(__file__).resolve().parents[2] / "data-exports" / "feeds" / "conferences.ics"
+
+
+def _conf_filters(records: list[dict]) -> str:
+    """The filter bar. Hidden until confilter.js runs, so a page without the
+    script shows the full lists and no controls that do nothing."""
+    conts = sorted({c for c in (conf_mod.continent_of(r) for r in records) if c})
+    opts = "".join(f'<option value="{_attr(c)}">{_esc(c)}</option>' for c in conts)
+    return f"""<form class="conf-filters" id="conf-filters" hidden aria-label="Filter the meetings">
+<label class="conf-filters__nu"><input type="checkbox" name="nu"> Neutrino physics only</label>
+<label>When <select name="when"><option value="">Any time</option><option value="3">Next 3 months</option><option value="6">Next 6 months</option><option value="12">Next 12 months</option></select></label>
+<label>Where <select name="cont"><option value="">Anywhere</option>{opts}</select></label>
+<label>Kind <select name="kind"><option value="">Any kind</option><option value="conference">Conference</option><option value="workshop">Workshop</option><option value="school">School</option><option value="other">Other</option></select></label>
+<label>Status <select name="status"><option value="">Any</option><option value="upcoming">Upcoming</option><option value="ongoing">Ongoing</option><option value="recent">Recent</option></select></label>
+<p class="conf-filters__count small" aria-live="polite"></p>
+<p class="conf-filters__note small">The kind is read from each meeting's title; a meeting whose source gives no country is shown only under “Anywhere”. Filters apply to the lists; the timeline and the map show every meeting.</p>
+<div class="btn-row"><a class="btn btn--sm btn--ghost" href="data/feeds/conferences.ics" download>All meetings (.ics)</a><button class="btn btn--sm btn--ghost" type="button" id="conf-ics">Meetings shown (.ics)</button></div>
+</form>"""
 
 
 def conferences(records: list[dict], log: logging.Logger,
@@ -713,6 +912,12 @@ def conferences(records: list[dict], log: logging.Logger,
     # at once: they exist to show the field's whole calendar and map at a
     # glance, and splitting THEM by domain too would mean two timelines and
     # two maps above a list already asked to make room for one of each.
+    try:
+        ICS_PATH.parent.mkdir(parents=True, exist_ok=True)
+        ICS_PATH.write_text(conf_mod.to_ics(records), encoding="utf-8", newline="")
+    except OSError as exc:                      # the calendar must not cost the page
+        log.warning("render: conferences.ics not written (%s)", exc)
+
     neutrino_records = conf_mod.split_scope(records, "neutrino")
     general_records = conf_mod.split_scope(records, "general")
 
@@ -738,6 +943,7 @@ def conferences(records: list[dict], log: logging.Logger,
 {AUTOGEN_SCRIPT.format(sources="conference indexers' APIs", stamp=stamp or _stamp(),
                       note=NO_MODEL)}
 
+{_conf_filters(records)}
 {legend}
 {timeline_block}
 {map_block}

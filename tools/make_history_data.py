@@ -81,7 +81,8 @@ FIELD_DOCS = [
     ("value_as_published", "The number as printed in the paper — see the two "
                            "value columns, above"),
     ("value_our_convention", "The same quantity in this group's convention — "
-                             "see the two value columns, above"),
+                             "see the two value columns, above. For Δm² it is "
+                             "the modulus |Δm²| in both orderings"),
     ("unit", "The normalisation the value is written in: <code>1e-2</code> "
              "means the printed digits are hundredths"),
     ("level", "For a <code>limit</code> row only: the confidence level the "
@@ -125,7 +126,8 @@ NOTE = (
     "is exactly what the cited paper printed, in its own convention and "
     "normalisation (see the `convention` and `unit` fields of each row). "
     "value_our_convention is the same quantity in this group's convention, "
-    "delta m^2 = m2^2 - m1^2 > 0 and Dm2 = m3^2 - (m1^2 + m2^2)/2: identical "
+    "delta m^2 = m2^2 - m1^2 > 0 and Dm2 = m3^2 - (m1^2 + m2^2)/2, given as "
+    "its modulus |Dm2| in both orderings, as the Bari papers print it: identical "
     "to value_as_published for every parameter except Dm2, where NuFit and "
     "Valencia report a different quantity (Dm2_3l, |Dm2_31|) and the "
     "conversion is performed by tools/make_history.py's to_our_Dm2(). See "

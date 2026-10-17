@@ -1,0 +1,19 @@
+# global-nu current values — Newest published value per parameter — values from two publications, not a single fit.
+# source: 2026 (1, 2)-sector update — Phys. Rev. D 114, 016026 (2026)
+# source: March 2025 full release — Phys. Rev. D 111, 093006 (2025)
+# conventions: dm2: δm² = m₂² − m₁² > 0; absDm2: |Δm²| with Δm² = m₃² − (m₁² + m₂²)/2 = (Δm²₃₁ + Δm²₃₂)/2; Δm² > 0 in NO, < 0 in IO; delta_pi: δ/π, cyclic mod 2; ranges: 1, 2, 3σ ranges for one degree of freedom: Δχ² = 1, 4, 9 from the minimum of the same ordering; units: each value is in the unit of its row, e.g. best_fit 3.085 with unit 1e-1 means 0.3085; accuracy_1sigma_percent: one sixth of the 3σ range divided by the best fit, in percent
+# licence: CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/
+# pandas.read_csv(path, comment='#', dtype=str) keeps the printed digits
+parameter,ordering,unit,best_fit,range_1sigma_low,range_1sigma_high,range_2sigma_low,range_2sigma_high,range_3sigma_low,range_3sigma_high,accuracy_1sigma_percent,accuracy_source,same_in_both_orderings,source_release,source_doi,source_arxiv,source_table
+dm2,NO,1e-5 eV^2,7.48,7.39,7.58,7.30,7.68,7.21,7.78,1.3,paper,true,bari-2026-12,10.1103/cxqw-1bty,2511.21650,"Table I, row “w/ SNO+ & JUNO 2025”"
+dm2,IO,1e-5 eV^2,7.48,7.39,7.58,7.30,7.68,7.21,7.78,1.3,paper,true,bari-2026-12,10.1103/cxqw-1bty,2511.21650,"Table I, row “w/ SNO+ & JUNO 2025”"
+sin2_th12,NO,1e-1,3.085,3.010,3.156,2.939,3.230,2.866,3.303,2.4,paper,true,bari-2026-12,10.1103/cxqw-1bty,2511.21650,"Table I, row “w/ SNO+ & JUNO 2025”"
+sin2_th12,IO,1e-1,3.085,3.010,3.156,2.939,3.230,2.866,3.303,2.4,paper,true,bari-2026-12,10.1103/cxqw-1bty,2511.21650,"Table I, row “w/ SNO+ & JUNO 2025”"
+absDm2,NO,1e-3 eV^2,2.495,2.475,2.515,2.454,2.536,2.433,2.558,0.8,paper,false,bari-2025,10.1103/PhysRevD.111.093006,2503.07752,Table I
+absDm2,IO,1e-3 eV^2,2.465,2.444,2.485,2.423,2.506,2.403,2.527,0.8,paper,false,bari-2025,10.1103/PhysRevD.111.093006,2503.07752,Table I
+sin2_th13,NO,1e-2,2.23,2.17,2.27,2.11,2.33,2.06,2.38,2.4,paper,false,bari-2025,10.1103/PhysRevD.111.093006,2503.07752,Table I
+sin2_th13,IO,1e-2,2.23,2.19,2.30,2.14,2.35,2.08,2.41,2.4,paper,false,bari-2025,10.1103/PhysRevD.111.093006,2503.07752,Table I
+sin2_th23,NO,1e-1,4.73,4.60,4.96,4.47,5.68,4.37,5.81,5.1,paper,false,bari-2025,10.1103/PhysRevD.111.093006,2503.07752,Table I
+sin2_th23,IO,1e-1,5.45,5.28,5.60,4.58,5.73,4.43,5.83,4.3,paper,false,bari-2025,10.1103/PhysRevD.111.093006,2503.07752,Table I
+delta_pi,NO,1,1.20,1.07,1.37,0.88,1.81,0.73,2.03,18,paper,false,bari-2025,10.1103/PhysRevD.111.093006,2503.07752,Table I
+delta_pi,IO,1,1.48,1.36,1.61,1.24,1.72,1.12,1.83,8,paper,false,bari-2025,10.1103/PhysRevD.111.093006,2503.07752,Table I

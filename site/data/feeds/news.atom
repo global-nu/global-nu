@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<id>https://global-nu.org/data/feeds/news.atom</id>
+<title>global-nu — neutrino news (AI-generated summaries)</title>
+<subtitle>Summaries written automatically with AI from fetched sources; each links to its source.</subtitle>
+<link rel="alternate" type="text/html" href="https://global-nu.org/news.html"/>
+<link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/news.atom"/>
+<updated>2026-10-16T07:46:20+02:00</updated>
+<author><name>global-nu.org, Bari group</name></author>
+<entry>
+<id>https://global-nu.org/news/222b2e63b1cecae7</id>
+<title>IceCube Nobel Prize</title>
+<link rel="alternate" href="https://icecube.wisc.edu/news/awards/2026/10/francis-halzen-icecube-principal-investigator-wins-2026-physics-nobel-prize/"/>
+<updated>2026-10-16T07:46:20+02:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The Royal Swedish Academy of Sciences awarded the 2026 Nobel Prize in Physics to Francis Halzen of the University of Wisconsin–Madison. IceCube describes him as its principal investigator. The citation is for decisive contributions to the IceCube Neutrino Observatory and the discovery of high-energy neutrinos of astrophysical origin.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/0625af62d9d9e1e1</id>
+<title>IceCube decoherence search</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.14144"/>
+<updated>2026-10-16T07:46:20+02:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. IceCube searched for quantum-gravity-induced decoherence of flavour oscillations using 368,071 atmospheric neutrinos between 0.5 and 100 TeV. This is an order of magnitude higher in energy than any previous decoherence search. The analysis found no evidence for decoherence and sets the strongest constraints to date on Planck-scale decoherence.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/5976e7cbe91c3a68</id>
+<title>IceCube infrared flares</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.20163"/>
+<updated>2026-10-16T07:46:20+02:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. IceCube has posted a search for high-energy neutrinos from infrared flares. It is motivated by neutrino emission from the blazar TXS 0506+056 and the Seyfert galaxy NGC 1068, which point to accretion onto supermassive black holes as a possible origin of the diffuse flux. The motivation also cites external candidate sources identified in IceCube data, including AT2019dsg and AT2019fdr.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/9520dcceb51f1583</id>
+<title>Galactic centre with HAWC</title>
+<link rel="alternate" href="https://icecube.wisc.edu/news/research/2026/09/using-icecube-and-hawc-data-to-investigate-the-center-of-our-galaxy/"/>
+<updated>2026-10-16T07:46:20+02:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. IceCube published a news item on using IceCube and HAWC data to investigate the centre of the Galaxy. The region contains dense gas and potential accelerators, including a supermassive black hole. Particles accelerated to petaelectronvolt energies are of particular interest.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/6d7f354011c92301</id>
+<title>KM3NeT sea operations</title>
+<link rel="alternate" href="https://www.km3net.org/two-more-successes-in-the-construction-of-arca-and-orca/"/>
+<updated>2026-10-16T07:46:20+02:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. KM3NeT reports a period of intense marine operations, with two further steps for ARCA and ORCA. During a campaign by Alcatel Submarine Networks, Cable Termination Frame 3 (CTF3) was installed at the ARCA deep-sea site.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/87268d97394726a3</id>
+<title>KM3NeT ESFRI Landmark</title>
+<link rel="alternate" href="https://www.km3net.org/km3net-is-a-esfri-landmark/"/>
+<updated>2026-10-16T07:46:20+02:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The KM3NeT Collaboration announced that it has been recognised as a Landmark in the ESFRI Roadmap 2026. ESFRI is the European Strategy Forum on Research Infrastructures, and its Roadmap identifies the most critical next-generation facilities.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/6d3f5d385b61473b</id>
+<title>Baikal-GVD point sources</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3207629"/>
+<updated>2026-10-16T07:46:20+02:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. Baikal-GVD is a cubic-kilometre-scale detector under construction in Lake Baikal and is now 70% complete. A search for point-like astrophysical sources with a five-year track-like dataset from 2019–2024 found no significant source. The authors computed upper limits for selected candidate objects and compared them with published IceCube, ANTARES and KM3NeT results.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/a12f715f4ded38a1</id>
+<title>T2K near detector</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3207726"/>
+<updated>2026-10-16T07:46:20+02:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The ND280 upgrade of the T2K near detector was completed in 2024 and has enhanced its tracking capabilities. A new event selection targets muon-neutrino charged-current interactions with single positively charged pion production in the new modules. The work is presented as a step towards reducing the leading systematic uncertainties of T2K, which stem from neutrino-nucleus interaction modelling.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/95e5a38a99503ac7</id>
+<title>DUNE collaboration meeting</title>
+<link rel="alternate" href="https://jornal.unicamp.br/en/noticias/2026/09/22/projeto-dune-tem-dia-de-avaliacao-e-espera-por-atracoes-culturais/"/>
+<updated>2026-10-16T07:46:20+02:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. Researchers from around the world gathered at Unicamp for the DUNE Collaboration Meeting to discuss progress of the project, which Fermilab leads. The Fermilab news item reports no specific results.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/cb3d92abe653a635</id>
+<title>The paper computes two-neutrino double-beta decay rates without decoupling nuclear structure from the lepton k</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3174998"/>
+<updated>2026-10-16T07:46:20+02:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper computes two-neutrino double-beta decay rates without decoupling nuclear structure from the lepton kinematics. It presents deviations of the rates and electron spectra from closure, non-closure and Taylor-expansion approximations for 82Se and 136Xe. This matters to anyone interpreting double-beta spectra, because the approximations enter the standard calculations.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/65771907ea32d6f3</id>
+<title>The authors compare nine periodogram algorithms on the 22-year Super-Kamiokande solar 8B neutrino dataset (199</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3184879"/>
+<updated>2026-10-16T07:46:20+02:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The authors compare nine periodogram algorithms on the 22-year Super-Kamiokande solar 8B neutrino dataset (1996–2018), using hierarchical temporal segmentation to separate astrophysical signals from detector systematics. They conclude that the Generalized Lomb-Scargle method gives the most statistically robust detections because it handles heteroscedastic uncertainties. It is a methodological reference for periodicity searches in solar neutrino data.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/8fdebb67eab6ce43</id>
+<title>The paper studies an ultralight vector boson of the gauged L_mu − L_tau symmetry that mixes kinetically with t</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3208620"/>
+<updated>2026-10-16T07:46:20+02:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper studies an ultralight vector boson of the gauged L_mu − L_tau symmetry that mixes kinetically with the photon and so adds a matter potential in the Sun, modifying MSW oscillations. It uses solar neutrino measurements from Borexino, SNO and Super-Kamiokande, and discusses prospects for JUNO and XLZD. It shows how solar data can probe very light new mediators.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/ba767d5bfac4e01d</id>
+<title>The authors study scalar-mediated neutrino self-interactions acting on the diffuse supernova neutrino backgrou</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3171055"/>
+<updated>2026-10-16T07:46:20+02:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The authors study scalar-mediated neutrino self-interactions acting on the diffuse supernova neutrino background as it crosses the cosmic neutrino background. They work in a full three-flavour framework that keeps the complete PMNS structure. The aim is to find the spectral imprints such interactions would leave for next-generation detectors.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/abddee25250b94b6</id>
+<title>The paper examines neutrino mass and thermal leptogenesis in the Babu-Nandi-Tavartkiladze model, which has a s</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3186500"/>
+<updated>2026-10-16T07:46:20+02:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper examines neutrino mass and thermal leptogenesis in the Babu-Nandi-Tavartkiladze model, which has a scalar quadruplet and two vectorlike fermion triplets. Neutrino masses arise from a dimension-7 operator at tree level and a dimension-5 operator at one loop, allowing sub-eV masses with a TeV-scale new physics scale. It explores how leptogenesis works in this setting, which differs from canonical seesaw leptogenesis.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/d3dc405e367ed4e0</id>
+<title>The paper investigates whether neutrinos from past Galactic core-collapse supernovae could leave nuclear recoi</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3184513"/>
+<updated>2026-10-16T07:46:20+02:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper investigates whether neutrinos from past Galactic core-collapse supernovae could leave nuclear recoil tracks in ancient minerals (paleodetectors). It varies neutron-star masses, includes failed supernovae that form black holes, and considers the nuclear equation of state. Sensitivity is found to improve for models with larger neutrino emission.</summary>
+</entry>
+</feed>

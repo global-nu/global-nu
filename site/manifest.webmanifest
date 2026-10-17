@@ -1,0 +1,47 @@
+{
+  "id": "./",
+  "name": "global-nu — neutrino oscillation global analyses",
+  "short_name": "global-nu",
+  "description": "Global analyses of neutrino oscillation data — Bari group",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0d0f14",
+  "theme_color": "#0d0f14",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Results",
+      "url": "results.html"
+    },
+    {
+      "name": "Parameter history",
+      "url": "history.html"
+    },
+    {
+      "name": "arXiv digest",
+      "url": "digest.html"
+    },
+    {
+      "name": "Search",
+      "url": "search.html"
+    }
+  ]
+}

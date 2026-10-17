@@ -226,3 +226,153 @@ def split_scope(records: list[dict], scope: str) -> list[dict]:
     anything without one is treated as neutrino, which is the page's default."""
     return [r for r in records
             if (r.get("extra", {}).get("scope") or "neutrino") == scope]
+
+
+# --------------------------------------------------------------------------- #
+# Facets for the page's filters (kind, continent) and grouping of satellites.
+# --------------------------------------------------------------------------- #
+# The kind is read from the title, because no source states it; the filter
+# says so on the page. Order matters: "Summer School and Workshop" is a school.
+_KINDS = (
+    ("school", re.compile(r"\b(school|lectures?|summer institute|winter institute|training)\b", re.I)),
+    ("workshop", re.compile(r"\b(workshop|meeting|forum|days|week)\b", re.I)),
+    ("conference", re.compile(r"\b(conference|symposium|congress|convention|colloquium)\b", re.I)),
+)
+
+
+def kind_of(record: dict) -> str:
+    """"school", "workshop", "conference", or "other" — from the title."""
+    title = record.get("title") or ""
+    for kind, rx in _KINDS:
+        if rx.search(title):
+            return kind
+    return "other"
+
+
+# ISO 3166-1 alpha-2 -> continent, for the countries conference sources use.
+_CONTINENT = {}
+for _cont, _codes in {
+    "Europe": "AD AL AM AT BA BE BG BY CH CY CZ DE DK EE ES FI FR GB GE GR HR HU IE IS IT "
+              "LI LT LU LV MC MD ME MK MT NL NO PL PT RO RS RU SE SI SK SM UA VA XK FX",
+    "Asia": "AE AF AZ BD BH BN BT CN HK ID IL IN IQ IR JO JP KG KH KR KW KZ LA LB LK MM MN "
+            "MO MV MY NP OM PH PK PS QA SA SG SY TH TJ TL TM TR TW UZ VN YE",
+    "North America": "AG BB BS BZ CA CR CU DM DO GD GT HN HT JM KN LC MX NI PA PR SV TT US VC",
+    "South America": "AR BO BR CL CO EC GY PE PY SR UY VE",
+    "Africa": "AO BF BI BJ BW CD CF CG CI CM CV DJ DZ EG ER ET GA GH GM GN GQ GW KE KM LR LS "
+              "LY MA MG ML MR MU MW MZ NA NE NG RW SC SD SL SN SO SS ST SZ TD TG TN TZ UG ZA ZM ZW",
+    "Oceania": "AU FJ KI MH FM NR NZ PG PW SB TO TV VU WS",
+}.items():
+    for _c in _codes.split():
+        _CONTINENT[_c] = _cont
+
+
+def continent_of(record: dict) -> str:
+    cc = ((record.get("extra") or {}).get("country_code") or "").upper()
+    return _CONTINENT.get(cc, "")
+
+
+def status_of(record: dict) -> str:
+    x = record.get("extra") or {}
+    if x.get("in_progress"):
+        return "ongoing"
+    return "upcoming" if x.get("upcoming") else "recent"
+
+
+def _span(record: dict) -> tuple[_dt.date, _dt.date] | None:
+    x = record.get("extra") or {}
+    try:
+        a = _dt.date.fromisoformat(x.get("opening") or record.get("date") or "")
+        b = _dt.date.fromisoformat(x.get("closing") or x.get("opening") or record.get("date") or "")
+    except ValueError:
+        return None
+    return a, b
+
+
+_SATELLITE = re.compile(r"\b(satellite|pre-?conference|post-?conference)\b", re.I)
+
+
+def group_related(records: list[dict]) -> tuple[list[dict], dict[str, list[dict]]]:
+    """Fold schools, workshops and satellite events into the conference they
+    belong to, so one meeting with three side events reads as one entry.
+
+    Deliberately conservative — a wrong grouping hides a meeting under
+    another's name, which is worse than a duplicate-looking list. A record is
+    folded under a conference only if it is not itself a conference, its dates
+    lie within 7 days of the conference's, both are in the same country, and
+    either they share a city or the side event names the conference (by its
+    acronym, by a number-and-name like "Neutrino 2026", or by calling itself
+    a satellite). Returns the top-level records, in their original order, and
+    the side events of each conference by id.
+    """
+    mains = [r for r in records if kind_of(r) == "conference"]
+    children: dict[str, list[dict]] = {}
+    folded: set[str] = set()
+    for r in records:
+        if kind_of(r) == "conference":
+            continue
+        sr = _span(r)
+        if sr is None:
+            continue
+        xr = r.get("extra") or {}
+        for m in mains:
+            sm = _span(m)
+            xm = m.get("extra") or {}
+            if sm is None or not xr.get("country_code") or xr.get("country_code") != xm.get("country_code"):
+                continue
+            near = (sr[0] <= sm[1] + _dt.timedelta(days=7)) and (sr[1] >= sm[0] - _dt.timedelta(days=7))
+            if not near:
+                continue
+            same_city = bool(xr.get("city")) and _norm(xr.get("city", "")) == _norm(xm.get("city", ""))
+            title = r.get("title") or ""
+            names = [xm.get("acronym") or ""]
+            mt = re.search(r"\b([A-Z][A-Za-z]+)\s+(20\d\d)\b", title)
+            named = any(n and len(n) >= 3 and re.search(r"\b" + re.escape(n) + r"\b", title, re.I) for n in names)
+            if mt and re.search(r"\b" + re.escape(mt.group(1)) + r"\b.*\b" + mt.group(2) + r"\b",
+                                (m.get("title") or "") + " " + " ".join(names), re.I):
+                named = True
+            close = (sr[0] <= sm[1] + _dt.timedelta(days=3)) and (sr[1] >= sm[0] - _dt.timedelta(days=3))
+            if named or (same_city and close and (_SATELLITE.search(title)
+                                                  or kind_of(r) in ("school", "workshop"))):
+                children.setdefault(m["id"], []).append(r)
+                folded.add(r["id"])
+                break
+    return [r for r in records if r["id"] not in folded], children
+
+
+def to_ics(records: list[dict], stamp: _dt.datetime | None = None) -> str:
+    """An iCalendar file of the meetings, all-day events from opening to
+    closing (DTEND is exclusive, hence the day after closing)."""
+    now = (stamp or _dt.datetime.now(_dt.timezone.utc)).strftime("%Y%m%dT%H%M%SZ")
+
+    def esc(s: str) -> str:
+        return (s or "").replace("\\", "\\\\").replace(";", "\\;").replace(",", "\\,").replace("\n", "\\n")
+
+    def fold(line: str) -> str:
+        out, b = [], line.encode("utf-8")
+        while len(b) > 74:
+            cut = 74
+            while (b[cut] & 0xC0) == 0x80:
+                cut -= 1
+            out.append(b[:cut].decode("utf-8"))
+            b = b" " + b[cut:]
+        out.append(b.decode("utf-8"))
+        return "\r\n".join(out)
+
+    lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//global-nu.org//conferences//EN",
+             "CALSCALE:GREGORIAN", "X-WR-CALNAME:global-nu — neutrino conferences"]
+    for r in records:
+        sp = _span(r)
+        if sp is None:
+            continue
+        x = r.get("extra") or {}
+        lines += ["BEGIN:VEVENT",
+                  f"UID:{esc(r['id'])}@global-nu.org",
+                  f"DTSTAMP:{now}",
+                  f"DTSTART;VALUE=DATE:{sp[0].strftime('%Y%m%d')}",
+                  f"DTEND;VALUE=DATE:{(sp[1] + _dt.timedelta(days=1)).strftime('%Y%m%d')}",
+                  f"SUMMARY:{esc(r.get('title', ''))}",
+                  *( [f"LOCATION:{esc(x['place'])}"] if x.get("place") else [] ),
+                  *( [f"URL:{r['url']}"] if r.get("url") else [] ),
+                  "END:VEVENT"]
+    lines.append("END:VCALENDAR")
+    return "\r\n".join(fold(l) for l in lines) + "\r\n"

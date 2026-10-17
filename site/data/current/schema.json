@@ -1,0 +1,110 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://global-nu.org/data/schema/parameters-v1.json",
+ "title": "global-nu parameters file, schema version 1",
+ "type": "object",
+ "required": [
+  "schema_version",
+  "release",
+  "conventions",
+  "license",
+  "parameters"
+ ],
+ "properties": {
+  "schema_version": {
+   "const": 1
+  },
+  "release": {
+   "type": "object"
+  },
+  "conventions": {
+   "type": "object",
+   "additionalProperties": {
+    "type": "string"
+   }
+  },
+  "license": {
+   "type": "string"
+  },
+  "parameters": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "parameter",
+     "ordering",
+     "unit",
+     "best_fit",
+     "range_1sigma",
+     "range_2sigma",
+     "range_3sigma",
+     "accuracy_1sigma_percent",
+     "source"
+    ],
+    "properties": {
+     "parameter": {
+      "enum": [
+       "dm2",
+       "sin2_th12",
+       "absDm2",
+       "sin2_th13",
+       "sin2_th23",
+       "delta_pi"
+      ]
+     },
+     "ordering": {
+      "enum": [
+       "NO",
+       "IO"
+      ]
+     },
+     "unit": {
+      "type": "string"
+     },
+     "best_fit": {
+      "type": "number"
+     },
+     "range_1sigma": {
+      "type": "array",
+      "items": {
+       "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2
+     },
+     "range_2sigma": {
+      "type": "array",
+      "items": {
+       "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2
+     },
+     "range_3sigma": {
+      "type": "array",
+      "items": {
+       "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2
+     },
+     "accuracy_1sigma_percent": {
+      "type": "number"
+     },
+     "accuracy_source": {
+      "enum": [
+       "paper",
+       "computed"
+      ]
+     },
+     "same_in_both_orderings": {
+      "type": "boolean"
+     },
+     "source": {
+      "type": "object"
+     }
+    }
+   }
+  }
+ }
+}

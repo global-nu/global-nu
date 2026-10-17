@@ -4,6 +4,10 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+# in the redesign worktree these two are symlinks, which a pattern ending
+# in / does not match
+.venv
+node_modules
 .DS_Store
 .idea/
 var/

@@ -1,0 +1,61 @@
+/* Literature search page: the simplified default view.
+   Only custom properties already defined in site.css are used. site.css owns
+   the rest of the form (.lit__*, .acc, .chip, .lit-sort); this file adds the
+   Search / Precise-Broad row, the advanced panel, the source badges and the
+   44 px touch targets. */
+
+.lit__bar{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 1rem;margin-top:1.1rem}
+.lit__go{min-height:44px;min-width:44px;padding-inline:1.6rem;font-size:.95rem;cursor:pointer}
+
+/* Precise / Broad: two buttons that share one border, one of them pressed. */
+.lit-seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:999px;
+  overflow:hidden;background:var(--surface)}
+.lit-seg__btn{min-height:44px;min-width:44px;padding:0 1.2rem;border:0;margin:0;
+  background:transparent;color:var(--text-soft);font:inherit;font-size:.9rem;
+  font-weight:600;cursor:pointer}
+.lit-seg__btn + .lit-seg__btn{border-left:1px solid var(--line-strong)}
+.lit-seg__btn:hover{color:var(--accent)}
+.lit-seg__btn[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.lit-seg__btn:focus-visible,.lit__go:focus-visible{outline:2px solid var(--accent);
+  outline-offset:2px}
+
+/* Advanced options: a details that reads as a link until opened. */
+.lit__adv{margin-top:1.25rem}
+.lit__adv > summary{min-height:44px;display:flex;align-items:center}
+.lit__sub{font-family:var(--display);font-size:.72rem;font-weight:600;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--text-mute);
+  margin:1.6rem 0 .8rem}
+.lit__adv .lit__sub:first-of-type{margin-top:1.2rem}
+.lit__adv .lit__grid{grid-template-columns:repeat(auto-fit,minmax(min(13rem,100%),1fr))}
+.lit__adv input[type="text"],.lit__adv select{width:100%;min-height:44px;box-sizing:border-box;
+  font:inherit;color:var(--text);background:var(--surface);
+  border:1px solid var(--line-strong);border-radius:var(--r-sm);padding:.5rem .75rem}
+.lit__adv input[type="text"]:focus,.lit__adv select:focus{outline:none;
+  border-color:var(--accent)}
+.lit__check{min-height:44px}
+.lit__adv .btn-row .btn{min-height:44px;display:inline-flex;align-items:center;cursor:pointer}
+
+/* Source badges, one row above the results. A pending source is quiet, a
+   failed one is marked with --warn; neither ever replaces the results. */
+.lit-badges{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 1rem}
+.lit-badges[hidden]{display:none}
+.lit-badge{display:inline-flex;align-items:center;font-size:.8rem;line-height:1.3;
+  padding:.3rem .7rem;border-radius:999px;border:1px solid var(--line-strong);
+  background:var(--surface);color:var(--text-soft)}
+.lit-badge--pending{border-style:dashed;color:var(--text-mute);
+  animation:lit-pulse 1.4s ease-in-out infinite}
+.lit-badge--fail{border-color:var(--warn);color:var(--warn)}
+@keyframes lit-pulse{50%{opacity:.55}}
+@media (prefers-reduced-motion:reduce){.lit-badge--pending{animation:none}}
+
+/* The ordering and filter buttons of the results: 44 px where fingers are. */
+@media (pointer:coarse),(max-width:600px){
+  .lit-sort__btn,.lit-filter{min-height:44px;min-width:44px}
+}
+
+@media (max-width:600px){
+  .lit__bar{flex-direction:column;align-items:stretch}
+  .lit__go{width:100%}
+  .lit-seg{width:100%}
+  .lit-seg__btn{flex:1}
+}

@@ -21,9 +21,17 @@
 <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="global-nu">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="alternate" type="application/atom+xml" title="global-nu releases" href="../data/feeds/releases.atom">
+<link rel="alternate" type="application/atom+xml" title="global-nu arXiv digest" href="../data/feeds/digest.atom">
+<link rel="alternate" type="application/atom+xml" title="global-nu news (AI-generated summaries)" href="../data/feeds/news.atom">
 <link rel="preload" href="../assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/archivo-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../assets/css/site.css?v=0cba760e">
+<link rel="stylesheet" href="../assets/css/site.css?v=6f84bde2">
 <script>
 /* Apply the saved theme before the first paint. Inline and blocking on
    purpose: a deferred script runs after the page is drawn, and a reader who
@@ -43,7 +51,22 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
 
 <header class="site-header">
   <div class="wrap site-header__inner">
-    <a class="brand" href="../index.html"><b>global<i>-nu</i></b><span>Neutrino oscillation global analyses · Bari</span></a>
+    <a class="brand" href="../index.html" aria-label="global-nu — home">
+      <svg class="brand__mark" viewBox="10 26 120 52" aria-hidden="true" focusable="false">
+        <defs><linearGradient id="brand-wave" gradientUnits="userSpaceOnUse" x1="56" y1="0" x2="126" y2="0">
+          <stop offset="0" style="stop-color:var(--logo-nu)"/><stop offset=".45" style="stop-color:var(--logo-w1)"/><stop offset="1" style="stop-color:var(--logo-w2)"/>
+        </linearGradient></defs>
+        <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 32 C20 28 27 42 36 74 C44 56 50 30 56 30" style="stroke:var(--logo-nu)" stroke-width="7"/>
+          <path d="M56 30 C61 30 65 68 70 68" stroke="url(#brand-wave)" stroke-width="7"/>
+          <path d="M70 68 C75 68 79 41 84 41" stroke="url(#brand-wave)" stroke-width="5.5"/>
+          <path d="M84 41 C89 41 93 60 98 60" stroke="url(#brand-wave)" stroke-width="4.5"/>
+          <path d="M98 60 C103 60 107 47 112 47" stroke="url(#brand-wave)" stroke-width="3.5"/>
+          <path d="M112 47 C117 47 121 55 126 55" stroke="url(#brand-wave)" stroke-width="2.5"/>
+        </g>
+      </svg>
+      <span class="brand__text"><b>global-nu</b><span>Neutrino oscillation global analyses · Bari</span></span>
+    </a>
     <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme" title="Switch theme">
       <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true">
         <circle cx="12" cy="12" r="4.4"/>
@@ -60,11 +83,12 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
       <a href="../index.html">Home</a>
       <a href="../results.html">Results</a>
       <a href="../history.html">Parameter history</a>
+      <a href="../data.html">Data</a>
+      <a href="../resources.html">Resources</a>
+      <a href="../search.html">Search</a>
       <a href="../digest.html">arXiv digest</a>
       <a href="../news.html">News</a>
       <a href="../conferences.html">Conferences</a>
-      <a href="../resources.html">Resources</a>
-      <a href="../search.html">Search</a>
       <a href="../about.html">About</a>
     </nav>
   </div>
@@ -90,113 +114,113 @@ and may contain errors. No model is involved.</b></div>
 <div class="section-head"><h3>15 October 2026</h3><p><a href="2026-10-15.html">that day on its own page</a></p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2610.21495" rel="noopener noreferrer" target="_blank">Identification of ultra-high-energy neutrinos in vertical air showers with surface detectors</a></b><span>Jaime Alvarez-Muñiz, Ruben Conceição, Pedro J. Costa et al. · 15 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">hep-ex</span><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.21886" rel="noopener noreferrer" target="_blank">Low-Scale See-Saw Mechanism and the Majorana Nature of Heavy Neutrinos</a></b><span>Takuya Okawa, S. T. Petcov · 15 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.22219" rel="noopener noreferrer" target="_blank">Gallium Anomaly and Solar Neutrinos</a></b><span>Steven R. Elliott, R. G. Hamish Robertson · 15 Oct 2026</span><span class="tags"><span class="tag">nucl-ex</span><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.21495" rel="noopener noreferrer" target="_blank">Identification of ultra-high-energy neutrinos in vertical air showers with surface detectors</a></b><span>Jaime Alvarez-Muñiz, Ruben Conceição, Pedro J. Costa et al. · first submitted 15 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">hep-ex</span><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.21886" rel="noopener noreferrer" target="_blank">Low-Scale See-Saw Mechanism and the Majorana Nature of Heavy Neutrinos</a></b><span>Takuya Okawa, S. T. Petcov · first submitted 15 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.22219" rel="noopener noreferrer" target="_blank">Gallium Anomaly and Solar Neutrinos</a></b><span>Steven R. Elliott, R. G. Hamish Robertson · first submitted 15 Oct 2026</span><span class="tags"><span class="tag">nucl-ex</span><span class="tag">hep-ex</span></span></li>
 </ul>
 <div class="section-head"><h3>14 October 2026</h3><p><a href="2026-10-14.html">that day on its own page</a></p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2610.20729" rel="noopener noreferrer" target="_blank">Leptogenesis with a GeV-Scale Quasi-Dirac Neutrino</a></b><span>Stephen F. King, Soumen Kumar Manna, Rishav Roshan et al. · 14 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.20977" rel="noopener noreferrer" target="_blank">Disentangling geometry &amp; growth in cosmic neutrino mass constraints: a more physical split and diagnostic</a></b><span>Fei Ge, Frank J. Qu, Hanyue Wang et al. · 14 Oct 2026</span><span class="tags"><span class="tag">astro-ph.CO</span><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.20729" rel="noopener noreferrer" target="_blank">Leptogenesis with a GeV-Scale Quasi-Dirac Neutrino</a></b><span>Stephen F. King, Soumen Kumar Manna, Rishav Roshan et al. · first submitted 14 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.20977" rel="noopener noreferrer" target="_blank">Disentangling geometry &amp; growth in cosmic neutrino mass constraints: a more physical split and diagnostic</a></b><span>Fei Ge, Frank J. Qu, Hanyue Wang et al. · first submitted 14 Oct 2026</span><span class="tags"><span class="tag">astro-ph.CO</span><span class="tag">hep-ex</span></span></li>
 </ul>
 <div class="section-head"><h3>13 October 2026</h3><p><a href="2026-10-13.html">that day on its own page</a></p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2610.18334" rel="noopener noreferrer" target="_blank">Cosmological Consequences of a Highly Decoupled Right-handed Neutrino</a></b><span>Stephen F. King, Rishav Roshan, Sudipta Show · 13 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.18487" rel="noopener noreferrer" target="_blank">Deviations to cobimaximal mixing in a 3+1 neutrino scenario</a></b><span>Diana C. Rivera-Agudelo, S. L. Tostado · 13 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.18971" rel="noopener noreferrer" target="_blank">Direct Detection of Solar Neutrinos to Probe Tensions and Break Degeneracies in Long-Baseline Neutrino Experiments</a></b><span>Dorian W. P. Amaral, David Cerdeño, Andrew Cheek et al. · 13 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.18334" rel="noopener noreferrer" target="_blank">Cosmological Consequences of a Highly Decoupled Right-handed Neutrino</a></b><span>Stephen F. King, Rishav Roshan, Sudipta Show · first submitted 13 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.18487" rel="noopener noreferrer" target="_blank">Deviations to cobimaximal mixing in a 3+1 neutrino scenario</a></b><span>Diana C. Rivera-Agudelo, S. L. Tostado · first submitted 13 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.18971" rel="noopener noreferrer" target="_blank">Direct Detection of Solar Neutrinos to Probe Tensions and Break Degeneracies in Long-Baseline Neutrino Experiments</a></b><span>Dorian W. P. Amaral, David Cerdeño, Andrew Cheek et al. · first submitted 13 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 </ul>
 <div class="section-head"><h3>12 October 2026</h3><p><a href="2026-10-12.html">that day on its own page</a></p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2610.17084" rel="noopener noreferrer" target="_blank">Decay-Assisted Leptogenesis during Preheating</a></b><span>Wenbin Zhao · 12 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.17084" rel="noopener noreferrer" target="_blank">Decay-Assisted Leptogenesis during Preheating</a></b><span>Wenbin Zhao · first submitted 12 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
 </ul>
 <div class="section-head"><h3>11 October 2026</h3><p><a href="2026-10-11.html">that day on its own page</a></p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2610.15557" rel="noopener noreferrer" target="_blank">Modular S₄ Inverse Seesaw at the LZ High-Recoil Frontier</a></b><span>Waqas Ahmed, Vasileios Basiouris, George K. Leontaris · 11 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span><span class="tag">hep-th</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.15618" rel="noopener noreferrer" target="_blank">From Dirac Neutrino Mass to Dark Radiation: An A₄-Symmetric FIMP Dark Matter Framework</a></b><span>Pritam Das, Anupam Deka, Debajyoti Dutta · 11 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.15557" rel="noopener noreferrer" target="_blank">Modular S₄ Inverse Seesaw at the LZ High-Recoil Frontier</a></b><span>Waqas Ahmed, Vasileios Basiouris, George K. Leontaris · first submitted 11 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span><span class="tag">hep-th</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.15618" rel="noopener noreferrer" target="_blank">From Dirac Neutrino Mass to Dark Radiation: An A₄-Symmetric FIMP Dark Matter Framework</a></b><span>Pritam Das, Anupam Deka, Debajyoti Dutta · first submitted 11 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 </ul>
 <div class="section-head"><h3>10 October 2026</h3><p><a href="2026-10-10.html">that day on its own page</a></p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2610.14708" rel="noopener noreferrer" target="_blank">Mixed leptogenesis sources and low-energy neutrino portals</a></b><span>Yingnan Xu · 10 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.15060" rel="noopener noreferrer" target="_blank">Probing eV-scale sterile neutrinos with neutrinoless double-beta decay and beta decay</a></b><span>Ruisha Yang, Jiajun Liao · 10 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.15209" rel="noopener noreferrer" target="_blank">Cosmology &amp; Astrophysics of the Dark Dimension with Bulk Majorana Neutrinos</a></b><span>Luis A. Anchordoqui, Cumrun Vafa · 10 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span><span class="tag">hep-th</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.14708" rel="noopener noreferrer" target="_blank">Mixed leptogenesis sources and low-energy neutrino portals</a></b><span>Yingnan Xu · first submitted 10 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.15060" rel="noopener noreferrer" target="_blank">Probing eV-scale sterile neutrinos with neutrinoless double-beta decay and beta decay</a></b><span>Ruisha Yang, Jiajun Liao · first submitted 10 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.15209" rel="noopener noreferrer" target="_blank">Cosmology &amp; Astrophysics of the Dark Dimension with Bulk Majorana Neutrinos</a></b><span>Luis A. Anchordoqui, Cumrun Vafa · first submitted 10 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span><span class="tag">hep-th</span></span></li>
 </ul>
 <div class="section-head"><h3>9 October 2026</h3><p><a href="2026-10-09.html">that day on its own page</a></p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2610.13231" rel="noopener noreferrer" target="_blank">Non-resonant Flavoured leptogenesis with aligned two-Higgs doublet model and right-handed neutrinos</a></b><span>Km Pranjali, Indrani Chakraborty · 9 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.14144" rel="noopener noreferrer" target="_blank">Planck-Scale Constraints on Quantum Gravity-Induced Neutrino Decoherence with IceCube</a></b><span>R. Abbasi, M. Ackermann, J. Adams et al. · 9 Oct 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.13231" rel="noopener noreferrer" target="_blank">Non-resonant Flavoured leptogenesis with aligned two-Higgs doublet model and right-handed neutrinos</a></b><span>Km Pranjali, Indrani Chakraborty · first submitted 9 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.14144" rel="noopener noreferrer" target="_blank">Planck-Scale Constraints on Quantum Gravity-Induced Neutrino Decoherence with IceCube</a></b><span>R. Abbasi, M. Ackermann, J. Adams et al. · first submitted 9 Oct 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
 </ul>
 <div class="section-head"><h3>8 October 2026</h3><p><a href="2026-10-08.html">that day on its own page</a></p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2610.11319" rel="noopener noreferrer" target="_blank">Neutrino oscillations inside ultrarelativistic matter: on the role of the Tolman VI spacetime</a></b><span>Daniele Gregoris · 8 Oct 2026</span><span class="tags"><span class="tag">gr-qc</span><span class="tag">hep-ph</span></span><span class="cites"><a href="https://doi.org/10.1140/epjc/s10052-026-16462-w" rel="noopener noreferrer" target="_blank">DOI</a></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.11789" rel="noopener noreferrer" target="_blank">Minimally modified Frampton--Glashow--Yanagida ansatz and its leptogenesis consequences: in light of recent JUNO's result</a></b><span>Xing-Yu Wang, Zhen-hua Zhao · 8 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.12042" rel="noopener noreferrer" target="_blank">Using Geometric Deep Learning for the Detection of the Diffuse Supernova Neutrino Background in Water-Cherenkov Detectors</a></b><span>Matthieu Melennec, Andrew D. Santos, Thomas Mueller et al. · 8 Oct 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.12101" rel="noopener noreferrer" target="_blank">An updated model of neutrino emission from proto-neutron stars</a></b><span>Matteo Ballelli, Federica Pompa, Christoph Ternes et al. · 8 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">astro-ph.SR</span><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.12208" rel="noopener noreferrer" target="_blank">Evidence for Normal Neutrino Ordering with Combined Atmospheric Neutrino Experiments</a></b><span>Miaochen Jin, Carlos A. Argüelles, Pablo Fernández-Menéndez et al. · 8 Oct 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.12334" rel="noopener noreferrer" target="_blank">Quantum Co-Design of Inhomogeneous Many-Body Neutrino Fast Flavor Transformation</a></b><span>Zoha Laraib, Sherwood Richers, Alessandro Baroni et al. · 8 Oct 2026</span><span class="tags"><span class="tag">quant-ph</span><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.11319" rel="noopener noreferrer" target="_blank">Neutrino oscillations inside ultrarelativistic matter: on the role of the Tolman VI spacetime</a></b><span>Daniele Gregoris · first submitted 8 Oct 2026</span><span class="tags"><span class="tag">gr-qc</span><span class="tag">hep-ph</span></span><span class="cites"><a href="https://doi.org/10.1140/epjc/s10052-026-16462-w" rel="noopener noreferrer" target="_blank">DOI</a></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.11789" rel="noopener noreferrer" target="_blank">Minimally modified Frampton--Glashow--Yanagida ansatz and its leptogenesis consequences: in light of recent JUNO's result</a></b><span>Xing-Yu Wang, Zhen-hua Zhao · first submitted 8 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.12042" rel="noopener noreferrer" target="_blank">Using Geometric Deep Learning for the Detection of the Diffuse Supernova Neutrino Background in Water-Cherenkov Detectors</a></b><span>Matthieu Melennec, Andrew D. Santos, Thomas Mueller et al. · first submitted 8 Oct 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.12101" rel="noopener noreferrer" target="_blank">An updated model of neutrino emission from proto-neutron stars</a></b><span>Matteo Ballelli, Federica Pompa, Christoph Ternes et al. · first submitted 8 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">astro-ph.SR</span><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.12208" rel="noopener noreferrer" target="_blank">Evidence for Normal Neutrino Ordering with Combined Atmospheric Neutrino Experiments</a></b><span>Miaochen Jin, Carlos A. Argüelles, Pablo Fernández-Menéndez et al. · first submitted 8 Oct 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.12334" rel="noopener noreferrer" target="_blank">Quantum Co-Design of Inhomogeneous Many-Body Neutrino Fast Flavor Transformation</a></b><span>Zoha Laraib, Sherwood Richers, Alessandro Baroni et al. · first submitted 8 Oct 2026</span><span class="tags"><span class="tag">quant-ph</span><span class="tag">astro-ph.HE</span></span></li>
 </ul>
 <div class="section-head"><h3>7 October 2026</h3><p><a href="2026-10-07.html">that day on its own page</a></p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2610.09507" rel="noopener noreferrer" target="_blank">The contribution of Soviet scientists to the emergence of high-energy neutrino astrophysics: from the Cherenkov effect to underwater and in-ice telescopes</a></b><span>Bakhromzod Rizoi · 7 Oct 2026</span><span class="tags"><span class="tag">physics.hist-ph</span><span class="tag">astro-ph.HE</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.09753" rel="noopener noreferrer" target="_blank">Can Nuclear Recoils and Solar Neutrinos Resolve the Composition of Singlino-Higgsino Dark Matter?</a></b><span>Jingwei Lian, Jin Min Yang · 7 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.10685" rel="noopener noreferrer" target="_blank">Neutrino flavor conversion alters the lepton-emission self-sustained asymmetry in core-collapse supernovae</a></b><span>Noah Roux, Irene Tamborra, Maryna Mesiura · 7 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.09507" rel="noopener noreferrer" target="_blank">The contribution of Soviet scientists to the emergence of high-energy neutrino astrophysics: from the Cherenkov effect to underwater and in-ice telescopes</a></b><span>Bakhromzod Rizoi · first submitted 7 Oct 2026</span><span class="tags"><span class="tag">physics.hist-ph</span><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.09753" rel="noopener noreferrer" target="_blank">Can Nuclear Recoils and Solar Neutrinos Resolve the Composition of Singlino-Higgsino Dark Matter?</a></b><span>Jingwei Lian, Jin Min Yang · first submitted 7 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.10685" rel="noopener noreferrer" target="_blank">Neutrino flavor conversion alters the lepton-emission self-sustained asymmetry in core-collapse supernovae</a></b><span>Noah Roux, Irene Tamborra, Maryna Mesiura · first submitted 7 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span></span></li>
 </ul>
 <div class="section-head"><h3>6 October 2026</h3><p><a href="2026-10-06.html">that day on its own page</a></p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2610.04265" rel="noopener noreferrer" target="_blank">Pseudo-Nambu-Goldstone Boson Motion from Thermal Thresholds</a></b><span>Mussawir Khan, Ali Muhammad, Tianjun Li · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.04909" rel="noopener noreferrer" target="_blank">The Phenomenology of the Dark Dimension and Non-Supersymmetric Strings</a></b><span>Cumrun Vafa · 6 Oct 2026</span><span class="tags"><span class="tag">hep-th</span><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.05377" rel="noopener noreferrer" target="_blank">Exploring Anomaly-Free Dark Photon Models Through Solar Neutrino-Electron Scattering in Ton-Scale Dark Matter Detectors</a></b><span>Mehmet Demirci, Gürsel Kaz\il, M. Fauzi Mustamin · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.05893" rel="noopener noreferrer" target="_blank">Environment-Dependent Annihilation of Axion-Coupled Higgsino Dark Matter</a></b><span>Kwang Sik Jeong, Fuminobu Takahashi · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.05980" rel="noopener noreferrer" target="_blank">Search for Diffuse Supernova Neutrino Background of All Flavors with PandaX-4T</a></b><span>Yingxin Zhang, PandaX Collaboration · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.06014" rel="noopener noreferrer" target="_blank">A non-invertible Fibonacci selection rule for two-Higgs-doublet models</a></b><span>Yu Hamada · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-th</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.06022" rel="noopener noreferrer" target="_blank">Interplay between final-state nucleon distortion, nuclear transparency and intranuclear cascade models in neutrino event generators</a></b><span>R. González-Jiménez, A. Nikolakopoulos, J. McKean et al. · 6 Oct 2026</span><span class="tags"><span class="tag">nucl-th</span><span class="tag">hep-ph</span><span class="tag">nucl-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.06151" rel="noopener noreferrer" target="_blank">Revisiting neutrino-assisted self-interacting dark matter</a></b><span>Luqi Wang, Shu-Yuan Guo, Xuewen Liu et al. · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.06159" rel="noopener noreferrer" target="_blank">Learning Astrophysical Uncertainties in Dark Matter Direct Detection with Simulation-Based Inference</a></b><span>Felix Kahlhoefer, Niklas Reus · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.06738" rel="noopener noreferrer" target="_blank">Novel dependence between neutrino mass splittings strongly supported by initial JUNO results</a></b><span>I. Alikhanov · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.07735" rel="noopener noreferrer" target="_blank">Mass as pairing: an explicit Majorana mass on half of a generation does not seesaw in symmetric mass generation</a></b><span>Piotr S. Topa · 6 Oct 2026</span><span class="tags"><span class="tag">hep-lat</span><span class="tag">hep-ph</span><span class="tag">hep-th</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.08139" rel="noopener noreferrer" target="_blank">The neutrino magnetic moment and supernovae with strong magnetic fields</a></b><span>Clément Ehrhardt, Maria Cristina Volpe, Miguel Ángel Aloy et al. · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span><span class="tag">astro-ph.SR</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.08175" rel="noopener noreferrer" target="_blank">Flavor decoherence and washout timing in nonthermal leptogenesis after inflation</a></b><span>Boliang Yu, Ruixin Zhou · 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.08201" rel="noopener noreferrer" target="_blank">Evolution of neutrino distributions under repeated electron scattering</a></b><span>Jens Chluba, Bryce Cyr, Michiru Uwabo-Niibo et al. · 6 Oct 2026</span><span class="tags"><span class="tag">astro-ph.CO</span><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.08354" rel="noopener noreferrer" target="_blank">Charge exchange reactions with central and tensor interactions and nuclear matrix elements associated with double-beta-decay neutrinos and astro neutrinos</a></b><span>Hiroyasu Ejiri, Yoritaka Iwata · 6 Oct 2026</span><span class="tags"><span class="tag">nucl-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.08462" rel="noopener noreferrer" target="_blank">Predicting High-Energy neutrino emission from X-ray absorption in CSM-interacting SNe</a></b><span>Silvia Gagliardini, Simone Dall'Osso, Dafne Guetta · 6 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.04265" rel="noopener noreferrer" target="_blank">Pseudo-Nambu-Goldstone Boson Motion from Thermal Thresholds</a></b><span>Mussawir Khan, Ali Muhammad, Tianjun Li · announced 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.04909" rel="noopener noreferrer" target="_blank">The Phenomenology of the Dark Dimension and Non-Supersymmetric Strings</a></b><span>Cumrun Vafa · announced 6 Oct 2026</span><span class="tags"><span class="tag">hep-th</span><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.05377" rel="noopener noreferrer" target="_blank">Exploring Anomaly-Free Dark Photon Models Through Solar Neutrino-Electron Scattering in Ton-Scale Dark Matter Detectors</a></b><span>Mehmet Demirci, Gürsel Kaz\il, M. Fauzi Mustamin · announced 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.05893" rel="noopener noreferrer" target="_blank">Environment-Dependent Annihilation of Axion-Coupled Higgsino Dark Matter</a></b><span>Kwang Sik Jeong, Fuminobu Takahashi · announced 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.05980" rel="noopener noreferrer" target="_blank">Search for Diffuse Supernova Neutrino Background of All Flavors with PandaX-4T</a></b><span>Yingxin Zhang, PandaX Collaboration · announced 6 Oct 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.06014" rel="noopener noreferrer" target="_blank">A non-invertible Fibonacci selection rule for two-Higgs-doublet models</a></b><span>Yu Hamada · announced 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-th</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.06022" rel="noopener noreferrer" target="_blank">Interplay between final-state nucleon distortion, nuclear transparency and intranuclear cascade models in neutrino event generators</a></b><span>R. González-Jiménez, A. Nikolakopoulos, J. McKean et al. · announced 6 Oct 2026</span><span class="tags"><span class="tag">nucl-th</span><span class="tag">hep-ph</span><span class="tag">nucl-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.06151" rel="noopener noreferrer" target="_blank">Revisiting neutrino-assisted self-interacting dark matter</a></b><span>Luqi Wang, Shu-Yuan Guo, Xuewen Liu et al. · announced 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.06159" rel="noopener noreferrer" target="_blank">Learning Astrophysical Uncertainties in Dark Matter Direct Detection with Simulation-Based Inference</a></b><span>Felix Kahlhoefer, Niklas Reus · announced 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.06738" rel="noopener noreferrer" target="_blank">Novel dependence between neutrino mass splittings strongly supported by initial JUNO results</a></b><span>I. Alikhanov · announced 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.07735" rel="noopener noreferrer" target="_blank">Mass as pairing: an explicit Majorana mass on half of a generation does not seesaw in symmetric mass generation</a></b><span>Piotr S. Topa · first submitted 6 Oct 2026</span><span class="tags"><span class="tag">hep-lat</span><span class="tag">hep-ph</span><span class="tag">hep-th</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.08139" rel="noopener noreferrer" target="_blank">The neutrino magnetic moment and supernovae with strong magnetic fields</a></b><span>Clément Ehrhardt, Maria Cristina Volpe, Miguel Ángel Aloy et al. · first submitted 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span><span class="tag">astro-ph.SR</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.08175" rel="noopener noreferrer" target="_blank">Flavor decoherence and washout timing in nonthermal leptogenesis after inflation</a></b><span>Boliang Yu, Ruixin Zhou · first submitted 6 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.08201" rel="noopener noreferrer" target="_blank">Evolution of neutrino distributions under repeated electron scattering</a></b><span>Jens Chluba, Bryce Cyr, Michiru Uwabo-Niibo et al. · first submitted 6 Oct 2026</span><span class="tags"><span class="tag">astro-ph.CO</span><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.08354" rel="noopener noreferrer" target="_blank">Charge exchange reactions with central and tensor interactions and nuclear matrix elements associated with double-beta-decay neutrinos and astro neutrinos</a></b><span>Hiroyasu Ejiri, Yoritaka Iwata · first submitted 6 Oct 2026</span><span class="tags"><span class="tag">nucl-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.08462" rel="noopener noreferrer" target="_blank">Predicting High-Energy neutrino emission from X-ray absorption in CSM-interacting SNe</a></b><span>Silvia Gagliardini, Simone Dall'Osso, Dafne Guetta · first submitted 6 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
 </ul>
 <div class="section-head"><h3>5 October 2026</h3><p><a href="2026-10-05.html">that day on its own page</a></p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2610.05980" rel="noopener noreferrer" target="_blank">Search for Diffuse Supernova Neutrino Background of All Flavors with PandaX-4T</a></b><span>Yingxin Zhang, PandaX Collaboration · 5 Oct 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.06022" rel="noopener noreferrer" target="_blank">Interplay between final-state nucleon distortion, nuclear transparency and intranuclear cascade models in neutrino event generators</a></b><span>R. González-Jiménez, A. Nikolakopoulos, J. McKean et al. · 5 Oct 2026</span><span class="tags"><span class="tag">nucl-th</span><span class="tag">hep-ph</span><span class="tag">nucl-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.06151" rel="noopener noreferrer" target="_blank">Revisiting neutrino-assisted self-interacting dark matter</a></b><span>Luqi Wang, Shu-Yuan Guo, Xuewen Liu et al. · 5 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.06738" rel="noopener noreferrer" target="_blank">Novel dependence between neutrino mass splittings strongly supported by initial JUNO results</a></b><span>I. Alikhanov · 5 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.07159" rel="noopener noreferrer" target="_blank">Magnus: neutrino oscillation probabilities for any Hermitian Hamiltonian, any number of flavors, and any matter profile</a></b><span>Mauricio Bustamante · 5 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span><span class="tag">hep-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.07241" rel="noopener noreferrer" target="_blank">Radial Modes of Hot Neutrino-Trapped Hybrid Stars</a></b><span>Peter B. Rau, Andrea Sabatucci, Armen Sedrakian · 5 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">nucl-th</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.05980" rel="noopener noreferrer" target="_blank">Search for Diffuse Supernova Neutrino Background of All Flavors with PandaX-4T</a></b><span>Yingxin Zhang, PandaX Collaboration · first submitted 5 Oct 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.06022" rel="noopener noreferrer" target="_blank">Interplay between final-state nucleon distortion, nuclear transparency and intranuclear cascade models in neutrino event generators</a></b><span>R. González-Jiménez, A. Nikolakopoulos, J. McKean et al. · first submitted 5 Oct 2026</span><span class="tags"><span class="tag">nucl-th</span><span class="tag">hep-ph</span><span class="tag">nucl-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.06151" rel="noopener noreferrer" target="_blank">Revisiting neutrino-assisted self-interacting dark matter</a></b><span>Luqi Wang, Shu-Yuan Guo, Xuewen Liu et al. · first submitted 5 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.06738" rel="noopener noreferrer" target="_blank">Novel dependence between neutrino mass splittings strongly supported by initial JUNO results</a></b><span>I. Alikhanov · first submitted 5 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.07159" rel="noopener noreferrer" target="_blank">Magnus: neutrino oscillation probabilities for any Hermitian Hamiltonian, any number of flavors, and any matter profile</a></b><span>Mauricio Bustamante · first submitted 5 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.07241" rel="noopener noreferrer" target="_blank">Radial Modes of Hot Neutrino-Trapped Hybrid Stars</a></b><span>Peter B. Rau, Andrea Sabatucci, Armen Sedrakian · first submitted 5 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">nucl-th</span></span></li>
 </ul>
 <div class="section-head"><h3>4 October 2026</h3><p><a href="2026-10-04.html">that day on its own page</a></p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2610.05377" rel="noopener noreferrer" target="_blank">Exploring Anomaly-Free Dark Photon Models Through Solar Neutrino-Electron Scattering in Ton-Scale Dark Matter Detectors</a></b><span>Mehmet Demirci, Gürsel Kazıl, M. Fauzi Mustamin · 4 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.05377" rel="noopener noreferrer" target="_blank">Exploring Anomaly-Free Dark Photon Models Through Solar Neutrino-Electron Scattering in Ton-Scale Dark Matter Detectors</a></b><span>Mehmet Demirci, Gürsel Kazıl, M. Fauzi Mustamin · first submitted 4 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 </ul>
 <div class="section-head"><h3>2 October 2026</h3><p><a href="2026-10-02.html">that day on its own page</a></p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2610.02667" rel="noopener noreferrer" target="_blank">Distinguishing the origin of cosmic birefringence: dark energy, dark matter, and neutrino asymmetry</a></b><span>Lu Yin, Eiichiro Komatsu · 2 Oct 2026</span><span class="tags"><span class="tag">astro-ph.CO</span><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.03143" rel="noopener noreferrer" target="_blank">First observation of electron antineutrinos from nuclear reactors at Super-Kamiokande</a></b><span>K. Abe, Y. Asaoka, M. Harada et al. · 2 Oct 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.02667" rel="noopener noreferrer" target="_blank">Distinguishing the origin of cosmic birefringence: dark energy, dark matter, and neutrino asymmetry</a></b><span>Lu Yin, Eiichiro Komatsu · first submitted 2 Oct 2026</span><span class="tags"><span class="tag">astro-ph.CO</span><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.03143" rel="noopener noreferrer" target="_blank">First observation of electron antineutrinos from nuclear reactors at Super-Kamiokande</a></b><span>K. Abe, Y. Asaoka, M. Harada et al. · first submitted 2 Oct 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
 </ul>
 <div class="section-head"><h3>1 October 2026</h3><p><a href="2026-10-01.html">that day on its own page</a></p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2610.00965" rel="noopener noreferrer" target="_blank">High-energy neutrinos from shocked circumnuclear material around optically-bright and infrared-only tidal disruption events</a></b><span>Mainak Mukhopadhyay, Shigeo S. Kimura, Tatsuya Matsumoto · 1 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.01808" rel="noopener noreferrer" target="_blank">Probing the neutrino mass through semileptonic decays</a></b><span>Claire Chevallier · 1 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.02107" rel="noopener noreferrer" target="_blank">The Scalar MSW Effect: Compact analytical formulas for neutrino oscillations with large matter effects, including μ-μ and τ-τ dominant matter potentials</a></b><span>Sandhya Choubey, Andreas Lund · 1 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span><span class="tag">hep-th</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.02332" rel="noopener noreferrer" target="_blank">Neutrino flavor instabilities intermediate between slow and fast</a></b><span>Nicolas Viaux, Lucas Johns · 1 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">astro-ph.GA</span><span class="tag">astro-ph.SR</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.02420" rel="noopener noreferrer" target="_blank">High Energy Neutrinos, Gravitational Waves, and Dark Matter from a Cosmological First Order Phase Transition</a></b><span>James M. Cline, Savas Stoica, Yong Xu · 1 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.00965" rel="noopener noreferrer" target="_blank">High-energy neutrinos from shocked circumnuclear material around optically-bright and infrared-only tidal disruption events</a></b><span>Mainak Mukhopadhyay, Shigeo S. Kimura, Tatsuya Matsumoto · first submitted 1 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.01808" rel="noopener noreferrer" target="_blank">Probing the neutrino mass through semileptonic decays</a></b><span>Claire Chevallier · first submitted 1 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.02107" rel="noopener noreferrer" target="_blank">The Scalar MSW Effect: Compact analytical formulas for neutrino oscillations with large matter effects, including μ-μ and τ-τ dominant matter potentials</a></b><span>Sandhya Choubey, Andreas Lund · first submitted 1 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span><span class="tag">hep-th</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.02332" rel="noopener noreferrer" target="_blank">Neutrino flavor instabilities intermediate between slow and fast</a></b><span>Nicolas Viaux, Lucas Johns · first submitted 1 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">astro-ph.GA</span><span class="tag">astro-ph.SR</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.02420" rel="noopener noreferrer" target="_blank">High Energy Neutrinos, Gravitational Waves, and Dark Matter from a Cosmological First Order Phase Transition</a></b><span>James M. Cline, Savas Stoica, Yong Xu · first submitted 1 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
 </ul>
 
 <p class="small muted"><a href="../digest.html">Back to the current
@@ -236,15 +260,18 @@ digest</a></p>
           <li><a href="../index.html">Home</a></li>
           <li><a href="../results.html">Results</a></li>
           <li><a href="../history.html">Parameter history</a></li>
+          <li><a href="../data.html">Data</a></li>
+          <li><a href="../resources.html">Resources</a></li>
+          <li><a href="../search.html">Search</a></li>
           <li><a href="../digest.html">arXiv digest</a></li>
           <li><a href="../news.html">News</a></li>
           <li><a href="../conferences.html">Conferences</a></li>
-          <li><a href="../resources.html">Resources</a></li>
-          <li><a href="../search.html">Search</a></li>
           <li><a href="../about.html">About</a></li>
         </ul>
       </div>
     </div>
+    <p class="app-install" hidden><button type="button" class="btn btn--ghost app-install__btn">Install global-nu as an app</button>
+    <span class="app-install__ios" hidden>On iPhone or iPad: tap Share, then “Add to Home Screen”.</span></p>
     <p class="site-footer__base">© 2026 the Bari group · The parameter
     register and the data files are CC BY 4.0; the text and the code are all
     rights reserved; reproduced figures and photographs carry the terms
@@ -260,8 +287,8 @@ digest</a></p>
     stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
 
-<script src="../assets/js/site.js?v=215a304f" defer></script>
-<script src="../assets/js/figure.js?v=d7a5dbcf" defer></script>
+<script src="../assets/js/site.js?v=239a5c47" defer></script>
+<script src="../assets/js/figure.js?v=778f8d08" defer></script>
 
 <script data-goatcounter="https://global-nu.goatcounter.com/count" async src="../assets/vendor/goatcounter/count.js?v=185aa0b9"></script>
 

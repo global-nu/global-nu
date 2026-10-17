@@ -12,7 +12,7 @@ scripts:
   - assets/js/search.js
 ---
 
-<section class="hero">
+<section class="hero hero--compact">
   <div class="wrap hero__in">
     <p class="kicker">Tools</p>
     <h1>Literature search</h1>
@@ -24,38 +24,55 @@ scripts:
 
 ::: section
 
+<link rel="stylesheet" href="assets/css/search.css">
+
 <form id="lit-form" class="lit" autocomplete="off">
 
   <div class="lit__main">
     <label class="lit__label" for="q-free">Your query</label>
     <input id="q-free" class="lit__free" type="search" name="q"
-           placeholder="e.g. Lisi Marrone modular symmetry 2023-2025"
+           placeholder="e.g. JUNO reactor oscillation 2025"
            aria-describedby="lit-chips">
   </div>
 
-  <p class="lit__hint">The results can be re-ordered — by relevance,
-  publication date, citations or subfield, each of them reversible — and
-  narrowed to the subfields you want, with the buttons above them. Choosing
-  the order before you search is worth it for the date: the databases are then
-  asked for their most recent records, which changes which ones come back.</p>
-
-  <p class="lit__hint">Recognised automatically: surnames, quoted titles,
-  experiment names, arXiv identifiers, and dates written as
-  <code>2019-2023</code>, <code>2019-&gt;2023</code>, <code>since 2020</code>, <code>before 2015</code>,
-  <code>last 3 years</code>, <code>March 2024</code>. You can also be explicit
-  with <code>a:Lisi</code>, <code>t:"neutrino masses"</code>, and
-  <code>c:T2K</code> for papers <em>signed by</em> a collaboration rather than
-  about it.</p>
-
   <div id="lit-chips" class="lit__chips" aria-live="polite"></div>
 
-  <details class="acc lit__acc">
-    <summary>Refine the interpreted fields</summary>
+  <div class="lit__bar">
+    <button class="btn btn--solid lit__go" type="submit">Search</button>
+    <div id="lit-mode" class="lit-seg" role="group" aria-label="How strictly records must match">
+      <button type="button" class="lit-seg__btn" data-mode="precise" aria-pressed="true"
+              title="Every record must contain your terms in its title, abstract or keywords">Precise</button>
+      <button type="button" class="lit-seg__btn" data-mode="broad" aria-pressed="false"
+              title="Trust the databases' own ranking; only generic ones are checked">Broad</button>
+    </div>
+  </div>
+
+  <details id="lit-adv" class="acc lit__adv">
+    <summary>Advanced options</summary>
     <div class="acc__body">
+
+      <p class="lit__hint">Recognised automatically: surnames, quoted titles,
+      experiment names, arXiv identifiers, and dates written as
+      <code>2019-2023</code>, <code>2019-&gt;2023</code>, <code>since 2020</code>, <code>before 2015</code>,
+      <code>last 3 years</code>, <code>March 2024</code>. You can also be explicit
+      with <code>a:Smith</code>, <code>t:"neutrino masses"</code>, and
+      <code>c:T2K</code> for papers <em>signed by</em> a collaboration rather than
+      about it.</p>
+
+      <p class="lit__hint">The results can be re-ordered — by relevance,
+      publication date, citations or subfield, each of them reversible — and
+      narrowed to the subfields you want, with the buttons above them. Choosing
+      the order before you search is worth it for the date: the databases are then
+      asked for their most recent records, which changes which ones come back.
+      <em>Precise</em> keeps only records that show your words in their title,
+      abstract or keywords; <em>Broad</em> also keeps what the databases rank
+      high on weaker evidence.</p>
+
+      <h2 class="lit__sub">Refine the interpreted fields</h2>
       <div class="lit__grid">
         <div>
           <label class="lit__label" for="q-author">Author(s)</label>
-          <input id="q-author" type="text" placeholder="Lisi; Marrone">
+          <input id="q-author" type="text" placeholder="Surname; Surname">
           <span class="lit__note">Separate several with a semicolon.</span>
         </div>
         <div>
@@ -73,6 +90,20 @@ scripts:
           typed in the box above is treated as a topic instead — use
           <code>c:T2K</code> to force this field.</span>
         </div>
+      </div>
+
+      <h2 class="lit__sub">Time and discipline</h2>
+      <div class="lit__grid">
+        <div>
+          <label class="lit__label" for="adv-time">Published</label>
+          <select id="adv-time">
+            <option value="any" selected>Any time</option>
+            <option value="1">Last year</option>
+            <option value="2">Last 2 years</option>
+            <option value="5">Last 5 years</option>
+            <option value="custom">Custom range</option>
+          </select>
+        </div>
         <div>
           <label class="lit__label" for="q-from">From</label>
           <input id="q-from" type="text" inputmode="numeric" placeholder="2019">
@@ -81,39 +112,42 @@ scripts:
           <label class="lit__label" for="q-to">To</label>
           <input id="q-to" type="text" inputmode="numeric" placeholder="2025">
         </div>
+        <div>
+          <label class="lit__label" for="adv-disc">Discipline</label>
+          <select id="adv-disc">
+            <option value="all" selected>All physics</option>
+            <option value="neutrino">Neutrino physics</option>
+          </select>
+          <span class="lit__note">Decided from the title and venue, as the subfield labels are.</span>
+        </div>
+      </div>
+
+      <fieldset class="lit__sources">
+        <legend class="lit__label">Search in</legend>
+        <label class="lit__check"><input type="checkbox" id="src-inspire" checked> INSPIRE-HEP</label>
+        <label class="lit__check"><input type="checkbox" id="src-crossref" checked> Crossref</label>
+        <label class="lit__check"><input type="checkbox" id="src-openalex" checked> OpenAlex</label>
+        <label class="lit__check"><input type="checkbox" id="src-arxiv" checked> arXiv</label>
+        <label class="lit__check"><input type="checkbox" id="src-s2" checked> Semantic Scholar</label>
+      </fieldset>
+      <p class="lit__note">Results are filtered to physics: OpenAlex is asked for
+      Physical Sciences only, Semantic Scholar for Physics, and a record found
+      only by the generic databases must actually contain your query terms.
+      Google Scholar has no public search API, and NASA ADS's requires a personal
+      token — use the buttons under the results to open the same query there.</p>
+
+      <div class="btn-row">
+        <button class="btn btn--ghost" type="button" id="lit-clear">Clear</button>
       </div>
     </div>
   </details>
 
-  <fieldset class="lit__sources">
-    <legend class="lit__label">Search in</legend>
-    <label class="lit__check"><input type="checkbox" id="src-inspire" checked> INSPIRE-HEP</label>
-    <label class="lit__check"><input type="checkbox" id="src-crossref" checked> Crossref</label>
-    <label class="lit__check"><input type="checkbox" id="src-openalex" checked> OpenAlex</label>
-    <label class="lit__check"><input type="checkbox" id="src-arxiv" checked> arXiv</label>
-    <label class="lit__check"><input type="checkbox" id="src-s2" checked> Semantic Scholar</label>
-  </fieldset>
-  <p class="lit__note">Results are filtered to physics: OpenAlex is asked for
-  Physical Sciences only, Semantic Scholar for Physics, and a record found
-  only by the generic databases must actually contain your query terms.
-  Google Scholar has no public search API, and NASA ADS's requires a personal
-  token — use the buttons below to open the same query there.</p>
-
-  <div class="btn-row">
-    <button class="btn btn--solid" type="submit">Search</button>
-    <button class="btn btn--ghost" type="button" id="lit-clear">Clear</button>
-  </div>
-
 </form>
 
-<p class="lit__label" style="margin-top:2rem">Also open this query in</p>
-<div id="lit-outbound" class="btn-row"></div>
-
-<p class="lit__hint">Try:
-  <a href="#" data-example='Lisi Marrone modular symmetry 2023-2025'>Lisi Marrone modular symmetry 2023-2025</a> ·
-  <a href="#" data-example='t:"neutrinoless double beta decay" since 2022'>neutrinoless double beta decay since 2022</a> ·
-  <a href="#" data-example='T2K oscillation last 2 years'>T2K oscillation last 2 years</a> ·
-  <a href="#" data-example='Feruglio modular forms flavour'>Feruglio modular forms flavour</a>
+<p class="lit__hint" id="lit-try">Try:
+  <a href="#" data-example='JUNO reactor oscillation 2025'>JUNO reactor oscillation 2025</a> ·
+  <a href="#" data-example='t:"neutrinoless double beta decay" since 2022'>neutrinoless double beta decay</a> ·
+  <a href="#" data-example='T2K oscillation last 2 years'>T2K oscillation</a>
 </p>
 
 :::
@@ -121,9 +155,17 @@ scripts:
 ::: section alt #lit-pane
 
 <p id="lit-status" class="lit__status" aria-live="polite"></p>
+<div id="lit-badges" class="lit-badges" hidden></div>
 <div id="lit-sort" class="lit-sort" role="group" aria-label="Order the results" hidden></div>
 <div id="lit-filters" class="lit-sort lit-sort--filters" role="group" aria-label="Show only some subfields" hidden></div>
 <div id="lit-results" class="lit__results"></div>
+
+:::
+
+::: section
+
+<p class="lit__label">Also open this query in</p>
+<div id="lit-outbound" class="btn-row"></div>
 
 :::
 
@@ -133,95 +175,14 @@ scripts:
   <h2>How it works</h2>
 </div>
 
-::: prose
-
-The query you type is parsed in your browser into structured fields — author,
-title, topic, collaboration, date range — which are shown as chips so you can see
-exactly how the sentence was understood, and corrected by hand if the guess was
-wrong. Each database then receives a query in its own syntax: INSPIRE's
-`a Lisi and t "modular" and de 2023->2025`, Crossref's `query.author` with
-`from-pub-date` filters, OpenAlex's `filter=` expressions.
-
-Everything happens in your browser. This site runs no server-side code, so the
-requests go directly from you to the databases: nothing you type is sent to,
-logged by, or stored on `global-nu.org`.
-
-**How arXiv is reached.** A browser may read a remote API only if that API sends
-the appropriate CORS header, and `export.arxiv.org` does not — a direct call
-from this page would be refused by the browser before you saw anything. But
-arXiv registers a DOI for every preprint with DataCite, under the
-`10.48550/arXiv.*` prefix, and DataCite's API does send CORS and needs no key.
-So the arXiv results here are arXiv's own metadata, deposited by arXiv, fetched
-from the one place a browser is allowed to read it.
-
-**Ordering, and what "most cited" can honestly mean.** The four sort
-buttons above the results work on what is already on the page: no click
-re-queries anything, so reordering is instant, and the order covers exactly
-the records the status line counts. (A *fresh* search does ask each database
-for its most recent records while the date order is active, because that
-genuinely changes which twenty come back.) Relevance is computed here rather than
-taken from any one database — once several answers are merged their own
-rankings are no longer comparable — from the authors and the title and topic
-words you asked for, a collaboration name if you gave one, and the number of
-databases that independently returned the paper. Its citations and its age
-are a separate, second number, read only to separate two papers the query
-itself cannot tell apart — never added to the match, so a much-cited paper
-cannot out-rank one that answers your query better. The full weighting is
-written out above `relevance()` in the page's script. Sorting *by* citations is a
-button of its own, and it is deliberately not pushed upstream: asking INSPIRE
-for `sort=mostcited` does not return the most cited papers *on* a subject, it
-returns the most cited papers that *mention* the words — which is how a search
-for lecture notes on string theory once came back with the PDG Review.
-
-**When INSPIRE says nothing.** INSPIRE does not degrade when a question is
-slightly wrong — it answers zero, which looks exactly like "no such paper".
-So this page never takes one silence for an answer. A momentary failure is
-retried once. A name is read in every spelling it might have: a particle
-stays with its surname (*de Salas*, *van der Meer*), an initial stays with its
-name (*E. Lisi*), and two bare words are sent as both readings at once, since
-*lisi marrone* means two authors and *antonio marrone* means one person and
-nothing in the two strings tells them apart. An arXiv identifier or a DOI,
-pasted on its own, is asked of INSPIRE as an identifier rather than as words.
-And when a question still comes back empty, the constraints come off one at a
-time — the dates, then the last name, then the topic words, then the title —
-until something answers; if a looser question was the one that answered, the
-line above the results says which constraint had to go.
-
-**Where the citation counts come from.** INSPIRE, and nowhere else. Every
-database here counts citations and they do not agree, because they index
-different literature; mixed into one column those numbers stop being
-comparable and ranking by them would reward the paper indexed by the most
-generous counter. So a record INSPIRE returned carries INSPIRE's number
-whichever database found it first, and a record INSPIRE did *not* return is
-looked up by its arXiv identifier or DOI — INSPIRE answers twenty results at a
-time, and a paper it knows perfectly well is often simply not among the twenty
-it sent back. What no lookup finds is shown with **no count at all** rather
-than borrowing one, and sorts as unknown. Untick INSPIRE above and no counts
-appear at all: you have asked this page not to use the one source it trusts
-for them.
-
-**How the subfields are decided.** Each result is filed under one subfield,
-and the grouping is not invented here: it is the
-[arXiv subject taxonomy](https://arxiv.org/category_taxonomy) — the
-classification under which these papers were actually deposited — collapsed
-into eleven groups. Whatever each database holds of it is used and merged:
-INSPIRE's arXiv categories and its own subject terms, arXiv's own subject
-headings as deposited with DataCite, OpenAlex's topic, Semantic Scholar's
-fields of study, Crossref's subject when a publisher deposited one. Neutrino
-physics is the one group that is *not* an arXiv category — it runs through
-`hep-ph`, `hep-ex`, `astro-ph.HE` and `nucl-ex` at once — so it is decided
-from the topic, or from the words of the title or of the journal or conference
-it appeared in, and it takes precedence over the rest. A record no
-database classified is shown as *Unclassified*, not guessed into a group.
-
-**Why not NASA ADS.** Its search API is public and documented, but it requires
-a personal token, which would have to be published in the page source to work —
-so for ADS the parsed query is turned into a correct search URL and offered as
-a button instead.
-
-Results are capped at 20 per database, and every outbound link opens in a new
-tab, so you never lose your place here.
-
-:::
+<ul class="howto">
+<li>Your query is read <b>in your browser</b> into author, title, topic, collaboration and dates, shown as chips you can correct.</li>
+<li>Each database — INSPIRE-HEP, arXiv, Crossref, OpenAlex, Semantic Scholar — gets it in its own syntax, <b>directly from you</b>: nothing passes through this site.</li>
+<li><b>Precise</b> (default) keeps a record only if its title, abstract, keywords or collaboration contain your words; an experiment name such as JUNO, DUNE or NOvA also needs a neutrino context. <b>Broad</b> keeps weaker matches.</li>
+<li>Ranking is by how well a record matches your query; citations only break ties, and the counts come from INSPIRE alone.</li>
+<li>If INSPIRE finds nothing, the constraints are relaxed one at a time, and the status line says which one went.</li>
+<li>A database that does not answer is marked with a badge; the others' results still appear.</li>
+<li>NASA ADS and Google Scholar have no open search API: the buttons above open the same query there.</li>
+</ul>
 
 :::

@@ -50,7 +50,7 @@
 
   --text:#f0f2f7;
   --text-soft:#b9c0cd;
-  --text-mute:#8d95a4;
+  --text-mute:#9ba3b2;
 
   /* Data colours. These two encode the mass ordering everywhere on the site,
      so they are chosen by the validator, not by eye: cyan/violet failed CVD
@@ -114,7 +114,7 @@
 
   --text:#0b0e14;
   --text-soft:#39414f;
-  --text-mute:#5c6472;
+  --text-mute:#4f5664;
 
   --no:#0b62a4;
   --io:#96590a;
@@ -150,7 +150,7 @@
     --line-strong:rgba(10,15,25,.26);
     --text:#0b0e14;
     --text-soft:#39414f;
-    --text-mute:#5c6472;
+    --text-mute:#4f5664;
     --no:#0b62a4;
     --io:#96590a;
     --grp-bari:#0b62a4;
@@ -195,7 +195,7 @@ a:hover{text-decoration:underline}
 .wrap{width:min(100% - 2*var(--gutter),var(--wide));margin-inline:auto}
 .prose{max-width:var(--measure)}
 .prose p{margin:0 0 1rem}
-.small{font-size:.87rem}
+.small{font-size:.9rem}
 .muted{color:var(--text-mute)}
 .mono{font-family:var(--mono)}
 
@@ -230,7 +230,7 @@ h4{font-weight:700;font-size:1.02rem}
    them and the name read as "global" above "-nu". */
 .brand b{font-weight:inherit;white-space:nowrap}
 .brand i{font-style:normal;color:var(--accent)}
-.brand span{font-family:var(--body);font-size:.74rem;font-weight:400;
+.brand__text>span{font-family:var(--body);font-size:.74rem;font-weight:400;
   letter-spacing:0;color:var(--text-mute)}
 .nav{display:flex;gap:1rem;margin-left:auto;flex-wrap:wrap;
   font-size:.85rem;font-weight:500}
@@ -291,7 +291,7 @@ h4{font-weight:700;font-size:1.02rem}
 .section--alt{background:var(--surface);border-block:1px solid var(--line)}
 .section-head{display:flex;align-items:flex-end;gap:1rem;flex-wrap:wrap;
   margin-bottom:1.7rem}
-.section-head p{margin:0;color:var(--text-mute);font-size:.87rem;
+.section-head p{margin:0;color:var(--text-soft);font-size:.88rem;
   font-family:var(--mono)}
 .section-head .more{margin-left:auto;font-size:.88rem;font-weight:600}
 /* A sub-heading inside a domain block (Upcoming / Recent within Neutrino
@@ -315,7 +315,7 @@ h4{font-weight:700;font-size:1.02rem}
 .figure h4{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;
   text-transform:uppercase;color:var(--text-mute);margin:0 0 .7rem;font-weight:600}
 .figure svg{width:100%;height:auto;display:block}
-.figure .cap{font-size:.85rem;color:var(--text-mute);margin:.5rem 0 0}
+.figure .cap{font-size:.9rem;color:var(--text-soft);margin:.5rem 0 0}
 /* The conference timeline is the one figure on the site that must NOT fit its
    card. figures.conference_timeline draws a year of calendar at a fixed scale
    — 520 viewBox units to four months — and states that scale in the svg's own
@@ -423,8 +423,8 @@ h4{font-weight:700;font-size:1.02rem}
   background:var(--bg)}
 .section--alt .table-scroll{background:var(--surface-2)}
 table.data{width:100%;border-collapse:collapse;font-size:.93rem;min-width:44rem}
-table.data caption{caption-side:bottom;text-align:left;font-size:.85rem;
-  color:var(--text-mute);padding:.9rem 1rem;line-height:1.55}
+table.data caption{caption-side:bottom;text-align:left;font-size:.88rem;
+  color:var(--text-soft);padding:.9rem 1rem;line-height:1.55}
 table.data th,table.data td{padding:.6rem .9rem;text-align:left;
   border-bottom:1px solid var(--line)}
 table.data thead th{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;
@@ -683,14 +683,29 @@ table.data tr.row-alt th,table.data tr.row-alt td{background:var(--surface)}
   .hero--split .hero__in{grid-template-columns:1fr}
   .split{grid-template-columns:minmax(0,1fr)}
 }
-/* The nine links stop fitting beside the brand below ~1090px; collapse before
-   they wrap into a second row and double the sticky header's height. */
-@media (max-width:69rem){
-  .nav{display:none;width:100%;flex-direction:column;gap:.55rem;
-    padding-top:.6rem;border-top:1px solid var(--line);margin-top:.4rem}
+/* The ten links stop fitting beside the brand below ~1150px; collapse before
+   they wrap into a second row and double the sticky header's height. The open
+   menu is an overlay dropped from the header: it covers the page instead of
+   pushing it down, so opening it never moves what the reader was looking at. */
+@media (max-width:72rem){
+  .site-header__inner{flex-wrap:nowrap;position:relative}
+  .brand{margin-right:auto;min-width:0}
+  .nav{display:none;position:absolute;top:100%;left:calc(-1 * var(--gutter));
+    right:calc(-1 * var(--gutter));flex-direction:column;gap:0;margin:0;
+    padding:.4rem var(--gutter) .9rem;background:var(--bg);
+    border-bottom:1px solid var(--line-strong);box-shadow:var(--shadow-strong);
+    max-height:calc(100vh - 4rem);overflow-y:auto;font-size:1rem}
   .nav.is-open{display:flex}
+  .nav a{display:flex;align-items:center;min-height:44px;border-bottom:1px solid var(--line)}
+  .nav a:last-child{border-bottom:0}
   .nav a[aria-current="page"]{box-shadow:none;color:var(--accent)}
   .nav-toggle{display:block}
+  .theme-toggle,.nav-toggle{width:44px;height:44px;padding:.6rem}
+}
+/* Phones: the header is one line — the wordmark alone, the two buttons. */
+@media (max-width:44rem){
+  .brand__text>span{display:none}
+  .site-header__inner{padding-block:.5rem}
 }
 
 /* ---------- parameter-history panels ---------- */
@@ -870,13 +885,14 @@ a.card:hover .card__go{color:var(--text)}
 .to-top svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2}
 
 /* ---------- scroll reveal ---------- */
-/* Hidden only when the inline script in base.html has marked the page as
-   scripted: with JavaScript blocked or failing, nothing may stay invisible. */
-.js .reveal{opacity:0;transform:translateY(14px);
-  transition:opacity .55s ease,transform .55s ease}
-.js .reveal.is-in{opacity:1;transform:none}
+/* Never hidden. The reveal used to start at opacity 0, so a figure below the
+   fold was an empty box until it scrolled in — and stayed empty in a
+   screenshot, a print, or a slow scroll. Now only a short rise remains, on
+   content that is already fully visible. */
+.js .reveal{transform:translateY(8px);transition:transform .45s var(--ease-out)}
+.js .reveal.is-in{transform:none}
 @media (prefers-reduced-motion:reduce){
-  .js .reveal{opacity:1;transform:none;transition:none}
+  .js .reveal{transform:none;transition:none}
   .card,.tile,.strip a{transition:none}
   .btn:active{transform:none}
 }
@@ -1270,3 +1286,397 @@ a.card:hover .card__go{color:var(--text)}
      so its close button still anchors to the card. */
   .map-card{position:relative;left:auto;bottom:auto;width:auto;max-height:none;margin-top:.6rem}
 }
+
+/* ============================================================
+   Release card, Results levels, Data page (redesign 2026)
+   ============================================================ */
+.section--tight{padding-block:clamp(1.4rem,3vw,2.2rem)}
+.hero--compact .hero__in{padding-block:clamp(1.8rem,4vw,3rem)}
+.hero--compact .kicker{margin-bottom:.9rem}
+.hero--compact .lede{margin-top:.8rem}
+
+/* the release panel: the official card of the current release */
+.relpanel{background:var(--surface);border:1px solid var(--line-strong);
+  border-radius:var(--r);padding:clamp(1.1rem,2.6vw,1.8rem);box-shadow:var(--shadow)}
+.relpanel__head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem 1rem}
+.relpanel__head .kicker{margin:0}
+.relpanel__head h2{font-size:clamp(1.2rem,1rem + .9vw,1.6rem);flex:1 1 20rem}
+.relpanel__meta{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin:.4rem 0 0;
+  font-family:var(--mono);font-size:.82rem;color:var(--text-soft);width:100%}
+.tag--kind{color:var(--text);border-color:var(--line-strong)}
+.relpanel__banner{margin:1rem 0 0;padding:.7rem .9rem;border-radius:var(--r-sm);
+  border:1px solid color-mix(in srgb,var(--warn) 55%,transparent);
+  background:color-mix(in srgb,var(--warn) 9%,transparent);color:var(--text-soft);font-size:.92rem}
+.relpanel__banner strong{color:var(--text)}
+.relpanel__draft{margin:1rem 0 0;padding:.7rem .9rem;border-radius:var(--r-sm);
+  border:1px dashed var(--warn);color:var(--text-soft);font-size:.92rem}
+.relpanel__draft strong{color:var(--warn)}
+.relpanel__note{margin:1rem 0 .5rem;font-size:.85rem;color:var(--text-soft)}
+.relgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin:0}
+@media (max-width:56rem){.relgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.relcell{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm);
+  padding:.7rem .85rem;display:flex;flex-direction:column;gap:.1rem;min-width:0}
+.relcell dt{font-weight:600;font-size:.92rem;color:var(--text)}
+.relcell dt .u{font-weight:400;color:var(--text-soft);font-size:.82rem}
+.relcell dd{margin:0}
+.relcell__v{font-family:var(--mono);font-size:clamp(1.25rem,1.05rem + .8vw,1.6rem);
+  font-weight:600;color:var(--text);letter-spacing:-.01em}
+.relcell__io{font-family:var(--mono);font-size:.8rem;color:var(--text-soft)}
+.relcell__src{margin-top:.25rem}
+.srcbadge{display:inline-block;font-family:var(--mono);font-size:.72rem;
+  border-radius:999px;padding:.1rem .55rem;border:1px solid var(--line-strong);
+  color:var(--text-soft);white-space:nowrap}
+.srcbadge.src--new{border-color:var(--accent);color:var(--accent)}
+.relpanel__order{margin:.9rem 0 0;font-family:var(--mono);font-size:.85rem;color:var(--text)}
+.relpanel__from{color:var(--text-soft)}
+.relpanel__actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.1rem}
+.relpanel__actions .btn{min-height:44px;display:inline-flex;align-items:center}
+
+/* what changed */
+.home-changes{display:grid;gap:1.6rem;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);align-items:start}
+@media (max-width:56rem){.home-changes{grid-template-columns:1fr}}
+.changes h3{margin-bottom:.3rem}
+.changes__ctx{margin:0 0 .7rem;font-size:.87rem;color:var(--text-soft);font-family:var(--mono)}
+.changes ul{list-style:none;padding:0;margin:0;display:grid;gap:.35rem}
+.changes li{font-family:var(--mono);font-size:.9rem;color:var(--text-soft);
+  border-left:3px solid var(--no);padding:.2rem 0 .2rem .7rem}
+.changes li b{font-family:var(--body);color:var(--text);margin-right:.35rem}
+.changes__def{font-size:.82rem;color:var(--text-soft);margin:.9rem 0 0}
+
+/* daily content: secondary, and labelled for what it is */
+.section-head--quiet h2{font-size:clamp(1.15rem,1rem + .6vw,1.4rem);color:var(--text-soft)}
+.cards--daily{grid-template-columns:repeat(auto-fit,minmax(16rem,1fr))}
+.cards--daily .card{box-shadow:none}
+.cards--daily .card h3{font-size:1.1rem}
+.vbadge{display:inline-block;margin-left:.5rem;font-family:var(--mono);font-size:.7rem;
+  letter-spacing:.04em;text-transform:uppercase;border-radius:4px;padding:.05rem .4rem;
+  border:1px solid var(--line-strong);color:var(--text-soft);vertical-align:middle}
+.vbadge--ai{border-color:var(--warn);color:var(--warn)}
+.vbadge--auto{border-style:dashed}
+.vbadge--human{border-color:var(--dec-5);color:var(--dec-5)}
+
+/* Results level 1: summary table on wide screens, cards on narrow ones */
+table.data--summary{min-width:0}
+table.data--summary td.bf{color:var(--text);font-weight:600}
+table.data--summary td.srccell{font-family:var(--body)}
+.js .lvl1:not(.is-more) .col-more{display:none}
+.more-toggle{margin-top:.8rem;min-height:44px}
+.accnote{color:var(--text-soft);margin:.8rem 0 0}
+.pcards{display:none}
+@media (max-width:44rem){
+  .lvl1__table,.more-toggle{display:none!important}
+  .pcards{display:grid;gap:.75rem}
+}
+.pc{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm);padding:.85rem .95rem}
+.pc h4,.pc .pc__h{font-family:var(--body);font-size:1rem;letter-spacing:0;margin:0 0 .5rem}
+.pc .pc__h .u,.pc h4 .u{font-weight:400;color:var(--text-soft);font-size:.85rem}
+.pc__lv{display:grid;grid-template-columns:repeat(3,auto) 1fr;gap:.35rem .4rem;align-items:center}
+.pc__lv input{position:absolute;opacity:0;pointer-events:none}
+.pc__lv label{font-family:var(--mono);font-size:.8rem;min-width:44px;min-height:36px;
+  display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line-strong);
+  border-radius:999px;color:var(--text-soft);cursor:pointer}
+.pc__lv input:checked+label{background:var(--text);color:var(--bg);border-color:var(--text)}
+.pc__lv input:focus-visible+label{outline:2px solid var(--accent);outline-offset:2px}
+.pc__row{grid-column:1/-1;display:grid;grid-template-columns:3.2rem auto 1fr auto;
+  gap:.6rem;align-items:center;font-family:var(--mono);font-size:.9rem;
+  border-top:1px solid var(--line);padding-top:.45rem;margin-top:.15rem}
+.pc__o{font-size:.78rem;font-weight:600;color:var(--text-soft)}
+.pc__bf{color:var(--text);font-weight:600}
+.pc__r{display:none;color:var(--text-soft)}
+.pc__lv:has(input[value="s1"]:checked) .pc__r--s1,
+.pc__lv:has(input[value="s2"]:checked) .pc__r--s2,
+.pc__lv:has(input[value="s3"]:checked) .pc__r--s3{display:inline}
+.pc__copy{font:inherit;font-size:.78rem;min-width:44px;min-height:44px;border-radius:999px;
+  background:transparent;border:1px solid var(--line-strong);color:var(--text);cursor:pointer}
+.pc__copy.is-done,.btn.is-done{border-color:var(--dec-5);color:var(--dec-5)}
+.pc__meta{margin:.6rem 0 0;font-size:.8rem;color:var(--text-soft)}
+
+/* Results level 2: the full academic table */
+.fulltable{margin-top:1.2rem}
+.fulltable>summary{cursor:pointer;font-weight:600;min-height:44px;display:inline-flex;
+  align-items:center;gap:.4rem;color:var(--accent)}
+.fulltable[open]>summary{margin-bottom:.8rem}
+.table-scroll--sticky{max-height:min(80vh,44rem);overflow:auto;position:relative}
+.table-scroll--sticky table.data thead th{position:sticky;top:0;z-index:2;background:var(--surface-2)}
+.table-scroll--sticky table.data tbody th{position:sticky;left:0;z-index:1;background:var(--bg)}
+.section--alt .table-scroll--sticky table.data tbody th{background:var(--surface-2)}
+.table-scroll--sticky table.data thead th:first-child{left:0;z-index:3}
+.scroll-cue{display:none;color:var(--text-soft);margin:.4rem 0 0}
+@media (max-width:44rem){
+  .scroll-cue{display:block}
+  .table-scroll--sticky{background:
+    linear-gradient(to left,color-mix(in srgb,var(--text) 18%,transparent),transparent) right/14px 100% no-repeat,
+    var(--bg)}
+}
+
+/* Results level 3: files */
+.files{margin-top:.6rem}
+.files .btn-row{margin-top:.4rem}
+.files .btn{min-height:40px;display:inline-flex;align-items:center}
+.files__note{color:var(--text-soft);margin:.6rem 0 0}
+.files__h{margin-top:1.6rem;font-size:1.05rem}
+.cite-line{margin-top:1rem}
+
+/* Data page */
+.rellist{list-style:none;padding:0;margin:0;display:grid;gap:1rem}
+.relitem{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm);padding:1rem 1.1rem}
+.relitem__h{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.relitem .small{margin:.3rem 0 0;color:var(--text-soft)}
+.bib{margin-top:.6rem}
+.bib>summary{cursor:pointer;font-size:.88rem;color:var(--accent);min-height:36px;display:inline-flex;align-items:center}
+.bib pre,.cite-block{overflow-x:auto;font-size:.78rem;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r-sm);padding:.8rem;color:var(--text-soft)}
+.autogen--draft{border-color:var(--warn)}
+.hero--compact .hero__in{padding-block:clamp(1.4rem,3vw,2.2rem)}
+.hero--compact h1{font-size:clamp(1.7rem,1.2rem + 2vw,2.6rem)}
+.relpanel__head h2{flex:1 1 auto}
+.ordtag{display:none;font-family:var(--mono);font-size:.72rem;font-weight:600;margin-left:.35rem}
+.ordtag.ord--no{color:var(--no)}
+.ordtag.ord--io{color:var(--io)}
+.ts-wrap{position:relative}
+@media (max-width:44rem){
+  .ordtag{display:inline}
+  .table-scroll--sticky{background:var(--bg)}
+  .ts-wrap::after{content:"";position:absolute;top:1px;right:1px;bottom:1px;width:18px;
+    border-radius:0 var(--r) var(--r) 0;pointer-events:none;z-index:4;
+    background:linear-gradient(to left,color-mix(in srgb,var(--bg-deep) 85%,transparent),transparent)}
+  .ts-wrap.is-end::after{display:none}
+}
+.srcbadge{text-transform:none;letter-spacing:0}
+a.srcbadge:hover{text-decoration:none;border-color:var(--accent);color:var(--accent)}
+/* Phones: the four actions come straight after the panel's heading, before
+   the banner and the six values, so they are reached in the first screen. */
+@media (max-width:44rem){
+  .relpanel{display:flex;flex-direction:column}
+  .relpanel>*{order:2}
+  .relpanel__head{order:0}
+  .relpanel__actions{order:1;display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.9rem}
+  .relpanel__actions .btn{justify-content:center;text-align:center;padding-inline:.6rem;font-size:.84rem}
+  .relpanel__note{margin-top:1.1rem}
+  .hero--compact .kicker{display:none}
+  .hero--compact .lede{font-size:1rem;margin-top:.5rem}
+  .relcell{padding:.55rem .65rem}
+  .relgrid{gap:.45rem}
+}
+.method-sum{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:var(--r-sm);padding:1rem 1.2rem;max-width:58rem}
+.method-sum p{margin:0 0 .8rem;color:var(--text-soft);font-size:.96rem}
+.method-sum p strong{color:var(--text)}
+.method-sum .btn{min-height:44px;display:inline-flex;align-items:center}
+.prose--method{max-width:46rem}
+.prose--method p{color:var(--text-soft)}
+.figbox__bar .figbox__table-btn{width:auto;padding:0 .8rem;font-size:.85rem}
+.figbox__table{max-height:34vh;overflow:auto;margin-top:.8rem;flex:none}
+.figbox__table table.data{min-width:0;font-size:.85rem}
+@media (max-width:44rem){
+  .figbox__bar button{width:44px;height:44px}
+  .figbox__bar .figbox__table-btn{width:auto}
+  .figbox{padding:.6rem}
+}
+.newsmeta{margin:.7rem 0 0;font-size:.82rem;color:var(--text-soft);line-height:1.6}
+.newsmeta .vbadge{margin-left:0}
+.newsmeta a{white-space:nowrap}
+.digest-dates{color:var(--text-soft);margin:1rem 0 1.4rem;max-width:62rem}
+.conf-filters{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center;margin:0 0 1.6rem;
+  padding:.9rem 1rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm)}
+.conf-filters label{display:inline-flex;align-items:center;gap:.4rem;font-size:.88rem;color:var(--text-soft)}
+.conf-filters select{font:inherit;font-size:.88rem;min-height:44px;padding:0 .6rem;border-radius:var(--r-sm);
+  background:var(--bg);color:var(--text);border:1px solid var(--line-strong)}
+.conf-filters input[type=checkbox]{width:20px;height:20px}
+.conf-filters__nu{min-height:44px}
+.conf-filters__count{width:100%;margin:0;color:var(--text)}
+.conf-filters__note{width:100%;margin:0;color:var(--text-soft)}
+.conf-filters .btn-row{margin:0}
+.conf-filters .btn{min-height:44px;display:inline-flex;align-items:center}
+.conf-sub{list-style:none;margin:.5rem 0 0;padding:0 0 0 1rem;border-left:2px solid var(--line-strong)}
+.conf-sub li{padding:.35rem 0;font-size:.92rem}
+.conf-sub li::before{content:none}
+@media (max-width:44rem){.conf-filters label{width:100%;justify-content:space-between}}
+.conf-scope[hidden]{display:none}
+
+/* Touch targets: on a phone, or any coarse pointer, every control is at
+   least 44×44 px. Inline links inside sentences are exempt (WCAG 2.5.8);
+   the link rows under list items are not sentences, so they are enlarged. */
+@media (max-width:44rem),(pointer:coarse){
+  .btn,.btn--sm{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+  .brand{min-height:44px;justify-content:center}
+  summary{min-height:44px;display:flex;align-items:center}
+  .cites a,.conf-list .cites a,.list--news li>b>a{display:inline-flex;align-items:center;min-height:44px}
+  .cites a{padding-inline:.15rem}
+  .svgzoom__btn,.lit-sort button,.lit-sort a{min-width:44px;min-height:44px}
+  .card__go{display:inline-flex;align-items:center;min-height:44px}
+}
+@media (max-width:44rem),(pointer:coarse){
+  .files .btn,.relpanel__actions .btn{min-height:44px}
+  .bib>summary,.fulltable>summary{min-height:44px}
+  li>time+a{display:inline-flex;align-items:center;min-height:44px}
+}
+@media (max-width:44rem),(pointer:coarse){.map-ctl button{min-width:44px;min-height:44px}}
+.split--data{align-items:start}
+.datapreview{margin:0;min-width:0}
+.datapreview figcaption{color:var(--text-soft);margin-bottom:.4rem}
+.datapreview pre{margin:0;overflow-x:auto;font-size:.78rem;line-height:1.6;background:var(--bg);
+  border:1px solid var(--line);border-radius:var(--r-sm);padding:.8rem .9rem;color:var(--text-soft)}
+.card .vbadge{align-self:flex-start;margin:.35rem 0 .5rem}
+/* Daily content is context, not results: no colour rule, no coloured title. */
+.cards--daily .card{background:transparent;border-style:dashed}
+.cards--daily .card::before{display:none}
+.cards--daily .card h3{color:var(--text)}
+.cards--daily .card__go{color:var(--text-soft)}
+
+/* ---------- logo (concept 1b, "ν oscillante") ----------
+   Colours from the concept sheet: on dark, ν #F4F6FB and the wave
+   #F4F6FB → #4CC9F0 → #9BE3F7; on light, ν #1F3A93 and the wave
+   #1F3A93 → #1FA3D6 → #4CC9F0. The wordmark takes the ν colour. */
+:root,:root[data-theme="dark"]{--logo-nu:#F4F6FB;--logo-w1:#4CC9F0;--logo-w2:#9BE3F7}
+:root[data-theme="light"]{--logo-nu:#1F3A93;--logo-w1:#1FA3D6;--logo-w2:#4CC9F0}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--logo-nu:#1F3A93;--logo-w1:#1FA3D6;--logo-w2:#4CC9F0}}
+.brand{flex-direction:row;align-items:center;gap:.6rem}
+.brand__mark{width:2.6rem;height:auto;flex:none;display:block}
+.brand__text{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+.brand__text b{font-family:var(--body);font-weight:500;letter-spacing:.015em;color:var(--logo-nu);font-size:1.12rem}
+.brand__text span{font-family:var(--body);font-size:.74rem;font-weight:400;letter-spacing:0;color:var(--text-mute)}
+@media (max-width:44rem){.brand__text span{display:none}.brand__mark{width:2.3rem}}
+/* Home: the logo, large and centred. */
+.hero--logo .hero__in{text-align:center;padding-block:clamp(2rem,5vw,3.6rem) clamp(1.6rem,4vw,2.6rem)}
+.hero-logo{width:min(15rem,52vw);height:auto;display:block;margin:0 auto}
+.hero-logo__word{font-family:var(--body);font-weight:500;letter-spacing:.015em;color:var(--logo-nu);
+  font-size:clamp(2rem,1.4rem + 2.6vw,3.2rem);margin:.2rem 0 .6rem;line-height:1.1}
+.hero--logo h1{font-size:clamp(1.15rem,1rem + .8vw,1.55rem);font-weight:600;color:var(--text-soft);letter-spacing:0}
+.hero--logo .lede{margin-inline:auto}
+/* Home panel: the Nσ curves of the release page, same colours as its figures. */
+.relgrid--curves{--gl-no:#4d84ff;--gl-io:#ff5a5a}
+:root[data-theme="light"] .relgrid--curves{--gl-no:#1f4dbf;--gl-io:#c81919}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .relgrid--curves{--gl-no:#1f4dbf;--gl-io:#c81919}}
+.relcell__err{font-size:.72rem;font-weight:500;color:var(--text-soft);margin-left:.4rem}
+.relcell__err .ae{display:inline-flex;flex-direction:column;vertical-align:middle;line-height:1.05}
+.relcell__err sup,.relcell__err sub{font-size:.68rem;vertical-align:baseline}
+.relcell__curve{margin:.3rem 0 .2rem}
+.relcell__curve svg{width:100%;height:46px;display:block;overflow:visible}
+.relcell__curve .gb{fill:var(--gl-no);opacity:.16}
+.relcell__curve .g1{stroke:var(--line-strong);stroke-dasharray:2 3;stroke-width:1}
+.relcell__curve .gno{fill:none;stroke:var(--gl-no);stroke-width:2;vector-effect:non-scaling-stroke}
+.relcell__curve .gio{fill:none;stroke:var(--gl-io);stroke-width:1.6;stroke-dasharray:4 3;opacity:.9;vector-effect:non-scaling-stroke}
+.relpanel__legend{margin:.7rem 0 0;font-size:.8rem;color:var(--text-soft)}
+.relpanel__legend i{display:inline-block;width:18px;height:0;vertical-align:middle;margin:0 .3rem 0 .2rem}
+.relpanel__legend .lno{border-top:2px solid var(--gl-no,#4d84ff)}
+.relpanel__legend .lio{border-top:2px dashed var(--gl-io,#ff5a5a)}
+.relpanel:has(.relgrid--curves){--gl-no:#4d84ff;--gl-io:#ff5a5a}
+:root[data-theme="light"] .relpanel:has(.relgrid--curves){--gl-no:#1f4dbf;--gl-io:#c81919}
+/* The wave of the home logo draws itself once, left to right, each
+   segment faster than the one before — the oscillation damping out. The ν
+   stays put. With reduced motion the logo is simply there. */
+@keyframes logo-wave{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:no-preference){
+  .hero-logo .hero-logo__wave{stroke-dasharray:1;stroke-dashoffset:1;
+    animation:logo-wave .34s cubic-bezier(.33,0,.2,1) forwards}
+  .hero-logo .hero-logo__wave:nth-child(2){animation-delay:.15s}
+  .hero-logo .hero-logo__wave:nth-child(3){animation-delay:.45s;animation-duration:.28s}
+  .hero-logo .hero-logo__wave:nth-child(4){animation-delay:.69s;animation-duration:.23s}
+  .hero-logo .hero-logo__wave:nth-child(5){animation-delay:.88s;animation-duration:.19s}
+  .hero-logo .hero-logo__wave:nth-child(6){animation-delay:1.04s;animation-duration:.16s}
+}
+@media (prefers-reduced-motion:reduce){.hero-logo .hero-logo__wave{animation:none;stroke-dasharray:none;stroke-dashoffset:0}}
+/* Home panel with curves: numbers on the left, the Nσ curve on the right,
+   tall enough for the IO curve, which starts near 4σ, to keep its shape. */
+.relgrid--curves .relcell{display:grid;grid-template-columns:minmax(6.5rem,auto) 1fr;
+  grid-template-rows:auto auto 1fr;column-gap:.8rem;align-items:start}
+.relgrid--curves .relcell dt{grid-column:1/-1}
+.relgrid--curves .relcell__v{grid-column:1;grid-row:2;display:flex;flex-direction:column;align-items:flex-start}
+.relgrid--curves .relcell__err{margin-left:0;margin-top:.1rem}
+.relgrid--curves .relcell__io{grid-column:1;grid-row:3;align-self:end}
+.relgrid--curves .relcell__curve{grid-column:2;grid-row:2/4;margin:0;align-self:stretch;min-height:72px}
+.relgrid--curves .relcell__curve svg{height:100%;min-height:72px}
+@media (max-width:44rem){
+  .relgrid--curves .relcell{grid-template-columns:1fr}
+  .relgrid--curves .relcell__curve{grid-column:1;grid-row:auto;min-height:56px}
+  .relgrid--curves .relcell__io{grid-row:auto}
+}
+.earlier-link{display:flex;justify-content:center}
+.earlier-link .btn{min-height:44px;display:inline-flex;align-items:center;text-align:center}
+.relpage .glance svg{height:52px}
+/* Data page: one card per data set, one button per file */
+.dsets{display:grid;gap:1rem}
+.dset{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:1.1rem 1.2rem}
+.dset h3{font-size:1.1rem;margin:0}
+.dset__note{margin:.25rem 0 .9rem;font-size:.86rem;color:var(--text-soft);font-family:var(--mono)}
+.dset__files{display:flex;flex-wrap:wrap;gap:.6rem}
+.dfile{display:inline-flex;flex-direction:column;justify-content:center;gap:.1rem;min-height:52px;
+  padding:.5rem .9rem;border:1px solid var(--line-strong);border-radius:var(--r-sm);
+  background:var(--surface);color:var(--text);text-decoration:none;
+  transition:border-color .15s var(--ease-out),transform .15s var(--ease-out)}
+.dfile:hover{text-decoration:none;border-color:var(--accent);transform:translateY(-1px)}
+.dfile__l{font-weight:600;font-size:.9rem}
+.dfile__m{font-family:var(--mono);font-size:.76rem;color:var(--text-soft)}
+.dfile--doc{background:transparent}
+.dalso{margin:1.6rem 0 .7rem;font-size:1rem}
+.dnote{margin-top:1rem;max-width:62rem}
+.rellist-plain{margin:0;padding-left:1.1rem;display:grid;gap:.4rem}
+@media (prefers-reduced-motion:reduce){.dfile{transition:none}.dfile:hover{transform:none}}
+.howto{max-width:48rem;margin:0;padding-left:1.1rem;display:grid;gap:.45rem;color:var(--text-soft)}
+.howto b{color:var(--text)}
+/* News: one readable column; sources as buttons; provenance kept quiet */
+.news-feed{display:grid;gap:0;max-width:52rem}
+.news-item{padding:1.4rem 0;border-top:1px solid var(--line)}
+.news-item:first-child{border-top:0;padding-top:.4rem}
+.news-item__h{font-size:clamp(1.05rem,1rem + .35vw,1.25rem);margin:0 0 .45rem;letter-spacing:-.01em}
+.news-item__text{margin:0;color:var(--text-soft);font-size:1rem;line-height:1.65}
+.news-item__src{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
+.news-src{display:inline-flex;align-items:center;gap:.5rem;min-height:40px;padding:.35rem .8rem;
+  border:1px solid var(--line-strong);border-radius:999px;font-size:.86rem;color:var(--text);
+  text-decoration:none;transition:border-color .15s var(--ease-out)}
+.news-src:hover{border-color:var(--accent);text-decoration:none}
+.news-src__who{font-weight:600}
+.news-src__when{color:var(--text-soft);font-family:var(--mono);font-size:.78rem}
+.news-src__go{color:var(--accent)}
+.news-item .newsmeta{margin-top:.7rem}
+@media (max-width:44rem),(pointer:coarse){.news-src{min-height:44px}}
+@media (prefers-reduced-motion:reduce){.news-src{transition:none}}
+@media (min-width:72rem){
+  .news-feed{max-width:none;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:3rem}
+  .news-item:nth-child(2){border-top:0;padding-top:.4rem}
+}
+
+.hero__jump{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+
+/* Installable app. The footer offer, and — inside the installed app — no
+   way to the data downloads: the app is for reading; files of numbers stay
+   on the website. */
+.app-install{margin:0 0 1rem;display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;
+  font-size:.9rem;color:var(--text-mute)}
+.app-install[hidden],.app-install [hidden]{display:none}
+@media (display-mode: standalone){
+  .nav a[href$="data.html"],.site-footer li:has(> a[href$="data.html"]),
+  a[download],a[href$=".csv"],a[href$=".json"],a[href$=".gz"],a[href$=".zip"],
+  a[href$=".txt"],a[href$=".dat"],a[href$=".npz"],a[href$=".ipynb"],
+  .dset__files,.relpage #data,.relpage a[href="#data"],.relpage .cta[href="#data"]{display:none!important}
+}
+
+/* A release published before its paper (site.yaml `preliminary`, see
+   tools/preliminary.py): a large blinking PRELIMINARY on every page that
+   shows it. The blink is slow (one cycle in 1.6 s, well under the three
+   flashes a second that matter for photosensitivity) and stops, with the
+   word still there, under reduced motion. */
+:root{--prelim:#ff4d4d}
+:root[data-theme="light"]{--prelim:#c4161c}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--prelim:#c4161c}}
+.prelim{font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--prelim);
+  animation:prelim-blink 1.6s ease-in-out infinite}
+@keyframes prelim-blink{50%{opacity:.2}}
+.prelim-banner{border-bottom:2px solid var(--prelim);
+  background:color-mix(in srgb,var(--prelim) 12%,var(--bg))}
+.prelim-banner .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.2rem;
+  padding-top:.9rem;padding-bottom:.9rem}
+.prelim-banner .prelim{font-size:clamp(1.6rem,5vw,2.6rem);line-height:1.1}
+.prelim-banner span{color:var(--text);font-size:1rem;max-width:52rem}
+.prelim--badge{display:inline-block;vertical-align:middle;margin-left:.5rem;padding:.15em .5em;
+  border:2px solid var(--prelim);border-radius:.3em;font-size:.55em;line-height:1.2}
+.prelim-files{padding:1rem 1.2rem;border:2px solid var(--prelim);border-radius:var(--r-sm,6px);
+  background:color-mix(in srgb,var(--prelim) 8%,var(--surface))}
+.prelim-files .prelim{margin-right:.5rem}
+[data-preliminary] .relpage figure,[data-preliminary] .relpanel{position:relative}
+[data-preliminary] .relpage figure::after,[data-preliminary] .relpanel::after{
+  content:"PRELIMINARY";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  pointer-events:none;font-weight:800;letter-spacing:.12em;font-size:clamp(1.6rem,6vw,3.4rem);
+  color:var(--prelim);opacity:.16;transform:rotate(-14deg)}
+@media (prefers-reduced-motion:reduce){.prelim{animation:none}}

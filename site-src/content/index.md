@@ -9,95 +9,91 @@ description: >-
 katex: false
 jsonld: site
 ---
-
-<section class="hero hero--split">
+<section class="hero hero--logo">
   <div class="wrap hero__in">
-    <div>
-      <p class="kicker"><b>●</b> Release March 2025 · (1,&nbsp;2) sector updated 2026</p>
-      <h1>Global analyses of neutrino<br>oscillation data</h1>
-      <p class="lede">The Bari global analysis of neutrino oscillation data,
-      published openly: best fits, allowed ranges, both mass orderings, and a
-      parameter register you can download as JSON or CSV.</p>
-      <div class="btn-row">
-        <a class="btn" href="results.html">Explore the results</a>
-        <a class="btn btn--ghost" href="history.html">Parameter history</a>
-      </div>
-    </div>
-
-    <figure class="figure">
-      <h4>The six parameters, as measured</h4>
-      <!--include:ranges-hero-->
-      <p class="cap">Best fit with 1σ and 3σ ranges, normal ordering, each
-      parameter at its newest published value — not one fit: δm² and sin²θ₁₂
-      come from <a href="https://doi.org/10.1103/cxqw-1bty">Phys. Rev. D 114,
-      016026 (2026)</a>, the (1,&nbsp;2)-sector update after the first JUNO
-      results, and the other four from Table I of
-      <a href="https://doi.org/10.1103/PhysRevD.111.093006">Phys. Rev. D 111,
-      093006 (2025)</a>, the most recent full release. All six rows share one
-      scale, in percent of each parameter's own best fit, so the width of a row
-      is how well that parameter is known: Δm² is measured to ±2.5% at 3σ,
-      while δ runs off the axis at −39%/+69%. Absolute values are printed at
-      the right. Full tables and both orderings are on the
-      <a href="results.html">results page</a>.</p>
-    </figure>
+    <svg class="hero-logo" viewBox="10 26 120 52" role="img" aria-label="global-nu logo: the letter ν continuing into an oscillation">
+      <defs><linearGradient id="hero-wave" gradientUnits="userSpaceOnUse" x1="56" y1="0" x2="126" y2="0">
+        <stop offset="0" style="stop-color:var(--logo-nu)"/><stop offset=".45" style="stop-color:var(--logo-w1)"/><stop offset="1" style="stop-color:var(--logo-w2)"/>
+      </linearGradient></defs>
+      <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 32 C20 28 27 42 36 74 C44 56 50 30 56 30" style="stroke:var(--logo-nu)" stroke-width="7"/>
+        <path d="M56 30 C61 30 65 68 70 68" class="hero-logo__wave" pathLength="1" stroke="url(#hero-wave)" stroke-width="7"/>
+        <path d="M70 68 C75 68 79 41 84 41" class="hero-logo__wave" pathLength="1" stroke="url(#hero-wave)" stroke-width="5.5"/>
+        <path d="M84 41 C89 41 93 60 98 60" class="hero-logo__wave" pathLength="1" stroke="url(#hero-wave)" stroke-width="4.5"/>
+        <path d="M98 60 C103 60 107 47 112 47" class="hero-logo__wave" pathLength="1" stroke="url(#hero-wave)" stroke-width="3.5"/>
+        <path d="M112 47 C117 47 121 55 126 55" class="hero-logo__wave" pathLength="1" stroke="url(#hero-wave)" stroke-width="2.5"/>
+      </g>
+    </svg>
+    <p class="hero-logo__word">global-nu</p>
+    <h1>Global analyses of neutrino oscillation data</h1>
+    <p class="lede">The Bari group's global analysis, published openly: best fits,
+    allowed ranges and Δχ² profiles for both mass orderings, with the figures
+    and the data behind them.</p>
   </div>
 </section>
 
+::: section tight
+
+<!--include:release-panel-->
+
+:::
+
+::: section alt
+
+<div class="home-changes">
+
+<!--include:release-changes-->
+
+<figure class="figure">
+<div class="figure__head">
+  <h3>The six parameters, as measured</h3>
+  <p>current values · normal ordering</p>
+</div>
+<!--include:current-ranges-->
+<p class="cap">Best fit with 1σ and 3σ ranges for the current values in the
+panel above, normal ordering. All six rows share one scale, in percent of each
+parameter's own best fit, so the width of a row is how well that parameter is
+known; a row that runs past the axis is marked with an arrow and its true
+extent. Absolute values are printed at the right. Full tables and both
+orderings are on the <a href="results.html">results page</a>.</p>
+</figure>
+
+</div>
+
+:::
+
 ::: section
 
-<div class="section-head">
-  <h2>Best fits</h2>
-  <p>normal ordering · arXiv:2503.07752, (1,2) sector updated in arXiv:2511.21650</p>
-  <a class="more" href="results.html">Full tables and ranges →</a>
+<figure class="figure figure--wide">
+<div class="figure__head">
+  <h3>How the precision improved</h3>
+  <p>1σ accuracy · logarithmic scale</p>
 </div>
-
-<div class="stats reveal">
-  <div class="stat"><span class="k">sin²θ₁₂</span><span class="v">0.3085</span><span class="u">formal 1σ accuracy 2.4% · 2026</span><!--include:spark-sin2_th12--></div>
-  <div class="stat"><span class="k">sin²θ₁₃</span><span class="v">0.0223</span><span class="u">formal 1σ accuracy 2.4%</span><!--include:spark-sin2_th13--></div>
-  <div class="stat"><span class="k">sin²θ₂₃</span><span class="v">0.473</span><span class="u">formal 1σ accuracy 5.1%</span><!--include:spark-sin2_th23--></div>
-  <div class="stat"><span class="k">δm² / 10⁻⁵ eV²</span><span class="v">7.48</span><span class="u">m₂² − m₁² &gt; 0 · 2026</span><!--include:spark-dm2--></div>
-  <div class="stat"><span class="k">Δm² / 10⁻³ eV²</span><span class="v">2.495</span><span class="u">m₃² − (m₁²+m₂²)/2 · NO</span><!--include:spark-Dm2-abs--></div>
-  <div class="stat"><span class="k">δ/π</span><span class="v">1.20</span><span class="u">CP phase, cyclic mod 2</span><!--include:spark-delta_pi--></div>
-</div>
-
-<p class="small muted" style="margin-top:1.1rem">Normal ordering is favoured at
-2.2σ; the χ² offset between the orderings is Δχ²(IO−NO) = +5.0. Four of the six
-values above — sin²θ₁₃, sin²θ₂₃, Δm² and δ/π, together with that ordering
-preference — are from Table I of
-<a href="https://doi.org/10.1103/PhysRevD.111.093006">Phys. Rev. D 111, 093006
-(2025)</a>, the most recent <em>full</em> release, in the conventions stated
-there.</p>
-
-<p class="small muted">The two marked 2026 — δm² and sin²θ₁₂ — are newer. They
-come from Table I of
-<a href="https://doi.org/10.1103/cxqw-1bty">Phys. Rev. D 114, 016026 (2026)</a>
-(<a href="https://arxiv.org/abs/2511.21650">arXiv:2511.21650</a>), which adds
-the first JUNO results and the latest SNO+ data to the 2025 analysis. It
-revises the (1,2) sector alone and does not touch the other four parameters, so
-this card set is the newest published value for each — not a single fit. Both
-papers define the percentage the same way, as their own “formal 1σ parameter
-accuracy”: a sixth of the 3σ range divided by the best fit, which is not the
-ordinary 1σ fractional uncertainty and does not equal half the 1σ range over
-the best fit. The <a href="history.html">parameter history</a> carries every
-release, value by value.</p>
+<!--include:precision-->
+<p class="cap">Each line is one parameter’s 1σ accuracy — a sixth of its
+3σ range over its best fit — as published in each release. Computed from the
+same tables the <a href="history.html">parameter history</a> is built on.</p>
+</figure>
 
 :::
 
 ::: section alt glow
 
-<div class="cards reveal">
+<div class="section-head section-head--quiet"><h2>Every day</h2><p>generated automatically — not results of the group</p></div>
+
+<div class="cards cards--daily">
 
 <a class="card card--2" href="digest.html">
-<span class="card__tag">Updated daily</span>
+<span class="card__tag">Updated daily</span><span class="vbadge vbadge--auto">automatic</span>
 <h3>Today on arXiv</h3>
-<p class="small muted">Experimental and theoretical preprints of the day, kept
+<p class="small muted">The newest experimental and theoretical preprints, kept
 in two streams and ranked by a keyword score whose word list is printed at the
 foot of that page — no model decides what appears there.</p>
 <span class="card__go">The full digest →</span>
 </a>
 
 <a class="card card--3" href="news.html">
-<span class="card__tag">News</span>
+<span class="card__tag">News</span><span class="vbadge vbadge--ai">AI-assisted</span>
 <h3>What is happening</h3>
 <p class="small muted">Experiments, results and milestones, written from
 fetched sources: every item on that page carries the link it came from, and
@@ -106,7 +102,7 @@ an item whose citation cannot be resolved is dropped before publication.</p>
 </a>
 
 <a class="card card--5" href="conferences.html">
-<span class="card__tag">Conferences</span>
+<span class="card__tag">Conferences</span><span class="vbadge vbadge--auto">automatic</span>
 <h3>Where the field meets</h3>
 <p class="small muted">Upcoming and recent meetings with dates and links —
 and the venue wherever the source publishes one — rebuilt each day from the
@@ -118,26 +114,11 @@ conference indexers rather than kept by hand.</p>
 
 :::
 
-::: section
-
-<figure class="figure figure--wide reveal">
-<div class="figure__head">
-  <h3>How the precision improved</h3>
-  <p>formal 1σ accuracy · logarithmic scale</p>
-</div>
-<!--include:precision-->
-<p class="cap">Each line is one parameter’s formal 1σ accuracy — a sixth of its
-3σ range over its best fit — as published in each release. Computed from the
-same tables the <a href="history.html">parameter history</a> is built on.</p>
-</figure>
-
-:::
-
 ::: section alt glow
 
-<div class="strip reveal">
+<div class="strip">
   <a href="history.html"><span class="t">Parameter history</span><span class="d">A quarter century of global fits — Bari, Valencia, NuFit — each point traced to its paper</span></a>
-  <a href="history.html#data"><span class="t">The parameter register, as JSON and CSV</span><span class="d">Stable URLs and a documented schema, built to be scripted against</span></a>
+  <a href="data.html"><span class="t">Data</span><span class="d">The current release, the parameter register and the release packages, as CSV and JSON with a documented schema</span></a>
   <a href="resources.html"><span class="t">Resources</span><span class="d">Experiments, data releases, databases and reviews, in one curated place</span></a>
 </div>
 
