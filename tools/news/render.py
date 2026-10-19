@@ -813,34 +813,25 @@ def conferences(records: list[dict], log: logging.Logger,
 
     # Drawn fresh from this morning's records, same as the lists below — never
     # cached from a previous run, so the two can never show different dates.
-    # Rows fill from `upcoming` first (soonest at the top); `recent` only gets
-    # whatever room is left, which is usually none — see conference_timeline's
-    # docstring for why that is the right trade rather than an accident.
-    max_rows = 14
-    timeline = figures.conference_timeline(upcoming, recent, max_rows=max_rows, log=log)
+    # EVERY upcoming meeting gets a row, and the recently concluded only the
+    # last few. Until 19 October 2026 the figure kept 14 rows picked to spread
+    # across the year (figures._spread), whatever their subject: it drew
+    # ESC26 and a national computing conference and left out NNN26, Patras,
+    # DISCRETE and the IRN neutrino meeting, all in the list below it. The
+    # home page's twin draws them all, and so does this one now: the figure
+    # grows taller, and a reader never meets a bar missing from the list or a
+    # list entry missing from the figure.
+    max_recent_rows = 4
+    n_up = len(upcoming)
+    n_rec = min(max_recent_rows, len(recent))
+    timeline = figures.conference_timeline(upcoming, recent,
+                                           max_rows=n_up + n_rec, log=log)
     timeline_block = ""
     if timeline:
-        n_up = min(len(upcoming), max_rows)
-        n_rec = max(0, max_rows - len(upcoming))
-        n_rec = min(n_rec, len(recent))
-        # n_up can be 0 on a morning every fetcher fails but stale `recent`
-        # records still remain — "The soonest 0 upcoming meetings" would be
-        # the sentence a reader saw on a page like that, so the two clauses
-        # are built to stand on their own rather than assuming n_up > 0.
-        if n_up and n_up < len(upcoming):
-            # Not "the soonest N" any more: the timeline runs a year forward
-            # and picks its rows across that window (figures._spread), so the
-            # rows are no longer the head of the list. Saying "soonest" would
-            # now be a claim the figure contradicts — a reader who counted the
-            # September meetings in the list below and found fewer in the
-            # figure would be right to call it a bug.
-            caption = (f"{n_up} of the {len(upcoming)} upcoming meetings, "
-                      f"spread across the year ahead")
-        elif n_up:
-            caption = (f"The {n_up} upcoming meeting{'' if n_up == 1 else 's'}")
+        if n_up:
+            caption = f"The {n_up} upcoming meeting{'' if n_up == 1 else 's'}"
             if n_rec:
-                caption += (f" and the {n_rec} most recently concluded, "
-                           f"filling the rows the upcoming ones leave")
+                caption += f" and the {n_rec} most recently concluded"
         else:
             caption = (f"The {n_rec} most recently concluded "
                       f"meeting{'' if n_rec == 1 else 's'}")

@@ -183,6 +183,15 @@ inspire:
     # block stays a list of the meetings the field actually plans around
     # rather than every workshop with "particle physics" in its title.
     #
+    # Dates INSPIRE gets wrong, keyed by conference record id. Each must
+    # cite the conference's own page; delete it once INSPIRE is fixed.
+    date_corrections:
+      # ICAGAC 2027: INSPIRE has 18-19 Oct 2027; the conference page says
+      # "September 20-21, 2027", in Amsterdam (checked 19 Oct 2026).
+      "3192175":
+        start: 2027-09-20
+        end: 2027-09-21
+        source: https://astrophysics2027.pagesconferences.org/
     # Links INSPIRE gets wrong, keyed by conference record id, each with why.
     # Delete an entry once INSPIRE carries the right link.
     url_corrections:

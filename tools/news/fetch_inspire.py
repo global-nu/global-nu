@@ -459,9 +459,13 @@ def fetch_conferences(cfg: dict, log: logging.Logger, *,
     for hit in ordered_hits:
         meta = hit.get("metadata", {})
         recid = meta.get("control_number")
-        opening = meta.get("opening_date") or ""
+        fix = (root.get("date_corrections") or {}).get(str(recid))
+        opening = str(fix["start"]) if fix else (meta.get("opening_date") or "")
         if not recid or not opening:
             continue
+        if fix:
+            log.info("inspire conferences: %s dates corrected to %s – %s (%s)",
+                     recid, fix["start"], fix["end"], fix.get("source", ""))
         try:
             o = _dt.date.fromisoformat(opening)
         except ValueError:
@@ -472,7 +476,7 @@ def fetch_conferences(cfg: dict, log: logging.Logger, *,
         # "Upcoming" must mean "not finished", not "not started": a conference
         # in its third day was being filed under Recently concluded, which is
         # simply wrong to a reader deciding whether to go.
-        closing = meta.get("closing_date") or ""
+        closing = str(fix["end"]) if fix else (meta.get("closing_date") or "")
         try:
             end = _dt.date.fromisoformat(closing)
         except ValueError:

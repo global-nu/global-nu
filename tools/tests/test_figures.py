@@ -309,26 +309,27 @@ def _caption(records) -> str:
     m = re.search(r'<p class="cap">(.*?)</p>', text, re.S)
     return m.group(1) if m else ""
 
-# Fewer upcoming than max_rows (14): recent fills the remaining rows, and the
-# caption states both counts and both totals correctly.
+# Every upcoming meeting gets a row; the recently concluded at most four.
 cap = _caption(_upcoming_recs(5) + _recent_recs(20))
 check("with 5 upcoming (all of them shown), the caption says so plainly and "
       "does not claim a selection it did not make",
       "The 5 upcoming meetings" in cap and "spread across" not in cap, cap)
-check("with 5 upcoming (of 14 rows), the remaining 9 rows go to recent",
-      "the 9 most recently concluded" in cap, cap)
+check("with 20 recent, only the 4 most recent get a row",
+      "the 4 most recently concluded" in cap, cap)
 check("the caption's totals match the full record counts (5 upcoming, 20 recent)",
       "5 upcoming and 20 recent meetings are tracked in full below" in cap, cap)
 
-# More upcoming than max_rows: recent gets none of the 14 rows at all, and
-# the caption must not claim otherwise.
-cap = _caption(_upcoming_recs(20) + _recent_recs(10))
-check("with 20 upcoming, the caption caps the shown count at max_rows (14) "
-      "and says the 14 are picked across the window, not the soonest 14",
-      "14 of the 20 upcoming meetings, spread across the year ahead" in cap
-      and "soonest" not in cap, cap)
-check("with upcoming already filling every row, recent is not mentioned as shown",
-      "most recently concluded" not in cap, cap)
+# Many upcoming: all of them are drawn, not a selection (the 14-row cap left
+# NNN26, Patras and DISCRETE out of the figure on 19 October 2026).
+recs20 = _upcoming_recs(20) + _recent_recs(10)
+cap = _caption(recs20)
+check("with 20 upcoming, all 20 are shown and no selection is claimed",
+      "The 20 upcoming meetings and the 4 most recently concluded" in cap
+      and "spread across" not in cap, cap)
+svg20 = render.CONFERENCES_PAGE.read_text(encoding="utf-8")
+check("and the figure really has 24 bars",
+      len(re.findall(r'<g class="conf-bar"', svg20.split('<div class="timeline-scroll">')[1]
+                     .split("</svg>")[0])) == 24)
 check("the caption's totals still report the true 20 upcoming and 10 recent",
       "20 upcoming and 10 recent meetings are tracked in full below" in cap, cap)
 
@@ -339,7 +340,7 @@ cap = _caption(_recent_recs(6))
 check("with zero upcoming, the caption never says 'soonest 0'",
       "soonest 0" not in cap.lower(), cap)
 check("with zero upcoming, the caption instead leads with what recent is shown",
-      "The 6 most recently concluded meetings" in cap, cap)
+      "The 4 most recently concluded meetings" in cap, cap)
 check("the caption's totals still report 0 upcoming",
       "0 upcoming and 6 recent meetings are tracked in full below" in cap, cap)
 

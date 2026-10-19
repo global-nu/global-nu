@@ -278,6 +278,22 @@ check("and a `related` one (Dark Matter 2027)", "conf:2" in ids)
 check("but not an `adjacent` one (DIS2027)", "conf:3" not in ids,
       str(sorted(ids)))
 
+# A wrong date at INSPIRE is corrected from the config, before the window:
+# ICAGAC 2027 is 20-21 September on its page, 18-19 October at INSPIRE.
+wrong = _hit(3192175, SOON, "Neutrino Workshop", "NUW", closing=SOON)
+fixed_start = (dt.date.fromisoformat(SOON) + dt.timedelta(days=30)).isoformat()
+fixed_end = (dt.date.fromisoformat(SOON) + dt.timedelta(days=31)).isoformat()
+out, h, _ = _run_fetch([wrong], {}, {"date_corrections": {
+    "3192175": {"start": dt.date.fromisoformat(fixed_start),
+                "end": dt.date.fromisoformat(fixed_end), "source": "https://x.example/"}}})
+got = [r for r in out if r["id"] == "conf:3192175"]
+check("date_corrections replaces INSPIRE's dates, keyed by record id",
+      bool(got) and got[0]["date"] == fixed_start
+      and got[0]["extra"]["opening"] == fixed_start
+      and got[0]["extra"]["closing"] == fixed_end, str(got[:1]))
+check("and the log says so, with the source",
+      h.says("3192175 dates corrected", "https://x.example/"))
+
 same = _hit(77, SOON, "25th Workshop on Neutrino Detectors", "NNN27")
 out, h, _ = _run_fetch([same], {1: [same]})
 check("the same control_number never appears twice", len(out) == 1,
