@@ -57,6 +57,10 @@ DATE_CACHE = VAR / "datecache.json"
 RECHECK_DAYS = 7
 MAX_SPAN_DAYS = 60
 OTHER_EDITION_DAYS = 180
+# Prose is doubted only for meetings not long over. Pages of past meetings
+# tend to name just their deadlines ("Abstract submission: 6 March 2026"), and
+# a wrong date that matters makes a meeting look recently over, as DISCRETE's.
+SUSPECT_PAST_DAYS = 30
 PAGE_TIMEOUT_S = 15
 WORKERS = 6
 
@@ -232,6 +236,8 @@ def check(records: list[dict], log: logging.Logger, *, offline: bool = False,
                 "listed": [start.isoformat(), end.isoformat()],
                 "provider": ex.get("provider") or "inspire"}
         if isinstance(page, list):
+            if (today - end).days > SUSPECT_PAST_DAYS:
+                continue
             same_year = [m for m in page if m.startswith(f"{start.year}-")]
             ours = {f"{start:%Y-%m}", f"{end:%Y-%m}"}
             if same_year and not ours & set(page):
@@ -263,6 +269,10 @@ def check(records: list[dict], log: logging.Logger, *, offline: bool = False,
         rec["date"] = ps.isoformat()
         ex["opening"], ex["closing"] = ps.isoformat(), pe.isoformat()
         ex["span"] = _span_text(ps, pe)
+        # The tense too: not every caller's sort re-derives it (the home
+        # page's does not), and DISCRETE's wrong month had made it "recent".
+        ex["upcoming"] = pe >= today
+        ex["in_progress"] = ps <= today <= pe
         ex["dates_from_page"] = {"listed": [start.isoformat(), end.isoformat()]}
     log.info("dates: %d of %d conferences checked against their own page, "
              "%d corrected, %d suspect", read, len(records),

@@ -27,7 +27,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from tools.news import conferences, eventdates                 # noqa: E402
+from tools.news import eventdates                              # noqa: E402
 
 DATA = ROOT / "tools" / "tests" / "data" / "eventdates"
 TODAY = dt.date(2026, 10, 19)
@@ -123,6 +123,9 @@ PAGES = {"https://conference.uniba.sk/event/2/": page("discrete-2026"),
          "https://example.org/right-month": "<p>26 - 30 October 2026</p>",
          "https://example.org/last-year": "<p>The 2025 edition: 6-10 October 2025</p>",
          "https://example.org/no-text": "<div id='app'></div>",
+         # A past meeting's page, naming only its deadlines (Clusters26).
+         "https://example.org/deadlines": "<p>Abstract Submission Deadline: 6 March 2026</p>"
+                                          "<p>Registration Deadline: 28 May 2026</p>",
          # A link that lands on the previous edition's Indico page.
          "https://example.org/old-edition": jsonld(
              '{"@type":"Event","startDate":"2025-10-06T09:00:00+02:00",'
@@ -161,7 +164,8 @@ def records() -> list[dict]:
             rec("lastyear", "https://example.org/last-year", "2026-10-05", "2026-10-09"),
             rec("notext", "https://example.org/no-text", "2026-10-05", "2026-10-09"),
             rec("anubis", "https://agenda.infn.it/event/50802/", "2026-10-11", "2026-10-22"),
-            rec("edition", "https://example.org/old-edition", "2026-10-05", "2026-10-09")]
+            rec("edition", "https://example.org/old-edition", "2026-10-05", "2026-10-09"),
+            rec("deadlines", "https://example.org/deadlines", "2026-06-08", "2026-06-12")]
 
 
 tmp = Path(tempfile.mkdtemp())
@@ -201,6 +205,8 @@ check("a prose page naming only other months of the year is SUSPECT",
 check("… and its dates are left exactly as listed",
       by["wrong"]["extra"]["opening"] == "2026-10-12"
       and "dates_from_page" not in by["wrong"]["extra"])
+check("a meeting months over is not doubted for naming only its deadlines",
+      not any(f["id"] == "deadlines" for f in found))
 check("prose naming the listed month, only last year, or nothing raises nothing",
       not {"right", "lastyear", "notext"} & {f["id"] for f in found})
 check("an unreachable page leaves the record alone",
@@ -214,9 +220,10 @@ check("nor is a bot-check page, which would pass for a page without dates",
       "https://agenda.infn.it/event/50802/" not in cache
       and not any(f["id"] == "anubis" for f in found))
 
-after = conferences.sort_for_page([dict(by["discrete"])])
 check("corrected DISCRETE is upcoming again, not 'recent'",
-      after[0]["extra"].get("upcoming") is True, str(after[0]["extra"]))
+      by["discrete"]["extra"].get("upcoming") is True
+      and by["discrete"]["extra"].get("in_progress") is False,
+      str(by["discrete"]["extra"]))
 
 print("\nthe cache")
 fetched.clear()
@@ -226,7 +233,7 @@ check("within RECHECK_DAYS nothing reachable is fetched again",
                           "https://soup2026.ca.infn.it/"], str(fetched))
 fetched.clear()
 eventdates.check(records(), log, today=TODAY + dt.timedelta(days=8))
-check("after RECHECK_DAYS every page is read again", len(fetched) == 11, str(fetched))
+check("after RECHECK_DAYS every page is read again", len(fetched) == 12, str(fetched))
 fetched.clear()
 offline = records()
 eventdates.check(offline, log, offline=True, today=TODAY + dt.timedelta(days=60))

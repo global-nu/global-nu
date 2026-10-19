@@ -20,7 +20,8 @@ and treating the two alike silently strips real content off a physics page.
 Only a definite verdict removes a link:
 
     404, 410, DNS failure, connection refused   -> broken, drop it
-    403, 429, 5xx, timeouts, anything else      -> unverified, keep it
+    403, 429, 5xx, timeouts, certificate errors,
+    anything else                               -> unverified, keep it
 
 The unverified ones are counted and logged so the dashboard can show them; a
 link that a reader can follow is never deleted on a robot's say-so.
@@ -56,6 +57,13 @@ DEAD_CODES = {404, 410}
 # catching ConnectionError first would silently classify every timeout as a
 # dead link — which is how a slow morning could empty the page.
 SLOW_EXCEPTIONS = (requests.exceptions.Timeout,)
+
+# A certificate Python cannot verify is not a missing page. SSLError is also a
+# ConnectionError subclass, so it too must be caught first. On 19 October 2026
+# it dropped three real conferences (indico.ifca.es, meetings.iac.es,
+# soup2026.ca.infn.it): each server omits its intermediate certificate, which
+# browsers and macOS curl fetch on their own and `requests` does not.
+CERT_EXCEPTIONS = (requests.exceptions.SSLError,)
 
 # The host does not resolve or refuses the connection.
 DEAD_EXCEPTIONS = (requests.exceptions.ConnectionError,)
@@ -121,6 +129,8 @@ def _check_one(url: str, timeout: int, get_first: tuple[str, ...]
                 r.close()
         return url, _verdict(r.status_code), str(r.status_code)
     except SLOW_EXCEPTIONS as exc:
+        return url, UNVERIFIED, exc.__class__.__name__
+    except CERT_EXCEPTIONS as exc:
         return url, UNVERIFIED, exc.__class__.__name__
     except DEAD_EXCEPTIONS as exc:
         return url, BROKEN, exc.__class__.__name__
