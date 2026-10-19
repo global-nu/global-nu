@@ -201,7 +201,14 @@ def fetch(cfg: dict, log: logging.Logger) -> list[dict]:
 
     import requests
     prev = read_json(STATE, {}) or {}
+    corrections = conf.get("date_corrections") or {}
+    # Records reused on a 304 were parsed under the corrections of that day;
+    # a changed set must reparse the page, or it would apply only on the next
+    # upstream edit.
+    fixes_key = repr(sorted((k, str(v)) for k, v in corrections.items()))
     headers = {"User-Agent": USER_AGENT}
+    if prev.get("corrections", repr([])) != fixes_key:
+        prev = {}
     if prev.get("etag"):
         headers["If-None-Match"] = prev["etag"]
     if prev.get("last_modified"):
@@ -241,7 +248,8 @@ def fetch(cfg: dict, log: logging.Logger) -> list[dict]:
 
     html = r.text
     write_json(STATE, {"etag": r.headers.get("ETag", ""),
-                       "last_modified": r.headers.get("Last-Modified", "")})
+                       "last_modified": r.headers.get("Last-Modified", ""),
+                       "corrections": fixes_key})
 
     marks = []
     for label, scope, past in SECTIONS:
@@ -264,6 +272,9 @@ def fetch(cfg: dict, log: logging.Logger) -> list[dict]:
         except ValueError:
             dropped_dates += 1
             continue
+        fix = corrections.get(f"{m.group('start')}__{m.group('slug')}")
+        if fix:
+            start = _dt.date.fromisoformat(str(fix["start"]))
         if not (behind <= start <= ahead):
             out_of_window += 1
             continue
@@ -271,6 +282,10 @@ def fetch(cfg: dict, log: logging.Logger) -> list[dict]:
         body = m.group("body")
         span = SPAN_RE.search(body)
         end = _end_date(span.group(1), start) if span else None
+        if fix:
+            end = _dt.date.fromisoformat(str(fix["end"]))
+            log.info("nu-unbound: %s dates corrected to %s – %s (%s)",
+                     m.group("slug"), start, end, fix.get("source", ""))
         if end is None or end < start:
             dropped_dates += 1
             continue

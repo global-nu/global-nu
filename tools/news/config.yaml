@@ -229,6 +229,17 @@ conferences_nu_unbound:
   timeout: 60
   upcoming_months: 18
   recent_months: 5
+  # Dates the list gets wrong, keyed by the entry's id on the page
+  # (YYYYMMDD__Slug). Each one must cite the conference's own page. When the
+  # list is fixed upstream the id usually changes and the entry stops matching;
+  # delete it then.
+  date_corrections:
+    "20261013__DISCRETE_2026":
+      start: 2026-11-13
+      end: 2026-11-17
+      # Listed as 13-17 October 2026; the event page says "Nov 13 – 17, 2026"
+      # (checked 19 Oct 2026).
+      source: https://conference.uniba.sk/event/2/
 
 # --------------------------------------------------------------------- feeds
 # Laboratory and experiment news. Every URL here is verified at fetch time;
