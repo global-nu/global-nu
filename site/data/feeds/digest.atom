@@ -52,16 +52,6 @@
 <summary type="text">Cobimaximal mixing remains a viable approximate pattern since the predicted atmospheric angle ($π/4$) and Dirac CP phase ($-π/2$) are compatible with current experimental data at the $3σ$ level. In this work, we investigate how an additional sterile neutrino state breaks the cobimaximal mixing and the underlying $μ-τ$ reflection symmetry in a $3+1$ neutrino scenario. Given the strong constraints already imposed on active-sterile mixings, we examine the resulting restrictions on the model parameter space, assuming a small symmetry breaking induced by the sterile state. We derive predictions for the relevant model parameters, active-sterile mixing angles, and Dirac CP-violating phases, by considering small deviations from the symmetric limit. We also analyze the allowed combinations of Majorana phases through their impact on the effective Majorana mass governing neutrinoless double beta decay. Current experimental limits on this process impose severe constraints on the inverted ordering realization of the $3+1$ scenario, excluding the small breaking regime within the parameter ranges considered. In contrast, the normal ordering case remains viable and predicts values of the …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2610.17084</id>
-<title>Decay-Assisted Leptogenesis during Preheating</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.17084"/>
-<updated>2026-10-12T00:00:00Z</updated>
-<author><name>Wenbin Zhao</name></author>
-<category term="hep-ph"/>
-<category term="astro-ph.CO"/>
-<summary type="text">We revisit the non-thermal leptogenesis mechanism during preheating using the quantum Boltzmann equations. This framework allows us to study the production and decay of heavy right-handed neutrinos in a consistent manner. Due to their fermionic nature, right-handed neutrino production can saturate after a few inflaton oscillations when their occupation numbers approach unity. Right-handed neutrino decays can deplete their occupation numbers, allowing more particles to be produced and generating a larger lepton asymmetry. Compared with the case where right-handed neutrinos decay only after production has finished, we find that the final baryon asymmetry can be enhanced by two orders of magnitude.</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2610.21886</id>
 <title>Low-Scale See-Saw Mechanism and the Majorana Nature of Heavy Neutrinos</title>
 <link rel="alternate" href="https://arxiv.org/abs/2610.21886"/>
@@ -185,5 +175,16 @@
 <category term="astro-ph.HE"/>
 <category term="hep-ph"/>
 <summary type="text">High-energy neutrinos from Seyfert galaxies probe particle acceleration near supermassive black holes, but the accelerated nuclear composition remains uncertain. We connect stochastic acceleration to nuclear and radiative cascades to assess nuclear contributions. Acceleration and losses limit the energy per nucleon available to nuclear cascades; without secondary reacceleration, fragmentation cannot raise this scale. For NGC~1068, joint neutrino and gamma-ray constraints depend on the nuclear mixture: helium-dominated injection permits larger nuclear power fractions than the heavier mixtures considered. For the harder candidate {neutrino} spectrum of NGC~7469, the adopted model yields more energetic nuclear cascades, while the source-specific flux selections allow larger nuclear fractions for the heavier mixtures than in NGC~1068. These results show that composition constraints depend on nuclear yields as well as acceleration conditions and available power.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2610.17346</id>
+<title>Non-accumulation of background-enhanced neutrino forces in proto-neutron stars</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.17346"/>
+<updated>2026-10-12T00:00:00Z</updated>
+<author><name>Himanshu Bora</name></author>
+<author><name>Anupam Deka</name></author>
+<author><name>Debajyoti Dutta</name></author>
+<category term="hep-ph"/>
+<summary type="text">In a neutrino background, the vacuum two-neutrino exchange potential $V \propto G_F^2 /r^5$ acts as a much longer-ranged interaction, scaling as $V\sim1/r$ for a directional background. A proto-neutron star (PNS) hosts one of the densest astrophysical neutrino environments known, and naturally provides a setting in which to test whether this pairwise enhancement produces a macroscopic Hartree contribution. We show that this does not happen. In the spin-independent sector, averaging over pair orientations projects the background onto its angular monopole. The bulk Hartree contribution then saturates instead of growing with system size. We also find that the spin-dependent parity-conserving and parity-violating terms do not generate macroscopic growth under the PNS mean-field conditions considered here. Thus, although the pair potential can be strongly enhanced, the resulting bulk interaction remains very small. The suppression comes from the angular and oscillatory structure of the kernel, not from screening. Within the Standard Model mechanism considered here, the effect is not important for the PNS equation of state or for events like pulsar kicks.</summary>
 </entry>
 </feed>
