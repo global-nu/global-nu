@@ -26,7 +26,7 @@ scripts:
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the conference indexers' APIs,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 19 October 2026, 17:56 CEST</span></div>
+<span class="stamp">Last successful update: 19 October 2026, 17:59 CEST</span></div>
 </div>
 
 <form class="conf-filters" id="conf-filters" hidden aria-label="Filter the meetings">
