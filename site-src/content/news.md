@@ -23,7 +23,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>The summaries on this page are written automatically with AI from
 fetched records, and may contain errors.</b>
-<span class="stamp">Last successful update: 19 October 2026, 18:14 CEST</span></div>
+<span class="stamp">Last successful update: 19 October 2026, 18:19 CEST</span></div>
 </div>
 <p class="small muted"><b>In summary.</b> Francis Halzen, principal investigator of IceCube, has been awarded the 2026 Nobel Prize in Physics for decisive contributions to the IceCube Neutrino Observatory and the discovery of high-energy neutrinos of astrophysical origin, and the records this week are dominated by reactions to it. Beyond the prize, KM3NeT was recognised as a Landmark in the ESFRI Roadmap 2026 and continued marine installation work for ARCA and ORCA, and the JUNO Collaboration reported commissioning performance and first results from its TAO reactor detector. This paragraph summarises the items below; the sources are on the items themselves.</p>
 
