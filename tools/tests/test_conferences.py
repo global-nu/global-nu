@@ -83,6 +83,20 @@ check("the merged entry records both providers",
       bool(lead) and len(set((lead.get("extra") or {}).get("providers") or [])) >= 2,
       f"providers: {(lead or {}).get('extra', {}).get('providers')}")
 
+# Two editions of one series often share a domain: the 5th and 6th
+# Astro-COLIBRI workshops both link to multimessenger-astrophysics.com, and the
+# merge folded the 5th into the 6th, so it vanished from the page.
+colibri5 = rec("5th Astro-COLIBRI", "https://www.multimessenger-astrophysics.com",
+               "Paris-Saclay", "FR", "2026-10-12", "2026-10-16", "inspire")
+colibri6 = rec("6th Astro-COLIBRI", "https://multimessenger-astrophysics.com/",
+               "Paris-Saclay", "FR", "2027-10-04", "2027-10-08", "inspire")
+editions = conf.merge([[colibri6, colibri5]], _Log())
+check("two editions a year apart on one URL stay two entries",
+      sorted(m["title"] for m in editions) == ["5th Astro-COLIBRI", "6th Astro-COLIBRI"],
+      str([m["title"] for m in editions]))
+check("…while one conference on one URL still merges",
+      len(conf.merge([[nufact_nu], [dict(nufact_nu, id="indico:x")]], _Log())) == 1)
+
 # render.conferences() now builds two blocks — "Neutrino conferences" and
 # "General particle physics" — via conferences.split_scope(records, scope),
 # and within EACH block still separates what is ahead (extra.upcoming) from

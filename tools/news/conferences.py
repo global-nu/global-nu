@@ -112,6 +112,22 @@ def _absorb(lead: dict, other: dict) -> dict:
     return lead
 
 
+def _editions_apart(a: dict, b: dict) -> bool:
+    """True when two records sharing a key are different editions.
+
+    A series often keeps one domain for every edition: the 5th and 6th
+    Astro-COLIBRI workshops (October 2026 and 2027) both link to
+    multimessenger-astrophysics.com, and merging on that URL made the 5th
+    disappear into the 6th.
+    """
+    try:
+        da = _dt.date.fromisoformat(str(a.get("extra", {}).get("opening") or a.get("date", ""))[:10])
+        db = _dt.date.fromisoformat(str(b.get("extra", {}).get("opening") or b.get("date", ""))[:10])
+    except ValueError:
+        return False
+    return abs((da - db).days) > 180
+
+
 def merge(groups: list[list[dict]], log: logging.Logger) -> list[dict]:
     """Merge several sources' conference records into one list."""
     out: list[dict] = []
@@ -126,6 +142,8 @@ def merge(groups: list[list[dict]], log: logging.Logger) -> list[dict]:
                 if k in by_key:
                     hit = by_key[k]
                     break
+            if hit is not None and _editions_apart(out[hit], rec):
+                hit = None
             if hit is None:
                 out.append(rec)
                 for k in keys:

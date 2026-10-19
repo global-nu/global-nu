@@ -183,6 +183,13 @@ inspire:
     # block stays a list of the meetings the field actually plans around
     # rather than every workshop with "particle physics" in its title.
     #
+    # Links INSPIRE gets wrong, keyed by conference record id, each with why.
+    # Delete an entry once INSPIRE carries the right link.
+    url_corrections:
+      # 6th Astro-COLIBRI workshop (4-8 Oct 2027): INSPIRE gives
+      # multimessenger-astrophysics.com, which redirects to the 5th edition's
+      # site (checked 19 Oct 2026). No 6th-edition page exists yet.
+      "3209504": https://inspirehep.net/conferences/3209504
     # INSPIRE wants OR in CAPITALS. Written `a or b` it returns zero hits
     # instead of an error, which reads like "nothing matched".
     general:
