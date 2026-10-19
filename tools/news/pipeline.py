@@ -28,7 +28,7 @@ import sys
 
 from . import affinity
 from . import cache, conferences as conf_mod, fetch_arxiv, fetch_feeds
-from . import archive, fetch_indico, fetch_inspire, fetch_nu_unbound, linkcheck, render
+from . import archive, eventdates, fetch_indico, fetch_inspire, fetch_nu_unbound, linkcheck, render
 from . import state, synthesize
 from .common import ROOT, get_logger, load_config, now_iso
 from . import landmark
@@ -113,6 +113,7 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
 
     # ------------------------------------------------------------ 1. fetch --
     no_announcement = False
+    date_findings: list[dict] = []
     if from_cache:
         # Re-render the three pages from the records already on disk, calling
         # no API and no model. This exists because the pages are generated
@@ -132,6 +133,7 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
         # same way a stale 304 replay does. Re-running it here is what makes
         # a re-render from cache see the same "is it still upcoming" answer a
         # fresh fetch would.
+        eventdates.check(events, log, offline=True)
         events = conf_mod.sort_for_page(events)
         log.info("from cache (%s): %d arXiv, %d feed items, %d papers, %d events",
                  day or "today", len(arxiv), len(feeds), len(papers), len(events))
@@ -166,7 +168,11 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
                                         "inspire", log)
         groups = [g for g in (events, nu_conf, in_conf, gen_conf) if g]
         if groups:
-            events = conf_mod.sort_for_page(conf_mod.merge(groups, log))
+            events = conf_mod.merge(groups, log)
+            # Before sort_for_page, which derives "upcoming" from the dates.
+            date_findings = _safe("event dates",
+                                  lambda: eventdates.check(events, log), log, [])
+            events = conf_mod.sort_for_page(events)
 
         for name, records in (("arxiv", arxiv), ("feeds", feeds),
                               ("inspire", papers), ("indico", events)):
@@ -235,6 +241,10 @@ def run(*, dry_run: bool = False, use_ai: bool = True, do_build: bool = True,
     # the classifier, whichever path it arrived on. `tag` is idempotent, so a
     # record tagged on an earlier run is simply re-read.
     affinity.tag(events, cfg)
+
+    if date_findings and not dry_run:
+        _safe("event dates mail",
+              lambda: eventdates.notify(date_findings, cfg, log), log, [])
 
     if dry_run:
         log.info("dry run: fetched and checked, nothing written")
