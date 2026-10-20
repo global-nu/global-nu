@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://global-nu.org/about.html</loc><lastmod>2026-09-27</lastmod></url>
-  <url><loc>https://global-nu.org/conferences.html</loc><lastmod>2026-10-19</lastmod></url>
+  <url><loc>https://global-nu.org/conferences.html</loc><lastmod>2026-10-20</lastmod></url>
   <url><loc>https://global-nu.org/data.html</loc><lastmod>2026-10-17</lastmod></url>
   <url><loc>https://global-nu.org/digest/2026-08-08.html</loc><lastmod>2026-09-27</lastmod></url>
   <url><loc>https://global-nu.org/digest/2026-08-10.html</loc><lastmod>2026-09-27</lastmod></url>
@@ -69,14 +69,16 @@
   <url><loc>https://global-nu.org/digest/2026-10-13.html</loc><lastmod>2026-10-19</lastmod></url>
   <url><loc>https://global-nu.org/digest/2026-10-14.html</loc><lastmod>2026-10-18</lastmod></url>
   <url><loc>https://global-nu.org/digest/2026-10-15.html</loc><lastmod>2026-10-18</lastmod></url>
-  <url><loc>https://global-nu.org/digest/2026-10-16.html</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://global-nu.org/digest/2026-10.html</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://global-nu.org/digest.html</loc><lastmod>2026-10-19</lastmod></url>
+  <url><loc>https://global-nu.org/digest/2026-10-16.html</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://global-nu.org/digest/2026-10-18.html</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://global-nu.org/digest/2026-10-19.html</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://global-nu.org/digest/2026-10.html</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://global-nu.org/digest.html</loc><lastmod>2026-10-20</lastmod></url>
   <url><loc>https://global-nu.org/index.html</loc><lastmod>2026-10-17</lastmod></url>
-  <url><loc>https://global-nu.org/news.html</loc><lastmod>2026-10-19</lastmod></url>
+  <url><loc>https://global-nu.org/news.html</loc><lastmod>2026-10-20</lastmod></url>
   <url><loc>https://global-nu.org/resources.html</loc><lastmod>2026-10-09</lastmod></url>
   <url><loc>https://global-nu.org/search.html</loc><lastmod>2026-10-09</lastmod></url>
   <url><loc>https://global-nu.org/earlier-releases.html</loc><lastmod>2026-10-17</lastmod></url>
-  <url><loc>https://global-nu.org/history.html</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://global-nu.org/results.html</loc><lastmod>2026-10-19</lastmod></url>
+  <url><loc>https://global-nu.org/history.html</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://global-nu.org/results.html</loc><lastmod>2026-10-20</lastmod></url>
 </urlset>
