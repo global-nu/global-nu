@@ -5,8 +5,20 @@
 <subtitle>Neutrino preprints ranked by relevance, rebuilt every morning. Selected by keyword score; no model involved.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/digest.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/digest.atom"/>
-<updated>2026-10-21T00:00:00Z</updated>
+<updated>2026-10-22T00:00:00Z</updated>
 <author><name>global-nu.org, Bari group</name></author>
+<entry>
+<id>https://arxiv.org/abs/2610.30981</id>
+<title>Construction and phenomenological analysis of dynamical Inverse seesaw neutrino mixing model</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.30981"/>
+<updated>2026-10-22T00:00:00Z</updated>
+<author><name>Manish Singh Bisht</name></author>
+<author><name>Shuchi Bisht</name></author>
+<author><name>Mayank Joshi et al.</name></author>
+<category term="hep-ph"/>
+<category term="gr-qc"/>
+<summary type="text">In this manuscript, a dynamical inverse seesaw neutrino ISS(3+1+1+1) mixing model based on the gauge symmetry $U(1)_{B-L}$ extended by the flavor symmetry $A_{4}\times Z_{2}$ has been constructed. ISS(3+1+1+1) represents three generations of right-handed neutrinos and an extra three generation of singlets sterile neutrinos, wherein the right-handed neutrinos are triplets under $A_4$ symmetry. Furthermore, the five scalar flavon fields are considered in the model, which reproduce neutrino oscillation data within the NuFIT 6.0 experimental range with statistical $\text{|pull|}=0.01 σ$. The neutrino mass hierarchy is obtained by minimizing the dynamical $A_4\times Z_2$ scalar flavon $φ_v$ potential. The effective neutrino mass parameter $m_{ββ}$ for the neutrinoless double beta decay $0vββ$ has been charecterised in the manuscript. The effective neutrino mass parameter spans a finite region in the parameter space rather then being confined to a single point and it is constrained by the KamLAND-Zen excluded band. The model successfully explains active-sterile neutrino mixing and non-unitarity of the PMNS matrix is consistent with the cosmological upper bound. The minimum value of the …</summary>
+</entry>
 <entry>
 <id>https://arxiv.org/abs/2610.27270</id>
 <title>Correlations in oscillation data and their impact on neutrino mixing models</title>
@@ -42,6 +54,15 @@
 <summary type="text">Dual-phase xenon time projection chambers (TPCs) are the leading technology for WIMP dark matter searches and have also demonstrated competitive sensitivities to neutrinoless double beta decays (0$νββ$) of \ce{^{136}Xe}. However, the large energy disparity between these two signals requires different detector optimizations. In particular, 0$νββ$\ searches in liquid xenon desire efficient rejection of closely located multiscatters of background gamma rays near the 0$νββ$\ energy, a capability achieved only in the vertical dimension in existing dual-phase xenon TPCs. We propose a highly customized, wide-angle optical system that can be conveniently integrated into large xenon TPCs and provide mm-scale transverse position resolution for MeV signals by imaging gas electroluminescence light. This approach preserves a TPC's low-energy sensitivity and optimizes a single experiment for both dark matter and 0$νββ$\ searches. This paper discusses the design, simulated performance, and implications of the imaging system for future liquid xenon-based 0$νββ$\ searches.</summary>
 </entry>
 <entry>
+<id>https://arxiv.org/abs/2610.31658</id>
+<title>Neutrino Mass in Left-Right Symmetry: From Majorana Signals to Dirac Predictions</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.31658"/>
+<updated>2026-10-22T00:00:00Z</updated>
+<author><name>Vladimir Tello</name></author>
+<category term="hep-ph"/>
+<summary type="text">We review neutrino mass as a probe of restored parity in left-right symmetric theories, emphasizing the distinct Majorana and Dirac realizations. In the Majorana theory, lepton-number violation connects the seesaw mechanism to neutrinoless double beta decay, heavy-neutrino production and the Keung-Senjanovic process. The Dirac alternative removes these characteristic signals while retaining a relation between left- and right-handed flavor. The right-handed leptonic mixing matrix can then be reconstructed from low-energy data and the spontaneous parity-breaking parameter. Requiring the two lepton Yukawa matrices to admit a common real parity basis turns this reconstruction into a compatibility condition that determines the allowed Dirac phase on each branch. For three generations, this requirement reduces to a single rephasing-invariant CP-odd obstruction, which also governs the right-left modulus mismatch and the relative CP orientation. The small Dirac masses also restrict the parity deformation and its induced strong-CP phase. For compressed mixed-sign neutrino spectra, a tiny parity deformation can nevertheless generate large leptonic CP violation, despite stringent strong-CP …</summary>
+</entry>
+<entry>
 <id>https://arxiv.org/abs/2610.23474</id>
 <title>Neutrino Anomalies and Tensions: Experimental Status and Theoretical Interpretations</title>
 <link rel="alternate" href="https://arxiv.org/abs/2610.23474"/>
@@ -51,6 +72,42 @@
 <author><name>Antonio Capolupo</name></author>
 <category term="hep-ph"/>
 <summary type="text">Neutrino oscillations successfully describe flavor conversion across a wide range of experiments, yet the origin of several excesses and deficits remains unresolved. This review connects these observations and long-baseline parameter tensions to their proposed physical explanations, clarifying what remains open and how it can be tested. We examine reactor and gallium measurements, accelerator appearance and disappearance searches, and atmospheric constraints, focusing on sterile neutrinos, non-standard interactions, and decoherence in open-system dynamics. For each mechanism, we assess what it modifies, which observations it can address, and which theoretical assumptions and independent constraints limit its viability. Recent results have restricted several interpretations and weakened some earlier tensions; no single extension provides an uncontested account of all observations. We identify the flavor, baseline, energy, and event-topology signatures needed to distinguish competing explanations and assess whether the remaining anomalies require new physics or reflect unresolved flux, interaction, and detector uncertainties.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2610.30526</id>
+<title>Localized Neutrinos in Two Dark Dimensions</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.30526"/>
+<updated>2026-10-21T00:00:00Z</updated>
+<author><name>Waqas Ahmed</name></author>
+<author><name>George K. Leontaris</name></author>
+<category term="hep-ph"/>
+<category term="hep-th"/>
+<summary type="text">We study neutrino masses in a six-dimensional framework with two compact dark dimensions. In the conventional flat-bulk realization, the sterile-neutrino zero mode is strongly volume suppressed, so a fundamental scale near $10~\mathrm{TeV}$ requires a large higher-dimensional Yukawa coupling to reproduce the observed neutrino masses, while the accompanying two-dimensional Kaluza--Klein tower is strongly constrained by oscillation data. We show that localizing the sterile-neutrino wave function near the Standard-Model brane substantially alleviates both effects. Using a Gaussian localizer, realistic Dirac neutrino masses are obtained with perturbative, order-one Yukawa couplings, while the brane-visible sterile excitations form a shell spectrum with $M_s^2=8μ^2 s$, and squared active--sterile mixings that decrease as $1/s$. The localization scale therefore separates the experimentally relevant sterile-neutrino spectrum from the gravitational compactification scale. We derive the resulting three-flavour structure and study its phenomenological consequences for reactor oscillations and tritium beta decay, including comparisons with current flat-LED and KATRIN constraints.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2610.30338</id>
+<title>Machine Learning Neutrino-Nucleus Cross Sections II: More Leptons</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.30338"/>
+<updated>2026-10-21T00:00:00Z</updated>
+<author><name>Daniel C. Hackett</name></author>
+<author><name>Joshua Isaacson</name></author>
+<author><name>Shirley Weishi Li et al.</name></author>
+<category term="hep-ph"/>
+<category term="hep-ex"/>
+<category term="nucl-th"/>
+<summary type="text">Neutrino-nucleus cross sections are essential inputs for long-baseline neutrino oscillation experiments, yet remain challenging to model with high precision. Recent work demonstrated that fully black-box data-driven cross-section models cannot accurately generalize between near- and far-detector fluxes, but imposing Standard-Model symmetries via structure-function parameterizations provides a well-posed learning problem in a simplified DUNE-inspired muon-neutrino disappearance analysis. Here, we extend this framework to multiple lepton flavors and both neutrino and antineutrino beam modes, incorporating the electron appearance channel and enabling a simultaneous determination of $\sin^2θ_{23}$, $Δm^2_{31}$, and the CP-violating phase $δ_{\rm CP}$. We find that the learned cross section model recovers the injected oscillation parameters without significant bias, with constraints comparable to those obtained using the exact underlying cross section. Flux uncertainties have more significant effects in the multi-channel case, and incorporating flux nuisance parameters into the learning problem is required for accurate results. Our results demonstrate that this data-driven approach can …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2610.30252</id>
+<title>Neutrino Transition Polarizability</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.30252"/>
+<updated>2026-10-21T00:00:00Z</updated>
+<author><name>Matteo Borrello</name></author>
+<author><name>Michele Tammaro</name></author>
+<category term="hep-ph"/>
+<category term="hep-ex"/>
+<category term="hep-th"/>
+<summary type="text">We study Neutrino Transition Polarizability, where a light pseudoscalar $φ$ couples active neutrinos to heavy neutral leptons $N$ and interacts with two photons. We consider an effective description of the active - sterile interaction, and a realization within the inverse seesaw mechanism; the coupling to photons is generated by heavy charged states. For $m_N&gt;m_φ$, the decay $N\toνφ$ can greatly shorten the heavy neutrino lifetime, while $φ\toγγ$ produces a displaced photon pair. This changes the relevant search strategies, favoring production and decay inside detectors. We discuss existing constraints and estimate the sensitivity of displaced photon searches at DUNE, Belle II, LHCb and FCC-ee, highlighting the complementarity of neutrino scattering and meson and electroweak boson decays.</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2610.29335</id>
@@ -117,16 +174,6 @@
 <summary type="text">We formulate the Froggatt-Nielsen mechanism in the framework of non-invertible symmetries obtained by $\mathbb{Z}_2$ gauging of $\mathbb{Z}_N$ or $U(1)$. While the non-invertible selection rules can constrain the texture-zero structure of fermion mass matrices, they do not by themselves determine the magnitudes of the allowed couplings. Introducing a flavon field allows the fusion rules to fix the leading powers of the small parameter $\varepsilon=\langle S\rangle/Λ$, thereby determining both the texture zeros and the orders of magnitude of the nonzero entries up to $\mathcal{O}(1)$ coefficients. We have constructed explicit quark and lepton models and study their predictions for the fermion mass and mixing hierarchies through analytical estimates and numerical analysis. In particular, a benchmark model with nine texture zeros in the quark sector can well accommodate the quark masses and mixing parameters with non-Hermitian Yukawa matrices. Its lepton sector admits a minimal type-I seesaw realization with normal neutrino mass ordering and one massless neutrino. These results provide a common symmetry framework for fermion mass hierarchies and texture zeros.</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2610.21886</id>
-<title>Low-Scale See-Saw Mechanism and the Majorana Nature of Heavy Neutrinos</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.21886"/>
-<updated>2026-10-15T00:00:00Z</updated>
-<author><name>Takuya Okawa</name></author>
-<author><name>S. T. Petcov</name></author>
-<category term="hep-ph"/>
-<summary type="text">We investigate the possibility to determine the Majorana nature of the heavy Majorana neutrinos present in the low-scale type I seesaw mechanism of neutrino mass generation in experiments at $e^+ \text{-} e^-$ and $μ^+ \text{-} μ^-$ colliders. This is done on the examples of two specific symmetry-protected seesaw scenarios with two right-handed (RH) singlet neutrinos and one seesaw realization with three RH neutrinos. We use the forward-backward symmetry in the angular distribution of the heavy neutral leptons produced in the $e^+ \text{-} e^-$ and $μ^+ \text{-} μ^-$ collisions as an indicator of their Majorana nature. Our results indicate that the experiments at FCCee during its first phase of operation have a remarkable potential not only to discover the heavy neutral leptons associated with the type I seesaw mechanism if they have masses smaller than the $Z^0$-boson mass, but also to probe and provide evidence for their Majorana nature.</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2610.29436</id>
 <title>Searches for coincident Gravitational Waves and High-Energy Neutrinos from the KM3NeT and ANTARES telescopes during O3</title>
 <link rel="alternate" href="https://arxiv.org/abs/2610.29436"/>
@@ -136,51 +183,5 @@
 <author><name>O. Adriani et al.</name></author>
 <category term="astro-ph.HE"/>
 <summary type="text">Various models predict that gravitational-wave sources produce high-energy neutrinos. Among them are compact binary coalescences with at least one neutron star, but also core-collapse supernovae or accretion disk instabilities. Two different analyses are presented, combining data from the LIGO and Virgo gravitational-wave detectors with those from the ANTARES and ORCA neutrino telescopes observed during the third observing run of LIGO-Virgo. In the first analysis, selected high-energy neutrino candidates were used as triggers to search for gravitational-wave candidates. In the second analysis, a search was conducted for potential spatial and temporal coincidences between subthreshold high-energy neutrino candidate events and subthreshold gravitational-wave candidates emitted by compact binary coalescence systems. In both searches, no significant coincidences were found. Upper limits on the rate of sources emitting both high-energy neutrinos and gravitational waves are presented. In particular, with the joint search, a joint source rate density upper limit of $8.8\times10^2~\mathrm{ Gpc^{-3}yr^{-1}}$ was found for a typical binary neutron star coalescence with a GW emitted energy …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2610.29923</id>
-<title>Cosmic Ray Observations using Coincident Scintillator and Radio Signals with the Beamforming Elevated Array for COsmic Neutrinos (BEACON)</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.29923"/>
-<updated>2026-10-21T00:00:00Z</updated>
-<author><name>Zachary Martin</name></author>
-<author><name>Jackson Hinkel</name></author>
-<author><name>Kira Perna et al.</name></author>
-<category term="astro-ph.IM"/>
-<category term="astro-ph.HE"/>
-<summary type="text">At energies above 100 PeV, coherent radio frequency (RF) emission across the 10 -- 1000 MHz band from cosmic particle-induced atmospheric showers becomes increasingly dominant, making radio detection a powerful probe at ultrahigh energies. The Beamforming Elevated Array for COsmic Neutrinos (BEACON) considers mountaintop phased radio arrays to monitor large areas at the horizon for upward-going geomagnetic emission in the 30 -- 80 MHz band produced as a consequence of Earth-skimming tau neutrinos. As part of ongoing efforts to measure the sensitivity of BEACON to such signals, the BEACON prototype identifies cosmic rays through the same emission mechanism. Prior to 2023, BEACON operated a four-antenna prototype, which successfully demonstrated identification of coherent and impulsive sources using a beamforming RF trigger. In 2023, we upgraded the instrument to six newly designed antennas and added an independent scintillator array to cross-validate radio-detectable cosmic rays. This work details the observation of 22 candidate cosmic-ray events in a scintillator-coincidence-triggered dataset using selection cuts based on expected radio characteristics. A simulation of the …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2610.28740</id>
-<title>A Hybrid Neural Network Emulator for M1 Neutrino Reaction Rates in Binary Neutron Star Merger Simulations</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.28740"/>
-<updated>2026-10-20T00:00:00Z</updated>
-<author><name>Yi Qiu</name></author>
-<author><name>David Radice</name></author>
-<author><name>Raffaele Ferrari et al.</name></author>
-<category term="astro-ph.HE"/>
-<summary type="text">We present a neural network emulator for the bns_nurates library, which computes neutrino reaction rates used in binary neutron star merger simulations. Following a hybrid strategy, we emulate only the computationally dominant two-dimensional reactions---pair processes, bremsstrahlung, and inelastic neutrino-electron scattering---while evaluating the inexpensive one-dimensional processes still with bns_nurates. We find that the emulator reproduces the opacities to within a few percent across the relevant thermodynamic conditions and accelerates their evaluation by roughly an order of magnitude. When deployed in a global Athenak binary neutron star merger simulation, it recovers the remnant structure, neutrino luminosities, and ejecta composition of a reference run using the full bns_nurates library, at approximately half the overall cost</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2610.28252</id>
-<title>Probing a heavy neutral lepton in a radiative neutrino model at a muon collider</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.28252"/>
-<updated>2026-10-20T00:00:00Z</updated>
-<author><name>Isaac Bamwidhi</name></author>
-<author><name>Mohamed Belfkir</name></author>
-<author><name>Mohamed Amin Loualidi et al.</name></author>
-<category term="hep-ph"/>
-<summary type="text">We investigate direct and Higgs-mediated production of a Dirac heavy neutral lepton in a radiative neutrino-mass model at a future $3~\mathrm{TeV}$ muon collider. We consider heavy neutral lepton masses in the window $m_Z&lt;m_N&lt;m_h$, where the decays $N\to\ell W$ and $N\toνZ$ can proceed with on-shell weak bosons. We consider both direct production, $μ^+μ^-\to Nν$, and Higgs-mediated production through $μ^+μ^-\toν_μ\barν_μh$, $h\to Nν$. Both channels lead to the common $\ell^\pm jj+p_{\mathrm T}^{\mathrm{miss}}$ final state. We perform a detector-level analysis with an integrated luminosity of $1~\mathrm{ab}^{-1}$, assuming unpolarized muon beams, and derive median expected $95\%$ confidence-level upper limits on the visible signal cross section ranging from approximately $0.027$ to $0.113~\mathrm{fb}$, corresponding to limits on the mixing strength parameter $|U_{μN}|^2$ ranging from $6.7\times10^{-6}$ to $8.3\times10^{-5}$ for six benchmark points. The Higgs-mediated production channel contributes $\sim15$--$72\%$ of the signal after the common event selection, but improves the expected limits by $\sim0.18$--$1.19\%$ within the common classifier and binning scheme. This small …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2610.26654</id>
-<title>Neutrino self-interactions in light of DESI and CMB-SPA</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.26654"/>
-<updated>2026-10-19T00:00:00Z</updated>
-<author><name>Hernán E. Noriega</name></author>
-<author><name>Josue De-Santiago</name></author>
-<author><name>Gabriela Garcia-Arroyo et al.</name></author>
-<category term="astro-ph.CO"/>
-<category term="hep-ph"/>
-<summary type="text">We present an updated analysis of non-standard neutrino self-interactions, where the interaction is effectively mediated by a heavy particle, using the latest available data from DESI and the CMB. The considered data include combinations of DESI DR1 full-shape galaxy clustering (FS), BAO distance measurements, Lyman-$α$ 1D power spectra (Ly-$α$), and a combined CMB likelihood (CMB-SPA) using data from Planck, ACT, and SPT. First, we probe two DESI DR1-only datasets, where the effective interaction parameter $G_{\rm eff}$ is multimodal in the profile likelihood, leading us to analyze two different regimes: moderately interacting (MI$_ν$) and strongly interacting (SI$_ν$) neutrinos. With FS+BAO, the evidence disfavors the SI$_ν$ mode, a trend that becomes slightly stronger with the inclusion of Ly-$α$. However, in the latter dataset, the MI$_ν$ region shows a bimodality in which the intermediate mode is very sharp and peaks around $G_{\rm eff\,} \simeq 10^{-3} \mathrm{MeV}^{-2}$; interestingly, this mode is not penalized versus the weaker standard-like mode. Furthermore, we test CMB and DESI joint data and show that the SI$_ν$ mode is more disfavored by CMB-SPA than by Planck-only …</summary>
 </entry>
 </feed>
