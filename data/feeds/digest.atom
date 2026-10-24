@@ -63,17 +63,6 @@
 <summary type="text">We review neutrino mass as a probe of restored parity in left-right symmetric theories, emphasizing the distinct Majorana and Dirac realizations. In the Majorana theory, lepton-number violation connects the seesaw mechanism to neutrinoless double beta decay, heavy-neutrino production and the Keung-Senjanovic process. The Dirac alternative removes these characteristic signals while retaining a relation between left- and right-handed flavor. The right-handed leptonic mixing matrix can then be reconstructed from low-energy data and the spontaneous parity-breaking parameter. Requiring the two lepton Yukawa matrices to admit a common real parity basis turns this reconstruction into a compatibility condition that determines the allowed Dirac phase on each branch. For three generations, this requirement reduces to a single rephasing-invariant CP-odd obstruction, which also governs the right-left modulus mismatch and the relative CP orientation. The small Dirac masses also restrict the parity deformation and its induced strong-CP phase. For compressed mixed-sign neutrino spectra, a tiny parity deformation can nevertheless generate large leptonic CP violation, despite stringent strong-CP …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2610.23474</id>
-<title>Neutrino Anomalies and Tensions: Experimental Status and Theoretical Interpretations</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.23474"/>
-<updated>2026-10-16T00:00:00Z</updated>
-<author><name>Doris Barčot</name></author>
-<author><name>Raoul Serao</name></author>
-<author><name>Antonio Capolupo</name></author>
-<category term="hep-ph"/>
-<summary type="text">Neutrino oscillations successfully describe flavor conversion across a wide range of experiments, yet the origin of several excesses and deficits remains unresolved. This review connects these observations and long-baseline parameter tensions to their proposed physical explanations, clarifying what remains open and how it can be tested. We examine reactor and gallium measurements, accelerator appearance and disappearance searches, and atmospheric constraints, focusing on sterile neutrinos, non-standard interactions, and decoherence in open-system dynamics. For each mechanism, we assess what it modifies, which observations it can address, and which theoretical assumptions and independent constraints limit its viability. Recent results have restricted several interpretations and weakened some earlier tensions; no single extension provides an uncontested account of all observations. We identify the flavor, baseline, energy, and event-topology signatures needed to distinguish competing explanations and assess whether the remaining anomalies require new physics or reflect unresolved flux, interaction, and detector uncertainties.</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2610.30526</id>
 <title>Localized Neutrinos in Two Dark Dimensions</title>
 <link rel="alternate" href="https://arxiv.org/abs/2610.30526"/>
@@ -118,17 +107,6 @@
 <author><name>Jun Miyamoto</name></author>
 <category term="hep-ph"/>
 <summary type="text">Motivated by the recent LZ candidate nuclear-recoil event, we study pseudo-Dirac electroweak doublet dark matter in the mass range $10^2$--$10^4\,\mathrm{TeV}$, where bounds from searches for neutrinos produced by dark matter annihilation in the Sun can be evaded. To suppress the excessive thermal relic abundance, we consider freeze-out during inflaton domination followed by entropy production during reheating. We examine whether this cosmological history can also accommodate non-thermal leptogenesis. Our analysis includes dark matter production through the emission of virtual electroweak gauge bosons in right-handed-neutrino decays and through thermalization cascades. Our estimates suggest that the two scenarios can be reconciled if dark matter pair emission in right-handed-neutrino decays is kinematically forbidden and cascade production is sufficiently suppressed. Such a realization, however, requires enhanced CP violation, typically involving fine-tuning in the seesaw mechanism or the right-handed-neutrino mass spectrum.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2610.24063</id>
-<title>Testing Leptogenesis via CP asymmetries in Lepton-Number-Violating $W$ Decays at Colliders</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.24063"/>
-<updated>2026-10-16T00:00:00Z</updated>
-<author><name>Jean-François Fortin</name></author>
-<author><name>Alessandro Granelli</name></author>
-<author><name>David London et al.</name></author>
-<category term="hep-ph"/>
-<summary type="text">In principle, searches for CP asymmetries in rare $W$-boson decays can test low-scale leptogenesis in the GeV-scale type-I seesaw with three quasi-degenerate-in-mass heavy right-handed neutrinos. To investigate this, we focus on the lepton-number-violating heavy-neutrino-mediated decay $W^{\pm}\to e^{\pm} e^{\pm} (\bar{q} q')^{\mp}$, with $(\bar{q} q')^+ = (\bar{d}u)^+$ and $(\bar{q} q')^- = (\bar{u}d)^-$. We determine the minimum branching ratio required for a CP asymmetry to be observable at colliders with a given statistical significance. We then perform a numerical scan of the presently-allowed parameter space, also solving the density matrix equations for low-scale leptogenesis, and identify regions where, simultaneously, the present baryon asymmetry of the Universe can be achieved and the collider CP asymmetry for the considered decay is observable at HL-LHC and FCC-hh. We find that these regions are sizeable. A future observation of a CP asymmetry in $W^{\pm}\to e^{\pm} e^{\pm} (\bar{q} q')^{\mp}$ within the regions identified here would provide evidence in favour of low-scale leptogenesis as the origin of the matter-antimatter asymmetry of the Universe.</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2610.29069</id>
@@ -183,5 +161,29 @@
 <author><name>O. Adriani et al.</name></author>
 <category term="astro-ph.HE"/>
 <summary type="text">Various models predict that gravitational-wave sources produce high-energy neutrinos. Among them are compact binary coalescences with at least one neutron star, but also core-collapse supernovae or accretion disk instabilities. Two different analyses are presented, combining data from the LIGO and Virgo gravitational-wave detectors with those from the ANTARES and ORCA neutrino telescopes observed during the third observing run of LIGO-Virgo. In the first analysis, selected high-energy neutrino candidates were used as triggers to search for gravitational-wave candidates. In the second analysis, a search was conducted for potential spatial and temporal coincidences between subthreshold high-energy neutrino candidate events and subthreshold gravitational-wave candidates emitted by compact binary coalescence systems. In both searches, no significant coincidences were found. Upper limits on the rate of sources emitting both high-energy neutrinos and gravitational waves are presented. In particular, with the joint search, a joint source rate density upper limit of $8.8\times10^2~\mathrm{ Gpc^{-3}yr^{-1}}$ was found for a typical binary neutron star coalescence with a GW emitted energy …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2610.31254</id>
+<title>A consistent neutrino determination of the low-energy weak mixing angle</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.31254"/>
+<updated>2026-10-22T00:00:00Z</updated>
+<author><name>M. Atzori Corona</name></author>
+<author><name>M. Cadeddu</name></author>
+<author><name>N. Cargioli et al.</name></author>
+<category term="hep-ph"/>
+<category term="hep-ex"/>
+<summary type="text">The weak mixing angle, $\sin^2θ_W$, is a fundamental parameter of the Standard Model and a sensitive probe of electroweak physics across various energy scales. At low momentum transfer, the Standard Model prediction approaches a well-defined low-energy plateau, providing a target for precision tests of the electroweak theory. At the lowest momentum transfer, atomic parity violation (APV) in cesium provides one of the most precise determinations of the weak mixing angle. Here, we review and update the status of this determination and compare it with other available probes. We then consistently reanalyze low-energy neutrino scattering data and combine the resulting determinations from coherent elastic scattering (CE$ν$NS) and neutrino-electron scattering. The complementary sensitivity of these processes to electroweak couplings enables a neutrino-based determination of the low-energy weak mixing angle, accounting for electroweak radiative corrections and relevant theoretical uncertainties. Our global analysis yields $\sin^2θ_W^{\rm low}(ν\,\text{data}) = 0.233^{+0.007}_{-0.006}$. We assess the consistency and relative impact of the individual neutrino measurements and discuss the …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2610.30894</id>
+<title>CURTAIN: Towards a Foundation Model for Neutrino Telescopes</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.30894"/>
+<updated>2026-10-22T00:00:00Z</updated>
+<author><name>Severin Magel</name></author>
+<author><name>Felix J. Yu</name></author>
+<author><name>Carlos A. Argüelles</name></author>
+<category term="hep-ex"/>
+<category term="astro-ph.IM"/>
+<summary type="text">Neutrino telescopes record more than a trillion photon detections per year, yet there does not exist a self-supervised learning (SSL) task which fully satisfies all three conditions: improving as the pretraining set grows, transferring to a different detector, and outperforming the best model trained without pretraining at all. We introduce CURTAIN, a temporal masking scheme and the first SSL task for neutrino telescopes that achieves all of these goals. Downstream performance monotonically improves with the number of pretraining events, as predicted by scaling laws. Our encoder builds on DeepIce, currently the leading model on the NuBench benchmarks direction reconstruction task. Pretraining it with CURTAIN reduces its median angular error by 45% and its median energy error by 31% compared to training from scratch. It also transfers to a detector geometry never seen in pretraining, reducing the median angular error by 36% compared to training from scratch. At matched capacity and pretraining data, CURTAIN-pretrained encoders beat those pretrained by existing SSL tasks on both tasks and at every pretraining set size.</summary>
 </entry>
 </feed>
