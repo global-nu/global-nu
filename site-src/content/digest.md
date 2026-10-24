@@ -24,17 +24,23 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors.</b>
-<span class="stamp">Last successful update: 23 October 2026, 07:48 CEST</span></div>
+<span class="stamp">Last successful update: 24 October 2026, 07:47 CEST</span></div>
 </div>
-<p class="digest-dates small"><b>This edition:</b> preprints first submitted 16 Oct 2026 – 22 Oct 2026. Each entry gives its own dates: first submission, latest update when there is one, and announcement when the source states it. arXiv announces submissions on its own schedule, so the newest of these may not have been announced yet.</p>
+<p class="digest-dates small"><b>This edition:</b> preprints first submitted 19 Oct 2026 – 22 Oct 2026. Each entry gives its own dates: first submission, latest update when there is one, and announcement when the source states it. arXiv announces submissions on its own schedule, so the newest of these may not have been announced yet.</p>
 <!-- QUIET:BEGIN -->
+<p class="small muted"><b>arXiv made no announcement for
+24 October 2026.</b> Its listing feeds are empty, as they are at weekends and on
+<a href="https://info.arxiv.org/help/availability.html">arXiv's announcement
+holidays</a>, so nothing below is new today: the list will change with the
+next announcement.</p>
 <!-- QUIET:END -->
 
 <div class="section-head"><h2>Experimental</h2>
-<p>1 preprint</p></div>
+<p>2 preprints</p></div>
 
 <ul class="list list--news">
 <li><b><a href="https://arxiv.org/abs/2610.26739">Optical imaging in dual-phase xenon time projection chambers for neutrinoless double beta decay searches</a></b><span>Adam D. Tidball, Jingke Xu, Brian G. Lenardo et al. · first submitted 19 Oct 2026</span><span class="tags"><span class="tag">physics.ins-det</span><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.30894">CURTAIN: Towards a Foundation Model for Neutrino Telescopes</a></b><span>Severin Magel, Felix J. Yu, Carlos A. Argüelles · first submitted 22 Oct 2026</span><span class="tags"><span class="tag">hep-ex</span><span class="tag">astro-ph.IM</span></span></li>
 </ul>
 
 
@@ -43,24 +49,23 @@ and may contain errors.</b>
 ::: section alt
 
 <div class="section-head"><h2>Theory</h2>
-<p>15 preprints</p></div>
+<p>14 preprints</p></div>
 
 <ul class="list list--news">
 <li><b><a href="https://arxiv.org/abs/2610.30981">Construction and phenomenological analysis of dynamical Inverse seesaw neutrino mixing model</a></b><span>Manish Singh Bisht, Shuchi Bisht, Mayank Joshi et al. · first submitted 22 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">gr-qc</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.27270">Correlations in oscillation data and their impact on neutrino mixing models</a></b><span>Janusz Gluza, Biswajit Karmakar, Szymon Zięba · first submitted 19 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.27091">Combining Pumping and Absorption Effects in Neutrino Oscillation Probabilities: A Non-Hermitian Framework</a></b><span>Gabriela Barenboim, Alberto Gago, Eduardo Massoni · first submitted 19 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.31658">Neutrino Mass in Left-Right Symmetry: From Majorana Signals to Dirac Predictions</a></b><span>Vladimir Tello · first submitted 22 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.23474">Neutrino Anomalies and Tensions: Experimental Status and Theoretical Interpretations</a></b><span>Doris Barčot, Raoul Serao, Antonio Capolupo · first submitted 16 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.30526">Localized Neutrinos in Two Dark Dimensions</a></b><span>Waqas Ahmed, George K. Leontaris · first submitted 21 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-th</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.30338">Machine Learning Neutrino-Nucleus Cross Sections II: More Leptons</a></b><span>Daniel C. Hackett, Joshua Isaacson, Shirley Weishi Li et al. · first submitted 21 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span><span class="tag">nucl-th</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.30252">Neutrino Transition Polarizability</a></b><span>Matteo Borrello, Michele Tammaro · first submitted 21 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span><span class="tag">hep-th</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.29335">Heavy Pseudo-Dirac Doublet Dark Matter and Non-Thermal Leptogenesis in Light of the LZ Event</a></b><span>Masahiro Ibe, Jun Miyamoto · first submitted 21 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.24063">Testing Leptogenesis via CP asymmetries in Lepton-Number-Violating W Decays at Colliders</a></b><span>Jean-François Fortin, Alessandro Granelli, David London et al. · first submitted 16 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.29069">Low Primordial Helium as a Probe of Non-Unitary Neutrino Mixing</a></b><span>Shu-Yuan Guo, Jia-Qi Li · first submitted 21 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.28744">The renormalization-group running of neutrino mixing is undetectable</a></b><span>Gabriela Barenboim, Mauricio Bustamante, Qinrui Liu · first submitted 20 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.27158">Numerical shock broadening and supernova neutrino conversion: implications for DUNE</a></b><span>Rafael C. R. de Lima, Pedro Martins Bailer · first submitted 19 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.26761">Froggatt-Nielsen mechanism with non-invertible symmetry</a></b><span>Gui-Jun Ding, Stephen F. King, Bu-Yao Qu · first submitted 19 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.29436">Searches for coincident Gravitational Waves and High-Energy Neutrinos from the KM3NeT and ANTARES telescopes during O3</a></b><span>ANTARES Collaboration, KM3NeT Collaboration, O. Adriani et al. · first submitted 21 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.31254">A consistent neutrino determination of the low-energy weak mixing angle</a></b><span>M. Atzori Corona, M. Cadeddu, N. Cargioli et al. · first submitted 22 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
 </ul>
 
 
@@ -82,7 +87,7 @@ still appears under theory.</p>
 
 <!-- ARCHIVE:BEGIN -->
 <ul class="archive">
-  <li><time datetime="2026-10-22">22 October 2026</time><a href="digest/2026-10-22.html">Digest of 2026-10-22</a><span class="count">2 papers</span></li>
+  <li><time datetime="2026-10-22">22 October 2026</time><a href="digest/2026-10-22.html">Digest of 2026-10-22</a><span class="count">4 papers</span></li>
   <li><time datetime="2026-10-21">21 October 2026</time><a href="digest/2026-10-21.html">Digest of 2026-10-21</a><span class="count">7 papers</span></li>
   <li><time datetime="2026-10-20">20 October 2026</time><a href="digest/2026-10-20.html">Digest of 2026-10-20</a><span class="count">3 papers</span></li>
   <li><time datetime="2026-10-19">19 October 2026</time><a href="digest/2026-10-19.html">Digest of 2026-10-19</a><span class="count">8 papers</span></li>
@@ -92,7 +97,7 @@ still appears under theory.</p>
   <li><time datetime="2026-10-14">14 October 2026</time><a href="digest/2026-10-14.html">Digest of 2026-10-14</a><span class="count">5 papers</span></li>
   <li><time datetime="2026-10-13">13 October 2026</time><a href="digest/2026-10-13.html">Digest of 2026-10-13</a><span class="count">5 papers</span></li>
   <li><time datetime="2026-10-12">12 October 2026</time><a href="digest/2026-10-12.html">Digest of 2026-10-12</a><span class="count">2 papers</span></li>
-  <li><time datetime="2026-10">October 2026</time><a href="digest/2026-10.html">All of October 2026</a><span class="count">88 papers</span></li>
+  <li><time datetime="2026-10">October 2026</time><a href="digest/2026-10.html">All of October 2026</a><span class="count">90 papers</span></li>
   <li><time datetime="2026-09">September 2026</time><a href="digest/2026-09.html">All of September 2026</a><span class="count">137 papers</span></li>
   <li><time datetime="2026-08">August 2026</time><a href="digest/2026-08.html">All of August 2026</a><span class="count">76 papers</span></li>
 </ul>
