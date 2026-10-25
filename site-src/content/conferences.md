@@ -26,7 +26,7 @@ scripts:
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the conference indexers' APIs,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 24 October 2026, 07:47 CEST</span></div>
+<span class="stamp">Last successful update: 25 October 2026, 07:47 CET</span></div>
 </div>
 
 <form class="conf-filters" id="conf-filters" hidden aria-label="Filter the meetings">
@@ -44,7 +44,7 @@ and may contain errors. No model is involved.</b>
 <figure class="figure">
 <h4>Timeline</h4>
 <div class="timeline-scroll">
-<svg viewBox="0 0 2796 1026" role="img" width="3355" height="1231" aria-label="Timeline of upcoming and recently concluded neutrino conferences, scrollable sideways from today to a year ahead" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 2803 1026" role="img" width="3364" height="1231" aria-label="Timeline of upcoming and recently concluded neutrino conferences, scrollable sideways from today to a year ahead" xmlns="http://www.w3.org/2000/svg">
 <title>Conference timeline</title>
 <line x1="0.0" y1="14" x2="0.0" y2="1011" style="stroke:var(--line);stroke-width:1"/>
 <text x="3.0" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Oct</text>
@@ -72,8 +72,8 @@ and may contain errors. No model is involved.</b>
 <text x="2386.1" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Sep</text>
 <line x1="2596.5" y1="14" x2="2596.5" y2="1011" style="stroke:var(--line);stroke-width:1"/>
 <text x="2599.5" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Oct</text>
-<line x1="163.6" y1="8" x2="163.6" y2="1011" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
-<text x="163.6" y="1023" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
+<line x1="170.7" y1="8" x2="170.7" y2="1011" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
+<text x="170.7" y="1023" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
 <g class="conf-bar" data-conf="nu:20261026-galactic-science-and-cmb-foregrounds-2026" data-name="3rd Conference" data-dates="26–29 October 2026" data-place="Tenerife, Canary Islands, Spain" data-url="https://meetings.iac.es/cmbforegrounds2026/" data-tier="adjacent" data-tier-label="Adjacent fields">
 <rect x="177.8" y="30" width="21.3" height="10" rx="5" style="fill:var(--dec-3);opacity:1"><title>Galactic Science and CMB Foregrounds…: 2026-10-26 → 2026-10-29 — Adjacent fields (name names “galactic”)</title></rect>
 <text x="207.2" y="38.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Galactic Science and CMB…</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Tenerife, Canary…</tspan></text>
