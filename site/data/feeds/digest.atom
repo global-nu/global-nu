@@ -5,7 +5,7 @@
 <subtitle>Neutrino preprints ranked by relevance, rebuilt every morning. Selected by keyword score; no model involved.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/digest.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/digest.atom"/>
-<updated>2026-10-23T00:00:00Z</updated>
+<updated>2026-10-26T00:00:00Z</updated>
 <author><name>global-nu.org, Bari group</name></author>
 <entry>
 <id>https://arxiv.org/abs/2610.30981</id>
@@ -20,15 +20,14 @@
 <summary type="text">In this manuscript, a dynamical inverse seesaw neutrino ISS(3+1+1+1) mixing model based on the gauge symmetry $U(1)_{B-L}$ extended by the flavor symmetry $A_{4}\times Z_{2}$ has been constructed. ISS(3+1+1+1) represents three generations of right-handed neutrinos and an extra three generation of singlets sterile neutrinos, wherein the right-handed neutrinos are triplets under $A_4$ symmetry. Furthermore, the five scalar flavon fields are considered in the model, which reproduce neutrino oscillation data within the NuFIT 6.0 experimental range with statistical $\text{|pull|}=0.01 σ$. The neutrino mass hierarchy is obtained by minimizing the dynamical $A_4\times Z_2$ scalar flavon $φ_v$ potential. The effective neutrino mass parameter $m_{ββ}$ for the neutrinoless double beta decay $0vββ$ has been charecterised in the manuscript. The effective neutrino mass parameter spans a finite region in the parameter space rather then being confined to a single point and it is constrained by the KamLAND-Zen excluded band. The model successfully explains active-sterile neutrino mixing and non-unitarity of the PMNS matrix is consistent with the cosmological upper bound. The minimum value of the …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2610.27270</id>
-<title>Correlations in oscillation data and their impact on neutrino mixing models</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.27270"/>
-<updated>2026-10-19T00:00:00Z</updated>
-<author><name>Janusz Gluza</name></author>
-<author><name>Biswajit Karmakar</name></author>
-<author><name>Szymon Zięba</name></author>
+<id>https://arxiv.org/abs/2610.35587</id>
+<title>Neutrino Phenomenology and Leptogenesis from Non-Invertible Fusion Symmetry</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.35587"/>
+<updated>2026-10-26T00:00:00Z</updated>
+<author><name>Pulakesh Borah</name></author>
+<author><name>Mrinal Kumar Das</name></author>
 <category term="hep-ph"/>
-<summary type="text">With increasing precision of neutrino experiments, complete correlation among the oscillation parameters will scrutinize theoretical neutrino mass and mixing models. Using available 1D--3D global-fit datasets, we construct a multidimensional $\tildeχ^2$ function that provides a conservative estimate of the full six-dimensional parameter correlations. In our approach, we delineate the model-constrained parameter space by combining the interpolated experimental data with the analytical relations implied by a given mixing scheme. We identify $\tildeχ^2_{\text{min}}$, corresponding to the optimal agreement attainable for parameter points satisfying the model. Applying this framework to several schemes ($\text{TM}_{1,2}$, $\mu1,2$--$\tau1,2$) yields generally better fits for IO than for NO, with the $\mu1$--$\tau1$ scheme under IO providing the best overall fit. While $\mu1,2$--$\tau1,2$ and $\text{TM}_1$ schemes perform significantly better than $\text{TM}_2$, the latter is excluded at $&gt;3σ$ C.L. using NuFIT~v6.1 data. We further evaluate the implications of these correlation-respecting constraints on the effective neutrino mass observables relevant to tritium $β$-decay ($m_β$) and …</summary>
+<summary type="text">We constructed a minimal type-I seesaw model with two right-handed neutrinos, in which the flavor structure is determined by a non-invertible \(\mathbb{Z}_2\)-gauged \(\mathbb{Z}_5\) fusion symmetry~($\mathbb{Z}^{IN}_5$). The framework, incorporating a second Higgs doublet and an auxiliary \(\mathbb{Z}_2\) parity, yields predictive neutrino mass textures without introducing flavon fields. A fit to neutrino data selects the inverted mass ordering with \(m_3=0\) and predicts a nearly maximal Dirac CP phase, together with a characteristic prediction for the effective Majorana mass governing neutrinoless double-beta decay($0νββ$). We further investigate thermal leptogenesis and show that the framework can reproduce the observed baryon asymmetry of the Universe. Our results establish a connection between predictive neutrino phenomenology and leptogenesis within a minimal framework based on non-invertible fusion symmetry.</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2610.32747</id>
@@ -41,29 +40,6 @@
 <category term="hep-ph"/>
 <category term="hep-ex"/>
 <summary type="text">The LUX-ZEPLIN (LZ) experiment has recently reported data extending to nuclear-recoil energies of about 270 keV, including a single event at 248 keV in a nearly background-free region, for an exposure of 2.84 tonne-years. We examine this dataset through neutrino up-scattering to a heavy sterile fermion induced by atmospheric neutrinos, mediated by vector, axial-vector, scalar and dipole interactions. Our main result is a set of constraints: using the part of the LZ data where no excess is observed, we obtain new bounds on all four scenarios that probe regions of parameter space not tested before, and show that dark matter detectors can provide competitive limits on neutrino up-scattering for sterile fermion masses above $\sim 50$ MeV. We also test whether the 248~keV event can be explained in this way while remaining consistent with the absence of events at lower recoil energies. For the scalar, vector and axial mediators this requires couplings at the edge of perturbativity, while the dipole does not provide a good fit, so we conclude that up-scattering is not a compelling explanation of the event.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2610.27091</id>
-<title>Combining Pumping and Absorption Effects in Neutrino Oscillation Probabilities: A Non-Hermitian Framework</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.27091"/>
-<updated>2026-10-19T00:00:00Z</updated>
-<author><name>Gabriela Barenboim</name></author>
-<author><name>Alberto Gago</name></author>
-<author><name>Eduardo Massoni</name></author>
-<category term="hep-ph"/>
-<summary type="text">We study two-flavour neutrino oscillations in which a coherent off-diagonal interaction from a complex background field coexists with an absorptive channel acting on a single mass eigenstate. Since the two do not commute, the effective Hamiltonian is non-normal and oscillations and damping no longer factorise. We formulate the dynamics both as the no-jump sector of a Lindblad evolution and through biorthogonal diagonalisation, and obtain the evolution operator of our model in closed form. The model interpolates between quasi-global damping, standard invisible decay, and a critical point with polynomial-times-exponential evolution; for initially pure states it describes norm loss rather than decoherence. Comparing neutrinos and antineutrinos in the same background, with the mixing phase $φ$ reversed and the background phase $δ$ fixed, we derive closed-form $CP$, $CPT$ and $T$ asymmetries. The $CPT$ asymmetries arise only from this phase assignment. In contrast, the $T$ asymmetry, which is forbidden in unitary two-flavour oscillations, is independent of the prescription: it arises only through the non-normal structure, is proportional to the absorptive coupling, and vanishes only …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2610.26739</id>
-<title>Optical imaging in dual-phase xenon time projection chambers for neutrinoless double beta decay searches</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.26739"/>
-<updated>2026-10-19T00:00:00Z</updated>
-<author><name>Adam D. Tidball</name></author>
-<author><name>Jingke Xu</name></author>
-<author><name>Brian G. Lenardo et al.</name></author>
-<category term="physics.ins-det"/>
-<category term="hep-ex"/>
-<summary type="text">Dual-phase xenon time projection chambers (TPCs) are the leading technology for WIMP dark matter searches and have also demonstrated competitive sensitivities to neutrinoless double beta decays (0$νββ$) of \ce{^{136}Xe}. However, the large energy disparity between these two signals requires different detector optimizations. In particular, 0$νββ$\ searches in liquid xenon desire efficient rejection of closely located multiscatters of background gamma rays near the 0$νββ$\ energy, a capability achieved only in the vertical dimension in existing dual-phase xenon TPCs. We propose a highly customized, wide-angle optical system that can be conveniently integrated into large xenon TPCs and provide mm-scale transverse position resolution for MeV signals by imaging gas electroluminescence light. This approach preserves a TPC's low-energy sensitivity and optimizes a single experiment for both dark matter and 0$νββ$\ searches. This paper discusses the design, simulated performance, and implications of the imaging system for future liquid xenon-based 0$νββ$\ searches.</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2610.31658</id>
@@ -84,6 +60,18 @@
 <category term="hep-ph"/>
 <category term="hep-th"/>
 <summary type="text">We study neutrino masses in a six-dimensional framework with two compact dark dimensions. In the conventional flat-bulk realization, the sterile-neutrino zero mode is strongly volume suppressed, so a fundamental scale near $10~\mathrm{TeV}$ requires a large higher-dimensional Yukawa coupling to reproduce the observed neutrino masses, while the accompanying two-dimensional Kaluza--Klein tower is strongly constrained by oscillation data. We show that localizing the sterile-neutrino wave function near the Standard-Model brane substantially alleviates both effects. Using a Gaussian localizer, realistic Dirac neutrino masses are obtained with perturbative, order-one Yukawa couplings, while the brane-visible sterile excitations form a shell spectrum with $M_s^2=8μ^2 s$, and squared active--sterile mixings that decrease as $1/s$. The localization scale therefore separates the experimentally relevant sterile-neutrino spectrum from the gravitational compactification scale. We derive the resulting three-flavour structure and study its phenomenological consequences for reactor oscillations and tritium beta decay, including comparisons with current flat-LED and KATRIN constraints.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2610.35619</id>
+<title>Indication of Electron Antineutrinos from the Diffuse Supernova Neutrino Background</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.35619"/>
+<updated>2026-10-26T00:00:00Z</updated>
+<author><name>The Super-Kamiokande Collaboration</name></author>
+<author><name>:</name></author>
+<author><name>K. Abe et al.</name></author>
+<category term="astro-ph.HE"/>
+<category term="hep-ex"/>
+<summary type="text">We report an indication of $\barν_e$ from the diffuse supernova neutrino background (DSNB) based on a spectral fit analysis of a 5003.0-day dataset in Super-Kamiokande. Key improvements over previous searches include enhanced rejection of atmospheric $ν$ backgrounds, updated evaluations of systematic uncertainties, and a refined spectral fitting method. Using a representative DSNB model, the best-fit flux was determined to be $3.6^{+1.6}_{-1.5}~\mathrm{cm^{-2}\,s^{-1}}$ for $E_ν&gt;13.3$~MeV, corresponding to a $2.6σ$ tension with a null hypothesis ($99.5\%$ C.L., one-sided). Similar significances were obtained with signal models of varying spectral shapes.</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2610.32669</id>
@@ -142,6 +130,18 @@
 <summary type="text">Motivated by the recent LZ candidate nuclear-recoil event, we study pseudo-Dirac electroweak doublet dark matter in the mass range $10^2$--$10^4\,\mathrm{TeV}$, where bounds from searches for neutrinos produced by dark matter annihilation in the Sun can be evaded. To suppress the excessive thermal relic abundance, we consider freeze-out during inflaton domination followed by entropy production during reheating. We examine whether this cosmological history can also accommodate non-thermal leptogenesis. Our analysis includes dark matter production through the emission of virtual electroweak gauge bosons in right-handed-neutrino decays and through thermalization cascades. Our estimates suggest that the two scenarios can be reconciled if dark matter pair emission in right-handed-neutrino decays is kinematically forbidden and cascade production is sufficiently suppressed. Such a realization, however, requires enhanced CP violation, typically involving fine-tuning in the seesaw mechanism or the right-handed-neutrino mass spectrum.</summary>
 </entry>
 <entry>
+<id>https://arxiv.org/abs/2610.33729</id>
+<title>Exploring the Limits: Neutrino Mass and Interacting Dark Sector in the DESI Era</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.33729"/>
+<updated>2026-10-24T00:00:00Z</updated>
+<author><name>Weiqiang Yang</name></author>
+<author><name>Sibo Zhang</name></author>
+<author><name>Supriya Pan et al.</name></author>
+<category term="hep-ph"/>
+<category term="astro-ph.CO"/>
+<summary type="text">We constrain three interacting dark matter--dark energy scenarios using cosmic microwave background measurements, DESI DR2 baryon acoustic oscillations, and the PantheonPlus, Union3, and DES-Dovekie Type Ia supernova compilations. We consider interacting vacuum energy and interacting dark energy with a constant equation of state in the phantom and quintessence regimes, analyzing each scenario with either a fixed total neutrino mass or a freely varying effective neutrino mass. When the positivity prior is relaxed, all three scenarios favor negative effective neutrino masses for every dataset combination. Although some combinations permit small positive masses, none of the 95\% confidence intervals reaches the minimum mass required by neutrino oscillation experiments. Allowing the effective neutrino mass to vary produces significances for a nonzero coupling reaching approximately $3σ$, but the preferred masses remain negative. These results demonstrate that the interaction and constant dark energy equations of state considered here fail to resolve the DESI neutrino-mass tension.</summary>
+</entry>
+<entry>
 <id>https://arxiv.org/abs/2610.32656</id>
 <title>Neutrino-Nucleus Scattering Simulation Using GENIE Event Generator</title>
 <link rel="alternate" href="https://arxiv.org/abs/2610.32656"/>
@@ -175,13 +175,13 @@
 <summary type="text">Quantum corrections make the parameters of a theory depend on an arbitrary renormalization scale, $μ$. The renormalization-group (RG) running of neutrino masses and mixing is a standard tool to relate models defined at a high mass scale to measured values. A growing body of work holds that the running is also directly observable: a neutrino produced or detected at momentum transfer $Q$ would carry the mixing matrix evaluated at $μ= Q$. Proposed signatures include flavor change at zero distance from the source, shifts in the measured CP-violation phase, and an anomalous flavor composition of high-energy astrophysical neutrinos. We show that this premise is incorrect. The mixing is a property of the neutrino itself, fixed by its self-energy on the mass shell, not by the process that produces or detects it. Setting $μ= Q$ is legitimate, but then large logarithms in the self-energy undo the running; the premise incorrectly drops them. Hence, apart from small vertex and box corrections, every experiment measures the same mixing: the running is undetectable. We illustrate this in the Minimal Supersymmetric Standard Model, two seesaw models, and the Standard Model effective field theory …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2610.27158</id>
-<title>Numerical shock broadening and supernova neutrino conversion: implications for DUNE</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.27158"/>
-<updated>2026-10-19T00:00:00Z</updated>
-<author><name>Rafael C. R. de Lima</name></author>
-<author><name>Pedro Martins Bailer</name></author>
-<category term="astro-ph.HE"/>
-<summary type="text">Hydrodynamical simulations spread the supernova shock front over a few grid zones, a width set by the numerical scheme rather than by the physics of the shock. Where the front crosses the H resonance, that width can make the computed MSW evolution artificially adiabatic. We quantify the effect on six three-dimensional blue-supergiant explosion models from the Garching archive by propagating individual rays twice: through the stored profile, and with the front replaced by a narrow reconstruction, 2.2 km wide, that approximates a sudden crossing while keeping the densities on either side. The stored fronts are 1.6 to 1.7 grid zones wide. Across twelve configurations, each chosen inside the energy band in which that model's front meets the resonance, the reconstruction raises the ray-averaged crossing probability $P_H$ by 0.44 to 0.76 in absolute terms, median 0.56; narrowing the reconstruction thirty-fold changes each difference by at most 0.055. Along all 12878 rays of one configuration, the sudden-limit formula evaluated on each ray's own densities agrees closely with the propagated reconstructed result. The change is largest when the density jump spans the resonance, over a band …</summary>
+<id>https://arxiv.org/abs/2610.32084</id>
+<title>Prediction of the Geoneutrino Signal at the Jinping Neutrino Experiment</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.32084"/>
+<updated>2026-10-23T00:00:00Z</updated>
+<author><name>Kaikai Meng</name></author>
+<author><name>Yang Zhang</name></author>
+<category term="hep-ex"/>
+<summary type="text">We present refined predictions of the geoneutrino flux for the 500-tonne Jinping Neutrino Experiment (JNE). We construct a local crustal model with a resolution of \(0.2^\circ\times0.2^\circ\) based on the SWChinaCVM-2.0 seismic velocity model and integrate it with CRUST1.0 to establish our reference model. For comparison, we also calculate the geoneutrino flux using ECM1 and CRUST1.0 as standalone global crustal models. Assuming an energy scale of 500~p.e./MeV and an exposure of 500~t$\times$1500~days, we predict the inverse beta decay event spectrum, including both the geoneutrino signal and the reactor antineutrino background. The distinct spectral shapes of the $^{238}$U, $^{232}$Th, and reactor antineutrino components allow their respective contributions to be obtained through spectral fitting. These predictions provide inputs for the JNE data analysis, particularly for extracting the mantle geoneutrino signal and testing competing bulk silicate Earth models.</summary>
 </entry>
 </feed>
