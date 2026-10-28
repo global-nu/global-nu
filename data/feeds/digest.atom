@@ -5,7 +5,7 @@
 <subtitle>Neutrino preprints ranked by relevance, rebuilt every morning. Selected by keyword score; no model involved.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/digest.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/digest.atom"/>
-<updated>2026-10-26T00:00:00Z</updated>
+<updated>2026-10-27T00:00:00Z</updated>
 <author><name>global-nu.org, Bari group</name></author>
 <entry>
 <id>https://arxiv.org/abs/2610.30981</id>
@@ -60,6 +60,18 @@
 <category term="hep-ph"/>
 <category term="hep-th"/>
 <summary type="text">We study neutrino masses in a six-dimensional framework with two compact dark dimensions. In the conventional flat-bulk realization, the sterile-neutrino zero mode is strongly volume suppressed, so a fundamental scale near $10~\mathrm{TeV}$ requires a large higher-dimensional Yukawa coupling to reproduce the observed neutrino masses, while the accompanying two-dimensional Kaluza--Klein tower is strongly constrained by oscillation data. We show that localizing the sterile-neutrino wave function near the Standard-Model brane substantially alleviates both effects. Using a Gaussian localizer, realistic Dirac neutrino masses are obtained with perturbative, order-one Yukawa couplings, while the brane-visible sterile excitations form a shell spectrum with $M_s^2=8μ^2 s$, and squared active--sterile mixings that decrease as $1/s$. The localization scale therefore separates the experimentally relevant sterile-neutrino spectrum from the gravitational compactification scale. We derive the resulting three-flavour structure and study its phenomenological consequences for reactor oscillations and tritium beta decay, including comparisons with current flat-LED and KATRIN constraints.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2610.37318</id>
+<title>High significance measurement of reactor coherent elastic neutrino-nucleus scattering on germanium by CONUS+</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.37318"/>
+<updated>2026-10-27T00:00:00Z</updated>
+<author><name>N. Ackermann</name></author>
+<author><name>H. Bonet</name></author>
+<author><name>C. Buck et al.</name></author>
+<category term="hep-ex"/>
+<category term="hep-ph"/>
+<summary type="text">We report the most precise measurement to date of coherent elastic neutrino-nucleus scattering (CE$ν$NS) from reactor antineutrinos using the CONUS+ high-purity germanium detectors at the Leibstadt nuclear power plant. With an exposure of 1296 kg$\cdot$days reactor-on, a blind likelihood analysis yields $1555 \pm 152$ CE$ν$NS events, with a significance of 10.2 $σ$, in agreement with the Standard Model expectation of $1701 \pm 198$ events within 0.6 standard deviations. The result also determines the weak mixing angle at a momentum transfer of about 10 MeV, $\sin^2θ_W = 0.225 \pm 0.022$, consistent with the Standard Model prediction.</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2610.35619</id>
@@ -130,6 +142,17 @@
 <summary type="text">Motivated by the recent LZ candidate nuclear-recoil event, we study pseudo-Dirac electroweak doublet dark matter in the mass range $10^2$--$10^4\,\mathrm{TeV}$, where bounds from searches for neutrinos produced by dark matter annihilation in the Sun can be evaded. To suppress the excessive thermal relic abundance, we consider freeze-out during inflaton domination followed by entropy production during reheating. We examine whether this cosmological history can also accommodate non-thermal leptogenesis. Our analysis includes dark matter production through the emission of virtual electroweak gauge bosons in right-handed-neutrino decays and through thermalization cascades. Our estimates suggest that the two scenarios can be reconciled if dark matter pair emission in right-handed-neutrino decays is kinematically forbidden and cascade production is sufficiently suppressed. Such a realization, however, requires enhanced CP violation, typically involving fine-tuning in the seesaw mechanism or the right-handed-neutrino mass spectrum.</summary>
 </entry>
 <entry>
+<id>https://arxiv.org/abs/2610.36060</id>
+<title>Hybrid seesaw from $SU(2)_1 \times SU(2)_2 \times U(1)_Y$</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.36060"/>
+<updated>2026-10-26T00:00:00Z</updated>
+<author><name>Antonio Herrero-Brocal</name></author>
+<author><name>Javier Perez-Soler</name></author>
+<author><name>Avelino Vicente</name></author>
+<category term="hep-ph"/>
+<summary type="text">We study neutrino mass generation in a model based on the $SU(3)_c \times SU(2)_1 \times SU(2)_2 \times U(1)_Y$ gauge symmetry, in which the Standard Model $SU(2)_L$ arises at low energies as the diagonal subgroup of the two $SU(2)$ factors. The symmetry is enlarged with a global $U(1)_{B-L}$ symmetry, spontaneously broken by the vacuum expectation value of a scalar bidoublet. Light neutrino masses are generated at tree level through a hybrid of the type-III, inverse and linear seesaw mechanisms. A distinctive feature of the construction is the existence of a Nambu-Goldstone boson, the majoron, which transforms non-trivially under the original gauge symmetry while being mostly singlet under the Standard Model gauge group. We explore the phenomenological consequences of this setup, including electroweak precision constraints, the production of the nearly degenerate $W'$ and $Z'$ bosons at colliders and lepton flavor violating decays with a majoron in the final state. The latter constitute the most promising signature of the model.</summary>
+</entry>
+<entry>
 <id>https://arxiv.org/abs/2610.33729</id>
 <title>Exploring the Limits: Neutrino Mass and Interacting Dark Sector in the DESI Era</title>
 <link rel="alternate" href="https://arxiv.org/abs/2610.33729"/>
@@ -153,35 +176,16 @@
 <summary type="text">The Deep Underground Neutrino Experiment (DUNE) relies on the precise reconstruction of incident neutrino energy to extract oscillation parameters. The use of Liquid Argon introduces significant theoretical complexities due to nuclear effects. This work evaluates neutrino-nucleus scattering models using the GENIE Monte Carlo event generator. We demonstrate the limitations of the Relativistic Fermi Gas (RFG) model in the Charged Current Quasi-Elastic (CCQE) channel and its reliance on an inflated Axial Mass to match experimental data from MicroBooNE. We show that transitioning to advanced many-body frameworks, specifically the Local Fermi Gas (LFG) supplemented with Random Phase Approximation (RPA), is needed. Additionally, we evaluate the impact of the 2021 Bodek-Yang parameter updates on Deep Inelastic Scattering (DIS), concluding that modernized constraints are a prerequisite for mitigating systematic biases in DUNE.</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2610.29069</id>
-<title>Low Primordial Helium as a Probe of Non-Unitary Neutrino Mixing</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.29069"/>
-<updated>2026-10-21T00:00:00Z</updated>
-<author><name>Shu-Yuan Guo</name></author>
-<author><name>Jia-Qi Li</name></author>
+<id>https://arxiv.org/abs/2610.36101</id>
+<title>Phase-Twist Instability in a Coprecessing Neutrino Plasma</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.36101"/>
+<updated>2026-10-26T00:00:00Z</updated>
+<author><name>Damiano F. G. Fiorillo</name></author>
+<author><name>Dwaipayan Mukherjee</name></author>
+<author><name>Basudeb Dasgupta et al.</name></author>
 <category term="hep-ph"/>
-<summary type="text">The EMPRESS collaboration has reported a primordial helium mass fraction \(Y_P = 0.2402 \pm 0.0040\), which lies more than \(1σ\) below the standard Big Bang Nucleosynthesis prediction. Combined with the deuterium abundance and the Planck baryon density, this corresponds to a mild \(\sim 2σ\) tension with the standard value of the effective number of relativistic species, or to a \(\sim 2σ\) indication of a non-zero electron-neutrino degeneracy. We show that it can be explained by non-unitary three-neutrino mixing, a generic feature of seesaw extensions of the Standard Model. Non-unitarity makes the Fermi constant in beta decay exceed that in muon decay, enhancing the neutron-to-proton conversion rate and lowering \(Y_P\). A full numerical BBN calculation, combined with the EMPRESS \(Y_P\) determination and the deuterium abundance gives the best fit point at \(α_{22}=0.982\), while the standard values \(N_{\mathrm{eff}}=3.044\), \(ξ_e=0\) remain allowed; the required level of non-unitarity is consistent with current experimental constraints.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2610.28744</id>
-<title>The renormalization-group running of neutrino mixing is undetectable</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.28744"/>
-<updated>2026-10-20T00:00:00Z</updated>
-<author><name>Gabriela Barenboim</name></author>
-<author><name>Mauricio Bustamante</name></author>
-<author><name>Qinrui Liu</name></author>
-<category term="hep-ph"/>
+<category term="astro-ph.CO"/>
 <category term="astro-ph.HE"/>
-<summary type="text">Quantum corrections make the parameters of a theory depend on an arbitrary renormalization scale, $μ$. The renormalization-group (RG) running of neutrino masses and mixing is a standard tool to relate models defined at a high mass scale to measured values. A growing body of work holds that the running is also directly observable: a neutrino produced or detected at momentum transfer $Q$ would carry the mixing matrix evaluated at $μ= Q$. Proposed signatures include flavor change at zero distance from the source, shifts in the measured CP-violation phase, and an anomalous flavor composition of high-energy astrophysical neutrinos. We show that this premise is incorrect. The mixing is a property of the neutrino itself, fixed by its self-energy on the mass shell, not by the process that produces or detects it. Setting $μ= Q$ is legitimate, but then large logarithms in the self-energy undo the running; the premise incorrectly drops them. Hence, apart from small vertex and box corrections, every experiment measures the same mixing: the running is undetectable. We illustrate this in the Minimal Supersymmetric Standard Model, two seesaw models, and the Standard Model effective field theory …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2610.32084</id>
-<title>Prediction of the Geoneutrino Signal at the Jinping Neutrino Experiment</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.32084"/>
-<updated>2026-10-23T00:00:00Z</updated>
-<author><name>Kaikai Meng</name></author>
-<author><name>Yang Zhang</name></author>
-<category term="hep-ex"/>
-<summary type="text">We present refined predictions of the geoneutrino flux for the 500-tonne Jinping Neutrino Experiment (JNE). We construct a local crustal model with a resolution of \(0.2^\circ\times0.2^\circ\) based on the SWChinaCVM-2.0 seismic velocity model and integrate it with CRUST1.0 to establish our reference model. For comparison, we also calculate the geoneutrino flux using ECM1 and CRUST1.0 as standalone global crustal models. Assuming an energy scale of 500~p.e./MeV and an exposure of 500~t$\times$1500~days, we predict the inverse beta decay event spectrum, including both the geoneutrino signal and the reactor antineutrino background. The distinct spectral shapes of the $^{238}$U, $^{232}$Th, and reactor antineutrino components allow their respective contributions to be obtained through spectral fitting. These predictions provide inputs for the JNE data analysis, particularly for extracting the mantle geoneutrino signal and testing competing bulk silicate Earth models.</summary>
+<summary type="text">Dense neutrino plasmas support collective flavor motion. We derive the first explicit dispersion relation about a flavor-nondiagonal background, focusing on the coprecession solution underlying spectral-split formation during the prompt neutrino burst of an electron-capture supernova. We show that slow phase modulations are unstable Goldstone modes, causing the coprecession plane to wobble with increasing amplitude. The instability emerges in the hydrodynamic limit, governed by conservation laws and without resolving flavor-precession resonances. Coprecessing neutrino plasmas resemble magnetized plasmas: a coherent flavor field drives flavor isospins to precess, and the phase-twist instability is the flavor analog of the firehose instability.</summary>
 </entry>
 </feed>
