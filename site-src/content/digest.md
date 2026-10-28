@@ -24,9 +24,9 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors.</b>
-<span class="stamp">Last successful update: 27 October 2026, 07:48 CET</span></div>
+<span class="stamp">Last successful update: 28 October 2026, 07:47 CET</span></div>
 </div>
-<p class="digest-dates small"><b>This edition:</b> preprints first submitted 20 Oct 2026 – 26 Oct 2026. Each entry gives its own dates: first submission, latest update when there is one, and announcement when the source states it. arXiv announces submissions on its own schedule, so the newest of these may not have been announced yet.</p>
+<p class="digest-dates small"><b>This edition:</b> preprints first submitted 21 Oct 2026 – 27 Oct 2026. Each entry gives its own dates: first submission, latest update when there is one, and announcement when the source states it. arXiv announces submissions on its own schedule, so the newest of these may not have been announced yet.</p>
 <!-- QUIET:BEGIN -->
 <!-- QUIET:END -->
 
@@ -34,7 +34,7 @@ and may contain errors.</b>
 <p>1 preprint</p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2610.32084">Prediction of the Geoneutrino Signal at the Jinping Neutrino Experiment</a></b><span>Kaikai Meng, Yang Zhang · first submitted 23 Oct 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.37318">High significance measurement of reactor coherent elastic neutrino-nucleus scattering on germanium by CONUS+</a></b><span>N. Ackermann, H. Bonet, C. Buck et al. · first submitted 27 Oct 2026</span><span class="tags"><span class="tag">hep-ex</span><span class="tag">hep-ph</span></span></li>
 </ul>
 
 
@@ -57,10 +57,10 @@ and may contain errors.</b>
 <li><b><a href="https://arxiv.org/abs/2610.30338">Machine Learning Neutrino-Nucleus Cross Sections II: More Leptons</a></b><span>Daniel C. Hackett, Joshua Isaacson, Shirley Weishi Li et al. · first submitted 21 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span><span class="tag">nucl-th</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.30252">Neutrino Transition Polarizability</a></b><span>Matteo Borrello, Michele Tammaro · first submitted 21 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span><span class="tag">hep-th</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.29335">Heavy Pseudo-Dirac Doublet Dark Matter and Non-Thermal Leptogenesis in Light of the LZ Event</a></b><span>Masahiro Ibe, Jun Miyamoto · first submitted 21 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.36060">Hybrid seesaw from SU(2)₁ ×SU(2)₂ ×U(1)_Y</a></b><span>Antonio Herrero-Brocal, Javier Perez-Soler, Avelino Vicente · first submitted 26 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.33729">Exploring the Limits: Neutrino Mass and Interacting Dark Sector in the DESI Era</a></b><span>Weiqiang Yang, Sibo Zhang, Supriya Pan et al. · first submitted 24 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.32656">Neutrino-Nucleus Scattering Simulation Using GENIE Event Generator</a></b><span>L. F. B. M. Rodrigues, F. G. Gardim, G. A. Valdiviesso et al. · first submitted 23 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.29069">Low Primordial Helium as a Probe of Non-Unitary Neutrino Mixing</a></b><span>Shu-Yuan Guo, Jia-Qi Li · first submitted 21 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2610.28744">The renormalization-group running of neutrino mixing is undetectable</a></b><span>Gabriela Barenboim, Mauricio Bustamante, Qinrui Liu · first submitted 20 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.36101">Phase-Twist Instability in a Coprecessing Neutrino Plasma</a></b><span>Damiano F. G. Fiorillo, Dwaipayan Mukherjee, Basudeb Dasgupta et al. · first submitted 26 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span><span class="tag">astro-ph.HE</span></span></li>
 </ul>
 
 
@@ -82,7 +82,8 @@ still appears under theory.</p>
 
 <!-- ARCHIVE:BEGIN -->
 <ul class="archive">
-  <li><time datetime="2026-10-26">26 October 2026</time><a href="digest/2026-10-26.html">Digest of 2026-10-26</a><span class="count">2 papers</span></li>
+  <li><time datetime="2026-10-27">27 October 2026</time><a href="digest/2026-10-27.html">Digest of 2026-10-27</a><span class="count">1 paper</span></li>
+  <li><time datetime="2026-10-26">26 October 2026</time><a href="digest/2026-10-26.html">Digest of 2026-10-26</a><span class="count">4 papers</span></li>
   <li><time datetime="2026-10-24">24 October 2026</time><a href="digest/2026-10-24.html">Digest of 2026-10-24</a><span class="count">1 paper</span></li>
   <li><time datetime="2026-10-23">23 October 2026</time><a href="digest/2026-10-23.html">Digest of 2026-10-23</a><span class="count">4 papers</span></li>
   <li><time datetime="2026-10-22">22 October 2026</time><a href="digest/2026-10-22.html">Digest of 2026-10-22</a><span class="count">5 papers</span></li>
@@ -91,8 +92,7 @@ still appears under theory.</p>
   <li><time datetime="2026-10-19">19 October 2026</time><a href="digest/2026-10-19.html">Digest of 2026-10-19</a><span class="count">8 papers</span></li>
   <li><time datetime="2026-10-18">18 October 2026</time><a href="digest/2026-10-18.html">Digest of 2026-10-18</a><span class="count">3 papers</span></li>
   <li><time datetime="2026-10-16">16 October 2026</time><a href="digest/2026-10-16.html">Digest of 2026-10-16</a><span class="count">3 papers</span></li>
-  <li><time datetime="2026-10-15">15 October 2026</time><a href="digest/2026-10-15.html">Digest of 2026-10-15</a><span class="count">4 papers</span></li>
-  <li><time datetime="2026-10">October 2026</time><a href="digest/2026-10.html">All of October 2026</a><span class="count">98 papers</span></li>
+  <li><time datetime="2026-10">October 2026</time><a href="digest/2026-10.html">All of October 2026</a><span class="count">101 papers</span></li>
   <li><time datetime="2026-09">September 2026</time><a href="digest/2026-09.html">All of September 2026</a><span class="count">137 papers</span></li>
   <li><time datetime="2026-08">August 2026</time><a href="digest/2026-08.html">All of August 2026</a><span class="count">76 papers</span></li>
 </ul>

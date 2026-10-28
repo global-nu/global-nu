@@ -5,118 +5,104 @@
 <subtitle>Summaries written automatically with AI from fetched sources; each links to its source.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/news.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/news.atom"/>
-<updated>2026-10-27T06:48:04+00:00</updated>
+<updated>2026-10-28T06:47:50+00:00</updated>
 <author><name>global-nu.org, Bari group</name></author>
 <entry>
-<id>https://global-nu.org/news/7fc0fa19f8b862e9</id>
-<title>Diffuse supernova background</title>
+<id>https://global-nu.org/news/02682febcf9594ec</id>
+<title>DUNE construction</title>
+<link rel="alternate" href="https://news.fnal.gov/2026/10/momentum-builds-for-world-leading-neutrino-experiment-hosted-by-fermilab/"/>
+<updated>2026-10-28T06:47:50+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. Construction of the Long-Baseline Neutrino Facility, which hosts DUNE, is entering its next phase, with critical components arriving. Separately, UK teams have completed half of the 137 Anode Plane Assemblies for DUNE. These are the sensors that will detect the electrical signals produced when neutrinos interact in the liquid argon.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/b5361458389a91b1</id>
+<title>Super-Kamiokande DSNB</title>
 <link rel="alternate" href="https://arxiv.org/abs/2610.35619"/>
-<updated>2026-10-27T06:48:04+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The Super-Kamiokande Collaboration reported an indication of electron antineutrinos from the diffuse supernova neutrino background, from a spectral fit of a 5003.0-day dataset. The analysis has better rejection of atmospheric-neutrino backgrounds, updated systematic uncertainties and a refined spectral fit. For a representative DSNB model the best-fit flux was 3.6 (+1.6, −1.5) cm^-2 s^-1 above 13.3 MeV, a 2.6σ tension with the null hypothesis. Models with different spectral shapes gave similar significances.</summary>
+<updated>2026-10-28T06:47:50+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. Super-Kamiokande reported an indication of electron antineutrinos from the diffuse supernova neutrino background, from a spectral fit to a 5003.0-day dataset. The analysis improves the rejection of atmospheric-neutrino backgrounds, the evaluation of systematic uncertainties and the spectral fitting method. For a representative model the best-fit flux is 3.6 +1.6/−1.5 cm⁻² s⁻¹ above 13.3 MeV, a 2.6σ tension with the null hypothesis. Other signal spectral shapes gave similar significances.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/6e5ccdddc5aa65fe</id>
-<title>DUNE detector production</title>
-<link rel="alternate" href="https://www.ukri.org/news/uk-halfway-milestone-in-mission-to-unlock-neutrino-secrets/"/>
-<updated>2026-10-27T06:48:04+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. UK scientists and engineers have completed half of the 137 Anode Plane Assemblies they are producing for DUNE. These are the sensors that detect the electrical signals produced when neutrinos interact in the liquid argon of the underground detectors.</summary>
+<id>https://global-nu.org/news/39583854ce89378f</id>
+<title>CONUS+ at Leibstadt</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.37318"/>
+<updated>2026-10-28T06:47:50+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. CONUS+ reports the most precise measurement to date of reactor coherent elastic neutrino-nucleus scattering, using germanium detectors. An exposure of 1296 kg·days reactor-on gave 1555 ± 152 events at 10.2σ, within 0.6 standard deviations of the Standard Model expectation of 1701 ± 198. The same data give sin²θ_W = 0.225 ± 0.022 at a momentum transfer of about 10 MeV. A companion paper describes the run-2 analysis, after three of the original 1 kg detectors were replaced with larger 2.42 kg diodes.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/a4cc583dd67261e9</id>
-<title>KM3NeT construction and status</title>
-<link rel="alternate" href="https://www.km3net.org/two-more-successes-in-the-construction-of-arca-and-orca/"/>
-<updated>2026-10-27T06:48:04+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. KM3NeT reports that Cable Termination Frame 3 was installed at the ARCA deep-sea site during a marine campaign by Alcatel Submarine Networks. The collaboration describes two further steps for ARCA and ORCA in the same period. It has also been recognised as a Landmark in the ESFRI Roadmap 2026, and held its Autumn 2026 Collaboration Meeting in Siracusa.</summary>
+<id>https://global-nu.org/news/e7890f3a46c4908e</id>
+<title>KM3NeT milestones</title>
+<link rel="alternate" href="https://www.km3net.org/km3net-is-a-esfri-landmark/"/>
+<updated>2026-10-28T06:47:50+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. KM3NeT has been recognised as a Landmark in the ESFRI Roadmap 2026. Marine operations for the two detectors continued, including the installation of Cable Termination Frame 3 at the ARCA deep-sea site. The collaboration held its Autumn 2026 meeting in Siracusa, with status updates on detector operations.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/731d0acbedb88bff</id>
+<id>https://global-nu.org/news/f05d214fd9912ffe</id>
 <title>IceCube at the Pole</title>
-<link rel="alternate" href="https://www.km3net.org/congratulations-francis-halzen/"/>
-<updated>2026-10-27T06:48:04+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. KM3NeT congratulated Francis Halzen on the 2026 Nobel Prize in Physics, awarded for his contributions to IceCube and the discovery of high-energy astrophysical neutrinos. The weekly Pole reports describe the station gathering at the IceCube Lab to mark the award. In the following week the winterovers replaced a hard drive, applied software updates, and carried out calibration operations on the Upgrade.</summary>
+<link rel="alternate" href="https://icecube.wisc.edu/news/life-at-the-pole/2026/10/week-42-at-the-pole-6/"/>
+<updated>2026-10-28T06:47:50+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The IceCube winter-overs spent the past two weeks on detector maintenance and troubleshooting, including a hard-drive replacement, software updates and calibration operations for the Upgrade. The weekly reports also record that the station gathered for a group photo at the IceCube Lab on learning that Francis Halzen had been awarded the Nobel Prize in Physics.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/1da8d56750062f88</id>
-<title>IceCube data, X-ray transients</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.30722"/>
-<updated>2026-10-27T06:48:04+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. An analysis of 14 years of publicly available IceCube muon-track data looked for neutrinos from 27 fast X-ray transients detected by Einstein Probe. It used the unbinned maximum-likelihood method of IceCube point-source searches. No statistically significant excess was found; the largest TS was 4.77, for EP240801a, with a local p-value of 0.04. The authors therefore set 90% confidence-level upper limits on the differential muon-neutrino flux.</summary>
+<id>https://global-nu.org/news/ee69e134429da1ea</id>
+<title>SBND long-lived particles</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.37555"/>
+<updated>2026-10-28T06:47:50+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. SBND is a liquid argon time projection chamber 110 m from the target on the Booster Neutrino Beam. Neutrino data taking with the full detector began in December 2024. A new search for long-lived particles from neutrino-nucleus upscattering uses a subset of its Cosmic Ray Tagger, which ran as a standalone detector in 2017–2018.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/b48be7255e7fbfbc</id>
-<title>Neutrinos and gravitational waves</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.29436"/>
-<updated>2026-10-27T06:48:04+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The ANTARES and KM3NeT Collaborations present two searches combining LIGO-Virgo gravitational-wave data from the third observing run with ANTARES and ORCA neutrino data. In the first, selected high-energy neutrino candidates serve as triggers to search for gravitational-wave candidates. The second looks for spatial and temporal coincidences involving subthreshold candidates.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/4e20c0c206878c42</id>
+<id>https://global-nu.org/news/d42bfb6fb9f55807</id>
 <title>Baikal-GVD</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3207629"/>
-<updated>2026-10-27T06:48:04+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. Baikal-GVD, a cubic-kilometre detector in Lake Baikal, is 70% complete and has taken data in partial configurations since 2016. A point-source search on a 5-year track-like dataset from 2019-2024 found no significant source. Upper limits are given for selected candidate objects and compared with published IceCube, ANTARES and KM3NeT results.</summary>
+<updated>2026-10-28T06:47:50+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. Baikal-GVD is a cubic-kilometre-scale detector under construction in Lake Baikal and is now 70% complete. A search for point-like sources in five years of track-like events from 2019–2024 found no significant source. The authors therefore compute upper limits for selected candidate objects and compare them with published IceCube, ANTARES and KM3NeT results.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/9f75eb034775bd5f</id>
-<title>T2K near detector upgrade</title>
+<id>https://global-nu.org/news/b961e79c2ab1848a</id>
+<title>T2K SuperFGD</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3216061"/>
-<updated>2026-10-27T06:48:04+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. SuperFGD, a key component of the ND280 upgrade, is a segmented plastic scintillator made of about 2 million optically isolated 1 cm^3 cubes read out by three orthogonal wavelength-shifting fibres. It gives 3D images of neutrino interactions, detects protons down to a threshold of about 300 MeV/c, identifies Michel electrons and can measure neutron energy by time of flight. The paper reports its performance in the T2K beam.</summary>
+<updated>2026-10-28T06:47:50+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. SuperFGD is a key component of the upgrade of the T2K near detector ND280. It is a segmented plastic scintillator made of about 2 million optically isolated 1 cm³ cubes, which provides 3D images of neutrino interactions. A paper on its performance in the T2K beam covers its design, calibration and parameters such as light yield and time resolution.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/b01201c828c99b44</id>
-<title>PUEO balloon mission</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.35675"/>
-<updated>2026-10-27T06:48:04+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The PUEO Collaboration describes the design and flight of a balloon-borne antenna array built to detect the Askaryan emission from ultrahigh-energy neutrino interactions. Such neutrinos are expected from ultrahigh-energy cosmic-ray sources, and their low flux requires very large detector volumes.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/6dbd7ead48fff0cf</id>
-<title>PBR and KM3-230213A</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.29942"/>
-<updated>2026-10-27T06:48:04+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. POEMMA-Balloon with Radio (PBR) is a pathfinder for a future POEMMA mission, planned to fly on a super-pressure balloon in Spring 2028. A new study evaluates its sensitivity to a boosted dark matter scenario proposed as an explanation of the KM3NeT muon event of 120 (+110, −60) PeV.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/3149d11847047e92</id>
-<title>The paper computes the neutrino emissivity of Δ-direct-Urca processes in neutron stars, where Δ isobars appear</title>
+<id>https://global-nu.org/news/0f260fe036bc456f</id>
+<title>The paper examines the contribution of Δ-direct-Urca processes to neutrino emissivity in neutron stars, where </title>
 <link rel="alternate" href="https://inspirehep.net/literature/3211621"/>
-<updated>2026-10-27T06:48:04+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The paper computes the neutrino emissivity of Δ-direct-Urca processes in neutron stars, where Δ isobars appear alongside nucleons and hyperons. Nucleonic and hyperonic Urca processes are established as dominant neutron-star cooling mechanisms, and the Δ contribution had not been evaluated explicitly. It is relevant to anyone using neutrino emission to model neutron-star thermal evolution.</summary>
+<updated>2026-10-28T06:47:50+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper examines the contribution of Δ-direct-Urca processes to neutrino emissivity in neutron stars, where Δ isobars may accompany nucleons and hyperons in the dense core. The authors note that this contribution had not been explicitly evaluated before. It matters for neutrino cooling of neutron stars, in which Urca processes are the dominant mechanisms.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/9c885bc0333871c1</id>
-<title>The paper proves a no-go theorem: any completely positive, trace-preserving evolution covariant under rotation</title>
-<link rel="alternate" href="https://inspirehep.net/literature/3217753"/>
-<updated>2026-10-27T06:48:04+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The paper proves a no-go theorem: any completely positive, trace-preserving evolution covariant under rotations of the mass-coherence plane is exactly blind to a Majorana phase in two-flavour oscillations. A rate anisotropy in the decoherence can supply an environmental phase reference. This sets the conditions under which open-system effects could reveal a Majorana phase.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/5835d70b369789e8</id>
-<title>The authors calculate two-neutrino double-beta decay rates without decoupling nuclear structure from the lepto</title>
-<link rel="alternate" href="https://inspirehep.net/literature/3174998"/>
-<updated>2026-10-27T06:48:04+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The authors calculate two-neutrino double-beta decay rates without decoupling nuclear structure from the lepton kinematics, and compare with closure, non-closure and Taylor-expansion approximations for 82Se and 136Xe. They report deviations in the rates and electron spectra relative to these methods. This bears on the accuracy of the standard treatment of two-neutrino double-beta decay.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/877d886b4c2673c6</id>
-<title>The paper studies a gauged U(1) L_mu − L_tau model with an ultralight vector boson that kinetically mixes with</title>
+<id>https://global-nu.org/news/ba4e5c622d529e7e</id>
+<title>The paper studies a gauged U(1) Lμ−Lτ model with an ultralight vector boson that mixes kinetically with the ph</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3208620"/>
-<updated>2026-10-27T06:48:04+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The paper studies a gauged U(1) L_mu − L_tau model with an ultralight vector boson that kinetically mixes with the photon and adds a matter potential in the Sun, modifying MSW oscillations. It uses solar neutrino measurements from Borexino, SNO and Super-Kamiokande and discusses prospects for JUNO and XLZD. It shows how solar neutrinos can constrain such light mediators.</summary>
+<updated>2026-10-28T06:47:50+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper studies a gauged U(1) Lμ−Lτ model with an ultralight vector boson that mixes kinetically with the photon. This generates an effective matter potential in the Sun that modifies solar-neutrino oscillations through the MSW mechanism. It is of interest because it uses solar-neutrino measurements from Borexino, SNO and Super-Kamiokande, and discusses prospects for JUNO and XLZD.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/04d80a5665a39924</id>
-<title>The authors assess whether neutrinos from past Galactic core-collapse supernovae could be detected as nuclear </title>
-<link rel="alternate" href="https://inspirehep.net/literature/3184513"/>
-<updated>2026-10-27T06:48:04+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The authors assess whether neutrinos from past Galactic core-collapse supernovae could be detected as nuclear recoil tracks in ancient minerals (paleodetectors). They vary neutron-star masses, include failed supernovae that form black holes, and consider the nuclear equation of state. They find the sensitivity is enhanced for models with larger neutrino emission.</summary>
+<id>https://global-nu.org/news/3e8b6869992ae35b</id>
+<title>The paper proves a no-go theorem for observing a Majorana phase in open two-flavour neutrino oscillations: any</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3217753"/>
+<updated>2026-10-28T06:47:50+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper proves a no-go theorem for observing a Majorana phase in open two-flavour neutrino oscillations: any completely positive trace-preserving evolution covariant under rotations of the mass-coherence plane is exactly blind to the phase. A rate anisotropy in the environment can supply a phase reference. This identifies when decoherence could in principle reveal a Majorana phase.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/40592a5795f8d741</id>
+<id>https://global-nu.org/news/86c98ba91a760e35</id>
 <title>The paper studies neutrino mass and thermal leptogenesis in the Babu-Nandi-Tavartkiladze model, with a scalar </title>
 <link rel="alternate" href="https://inspirehep.net/literature/3186500"/>
-<updated>2026-10-27T06:48:04+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The paper studies neutrino mass and thermal leptogenesis in the Babu-Nandi-Tavartkiladze model, with a scalar quadruplet and a pair of vectorlike fermion triplets. Neutrino masses arise from a dimension-7 operator at tree level and a dimension-5 operator at one loop, accommodating sub-eV masses with new physics at the TeV scale. Leptogenesis here differs from the canonical seesaw case.</summary>
+<updated>2026-10-28T06:47:50+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper studies neutrino mass and thermal leptogenesis in the Babu-Nandi-Tavartkiladze model, with a scalar quadruplet and vectorlike fermion triplets. Neutrino masses arise from a dimension-7 operator at tree level and a dimension-5 operator at one loop, so sub-eV masses are possible with new physics at the TeV scale. Leptogenesis here differs from the canonical seesaw case, which makes the model a testable target.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/75fd6700831bb560</id>
+<title>The paper investigates whether neutrinos from past Galactic core-collapse supernovae could be detected through</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3184513"/>
+<updated>2026-10-28T06:47:50+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper investigates whether neutrinos from past Galactic core-collapse supernovae could be detected through nuclear-recoil tracks in ancient minerals, called paleodetectors. It varies neutron-star masses, includes failed supernovae that form black holes, and considers the role of the nuclear equation of state. Sensitivity is enhanced for models with larger neutrino emission, in particular more compact remnants.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/0ca467b40f6cfc7c</id>
+<title>The paper proposes a minimal extension of the Standard Model in which a single global U(1)PQ symmetry sets the</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3204242"/>
+<updated>2026-10-28T06:47:50+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper proposes a minimal extension of the Standard Model in which a single global U(1)PQ symmetry sets the scales of the inverse seesaw and stabilises a fermionic dark matter candidate. The resulting axion-like particle mediates between the dark and visible sectors. It predicts a strong correlation between the effective Majorana mass and the CP-violating phase, which makes the model testable in future experiments.</summary>
 </entry>
 </feed>
