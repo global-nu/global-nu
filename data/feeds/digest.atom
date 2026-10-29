@@ -8,18 +8,6 @@
 <updated>2026-10-27T00:00:00Z</updated>
 <author><name>global-nu.org, Bari group</name></author>
 <entry>
-<id>https://arxiv.org/abs/2610.30981</id>
-<title>Construction and phenomenological analysis of dynamical Inverse seesaw neutrino mixing model</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.30981"/>
-<updated>2026-10-22T00:00:00Z</updated>
-<author><name>Manish Singh Bisht</name></author>
-<author><name>Shuchi Bisht</name></author>
-<author><name>Mayank Joshi et al.</name></author>
-<category term="hep-ph"/>
-<category term="gr-qc"/>
-<summary type="text">In this manuscript, a dynamical inverse seesaw neutrino ISS(3+1+1+1) mixing model based on the gauge symmetry $U(1)_{B-L}$ extended by the flavor symmetry $A_{4}\times Z_{2}$ has been constructed. ISS(3+1+1+1) represents three generations of right-handed neutrinos and an extra three generation of singlets sterile neutrinos, wherein the right-handed neutrinos are triplets under $A_4$ symmetry. Furthermore, the five scalar flavon fields are considered in the model, which reproduce neutrino oscillation data within the NuFIT 6.0 experimental range with statistical $\text{|pull|}=0.01 σ$. The neutrino mass hierarchy is obtained by minimizing the dynamical $A_4\times Z_2$ scalar flavon $φ_v$ potential. The effective neutrino mass parameter $m_{ββ}$ for the neutrinoless double beta decay $0vββ$ has been charecterised in the manuscript. The effective neutrino mass parameter spans a finite region in the parameter space rather then being confined to a single point and it is constrained by the KamLAND-Zen excluded band. The model successfully explains active-sterile neutrino mixing and non-unitarity of the PMNS matrix is consistent with the cosmological upper bound. The minimum value of the …</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2610.35587</id>
 <title>Neutrino Phenomenology and Leptogenesis from Non-Invertible Fusion Symmetry</title>
 <link rel="alternate" href="https://arxiv.org/abs/2610.35587"/>
@@ -183,5 +171,16 @@
 <category term="hep-ph"/>
 <category term="gr-qc"/>
 <summary type="text">KM3NeT has reported KM3-230213A, a $220$\,PeV neutrino with no source identified. If it comes from a cosmic-string network, energy conservation makes the event a calorimeter. The flux measures the power the network has spent, not how it emits, and a cusp at critical current can supply that power at unit efficiency. The event gives $Gμε_p=(2.8\text{--}4.3)\times10^{-11}$ for $f_ν=0.1$. Pulsar timing already reaches $10^{-10}$, so one event competes with the arrays. For the branch that still radiates gravitationally, flux and timing together require a third of the network's energy in particles, a share that further events above $100$\,PeV would measure.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2610.37198</id>
+<title>Searches for new particle physics by methods of classical and neutrino astronomy</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.37198"/>
+<updated>2026-10-27T00:00:00Z</updated>
+<author><name>Sergey Troitsky</name></author>
+<category term="hep-ph"/>
+<category term="astro-ph.HE"/>
+<category term="astro-ph.SR"/>
+<summary type="text">Selected astrophysical methods for testing particle-physics models are reviewed. Stellar structure and evolution constrain additional channels of energy loss and transport; high-energy photon propagation probes photon mixing with new particles and modifications of electron-positron pair production; large-volume neutrino telescopes are used to search for magnetic monopoles, neutrinos from superheavy dark-matter decay, and non-standard neutrino propagation. Recent applications of these methods are discussed, involving the tip of the red-giant branch in the color-luminosity diagram, gamma-ray burst 221009A, and data from the Baikal Gigaton Volume Detector (Baikal-GVD) and the IceCube experiment. In each case, particle-physics parameters are inferred through a forward model that accounts for the response to new physics, propagation, detection, and nuisance parameters.</summary>
 </entry>
 </feed>
