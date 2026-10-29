@@ -24,7 +24,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors.</b>
-<span class="stamp">Last successful update: 29 October 2026, 07:47 CET</span></div>
+<span class="stamp">Last successful update: 29 October 2026, 12:41 CET</span></div>
 </div>
 <p class="digest-dates small"><b>This edition:</b> preprints first submitted 22 Oct 2026 – 27 Oct 2026. Each entry gives its own dates: first submission, latest update when there is one, and announcement when the source states it. arXiv announces submissions on its own schedule, so the newest of these may not have been announced yet.</p>
 <!-- QUIET:BEGIN -->
@@ -53,7 +53,6 @@ next announcement.</p>
 <p>13 preprints</p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2610.30981">Construction and phenomenological analysis of dynamical Inverse seesaw neutrino mixing model</a></b><span>Manish Singh Bisht, Shuchi Bisht, Mayank Joshi et al. · first submitted 22 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">gr-qc</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.35587">Neutrino Phenomenology and Leptogenesis from Non-Invertible Fusion Symmetry</a></b><span>Pulakesh Borah, Mrinal Kumar Das · first submitted 26 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.32747">Heavy Sterile Fermions from the Atmosphere: LZ Limits on Neutrino Up-Scattering</a></b><span>D. Aristizabal Sierra, V. De Romeri, D. K. Papoulias et al. · first submitted 23 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.31658">Neutrino Mass in Left-Right Symmetry: From Majorana Signals to Dirac Predictions</a></b><span>Vladimir Tello · first submitted 22 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
@@ -66,6 +65,7 @@ next announcement.</p>
 <li><b><a href="https://arxiv.org/abs/2610.36101">Phase-Twist Instability in a Coprecessing Neutrino Plasma</a></b><span>Damiano F. G. Fiorillo, Dwaipayan Mukherjee, Basudeb Dasgupta et al. · first submitted 26 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span><span class="tag">astro-ph.HE</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.37360">Impact of Neutrino Trapping on the Equation of State and Structure of Hybrid Stars with 2SC Quark Matter</a></b><span>Andrea Sabatucci, Armen Sedrakian · first submitted 27 Oct 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">nucl-th</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2610.37282">Cosmic-string calorimetry with a 220 PeV neutrino</a></b><span>Bo-Qiang Lu · first submitted 27 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">gr-qc</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2610.37198">Searches for new particle physics by methods of classical and neutrino astronomy</a></b><span>Sergey Troitsky · first submitted 27 Oct 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span><span class="tag">astro-ph.SR</span></span></li>
 </ul>
 
 
@@ -87,7 +87,7 @@ still appears under theory.</p>
 
 <!-- ARCHIVE:BEGIN -->
 <ul class="archive">
-  <li><time datetime="2026-10-27">27 October 2026</time><a href="digest/2026-10-27.html">Digest of 2026-10-27</a><span class="count">4 papers</span></li>
+  <li><time datetime="2026-10-27">27 October 2026</time><a href="digest/2026-10-27.html">Digest of 2026-10-27</a><span class="count">5 papers</span></li>
   <li><time datetime="2026-10-26">26 October 2026</time><a href="digest/2026-10-26.html">Digest of 2026-10-26</a><span class="count">4 papers</span></li>
   <li><time datetime="2026-10-24">24 October 2026</time><a href="digest/2026-10-24.html">Digest of 2026-10-24</a><span class="count">1 paper</span></li>
   <li><time datetime="2026-10-23">23 October 2026</time><a href="digest/2026-10-23.html">Digest of 2026-10-23</a><span class="count">4 papers</span></li>
@@ -97,7 +97,7 @@ still appears under theory.</p>
   <li><time datetime="2026-10-19">19 October 2026</time><a href="digest/2026-10-19.html">Digest of 2026-10-19</a><span class="count">8 papers</span></li>
   <li><time datetime="2026-10-18">18 October 2026</time><a href="digest/2026-10-18.html">Digest of 2026-10-18</a><span class="count">3 papers</span></li>
   <li><time datetime="2026-10-16">16 October 2026</time><a href="digest/2026-10-16.html">Digest of 2026-10-16</a><span class="count">3 papers</span></li>
-  <li><time datetime="2026-10">October 2026</time><a href="digest/2026-10.html">All of October 2026</a><span class="count">104 papers</span></li>
+  <li><time datetime="2026-10">October 2026</time><a href="digest/2026-10.html">All of October 2026</a><span class="count">105 papers</span></li>
   <li><time datetime="2026-09">September 2026</time><a href="digest/2026-09.html">All of September 2026</a><span class="count">137 papers</span></li>
   <li><time datetime="2026-08">August 2026</time><a href="digest/2026-08.html">All of August 2026</a><span class="count">76 papers</span></li>
 </ul>
