@@ -24,7 +24,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors.</b>
-<span class="stamp">Last successful update: 29 October 2026, 12:41 CET</span></div>
+<span class="stamp">Last successful update: 29 October 2026, 18:05 CET</span></div>
 </div>
 <p class="digest-dates small"><b>This edition:</b> preprints first submitted 22 Oct 2026 – 27 Oct 2026. Each entry gives its own dates: first submission, latest update when there is one, and announcement when the source states it. arXiv announces submissions on its own schedule, so the newest of these may not have been announced yet.</p>
 <!-- QUIET:BEGIN -->
