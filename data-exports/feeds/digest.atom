@@ -51,17 +51,6 @@
 <summary type="text">We review neutrino mass as a probe of restored parity in left-right symmetric theories, emphasizing the distinct Majorana and Dirac realizations. In the Majorana theory, lepton-number violation connects the seesaw mechanism to neutrinoless double beta decay, heavy-neutrino production and the Keung-Senjanovic process. The Dirac alternative removes these characteristic signals while retaining a relation between left- and right-handed flavor. The right-handed leptonic mixing matrix can then be reconstructed from low-energy data and the spontaneous parity-breaking parameter. Requiring the two lepton Yukawa matrices to admit a common real parity basis turns this reconstruction into a compatibility condition that determines the allowed Dirac phase on each branch. For three generations, this requirement reduces to a single rephasing-invariant CP-odd obstruction, which also governs the right-left modulus mismatch and the relative CP orientation. The small Dirac masses also restrict the parity deformation and its induced strong-CP phase. For compressed mixed-sign neutrino spectra, a tiny parity deformation can nevertheless generate large leptonic CP violation, despite stringent strong-CP …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2610.30526</id>
-<title>Localized Neutrinos in Two Dark Dimensions</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.30526"/>
-<updated>2026-10-21T00:00:00Z</updated>
-<author><name>Waqas Ahmed</name></author>
-<author><name>George K. Leontaris</name></author>
-<category term="hep-ph"/>
-<category term="hep-th"/>
-<summary type="text">We study neutrino masses in a six-dimensional framework with two compact dark dimensions. In the conventional flat-bulk realization, the sterile-neutrino zero mode is strongly volume suppressed, so a fundamental scale near $10~\mathrm{TeV}$ requires a large higher-dimensional Yukawa coupling to reproduce the observed neutrino masses, while the accompanying two-dimensional Kaluza--Klein tower is strongly constrained by oscillation data. We show that localizing the sterile-neutrino wave function near the Standard-Model brane substantially alleviates both effects. Using a Gaussian localizer, realistic Dirac neutrino masses are obtained with perturbative, order-one Yukawa couplings, while the brane-visible sterile excitations form a shell spectrum with $M_s^2=8μ^2 s$, and squared active--sterile mixings that decrease as $1/s$. The localization scale therefore separates the experimentally relevant sterile-neutrino spectrum from the gravitational compactification scale. We derive the resulting three-flavour structure and study its phenomenological consequences for reactor oscillations and tritium beta decay, including comparisons with current flat-LED and KATRIN constraints.</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2610.37318</id>
 <title>High significance measurement of reactor coherent elastic neutrino-nucleus scattering on germanium by CONUS+</title>
 <link rel="alternate" href="https://arxiv.org/abs/2610.37318"/>
@@ -105,41 +94,6 @@
 <author><name>Juan Carlos Gómez-Izquierdo</name></author>
 <category term="hep-ph"/>
 <summary type="text">In this work we investigate fermion masses and flavor mixings in a non-minimal left-right symmetric model endowed with the non-Abelian discrete symmetry $S_3$. The scalar sector contains three Higgs bidoublets, while one left-handed and one right-handed triplet generate Majorana neutrino masses. Assigning the first two fermion families to an $S_3$ doublet and the third family to a singlet, together with a specific alignment of the bidoublet vacuum expectation values, leads to a common and analytically tractable structure for the fermion mass matrices. We study both the pseudomanifest and manifest left-right realizations, in which the fermion mass matrices are complex symmetric and Hermitian, respectively, and derive analytical expressions for the left- and right-handed CKM and PMNS mixing matrices. A numerical likelihood test shows that the model successfully reproduces the observed quark and lepton mixing patterns for both normal and inverted neutrino mass orderings at the level of oscillation data. Remarkably, the manifest scenario emerges as a more restrictive realization of the pseudomanifest one, with the main distinction residing in their CP-phase structure. We further …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2610.30338</id>
-<title>Machine Learning Neutrino-Nucleus Cross Sections II: More Leptons</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.30338"/>
-<updated>2026-10-21T00:00:00Z</updated>
-<author><name>Daniel C. Hackett</name></author>
-<author><name>Joshua Isaacson</name></author>
-<author><name>Shirley Weishi Li et al.</name></author>
-<category term="hep-ph"/>
-<category term="hep-ex"/>
-<category term="nucl-th"/>
-<summary type="text">Neutrino-nucleus cross sections are essential inputs for long-baseline neutrino oscillation experiments, yet remain challenging to model with high precision. Recent work demonstrated that fully black-box data-driven cross-section models cannot accurately generalize between near- and far-detector fluxes, but imposing Standard-Model symmetries via structure-function parameterizations provides a well-posed learning problem in a simplified DUNE-inspired muon-neutrino disappearance analysis. Here, we extend this framework to multiple lepton flavors and both neutrino and antineutrino beam modes, incorporating the electron appearance channel and enabling a simultaneous determination of $\sin^2θ_{23}$, $Δm^2_{31}$, and the CP-violating phase $δ_{\rm CP}$. We find that the learned cross section model recovers the injected oscillation parameters without significant bias, with constraints comparable to those obtained using the exact underlying cross section. Flux uncertainties have more significant effects in the multi-channel case, and incorporating flux nuisance parameters into the learning problem is required for accurate results. Our results demonstrate that this data-driven approach can …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2610.30252</id>
-<title>Neutrino Transition Polarizability</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.30252"/>
-<updated>2026-10-21T00:00:00Z</updated>
-<author><name>Matteo Borrello</name></author>
-<author><name>Michele Tammaro</name></author>
-<category term="hep-ph"/>
-<category term="hep-ex"/>
-<category term="hep-th"/>
-<summary type="text">We study Neutrino Transition Polarizability, where a light pseudoscalar $φ$ couples active neutrinos to heavy neutral leptons $N$ and interacts with two photons. We consider an effective description of the active - sterile interaction, and a realization within the inverse seesaw mechanism; the coupling to photons is generated by heavy charged states. For $m_N&gt;m_φ$, the decay $N\toνφ$ can greatly shorten the heavy neutrino lifetime, while $φ\toγγ$ produces a displaced photon pair. This changes the relevant search strategies, favoring production and decay inside detectors. We discuss existing constraints and estimate the sensitivity of displaced photon searches at DUNE, Belle II, LHCb and FCC-ee, highlighting the complementarity of neutrino scattering and meson and electroweak boson decays.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2610.29335</id>
-<title>Heavy Pseudo-Dirac Doublet Dark Matter and Non-Thermal Leptogenesis in Light of the LZ Event</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.29335"/>
-<updated>2026-10-21T00:00:00Z</updated>
-<author><name>Masahiro Ibe</name></author>
-<author><name>Jun Miyamoto</name></author>
-<category term="hep-ph"/>
-<summary type="text">Motivated by the recent LZ candidate nuclear-recoil event, we study pseudo-Dirac electroweak doublet dark matter in the mass range $10^2$--$10^4\,\mathrm{TeV}$, where bounds from searches for neutrinos produced by dark matter annihilation in the Sun can be evaded. To suppress the excessive thermal relic abundance, we consider freeze-out during inflaton domination followed by entropy production during reheating. We examine whether this cosmological history can also accommodate non-thermal leptogenesis. Our analysis includes dark matter production through the emission of virtual electroweak gauge bosons in right-handed-neutrino decays and through thermalization cascades. Our estimates suggest that the two scenarios can be reconciled if dark matter pair emission in right-handed-neutrino decays is kinematically forbidden and cascade production is sufficiently suppressed. Such a realization, however, requires enhanced CP violation, typically involving fine-tuning in the seesaw mechanism or the right-handed-neutrino mass spectrum.</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2610.36060</id>
@@ -187,5 +141,47 @@
 <category term="astro-ph.CO"/>
 <category term="astro-ph.HE"/>
 <summary type="text">Dense neutrino plasmas support collective flavor motion. We derive the first explicit dispersion relation about a flavor-nondiagonal background, focusing on the coprecession solution underlying spectral-split formation during the prompt neutrino burst of an electron-capture supernova. We show that slow phase modulations are unstable Goldstone modes, causing the coprecession plane to wobble with increasing amplitude. The instability emerges in the hydrodynamic limit, governed by conservation laws and without resolving flavor-precession resonances. Coprecessing neutrino plasmas resemble magnetized plasmas: a coherent flavor field drives flavor isospins to precess, and the phase-twist instability is the flavor analog of the firehose instability.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2610.32084</id>
+<title>Prediction of the Geoneutrino Signal at the Jinping Neutrino Experiment</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.32084"/>
+<updated>2026-10-23T00:00:00Z</updated>
+<author><name>Kaikai Meng</name></author>
+<author><name>Yang Zhang</name></author>
+<category term="hep-ex"/>
+<summary type="text">We present refined predictions of the geoneutrino flux for the 500-tonne Jinping Neutrino Experiment (JNE). We construct a local crustal model with a resolution of \(0.2^\circ\times0.2^\circ\) based on the SWChinaCVM-2.0 seismic velocity model and integrate it with CRUST1.0 to establish our reference model. For comparison, we also calculate the geoneutrino flux using ECM1 and CRUST1.0 as standalone global crustal models. Assuming an energy scale of 500~p.e./MeV and an exposure of 500~t$\times$1500~days, we predict the inverse beta decay event spectrum, including both the geoneutrino signal and the reactor antineutrino background. The distinct spectral shapes of the $^{238}$U, $^{232}$Th, and reactor antineutrino components allow their respective contributions to be obtained through spectral fitting. These predictions provide inputs for the JNE data analysis, particularly for extracting the mantle geoneutrino signal and testing competing bulk silicate Earth models.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2610.37555</id>
+<title>Search for Neutrino-Produced Long-Lived Particles Using the SBND Cosmic Ray Tagger Beam Telescope</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.37555"/>
+<updated>2026-10-27T00:00:00Z</updated>
+<author><name>R. Acciarri</name></author>
+<author><name>L. Aliaga-Soplin</name></author>
+<author><name>D. Andrade Aldana et al.</name></author>
+<category term="hep-ex"/>
+<summary type="text">The Short-Baseline Near Detector (SBND) is a liquid argon time projection chamber in Fermilab's Short-Baseline Neutrino Program, positioned 110 meters from the neutrino target along the Booster Neutrino Beam (BNB). In addition to its neutrino physics goals, SBND enables searches for new physics, including long-lived particles (LLPs) produced via neutrino-nucleus upscattering that decay into visible final states. Although neutrino data taking with the full SBND experiment began in December 2024, a subset of the Cosmic Ray Tagger (CRT) system operated from 2017--2018 as a standalone detector, referred to as the CRT Beam Telescope, collecting data corresponding to $2.95\times 10^{20}$ protons on target from the BNB. Originally intended for commissioning and performance studies, the substantial dataset collected also enables searches for displaced LLP decays. This paper presents the first search for physics beyond the Standard Model using data from the SBND CRT Beam Telescope, targeting LLP decays into electron-positron pairs. We observe no significant excess above the expected background and set 90% confidence-level upper limits on an effective production cross section at the level …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2610.37360</id>
+<title>Impact of Neutrino Trapping on the Equation of State and Structure of Hybrid Stars with 2SC Quark Matter</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.37360"/>
+<updated>2026-10-27T00:00:00Z</updated>
+<author><name>Andrea Sabatucci</name></author>
+<author><name>Armen Sedrakian</name></author>
+<category term="astro-ph.HE"/>
+<category term="nucl-th"/>
+<summary type="text">We investigate how sensitive the effects of neutrino trapping on hot hybrid stars are to uncertainties in the hadronic and quark equations of state and in the thermodynamic construction of the hadron--quark transition. The hadronic phase is described by finite-temperature covariant density functional equations of state, and the quark phase by a three-flavor Nambu--Jona-Lasinio (NJL) model with repulsive vector interactions and two-flavor color superconductivity. Because confinement is absent from the NJL model, an effective pressure shift $B^*$ is used phenomenologically to locate the deconfinement transition. We construct isentropic stellar equations of state with and without trapped electron neutrinos, vary the quark vector coupling and the nuclear symmetry-energy slope, and compare global with local conservation of electron-lepton number within phase coexistence. Neutrino trapping generically shifts deconfinement toward higher density throughout the parameter range considered. Increasing the vector interaction stiffens quark matter and raises the maximum stellar mass, but only moderately for the couplings studied. We also examine stronger diquark pairing and RG-consistent …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2610.37282</id>
+<title>Cosmic-string calorimetry with a 220\,PeV neutrino</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.37282"/>
+<updated>2026-10-27T00:00:00Z</updated>
+<author><name>Bo-Qiang Lu</name></author>
+<category term="hep-ph"/>
+<category term="gr-qc"/>
+<summary type="text">KM3NeT has reported KM3-230213A, a $220$\,PeV neutrino with no source identified. If it comes from a cosmic-string network, energy conservation makes the event a calorimeter. The flux measures the power the network has spent, not how it emits, and a cusp at critical current can supply that power at unit efficiency. The event gives $Gμε_p=(2.8\text{--}4.3)\times10^{-11}$ for $f_ν=0.1$. Pulsar timing already reaches $10^{-10}$, so one event competes with the arrays. For the branch that still radiates gravitationally, flux and timing together require a third of the network's energy in particles, a share that further events above $100$\,PeV would measure.</summary>
 </entry>
 </feed>
