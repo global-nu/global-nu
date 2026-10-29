@@ -529,7 +529,7 @@ conferences_indico:
 # throughout. Set allow_italian: true to publish one anyway.
 arxiv_digest:
   enabled: true
-  dir: ~/Desktop/arxiv-digest
+  dir: ~/Documents/08_SOFTWARE_E_PROGRAMMAZIONE/MyApps/arxiv-digest
   italian_threshold: 8
   allow_italian: false
 
