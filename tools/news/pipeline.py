@@ -52,6 +52,16 @@ def _safe(step: str, fn, log, default):
         return default
 
 
+# How far back a conference source that is down may be recovered from. A week
+# was not enough: nu.to.infn.it went down again on 22 October 2026 and on the
+# 29th its last good day (the 21st) fell outside the window, so every event
+# known only to it — DISCRETE 2026 among them — vanished from the page.
+# Conference records carry their own dates and their upcoming/recent status
+# is recomputed on every run, so a month-old record is still correct; 28 days
+# stays inside cache.prune(keep_days=30).
+CONF_FALLBACK_DAYS = 28
+
+
 def _recover_conferences(source: str, records: list[dict], cfg: dict,
                          cfg_key: str, log) -> list[dict]:
     """Today's records, or the most recent cached day's if today came back empty.
@@ -78,10 +88,11 @@ def _recover_conferences(source: str, records: list[dict], cfg: dict,
     if not bool((cfg.get(cfg_key) or {}).get("enabled", True)):
         log.info("%s: disabled — not restoring from cache", source)
         return records
-    day = cache.latest_day_with(source)
+    day = cache.latest_day_with(source, within_days=CONF_FALLBACK_DAYS)
     if not day:
-        log.warning("%s: empty today and nothing cached within the last week "
-                    "— this source contributes nothing to today's page", source)
+        log.warning("%s: empty today and nothing cached within the last %d "
+                    "days — this source contributes nothing to today's page",
+                    source, CONF_FALLBACK_DAYS)
         return records
     recovered = cache.load_records(source, day)
     log.warning("%s: empty today — the Conferences page is running on the "

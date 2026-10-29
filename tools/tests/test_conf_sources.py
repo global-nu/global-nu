@@ -406,6 +406,15 @@ try:
     check("a successful fetch passes through intact, without reading the cache",
           pipeline._recover_conferences("nu-unbound", alive, {},
                                         "conferences_nu_unbound", rec) is alive)
+    # The window must outlast a real outage: nu.to.infn.it was down from 22
+    # to 29 October 2026, and a 7-day window dropped DISCRETE 2026.
+    asked = []
+    cache.latest_day_with = lambda s, within_days=7: asked.append(within_days) or day  # type: ignore
+    pipeline._recover_conferences(
+        "nu-unbound", [], {"conferences_nu_unbound": {"enabled": True}},
+        "conferences_nu_unbound", rec)
+    check("the fallback looks back further than one week (an 8-day outage "
+          "must not empty a source)", asked and asked[0] >= 14, str(asked))
 finally:
     cache.latest_day_with, cache.load_records = _real_latest, _real_load
 
