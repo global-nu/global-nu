@@ -18,18 +18,6 @@
 <summary type="text">We constructed a minimal type-I seesaw model with two right-handed neutrinos, in which the flavor structure is determined by a non-invertible \(\mathbb{Z}_2\)-gauged \(\mathbb{Z}_5\) fusion symmetry~($\mathbb{Z}^{IN}_5$). The framework, incorporating a second Higgs doublet and an auxiliary \(\mathbb{Z}_2\) parity, yields predictive neutrino mass textures without introducing flavon fields. A fit to neutrino data selects the inverted mass ordering with \(m_3=0\) and predicts a nearly maximal Dirac CP phase, together with a characteristic prediction for the effective Majorana mass governing neutrinoless double-beta decay($0νββ$). We further investigate thermal leptogenesis and show that the framework can reproduce the observed baryon asymmetry of the Universe. Our results establish a connection between predictive neutrino phenomenology and leptogenesis within a minimal framework based on non-invertible fusion symmetry.</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2610.32747</id>
-<title>Heavy Sterile Fermions from the Atmosphere: LZ Limits on Neutrino Up-Scattering</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.32747"/>
-<updated>2026-10-23T00:00:00Z</updated>
-<author><name>D. Aristizabal Sierra</name></author>
-<author><name>V. De Romeri</name></author>
-<author><name>D. K. Papoulias et al.</name></author>
-<category term="hep-ph"/>
-<category term="hep-ex"/>
-<summary type="text">The LUX-ZEPLIN (LZ) experiment has recently reported data extending to nuclear-recoil energies of about 270 keV, including a single event at 248 keV in a nearly background-free region, for an exposure of 2.84 tonne-years. We examine this dataset through neutrino up-scattering to a heavy sterile fermion induced by atmospheric neutrinos, mediated by vector, axial-vector, scalar and dipole interactions. Our main result is a set of constraints: using the part of the LZ data where no excess is observed, we obtain new bounds on all four scenarios that probe regions of parameter space not tested before, and show that dark matter detectors can provide competitive limits on neutrino up-scattering for sterile fermion masses above $\sim 50$ MeV. We also test whether the 248~keV event can be explained in this way while remaining consistent with the absence of events at lower recoil energies. For the scalar, vector and axial mediators this requires couplings at the edge of perturbativity, while the dipole does not provide a good fit, so we conclude that up-scattering is not a compelling explanation of the event.</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2610.39858</id>
 <title>Spontaneous CP violation and leptogenesis in minimal flavour models</title>
 <link rel="alternate" href="https://arxiv.org/abs/2610.39858"/>
@@ -73,17 +61,6 @@
 <category term="astro-ph.HE"/>
 <category term="hep-ex"/>
 <summary type="text">We report an indication of $\barν_e$ from the diffuse supernova neutrino background (DSNB) based on a spectral fit analysis of a 5003.0-day dataset in Super-Kamiokande. Key improvements over previous searches include enhanced rejection of atmospheric $ν$ backgrounds, updated evaluations of systematic uncertainties, and a refined spectral fitting method. Using a representative DSNB model, the best-fit flux was determined to be $3.6^{+1.6}_{-1.5}~\mathrm{cm^{-2}\,s^{-1}}$ for $E_ν&gt;13.3$~MeV, corresponding to a $2.6σ$ tension with a null hypothesis ($99.5\%$ C.L., one-sided). Similar significances were obtained with signal models of varying spectral shapes.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2610.32669</id>
-<title>Systematic Study of Neutrino-Nucleus Interactions for the DUNE Experiment</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.32669"/>
-<updated>2026-10-23T00:00:00Z</updated>
-<author><name>L. F. B. M. Rodrigues</name></author>
-<author><name>F. G. Gardim</name></author>
-<author><name>G. A. Valdiviesso et al.</name></author>
-<category term="hep-ph"/>
-<summary type="text">The recent generation of high-precision neutrino oscillation experiments, such as the Deep Underground Neutrino Experiment (DUNE), relies on the accurate reconstruction of incident neutrino energy to determine fundamental parameters like Charge-Parity (CP) violation and the neutrino mass hierarchy. The use of Liquid Argon, introduces significant theoretical complexities. This dissertation provides a investigation into neutrino-nucleus scattering phenomenologies, connecting fundamental electroweak theory with computational simulations using the GENIE Monte Carlo event generator. The study evaluates the limitations of traditional frameworks, such as the Relativistic Fermi Gas (RFG) model, specifically addressing the Axial Mass parameter and its impact on the Charged Current Quasi-Elastic (CCQE) channel. By comparing baseline RFG predictions against experimental data from MicroBooNE, this research quantifies the necessity of advanced many-body nuclear frameworks. The implementation of the Local Fermi Gas (LFG) model, Random Phase Approximation (RPA) screening, and the SuperScaling Approximation (SuSAv2) are systematically analyzed to resolve kinematic biases. Additionally, the impact …</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2610.36060</id>
@@ -131,17 +108,6 @@
 <summary type="text">The XENONnT Collaboration has recently reported the first measurement of low-energy solar neutrinos through elastic neutrino-electron scattering in a dark matter detector, opening a new window on Standard Model predictions and on neutrino electromagnetic properties. We analyze these data to extract the $pp$ neutrino flux normalization and the weak mixing angle at low momentum transfer ($\sim 0.1$ MeV). We also derive bounds on the neutrino charge radii, magnetic moments, and millicharges, as well as on the sterile-neutrino dipole portal. Since the $pp$-flux determination displays a mild excess, we further investigate the role of the $^{14}$C background in the fit and assess how it affects the extracted parameters. Our results show that dark matter detectors now offer a probe of neutrino physics that is complementary to dedicated precision experiments.</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2610.32656</id>
-<title>Neutrino-Nucleus Scattering Simulation Using GENIE Event Generator</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.32656"/>
-<updated>2026-10-23T00:00:00Z</updated>
-<author><name>L. F. B. M. Rodrigues</name></author>
-<author><name>F. G. Gardim</name></author>
-<author><name>G. A. Valdiviesso et al.</name></author>
-<category term="hep-ph"/>
-<summary type="text">The Deep Underground Neutrino Experiment (DUNE) relies on the precise reconstruction of incident neutrino energy to extract oscillation parameters. The use of Liquid Argon introduces significant theoretical complexities due to nuclear effects. This work evaluates neutrino-nucleus scattering models using the GENIE Monte Carlo event generator. We demonstrate the limitations of the Relativistic Fermi Gas (RFG) model in the Charged Current Quasi-Elastic (CCQE) channel and its reliance on an inflated Axial Mass to match experimental data from MicroBooNE. We show that transitioning to advanced many-body frameworks, specifically the Local Fermi Gas (LFG) supplemented with Random Phase Approximation (RPA), is needed. Additionally, we evaluate the impact of the 2021 Bodek-Yang parameter updates on Deep Inelastic Scattering (DIS), concluding that modernized constraints are a prerequisite for mitigating systematic biases in DUNE.</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2610.36101</id>
 <title>Phase-Twist Instability in a Coprecessing Neutrino Plasma</title>
 <link rel="alternate" href="https://arxiv.org/abs/2610.36101"/>
@@ -184,5 +150,38 @@
 <author><name>Carla Distefano</name></author>
 <category term="astro-ph.HE"/>
 <summary type="text">High-energy neutrinos provide a unique probe of the most extreme non-thermal processes in the Universe. The detection of the ultra-high-energy neutrino event KM3-230213A by the KM3NeT neutrino telescope, with an inferred parent-neutrino energy of O(10^17 eV), represents a major step forward in neutrino astronomy. In this review, we summarize the main properties of the event and discuss its interpretation within different astrophysical and cosmological scenarios, including active galactic nuclei, transient sources, and cosmogenic neutrinos, highlighting the role of multi-messenger constraints. Despite extensive follow-up observations, no unambiguous electromagnetic counterpart has been identified, and the event remains in tension with the absence of comparable detections in other experiments. This situation leaves open the possibility of more complex source scenarios or contributions from physics beyond the Standard Model. We also discuss the implications for the ultra-high-energy neutrino landscape and the prospects for future observations with next-generation detectors. KM3-230213A provides a unique opportunity to probe particle acceleration and neutrino production at energies …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2610.39135</id>
+<title>Muon-to-positron conversion from light Majorana neutrino exchange: nuclear responses and pion-pole-improved multipoles</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.39135"/>
+<updated>2026-10-29T00:00:00Z</updated>
+<author><name>Yi Liao</name></author>
+<author><name>Hao-Lin Wang</name></author>
+<category term="hep-ph"/>
+<category term="nucl-th"/>
+<summary type="text">We study muon-to-positron conversion in nuclei that is mediated by light Majorana neutrinos, which probes lepton-number violation in the electron-muon sector. As the second paper in a series, this work extends our study of local dimension-nine interactions to the mass mechanism. We derive the conversion amplitude from the second-order effective four-Fermi interaction and express it in terms of nuclear responses in the one-body impulse approximation. Using phenomenological nucleon form factors, we retain convection, axial charge, weak magnetism, and the longitudinal pion-pole current in a specified pion-pole-improved prescription. The two physical time orderings and the distinct momentum transfers are derived in the intermediate-state response. We complete its angular reduction and derive the corresponding closure operator, including spin-gradient terms. Both the symmetric (scalar) and antisymmetric (vector) lepton-hadron Lorentz contractions contribute to the spin-averaged, angle-integrated rate. For $0^+\!\to0^+$ transitions we give explicit formulas in terms of two coherent radial amplitudes, without restricting the intermediate nuclei to spin zero. This provides an interface to …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2610.39042</id>
+<title>Measurements of transverse kinematic imbalance in muon neutrino charged-current interactions on argon with a single proton and no pions in the final state with SBND</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.39042"/>
+<updated>2026-10-28T00:00:00Z</updated>
+<author><name>R. Acciarri</name></author>
+<author><name>L. Aliaga-Soplin</name></author>
+<author><name>D. Andrade Aldana et al.</name></author>
+<category term="hep-ex"/>
+<summary type="text">This letter presents the first neutrino-argon cross-section measurement from the Short-Baseline Near Detector (SBND) at the Fermi National Accelerator Laboratory. We report the nominal flux-averaged single-differential cross sections of muon neutrino charged-current interactions on argon with a single proton and no pions in the final state as functions of the transverse kinematic imbalance variables. Using a subset of Run~1 data corresponding to $8.8\times10^{19}$ protons-on-target, we select 12,804 signal candidates with a purity of 91%. The extracted cross sections discriminate strongly among event-generator predictions, owing to the high statistics and the design of the analysis. Among the compared models, none successfully describes all three variables, with the largest discrepancies in the transverse missing momentum variable. These results set new benchmarks for neutrino-argon interaction modeling, which is crucial for high-precision measurements at current and future accelerator neutrino experiments.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2610.38531</id>
+<title>Inelastic Kinetic Decoupling in WIMP Leptogenesis: A Minimal $Z_4$ Model</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.38531"/>
+<updated>2026-10-28T00:00:00Z</updated>
+<author><name>An Liu</name></author>
+<author><name>Hong-Hao Zhang</name></author>
+<category term="hep-ph"/>
+<category term="astro-ph.CO"/>
+<summary type="text">We study a minimal $Z_4$-symmetric extension of the Standard Model in which a singlet Dirac fermion $χ$ constitutes dark matter, whose annihilations generate a lepton asymmetry through WIMP leptogenesis. Kinetic equilibrium is maintained mainly by the inelastic conversion $χL\leftrightarrow\barχΨ$. Compared with the near elastic regime, a sizable mass gap suppresses the conversion rate more rapidly as the Universe cools. This naturally drives kinetic decoupling to earlier times, even away from resonance. Starting from the full inelastic collision operator, we derive an effective momentum transfer rate for kinetic decoupling. We then solve the coupled Boltzmann equations for the dark matter abundance, its temperature $T_χ$, and the $B-L$ asymmetry. Early kinetic decoupling can significantly modify the relic abundance, although near resonance this modification can be reduced by annihilation-induced heating. The $B-L$ asymmetry can be affected when asymmetry production overlaps with a substantial departure from kinetic equilibrium. In our scan, the largest deviations occur mainly for $x_{\rm lep}\gtrsim x_{\rm cd}$. After imposing our constraints, asymmetry production typically ends …</summary>
 </entry>
 </feed>
