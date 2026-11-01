@@ -74,18 +74,6 @@
 <summary type="text">We study neutrino mass generation in a model based on the $SU(3)_c \times SU(2)_1 \times SU(2)_2 \times U(1)_Y$ gauge symmetry, in which the Standard Model $SU(2)_L$ arises at low energies as the diagonal subgroup of the two $SU(2)$ factors. The symmetry is enlarged with a global $U(1)_{B-L}$ symmetry, spontaneously broken by the vacuum expectation value of a scalar bidoublet. Light neutrino masses are generated at tree level through a hybrid of the type-III, inverse and linear seesaw mechanisms. A distinctive feature of the construction is the existence of a Nambu-Goldstone boson, the majoron, which transforms non-trivially under the original gauge symmetry while being mostly singlet under the Standard Model gauge group. We explore the phenomenological consequences of this setup, including electroweak precision constraints, the production of the nearly degenerate $W'$ and $Z'$ bosons at colliders and lepton flavor violating decays with a majoron in the final state. The latter constitute the most promising signature of the model.</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2610.33729</id>
-<title>Exploring the Limits: Neutrino Mass and Interacting Dark Sector in the DESI Era</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.33729"/>
-<updated>2026-10-24T00:00:00Z</updated>
-<author><name>Weiqiang Yang</name></author>
-<author><name>Sibo Zhang</name></author>
-<author><name>Supriya Pan et al.</name></author>
-<category term="hep-ph"/>
-<category term="astro-ph.CO"/>
-<summary type="text">We constrain three interacting dark matter--dark energy scenarios using cosmic microwave background measurements, DESI DR2 baryon acoustic oscillations, and the PantheonPlus, Union3, and DES-Dovekie Type Ia supernova compilations. We consider interacting vacuum energy and interacting dark energy with a constant equation of state in the phantom and quintessence regimes, analyzing each scenario with either a fixed total neutrino mass or a freely varying effective neutrino mass. When the positivity prior is relaxed, all three scenarios favor negative effective neutrino masses for every dataset combination. Although some combinations permit small positive masses, none of the 95\% confidence intervals reaches the minimum mass required by neutrino oscillation experiments. Allowing the effective neutrino mass to vary produces significances for a nonzero coupling reaching approximately $3σ$, but the preferred masses remain negative. These results demonstrate that the interaction and constant dark energy equations of state considered here fail to resolve the DESI neutrino-mass tension.</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2610.39697</id>
 <title>Radiative $θ$ in Left-Right Universal Seesaw</title>
 <link rel="alternate" href="https://arxiv.org/abs/2610.39697"/>
@@ -183,5 +171,16 @@
 <category term="hep-ph"/>
 <category term="astro-ph.CO"/>
 <summary type="text">We study a minimal $Z_4$-symmetric extension of the Standard Model in which a singlet Dirac fermion $χ$ constitutes dark matter, whose annihilations generate a lepton asymmetry through WIMP leptogenesis. Kinetic equilibrium is maintained mainly by the inelastic conversion $χL\leftrightarrow\barχΨ$. Compared with the near elastic regime, a sizable mass gap suppresses the conversion rate more rapidly as the Universe cools. This naturally drives kinetic decoupling to earlier times, even away from resonance. Starting from the full inelastic collision operator, we derive an effective momentum transfer rate for kinetic decoupling. We then solve the coupled Boltzmann equations for the dark matter abundance, its temperature $T_χ$, and the $B-L$ asymmetry. Early kinetic decoupling can significantly modify the relic abundance, although near resonance this modification can be reduced by annihilation-induced heating. The $B-L$ asymmetry can be affected when asymmetry production overlaps with a substantial departure from kinetic equilibrium. In our scan, the largest deviations occur mainly for $x_{\rm lep}\gtrsim x_{\rm cd}$. After imposing our constraints, asymmetry production typically ends …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2610.37756</id>
+<title>A High-Energy Neutrino Collider within a Muon Collider</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.37756"/>
+<updated>2026-10-27T00:00:00Z</updated>
+<author><name>Innes Bigaran</name></author>
+<author><name>André de Gouvêa</name></author>
+<author><name>Tao Han et al.</name></author>
+<category term="hep-ph"/>
+<summary type="text">A multi-TeV muon collider is simultaneously a collider for high-energy neutrinos. The radiation of soft $W^\pm$ gauge bosons from the muon beams gives rise to collisions of $μ^+ν$, $μ^-\barν$ and $ν\barν$ at center-of-mass energies close to that of the $μ^+μ^-$ collisions in a controlled and theoretically predictable setting. We focus on the leading partonic processes $μ^+μ^- \to \ell^+\ell'^-$, $ν_μμ^+\to ν_\ell \ell'^+$, $\barν_μμ^- \to \barν_{\ell} \ell'^-$ and $ν_μ\bar ν_μ\to \ell^+\ell'^-$ ($\ell, \ell'=e, μ, τ$). These are related to one another at high energies by the electroweak $SU(2)$ gauge symmetry, and therefore probe different components of the same underlying electroweak dynamics. These processes open qualitatively new windows to neutrino interactions at unprecedented energies, and open new windows on physics beyond the Standard Model. We demonstrate the combined sensitivity and the complementarity of the different purely-leptonic collisions using both effective field theory and simplified models of $W'^\pm$ and $Z'$ vector bosons. The radiative return mechanism leads to resonant production of the $W^{\prime\pm}$ and $Z'$ vector bosons when their masses are …</summary>
 </entry>
 </feed>
