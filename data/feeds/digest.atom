@@ -5,7 +5,7 @@
 <subtitle>Neutrino preprints ranked by relevance, rebuilt every morning. Selected by keyword score; no model involved.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/digest.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/digest.atom"/>
-<updated>2026-10-29T00:00:00Z</updated>
+<updated>2026-10-30T00:00:00Z</updated>
 <author><name>global-nu.org, Bari group</name></author>
 <entry>
 <id>https://arxiv.org/abs/2610.35587</id>
@@ -16,6 +16,17 @@
 <author><name>Mrinal Kumar Das</name></author>
 <category term="hep-ph"/>
 <summary type="text">We constructed a minimal type-I seesaw model with two right-handed neutrinos, in which the flavor structure is determined by a non-invertible \(\mathbb{Z}_2\)-gauged \(\mathbb{Z}_5\) fusion symmetry~($\mathbb{Z}^{IN}_5$). The framework, incorporating a second Higgs doublet and an auxiliary \(\mathbb{Z}_2\) parity, yields predictive neutrino mass textures without introducing flavon fields. A fit to neutrino data selects the inverted mass ordering with \(m_3=0\) and predicts a nearly maximal Dirac CP phase, together with a characteristic prediction for the effective Majorana mass governing neutrinoless double-beta decay($0νββ$). We further investigate thermal leptogenesis and show that the framework can reproduce the observed baryon asymmetry of the Universe. Our results establish a connection between predictive neutrino phenomenology and leptogenesis within a minimal framework based on non-invertible fusion symmetry.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2610.41960</id>
+<title>Neutrino Oscillation in a Static Dihole Geometry</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.41960"/>
+<updated>2026-10-30T00:00:00Z</updated>
+<author><name>Rogério Capobianco</name></author>
+<author><name>Rafael C. R. de Lima</name></author>
+<category term="gr-qc"/>
+<category term="hep-ph"/>
+<summary type="text">We investigate neutrino flavor oscillations in the static equal-mass Majumdar-Papapetrou dihole geometry, restricting the propagation to the symmetry plane. Within the null approximation, we derive the leading contribution to the neutrino phase and numerically evaluate the geodesic integrals. For two neutrino flavors, interference between different trajectories introduces a dependence on the individual neutrino masses and on the neutrino mass ordering for nonmaximal mixing. We analyze the transition probability in different spacetime configurations possessing two light rings, a merged light ring (critical configuration), and no light rings in the equatorial plane. In the weak-lensing regime, the transition probability generally increases with the black holes' individual masses, while variations in the half-separation produce no qualitative change in the transition probability. In stronger-lensing configurations, variations in both the mass and half-separation modify the heights and positions of the extrema, with no monotonic increase or decrease in the transition probability. For the critical and no-light-ring configurations studied, we identify three zero-winding trajectories …</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2610.39858</id>
@@ -109,6 +120,17 @@
 <summary type="text">Dense neutrino plasmas support collective flavor motion. We derive the first explicit dispersion relation about a flavor-nondiagonal background, focusing on the coprecession solution underlying spectral-split formation during the prompt neutrino burst of an electron-capture supernova. We show that slow phase modulations are unstable Goldstone modes, causing the coprecession plane to wobble with increasing amplitude. The instability emerges in the hydrodynamic limit, governed by conservation laws and without resolving flavor-precession resonances. Coprecessing neutrino plasmas resemble magnetized plasmas: a coherent flavor field drives flavor isospins to precess, and the phase-twist instability is the flavor analog of the firehose instability.</summary>
 </entry>
 <entry>
+<id>https://arxiv.org/abs/2610.40866</id>
+<title>Phenomenological Chiral Effective Field Theory for Neutrino Event Generators</title>
+<link rel="alternate" href="https://arxiv.org/abs/2610.40866"/>
+<updated>2026-10-29T00:00:00Z</updated>
+<author><name>Zara Graham-Jones</name></author>
+<author><name>Mareen Hoppe</name></author>
+<author><name>Joshua Isaacson et al.</name></author>
+<category term="hep-ph"/>
+<summary type="text">Single-pion production is a crucial interaction channel for accelerator-based neutrino experiments, which rely on neutrino event generators for its cross sections. However, no model implemented in current generators provides a consistent and systematically improvable description of the resonance region. In this work, we develop a phenomenological chiral effective field theory model of pion production, built from nucleons, pions, and the $Δ(1232)$ with consistent, spin 3/2, gauge-invariant couplings, and we implement it in a fully automated pipeline from the Lagrangian to events using FeynRules, UFO 2.0, and Sherpa. We validate our results with pion photoproduction data and compare against neutrino bubble chamber, MINERvA, T2K, MicroBooNE, MiniBooNE, and electron-carbon scattering data. The framework can be systematically improved by extending the Lagrangian with higher-order operators and additional degrees of freedom, and by refitting couplings and form factors as new data become available. Combined with nuclear model interfaces, our approach opens a path to resonance-region predictions that meet the needs of next-generation experiments.</summary>
+</entry>
+<entry>
 <id>https://arxiv.org/abs/2610.40451</id>
 <title>FCC-μe: High Energy, High Luminosity Muon-Electron Collider &amp; Neutrino Factory at CERN</title>
 <link rel="alternate" href="https://arxiv.org/abs/2610.40451"/>
@@ -160,27 +182,5 @@
 <author><name>D. Andrade Aldana et al.</name></author>
 <category term="hep-ex"/>
 <summary type="text">This letter presents the first neutrino-argon cross-section measurement from the Short-Baseline Near Detector (SBND) at the Fermi National Accelerator Laboratory. We report the nominal flux-averaged single-differential cross sections of muon neutrino charged-current interactions on argon with a single proton and no pions in the final state as functions of the transverse kinematic imbalance variables. Using a subset of Run~1 data corresponding to $8.8\times10^{19}$ protons-on-target, we select 12,804 signal candidates with a purity of 91%. The extracted cross sections discriminate strongly among event-generator predictions, owing to the high statistics and the design of the analysis. Among the compared models, none successfully describes all three variables, with the largest discrepancies in the transverse missing momentum variable. These results set new benchmarks for neutrino-argon interaction modeling, which is crucial for high-precision measurements at current and future accelerator neutrino experiments.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2610.38531</id>
-<title>Inelastic Kinetic Decoupling in WIMP Leptogenesis: A Minimal $Z_4$ Model</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.38531"/>
-<updated>2026-10-28T00:00:00Z</updated>
-<author><name>An Liu</name></author>
-<author><name>Hong-Hao Zhang</name></author>
-<category term="hep-ph"/>
-<category term="astro-ph.CO"/>
-<summary type="text">We study a minimal $Z_4$-symmetric extension of the Standard Model in which a singlet Dirac fermion $χ$ constitutes dark matter, whose annihilations generate a lepton asymmetry through WIMP leptogenesis. Kinetic equilibrium is maintained mainly by the inelastic conversion $χL\leftrightarrow\barχΨ$. Compared with the near elastic regime, a sizable mass gap suppresses the conversion rate more rapidly as the Universe cools. This naturally drives kinetic decoupling to earlier times, even away from resonance. Starting from the full inelastic collision operator, we derive an effective momentum transfer rate for kinetic decoupling. We then solve the coupled Boltzmann equations for the dark matter abundance, its temperature $T_χ$, and the $B-L$ asymmetry. Early kinetic decoupling can significantly modify the relic abundance, although near resonance this modification can be reduced by annihilation-induced heating. The $B-L$ asymmetry can be affected when asymmetry production overlaps with a substantial departure from kinetic equilibrium. In our scan, the largest deviations occur mainly for $x_{\rm lep}\gtrsim x_{\rm cd}$. After imposing our constraints, asymmetry production typically ends …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2610.37756</id>
-<title>A High-Energy Neutrino Collider within a Muon Collider</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.37756"/>
-<updated>2026-10-27T00:00:00Z</updated>
-<author><name>Innes Bigaran</name></author>
-<author><name>André de Gouvêa</name></author>
-<author><name>Tao Han et al.</name></author>
-<category term="hep-ph"/>
-<summary type="text">A multi-TeV muon collider is simultaneously a collider for high-energy neutrinos. The radiation of soft $W^\pm$ gauge bosons from the muon beams gives rise to collisions of $μ^+ν$, $μ^-\barν$ and $ν\barν$ at center-of-mass energies close to that of the $μ^+μ^-$ collisions in a controlled and theoretically predictable setting. We focus on the leading partonic processes $μ^+μ^- \to \ell^+\ell'^-$, $ν_μμ^+\to ν_\ell \ell'^+$, $\barν_μμ^- \to \barν_{\ell} \ell'^-$ and $ν_μ\bar ν_μ\to \ell^+\ell'^-$ ($\ell, \ell'=e, μ, τ$). These are related to one another at high energies by the electroweak $SU(2)$ gauge symmetry, and therefore probe different components of the same underlying electroweak dynamics. These processes open qualitatively new windows to neutrino interactions at unprecedented energies, and open new windows on physics beyond the Standard Model. We demonstrate the combined sensitivity and the complementarity of the different purely-leptonic collisions using both effective field theory and simplified models of $W'^\pm$ and $Z'$ vector bosons. The radiative return mechanism leads to resonant production of the $W^{\prime\pm}$ and $Z'$ vector bosons when their masses are …</summary>
 </entry>
 </feed>
