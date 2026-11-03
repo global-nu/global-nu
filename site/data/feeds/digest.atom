@@ -5,18 +5,8 @@
 <subtitle>Neutrino preprints ranked by relevance, rebuilt every morning. Selected by keyword score; no model involved.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/digest.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/digest.atom"/>
-<updated>2026-10-30T00:00:00Z</updated>
+<updated>2026-11-01T00:00:00Z</updated>
 <author><name>global-nu.org, Bari group</name></author>
-<entry>
-<id>https://arxiv.org/abs/2610.35587</id>
-<title>Neutrino Phenomenology and Leptogenesis from Non-Invertible Fusion Symmetry</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.35587"/>
-<updated>2026-10-26T00:00:00Z</updated>
-<author><name>Pulakesh Borah</name></author>
-<author><name>Mrinal Kumar Das</name></author>
-<category term="hep-ph"/>
-<summary type="text">We constructed a minimal type-I seesaw model with two right-handed neutrinos, in which the flavor structure is determined by a non-invertible \(\mathbb{Z}_2\)-gauged \(\mathbb{Z}_5\) fusion symmetry~($\mathbb{Z}^{IN}_5$). The framework, incorporating a second Higgs doublet and an auxiliary \(\mathbb{Z}_2\) parity, yields predictive neutrino mass textures without introducing flavon fields. A fit to neutrino data selects the inverted mass ordering with \(m_3=0\) and predicts a nearly maximal Dirac CP phase, together with a characteristic prediction for the effective Majorana mass governing neutrinoless double-beta decay($0νββ$). We further investigate thermal leptogenesis and show that the framework can reproduce the observed baryon asymmetry of the Universe. Our results establish a connection between predictive neutrino phenomenology and leptogenesis within a minimal framework based on non-invertible fusion symmetry.</summary>
-</entry>
 <entry>
 <id>https://arxiv.org/abs/2610.41960</id>
 <title>Neutrino Oscillation in a Static Dihole Geometry</title>
@@ -62,27 +52,13 @@
 <summary type="text">We report the most precise measurement to date of coherent elastic neutrino-nucleus scattering (CE$ν$NS) from reactor antineutrinos using the CONUS+ high-purity germanium detectors at the Leibstadt nuclear power plant. With an exposure of 1296 kg$\cdot$days reactor-on, a blind likelihood analysis yields $1555 \pm 152$ CE$ν$NS events, with a significance of 10.2 $σ$, in agreement with the Standard Model expectation of $1701 \pm 198$ events within 0.6 standard deviations. The result also determines the weak mixing angle at a momentum transfer of about 10 MeV, $\sin^2θ_W = 0.225 \pm 0.022$, consistent with the Standard Model prediction.</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2610.35619</id>
-<title>Indication of Electron Antineutrinos from the Diffuse Supernova Neutrino Background</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.35619"/>
-<updated>2026-10-26T00:00:00Z</updated>
-<author><name>The Super-Kamiokande Collaboration</name></author>
-<author><name>:</name></author>
-<author><name>K. Abe et al.</name></author>
-<category term="astro-ph.HE"/>
+<id>https://arxiv.org/abs/2611.01435</id>
+<title>World average charged-current inclusive neutrino cross section from 6 to 200 GeV</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.01435"/>
+<updated>2026-11-01T00:00:00Z</updated>
+<author><name>Richard Gran</name></author>
 <category term="hep-ex"/>
-<summary type="text">We report an indication of $\barν_e$ from the diffuse supernova neutrino background (DSNB) based on a spectral fit analysis of a 5003.0-day dataset in Super-Kamiokande. Key improvements over previous searches include enhanced rejection of atmospheric $ν$ backgrounds, updated evaluations of systematic uncertainties, and a refined spectral fitting method. Using a representative DSNB model, the best-fit flux was determined to be $3.6^{+1.6}_{-1.5}~\mathrm{cm^{-2}\,s^{-1}}$ for $E_ν&gt;13.3$~MeV, corresponding to a $2.6σ$ tension with a null hypothesis ($99.5\%$ C.L., one-sided). Similar significances were obtained with signal models of varying spectral shapes.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2610.36060</id>
-<title>Hybrid seesaw from $SU(2)_1 \times SU(2)_2 \times U(1)_Y$</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.36060"/>
-<updated>2026-10-26T00:00:00Z</updated>
-<author><name>Antonio Herrero-Brocal</name></author>
-<author><name>Javier Perez-Soler</name></author>
-<author><name>Avelino Vicente</name></author>
-<category term="hep-ph"/>
-<summary type="text">We study neutrino mass generation in a model based on the $SU(3)_c \times SU(2)_1 \times SU(2)_2 \times U(1)_Y$ gauge symmetry, in which the Standard Model $SU(2)_L$ arises at low energies as the diagonal subgroup of the two $SU(2)$ factors. The symmetry is enlarged with a global $U(1)_{B-L}$ symmetry, spontaneously broken by the vacuum expectation value of a scalar bidoublet. Light neutrino masses are generated at tree level through a hybrid of the type-III, inverse and linear seesaw mechanisms. A distinctive feature of the construction is the existence of a Nambu-Goldstone boson, the majoron, which transforms non-trivially under the original gauge symmetry while being mostly singlet under the Standard Model gauge group. We explore the phenomenological consequences of this setup, including electroweak precision constraints, the production of the nearly degenerate $W'$ and $Z'$ bosons at colliders and lepton flavor violating decays with a majoron in the final state. The latter constitute the most promising signature of the model.</summary>
+<summary type="text">The methods of the Particle Data Group are applied to produce a world average inclusive, charged-current, muon neutrino cross section energy-dependence slope $σ/E_ν$ . For the energy range $30 &lt; E_ν&lt; 200$, values obtained are (0.677 $\pm$ 0.013) and (0.335 $\pm$ 0.007) $\times 10^{-38}$ cm$^2$/GeV for neutrino and anti-neutrino, respectively. These values are practically identical to those in common use. This paper expands the experiments whose data are used and describes the evolution of measurements leading to the result. Next, the value for $σ/E_ν$ is obtained for the low energy extensions by experiments that used the low-$ν$ method to anchor to the high energy result. In the range $6 &lt; E_ν&lt; 30$ GeV, values of (0.698 $\pm$ 0.018) and (0.316 $\pm$ 0.012) $\times 10^{-38}$ cm$^2$/GeV are obtained. These are higher than the high energy average for neutrino and lower for anti-neutrino, but consistent at the edge of the uncertainty estimates. An interpretation of the evolution of the inclusive cross section, nuclear effects, and isoscalar corrections is provided in the context of the Bodek Yang 2000 model and two configurations of the GENIE neutrino event generators. These cross …</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2610.39697</id>
@@ -107,17 +83,47 @@
 <summary type="text">The XENONnT Collaboration has recently reported the first measurement of low-energy solar neutrinos through elastic neutrino-electron scattering in a dark matter detector, opening a new window on Standard Model predictions and on neutrino electromagnetic properties. We analyze these data to extract the $pp$ neutrino flux normalization and the weak mixing angle at low momentum transfer ($\sim 0.1$ MeV). We also derive bounds on the neutrino charge radii, magnetic moments, and millicharges, as well as on the sterile-neutrino dipole portal. Since the $pp$-flux determination displays a mild excess, we further investigate the role of the $^{14}$C background in the fit and assess how it affects the extracted parameters. Our results show that dark matter detectors now offer a probe of neutrino physics that is complementary to dedicated precision experiments.</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2610.36101</id>
-<title>Phase-Twist Instability in a Coprecessing Neutrino Plasma</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.36101"/>
-<updated>2026-10-26T00:00:00Z</updated>
-<author><name>Damiano F. G. Fiorillo</name></author>
-<author><name>Dwaipayan Mukherjee</name></author>
-<author><name>Basudeb Dasgupta et al.</name></author>
-<category term="hep-ph"/>
-<category term="astro-ph.CO"/>
+<id>https://arxiv.org/abs/2611.01000</id>
+<title>Probing the nature of Galactic microquasars with diffuse gamma rays and neutrinos: low-mass versus high-mass X-ray binaries</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.01000"/>
+<updated>2026-10-31T00:00:00Z</updated>
+<author><name>Pei-Pei Zhang</name></author>
+<author><name>Wei Liu</name></author>
+<author><name>Zong-Kang Zeng et al.</name></author>
 <category term="astro-ph.HE"/>
-<summary type="text">Dense neutrino plasmas support collective flavor motion. We derive the first explicit dispersion relation about a flavor-nondiagonal background, focusing on the coprecession solution underlying spectral-split formation during the prompt neutrino burst of an electron-capture supernova. We show that slow phase modulations are unstable Goldstone modes, causing the coprecession plane to wobble with increasing amplitude. The instability emerges in the hydrodynamic limit, governed by conservation laws and without resolving flavor-precession resonances. Coprecessing neutrino plasmas resemble magnetized plasmas: a coherent flavor field drives flavor isospins to precess, and the phase-twist instability is the flavor analog of the firehose instability.</summary>
+<summary type="text">The observations of sub-PeV gamma-ray emission have provided strong evidence for a Galactic origin of the cosmic-ray "knee" region. Meanwhile, mounting observations have ruled out most supernova remnants as sources of PeV cosmic rays, i.e., the so-called PeVatrons. Recently, a new type of PeVatron candidate, microquasars, has received much attention. Studies indicate that microquasars could be the dominant contributor to PeV cosmic rays. However, the spatial distribution of microquasars is not known. They could belong to either LMXBs or HMXBs, depending on the mass of the optical companion star. In this work, we study which type could be the dominant by means of very high energy gamma rays and neutrinos. We find that the diffuse gamma-ray distributions along the Galactic longitude are quite different due to the spatial distributions of these two kinds of sources. If the very high energy gamma rays are dominated by the distribution of LMXBs, the gamma-ray distribution would be more concentrated toward the direction of the Galactic center. Furthermore, we also find that HMXB distribution cannot account for the latest observations of Galactic diffuse neutrinos. Higher-precision …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.01634</id>
+<title>Electroweak Thermal Histories in the Minimal Type-II Seesaw Model with a Renormalization Group-Improved Effective Potential</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.01634"/>
+<updated>2026-11-01T00:00:00Z</updated>
+<author><name>Cheng-Wei Chiang</name></author>
+<category term="hep-ph"/>
+<category term="hep-ex"/>
+<summary type="text">We study electroweak thermal histories in the minimal type-II seesaw model with a renormalization group-improved finite-temperature effective potential. The commonly used criterion $v_c/T_c&gt;1$, with $v_c$ the broken-phase field at the critical temperature $T_c$, applied to every first-order degeneracy of the neutral-field phase structure in our survey, does not identify a strong electroweak phase transition. Treating those degeneracies as completed transitions would assign them a gravitational-wave signal they have not been shown to produce. Transitions that do nucleate, percolate and complete are found for the model. They are weak and fast, too weak on the standard sphaleron estimate to protect a baryon asymmetry from washout. Their sound wave spectra lie far below the sensitivity of planned space detectors. Their properties depend strongly on the renormalization group improvement and on the renormalization scale.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.00239</id>
+<title>From High Energy Astrophysical Neutrinos to the Nobel : The History, Legacy and Science Behind the 2026 Nobel Prize in Physics</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.00239"/>
+<updated>2026-10-30T00:00:00Z</updated>
+<author><name>Dr. Maibam Ricky Devi</name></author>
+<category term="hep-ph"/>
+<summary type="text">This article briefly discusses the journey behind the discovery of the high-energy astrophysical neutrinos and the making of the world's largest neutrino telescope that opened new portal to neutrino astronomy. It all started with the AMANDA experiment and how the strong conviction by Prof. Francis Halzen to transform a huge block of Antarctic ice into the largest and the most successful neutrino detector in the world and to work on it with relentless grit and determination to make it come true since Day 1 of the AMANDA project, led him to win the 2026 Nobel Prize in Physics. This is the story of some great scientists and engineers who dared to dream the impossible and made it happen through bold decisions, bold ideas, and innovative engineering heralding a new branch of astronomy. This leaves an enduring legacy of inspiration for future generations of aspiring scientists, who will look up to these scientific pioneers as role models and strive to follow in their footsteps.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.00198</id>
+<title>Hidden Neutrino Active Galaxy Candidates: Prospects for Catalog and Stacking Searches with IceCube, IceCube-Gen2, and KM3NeT</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.00198"/>
+<updated>2026-10-30T00:00:00Z</updated>
+<author><name>Mainak Mukhopadhyay</name></author>
+<author><name>Jose Alonso Carpio</name></author>
+<author><name>Heer Patel et al.</name></author>
+<category term="astro-ph.HE"/>
+<category term="astro-ph.GA"/>
+<category term="hep-ph"/>
+<summary type="text">In high-energy neutrino astrophysics, the identification of high-energy neutrino sources is a central goal, and jet-quiet active galactic nuclei (AGNs) have emerged as promising candidates. For this purpose, we present a theory-guided, intrinsic X-ray selected sample of hidden neutrino AGN candidates consisting of $28$ X-ray bright AGNs (X-HiNAC), combining the {\em Swift}/BAT and BASS surveys with dedicated {\em NuSTAR} observations and spectral analyses. We compile their intrinsic X-ray fluxes, spectral properties, luminosity distances, and supermassive black hole masses, to provide a coherent sample for neutrino source searches. The sample is physically motivated but remains model independent given that the neutrino flux is proportional to the intrinsic X-ray flux. Using the magnetically powered corona model, we also demonstrate the prospects for individual-source and stacking searches with IceCube-Gen2 and KM3NeT. We identify promising individual targets and find that stacking the remaining sources, excluding NGC 1068, could yield a $5σ$ detection within $\sim 5-15$ years under favorable model assumptions at the current and upcoming neutrino observatories. We highlight …</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2610.40866</id>
@@ -171,16 +177,5 @@
 <category term="hep-ph"/>
 <category term="nucl-th"/>
 <summary type="text">We study muon-to-positron conversion in nuclei that is mediated by light Majorana neutrinos, which probes lepton-number violation in the electron-muon sector. As the second paper in a series, this work extends our study of local dimension-nine interactions to the mass mechanism. We derive the conversion amplitude from the second-order effective four-Fermi interaction and express it in terms of nuclear responses in the one-body impulse approximation. Using phenomenological nucleon form factors, we retain convection, axial charge, weak magnetism, and the longitudinal pion-pole current in a specified pion-pole-improved prescription. The two physical time orderings and the distinct momentum transfers are derived in the intermediate-state response. We complete its angular reduction and derive the corresponding closure operator, including spin-gradient terms. Both the symmetric (scalar) and antisymmetric (vector) lepton-hadron Lorentz contractions contribute to the spin-averaged, angle-integrated rate. For $0^+\!\to0^+$ transitions we give explicit formulas in terms of two coherent radial amplitudes, without restricting the intermediate nuclei to spin zero. This provides an interface to …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2610.39042</id>
-<title>Measurements of transverse kinematic imbalance in muon neutrino charged-current interactions on argon with a single proton and no pions in the final state with SBND</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.39042"/>
-<updated>2026-10-28T00:00:00Z</updated>
-<author><name>R. Acciarri</name></author>
-<author><name>L. Aliaga-Soplin</name></author>
-<author><name>D. Andrade Aldana et al.</name></author>
-<category term="hep-ex"/>
-<summary type="text">This letter presents the first neutrino-argon cross-section measurement from the Short-Baseline Near Detector (SBND) at the Fermi National Accelerator Laboratory. We report the nominal flux-averaged single-differential cross sections of muon neutrino charged-current interactions on argon with a single proton and no pions in the final state as functions of the transverse kinematic imbalance variables. Using a subset of Run~1 data corresponding to $8.8\times10^{19}$ protons-on-target, we select 12,804 signal candidates with a purity of 91%. The extracted cross sections discriminate strongly among event-generator predictions, owing to the high statistics and the design of the analysis. Among the compared models, none successfully describes all three variables, with the largest discrepancies in the transverse missing momentum variable. These results set new benchmarks for neutrino-argon interaction modeling, which is crucial for high-precision measurements at current and future accelerator neutrino experiments.</summary>
 </entry>
 </feed>
