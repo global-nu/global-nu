@@ -5,8 +5,27 @@
 <subtitle>Neutrino preprints ranked by relevance, rebuilt every morning. Selected by keyword score; no model involved.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/digest.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/digest.atom"/>
-<updated>2026-11-01T00:00:00Z</updated>
+<updated>2026-11-03T00:00:00Z</updated>
 <author><name>global-nu.org, Bari group</name></author>
+<entry>
+<id>https://arxiv.org/abs/2611.03748</id>
+<title>Topological Diagnostics of CP Degeneracies in Long-Baseline Neutrino Oscillations with Non-Standard Interactions via Pancharatnam Open-Path Phases</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.03748"/>
+<updated>2026-11-02T00:00:00Z</updated>
+<author><name>Neda Razzaghi</name></author>
+<category term="hep-ph"/>
+<summary type="text">We investigate the topological signatures of neutral-current Non-Standard Interactions (NSI) in long-baseline neutrino oscillations by extending the open-path Pancharatnam geometric phase framework. Incorporating off-diagonal vector couplings ($\varepsilon_{eτ} = |\varepsilon_{eτ}|e^{iφ_{eτ}}$) into the discrete-layer matter Hamiltonian across the DUNE baseline ($L = 1300\text{ km}$), we analyze the state evolution for both neutrino ($ν_μ\to ν_e$) and antineutrino ($\barν_μ\to \barν_e$) appearance channels over the broadband energy spectrum $E_ν\in [0.5, 8.0]\text{ GeV}$. Our analysis demonstrates that complex NSI phases imprint distinct, energy-dependent spectral dispersions onto the open-path geometric holonomies $Φ_g^{(n)}$ and their $\mathcal{CP}$-conjugate counterparts. By clarifying that these geometric phases manifest through gauge-invariant interference terms $ΔΓ_{nm}$ rather than asymptotic single-channel measurements, we construct the $\mathcal{CP}$-violating geometric phase differences $ΔΦ_g^{\mathrm{CP}}$. We show that the interplay between these geometric dispersions and the matter-potential sign reversal under $\mathcal{CP}$-conjugation forces the neutrino and …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.05170</id>
+<title>Constraining tau-sterile neutrino mixing with high-energy astrophysical neutrinos</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.05170"/>
+<updated>2026-11-03T00:00:00Z</updated>
+<author><name>Mauricio Bustamante</name></author>
+<author><name>Qinrui Liu</name></author>
+<category term="hep-ph"/>
+<summary type="text">Whether a sterile neutrino mixes with the three active ones remains an open question. Its mixing with the tau neutrino, $|U_{τ4}|^2$, is the least constrained, since terrestrial experiments probe it only indirectly and over limited ranges of sterile-neutrino mass. We show that TeV-PeV astrophysical neutrinos probe it differently. Their sources make almost no $ν_τ$, but oscillations over cosmological distances turn about one third of them into $ν_τ$ before they reach Earth. Mixing with a sterile neutrino would make these $ν_τ$ scarcer, lowering the $ν_τ$ fraction that neutrino telescopes measure, whatever the sterile-neutrino mass. In contrast, sterile mixing with $ν_e$ or $ν_μ$ is nearly undetectable. Fitting the flavor composition measured by IceCube, with the composition at the sources left free, we find $|U_{τ4}|^2 &lt; 0.88$ at 90% C.L. Combining IceCube with present and planned neutrino telescopes, including IceCube-Gen2 and HUNT, could lower this limit to 0.24-0.29 by 2040 and to 0.12-0.14 by 2050. By 2050, these limits would match some present terrestrial limits, though not the strongest.</summary>
+</entry>
 <entry>
 <id>https://arxiv.org/abs/2610.41960</id>
 <title>Neutrino Oscillation in a Static Dihole Geometry</title>
@@ -40,18 +59,6 @@
 <summary type="text">We study the theoretical origin of scalar non-standard interactions (SNSI) in an \(A_4\)-symmetric Type-II seesaw model. The model contains an \(SU(2)_L\) scalar triplet \(Δ\) and a real scalar singlet \(S\). After electroweak symmetry breaking, their CP-even neutral fluctuations mix to form two physical scalar states \(φ_1\) and \(φ_2\). These physical scalars couple to both neutrinos and charged leptons, establishing a connection between the neutrino sector and ordinary matter through scalar interactions. This induces a matter-dependent correction to the Type-II seesaw neutrino mass matrix. The SNSI contribution, governed by the relevant Yukawa couplings and the SNSI coefficient, can enhance or suppress the neutrino masses relative to their vacuum values. The model provides a simple and consistent description of how scalar mixing can give rise to SNSI and connects neutrino interactions in matter with the underlying structure of the scalar sector.</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2610.37318</id>
-<title>High significance measurement of reactor coherent elastic neutrino-nucleus scattering on germanium by CONUS+</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.37318"/>
-<updated>2026-10-27T00:00:00Z</updated>
-<author><name>N. Ackermann</name></author>
-<author><name>H. Bonet</name></author>
-<author><name>C. Buck et al.</name></author>
-<category term="hep-ex"/>
-<category term="hep-ph"/>
-<summary type="text">We report the most precise measurement to date of coherent elastic neutrino-nucleus scattering (CE$ν$NS) from reactor antineutrinos using the CONUS+ high-purity germanium detectors at the Leibstadt nuclear power plant. With an exposure of 1296 kg$\cdot$days reactor-on, a blind likelihood analysis yields $1555 \pm 152$ CE$ν$NS events, with a significance of 10.2 $σ$, in agreement with the Standard Model expectation of $1701 \pm 198$ events within 0.6 standard deviations. The result also determines the weak mixing angle at a momentum transfer of about 10 MeV, $\sin^2θ_W = 0.225 \pm 0.022$, consistent with the Standard Model prediction.</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2611.01435</id>
 <title>World average charged-current inclusive neutrino cross section from 6 to 200 GeV</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.01435"/>
@@ -81,6 +88,16 @@
 <author><name>Federica Pompa et al.</name></author>
 <category term="hep-ph"/>
 <summary type="text">The XENONnT Collaboration has recently reported the first measurement of low-energy solar neutrinos through elastic neutrino-electron scattering in a dark matter detector, opening a new window on Standard Model predictions and on neutrino electromagnetic properties. We analyze these data to extract the $pp$ neutrino flux normalization and the weak mixing angle at low momentum transfer ($\sim 0.1$ MeV). We also derive bounds on the neutrino charge radii, magnetic moments, and millicharges, as well as on the sterile-neutrino dipole portal. Since the $pp$-flux determination displays a mild excess, we further investigate the role of the $^{14}$C background in the fit and assess how it affects the extracted parameters. Our results show that dark matter detectors now offer a probe of neutrino physics that is complementary to dedicated precision experiments.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.04600</id>
+<title>Light Mediators at the Neutrino-Dark Matter Frontier: Coherent Scattering, Precision Constraints, and Complementary Searches</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.04600"/>
+<updated>2026-11-03T00:00:00Z</updated>
+<author><name>Raoul Serao</name></author>
+<author><name>Mohamed Ouchemhou</name></author>
+<category term="hep-ph"/>
+<summary type="text">Low-threshold neutrino and dark-matter experiments constrain light mediators through different momentum transfers, targets, and coupling combinations. We examine scalar and vector interactions in coherent neutrino--nucleus scattering, neutrino--electron scattering, and dark-matter direct detection. Three representative interaction models are used to compare recoil spectra and coupling degeneracies. For $^{73}\mathrm{Ge}$ and $^{131}\mathrm{Xe}$, the nuclear-charge response matrix has a condition number of approximately 115, so two different targets may still leave nearly parallel blind directions. An analytic profile-likelihood calculation shows how spectral overlap and uncertainties in neutrino interactions affect dark-matter discovery sensitivity in the neutrino fog. We discuss the implications of measurements from COHERENT, CONUS+, LZ, XENONnT, and PandaX-4T and specify which theoretical inputs, detector responses, and statistical correlations are needed to combine their constraints. keyword : coherent elastic neutrino-nucleus scattering; light mediators; neutrino--electron scattering; dark matter direct detection; non-standard interactions; solar neutrinos; complementarity</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.01000</id>
@@ -157,25 +174,5 @@
 <author><name>Matteo Cerruti et al.</name></author>
 <category term="astro-ph.HE"/>
 <summary type="text">In recent years, several astrophysical objects have been identified as potential multi-messenger photon-neutrino emitters. New instruments dedicated to the study of these two messengers have been and are still being built, achieving unprecedented sensitivity. This observational improvement increases the need for more sophisticated and precise analysis tools. Multi-wavelength and multi-messenger data fitting is crucial to constrain astrophysical models of particle acceleration and radiation mechanisms at work in these extreme environments. In this contribution, we present a novel framework dedicated to multi-wavelength and multi-messenger modeling, built within the open-source software Gammapy. The framework enables data analysis from optical up to very-high-energy gamma rays, and fitting physical models directly to instrumental counts in these wavebands, without the need of computing flux points. Focusing on blazars as a first example of a multi-messenger candidate, we showcase the performance of this tool in constraining multi-wavelength emission models, and how it reduces fitting biases. We show the results of a leptonic model that can be fitted on the fly, due to the short …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2610.40053</id>
-<title>KM3-230213A: The Highest-Energy Cosmic Neutrino</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.40053"/>
-<updated>2026-10-29T00:00:00Z</updated>
-<author><name>Carla Distefano</name></author>
-<category term="astro-ph.HE"/>
-<summary type="text">High-energy neutrinos provide a unique probe of the most extreme non-thermal processes in the Universe. The detection of the ultra-high-energy neutrino event KM3-230213A by the KM3NeT neutrino telescope, with an inferred parent-neutrino energy of O(10^17 eV), represents a major step forward in neutrino astronomy. In this review, we summarize the main properties of the event and discuss its interpretation within different astrophysical and cosmological scenarios, including active galactic nuclei, transient sources, and cosmogenic neutrinos, highlighting the role of multi-messenger constraints. Despite extensive follow-up observations, no unambiguous electromagnetic counterpart has been identified, and the event remains in tension with the absence of comparable detections in other experiments. This situation leaves open the possibility of more complex source scenarios or contributions from physics beyond the Standard Model. We also discuss the implications for the ultra-high-energy neutrino landscape and the prospects for future observations with next-generation detectors. KM3-230213A provides a unique opportunity to probe particle acceleration and neutrino production at energies …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2610.39135</id>
-<title>Muon-to-positron conversion from light Majorana neutrino exchange: nuclear responses and pion-pole-improved multipoles</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.39135"/>
-<updated>2026-10-29T00:00:00Z</updated>
-<author><name>Yi Liao</name></author>
-<author><name>Hao-Lin Wang</name></author>
-<category term="hep-ph"/>
-<category term="nucl-th"/>
-<summary type="text">We study muon-to-positron conversion in nuclei that is mediated by light Majorana neutrinos, which probes lepton-number violation in the electron-muon sector. As the second paper in a series, this work extends our study of local dimension-nine interactions to the mass mechanism. We derive the conversion amplitude from the second-order effective four-Fermi interaction and express it in terms of nuclear responses in the one-body impulse approximation. Using phenomenological nucleon form factors, we retain convection, axial charge, weak magnetism, and the longitudinal pion-pole current in a specified pion-pole-improved prescription. The two physical time orderings and the distinct momentum transfers are derived in the intermediate-state response. We complete its angular reduction and derive the corresponding closure operator, including spin-gradient terms. Both the symmetric (scalar) and antisymmetric (vector) lepton-hadron Lorentz contractions contribute to the spin-averaged, angle-integrated rate. For $0^+\!\to0^+$ transitions we give explicit formulas in terms of two coherent radial amplitudes, without restricting the intermediate nuclei to spin zero. This provides an interface to …</summary>
 </entry>
 </feed>
