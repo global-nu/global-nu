@@ -26,7 +26,7 @@ scripts:
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the conference indexers' APIs,
 and may contain errors. No model is involved.</b>
-<span class="stamp">Last successful update: 05 November 2026, 07:46 CET</span></div>
+<span class="stamp">Last successful update: 06 November 2026, 07:46 CET</span></div>
 </div>
 
 <form class="conf-filters" id="conf-filters" hidden aria-label="Filter the meetings">
@@ -44,7 +44,7 @@ and may contain errors. No model is involved.</b>
 <figure class="figure">
 <h4>Timeline</h4>
 <div class="timeline-scroll">
-<svg viewBox="0 0 2807 1106" role="img" width="3368" height="1327" aria-label="Timeline of upcoming and recently concluded neutrino conferences, scrollable sideways from today to a year ahead" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 2815 1106" role="img" width="3378" height="1327" aria-label="Timeline of upcoming and recently concluded neutrino conferences, scrollable sideways from today to a year ahead" xmlns="http://www.w3.org/2000/svg">
 <title>Conference timeline</title>
 <text x="2.0" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Oct</text>
 <line x1="80.2" y1="14" x2="80.2" y2="1091" style="stroke:var(--line);stroke-width:1"/>
@@ -73,8 +73,8 @@ and may contain errors. No model is involved.</b>
 <text x="2518.6" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Oct</text>
 <line x1="2741.7" y1="14" x2="2741.7" y2="1091" style="stroke:var(--line);stroke-width:1"/>
 <text x="2744.7" y="11" style="fill:var(--text-mute);font-size:9.5px;font-family:var(--display,sans-serif)">Nov</text>
-<line x1="109.4" y1="8" x2="109.4" y2="1091" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
-<text x="109.4" y="1103" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
+<line x1="116.7" y1="8" x2="116.7" y2="1091" style="stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3"/>
+<text x="116.7" y="1103" text-anchor="middle" style="fill:var(--accent);font-size:9px;letter-spacing:.08em;font-family:var(--display,sans-serif)">TODAY</text>
 <g class="conf-bar" data-conf="nu:20261109-patras-2026" data-name="21st Patras Workshop on Axions, WIMPs, and WISPs" data-dates="9–13 November 2026" data-place="Perth, Western Australia" data-url="https://indico.global/event/16402/" data-tier="related" data-tier-label="Astroparticle &amp; underground">
 <rect x="138.5" y="30" width="29.2" height="10" rx="5" style="fill:var(--dec-5);opacity:1"><title>Patras 2026: 2026-11-09 → 2026-11-13 — Astroparticle &amp; underground (title names “axions”)</title></rect>
 <text x="175.7" y="38.5" text-anchor="start" style="opacity:1;font-family:var(--body,sans-serif)"><tspan style="fill:var(--text-soft);font-size:10.5px">Patras 2026</tspan><tspan dx="6" style="fill:var(--text-mute);font-size:9px">Perth, Western Australia</tspan></text>
@@ -289,7 +289,7 @@ and may contain errors. No model is involved.</b>
 </g>
 </svg>
 </div>
-<p class="cap">The 49 upcoming meetings and the 4 most recently concluded. Bar colour follows the key above; an outlined bar is under way, a faded one has concluded. The next four months are shown — scroll the figure sideways for the rest of the year. 49 upcoming and 73 recent meetings are tracked in full below.</p>
+<p class="cap">The 49 upcoming meetings and the 4 most recently concluded. Bar colour follows the key above; an outlined bar is under way, a faded one has concluded. The next four months are shown — scroll the figure sideways for the rest of the year. 49 upcoming and 71 recent meetings are tracked in full below.</p>
 </figure>
 
 
@@ -335,7 +335,7 @@ and may contain errors. No model is involved.</b>
 <p class="cap">27 of 49 upcoming meetings placed on the map from a venue the source published; the other 22 stay in the list below without a dot rather than a guess.</p>
 </figure>
 
-<div class="conf-scope" data-scope="neutrino"><div class="section-head"><h2>Neutrino conferences</h2><p>98 meetings</p></div>
+<div class="conf-scope" data-scope="neutrino"><div class="section-head"><h2>Neutrino conferences</h2><p>96 meetings</p></div>
 <div class="section-head section-head--sub"><h3>Upcoming</h3><p>39 meetings</p></div>
 <ul class="list list--news conf-list">
 <li data-conf="nu:20261109-patras-2026" data-name="21st Patras Workshop on Axions, WIMPs, and WISPs" data-dates="9–13 November 2026" data-place="Perth, Western Australia" data-url="https://indico.global/event/16402/" data-tier="related" data-tier-label="Astroparticle &amp; underground" data-kind="workshop" data-continent="Oceania" data-status="upcoming" data-scope="neutrino" data-start="2026-11-09" data-end="2026-11-13" data-place="Perth, Western Australia" data-url="https://indico.global/event/16402/" data-title="21st Patras Workshop on Axions, WIMPs, and WISPs"><b>21st Patras Workshop on Axions, WIMPs, and WISPs</b><span class="conf-aff conf-aff--related" title="title names “axions”">Astroparticle &amp; underground</span><span>9–13 November 2026 · Perth, Western Australia</span><span class="cites"><a href="https://indico.global/event/16402/">Details</a></span></li>
@@ -378,7 +378,7 @@ and may contain errors. No model is involved.</b>
 <li data-conf="conf:3216033" data-name="MITP Topical Workshop: &quot;Final-State Interactions in Neutrino–Nucleus Scattering: Theory-Experiment Synergies&quot;" data-dates="20–24 September 2027" data-place="Mainz, Germany" data-url="https://indico.mitp.uni-mainz.de/event/495/" data-tier="core" data-tier-label="Neutrino physics" data-kind="workshop" data-continent="Europe" data-status="upcoming" data-scope="neutrino" data-start="2027-09-20" data-end="2027-09-24" data-place="Mainz, Germany" data-url="https://indico.mitp.uni-mainz.de/event/495/" data-title="MITP Topical Workshop: &quot;Final-State Interactions in Neutrino–Nucleus Scattering: Theory-Experiment Synergies&quot;"><b>MITP Topical Workshop: "Final-State Interactions in Neutrino–Nucleus Scattering: Theory-Experiment Synergies"</b><span class="conf-aff conf-aff--core" title="title names “neutrino”">Neutrino physics</span><span>20–24 September 2027 · Mainz, Germany</span><span class="cites"><a href="https://indico.mitp.uni-mainz.de/event/495/">Details</a></span></li>
 <li data-conf="conf:3209504" data-name="6th Astro-COLIBRI Multi-Messenger Astrophysics workshop" data-dates="4–8 October 2027" data-place="Paris-Saclay, France" data-url="https://inspirehep.net/conferences/3209504" data-tier="related" data-tier-label="Astroparticle &amp; underground" data-kind="workshop" data-continent="Europe" data-status="upcoming" data-scope="neutrino" data-start="2027-10-04" data-end="2027-10-08" data-place="Paris-Saclay, France" data-url="https://inspirehep.net/conferences/3209504" data-title="6th Astro-COLIBRI Multi-Messenger Astrophysics workshop"><b>6th Astro-COLIBRI Multi-Messenger Astrophysics workshop</b><span class="conf-aff conf-aff--related" title="title names “multi-messenger”">Astroparticle &amp; underground</span><span>4–8 October 2027 · Paris-Saclay, France</span><span class="cites"><a href="https://inspirehep.net/conferences/3209504">Details</a></span></li>
 </ul>
-<div class="section-head section-head--sub"><h3>Recent</h3><p>6 of 59</p></div>
+<div class="section-head section-head--sub"><h3>Recent</h3><p>6 of 57</p></div>
 <ul class="list list--news conf-list">
 <li data-conf="nu:20261028-nnn-26" data-name="25th International Workshop on Next Generation Nucleon Decay and Neutrino Detectors" data-dates="28–30 October 2026" data-place="Seoul, South Korea" data-url="https://indico.neutrino.or.kr/event/514/" data-tier="core" data-tier-label="Neutrino physics" data-kind="workshop" data-continent="Asia" data-status="recent" data-scope="neutrino" data-start="2026-10-28" data-end="2026-10-30" data-place="Seoul, South Korea" data-url="https://indico.neutrino.or.kr/event/514/" data-title="25th International Workshop on Next Generation Nucleon Decay and Neutrino Detectors"><b>25th International Workshop on Next Generation Nucleon Decay and Neutrino Detectors</b><span class="conf-aff conf-aff--core" title="series “NNN”">Neutrino physics</span><span>28–30 October 2026 · Seoul, South Korea</span><span class="cites"><a href="https://indico.neutrino.or.kr/event/514/">Details</a></span></li>
 <li data-conf="nu:20261027-icppa-2026" data-name="8th International Conference on Particle Physics and Astrophysics" data-dates="27–30 October 2026" data-place="Moscow, Russia" data-url="https://indico.particle.mephi.ru/e/ICPPA2026" data-tier="broad" data-tier-label="Particle physics at large" data-kind="conference" data-continent="Europe" data-status="recent" data-scope="neutrino" data-start="2026-10-27" data-end="2026-10-30" data-place="Moscow, Russia" data-url="https://indico.particle.mephi.ru/e/ICPPA2026" data-title="8th International Conference on Particle Physics and Astrophysics"><b>8th International Conference on Particle Physics and Astrophysics</b><span class="conf-aff conf-aff--broad" title="title names “particle physics”">Particle physics at large</span><span>27–30 October 2026 · Moscow, Russia</span><span class="cites"><a href="https://indico.particle.mephi.ru/e/ICPPA2026">Details</a></span></li>
