@@ -29,17 +29,6 @@
 <summary type="text">Whether a sterile neutrino mixes with the three active ones remains an open question. Its mixing with the tau neutrino, $|U_{τ4}|^2$, is the least constrained, since terrestrial experiments probe it only indirectly and over limited ranges of sterile-neutrino mass. We show that TeV-PeV astrophysical neutrinos probe it differently. Their sources make almost no $ν_τ$, but oscillations over cosmological distances turn about one third of them into $ν_τ$ before they reach Earth. Mixing with a sterile neutrino would make these $ν_τ$ scarcer, lowering the $ν_τ$ fraction that neutrino telescopes measure, whatever the sterile-neutrino mass. In contrast, sterile mixing with $ν_e$ or $ν_μ$ is nearly undetectable. Fitting the flavor composition measured by IceCube, with the composition at the sources left free, we find $|U_{τ4}|^2 &lt; 0.88$ at 90% C.L. Combining IceCube with present and planned neutrino telescopes, including IceCube-Gen2 and HUNT, could lower this limit to 0.24-0.29 by 2040 and to 0.12-0.14 by 2050. By 2050, these limits would match some present terrestrial limits, though not the strongest.</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2610.41960</id>
-<title>Neutrino Oscillation in a Static Dihole Geometry</title>
-<link rel="alternate" href="https://arxiv.org/abs/2610.41960"/>
-<updated>2026-10-30T00:00:00Z</updated>
-<author><name>Rogério Capobianco</name></author>
-<author><name>Rafael C. R. de Lima</name></author>
-<category term="gr-qc"/>
-<category term="hep-ph"/>
-<summary type="text">We investigate neutrino flavor oscillations in the static equal-mass Majumdar-Papapetrou dihole geometry, restricting the propagation to the symmetry plane. Within the null approximation, we derive the leading contribution to the neutrino phase and numerically evaluate the geodesic integrals. For two neutrino flavors, interference between different trajectories introduces a dependence on the individual neutrino masses and on the neutrino mass ordering for nonmaximal mixing. We analyze the transition probability in different spacetime configurations possessing two light rings, a merged light ring (critical configuration), and no light rings in the equatorial plane. In the weak-lensing regime, the transition probability generally increases with the black holes' individual masses, while variations in the half-separation produce no qualitative change in the transition probability. In stronger-lensing configurations, variations in both the mass and half-separation modify the heights and positions of the extrema, with no monotonic increase or decrease in the transition probability. For the critical and no-light-ring configurations studied, we identify three zero-winding trajectories …</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2611.06284</id>
 <title>A search for sterile neutrinos at ultrahigh energies at the Pierre Auger Observatory</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.06284"/>
@@ -181,5 +170,17 @@
 <category term="hep-ph"/>
 <category term="hep-ex"/>
 <summary type="text">We study electroweak thermal histories in the minimal type-II seesaw model with a renormalization group-improved finite-temperature effective potential. The commonly used criterion $v_c/T_c&gt;1$, with $v_c$ the broken-phase field at the critical temperature $T_c$, applied to every first-order degeneracy of the neutral-field phase structure in our survey, does not identify a strong electroweak phase transition. Treating those degeneracies as completed transitions would assign them a gravitational-wave signal they have not been shown to produce. Transitions that do nucleate, percolate and complete are found for the model. They are weak and fast, too weak on the standard sphaleron estimate to protect a baryon asymmetry from washout. Their sound wave spectra lie far below the sensitivity of planned space detectors. Their properties depend strongly on the renormalization group improvement and on the renormalization scale.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.08387</id>
+<title>Algorithmic Construction of Vector-Valued Modular Forms and Application to an $A_4\times\mathbb{Z}_4$-invariant Model of Leptons</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.08387"/>
+<updated>2026-11-05T00:00:00Z</updated>
+<author><name>Q. Bonnefoy</name></author>
+<author><name>M. Rausch de Traubenberg</name></author>
+<author><name>V. Saulquin</name></author>
+<category term="hep-ph"/>
+<category term="hep-th"/>
+<summary type="text">We present an algorithmic procedure that constructs the Vector-Valued Modular Forms (VVMFs) of finite modular groups, as well as its implementation in a companion code. The usual method consists in building the first few VVMFs, whose tensor products then generate the others. We address the difficulty of systematically finding the minimal set of VVMFs that suffices to produce all higher-weight ones, and we propose a method to identify it that makes use of the Burnside-Brauer theorem. For any given group, whose basic group-theoretic and representation-theoretic description is provided by the user, the code determines the minimal set of VVMFs, explicitly builds it using general results of the theory of such functions, then performs the tensor products that generate any other VVMF. Importantly, it automatically takes into account all caveats that might arise during the study of new groups. Our approach reproduces the known results for the finite modular groups explored in the recent phenomenological literature on modular flavor symmetries, and works for additional groups which we tested. We illustrate our algorithm and the working of our code by studying a model of leptons based on …</summary>
 </entry>
 </feed>
