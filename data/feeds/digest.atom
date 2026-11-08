@@ -64,15 +64,6 @@
 <summary type="text">Pseudo-Dirac neutrinos are characterized by extremely small mass-squared differences between two nearly degenerate, strongly-mixed, active-sterile states. These differences are associated with new very-long oscillation lengths and provide a probe of the nature of neutrinos. Atmospheric neutrinos can probe these oscillations as they allow access to a broad range of baseline distances, from tens of kilometers to the Earth's diameter. We investigate the sensitivity of an experiment like the Deep Underground Neutrino Experiment (DUNE) to the pseudo-Dirac nature of neutrinos through measurements of the atmospheric neutrino flux. We concentrate on the modifications to the atmospheric neutrino energy and angular spectra induced by one new oscillation frequency associated with the $ν_3$ state and determine the parameter space that can be probed with atmospheric neutrinos at a DUNE-like detector. We also comment on the sensitivity of these measurements to the sub-leading "solar" oscillations, which are also characterized by a relatively small mass-squared difference.</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.01435</id>
-<title>World average charged-current inclusive neutrino cross section from 6 to 200 GeV</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.01435"/>
-<updated>2026-11-01T00:00:00Z</updated>
-<author><name>Richard Gran</name></author>
-<category term="hep-ex"/>
-<summary type="text">The methods of the Particle Data Group are applied to produce a world average inclusive, charged-current, muon neutrino cross section energy-dependence slope $σ/E_ν$ . For the energy range $30 &lt; E_ν&lt; 200$, values obtained are (0.677 $\pm$ 0.013) and (0.335 $\pm$ 0.007) $\times 10^{-38}$ cm$^2$/GeV for neutrino and anti-neutrino, respectively. These values are practically identical to those in common use. This paper expands the experiments whose data are used and describes the evolution of measurements leading to the result. Next, the value for $σ/E_ν$ is obtained for the low energy extensions by experiments that used the low-$ν$ method to anchor to the high energy result. In the range $6 &lt; E_ν&lt; 30$ GeV, values of (0.698 $\pm$ 0.018) and (0.316 $\pm$ 0.012) $\times 10^{-38}$ cm$^2$/GeV are obtained. These are higher than the high energy average for neutrino and lower for anti-neutrino, but consistent at the edge of the uncertainty estimates. An interpretation of the evolution of the inclusive cross section, nuclear effects, and isoscalar corrections is provided in the context of the Bodek Yang 2000 model and two configurations of the GENIE neutrino event generators. These cross …</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2611.04600</id>
 <title>Light Mediators at the Neutrino-Dark Matter Frontier: Coherent Scattering, Precision Constraints, and Complementary Searches</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.04600"/>
@@ -82,17 +73,6 @@
 <author><name>Antonio Capolupo et al.</name></author>
 <category term="hep-ph"/>
 <summary type="text">Low-threshold neutrino and dark-matter experiments constrain light mediators through different momentum transfers, targets, and coupling combinations. We examine scalar and vector interactions in coherent neutrino--nucleus scattering, neutrino--electron scattering, and dark-matter direct detection. Three representative interaction models are used to compare recoil spectra and coupling degeneracies. For $^{73}\mathrm{Ge}$ and $^{131}\mathrm{Xe}$, the nuclear-charge response matrix has a condition number of approximately 115, so two different targets may still leave nearly parallel blind directions. An analytic profile-likelihood calculation shows how spectral overlap and uncertainties in neutrino interactions affect dark-matter discovery sensitivity in the neutrino fog. We discuss the implications of measurements from COHERENT, CONUS+, LZ, XENONnT, and PandaX-4T and specify which theoretical inputs, detector responses, and statistical correlations are needed to combine their constraints. keyword : coherent elastic neutrino-nucleus scattering; light mediators; neutrino--electron scattering; dark matter direct detection; non-standard interactions; solar neutrinos; complementarity</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.01000</id>
-<title>Probing the nature of Galactic microquasars with diffuse gamma rays and neutrinos: low-mass versus high-mass X-ray binaries</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.01000"/>
-<updated>2026-10-31T00:00:00Z</updated>
-<author><name>Pei-Pei Zhang</name></author>
-<author><name>Wei Liu</name></author>
-<author><name>Zong-Kang Zeng et al.</name></author>
-<category term="astro-ph.HE"/>
-<summary type="text">The observations of sub-PeV gamma-ray emission have provided strong evidence for a Galactic origin of the cosmic-ray "knee" region. Meanwhile, mounting observations have ruled out most supernova remnants as sources of PeV cosmic rays, i.e., the so-called PeVatrons. Recently, a new type of PeVatron candidate, microquasars, has received much attention. Studies indicate that microquasars could be the dominant contributor to PeV cosmic rays. However, the spatial distribution of microquasars is not known. They could belong to either LMXBs or HMXBs, depending on the mass of the optical companion star. In this work, we study which type could be the dominant by means of very high energy gamma rays and neutrinos. We find that the diffuse gamma-ray distributions along the Galactic longitude are quite different due to the spatial distributions of these two kinds of sources. If the very high energy gamma rays are dominated by the distribution of LMXBs, the gamma-ray distribution would be more concentrated toward the direction of the Galactic center. Furthermore, we also find that HMXB distribution cannot account for the latest observations of Galactic diffuse neutrinos. Higher-precision …</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.08221</id>
@@ -162,16 +142,6 @@
 <summary type="text">The age of the cosmic neutrino is upon us. Aside from their fundamental importance to particle physics and the recent tensions in their mass scale $M_ν= \sum m_ν$, neutrinos' degeneracies with other cosmological parameters in analyses of scale-dependent cosmic clustering will significantly affect the estimates of these parameters, making accurate, inexpensive, easily-implemented approximations essential tools for theoretical cosmology. We present a new linear approximation, SE-EdS, applicable to non-relativistic neutrinos and other hot dark matter, which is exact in the linear Einstein-de Sitter case, and &lt; 3% accurate for a broad range of flat and non-flat cosmologies characterized by parameters $0.2 \leq Ω_{m,0} \leq 1$, $0 \leq Ω_{ν,0} \leq 0.018$, $-0.1 \leq Ω_{K,0} \leq 0.1$, and $w_0 \leq -0.6$, at all length scales. This broad coverage in $Ω_{m,0}$ makes SE-EdS ideal for N-body simulations, whose redshift range $z \lesssim 100$ demands accuracy for time-dependent $Ω_m$ between unity and the preferred late-time values $\sim 0.3$. SE-EdS may be used to paint neutrinos into simulations in Fourier space, where its &lt; 3% error and neutrinos' $\leq$ 3% matter fraction guarantees &lt; …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.01634</id>
-<title>Electroweak Thermal Histories in the Minimal Type-II Seesaw Model with a Renormalization Group-Improved Effective Potential</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.01634"/>
-<updated>2026-11-01T00:00:00Z</updated>
-<author><name>Cheng-Wei Chiang</name></author>
-<category term="hep-ph"/>
-<category term="hep-ex"/>
-<summary type="text">We study electroweak thermal histories in the minimal type-II seesaw model with a renormalization group-improved finite-temperature effective potential. The commonly used criterion $v_c/T_c&gt;1$, with $v_c$ the broken-phase field at the critical temperature $T_c$, applied to every first-order degeneracy of the neutral-field phase structure in our survey, does not identify a strong electroweak phase transition. Treating those degeneracies as completed transitions would assign them a gravitational-wave signal they have not been shown to produce. Transitions that do nucleate, percolate and complete are found for the model. They are weak and fast, too weak on the standard sphaleron estimate to protect a baryon asymmetry from washout. Their sound wave spectra lie far below the sensitivity of planned space detectors. Their properties depend strongly on the renormalization group improvement and on the renormalization scale.</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2611.08387</id>
 <title>Algorithmic Construction of Vector-Valued Modular Forms and Application to an $A_4\times\mathbb{Z}_4$-invariant Model of Leptons</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.08387"/>
@@ -182,5 +152,39 @@
 <category term="hep-ph"/>
 <category term="hep-th"/>
 <summary type="text">We present an algorithmic procedure that constructs the Vector-Valued Modular Forms (VVMFs) of finite modular groups, as well as its implementation in a companion code. The usual method consists in building the first few VVMFs, whose tensor products then generate the others. We address the difficulty of systematically finding the minimal set of VVMFs that suffices to produce all higher-weight ones, and we propose a method to identify it that makes use of the Burnside-Brauer theorem. For any given group, whose basic group-theoretic and representation-theoretic description is provided by the user, the code determines the minimal set of VVMFs, explicitly builds it using general results of the theory of such functions, then performs the tensor products that generate any other VVMF. Importantly, it automatically takes into account all caveats that might arise during the study of new groups. Our approach reproduces the known results for the finite modular groups explored in the recent phenomenological literature on modular flavor symmetries, and works for additional groups which we tested. We illustrate our algorithm and the working of our code by studying a model of leptons based on …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.08440</id>
+<title>Signatures of Neutrinophilic Pion Dark Matter</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.08440"/>
+<updated>2026-11-05T00:00:00Z</updated>
+<author><name>Claire Chevallier</name></author>
+<author><name>Ji-Heng Guo</name></author>
+<author><name>Giacomo Landini</name></author>
+<category term="hep-ph"/>
+<summary type="text">We study the phenomenology of pion dark matter coupled to neutrinos in a confining sector that dynamically generates both small neutrino masses and dark matter mass from gauge confinement. Dark matter semi-annihilation to active neutrinos or annihilation to light sterile neutrinos can reproduce the observed relic abundance through thermal freeze-out while satisfying constraints from self-interactions. In the first scenario, semi-annihilations of sub-GeV dark matter in the galactic halo produce a flux of antineutrinos which can provide a viable interpretation for the mild electron antineutrino excess reported by the Super-Kamiokande collaboration. We assess the potential of the JUNO detector to test this interpretation. In the second scenario, light sterile neutrinos can leave signatures through displaced vertex searches at accelerator facilities.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.04227</id>
+<title>Fermi-LAT Detection of Extended GeV Emission toward the Middle-aged Supernova Remnant G156.2+05.7</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.04227"/>
+<updated>2026-11-03T00:00:00Z</updated>
+<author><name>Wei-Liang Xu</name></author>
+<author><name>Qing-Wen Tang</name></author>
+<author><name>Long Li</name></author>
+<category term="astro-ph.HE"/>
+<summary type="text">We analyse 17 years of Fermi-LAT $γ$-ray data toward the middle-aged supernova remnant (SNR) G156.2+05.7, supplemented by radio and CO observations and by published X-ray constraints. An extended $γ$-ray source is detected, well described by a 2D Gaussian template ($R_{68} \sim 0.84^\circ$). This description is preferred over a foreground CO template, whereas the Gaussian and a uniform disc are statistically indistinguishable under the AIC. The spectrum shows evidence for curvature, with a log-parabola preferred over a power law at the $\approx 3.4σ$ level. Multi-wavelength spectral energy distribution (SED) modelling, under the adopted assumptions, suggests a leptonic--hadronic joint scenario consistent with the data, with the Fermi-LAT spectrum favouring a hadronic contribution over a purely leptonic interpretation. However, the proton-dominated alternative remains competitive, so the partition of the GeV emission is model-dependent. In the adopted leptonic--hadronic model, the electron population accounts for the radio synchrotron emission and a leptonic $γ$-ray component, while a steep proton population contributes the remaining hadronic $γ$-rays. Adopting a reference distance …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.01789</id>
+<title>Cryogenic performance of Silicon Photo-Multipliers at LN$_2$ temperature and at 3 K in the RES-NOVA cryostat</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.01789"/>
+<updated>2026-11-01T00:00:00Z</updated>
+<author><name>Riccardo Rossini</name></author>
+<author><name>Massimo Rossella</name></author>
+<author><name>Massimiliano Clemenza et al.</name></author>
+<category term="physics.ins-det"/>
+<category term="hep-ex"/>
+<summary type="text">Silicon Photo-Multipliers (SiPMs) are semiconductor-based photodetectors that offer performance comparable to that of traditional Photo-Multiplier Tubes (PMTs), while providing several advantages, including low operating voltage, immunity to magnetic fields, compact size, and mechanical robustness. These features have led to their widespread adoption in scintillator-based detectors for both fundamental and applied physics. In recent years, there has been a growing interest in the detection of scintillation light at cryogenic temperatures in low-temperature experiments based on bolometric detectors, such as RES-NOVA and CUPID, as well as in emerging quantum applications. In the RES-NOVA experiment, radiopure PbWO$_4$ crystals are used to detect supernova neutrinos. The scintillation of PbWO$_4$ can only be evaluated at cryogenic temperatures, as the scintillation light yield is negligible at room temperature. We present measurements of the performance at cryogenic temperatures of Hamamatsu S13360-1350CS SiPMs in terms of breakdown voltage and gain, at 77~K (in a liquid nitrogen bath) and at 3~K. The cooling down to 3~K has been carried out using a Proteox LX cryostat from Oxford …</summary>
 </entry>
 </feed>
