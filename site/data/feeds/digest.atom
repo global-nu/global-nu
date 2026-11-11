@@ -5,7 +5,7 @@
 <subtitle>Neutrino preprints ranked by relevance, rebuilt every morning. Selected by keyword score; no model involved.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/digest.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/digest.atom"/>
-<updated>2026-11-09T00:00:00Z</updated>
+<updated>2026-11-10T00:00:00Z</updated>
 <author><name>global-nu.org, Bari group</name></author>
 <entry>
 <id>https://arxiv.org/abs/2611.11241</id>
@@ -27,16 +27,14 @@
 <summary type="text">The Deep Underground Neutrino Experiment (DUNE) is a next-generation neutrino experiment designed for precision measurements of long-baseline three-flavor neutrino oscillations. The DUNE Near Detector (ND) is also sensitive to short-baseline oscillations arising from mixing with an eV-scale sterile neutrino. In this paper, we present a sensitivity study for sterile-neutrino oscillations in the $3+1$ framework using three complementary event samples in the simulated DUNE ND: highly elastic $ν_μ$ charged-current (CC), highly elastic $ν_e$ CC, and neutrino-electron elastic-scattering ($ν+e$) events. These highly exclusive samples are chosen to reduce neutrino-interaction and flux uncertainties: the low-hadronic-energy CC selections enhance the correlation between reconstructed lepton energy and neutrino energy, while the precisely calculable $ν+e$ cross section provides an independent constraint on the neutrino flux. Residual interaction-model dependence remains in the CC samples. The statistical analysis considers $|U_{e4}|^2$, $|U_{\mu4}|^2$, $|U_{\tau4}|^2$, and $Δm^2$, with sensitivity results presented as fixed-$Δm^2$ slices for $|U_{\tau4}|^2=0$. The strongest sensitivity …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.05170</id>
-<title>Constraining tau-sterile neutrino mixing with high-energy astrophysical neutrinos</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.05170"/>
-<updated>2026-11-03T00:00:00Z</updated>
-<author><name>Mauricio Bustamante</name></author>
-<author><name>Qinrui Liu</name></author>
+<id>https://arxiv.org/abs/2611.13629</id>
+<title>Where does the neutrino Mass Ordering preference come from?</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.13629"/>
+<updated>2026-11-10T00:00:00Z</updated>
+<author><name>Pedro A. N. Machado</name></author>
+<author><name>João Paulo Pinheiro</name></author>
 <category term="hep-ph"/>
-<category term="astro-ph.HE"/>
-<category term="hep-ex"/>
-<summary type="text">Whether a sterile neutrino mixes with the three active ones remains an open question. Its mixing with the tau neutrino, $|U_{τ4}|^2$, is the least constrained, since terrestrial experiments probe it only indirectly and over limited ranges of sterile-neutrino mass. We show that TeV-PeV astrophysical neutrinos probe it differently. Their sources make almost no $ν_τ$, but oscillations over cosmological distances turn about one third of them into $ν_τ$ before they reach Earth. Mixing with a sterile neutrino would make these $ν_τ$ scarcer, lowering the $ν_τ$ fraction that neutrino telescopes measure, whatever the sterile-neutrino mass. In contrast, sterile mixing with $ν_e$ or $ν_μ$ is nearly undetectable. Fitting the flavor composition measured by IceCube, with the composition at the sources left free, we find $|U_{τ4}|^2 &lt; 0.88$ at 90% C.L. Combining IceCube with present and planned neutrino telescopes, including IceCube-Gen2 and HUNT, could lower this limit to 0.24-0.29 by 2040 and to 0.12-0.14 by 2050. By 2050, these limits would match some present terrestrial limits, though not the strongest.</summary>
+<summary type="text">After the recent JUNO result, the comparison of the effective mass splittings measured in $\barν_e$ disappearance at reactors and in $ν_μ$ disappearance has become one of the leading handles on the neutrino mass ordering. In this paper, we study which data sets drive the present preference for the ordering, combining JUNO and Daya Bay with $ν_μ$ disappearance data from NOvA, T2K, MINOS, and IceCube/DeepCore. While the combination disfavors the inverted ordering at $1.9σ$, this preference comes from a balance between several small preferences. In particular, the combinations of reactor data with T2K or with NOvA point to opposite orderings. The values of the mass splitting preferred by these two experiments differ by about $3.5\%$, comparable to the difference expected between the two orderings, and thus a shift of this size in a single experiment is enough to reverse the preference. Moreover, in the context of this combination of reactor and $ν_μ$ disappearance data, further JUNO data would not bring the rejection of the inverted ordering beyond about $3σ$, as the comparison is then limited by the precision of the $ν_μ$ disappearance experiment. Improving the $ν_μ$ disappearance …</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.08595</id>
@@ -110,6 +108,16 @@
 <summary type="text">We investigate the sensitivity of accelerator-based neutrino oscillations to localized electron-density enhancements associated with seismic fault zones along the Fermilab SURF baseline of the Deep Underground Neutrino Experiment (DUNE). Motivated by the reactor antineutrino proposal of Wang, Chen, and Li, we model the anomaly as a uniform-density slab embedded in the surrounding crust and calculate exact three flavour oscillation probabilities using layer by layer evolution. Our results show that localized density enhancements can produce measurable variations in muon-to-electron appearance probabilities for both neutrinos and antineutrinos, with potentially significant relative effects. The predicted variations exhibit weak dependence on the leptonic CP violating phase, suggesting that time-differential measurements may help reduce uncertainties associated with the unknown CP phase. However, the event statistics required for a statistically significant detection substantially exceed those expected during a short-duration precursor interval. Consequently, detecting sufficiently persistent density anomalies may be possible under favourable conditions, whereas short-term earthquake …</summary>
 </entry>
 <entry>
+<id>https://arxiv.org/abs/2611.13617</id>
+<title>Self-interacting dark matter and neutrino masses from MeV-scale lepton-number breaking</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.13617"/>
+<updated>2026-11-10T00:00:00Z</updated>
+<author><name>Manoranjan Dutta</name></author>
+<category term="hep-ph"/>
+<category term="astro-ph.CO"/>
+<summary type="text">We show that a scalar whose vacuum expectation value (vev) breaks lepton number at the MeV scale, generating the light-neutrino masses through the inverse seesaw, can also serve as the light mediator of self-interacting dark matter. Dark matter is a pseudo-Dirac fermion whose mass splitting arises from the same vev and is predicted to be proportional to the self-interaction coupling times the vev. A strong central interaction between the dark states requires this splitting to be sizable. The CP-even mediator decays into neutrinos at a rate fixed by the neutrino masses, independent of its mixing with the Higgs boson. Fixing the coupling by the relic abundance and evaluating exact partial-wave cross sections, the model reproduces the velocity dependence of the self-interaction cross section inferred from dwarf galaxies to clusters along a narrow band, $m_s\simeq1.9~{\rm MeV}\times(m_χ/{\rm GeV})$, extending up to $m_χ\simeq12$~GeV with a best fit at $m_χ\simeq7.6$~GeV and $m_s\simeq15$~MeV, and on a sequence of resonant islands of comparable fit quality at higher masses. The cluster data bound the dark matter mass from above, so that the allowed masses extend from about $3$ to …</summary>
+</entry>
+<entry>
 <id>https://arxiv.org/abs/2611.07281</id>
 <title>Testing the Pseudo-Dirac Nature of Atmospheric Neutrinos</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.07281"/>
@@ -158,36 +166,27 @@
 <summary type="text">We conjecture a novel interrelation of three neutrino mixing angles: $θ^{}_{23} = \left(θ^{}_{12} + θ^{}_{13}\right)/2 + π/8$, which predicts $θ^{}_{23} = 43.46^{+0.51^\circ}_{-0.52^\circ}$ with inputs of the latest JUNO and Daya Bay precision data. A simple ansatz is proposed to derive this phenomenologically favored and experimentally testable angle relation, and present a new expansion of the lepton flavor mixing matrix in powers of a single small parameter as a by-product.</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.04600</id>
-<title>Light Mediators at the Neutrino-Dark Matter Frontier: Coherent Scattering, Precision Constraints, and Complementary Searches</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.04600"/>
-<updated>2026-11-05T00:00:00Z</updated>
-<author><name>Raoul Serao</name></author>
-<author><name>Mohamed Ouchemhou</name></author>
-<author><name>Antonio Capolupo et al.</name></author>
-<category term="hep-ph"/>
-<summary type="text">Low-threshold neutrino and dark-matter experiments constrain light mediators through different momentum transfers, targets, and coupling combinations. We examine scalar and vector interactions in coherent neutrino--nucleus scattering, neutrino--electron scattering, and dark-matter direct detection. Three representative interaction models are used to compare recoil spectra and coupling degeneracies. For $^{73}\mathrm{Ge}$ and $^{131}\mathrm{Xe}$, the nuclear-charge response matrix has a condition number of approximately 115, so two different targets may still leave nearly parallel blind directions. An analytic profile-likelihood calculation shows how spectral overlap and uncertainties in neutrino interactions affect dark-matter discovery sensitivity in the neutrino fog. We discuss the implications of measurements from COHERENT, CONUS+, LZ, XENONnT, and PandaX-4T and specify which theoretical inputs, detector responses, and statistical correlations are needed to combine their constraints. keyword : coherent elastic neutrino-nucleus scattering; light mediators; neutrino--electron scattering; dark matter direct detection; non-standard interactions; solar neutrinos; complementarity</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.12220</id>
-<title>Measurement of the Neutrino Spectrum along the Galactic Plane with IceCube</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.12220"/>
-<updated>2026-11-09T00:00:00Z</updated>
-<author><name>The IceCube Collaboration</name></author>
-<author><name>R. Abbasi</name></author>
-<author><name>M. Ackermann et al.</name></author>
+<id>https://arxiv.org/abs/2611.14354</id>
+<title>Analysis Methodology of the Search for Ultrahigh Energy Neutrinos in 10.6 Years of Askaryan Radio Array Data</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.14354"/>
+<updated>2026-11-10T00:00:00Z</updated>
+<author><name>ARA Collaboration</name></author>
+<author><name>N. Alden</name></author>
+<author><name>S. Ali et al.</name></author>
 <category term="astro-ph.HE"/>
-<category term="astro-ph.GA"/>
-<summary type="text">We present the first measurement of the variation of the high-energy neutrino flux along the Galactic plane using 10 years of neutrino-induced particle-shower data from the IceCube Neutrino Observatory. In this Letter, we fit both the neutrino flux normalization and the spectral index, in multiple regions along the plane, independent of model expectations. The neutrino flux per solid angle in the inner Galactic region ($\vert l\vert 60^{\circ}, \vert b\vert &lt; 8^{\circ}$) at $E_ν=5\mathrm{TeV}$. The spectral indices in the inner and outer region are $γ=2.76^{+0.18}_{-0.15}$ and $γ= 3.13^{+0.57}_{-0.37}$, respectively. Additionally, we compare the same region of Galactic emission measured in $\mathrm{TeV}$ gamma rays by LHAASO ($15^{\circ}&lt;l&lt;125^{\circ}$) to neutrinos, and conclude that the measurements are compatible within uncertainties, under the assumption of hadronic gamma-ray production.</summary>
+<category term="astro-ph.IM"/>
+<summary type="text">The Askaryan Radio Array (ARA) is an in-ice radio observatory at the South Pole designed to detect ultrahigh energy (UHE) neutrinos through Askaryan emission produced by interactions of neutrinos and their secondary particles. In this paper, we present the detailed methodology of the first array-wide search for a diffuse UHE neutrino flux using data from all five ARA stations. The dataset considered represents $10.6$ years of livetime and is three times larger than previous ARA neutrino searches. This search achieves a $28\%$ analysis efficiency for a neutrino flux corresponding to the current experimental upper limits. No neutrino candidates are observed on an expected background of $0.13\pm0.01\text{ (stat.)}^{+0.05}_{-0.06}\text{ (syst.)}$ events. We set a new upper limit on the diffuse UHE neutrino flux, which is the most stringent from $50$ EeV to $1000$ EeV. We also discuss lessons learned for future searches on large radio arrays.</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.10753</id>
-<title>Search sensitivity for type-III seesaw heavy leptons in simulated \texorpdfstring{$pp$}{pp} collisions at \texorpdfstring{$\sqrt{s}=13.6$}{sqrt(s)=13.6} TeV at the LHC</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.10753"/>
-<updated>2026-11-07T00:00:00Z</updated>
-<author><name>A. M. M. Elsayed</name></author>
-<author><name>Yusheng Wu</name></author>
-<category term="hep-ph"/>
-<summary type="text">A search for the pair production of TeV-scale heavy leptons as predicted by the type-III seesaw mechanism is presented. The analysis is based on a simulated signal and Standard Model background data corresponding to an integrated luminosity of $500~\mathrm{fb}^{-1}$ of proton-proton collisions at $\sqrt{s}=13.6$ TeV. The ATLAS detector response is modeled with Delphes. Events are categorized based on the number of final state leptons and large-$R$ jets into nine mutually exclusive search channels. Multivariate analysis techniques are employed to separate the signal from the Standard Model backgrounds. Under the flavor-democratic mixing scenario ($\mathcal{B}_e=\mathcal{B}_μ=\mathcal{B}_τ=1/3$), the expected 95\% confidence level upper exclusion limit on the heavy lepton mass is approximately $1.6$ TeV.</summary>
+<id>https://arxiv.org/abs/2611.14350</id>
+<title>New Constraints on the Ultrahigh Energy Neutrino Flux from the First Array-Wide Search with the Askaryan Radio Array</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.14350"/>
+<updated>2026-11-10T00:00:00Z</updated>
+<author><name>ARA Collaboration</name></author>
+<author><name>N. Alden</name></author>
+<author><name>S. Ali et al.</name></author>
+<category term="astro-ph.HE"/>
+<category term="astro-ph.IM"/>
+<summary type="text">Ultrahigh energy neutrinos ($E_ν\gtrsim 100$ PeV) are detectable through Askaryan emission---the nanosecond-scale radio impulse emitted by relativistic particle cascades in a dielectric medium. The Askaryan Radio Array (ARA), an Askaryan detector array located at the South Pole, has been taking data for more than a decade. We present the first array-wide search for diffuse ultrahigh energy neutrinos with ARA. The search found no events on an expected background of $0.13\pm0.01\text{ (stat.)}^{+0.05}_{-0.06}\text{ (syst.)}$ events. The resulting upper limit is the most stringent from $50$ EeV to $1000$ EeV and provides the first constraints on the flux reported by the KM3NeT Collaboration that are complementary to optical Cherenkov and particle detectors. This limit also constrains UHECR source models, and excludes some models with trans-GZK proton populations at the $90\%$ confidence level. This represents the largest Askaryan detector dataset ever analyzed, demonstrating the feasibility and sensitivity of searches with large detector arrays acting as a single observatory. It also underscores the high acceptance and exposure of Askaryan detector arrays to ultrahigh energy …</summary>
 </entry>
 </feed>

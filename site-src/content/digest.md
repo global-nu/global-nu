@@ -24,15 +24,10 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors.</b>
-<span class="stamp">Last successful update: 10 November 2026, 07:48 CET</span></div>
+<span class="stamp">Last successful update: 11 November 2026, 07:46 CET</span></div>
 </div>
-<p class="digest-dates small"><b>This edition:</b> preprints first submitted 3 Nov 2026 – 9 Nov 2026. Each entry gives its own dates: first submission, latest update when there is one, and announcement when the source states it. arXiv announces submissions on its own schedule, so the newest of these may not have been announced yet.</p>
+<p class="digest-dates small"><b>This edition:</b> preprints first submitted 4 Nov 2026 – 10 Nov 2026. Each entry gives its own dates: first submission, latest update when there is one, and announcement when the source states it. arXiv announces submissions on its own schedule, so the newest of these may not have been announced yet.</p>
 <!-- QUIET:BEGIN -->
-<p class="small muted"><b>arXiv made no announcement for
-10 November 2026.</b> Its listing feeds are empty, as they are at weekends and on
-<a href="https://info.arxiv.org/help/availability.html">arXiv's announcement
-holidays</a>, so nothing below is new today: the list will change with the
-next announcement.</p>
 <!-- QUIET:END -->
 
 <div class="section-head"><h2>Experimental</h2>
@@ -54,18 +49,18 @@ next announcement.</p>
 
 <ul class="list list--news">
 <li><b><a href="https://arxiv.org/abs/2611.11241">An SU(5) GUT with non-holomorphic modular S'₄ symmetry: fermion masses, mixing and leptogenesis</a></b><span>Xianshuo Zhang, Yakefu Reyimuaji · first submitted 8 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2611.05170">Constraining tau-sterile neutrino mixing with high-energy astrophysical neutrinos</a></b><span>Mauricio Bustamante, Qinrui Liu · first submitted 3 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2611.13629">Where does the neutrino Mass Ordering preference come from?</a></b><span>Pedro A. N. Machado, João Paulo Pinheiro · first submitted 10 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.08595">Entanglement in Collective Neutrino Oscillations on a Quantum Computer</a></b><span>Katarina Bleau, Nikolina Ilic, Joachim Kopp et al. · first submitted 5 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span><span class="tag">quant-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.12335">Reabsorbed Urca neutrinos suppress bulk-viscous damping of neutron star merger oscillations</a></b><span>Prashant Thakur, Yeunhwan Lim · first submitted 9 Nov 2026</span><span class="tags"><span class="tag">nucl-th</span><span class="tag">astro-ph.HE</span><span class="tag">gr-qc</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.08690">Exact and hybrid neutrino oscillation probabilities via the evolution operator</a></b><span>Juan Carlos D'Olivo, José Arnulfo Herrera Lara, Oscar A. Sampayo · first submitted 5 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.06284">A search for sterile neutrinos at ultrahigh energies at the Pierre Auger Observatory</a></b><span>The Pierre Auger Collaboration, A. Abdul Halim, P. Abreu et al. · first submitted 4 Nov 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.06755">Earthquake Forecast via Neutrino Tomography at the DUNE Baseline</a></b><span>Bipin Singh Koranga, Samrat Vashisht, Vivek Kumar Nautiyal · first submitted 4 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2611.13617">Self-interacting dark matter and neutrino masses from MeV-scale lepton-number breaking</a></b><span>Manoranjan Dutta · first submitted 10 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.07281">Testing the Pseudo-Dirac Nature of Atmospheric Neutrinos</a></b><span>Olivia M. Bitter, André de Gouvêa, Srubabati Goswami et al. · first submitted 5 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.11351">The Fate of Collisional Neutrino Flavor Conversion: Fixed Points, Period Doubling, and Chaos</a></b><span>Jiabao Liu, Lucas Johns, Hiroki Nagakura · first submitted 8 Nov 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span><span class="tag">hep-th</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.09478">An interrelation of three neutrino mixing angles</a></b><span>Zhi-zhong Xing · first submitted 6 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2611.04600">Light Mediators at the Neutrino-Dark Matter Frontier: Coherent Scattering, Precision Constraints, and Complementary Searches</a></b><span>Raoul Serao, Mohamed Ouchemhou, Antonio Capolupo et al. · first submitted 3 Nov 2026 · updated 5 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2611.12220">Measurement of the Neutrino Spectrum along the Galactic Plane with IceCube</a></b><span>The IceCube Collaboration, R. Abbasi, M. Ackermann et al. · first submitted 9 Nov 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">astro-ph.GA</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2611.10753">Search sensitivity for type-III seesaw heavy leptons in simulated pppp collisions at s=13.6sqrt(s)=13.6 TeV at the LHC</a></b><span>A. M. M. Elsayed, Yusheng Wu · first submitted 7 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2611.14354">Analysis Methodology of the Search for Ultrahigh Energy Neutrinos in 10.6 Years of Askaryan Radio Array Data</a></b><span>ARA Collaboration, N. Alden, S. Ali et al. · first submitted 10 Nov 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">astro-ph.IM</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2611.14350">New Constraints on the Ultrahigh Energy Neutrino Flux from the First Array-Wide Search with the Askaryan Radio Array</a></b><span>ARA Collaboration, N. Alden, S. Ali et al. · first submitted 10 Nov 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">astro-ph.IM</span></span></li>
 </ul>
 
 
@@ -87,6 +82,7 @@ still appears under theory.</p>
 
 <!-- ARCHIVE:BEGIN -->
 <ul class="archive">
+  <li><time datetime="2026-11-10">10 November 2026</time><a href="digest/2026-11-10.html">Digest of 2026-11-10</a><span class="count">4 papers</span></li>
   <li><time datetime="2026-11-09">9 November 2026</time><a href="digest/2026-11-09.html">Digest of 2026-11-09</a><span class="count">2 papers</span></li>
   <li><time datetime="2026-11-08">8 November 2026</time><a href="digest/2026-11-08.html">Digest of 2026-11-08</a><span class="count">3 papers</span></li>
   <li><time datetime="2026-11-07">7 November 2026</time><a href="digest/2026-11-07.html">Digest of 2026-11-07</a><span class="count">2 papers</span></li>
@@ -96,8 +92,7 @@ still appears under theory.</p>
   <li><time datetime="2026-11-03">3 November 2026</time><a href="digest/2026-11-03.html">Digest of 2026-11-03</a><span class="count">3 papers</span></li>
   <li><time datetime="2026-11-02">2 November 2026</time><a href="digest/2026-11-02.html">Digest of 2026-11-02</a><span class="count">1 paper</span></li>
   <li><time datetime="2026-11-01">1 November 2026</time><a href="digest/2026-11-01.html">Digest of 2026-11-01</a><span class="count">3 papers</span></li>
-  <li><time datetime="2026-10-31">31 October 2026</time><a href="digest/2026-10-31.html">Digest of 2026-10-31</a><span class="count">1 paper</span></li>
-  <li><time datetime="2026-11">November 2026</time><a href="digest/2026-11.html">All of November 2026</a><span class="count">31 papers</span></li>
+  <li><time datetime="2026-11">November 2026</time><a href="digest/2026-11.html">All of November 2026</a><span class="count">35 papers</span></li>
   <li><time datetime="2026-10">October 2026</time><a href="digest/2026-10.html">All of October 2026</a><span class="count">121 papers</span></li>
   <li><time datetime="2026-09">September 2026</time><a href="digest/2026-09.html">All of September 2026</a><span class="count">137 papers</span></li>
   <li><time datetime="2026-08">August 2026</time><a href="digest/2026-08.html">All of August 2026</a><span class="count">76 papers</span></li>
