@@ -73,18 +73,6 @@
 <summary type="text">We revisit the three-flavor neutrino oscillations in constant-density matter using the evolution matrix expressed in terms of the Lagrange-Sylvester interpolation. Taking advantage of Vieta's formulas for the Hamiltonian of the system, we derive exact closed expressions for the oscillation probabilities $P_{ee}$, $P_{μe}$, and $P_{μτ}$, which are concise and simple, and structurally identical to their vacuum counterparts. The CP-violation contribution, proportional to the Jarlskog invariant $\mathcal{J}$, appears as a single, clearly separated term. Our approach does not require introducing neutrino mixing in the medium and avoids using a matter-dependent CP-violation phase, facilitating the separation of genuine CP violation from that induced by matter effects. We explicitly verify that, in the limit $V \to 0$, our expressions for the flavor transition probabilities reduce to the well-known vacuum formulas. The exact structure of the probabilities is preserved if the exact, not very enlightening, trigonometric eigenvalues are replaced by approximate expressions in radicals. We illustrate this hybrid approach with eigenvalues obtained from two successive rotations of the …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.06284</id>
-<title>A search for sterile neutrinos at ultrahigh energies at the Pierre Auger Observatory</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.06284"/>
-<updated>2026-11-04T00:00:00Z</updated>
-<author><name>The Pierre Auger Collaboration</name></author>
-<author><name>A. Abdul Halim</name></author>
-<author><name>P. Abreu et al.</name></author>
-<category term="astro-ph.HE"/>
-<category term="hep-ph"/>
-<summary type="text">We investigate the sensitivity of the Pierre Auger Observatory to sterile neutrinos with masses in the MeV-to-100 MeV range. To this end, we consider a minimal $3+1$ framework in which a single sterile state mixes mainly with the $ν_τ$ flavor through an active--sterile mixing angle $θ_N$ to produce a mass eigenstate $N_1$. At ultrahigh energies, $N_1$ neutrinos can traverse substantial chord lengths through the Earth and interact through their active component, producing $τ$ leptons that may emerge near the surface and decay in the atmosphere, thereby generating detectable air showers. We compute the corresponding exposures with a detailed Monte Carlo simulation of neutrino propagation, interactions, $τ$ energy losses and decay, and derive upper limits at $90\%$ confidence level on an isotropic diffuse flux of $N_1$ neutrinos. For an $E^{-2}$ spectrum, we obtain $E^2Φ_N\leq 2\times10^{-9}\sin^{-2}θ_N\,\mathrm{GeV\,cm^{-2}\,sr^{-1}\,s^{-1}}$ over $0.3$--$200$ EeV for $\sin^2θ_N\lesssim10^{-1}$. We further consider $N_1$ neutrinos arising from the decay of a superheavy dark-matter particle. For a benchmark dark-matter mass of $10^{13}$ GeV, we derive constraints on the …</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2611.11474</id>
 <title>Machine learning assisted $ν/\barν$ discrimination in atmospheric neutrino events for CPV sensitivity in a 20-kton liquid scintillator detector</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.11474"/>
@@ -97,17 +85,6 @@
 <summary type="text">Atmospheric neutrinos span a broad range of energies and baselines, offering a complementary probe of leptonic CP violation. However, a JUNO-like liquid scintillator detector without a magnetic field cannot directly separate neutrino and antineutrino interactions, reducing CP violation sensitivity. This study investigates whether machine learning based statistical separation can improve CP violation sensitivity in a 20-kton detector. $ν_μ$ and $ν_e$ charged current events are generated with GENIE (using Honda flux) in a JUNO-like detector geometry and are reweighted using OscProb three flavor oscillation probabilities incorporating Earth matter effects and NuFIT parameters. Detector response is approximated by smearing lepton and hadronic energies, neutrino direction, and neutron multiplicity. Logistic regression, XGBoost, and multilayer perceptron (MLP) classifiers are trained on inelasticity, neutron multiplicity, and charged lepton energy, with XGBoost selected for the analysis. CP violation sensitivity is evaluated for a 200 kton-year exposure using a Poisson likelihood with systematic nuisance parameters and marginalization over five oscillation parameters within their …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.06755</id>
-<title>Earthquake Forecast via Neutrino Tomography at the DUNE Baseline</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.06755"/>
-<updated>2026-11-04T00:00:00Z</updated>
-<author><name>Bipin Singh Koranga</name></author>
-<author><name>Samrat Vashisht</name></author>
-<author><name>Vivek Kumar Nautiyal</name></author>
-<category term="hep-ph"/>
-<summary type="text">We investigate the sensitivity of accelerator-based neutrino oscillations to localized electron-density enhancements associated with seismic fault zones along the Fermilab SURF baseline of the Deep Underground Neutrino Experiment (DUNE). Motivated by the reactor antineutrino proposal of Wang, Chen, and Li, we model the anomaly as a uniform-density slab embedded in the surrounding crust and calculate exact three flavour oscillation probabilities using layer by layer evolution. Our results show that localized density enhancements can produce measurable variations in muon-to-electron appearance probabilities for both neutrinos and antineutrinos, with potentially significant relative effects. The predicted variations exhibit weak dependence on the leptonic CP violating phase, suggesting that time-differential measurements may help reduce uncertainties associated with the unknown CP phase. However, the event statistics required for a statistically significant detection substantially exceed those expected during a short-duration precursor interval. Consequently, detecting sufficiently persistent density anomalies may be possible under favourable conditions, whereas short-term earthquake …</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2611.13617</id>
 <title>Self-interacting dark matter and neutrino masses from MeV-scale lepton-number breaking</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.13617"/>
@@ -116,18 +93,6 @@
 <category term="hep-ph"/>
 <category term="astro-ph.CO"/>
 <summary type="text">We show that a scalar whose vacuum expectation value (vev) breaks lepton number at the MeV scale, generating the light-neutrino masses through the inverse seesaw, can also serve as the light mediator of self-interacting dark matter. Dark matter is a pseudo-Dirac fermion whose mass splitting arises from the same vev and is predicted to be proportional to the self-interaction coupling times the vev. A strong central interaction between the dark states requires this splitting to be sizable. The CP-even mediator decays into neutrinos at a rate fixed by the neutrino masses, independent of its mixing with the Higgs boson. Fixing the coupling by the relic abundance and evaluating exact partial-wave cross sections, the model reproduces the velocity dependence of the self-interaction cross section inferred from dwarf galaxies to clusters along a narrow band, $m_s\simeq1.9~{\rm MeV}\times(m_χ/{\rm GeV})$, extending up to $m_χ\simeq12$~GeV with a best fit at $m_χ\simeq7.6$~GeV and $m_s\simeq15$~MeV, and on a sequence of resonant islands of comparable fit quality at higher masses. The cluster data bound the dark matter mass from above, so that the allowed masses extend from about $3$ to …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.07281</id>
-<title>Testing the Pseudo-Dirac Nature of Atmospheric Neutrinos</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.07281"/>
-<updated>2026-11-05T00:00:00Z</updated>
-<author><name>Olivia M. Bitter</name></author>
-<author><name>André de Gouvêa</name></author>
-<author><name>Srubabati Goswami et al.</name></author>
-<category term="hep-ph"/>
-<category term="hep-ex"/>
-<summary type="text">Pseudo-Dirac neutrinos are characterized by extremely small mass-squared differences between two nearly degenerate, strongly-mixed, active-sterile states. These differences are associated with new very-long oscillation lengths and provide a probe of the nature of neutrinos. Atmospheric neutrinos can probe these oscillations as they allow access to a broad range of baseline distances, from tens of kilometers to the Earth's diameter. We investigate the sensitivity of an experiment like the Deep Underground Neutrino Experiment (DUNE) to the pseudo-Dirac nature of neutrinos through measurements of the atmospheric neutrino flux. We concentrate on the modifications to the atmospheric neutrino energy and angular spectra induced by one new oscillation frequency associated with the $ν_3$ state and determine the parameter space that can be probed with atmospheric neutrinos at a DUNE-like detector. We also comment on the sensitivity of these measurements to the sub-leading "solar" oscillations, which are also characterized by a relatively small mass-squared difference.</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.11351</id>
@@ -188,5 +153,39 @@
 <category term="astro-ph.HE"/>
 <category term="astro-ph.IM"/>
 <summary type="text">Ultrahigh energy neutrinos ($E_ν\gtrsim 100$ PeV) are detectable through Askaryan emission---the nanosecond-scale radio impulse emitted by relativistic particle cascades in a dielectric medium. The Askaryan Radio Array (ARA), an Askaryan detector array located at the South Pole, has been taking data for more than a decade. We present the first array-wide search for diffuse ultrahigh energy neutrinos with ARA. The search found no events on an expected background of $0.13\pm0.01\text{ (stat.)}^{+0.05}_{-0.06}\text{ (syst.)}$ events. The resulting upper limit is the most stringent from $50$ EeV to $1000$ EeV and provides the first constraints on the flux reported by the KM3NeT Collaboration that are complementary to optical Cherenkov and particle detectors. This limit also constrains UHECR source models, and excludes some models with trans-GZK proton populations at the $90\%$ confidence level. This represents the largest Askaryan detector dataset ever analyzed, demonstrating the feasibility and sensitivity of searches with large detector arrays acting as a single observatory. It also underscores the high acceptance and exposure of Askaryan detector arrays to ultrahigh energy …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.13618</id>
+<title>The DIS structure functions $F_4$ and $F_5$ at NLO and their impact on $τ$-neutrino scattering</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.13618"/>
+<updated>2026-11-10T00:00:00Z</updated>
+<author><name>T. Ježo</name></author>
+<author><name>M. Klasen</name></author>
+<author><name>P. Risse et al.</name></author>
+<category term="hep-ph"/>
+<summary type="text">We present next-to-leading-order calculations of heavy-quark contributions to the deep-inelastic scattering structure functions $F_4$ and $F_5$ within the Aivazis-Collins-Olness-Tung scheme, implemented in the open-source library APFEL++ and evaluated using CT18NLO parton distribution functions. These structure functions are suppressed by lepton mass effects in light-lepton processes, but become important in $τ$-lepton and neutrino scattering at facilities such as SHiP, IceCube, and DUNE. We furthermore quantify the direct impact of $F_4$ and $F_5$ on the charged-current $τ$-neutrino cross section, for the first time presented here, showing they can suppress it by up to $-40\%$ near the kinematic boundary at low $Q^2$ and large $x$.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.13247</id>
+<title>Detectability of Seyfert galaxies in point-source and stacking searches with a global network of neutrino telescopes</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.13247"/>
+<updated>2026-11-09T00:00:00Z</updated>
+<author><name>Lena Saurenhaus</name></author>
+<author><name>Francesca Capel</name></author>
+<author><name>Foteini Oikonomou</name></author>
+<category term="astro-ph.HE"/>
+<summary type="text">Recent evidence for high-energy neutrino emission from NGC 1068 and other nearby Seyfert galaxies suggests that active galactic nuclei (AGNs) may constitute a class of astrophysical neutrino sources. Using a physically motivated neutrino emission model based on stochastic particle acceleration in magnetized AGN coronae, we investigate the detection prospects of X-ray-bright Seyfert galaxies with a detector network comprising IceCube, Baikal-GVD, KM3NeT/ARCA, and P-ONE. We find that the Circinus Galaxy is the most promising point-source target in the Southern sky and will be detected at the 5$σ$ level by 2038 at the latest, provided that the Seyfert population accounts for the diffuse astrophysical neutrino flux up to 100 TeV and Circinus is at least as efficient a neutrino emitter as the average source in the population. Individual detections of other nearby Seyferts are expected to remain challenging, making stacking searches informed by X-ray observations the most promising approach for discovering them within the next decade. Our results demonstrate that joint analyses across multiple neutrino telescopes, together with future MeV gamma-ray observations, will be essential for …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.12749</id>
+<title>A possible signature of neutrino spin precession in the J-PARC muon $g-2$ experiment</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.12749"/>
+<updated>2026-11-09T00:00:00Z</updated>
+<author><name>S. Carneiro</name></author>
+<author><name>F. C. Sobrinho</name></author>
+<category term="hep-ph"/>
+<category term="hep-ex"/>
+<category term="hep-th"/>
+<summary type="text">We examine a possible signature of the neutrino angular-momentum contribution to the muon magnetic anomaly measurement in the J-PARC E34 experiment. In previous papers we argued that the angular momentum carried by the unobserved neutrino pair may leave an uncertainty in the anomaly inferred from the time modulation of detected positrons. At Fermilab the highly relativistic muons make the forward-emission approximation suitable for this estimate. The lower muon momentum at J-PARC requires the decay kinematics to be treated explicitly. We integrate the longitudinal momentum of the neutrino pair using the positron energy distribution and asymmetry derived from the theoretical weak-decay spectrum, and the same event-counting weight $N(E)A(E)$ is employed for both experiments. For positron energies between $1.5$ and $2.9$ GeV at Fermilab and between $200$ and $275$ MeV at J-PARC, the proposed correction is smaller at J-PARC by $0.415\pm0.176$ ppm, when the most optimistic E34 precision is assumed. The expected difference amounts to $2.36$ standard deviations if the future measurement is centred on this value. The calculation thus identifies an experimental comparison which may test …</summary>
 </entry>
 </feed>
