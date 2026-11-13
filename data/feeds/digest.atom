@@ -5,7 +5,7 @@
 <subtitle>Neutrino preprints ranked by relevance, rebuilt every morning. Selected by keyword score; no model involved.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/digest.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/digest.atom"/>
-<updated>2026-11-10T00:00:00Z</updated>
+<updated>2026-11-12T00:00:00Z</updated>
 <author><name>global-nu.org, Bari group</name></author>
 <entry>
 <id>https://arxiv.org/abs/2611.11241</id>
@@ -37,17 +37,16 @@
 <summary type="text">After the recent JUNO result, the comparison of the effective mass splittings measured in $\barν_e$ disappearance at reactors and in $ν_μ$ disappearance has become one of the leading handles on the neutrino mass ordering. In this paper, we study which data sets drive the present preference for the ordering, combining JUNO and Daya Bay with $ν_μ$ disappearance data from NOvA, T2K, MINOS, and IceCube/DeepCore. While the combination disfavors the inverted ordering at $1.9σ$, this preference comes from a balance between several small preferences. In particular, the combinations of reactor data with T2K or with NOvA point to opposite orderings. The values of the mass splitting preferred by these two experiments differ by about $3.5\%$, comparable to the difference expected between the two orderings, and thus a shift of this size in a single experiment is enough to reverse the preference. Moreover, in the context of this combination of reactor and $ν_μ$ disappearance data, further JUNO data would not bring the rejection of the inverted ordering beyond about $3σ$, as the comparison is then limited by the precision of the $ν_μ$ disappearance experiment. Improving the $ν_μ$ disappearance …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.08595</id>
-<title>Entanglement in Collective Neutrino Oscillations on a Quantum Computer</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.08595"/>
-<updated>2026-11-05T00:00:00Z</updated>
-<author><name>Katarina Bleau</name></author>
-<author><name>Nikolina Ilic</name></author>
-<author><name>Joachim Kopp et al.</name></author>
+<id>https://arxiv.org/abs/2611.16709</id>
+<title>Residual Entanglement vs. Residual Coherence: A Wave Packet Approach in Neutrino Oscillation with Matter</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.16709"/>
+<updated>2026-11-12T00:00:00Z</updated>
+<author><name>Lekhashri Konwar</name></author>
+<author><name>Abhishek Kumar Jha</name></author>
+<author><name>Bhavna Yadav</name></author>
 <category term="hep-ph"/>
-<category term="astro-ph.HE"/>
 <category term="quant-ph"/>
-<summary type="text">Simulations on a quantum computer have been propounded as a next-generation tool for studying neutrino flavour oscillations in dense environments like supernovae or neutron star mergers. However, quantum advantage hinges on the presence of quantum entanglement in the neutrino ensemble, and it has been argued that such entanglement becomes negligible in the limit of large neutrino number density. Here, we address this question by explicitly simulating the multiparticle dynamics of entangled neutrino ensembles with a varying number of particles, $N$, on both classical and quantum hardware, and comparing our results to those obtained with conventional ``mean-field'' methods based on Boltzmann-type kinetic equations. For simple toy systems, we demonstrate both analytically and numerically that, indeed, the predictions of full multiparticle simulations agree with those of mean-field methods in the large-$N$ limit. Along the way, we develop novel algorithms for the efficient simulation of entangled neutrino gases on both classical and quantum hardware. We then discuss physical situations in which an entangled neutrino system \emph{cannot} be described through mean-field dynamics alone …</summary>
+<summary type="text">In this work, we investigate quantum correlations in three-flavor neutrino oscillations beyond the standard plane-wave (PW) description by employing a wave-packet formalism in the presence of constant matter density. We study three quantum correlation measures, namely the residual $l_1$-norm coherence, Concurrence Fill, and Three-$π$ entanglement, and express them in terms of transition probabilities for an initial muon-flavor state. The analysis is performed for the DUNE setup and extended beyond its baseline to study the interplay between wave-packet decoherence and matter effects over long distances. For the DUNE baseline, finite wave-packet widths suppress and smooth the oscillations relative to the PW case, with smaller widths causing stronger damping, while matter effects modify the amplitudes and positions of the oscillation features. Among the considered measures, residual $l_1$-norm coherence dominates over the entanglement measures. At very long propagation distances, wave-packet decoherence progressively washes out the oscillatory behavior, driving the oscillation probabilities and quantum correlation measures toward averaged values, with smaller wave-packet widths …</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.12335</id>
@@ -62,15 +61,14 @@
 <summary type="text">Reabsorption of Urca neutrinos suppresses the bulk-viscous damping predicted for neutron star merger oscillations. Below the direct-Urca threshold the capture neutrinos have mean energies of 19-46 MeV and are absorbed within metres. An energy-resolved kinetic treatment gives 2.7 s for a 1-kHz, 10-km oscillation at nuclear density and 4 MeV, against 19 ms for freely escaping neutrinos. It holds across the sampled states, three equations of state and the rate variations, with nearly frozen composition. This absorption is present in full-kinematics rates and absent from elastic opacity tables.</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.08690</id>
-<title>Exact and hybrid neutrino oscillation probabilities via the evolution operator</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.08690"/>
-<updated>2026-11-05T00:00:00Z</updated>
-<author><name>Juan Carlos D'Olivo</name></author>
-<author><name>José Arnulfo Herrera Lara</name></author>
-<author><name>Oscar A. Sampayo</name></author>
+<id>https://arxiv.org/abs/2611.16604</id>
+<title>Extended $SO(10)$-inspired leptogenesis</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.16604"/>
+<updated>2026-11-12T00:00:00Z</updated>
+<author><name>Pasquale Di Bari</name></author>
+<author><name>Xubin Hu</name></author>
 <category term="hep-ph"/>
-<summary type="text">We revisit the three-flavor neutrino oscillations in constant-density matter using the evolution matrix expressed in terms of the Lagrange-Sylvester interpolation. Taking advantage of Vieta's formulas for the Hamiltonian of the system, we derive exact closed expressions for the oscillation probabilities $P_{ee}$, $P_{μe}$, and $P_{μτ}$, which are concise and simple, and structurally identical to their vacuum counterparts. The CP-violation contribution, proportional to the Jarlskog invariant $\mathcal{J}$, appears as a single, clearly separated term. Our approach does not require introducing neutrino mixing in the medium and avoids using a matter-dependent CP-violation phase, facilitating the separation of genuine CP violation from that induced by matter effects. We explicitly verify that, in the limit $V \to 0$, our expressions for the flavor transition probabilities reduce to the well-known vacuum formulas. The exact structure of the probabilities is preserved if the exact, not very enlightening, trigonometric eigenvalues are replaced by approximate expressions in radicals. We illustrate this hybrid approach with eigenvalues obtained from two successive rotations of the …</summary>
+<summary type="text">We consider seesaw models with hierarchical Dirac neutrino masses. We show that, barring well known fine-tuned crossing level solutions and given current low energy neutrino experimental data, these always lead to a very hierarchical heavy neutrino spectrum. If the Dirac neutrino masses are assumed not to significantly differ from the up-quark masses, then the intermediate seesaw neutrino ($N_2$) mass falls in the correct range for its decays to explain the matter-antimatter asymmetry of the universe via ($N_2$-)leptogenesis, while the lightest seesaw neutrino decays give a negligible contribution. We show that these conclusions are valid independently of any additional condition on the Dirac neutrino mass matrix. In this way we extend the usual $SO(10)$-inspired leptogenesis scenario, assuming the mismatch between neutrino and charged lepton Dirac mass matrices at the level of the CKM matrix. We find that solutions for inverted ordered neutrino masses become viable. We still find a lower bound on the lightest neutrino mass, $m_1 \gtrsim 10^{-5}\,{\rm eV}$, but this is relaxed by two orders of magnitude. We also consider the special subset of solutions realising strong thermal …</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.11474</id>
@@ -95,6 +93,19 @@
 <summary type="text">We show that a scalar whose vacuum expectation value (vev) breaks lepton number at the MeV scale, generating the light-neutrino masses through the inverse seesaw, can also serve as the light mediator of self-interacting dark matter. Dark matter is a pseudo-Dirac fermion whose mass splitting arises from the same vev and is predicted to be proportional to the self-interaction coupling times the vev. A strong central interaction between the dark states requires this splitting to be sizable. The CP-even mediator decays into neutrinos at a rate fixed by the neutrino masses, independent of its mixing with the Higgs boson. Fixing the coupling by the relic abundance and evaluating exact partial-wave cross sections, the model reproduces the velocity dependence of the self-interaction cross section inferred from dwarf galaxies to clusters along a narrow band, $m_s\simeq1.9~{\rm MeV}\times(m_χ/{\rm GeV})$, extending up to $m_χ\simeq12$~GeV with a best fit at $m_χ\simeq7.6$~GeV and $m_s\simeq15$~MeV, and on a sequence of resonant islands of comparable fit quality at higher masses. The cluster data bound the dark matter mass from above, so that the allowed masses extend from about $3$ to …</summary>
 </entry>
 <entry>
+<id>https://arxiv.org/abs/2611.14584</id>
+<title>A Positive Turn: Coupled Quintessence and Cosmological Neutrino Masses</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.14584"/>
+<updated>2026-11-10T00:00:00Z</updated>
+<author><name>Tian-Nuo Li</name></author>
+<author><name>William Giarè</name></author>
+<author><name>Guo-Hong Du et al.</name></author>
+<category term="astro-ph.CO"/>
+<category term="gr-qc"/>
+<category term="hep-ph"/>
+<summary type="text">In $Λ$CDM, the CMB and DESI BAO upper limits on the total neutrino mass are in tension with the lower bounds from oscillation experiments, and analyses allowing negative effective masses favor negative values. We investigate whether a coupled quintessence (CQ) model in which dark matter interacts with a canonical scalar field $φ$ through an exponential mass coupling $m_{\rm c}(φ)\propto e^{-βφ/M_{\rm Pl}}$ can alleviate this tension. Combining CMB, DESI, and supernova data, we find that CQ yields neutrino-mass constraints comparable to those obtained in CPL and consistent with oscillation experiments within $2σ$ for normal ordering, without requiring the scalar-field equation of state to cross the phantom divide. We further show that it alleviates the tension more effectively than alternative interacting dark energy models that instead favor more negative effective masses. This comparison shows that whether dark sector interactions can relax neutrino mass bounds ultimately depends on the interplay of their effects on primary CMB anisotropies, geometry, growth, and lensing.</summary>
+</entry>
+<entry>
 <id>https://arxiv.org/abs/2611.11351</id>
 <title>The Fate of Collisional Neutrino Flavor Conversion: Fixed Points, Period Doubling, and Chaos</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.11351"/>
@@ -106,6 +117,18 @@
 <category term="hep-ph"/>
 <category term="hep-th"/>
 <summary type="text">Core-collapse supernovae and neutron star mergers are among the most energetic astrophysical events and promising sources of multimessenger signals. Their dynamics and nucleosynthesis depend sensitively on neutrino transport, yet the impact of neutrino flavor evolution in these dense environments remains poorly understood. Predicting the outcome of collisional flavor instability (CFI) remains a challenge, despite progress in local-relaxation methods for fast flavor conversion. Here we construct homogeneous collective-precession states with stationary flavor populations in two-flavor quantum kinetics with collisional relaxation. The method applies to arbitrary energy spectra and energy-dependent collision rates. Our numerical examples exhibit persistent oscillations and a period-doubling route to chaos. Even in these regimes, the stationary populations estimate the time-averaged flavor populations to within $10\%$ in our tests. These fixed points provide a physically motivated input for incorporating CFI into astrophysical simulations, with implications for neutrino heating and ejecta nucleosynthesis.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.14642</id>
+<title>Earth-sized tests of long-range neutrino interactions</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.14642"/>
+<updated>2026-11-10T00:00:00Z</updated>
+<author><name>Dyer F. Cardenas</name></author>
+<author><name>Mauricio Bustamante</name></author>
+<category term="hep-ph"/>
+<category term="hep-ex"/>
+<category term="hep-th"/>
+<summary type="text">Neutrinos may experience a new long-range force that distinguishes their flavors, mediated by an ultralight neutral boson of a new $U(1)'$ gauge symmetry and sourced by the electrons and nucleons of ordinary matter. Atmospheric neutrinos that cross the Earth would then feel a flavor-dependent potential that alters their oscillations. When the range of the force is about one Earth radius or less, this potential varies from point to point along each neutrino's path, since it comes mostly from the matter near the neutrino. Earlier limits approximated it, either as constant along the path or as following the local density of matter. We compute it exactly at every point of each path, for the Earth model of the IceCube analysis and over the distribution of heights at which the neutrinos are produced, and use it to analyze the 8-yr public IceCube DeepCore sample with the systematic uncertainties of that analysis. For mediator masses from $10^{-15}$ to $10^{-9}$ eV, where the Earth alone sources the potential, we set upper limits at 90% confidence level on the coupling of eight of 14 $U(1)'$ symmetries, those whose potential differs between $ν_μ$ and $ν_τ$. A potential held at its value …</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.10465</id>
@@ -121,6 +144,17 @@
 <summary type="text">The precise measurement of neutrino properties is among the highest priorities in fundamental particle physics, involving many experimental and theoretical efforts worldwide. Since the experiments rely on the interactions of neutrinos in the nuclear environment, the planned advances in the scope and precision of these experiments require a commensurate effort in understanding and modeling the hadronic and nuclear physics of these interactions, as incorporated in neutrino event generators. This modeling is essential to every phase of the experimental analyses, and the theoretical uncertainties play an important role in interpreting experimental results. In this Review of current challenges, we summarize the open questions in neutrino-nucleus interactions at GeV-scale energies, and discuss in detail the potential impacts of these unknowns on the measurement of neutrino properties, using the determination of oscillation parameters as a central example. After an Executive Summary and a concise Overview of the issues, we address how the neutrino event generators treat these challenges, how electron-nucleus interactions can help understanding these challenges and the important …</summary>
 </entry>
 <entry>
+<id>https://arxiv.org/abs/2611.14616</id>
+<title>$N_{\mathrm{eff}}$, Radiative Dirac Neutrinos, and Flavor Physics from Leptoquarks</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.14616"/>
+<updated>2026-11-10T00:00:00Z</updated>
+<author><name>Patricio Escalona</name></author>
+<author><name>Guillermo Gambini</name></author>
+<author><name>Vítor Pereira et al.</name></author>
+<category term="hep-ph"/>
+<summary type="text">Leptoquarks provide a common framework for addressing flavor anomalies, rare meson decays, and neutrino-mass generation. We study a model with two mixed scalar leptoquarks and three right-handed neutrinos that generates radiative Dirac neutrino masses and contributes to $B^+\to K^+ν\barν$, charged-lepton flavor violation, and the effective number of relativistic species. We show that the model can accommodate the Belle~II measurement of $B^+\to K^+ν\barν$ while satisfying the $μ\to eγ$ bound and the cosmological constraint on $ΔN_{\mathrm{eff}}$. When both leptoquark masses exceed approximately $12$--$14\,\mathrm{TeV}$, the new contribution to the $B$-meson decay becomes too small, and the prediction approaches the SM value, which lies below the Belle~II measurement. Interestingly, the lower bounds on the leptoquark mass scale derived from $N_{\mathrm{eff}}$ can be stronger than those from direct collider searches.</summary>
+</entry>
+<entry>
 <id>https://arxiv.org/abs/2611.09478</id>
 <title>An interrelation of three neutrino mixing angles</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.09478"/>
@@ -131,61 +165,27 @@
 <summary type="text">We conjecture a novel interrelation of three neutrino mixing angles: $θ^{}_{23} = \left(θ^{}_{12} + θ^{}_{13}\right)/2 + π/8$, which predicts $θ^{}_{23} = 43.46^{+0.51^\circ}_{-0.52^\circ}$ with inputs of the latest JUNO and Daya Bay precision data. A simple ansatz is proposed to derive this phenomenologically favored and experimentally testable angle relation, and present a new expansion of the lepton flavor mixing matrix in powers of a single small parameter as a by-product.</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.14354</id>
-<title>Analysis Methodology of the Search for Ultrahigh Energy Neutrinos in 10.6 Years of Askaryan Radio Array Data</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.14354"/>
-<updated>2026-11-10T00:00:00Z</updated>
-<author><name>ARA Collaboration</name></author>
-<author><name>N. Alden</name></author>
-<author><name>S. Ali et al.</name></author>
-<category term="astro-ph.HE"/>
-<category term="astro-ph.IM"/>
-<summary type="text">The Askaryan Radio Array (ARA) is an in-ice radio observatory at the South Pole designed to detect ultrahigh energy (UHE) neutrinos through Askaryan emission produced by interactions of neutrinos and their secondary particles. In this paper, we present the detailed methodology of the first array-wide search for a diffuse UHE neutrino flux using data from all five ARA stations. The dataset considered represents $10.6$ years of livetime and is three times larger than previous ARA neutrino searches. This search achieves a $28\%$ analysis efficiency for a neutrino flux corresponding to the current experimental upper limits. No neutrino candidates are observed on an expected background of $0.13\pm0.01\text{ (stat.)}^{+0.05}_{-0.06}\text{ (syst.)}$ events. We set a new upper limit on the diffuse UHE neutrino flux, which is the most stringent from $50$ EeV to $1000$ EeV. We also discuss lessons learned for future searches on large radio arrays.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.14350</id>
-<title>New Constraints on the Ultrahigh Energy Neutrino Flux from the First Array-Wide Search with the Askaryan Radio Array</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.14350"/>
-<updated>2026-11-10T00:00:00Z</updated>
-<author><name>ARA Collaboration</name></author>
-<author><name>N. Alden</name></author>
-<author><name>S. Ali et al.</name></author>
-<category term="astro-ph.HE"/>
-<category term="astro-ph.IM"/>
-<summary type="text">Ultrahigh energy neutrinos ($E_ν\gtrsim 100$ PeV) are detectable through Askaryan emission---the nanosecond-scale radio impulse emitted by relativistic particle cascades in a dielectric medium. The Askaryan Radio Array (ARA), an Askaryan detector array located at the South Pole, has been taking data for more than a decade. We present the first array-wide search for diffuse ultrahigh energy neutrinos with ARA. The search found no events on an expected background of $0.13\pm0.01\text{ (stat.)}^{+0.05}_{-0.06}\text{ (syst.)}$ events. The resulting upper limit is the most stringent from $50$ EeV to $1000$ EeV and provides the first constraints on the flux reported by the KM3NeT Collaboration that are complementary to optical Cherenkov and particle detectors. This limit also constrains UHECR source models, and excludes some models with trans-GZK proton populations at the $90\%$ confidence level. This represents the largest Askaryan detector dataset ever analyzed, demonstrating the feasibility and sensitivity of searches with large detector arrays acting as a single observatory. It also underscores the high acceptance and exposure of Askaryan detector arrays to ultrahigh energy …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.13618</id>
-<title>The DIS structure functions $F_4$ and $F_5$ at NLO and their impact on $τ$-neutrino scattering</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.13618"/>
-<updated>2026-11-10T00:00:00Z</updated>
-<author><name>T. Ježo</name></author>
-<author><name>M. Klasen</name></author>
-<author><name>P. Risse et al.</name></author>
-<category term="hep-ph"/>
-<summary type="text">We present next-to-leading-order calculations of heavy-quark contributions to the deep-inelastic scattering structure functions $F_4$ and $F_5$ within the Aivazis-Collins-Olness-Tung scheme, implemented in the open-source library APFEL++ and evaluated using CT18NLO parton distribution functions. These structure functions are suppressed by lepton mass effects in light-lepton processes, but become important in $τ$-lepton and neutrino scattering at facilities such as SHiP, IceCube, and DUNE. We furthermore quantify the direct impact of $F_4$ and $F_5$ on the charged-current $τ$-neutrino cross section, for the first time presented here, showing they can suppress it by up to $-40\%$ near the kinematic boundary at low $Q^2$ and large $x$.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.13247</id>
-<title>Detectability of Seyfert galaxies in point-source and stacking searches with a global network of neutrino telescopes</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.13247"/>
-<updated>2026-11-09T00:00:00Z</updated>
-<author><name>Lena Saurenhaus</name></author>
-<author><name>Francesca Capel</name></author>
-<author><name>Foteini Oikonomou</name></author>
-<category term="astro-ph.HE"/>
-<summary type="text">Recent evidence for high-energy neutrino emission from NGC 1068 and other nearby Seyfert galaxies suggests that active galactic nuclei (AGNs) may constitute a class of astrophysical neutrino sources. Using a physically motivated neutrino emission model based on stochastic particle acceleration in magnetized AGN coronae, we investigate the detection prospects of X-ray-bright Seyfert galaxies with a detector network comprising IceCube, Baikal-GVD, KM3NeT/ARCA, and P-ONE. We find that the Circinus Galaxy is the most promising point-source target in the Southern sky and will be detected at the 5$σ$ level by 2038 at the latest, provided that the Seyfert population accounts for the diffuse astrophysical neutrino flux up to 100 TeV and Circinus is at least as efficient a neutrino emitter as the average source in the population. Individual detections of other nearby Seyferts are expected to remain challenging, making stacking searches informed by X-ray observations the most promising approach for discovering them within the next decade. Our results demonstrate that joint analyses across multiple neutrino telescopes, together with future MeV gamma-ray observations, will be essential for …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.12749</id>
-<title>A possible signature of neutrino spin precession in the J-PARC muon $g-2$ experiment</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.12749"/>
-<updated>2026-11-09T00:00:00Z</updated>
-<author><name>S. Carneiro</name></author>
-<author><name>F. C. Sobrinho</name></author>
+<id>https://arxiv.org/abs/2611.16807</id>
+<title>Solar Neutrinos at the ESSνSB experiment</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.16807"/>
+<updated>2026-11-12T00:00:00Z</updated>
+<author><name>ESSnuSB Collaboration</name></author>
+<author><name>J. Aguilar</name></author>
+<author><name>D. Barčot et al.</name></author>
 <category term="hep-ph"/>
 <category term="hep-ex"/>
-<category term="hep-th"/>
-<summary type="text">We examine a possible signature of the neutrino angular-momentum contribution to the muon magnetic anomaly measurement in the J-PARC E34 experiment. In previous papers we argued that the angular momentum carried by the unobserved neutrino pair may leave an uncertainty in the anomaly inferred from the time modulation of detected positrons. At Fermilab the highly relativistic muons make the forward-emission approximation suitable for this estimate. The lower muon momentum at J-PARC requires the decay kinematics to be treated explicitly. We integrate the longitudinal momentum of the neutrino pair using the positron energy distribution and asymmetry derived from the theoretical weak-decay spectrum, and the same event-counting weight $N(E)A(E)$ is employed for both experiments. For positron energies between $1.5$ and $2.9$ GeV at Fermilab and between $200$ and $275$ MeV at J-PARC, the proposed correction is smaller at J-PARC by $0.415\pm0.176$ ppm, when the most optimistic E34 precision is assumed. The expected difference amounts to $2.36$ standard deviations if the future measurement is centred on this value. The calculation thus identifies an experimental comparison which may test …</summary>
+<summary type="text">We investigate the sensitivity of the ESSnuSB large underground water-Cherenkov (WC) detector to two key solar neutrino signatures: the MSW spectral upturn in the $^8$B electron neutrino survival probability $P_{ee}(E_ν)$, and the first direct observation of the rare hep neutrino flux. The analysis incorporates detector systematic uncertainties (energy resolution and flux normalization) and models environmental backgrounds from cosmic-ray muon spallation and $^{222}$Rn contamination. We adopt a shape-driven analysis strategy with a floating overall normalization, so that the discovery power relies on the spectral distortion rather than on the absolute event rate. In a realistic scenario with 90% spallation rejection efficiency, informed by the Super-Kamiokande experience and recent JUNO analyses, residual spallation backgrounds prevent either signal from reaching $5σ$ significance within 20 years of exposure. For the hep flux, we present a detailed sensitivity study to both its discovery and its precision, and quantify how the required spallation veto efficiency and recoil energy threshold jointly determine the achievable significance for both signals. At the adopted thresholds …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.16715</id>
+<title>Resolving Radiogenic Heterogeneity in the Earth's Mantle with Multi-Site Geo-neutrino Measurements</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.16715"/>
+<updated>2026-11-12T00:00:00Z</updated>
+<author><name>Michael Leyton</name></author>
+<author><name>Stephen T. Dye</name></author>
+<category term="physics.geo-ph"/>
+<category term="astro-ph.EP"/>
+<category term="hep-ex"/>
+<summary type="text">We present a global fit to geo-neutrino measurements at four underground sites (Kamioka, Gran Sasso, Sudbury, Jiangmen), combining signal rates with site-specific predictions of the lithospheric contribution to constrain the quantity and distribution of radioactivity in the Earth's mantle. Assuming a uniform distribution of radioactivity in the mantle, we find a geo-neutrino rate of $S_\text{mantle} = 14.8 \pm 4.5$ NIU when the lithospheric predictions are allowed to vary within their uncertainties. This uniform mantle signal rate corresponds to radiogenic heating of $18.5 \pm 5.6$ TW. Although the uniform-mantle signal is resolved at $\sim3.2σ$, there is noticeable tension between the inferred mantle signals at Jiangmen and Kamioka, which may indicate non-uniform geo-neutrino production in the mantle. We explore six families of models to describe the heterogeneous spatial distribution of radiogenic elements in the Earth's mantle. Each model contains anomalous bodies or reservoirs carrying an excess of heat-producing elements over a depleted mantle (DM) background, with total inventory set by bulk-silicate-Earth mass balance and by a geochemical Th/U constraint. For each model, we …</summary>
 </entry>
 </feed>
