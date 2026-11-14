@@ -18,15 +18,6 @@
 <summary type="text">A non-supersymmetric $SU(5)$ grand unified model is constructed based on the non-holomorphic modular $S'_4$ flavor symmetry, supplemented by a global Peccei--Quinn $U(1)_{PQ}$ symmetry that constrains the Yukawa couplings. Constructed from polyharmonic Maaß forms, these couplings allow the model to reproduce the observed charged-fermion masses and mixing as well as the neutrino oscillation parameters for both normal ordering (NO) and inverted ordering (IO), with all Pull values satisfying $|\mathcal{P}| &lt; 0.8$. The model further yields specific predictions for yet-unmeasured parameters, including the absolute neutrino masses, the Dirac CP phase, the Majorana phases, and the effective Majorana mass $m_{ββ}$. We then study thermal leptogenesis by solving the density matrix equations. For a given benchmark point, the final baryon asymmetry depends solely on the single free parameter $b$ that sets the right-handed neutrino mass scale, and an appropriate choice of this parameter reproduces the observed value $η_B \simeq 6.12 \times 10^{-10}$. Finally, the correlation between this scale parameter and specific low-energy observables provides a potential bridge between the fermion flavor …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.10271</id>
-<title>Sensitivity to Sterile Neutrinos with Elastic Neutrino-Electron and Highly Elastic Neutrino-Nucleus Scattering in the DUNE Near Detector</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.10271"/>
-<updated>2026-11-06T00:00:00Z</updated>
-<author><name>The DUNE Collaboration</name></author>
-<category term="hep-ex"/>
-<summary type="text">The Deep Underground Neutrino Experiment (DUNE) is a next-generation neutrino experiment designed for precision measurements of long-baseline three-flavor neutrino oscillations. The DUNE Near Detector (ND) is also sensitive to short-baseline oscillations arising from mixing with an eV-scale sterile neutrino. In this paper, we present a sensitivity study for sterile-neutrino oscillations in the $3+1$ framework using three complementary event samples in the simulated DUNE ND: highly elastic $ν_μ$ charged-current (CC), highly elastic $ν_e$ CC, and neutrino-electron elastic-scattering ($ν+e$) events. These highly exclusive samples are chosen to reduce neutrino-interaction and flux uncertainties: the low-hadronic-energy CC selections enhance the correlation between reconstructed lepton energy and neutrino energy, while the precisely calculable $ν+e$ cross section provides an independent constraint on the neutrino flux. Residual interaction-model dependence remains in the CC samples. The statistical analysis considers $|U_{e4}|^2$, $|U_{\mu4}|^2$, $|U_{\tau4}|^2$, and $Δm^2$, with sensitivity results presented as fixed-$Δm^2$ slices for $|U_{\tau4}|^2=0$. The strongest sensitivity …</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2611.13629</id>
 <title>Where does the neutrino Mass Ordering preference come from?</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.13629"/>
@@ -131,19 +122,6 @@
 <summary type="text">Neutrinos may experience a new long-range force that distinguishes their flavors, mediated by an ultralight neutral boson of a new $U(1)'$ gauge symmetry and sourced by the electrons and nucleons of ordinary matter. Atmospheric neutrinos that cross the Earth would then feel a flavor-dependent potential that alters their oscillations. When the range of the force is about one Earth radius or less, this potential varies from point to point along each neutrino's path, since it comes mostly from the matter near the neutrino. Earlier limits approximated it, either as constant along the path or as following the local density of matter. We compute it exactly at every point of each path, for the Earth model of the IceCube analysis and over the distribution of heights at which the neutrinos are produced, and use it to analyze the 8-yr public IceCube DeepCore sample with the systematic uncertainties of that analysis. For mediator masses from $10^{-15}$ to $10^{-9}$ eV, where the Earth alone sources the potential, we set upper limits at 90% confidence level on the coupling of eight of 14 $U(1)'$ symmetries, those whose potential differs between $ν_μ$ and $ν_τ$. A potential held at its value …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.10465</id>
-<title>NuSTEC Review: Current Experimental and Theoretical Challenges of Neutrino-Nucleus Scattering</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.10465"/>
-<updated>2026-11-07T00:00:00Z</updated>
-<author><name>A. P. Furmanski</name></author>
-<author><name>J. G. Morfín</name></author>
-<author><name>L. Alvarez-Ruso et al.</name></author>
-<category term="hep-ex"/>
-<category term="hep-ph"/>
-<category term="nucl-ex"/>
-<summary type="text">The precise measurement of neutrino properties is among the highest priorities in fundamental particle physics, involving many experimental and theoretical efforts worldwide. Since the experiments rely on the interactions of neutrinos in the nuclear environment, the planned advances in the scope and precision of these experiments require a commensurate effort in understanding and modeling the hadronic and nuclear physics of these interactions, as incorporated in neutrino event generators. This modeling is essential to every phase of the experimental analyses, and the theoretical uncertainties play an important role in interpreting experimental results. In this Review of current challenges, we summarize the open questions in neutrino-nucleus interactions at GeV-scale energies, and discuss in detail the potential impacts of these unknowns on the measurement of neutrino properties, using the determination of oscillation parameters as a central example. After an Executive Summary and a concise Overview of the issues, we address how the neutrino event generators treat these challenges, how electron-nucleus interactions can help understanding these challenges and the important …</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2611.14616</id>
 <title>$N_{\mathrm{eff}}$, Radiative Dirac Neutrinos, and Flavor Physics from Leptoquarks</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.14616"/>
@@ -153,16 +131,6 @@
 <author><name>Vítor Pereira et al.</name></author>
 <category term="hep-ph"/>
 <summary type="text">Leptoquarks provide a common framework for addressing flavor anomalies, rare meson decays, and neutrino-mass generation. We study a model with two mixed scalar leptoquarks and three right-handed neutrinos that generates radiative Dirac neutrino masses and contributes to $B^+\to K^+ν\barν$, charged-lepton flavor violation, and the effective number of relativistic species. We show that the model can accommodate the Belle~II measurement of $B^+\to K^+ν\barν$ while satisfying the $μ\to eγ$ bound and the cosmological constraint on $ΔN_{\mathrm{eff}}$. When both leptoquark masses exceed approximately $12$--$14\,\mathrm{TeV}$, the new contribution to the $B$-meson decay becomes too small, and the prediction approaches the SM value, which lies below the Belle~II measurement. Interestingly, the lower bounds on the leptoquark mass scale derived from $N_{\mathrm{eff}}$ can be stronger than those from direct collider searches.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.09478</id>
-<title>An interrelation of three neutrino mixing angles</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.09478"/>
-<updated>2026-11-06T00:00:00Z</updated>
-<author><name>Zhi-zhong Xing</name></author>
-<category term="hep-ph"/>
-<category term="hep-ex"/>
-<summary type="text">We conjecture a novel interrelation of three neutrino mixing angles: $θ^{}_{23} = \left(θ^{}_{12} + θ^{}_{13}\right)/2 + π/8$, which predicts $θ^{}_{23} = 43.46^{+0.51^\circ}_{-0.52^\circ}$ with inputs of the latest JUNO and Daya Bay precision data. A simple ansatz is proposed to derive this phenomenologically favored and experimentally testable angle relation, and present a new expansion of the lepton flavor mixing matrix in powers of a single small parameter as a by-product.</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.16807</id>
@@ -187,5 +155,41 @@
 <category term="astro-ph.EP"/>
 <category term="hep-ex"/>
 <summary type="text">We present a global fit to geo-neutrino measurements at four underground sites (Kamioka, Gran Sasso, Sudbury, Jiangmen), combining signal rates with site-specific predictions of the lithospheric contribution to constrain the quantity and distribution of radioactivity in the Earth's mantle. Assuming a uniform distribution of radioactivity in the mantle, we find a geo-neutrino rate of $S_\text{mantle} = 14.8 \pm 4.5$ NIU when the lithospheric predictions are allowed to vary within their uncertainties. This uniform mantle signal rate corresponds to radiogenic heating of $18.5 \pm 5.6$ TW. Although the uniform-mantle signal is resolved at $\sim3.2σ$, there is noticeable tension between the inferred mantle signals at Jiangmen and Kamioka, which may indicate non-uniform geo-neutrino production in the mantle. We explore six families of models to describe the heterogeneous spatial distribution of radiogenic elements in the Earth's mantle. Each model contains anomalous bodies or reservoirs carrying an excess of heat-producing elements over a depleted mantle (DM) background, with total inventory set by bulk-silicate-Earth mass balance and by a geochemical Th/U constraint. For each model, we …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.15821</id>
+<title>Search for gravitational wave coincident neutrinos in DEAP-3600</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.15821"/>
+<updated>2026-11-11T00:00:00Z</updated>
+<author><name>P. Adhikari</name></author>
+<author><name>P. -A. Amaudruz</name></author>
+<author><name>D. J. Auty et al.</name></author>
+<category term="astro-ph.HE"/>
+<category term="hep-ex"/>
+<summary type="text">We searched DEAP-3600 data for neutrino signals coincident with gravitational waves from compact object mergers observed by the LIGO, Virgo, and KAGRA collaborations (LVK). While mergers involving neutron stars are expected to produce neutrinos, these have never been detected. The DEAP-3600 experiment is sensitive to electron neutrinos as recently observed through charged current neutrino absorption on its $^{40}$Ar target. Between 2016 and 2020, the detector recorded data during seven compact merger events involving neutron stars that were observed gravitationally by LVK. Upon examination, there is no statistically significant evidence of neutrinos from any of the mergers analyzed. Exclusion limits are set on the electron neutrino fluence, e.g. from GW170817 in the mono-energetic model at $6.8\times10^{12}~\text{cm$^{-2}$}$ ($1.8\times10^{10}~\text{cm$^{-2}$}$) for 10 MeV (100 MeV) neutrinos.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.14902</id>
+<title>Revisiting the Neutrino Emission and Physical Parameter Constraints from Time-Resolved Spectra of Gamma-Ray Bursts</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.14902"/>
+<updated>2026-11-11T00:00:00Z</updated>
+<author><name>Yang-Dong-Jun Ou</name></author>
+<author><name>Hou-Jun Lü</name></author>
+<author><name>Hao-Yu Yuan et al.</name></author>
+<category term="astro-ph.HE"/>
+<summary type="text">The non-detection of neutrinos associated with gamma-ray bursts (GRBs) has placed significant constraints on the physical parameter space of GRB jet models. However, most of these constraints have been derived using the time-integrated spectra. In this paper, we adopt time-resolved spectra, which provide a more detailed description of the prompt emission spectral structure, to calculate the neutrino emission, and investigate how they affect the constraints on GRB physical parameters. By selecting three GRBs (i.e., GRBs 090902B, 110721A and 080916C) whose spectra are composed of different components (e.g., thermal, thermal + non-thermal, and non-thermal), we find that the expected neutrino event numbers from the summed time-resolved spectra are lower than those from the time-integrated approach in the region of relatively low dissipation radius $R$ and bulk Lorentz factor $Γ$, while the opposite trend is found at high $R$ and high $Γ$. Moreover, we also use GECAM-C data to calculate the neutrino emission of the brightest GRB 221009A, and find that the expected number of neutrino events calculated from the summed time-resolved spectra is approximately three times that from the …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.14624</id>
+<title>New Physics in Ultra-High-Energy Neutrino Flavor</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.14624"/>
+<updated>2026-11-10T00:00:00Z</updated>
+<author><name>Samiur R. Mir</name></author>
+<author><name>Carlos A. Argüelles</name></author>
+<author><name>Vedran Brdar</name></author>
+<category term="hep-ph"/>
+<category term="astro-ph.HE"/>
+<category term="hep-ex"/>
+<summary type="text">Neutrino flavor measurements test physics beyond the Standard Model that modifies neutrino production, propagation, or detection. IceCube has measured the flavor composition of the astrophysical neutrino flux up to PeV energies. Next-generation experiments will extend flavor measurements to the ultra-high-energy (UHE) regime, $100\,\mathrm{PeV}$-$10\,\mathrm{EeV}$, by combining in-ice radio detection with Earth-skimming tau neutrinos. We present the first study of the new-physics reach of these projected UHE flavor measurements. We take Lorentz invariance violation (LIV) as a benchmark, since its effects grow as a power of the neutrino energy. We find that UHE flavor ratios will be the most sensitive probe of LIV for operators of dimension four and higher, improving on current bounds from all sectors by up to twenty orders of magnitude. Three-flavor observables improve this sensitivity by up to an order of magnitude over Earth-skimming tau neutrinos alone.</summary>
 </entry>
 </feed>
