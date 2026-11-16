@@ -5,191 +5,86 @@
 <subtitle>Neutrino preprints ranked by relevance, rebuilt every morning. Selected by keyword score; no model involved.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/digest.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/digest.atom"/>
-<updated>2026-11-12T00:00:00Z</updated>
+<updated>2026-11-16T00:00:00Z</updated>
 <author><name>global-nu.org, Bari group</name></author>
 <entry>
-<id>https://arxiv.org/abs/2611.11241</id>
-<title>An $SU(5)$ GUT with non-holomorphic modular $S'_4$ symmetry: fermion masses, mixing and leptogenesis</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.11241"/>
-<updated>2026-11-08T00:00:00Z</updated>
-<author><name>Xianshuo Zhang</name></author>
-<author><name>Yakefu Reyimuaji</name></author>
-<category term="hep-ph"/>
-<summary type="text">A non-supersymmetric $SU(5)$ grand unified model is constructed based on the non-holomorphic modular $S'_4$ flavor symmetry, supplemented by a global Peccei--Quinn $U(1)_{PQ}$ symmetry that constrains the Yukawa couplings. Constructed from polyharmonic Maaß forms, these couplings allow the model to reproduce the observed charged-fermion masses and mixing as well as the neutrino oscillation parameters for both normal ordering (NO) and inverted ordering (IO), with all Pull values satisfying $|\mathcal{P}| &lt; 0.8$. The model further yields specific predictions for yet-unmeasured parameters, including the absolute neutrino masses, the Dirac CP phase, the Majorana phases, and the effective Majorana mass $m_{ββ}$. We then study thermal leptogenesis by solving the density matrix equations. For a given benchmark point, the final baryon asymmetry depends solely on the single free parameter $b$ that sets the right-handed neutrino mass scale, and an appropriate choice of this parameter reproduces the observed value $η_B \simeq 6.12 \times 10^{-10}$. Finally, the correlation between this scale parameter and specific low-energy observables provides a potential bridge between the fermion flavor …</summary>
+<id>https://arxiv.org/abs/2611.17348</id>
+<title>Topology-based fast neutron background suppression and sterile-neutrino sensitivity in a segmented reactor ${\overline{\nu}}_{e}$ detector</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.17348"/>
+<updated>2026-11-16T00:00:00Z</updated>
+<author><name>Roni Dey</name></author>
+<category term="physics.ins-det"/>
+<category term="nucl-ex"/>
+<summary type="text">Reactor electron antineutrinos are commonly detected through the inverse beta decay interaction, with a prompt positron followed by delayed neutron capture. In shallow or above-ground segmented organic scintillator detectors, correlated fast neutrons are a dominant background because proton recoils can mimic the prompt IBD signal. We study topology-based machine learning using the Indian Scintillator Matrix for Reactor Anti-Neutrinos detector as a case study. A multilayer perceptron is trained on reconstructed topological observables from detailed Geant4 simulations. The $\mathrm{F_{1}}$ score and bootstrap resampling on an independent validation sample yield a fixed threshold of $P{\mathrm{IBD}}&gt;0.40$. Applied without further optimization to an independent testing sample, the MLP retains $\mathrm{(83.4\pm 0.7)\%}$ of IBD events and rejects $\mathrm{(77.3\pm 0.7)\%}$ of fast neutron events. In a controlled spectral benchmark using an independent AmBe fast neutron spectrum, the selection reduces the net candidate-spectrum deformation by $\mathrm{84\%}$. The energy dependent signal acceptance and residual fast neutron component are subsequently incorporated into a binned likelihood …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.13629</id>
-<title>Where does the neutrino Mass Ordering preference come from?</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.13629"/>
-<updated>2026-11-10T00:00:00Z</updated>
-<author><name>Pedro A. N. Machado</name></author>
-<author><name>João Paulo Pinheiro</name></author>
+<id>https://arxiv.org/abs/2611.17922</id>
+<title>Improved Bounds on the Dark Matter-Neutrino Cross Section using LSBGs</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.17922"/>
+<updated>2026-11-16T00:00:00Z</updated>
+<author><name>Akari Suezaki</name></author>
+<author><name>Shunsaku Horiuchi</name></author>
 <category term="hep-ph"/>
-<summary type="text">After the recent JUNO result, the comparison of the effective mass splittings measured in $\barν_e$ disappearance at reactors and in $ν_μ$ disappearance has become one of the leading handles on the neutrino mass ordering. In this paper, we study which data sets drive the present preference for the ordering, combining JUNO and Daya Bay with $ν_μ$ disappearance data from NOvA, T2K, MINOS, and IceCube/DeepCore. While the combination disfavors the inverted ordering at $1.9σ$, this preference comes from a balance between several small preferences. In particular, the combinations of reactor data with T2K or with NOvA point to opposite orderings. The values of the mass splitting preferred by these two experiments differ by about $3.5\%$, comparable to the difference expected between the two orderings, and thus a shift of this size in a single experiment is enough to reverse the preference. Moreover, in the context of this combination of reactor and $ν_μ$ disappearance data, further JUNO data would not bring the rejection of the inverted ordering beyond about $3σ$, as the comparison is then limited by the precision of the $ν_μ$ disappearance experiment. Improving the $ν_μ$ disappearance …</summary>
+<category term="astro-ph.GA"/>
+<summary type="text">We derive new constraints on the interaction cross section between dark matter and neutrinos ($\sigma_{\nu\chi}$) that improve upon existing limits. We adopt a mechanism where neutrinos emitted from core-collapse supernovae transfer their energy to the dark matter halo via elastic scattering, transitioning a centrally cusped profile to a flat-cored profile. We apply this mechanism to Low Surface Brightness Galaxies (LSBGs), which are characterized by their relatively large sizes, low stellar densities, and measurements of dark matter cores. We improve upon previous methods so that each dark matter particle is counted at most once, which weakens existing limits, e.g., from the Fornax dSph by a factor of $\sim 50$. Applying our new method to LSBGs, we derive an upper limit of $\sigma_{\nu\chi}&lt; 8.5 \times 10^{-25}\,\rm cm^2$ for a dark matter mass of $m_\chi =1\,\rm GeV$ at a typical supernova neutrino energy of $E_\nu=15\,\rm MeV$. This constraint is approximately three orders of magnitude stronger than the Fornax limit derived with the same method and slightly stronger than the bound from the dark matter diffused supernova neutrino background (DMDSNB).</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.16709</id>
-<title>Residual Entanglement vs. Residual Coherence: A Wave Packet Approach in Neutrino Oscillation with Matter</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.16709"/>
-<updated>2026-11-12T00:00:00Z</updated>
-<author><name>Lekhashri Konwar</name></author>
-<author><name>Abhishek Kumar Jha</name></author>
-<author><name>Bhavna Yadav</name></author>
-<category term="hep-ph"/>
-<category term="quant-ph"/>
-<summary type="text">In this work, we investigate quantum correlations in three-flavor neutrino oscillations beyond the standard plane-wave (PW) description by employing a wave-packet formalism in the presence of constant matter density. We study three quantum correlation measures, namely the residual $l_1$-norm coherence, Concurrence Fill, and Three-$π$ entanglement, and express them in terms of transition probabilities for an initial muon-flavor state. The analysis is performed for the DUNE setup and extended beyond its baseline to study the interplay between wave-packet decoherence and matter effects over long distances. For the DUNE baseline, finite wave-packet widths suppress and smooth the oscillations relative to the PW case, with smaller widths causing stronger damping, while matter effects modify the amplitudes and positions of the oscillation features. Among the considered measures, residual $l_1$-norm coherence dominates over the entanglement measures. At very long propagation distances, wave-packet decoherence progressively washes out the oscillatory behavior, driving the oscillation probabilities and quantum correlation measures toward averaged values, with smaller wave-packet widths …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.12335</id>
-<title>Reabsorbed Urca neutrinos suppress bulk-viscous damping of neutron star merger oscillations</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.12335"/>
-<updated>2026-11-09T00:00:00Z</updated>
-<author><name>Prashant Thakur</name></author>
-<author><name>Yeunhwan Lim</name></author>
-<category term="nucl-th"/>
+<id>https://arxiv.org/abs/2611.17651</id>
+<title>$^8$B Solar Neutrino Measurements of Solar Core Size and Temperature from 5805 Days of Super-Kamiokande</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.17651"/>
+<updated>2026-11-16T00:00:00Z</updated>
+<author><name>Kamiokande Collaboration</name></author>
+<author><name>Y. Jiang</name></author>
+<author><name>K. Abe et al.</name></author>
+<category term="hep-ex"/>
 <category term="astro-ph.HE"/>
-<category term="gr-qc"/>
-<summary type="text">Reabsorption of Urca neutrinos suppresses the bulk-viscous damping predicted for neutron star merger oscillations. Below the direct-Urca threshold the capture neutrinos have mean energies of 19-46 MeV and are absorbed within metres. An energy-resolved kinetic treatment gives 2.7 s for a 1-kHz, 10-km oscillation at nuclear density and 4 MeV, against 19 ms for freely escaping neutrinos. It holds across the sampled states, three equations of state and the rate variations, with nearly frozen composition. This absorption is present in full-kinematics rates and absent from elastic opacity tables.</summary>
+<category term="astro-ph.SR"/>
+<summary type="text">The detection of solar neutrino provides direct evidence for on-going fusion in the core of the Sun and serve as a probe for that solar core. Production rate of $^8$B is sensitive to the solar core temperature. Adiabatic flavor conversion of $^8$B solar neutrinos depends on the local solar electron density. Combined with the roughly exponential decrease in solar electron density with increasing distance from the center of the solar sphere, the solar core size, density, and temperature are inferred. This article presents an outer bound on solar core size and measurements of the density and temperature in the solar core based on Super-Kamiokande phase I-IV solar neutrino data. An outer bound is set for the solar core at $90\%$ confidence level as $0.499R_\odot$ for the high metallicity B16+GS98 Standard Solar Model and $0.381R_\odot$ for K2-A09-MZvar-12 which includes protosolar accretion. A combined fit with the SNO polynomial coefficients improves the limit to $0.268R_\odot$ for B16+GS98 and $0.215R_\odot$ for K2-A09-MZvar-12. Results for other metallicity cases are also reported. In the high metallicity scenario assuming nominal solar core density and solar core size, temperature …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.16604</id>
-<title>Extended $SO(10)$-inspired leptogenesis</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.16604"/>
-<updated>2026-11-12T00:00:00Z</updated>
-<author><name>Pasquale Di Bari</name></author>
-<author><name>Xubin Hu</name></author>
-<category term="hep-ph"/>
-<summary type="text">We consider seesaw models with hierarchical Dirac neutrino masses. We show that, barring well known fine-tuned crossing level solutions and given current low energy neutrino experimental data, these always lead to a very hierarchical heavy neutrino spectrum. If the Dirac neutrino masses are assumed not to significantly differ from the up-quark masses, then the intermediate seesaw neutrino ($N_2$) mass falls in the correct range for its decays to explain the matter-antimatter asymmetry of the universe via ($N_2$-)leptogenesis, while the lightest seesaw neutrino decays give a negligible contribution. We show that these conclusions are valid independently of any additional condition on the Dirac neutrino mass matrix. In this way we extend the usual $SO(10)$-inspired leptogenesis scenario, assuming the mismatch between neutrino and charged lepton Dirac mass matrices at the level of the CKM matrix. We find that solutions for inverted ordered neutrino masses become viable. We still find a lower bound on the lightest neutrino mass, $m_1 \gtrsim 10^{-5}\,{\rm eV}$, but this is relaxed by two orders of magnitude. We also consider the special subset of solutions realising strong thermal …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.11474</id>
-<title>Machine learning assisted $ν/\barν$ discrimination in atmospheric neutrino events for CPV sensitivity in a 20-kton liquid scintillator detector</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.11474"/>
-<updated>2026-11-08T00:00:00Z</updated>
-<author><name>Dek Hao Liew</name></author>
-<author><name>Mohammad Nizam</name></author>
-<author><name>Shu Tian Eu et al.</name></author>
-<category term="hep-ex"/>
-<category term="hep-ph"/>
-<summary type="text">Atmospheric neutrinos span a broad range of energies and baselines, offering a complementary probe of leptonic CP violation. However, a JUNO-like liquid scintillator detector without a magnetic field cannot directly separate neutrino and antineutrino interactions, reducing CP violation sensitivity. This study investigates whether machine learning based statistical separation can improve CP violation sensitivity in a 20-kton detector. $ν_μ$ and $ν_e$ charged current events are generated with GENIE (using Honda flux) in a JUNO-like detector geometry and are reweighted using OscProb three flavor oscillation probabilities incorporating Earth matter effects and NuFIT parameters. Detector response is approximated by smearing lepton and hadronic energies, neutrino direction, and neutron multiplicity. Logistic regression, XGBoost, and multilayer perceptron (MLP) classifiers are trained on inelasticity, neutron multiplicity, and charged lepton energy, with XGBoost selected for the analysis. CP violation sensitivity is evaluated for a 200 kton-year exposure using a Poisson likelihood with systematic nuisance parameters and marginalization over five oscillation parameters within their …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.13617</id>
-<title>Self-interacting dark matter and neutrino masses from MeV-scale lepton-number breaking</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.13617"/>
-<updated>2026-11-10T00:00:00Z</updated>
-<author><name>Manoranjan Dutta</name></author>
-<category term="hep-ph"/>
-<category term="astro-ph.CO"/>
-<summary type="text">We show that a scalar whose vacuum expectation value (vev) breaks lepton number at the MeV scale, generating the light-neutrino masses through the inverse seesaw, can also serve as the light mediator of self-interacting dark matter. Dark matter is a pseudo-Dirac fermion whose mass splitting arises from the same vev and is predicted to be proportional to the self-interaction coupling times the vev. A strong central interaction between the dark states requires this splitting to be sizable. The CP-even mediator decays into neutrinos at a rate fixed by the neutrino masses, independent of its mixing with the Higgs boson. Fixing the coupling by the relic abundance and evaluating exact partial-wave cross sections, the model reproduces the velocity dependence of the self-interaction cross section inferred from dwarf galaxies to clusters along a narrow band, $m_s\simeq1.9~{\rm MeV}\times(m_χ/{\rm GeV})$, extending up to $m_χ\simeq12$~GeV with a best fit at $m_χ\simeq7.6$~GeV and $m_s\simeq15$~MeV, and on a sequence of resonant islands of comparable fit quality at higher masses. The cluster data bound the dark matter mass from above, so that the allowed masses extend from about $3$ to …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.14584</id>
-<title>A Positive Turn: Coupled Quintessence and Cosmological Neutrino Masses</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.14584"/>
-<updated>2026-11-10T00:00:00Z</updated>
-<author><name>Tian-Nuo Li</name></author>
-<author><name>William Giarè</name></author>
-<author><name>Guo-Hong Du et al.</name></author>
-<category term="astro-ph.CO"/>
-<category term="gr-qc"/>
-<category term="hep-ph"/>
-<summary type="text">In $Λ$CDM, the CMB and DESI BAO upper limits on the total neutrino mass are in tension with the lower bounds from oscillation experiments, and analyses allowing negative effective masses favor negative values. We investigate whether a coupled quintessence (CQ) model in which dark matter interacts with a canonical scalar field $φ$ through an exponential mass coupling $m_{\rm c}(φ)\propto e^{-βφ/M_{\rm Pl}}$ can alleviate this tension. Combining CMB, DESI, and supernova data, we find that CQ yields neutrino-mass constraints comparable to those obtained in CPL and consistent with oscillation experiments within $2σ$ for normal ordering, without requiring the scalar-field equation of state to cross the phantom divide. We further show that it alleviates the tension more effectively than alternative interacting dark energy models that instead favor more negative effective masses. This comparison shows that whether dark sector interactions can relax neutrino mass bounds ultimately depends on the interplay of their effects on primary CMB anisotropies, geometry, growth, and lensing.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.11351</id>
-<title>The Fate of Collisional Neutrino Flavor Conversion: Fixed Points, Period Doubling, and Chaos</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.11351"/>
-<updated>2026-11-08T00:00:00Z</updated>
-<author><name>Jiabao Liu</name></author>
-<author><name>Lucas Johns</name></author>
-<author><name>Hiroki Nagakura</name></author>
-<category term="astro-ph.HE"/>
-<category term="hep-ph"/>
-<category term="hep-th"/>
-<summary type="text">Core-collapse supernovae and neutron star mergers are among the most energetic astrophysical events and promising sources of multimessenger signals. Their dynamics and nucleosynthesis depend sensitively on neutrino transport, yet the impact of neutrino flavor evolution in these dense environments remains poorly understood. Predicting the outcome of collisional flavor instability (CFI) remains a challenge, despite progress in local-relaxation methods for fast flavor conversion. Here we construct homogeneous collective-precession states with stationary flavor populations in two-flavor quantum kinetics with collisional relaxation. The method applies to arbitrary energy spectra and energy-dependent collision rates. Our numerical examples exhibit persistent oscillations and a period-doubling route to chaos. Even in these regimes, the stationary populations estimate the time-averaged flavor populations to within $10\%$ in our tests. These fixed points provide a physically motivated input for incorporating CFI into astrophysical simulations, with implications for neutrino heating and ejecta nucleosynthesis.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.14642</id>
-<title>Earth-sized tests of long-range neutrino interactions</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.14642"/>
-<updated>2026-11-10T00:00:00Z</updated>
-<author><name>Dyer F. Cardenas</name></author>
-<author><name>Mauricio Bustamante</name></author>
-<category term="hep-ph"/>
-<category term="hep-ex"/>
-<category term="hep-th"/>
-<summary type="text">Neutrinos may experience a new long-range force that distinguishes their flavors, mediated by an ultralight neutral boson of a new $U(1)'$ gauge symmetry and sourced by the electrons and nucleons of ordinary matter. Atmospheric neutrinos that cross the Earth would then feel a flavor-dependent potential that alters their oscillations. When the range of the force is about one Earth radius or less, this potential varies from point to point along each neutrino's path, since it comes mostly from the matter near the neutrino. Earlier limits approximated it, either as constant along the path or as following the local density of matter. We compute it exactly at every point of each path, for the Earth model of the IceCube analysis and over the distribution of heights at which the neutrinos are produced, and use it to analyze the 8-yr public IceCube DeepCore sample with the systematic uncertainties of that analysis. For mediator masses from $10^{-15}$ to $10^{-9}$ eV, where the Earth alone sources the potential, we set upper limits at 90% confidence level on the coupling of eight of 14 $U(1)'$ symmetries, those whose potential differs between $ν_μ$ and $ν_τ$. A potential held at its value …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.14616</id>
-<title>$N_{\mathrm{eff}}$, Radiative Dirac Neutrinos, and Flavor Physics from Leptoquarks</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.14616"/>
-<updated>2026-11-10T00:00:00Z</updated>
-<author><name>Patricio Escalona</name></author>
-<author><name>Guillermo Gambini</name></author>
-<author><name>Vítor Pereira et al.</name></author>
-<category term="hep-ph"/>
-<summary type="text">Leptoquarks provide a common framework for addressing flavor anomalies, rare meson decays, and neutrino-mass generation. We study a model with two mixed scalar leptoquarks and three right-handed neutrinos that generates radiative Dirac neutrino masses and contributes to $B^+\to K^+ν\barν$, charged-lepton flavor violation, and the effective number of relativistic species. We show that the model can accommodate the Belle~II measurement of $B^+\to K^+ν\barν$ while satisfying the $μ\to eγ$ bound and the cosmological constraint on $ΔN_{\mathrm{eff}}$. When both leptoquark masses exceed approximately $12$--$14\,\mathrm{TeV}$, the new contribution to the $B$-meson decay becomes too small, and the prediction approaches the SM value, which lies below the Belle~II measurement. Interestingly, the lower bounds on the leptoquark mass scale derived from $N_{\mathrm{eff}}$ can be stronger than those from direct collider searches.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.16807</id>
-<title>Solar Neutrinos at the ESSνSB experiment</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.16807"/>
-<updated>2026-11-12T00:00:00Z</updated>
-<author><name>ESSnuSB Collaboration</name></author>
-<author><name>J. Aguilar</name></author>
-<author><name>D. Barčot et al.</name></author>
-<category term="hep-ph"/>
-<category term="hep-ex"/>
-<summary type="text">We investigate the sensitivity of the ESSnuSB large underground water-Cherenkov (WC) detector to two key solar neutrino signatures: the MSW spectral upturn in the $^8$B electron neutrino survival probability $P_{ee}(E_ν)$, and the first direct observation of the rare hep neutrino flux. The analysis incorporates detector systematic uncertainties (energy resolution and flux normalization) and models environmental backgrounds from cosmic-ray muon spallation and $^{222}$Rn contamination. We adopt a shape-driven analysis strategy with a floating overall normalization, so that the discovery power relies on the spectral distortion rather than on the absolute event rate. In a realistic scenario with 90% spallation rejection efficiency, informed by the Super-Kamiokande experience and recent JUNO analyses, residual spallation backgrounds prevent either signal from reaching $5σ$ significance within 20 years of exposure. For the hep flux, we present a detailed sensitivity study to both its discovery and its precision, and quantify how the required spallation veto efficiency and recoil energy threshold jointly determine the achievable significance for both signals. At the adopted thresholds …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.16715</id>
-<title>Resolving Radiogenic Heterogeneity in the Earth's Mantle with Multi-Site Geo-neutrino Measurements</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.16715"/>
-<updated>2026-11-12T00:00:00Z</updated>
-<author><name>Michael Leyton</name></author>
-<author><name>Stephen T. Dye</name></author>
-<category term="physics.geo-ph"/>
-<category term="astro-ph.EP"/>
-<category term="hep-ex"/>
-<summary type="text">We present a global fit to geo-neutrino measurements at four underground sites (Kamioka, Gran Sasso, Sudbury, Jiangmen), combining signal rates with site-specific predictions of the lithospheric contribution to constrain the quantity and distribution of radioactivity in the Earth's mantle. Assuming a uniform distribution of radioactivity in the mantle, we find a geo-neutrino rate of $S_\text{mantle} = 14.8 \pm 4.5$ NIU when the lithospheric predictions are allowed to vary within their uncertainties. This uniform mantle signal rate corresponds to radiogenic heating of $18.5 \pm 5.6$ TW. Although the uniform-mantle signal is resolved at $\sim3.2σ$, there is noticeable tension between the inferred mantle signals at Jiangmen and Kamioka, which may indicate non-uniform geo-neutrino production in the mantle. We explore six families of models to describe the heterogeneous spatial distribution of radiogenic elements in the Earth's mantle. Each model contains anomalous bodies or reservoirs carrying an excess of heat-producing elements over a depleted mantle (DM) background, with total inventory set by bulk-silicate-Earth mass balance and by a geochemical Th/U constraint. For each model, we …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.15821</id>
-<title>Search for gravitational wave coincident neutrinos in DEAP-3600</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.15821"/>
-<updated>2026-11-11T00:00:00Z</updated>
-<author><name>P. Adhikari</name></author>
-<author><name>P. -A. Amaudruz</name></author>
-<author><name>D. J. Auty et al.</name></author>
-<category term="astro-ph.HE"/>
-<category term="hep-ex"/>
-<summary type="text">We searched DEAP-3600 data for neutrino signals coincident with gravitational waves from compact object mergers observed by the LIGO, Virgo, and KAGRA collaborations (LVK). While mergers involving neutron stars are expected to produce neutrinos, these have never been detected. The DEAP-3600 experiment is sensitive to electron neutrinos as recently observed through charged current neutrino absorption on its $^{40}$Ar target. Between 2016 and 2020, the detector recorded data during seven compact merger events involving neutron stars that were observed gravitationally by LVK. Upon examination, there is no statistically significant evidence of neutrinos from any of the mergers analyzed. Exclusion limits are set on the electron neutrino fluence, e.g. from GW170817 in the mono-energetic model at $6.8\times10^{12}~\text{cm$^{-2}$}$ ($1.8\times10^{10}~\text{cm$^{-2}$}$) for 10 MeV (100 MeV) neutrinos.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.14902</id>
-<title>Revisiting the Neutrino Emission and Physical Parameter Constraints from Time-Resolved Spectra of Gamma-Ray Bursts</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.14902"/>
-<updated>2026-11-11T00:00:00Z</updated>
-<author><name>Yang-Dong-Jun Ou</name></author>
-<author><name>Hou-Jun Lü</name></author>
-<author><name>Hao-Yu Yuan et al.</name></author>
-<category term="astro-ph.HE"/>
-<summary type="text">The non-detection of neutrinos associated with gamma-ray bursts (GRBs) has placed significant constraints on the physical parameter space of GRB jet models. However, most of these constraints have been derived using the time-integrated spectra. In this paper, we adopt time-resolved spectra, which provide a more detailed description of the prompt emission spectral structure, to calculate the neutrino emission, and investigate how they affect the constraints on GRB physical parameters. By selecting three GRBs (i.e., GRBs 090902B, 110721A and 080916C) whose spectra are composed of different components (e.g., thermal, thermal + non-thermal, and non-thermal), we find that the expected neutrino event numbers from the summed time-resolved spectra are lower than those from the time-integrated approach in the region of relatively low dissipation radius $R$ and bulk Lorentz factor $Γ$, while the opposite trend is found at high $R$ and high $Γ$. Moreover, we also use GECAM-C data to calculate the neutrino emission of the brightest GRB 221009A, and find that the expected number of neutrino events calculated from the summed time-resolved spectra is approximately three times that from the …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.14624</id>
-<title>New Physics in Ultra-High-Energy Neutrino Flavor</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.14624"/>
-<updated>2026-11-10T00:00:00Z</updated>
-<author><name>Samiur R. Mir</name></author>
-<author><name>Carlos A. Argüelles</name></author>
-<author><name>Vedran Brdar</name></author>
+<id>https://arxiv.org/abs/2611.17604</id>
+<title>Resonant Trapping of Neutrinophilic Dark Matter in Supernovae</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.17604"/>
+<updated>2026-11-16T00:00:00Z</updated>
+<author><name>Christopher V. Cappiello</name></author>
+<author><name>P. S. Bhupal Dev</name></author>
+<author><name>Amol V. Patwardhan</name></author>
 <category term="hep-ph"/>
 <category term="astro-ph.HE"/>
+<summary type="text">Supernova cooling provides some of the strongest constraints on light particles beyond the Standard Model, including sub-GeV dark matter (DM). While sufficiently large couplings to the Standard Model sector can trap these particles inside the supernova or cause them to decay before escaping, there typically exists an intermediate range of couplings in which their efficient production and subsequent escape lead to excessive energy loss, resulting in stringent constraints on new light particles. In this work, we demonstrate for the first time that, for certain types of DM-neutrino interactions, resonantly enhanced $s$-channel scattering with neutrinos can efficiently trap DM inside the supernova and can fundamentally alter the conventional supernova cooling constraints. In particular, we show that for mediator masses comparable to the supernova core temperature, this resonant scattering can prevent a substantial fraction of the produced DM from freely escaping, thereby significantly weakening, or even evading, the usual supernova cooling constraints on such models.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.18060</id>
+<title>Probing Dirac Heavy Neutral Leptons through EFT-Induced Meson Decays</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.18060"/>
+<updated>2026-11-16T00:00:00Z</updated>
+<author><name>Sai Gade</name></author>
+<author><name>Sanjoy Mandal</name></author>
+<author><name>Manimala Mitra et al.</name></author>
+<category term="hep-ph"/>
+<summary type="text">We investigate dimension-six operators involving pairs of Dirac-type heavy neutral leptons (HNLs) at beam-dump and far-forward experiments. In the $\nu$SMEFT framework, lepton-number-conserving four-fermion operators couple HNL pairs to quarks and induce two and three-body charm and bottom meson decays. We study the $c\to u$, $b\to d$, and $b\to s$ transitions at FASER2, FACET, SHiP, and two FPF@FCC configurations. HNL production depends on the cut-off scale $\Lambda$, while the lifetime depends on the active-sterile mixing $|V_{eN}|^2$. Sizable production can therefore coexist with the small mixing needed for HNLs to reach distant detectors. We project sensitivities in the $(M_N,|V_{eN}|^2)$ and $(M_N,\Lambda)$ planes, accounting for two and three-body decays and constraints from invisible and semivisible meson decays. SHiP is particularly sensitive to $c\to u$, while the larger FCC-LLP2 configuration probes $b\to d, s$. We find that EFT-induced pair production extends long-lived HNL searches to very small mixing and complements other probes of the $\nu$SMEFT heavy-neutrino sector.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.17389</id>
+<title>Construction and Commissioning of the Warwick TPC Platform</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.17389"/>
+<updated>2026-11-16T00:00:00Z</updated>
+<author><name>Matthew Snape</name></author>
+<author><name>Hong-Kai Tan</name></author>
+<author><name>Gary Barker et al.</name></author>
+<category term="physics.ins-det"/>
 <category term="hep-ex"/>
-<summary type="text">Neutrino flavor measurements test physics beyond the Standard Model that modifies neutrino production, propagation, or detection. IceCube has measured the flavor composition of the astrophysical neutrino flux up to PeV energies. Next-generation experiments will extend flavor measurements to the ultra-high-energy (UHE) regime, $100\,\mathrm{PeV}$-$10\,\mathrm{EeV}$, by combining in-ice radio detection with Earth-skimming tau neutrinos. We present the first study of the new-physics reach of these projected UHE flavor measurements. We take Lorentz invariance violation (LIV) as a benchmark, since its effects grow as a power of the neutrino energy. We find that UHE flavor ratios will be the most sensitive probe of LIV for operators of dimension four and higher, improving on current bounds from all sectors by up to twenty orders of magnitude. Three-flavor observables improve this sensitivity by up to an order of magnitude over Earth-skimming tau neutrinos alone.</summary>
+<category term="nucl-ex"/>
+<summary type="text">Active-target gas time projection chambers (TPCs) could provide the ultimate measurements of neutrino interactions needed for future neutrino oscillation measurements. Their development requires optimisation of the gas mixture, pressure, electric fields, and readout configuration. Warwick TPC (WarTPC) is an R\&amp;D platform for investigating in these directions for neutrino physics and beyond. It can operate at pressures up to approximately 10 bar and features a combination of thick gas electron multipliers and a Timepix3 camera for optical readout. In this paper, we present the construction and commissioning of the WarTPC platform, describing the design and integration of its subsystems, and report the first measurements of its optical response under different operating conditions, demonstrating a stable and functioning R&amp;D platform.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.17369</id>
+<title>Real-time Electron Tagging by Cyclotron Radiation Emission Spectroscopy in the PTOLEMY experiment</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.17369"/>
+<updated>2026-11-16T00:00:00Z</updated>
+<author><name>Federico Virzi</name></author>
+<category term="physics.ins-det"/>
+<category term="hep-ex"/>
+<summary type="text">The PTOLEMY project aims at measuring the neutrino mass and, in the future, the Cosmic Neutrino Background from Tritium endpoint measurement. The Radio-Frequency (RF) Tracker is a sub-detector with the goal of measuring in real time the electrons by exploiting the Cyclotron Radiation Emission Spectroscopy. In this work, an overview of the PTOLEMY project is given together with the design, simulation, construction and commissioning of the RF Tracker prototype: the Electron Trap. The measurements and data analysis of the Electron Trap are presented, establishing the primary path for the development of the RF Tracker.</summary>
 </entry>
 </feed>
