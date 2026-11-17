@@ -5,90 +5,83 @@
 <subtitle>Summaries written automatically with AI from fetched sources; each links to its source.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/news.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/news.atom"/>
-<updated>2026-11-16T14:11:55+00:00</updated>
+<updated>2026-11-17T06:47:49+00:00</updated>
 <author><name>global-nu.org, Bari group</name></author>
 <entry>
-<id>https://global-nu.org/news/fdb42632185cd75b</id>
+<id>https://global-nu.org/news/8e1faa3cfffd755f</id>
 <title>IceCube Nobel Prize</title>
 <link rel="alternate" href="https://cerncourier.com/a/francis-halzen-wins-the-nobel-prize/"/>
-<updated>2026-11-16T14:11:55+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. Francis Halzen was awarded the 2026 Nobel Prize in Physics for his decisive contributions to the IceCube Neutrino Observatory, according to CERN Courier. Separately, IceCube reports that its outgoing South Pole winterovers have been succeeded by two new ones, Justin and Dane, who arrived at the Pole this week.</summary>
+<updated>2026-11-17T06:47:49+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The 2026 Nobel Prize in Physics was awarded to Francis Halzen. CERN Courier reports the citation as being for his decisive contributions to the IceCube Neutrino Observatory.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/045dcbd338fb4037</id>
-<title>DUNE cryostats</title>
+<id>https://global-nu.org/news/598c69b0716cacce</id>
+<title>DUNE cryostat construction</title>
 <link rel="alternate" href="https://www.bhpioneer.com/local_news/dune-construction-begins/article_601a4c0b-b7c9-4d01-af3f-473a9dfa65dd.html"/>
-<updated>2026-11-16T14:11:55+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. Crews from Fermilab, CERN and SURF have started building the first of two cryostats for DUNE. These are large insulated containers designed to hold liquid argon at very low temperature, and together they will house approximately 17,000 tons of it. The work is taking place nearly a mile underground in South Dakota, where crews are assembling large steel beams to form the outer structure of the detector modules.</summary>
+<updated>2026-11-17T06:47:49+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. Crews from Fermilab, CERN and SURF have begun building the first of two large cryostats, insulated containers that will hold liquid argon at very low temperature. The cryostats will house approximately 17,000 tons of liquid argon. Work nearly a mile underground in South Dakota currently consists of assembling large steel beams into the outer structure of the detector modules.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/cbca78ada121b2d9</id>
-<title>Super-Kamiokande solar neutrinos</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.17651"/>
-<updated>2026-11-16T14:11:55+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. A new analysis uses Super-Kamiokande phase I-IV data, covering 5805 days, to study 8B solar neutrinos. It presents an outer bound on the size of the solar core and measurements of the density and temperature in the core. The inference rests on the sensitivity of the 8B production rate to core temperature and on the dependence of adiabatic flavour conversion on the local electron density.</summary>
+<id>https://global-nu.org/news/2d5acc25e16aab52</id>
+<title>IceCube winterovers</title>
+<link rel="alternate" href="https://icecube.wisc.edu/news/collaboration/2026/11/meet-icecubes-2026-2027-winterovers-justin-and-dane/"/>
+<updated>2026-11-17T06:47:49+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. Two new winterovers, Justin and Dane, arrived at the South Pole this week to take over from the outgoing pair, Alicia and Camille. Each winterover spends a year, sometimes longer, at the Pole, half of it in complete darkness.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/a578102d0f989e61</id>
-<title>PTOLEMY RF tracker</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.17369"/>
-<updated>2026-11-16T14:11:55+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. PTOLEMY aims to measure the neutrino mass from the tritium endpoint and, in the future, to detect the Cosmic Neutrino Background. A new paper describes the design, simulation, construction and commissioning of the Electron Trap, a prototype of the RF Tracker. The RF Tracker is a sub-detector intended to measure electrons in real time by cyclotron radiation emission spectroscopy, and the paper presents measurements and data analysis from the prototype.</summary>
+<id>https://global-nu.org/news/9ef5ac9e644a0b28</id>
+<title>Dark matter and neutrinos</title>
+<link rel="alternate" href="https://cerncourier.com/a/a-headwind-for-dark-matter/"/>
+<updated>2026-11-17T06:47:49+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. CERN Courier carries a piece noting that scattering between dark matter and neutrinos could ease a cosmological tension. The record gives no further detail on the analysis behind this statement.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/ef9bd00a29eff6e2</id>
-<title>Warwick gas TPC</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.17389"/>
-<updated>2026-11-16T14:11:55+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. Active-target gas time projection chambers could provide the measurements of neutrino interactions needed for future oscillation measurements. A new paper presents the construction and commissioning of WarTPC, an R&amp;D platform that operates at pressures up to approximately 10 bar. It combines thick gas electron multipliers with a Timepix3 camera for optical readout.</summary>
+<id>https://global-nu.org/news/a438da78900a846e</id>
+<title>LHCb radiative search</title>
+<link rel="alternate" href="https://cerncourier.com/a/a-photon-probe-of-b-mesons/"/>
+<updated>2026-11-17T06:47:49+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The LHCb collaboration has searched for B mesons decaying to a muon, a neutrino and a photon. The record reports that the search was done but gives no numerical outcome.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/74aaa820af5779a2</id>
-<title>Reactor antineutrino background</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.17348"/>
-<updated>2026-11-16T14:11:55+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. A simulation study uses a multilayer perceptron trained on topological observables from Geant4 simulations to suppress correlated fast-neutron background in segmented reactor antineutrino detectors. In shallow or above-ground scintillator detectors this background is dominant, because proton recoils can mimic the prompt inverse-beta-decay signal. The Indian Scintillator Matrix for Reactor Anti-Neutrinos detector is used as the case study, and the paper also addresses sterile-neutrino sensitivity.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/79e43e5d4bb0cfc5</id>
-<title>The paper investigates the contribution of Δ-direct-Urca processes to neutrino emissivity in neutron stars tha</title>
+<id>https://global-nu.org/news/d2a6f5bdd0d6376c</id>
+<title>The paper studies neutrino emissivity from Δ-direct-Urca processes in neutron stars that contain Δ isobars</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3211621"/>
-<updated>2026-11-16T14:11:55+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The paper investigates the contribution of Δ-direct-Urca processes to neutrino emissivity in neutron stars that may contain Δ isobars. Its authors state that this contribution had not been explicitly evaluated before. It matters to neutrino physicists because these processes enter the neutrino cooling of dense stellar matter.</summary>
+<updated>2026-11-17T06:47:49+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper studies neutrino emissivity from Δ-direct-Urca processes in neutron stars that contain Δ isobars. These processes are a possible additional channel alongside the nucleonic and hyperonic Urca processes, which the abstract describes as dominant cooling mechanisms. It is relevant to anyone using neutron-star thermal evolution as a probe of dense matter.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/e11a27bf3277fcec</id>
-<title>The authors study how well kiloton-scale detectors such as Hyper-Kamiokande could determine the primary cosmic</title>
+<id>https://global-nu.org/news/16a3a3f4e29d6c36</id>
+<title>The authors assess whether kiloton-scale detectors such as Hyper-Kamiokande could constrain the primary cosmic</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3220874"/>
-<updated>2026-11-16T14:11:55+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The authors study how well kiloton-scale detectors such as Hyper-Kamiokande could determine the primary cosmic-ray spectrum from the atmospheric neutrino flux. They report that future detectors can distinguish between cosmic-ray models with high statistical significance, even allowing for uncertainties in cross sections and hadronic interactions. This links atmospheric neutrino measurements to the cosmic-ray inputs on which flux predictions depend.</summary>
+<updated>2026-11-17T06:47:49+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The authors assess whether kiloton-scale detectors such as Hyper-Kamiokande could constrain the primary cosmic-ray spectrum through the atmospheric neutrino flux. They report that future detectors can differentiate between cosmic-ray models with high statistical significance, even allowing for uncertainties in neutrino cross sections and hadronic interactions. This would give full-sky, long-term monitoring that satellites and balloons do not provide.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/1c9a553b7a698d6c</id>
-<title>Motivated by updated IceCube data on NGC 1068 down to about 0.2 TeV, the paper performs a model-independent in</title>
-<link rel="alternate" href="https://inspirehep.net/literature/3215537"/>
-<updated>2026-11-16T14:11:55+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. Motivated by updated IceCube data on NGC 1068 down to about 0.2 TeV, the paper performs a model-independent inference of the neutrino production conditions near the supermassive black hole. It computes hadronic neutrino production and accompanying cascade gamma rays, and explores the parameter space with Latin hypercube sampling under multimessenger constraints. It is relevant as a quantitative attempt to say what physical conditions the first identified extragalactic neutrino source requires.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/87547babeedf8c4e</id>
-<title>The paper proves a no-go theorem: any completely positive trace-preserving evolution covariant under rotations</title>
-<link rel="alternate" href="https://inspirehep.net/literature/3217753"/>
-<updated>2026-11-16T14:11:55+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The paper proves a no-go theorem: any completely positive trace-preserving evolution covariant under rotations of the mass-coherence plane is exactly blind to a Majorana phase in open two-flavour oscillations. It also identifies when a rate anisotropy in the environment can supply the phase reference needed to make the phase visible. This sets a clear condition for when decoherence could reveal the Dirac or Majorana nature of neutrinos.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/727d7ff2bc15e5d0</id>
-<title>The authors derive semianalytic approximations for the outcomes of slow and fast flavour conversion in quasiho</title>
+<id>https://global-nu.org/news/39954ba9f5ea02cc</id>
+<title>The paper offers semianalytic approximations for the quasisteady outcome of slow and fast flavour conversion i</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3188570"/>
-<updated>2026-11-16T14:11:55+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The authors derive semianalytic approximations for the outcomes of slow and fast flavour conversion in quasihomogeneous neutrino ensembles, as a subgrid scheme for supernova simulations that cannot include neutrino quantum kinetics. They report excellent agreement with multiangle and multienergy solutions of the kinetic equations, independent of the mass ordering. This is useful for including self-interaction effects in core-collapse modelling.</summary>
+<updated>2026-11-17T06:47:49+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper offers semianalytic approximations for the quasisteady outcome of slow and fast flavour conversion in neutrino-dense environments such as core-collapse supernovae. The ansatz agrees well with multiangle and multienergy solutions of the kinetic equations, independent of mass ordering. Such a scheme is useful because hydrodynamic simulations cannot include neutrino quantum kinetics directly.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/e196cdf3124bd177</id>
-<title>The paper studies thermal leptogenesis in the Babu-Nandi-Tavartkiladze model, in which neutrino masses arise f</title>
-<link rel="alternate" href="https://inspirehep.net/literature/3186500"/>
-<updated>2026-11-16T14:11:55+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The paper studies thermal leptogenesis in the Babu-Nandi-Tavartkiladze model, in which neutrino masses arise from a dimension-7 operator at tree level and a dimension-5 operator at one loop. The model accommodates sub-eV neutrino masses with new physics at the TeV scale. Its leptogenesis differs from the canonical seesaw case, which makes it a testable alternative.</summary>
+<id>https://global-nu.org/news/dba5b8410d0a5cbf</id>
+<title>The author proves a no-go theorem: for open two-flavour neutrino oscillations, any completely positive trace-p</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3217753"/>
+<updated>2026-11-17T06:47:49+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The author proves a no-go theorem: for open two-flavour neutrino oscillations, any completely positive trace-preserving evolution covariant under rotations of the mass-coherence plane is exactly blind to a Majorana phase. A rate anisotropy can supply an environmental phase reference, which gives a specific condition under which decoherence could reveal the phase.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/e5dc150873ea50f6</id>
+<title>The paper uses a gauged Lμ−Lτ extension of the Standard Model with an ultralight vector boson that modifies so</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3208620"/>
+<updated>2026-11-17T06:47:49+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper uses a gauged Lμ−Lτ extension of the Standard Model with an ultralight vector boson that modifies solar-neutrino MSW conversion through kinetic mixing with the photon. It uses recent Borexino, SNO and Super-Kamiokande solar neutrino measurements and discusses prospects for JUNO and XLZD. It shows how solar data can probe new light mediators.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/3f81a505995fa78b</id>
+<title>The authors study the angular structure and time variability of neutrino emission from binary neutron star mer</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3191754"/>
+<updated>2026-11-17T06:47:49+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The authors study the angular structure and time variability of neutrino emission from binary neutron star mergers using fully general-relativistic simulations with energy-integrated M1 transport. They decompose the neutrino energy flux into spherical harmonics to quantify its multipolar content. The abstract also lists implications for the electron fraction, which matters for modelling merger ejecta.</summary>
 </entry>
 </feed>

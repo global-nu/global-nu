@@ -28,6 +28,11 @@ and may contain errors.</b>
 </div>
 <p class="digest-dates small"><b>This edition:</b> arXiv announcement of 16 Nov 2026. Each entry gives its own dates: first submission, latest update when there is one, and announcement when the source states it. Submission dates are not in the announcement feed.</p>
 <!-- QUIET:BEGIN -->
+<p class="small muted"><b>arXiv made no announcement for
+17 November 2026.</b> Its listing feeds are empty, as they are at weekends and on
+<a href="https://info.arxiv.org/help/availability.html">arXiv's announcement
+holidays</a>, so nothing below is new today: the list will change with the
+next announcement.</p>
 <!-- QUIET:END -->
 
 <p class="small muted">arXiv's API was refusing requests when this page was
