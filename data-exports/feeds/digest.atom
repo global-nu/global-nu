@@ -5,37 +5,78 @@
 <subtitle>Neutrino preprints ranked by relevance, rebuilt every morning. Selected by keyword score; no model involved.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/digest.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/digest.atom"/>
-<updated>2026-11-18T00:00:00Z</updated>
+<updated>2026-11-17T00:00:00Z</updated>
 <author><name>global-nu.org, Bari group</name></author>
+<entry>
+<id>https://arxiv.org/abs/2611.18824</id>
+<title>Sensitivity of the SHiP experiment at CERN to sterile-neutrino-induced oscillations</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.18824"/>
+<updated>2026-11-13T00:00:00Z</updated>
+<author><name>SHiP Collaboration</name></author>
+<category term="hep-ex"/>
+<summary type="text">The SHiP experiment, approved for the high-intensity beam-dump facility in the ECN3 hall at the CERN SPS in the North Area, will record neutrino interactions both in its scattering and neutrino detector (SND) and, about \SI{70}{m} further downstream, in its calorimeter system. We show that the baseline SHiP detector configuration therefore forms a two-baseline experiment for oscillations induced by a sterile neutrino. From a \textsc{Geant4} simulation of \textsc{Genie}-generated interactions we derive the energy response of both stations to $\nue$ and $\numu$ charged-current (CC) interactions and the separation of $\nue$~CC events from the neutral-current $\pizero$ background, and fold them into a near/far disappearance analysis with a $20\%$ flux-shape uncertainty and a $1\%$ far/near normalisation uncertainty. For $6\times10^{20}$ protons on target, the projected $95\%$~CL median sensitivities are $\Umufour\simeq\UmuLimit$ at $\mfour\simeq\UmuLimitMass$~eV and $\Uefour\simeq\UeLimit$ at $\mfour\simeq\UeLimitMass$~eV. In the muon channel this lies below existing $\numu$-disappearance limits for $\DnineLow\lesssim\mfour\lesssim\DnineHigh$~eV.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.21252</id>
+<title>Phenomenology of neutrino mass ordering synergies in reactor, accelerator, and atmospheric neutrino experiments, and the role of the detector response</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.21252"/>
+<updated>2026-11-16T00:00:00Z</updated>
+<author><name>Vanessa Cerrone</name></author>
+<author><name>Marco Grassi</name></author>
+<category term="hep-ph"/>
+<summary type="text">The neutrino mass ordering is one of the main open questions of neutrino physics, addressed by reactor, accelerator, and atmospheric experiments and by their combination. When the data are fitted under the wrong ordering, each experiment returns its own value of $Δm^2_{31}$, its wrong-ordering solution. We show that this solution is a weighted average of the values preferred by the individual bins of the measured event spectra, in reconstructed energy and, for atmospheric neutrinos, also zenith angle, with weights set by their statistical precision. Both the values and the weights depend on the detector response. In the plane of $Δm^2_{31}$ fitted under the two orderings, the solutions lie on lines of slope close to $-1$, so that each experiment is described by one intercept. The weighted bin average extends the mass ordering sum rule to any oscillation experiment, including atmospheric neutrinos in Earth matter. It recovers the known closed forms for short-baseline reactors and for accelerators in vacuum, and for JUNO it equals a closed form evaluated at one effective energy, which depends on the energy resolution. Above the MSW resonance the frequency of atmospheric $ν_μ$ …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.16709</id>
+<title>Residual Entanglement vs. Residual Coherence: A Wave Packet Approach in Neutrino Oscillation with Matter</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.16709"/>
+<updated>2026-11-12T00:00:00Z</updated>
+<author><name>Lekhashri Konwar</name></author>
+<author><name>Abhishek Kumar Jha</name></author>
+<author><name>Bhavna Yadav</name></author>
+<category term="hep-ph"/>
+<category term="quant-ph"/>
+<summary type="text">In this work, we investigate quantum correlations in three-flavor neutrino oscillations beyond the standard plane-wave (PW) description by employing a wave-packet formalism in the presence of constant matter density. We study three quantum correlation measures, namely the residual $l_1$-norm coherence, Concurrence Fill, and Three-$π$ entanglement, and express them in terms of transition probabilities for an initial muon-flavor state. The analysis is performed for the DUNE setup and extended beyond its baseline to study the interplay between wave-packet decoherence and matter effects over long distances. For the DUNE baseline, finite wave-packet widths suppress and smooth the oscillations relative to the PW case, with smaller widths causing stronger damping, while matter effects modify the amplitudes and positions of the oscillation features. Among the considered measures, residual $l_1$-norm coherence dominates over the entanglement measures. At very long propagation distances, wave-packet decoherence progressively washes out the oscillatory behavior, driving the oscillation probabilities and quantum correlation measures toward averaged values, with smaller wave-packet widths …</summary>
+</entry>
 <entry>
 <id>https://arxiv.org/abs/2611.22237</id>
 <title>Flavor Entanglement as a CPT Violation Witness in Neutrino Oscillations</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.22237"/>
-<updated>2026-11-18T00:00:00Z</updated>
+<updated>2026-11-17T00:00:00Z</updated>
 <author><name>Bipin Singh Koranga</name></author>
 <author><name>Biswmkwr Boro</name></author>
 <author><name>Vivek Kumar Nautiyal</name></author>
 <category term="hep-ph"/>
-<summary type="text">We present a comprehensive study linking the single-particle flavor entanglement of a \(\nu_{e} \rightarrow \nu_{\mu}\) oscillation to CPT violation using the concurrence. In a two-flavor vacuum with CP-conserving mixing, CPT invariance strictly demands \(\mathcal{C}_{\nu}(L) = \mathcal{C}_{\bar{\nu}}(L)\), meaning any measured difference \(\Delta\mathcal{C}_{\mathrm{CPT}} \equiv \mathcal{C}_{\nu} - \mathcal{C}_{\bar{\nu}}\) serves as a clean, background-free witness of CPT violation. We derive exact, first-order analytical relations connecting this entanglement asymmetry to the standard probability asymmetry, the baseline reflection sums, and the long-baseline decoherence floor. To rigorously test the experimental viability of this framework, we perform extensive numerical simulations. We demonstrate that the framework projects stringent sensitivity limits on Standard-Model Extension (SME) parameters at DUNE-like densities, isolate a coordinate-independent CPT invariant, and show that the signal remains robust across realistic, variable Earth matter density profiles. Crucially, we identify a distinct 24-hour sidereal modulation of the entanglement asymmetry, providing a …</summary>
+<summary type="text">We present a comprehensive study linking the single-particle flavor entanglement of a \(ν_{e} \rightarrow ν_μ\) oscillation to CPT violation using the concurrence. In a two-flavor vacuum with CP-conserving mixing, CPT invariance strictly demands \(\mathcal{C}_ν(L) = \mathcal{C}_{\barν}(L)\), meaning any measured difference \(Δ\mathcal{C}_{\mathrm{CPT}} \equiv \mathcal{C}_ν - \mathcal{C}_{\barν}\) serves as a clean, background-free witness of CPT violation. We derive exact, first-order analytical relations connecting this entanglement asymmetry to the standard probability asymmetry, the baseline reflection sums, and the long-baseline decoherence floor. To rigorously test the experimental viability of this framework, we perform extensive numerical simulations. We demonstrate that the framework projects stringent sensitivity limits on Standard-Model Extension (SME) parameters at DUNE-like densities, isolate a coordinate-independent CPT invariant, and show that the signal remains robust across realistic, variable Earth matter density profiles. Crucially, we identify a distinct 24-hour sidereal modulation of the entanglement asymmetry, providing a definitive temporal "smoking gun" to …</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.21729</id>
 <title>Supernova Bounds on Neutrino Dipole Moments from a Modern Perspective</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.21729"/>
-<updated>2026-11-18T00:00:00Z</updated>
+<updated>2026-11-16T00:00:00Z</updated>
 <author><name>Damiano F. G. Fiorillo</name></author>
 <author><name>Martina La Rosa</name></author>
 <author><name>Federico Testagrossa et al.</name></author>
 <category term="hep-ph"/>
 <category term="astro-ph.CO"/>
 <category term="astro-ph.HE"/>
-<summary type="text">Neutrinos may have nonstandard magnetic dipole moments $\mu_\nu$. In the dense cores of supernovae (SNe), these would convert part of the neutrinos into sterile, right-handed states through the electromagnetic fluctuations of the charged plasma. The streaming sterile neutrinos with 100-MeV energies can convert back to standard neutrinos in the Galactic magnetic field, leading to a high-energy neutrino flux unobserved from the historical SN 1987A. We reassess the production rates, including scattering on both protons and electrons, and, building upon advances in SN simulations and in the description of the Milky Way magnetic field, we revisit the bounds on magnetic dipole moments. We find for Dirac electron neutrinos $\mu_{\nu_e} \lesssim 4.8 \times 10^{-13} \mu_B$, superseding all existing terrestrial and astrophysical constraints.</summary>
+<summary type="text">Neutrinos may have nonstandard magnetic dipole moments $μ_ν$. In the dense cores of supernovae (SNe), these would convert part of the neutrinos into sterile, right-handed states through the electromagnetic fluctuations of the charged plasma. The streaming sterile neutrinos with 100-MeV energies can convert back to standard neutrinos in the Galactic magnetic field, leading to a high-energy neutrino flux unobserved from the historical SN 1987A. We reassess the production rates, including scattering on both protons and electrons, and, building upon advances in SN simulations and in the description of the Milky Way magnetic field, we revisit the bounds on magnetic dipole moments. We find for Dirac electron neutrinos $μ_{ν_e} \lesssim 4.8 \times 10^{-13} μ_B$, superseding all existing terrestrial and astrophysical constraints.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.16604</id>
+<title>Extended $SO(10)$-inspired leptogenesis</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.16604"/>
+<updated>2026-11-12T00:00:00Z</updated>
+<author><name>Pasquale Di Bari</name></author>
+<author><name>Xubin Hu</name></author>
+<category term="hep-ph"/>
+<summary type="text">We consider seesaw models with hierarchical Dirac neutrino masses. We show that, barring well known fine-tuned crossing level solutions and given current low energy neutrino experimental data, these always lead to a very hierarchical heavy neutrino spectrum. If the Dirac neutrino masses are assumed not to significantly differ from the up-quark masses, then the intermediate seesaw neutrino ($N_2$) mass falls in the correct range for its decays to explain the matter-antimatter asymmetry of the universe via ($N_2$-)leptogenesis, while the lightest seesaw neutrino decays give a negligible contribution. We show that these conclusions are valid independently of any additional condition on the Dirac neutrino mass matrix. In this way we extend the usual $SO(10)$-inspired leptogenesis scenario, assuming the mismatch between neutrino and charged lepton Dirac mass matrices at the level of the CKM matrix. We find that solutions for inverted ordered neutrino masses become viable. We still find a lower bound on the lightest neutrino mass, $m_1 \gtrsim 10^{-5}\,{\rm eV}$, but this is relaxed by two orders of magnitude. We also consider the special subset of solutions realising strong thermal …</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.23220</id>
 <title>Complete Cosmological Collider Signatures from Right-handed Neutrino Loops</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.23220"/>
-<updated>2026-11-18T00:00:00Z</updated>
+<updated>2026-11-17T00:00:00Z</updated>
 <author><name>Linghao Song</name></author>
 <author><name>Jingtao You</name></author>
 <author><name>Ming Cheng et al.</name></author>
@@ -45,88 +86,108 @@
 <summary type="text">We study the complete cosmological collider (CC) signatures from right-handed neutrino loops with chemical-potential enhancement. These CC signals are induced by the inflaton-right-handed-neutrino interaction and can be extracted in the collinear squeezed configuration, which allows the right-handed-neutrino triangle loop to be factorized into the hard and soft parts. We precisely compute the soft part of the fermion loop for the first time by using the complete mode functions and the full loop integral, and treat the hard part as a tree-level subdiagram. We subtract the large-momentum asymptotic terms of the soft loop integrand and retain their finite contributions to the oscillation. We then evaluate the full spinor-helicity and Schwinger-Keldysh sums to obtain a finite, closed analytic formula for the complex clock coefficient. We further derive a compact formula for the leading CC signals in the large-chemical-potential expansion. We analyze the structure of the soft-part contribution by examining the sum of residues of the Mellin poles of the fermion propagators. For this, we demonstrate that the first local pole on each soft line contributes half of the asymptotic …</summary>
 </entry>
 <entry>
+<id>https://arxiv.org/abs/2611.17922</id>
+<title>Improved Bounds on the Dark Matter-Neutrino Cross Section using LSBGs</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.17922"/>
+<updated>2026-11-13T00:00:00Z</updated>
+<author><name>Akari Suezaki</name></author>
+<author><name>Shunsaku Horiuchi</name></author>
+<category term="hep-ph"/>
+<category term="astro-ph.GA"/>
+<summary type="text">We derive new constraints on the interaction cross section between dark matter and neutrinos ($σ_{νχ}$) that improve upon existing limits. We adopt a mechanism where neutrinos emitted from core-collapse supernovae transfer their energy to the dark matter halo via elastic scattering, transitioning a centrally cusped profile to a flat-cored profile. We apply this mechanism to Low Surface Brightness Galaxies (LSBGs), which are characterized by their relatively large sizes, low stellar densities, and measurements of dark matter cores. We improve upon previous methods so that each dark matter particle is counted at most once, which weakens existing limits, e.g., from the Fornax dSph by a factor of $\sim 50$. Applying our new method to LSBGs, we derive an upper limit of $σ_{νχ}&lt; 8.5 \times 10^{-25}\,\rm cm^2$ for a dark matter mass of $m_χ=1\,\rm GeV$ at a typical supernova neutrino energy of $E_ν=15\,\rm MeV$. This constraint is approximately three orders of magnitude stronger than the Fornax limit derived with the same method and slightly stronger than the bound from the dark matter diffused supernova neutrino background (DMDSNB).</summary>
+</entry>
+<entry>
 <id>https://arxiv.org/abs/2611.21752</id>
-<title>Mapping the multimessenger horizon for $\gamma$-ray counterparts of cosmic neutrinos</title>
+<title>Mapping the multimessenger horizon for $γ$-ray counterparts of cosmic neutrinos</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.21752"/>
-<updated>2026-11-18T00:00:00Z</updated>
+<updated>2026-11-16T00:00:00Z</updated>
 <author><name>Tianyi Ding</name></author>
 <author><name>Jose Alonso Carpio</name></author>
 <author><name>Ali Kheirandish et al.</name></author>
 <category term="astro-ph.HE"/>
 <category term="hep-ph"/>
-<summary type="text">The joint detection of high-energy neutrinos and $\gamma$-rays offers a powerful probe of the most energetic astrophysical accelerators, linking hadronic interactions to observable signatures across cosmic distances. Understanding the conditions under which these two messengers can be simultaneously observed is essential for identifying and characterizing the sources of cosmic neutrinos. In this work, we examine the detectability of $\gamma$-ray cascades associated with neutrino production in source environments that are gamma-ray transparent, focusing on how electromagnetic cascades evolve as $\gamma$-rays propagate through intergalactic space. By modeling photon interactions with the extragalactic background light and deflections in intergalactic magnetic fields, we determine the minimum neutrino fluence for transient emission and neutrino flux for steady emission required to produce a $\gamma$-ray counterpart detectable by $\gamma$-ray observatories, such as Fermi-LAT, HAWC, or LHAASO. This defines a ``multimessenger horizon" -- the region in flux-distance parameter space where neutrinos and $\gamma$-rays are jointly observable. We consider both energy-binned injection tied to …</summary>
+<summary type="text">The joint detection of high-energy neutrinos and $γ$-rays offers a powerful probe of the most energetic astrophysical accelerators, linking hadronic interactions to observable signatures across cosmic distances. Understanding the conditions under which these two messengers can be simultaneously observed is essential for identifying and characterizing the sources of cosmic neutrinos. In this work, we examine the detectability of $γ$-ray cascades associated with neutrino production in source environments that are gamma-ray transparent, focusing on how electromagnetic cascades evolve as $γ$-rays propagate through intergalactic space. By modeling photon interactions with the extragalactic background light and deflections in intergalactic magnetic fields, we determine the minimum neutrino fluence for transient emission and neutrino flux for steady emission required to produce a $γ$-ray counterpart detectable by $γ$-ray observatories, such as Fermi-LAT, HAWC, or LHAASO. This defines a ``multimessenger horizon" -- the region in flux-distance parameter space where neutrinos and $γ$-rays are jointly observable. We consider both energy-binned injection tied to IceCube's sensitivity and a …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.21741</id>
-<title>Smuggling baryon asymmetry through strong washout</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.21741"/>
-<updated>2026-11-18T00:00:00Z</updated>
-<author><name>Kåre Fridell</name></author>
-<author><name>Michal Malinský</name></author>
-<author><name>Javier Perez-Soler</name></author>
+<id>https://arxiv.org/abs/2611.20887</id>
+<title>Inferring the neutral-current neutrino--nucleon cross section from IceCube data</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.20887"/>
+<updated>2026-11-16T00:00:00Z</updated>
+<author><name>Reinaldo Francener</name></author>
+<author><name>Victor P. Goncalves</name></author>
 <category term="hep-ph"/>
-<summary type="text">We propose a scheme in which a primordial net baryon number generated at or around the unification scale may survive subsequent strong washout phases associated with active sphalerons and interactions of right-handed neutrinos inherent to thermal leptogenesis. A simple realization of this, namely, a long-lived scalar population injecting the net $B-L$ it carries into the Standard Model matter sector late enough to be safe from a strong washout, is constructed and studied in the context of a simple Pati-Salam scalar sector with a heavy $SU(4)_C$ sextet scalar.</summary>
+<category term="hep-ex"/>
+<summary type="text">Neutrinos interact only via the weak force, through the exchange of $W^{\pm}$ and $Z^{0}$ bosons in charged-current and neutral-current interactions, respectively. Recent experiments have measured the charged-current cross section at high energies, whereas neutral-current interactions remain largely unexplored experimentally. In this work, we investigate the sensitivity of the IceCube Neutrino Observatory to the neutral-current neutrino--nucleon cross section using 12 years of data. We consider two strategies to constrain this quantity: $(i)$ leveraging neutrino absorption and regeneration as neutrinos traverse the Earth; and $(ii)$ using the track-to-cascade event ratio. We find that current IceCube data can set only an upper limit on the neutral-current neutrino--nucleon cross section. We further show that IceCube-Gen2 should be able to constrain the neutral-current cross section with both methods considered here.</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.21788</id>
-<title>Neutron-Rich Disks, Nickel-Rich Ejecta: Can Direct-Horizon Collapsars Explain Early $r$-Process Enrichment?</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.21788"/>
-<updated>2026-11-18T00:00:00Z</updated>
-<author><name>Danat Issa</name></author>
-<author><name>Ore Gottlieb</name></author>
+<id>https://arxiv.org/abs/2611.19416</id>
+<title>Constraining neutrino masses with localized fast radio bursts: Current bounds and future prospects</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.19416"/>
+<updated>2026-11-14T00:00:00Z</updated>
+<author><name>Yin-Long Cao</name></author>
+<author><name>Ji-Guo Zhang</name></author>
+<author><name>Guo-Hong Du et al.</name></author>
+<category term="astro-ph.CO"/>
+<category term="hep-ph"/>
+<summary type="text">The dispersion-measure (DM)--redshift relation of fast radio bursts (FRBs) provides independent low-redshift cosmological information for neutrino-mass inference. In this work, we perform joint analyses with cosmic microwave background (CMB) data, using 120 localized FRBs with reliable host-galaxy redshifts and larger mock samples, to investigate the effects of sample size and the dark-energy model on constraints on the sum of neutrino masses, $\sum m_ν$. In the $Λ$CDM+$\sum m_ν$ model, CMB+FRB gives $\sum m_ν&lt;0.21\,\mathrm{eV}$, substantially relaxed relative to the current CMB+DESI result. With 1000 simulated events, CMB+FRB1(mock) gives an upper limit of $0.12\,\mathrm{eV}$, which decreases to $0.035\,\mathrm{eV}$ for CMB+FRB2(mock) with 10000 events. The latter is more stringent than the CMB+DESI limit, demonstrating the potential of large localized FRB samples to constrain neutrino mass. When the model is extended to $w_0w_a$CDM+$\sum m_ν$, both the observed and mock samples yield upper limits of approximately $0.3$--$0.4\,\mathrm{eV}$, indicating that the assumed dark-energy model remains a dominant factor in these constraints. As localized FRB samples grow and the modeling …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.17651</id>
+<title>$^8$B Solar Neutrino Measurements of Solar Core Size and Temperature from 5805 Days of Super-Kamiokande</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.17651"/>
+<updated>2026-11-13T00:00:00Z</updated>
+<author><name>The Super-Kamiokande Collaboration</name></author>
+<author><name>:</name></author>
+<author><name>Y. Jiang et al.</name></author>
+<category term="hep-ex"/>
 <category term="astro-ph.HE"/>
-<category term="astro-ph.GA"/>
 <category term="astro-ph.SR"/>
-<summary type="text">Very massive stars above the pair-instability mass gap may collapse directly into black holes surrounded by massive disks. These "direct-horizon collapsars" accrete at $\dot{M} \gtrsim 10\,M_\odot\,{\rm s}^{-1}$ and have been proposed to eject a substantial amount of $r$-process material, powering "super-kilonovae". We present the first three-dimensional general-relativistic magnetohydrodynamic simulations of direct-horizon collapsars with M1 neutrino transport, following a $\approx 150\,M_\odot$ helium core from collapse through the escape of magnetically driven outflows. Extreme accretion rates neutronize the disks to $Y_{\rm e} \approx 0.1$-$0.25$ and, at early times, allow them to satisfy the gravitational-instability and cooling criteria for fragmentation. However, the strong poloidal fields needed to eject the neutron-rich gas promptly also drain the disks and lift their electron degeneracy. The neutron-rich ejecta composition is set in a brief phase, such that the ejecta carry $\sim 0.1$-$0.3\,M_\odot$ of nuclei with $A \geq 69$, including $\lesssim 2\times10^{-4}\,M_\odot$ of lanthanides, alongside $\sim 1$-$4\,M_\odot$ of $^{56}$Ni. Assuming proportional retention and …</summary>
+<summary type="text">The detection of solar neutrino provides direct evidence for on-going fusion in the core of the Sun and serve as a probe for that solar core. Production rate of $^8$B is sensitive to the solar core temperature. Adiabatic flavor conversion of $^8$B solar neutrinos depends on the local solar electron density. Combined with the roughly exponential decrease in solar electron density with increasing distance from the center of the solar sphere, the solar core size, density, and temperature are inferred. This article presents an outer bound on solar core size and measurements of the density and temperature in the solar core based on Super-Kamiokande phase I-IV solar neutrino data. An outer bound is set for the solar core at $90\%$ confidence level as $0.499R_\odot$ for the high metallicity B16+GS98 Standard Solar Model and $0.381R_\odot$ for K2-A09-MZvar-12 which includes protosolar accretion. A combined fit with the SNO polynomial coefficients improves the limit to $0.268R_\odot$ for B16+GS98 and $0.215R_\odot$ for K2-A09-MZvar-12. Results for other metallicity cases are also reported. In the high metallicity scenario assuming nominal solar core density and solar core size, temperature …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.21714</id>
-<title>21 cm Cosmology of Boosted Dark Matter</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.21714"/>
-<updated>2026-11-18T00:00:00Z</updated>
-<author><name>Min Sub Lee</name></author>
-<author><name>Jeong Han Kim</name></author>
-<author><name>Kyoungchul Kong et al.</name></author>
+<id>https://arxiv.org/abs/2611.16807</id>
+<title>Solar Neutrinos at the ESSnuSB experiment</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.16807"/>
+<updated>2026-11-17T00:00:00Z</updated>
+<author><name>ESSnuSB Collaboration</name></author>
+<author><name>J. Aguilar</name></author>
+<author><name>D. Barčot et al.</name></author>
 <category term="hep-ph"/>
-<category term="astro-ph.CO"/>
+<category term="hep-ex"/>
+<summary type="text">We investigate the sensitivity of the ESSnuSB large underground water-Cherenkov (WC) detector to two key solar neutrino signatures: the MSW spectral upturn in the $^8$B electron neutrino survival probability $P_{ee}(E_ν)$, and the first direct observation of the rare hep neutrino flux. The analysis incorporates detector systematic uncertainties (energy resolution and flux normalization) and models environmental backgrounds from cosmic-ray muon spallation and $^{222}$Rn contamination. We adopt a shape-driven analysis strategy with a floating overall normalization, so that the discovery power relies on the spectral distortion rather than on the absolute event rate. In a realistic scenario with 90% spallation rejection efficiency, informed by the Super-Kamiokande experience and recent JUNO analyses, residual spallation backgrounds prevent either signal from reaching $5σ$ significance within 20 years of exposure. For the hep flux, we present a detailed sensitivity study to both its discovery and its precision, and quantify how the required spallation veto efficiency and recoil energy threshold jointly determine the achievable significance for both signals. At the adopted thresholds …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.16715</id>
+<title>Resolving Radiogenic Heterogeneity in the Earth's Mantle with Multi-Site Geo-neutrino Measurements</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.16715"/>
+<updated>2026-11-13T00:00:00Z</updated>
+<author><name>Michael Leyton</name></author>
+<author><name>Stephen T. Dye</name></author>
+<category term="physics.geo-ph"/>
+<category term="astro-ph.EP"/>
+<category term="hep-ex"/>
+<summary type="text">We present a global fit to geo-neutrino measurements at four underground sites (Kamioka, Gran Sasso, Sudbury, Jiangmen), combining signal rates with site-specific predictions of the lithospheric contribution to constrain the quantity and distribution of radioactivity in the Earth's mantle. Assuming a uniform distribution of radioactivity in the mantle, we find a geo-neutrino rate of $S_\text{mantle} = 14.8 \pm 4.5$ NIU when the lithospheric predictions are allowed to vary within their uncertainties. This uniform-mantle signal rate corresponds to radiogenic heating of $18.5 \pm 5.6$ TW. Although the uniform-mantle signal is resolved at $\sim3.2σ$, there is noticeable tension between the inferred mantle signals at Jiangmen and Kamioka, which may indicate non-uniform geo-neutrino production in the mantle. We explore six families of models to describe the heterogeneous spatial distribution of radiogenic elements in the Earth's mantle. Each model contains anomalous bodies or reservoirs carrying an excess of heat-producing elements over a depleted mantle (DM) background, with total inventory set by bulk-silicate-Earth mass balance and by a geochemical Th/U constraint. For each model, we …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.17604</id>
+<title>Resonant Trapping of Neutrinophilic Dark Matter in Supernovae</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.17604"/>
+<updated>2026-11-13T00:00:00Z</updated>
+<author><name>Christopher V. Cappiello</name></author>
+<author><name>P. S. Bhupal Dev</name></author>
+<author><name>Amol V. Patwardhan</name></author>
+<category term="hep-ph"/>
 <category term="astro-ph.HE"/>
-<summary type="text">The formation history of low-mass halos is sensitive to the properties of dark matter. At low redshift, nonlinear evolution and baryonic processes can obscure this information. The 21 cm signal provides access to a high-redshift stage of structure formation, when the abundance and clustering of low-mass halos retain direct sensitivity to the mass and interactions of dark matter. Boosted dark matter (BDM) realizes this possibility through a two-component scenario in which the annihilation of the heavier component converts part of the mass difference into kinetic energy of the lighter component. Self-interactions redistribute this energy and generate pressure support, suppressing small-scale density perturbations even for dark matter masses in the MeV range. We calculate the global 21 cm brightness temperature and its power spectrum in BDM cosmology. The reduced abundance of low-mass halos delays the global absorption feature and shifts the characteristic redshift evolution of the power spectrum. We assess the projected sensitivity of SKA1-Low to these signatures. The sensitivity is strongest at intermediate light-component fractions, where both components remain sufficiently …</summary>
+<summary type="text">Supernova cooling provides some of the strongest constraints on light particles beyond the Standard Model, including sub-GeV dark matter (DM). While sufficiently large couplings to the Standard Model sector can trap these particles inside the supernova or cause them to decay before escaping, there typically exists an intermediate range of couplings in which their efficient production and subsequent escape lead to excessive energy loss, resulting in stringent constraints on new light particles. In this work, we demonstrate for the first time that, for certain types of DM-neutrino interactions, resonantly enhanced $s$-channel scattering with neutrinos can efficiently trap DM inside the supernova and can fundamentally alter the conventional supernova cooling constraints. In particular, we show that for mediator masses comparable to the supernova core temperature, this resonant scattering can prevent a substantial fraction of the produced DM from freely escaping, thereby significantly weakening, or even evading, the usual supernova cooling constraints on such models.</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.21736</id>
-<title>Active Galactic Nuclei as Beyond the Standard Model Laboratories: a White Paper</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.21736"/>
-<updated>2026-11-18T00:00:00Z</updated>
-<author><name>Gonzalo Herrera</name></author>
-<author><name>Filippo Sala</name></author>
-<author><name>Piero Ullio et al.</name></author>
+<id>https://arxiv.org/abs/2611.16545</id>
+<title>A perturbative construction of a modular $S_3$ model for quarks</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.16545"/>
+<updated>2026-11-12T00:00:00Z</updated>
+<author><name>Gabriele Battimelli</name></author>
+<author><name>Davide Meloni</name></author>
 <category term="hep-ph"/>
-<category term="astro-ph.CO"/>
-<category term="astro-ph.GA"/>
-<summary type="text">Multi-messenger and multi-wavelength observations of Active Galactic Nuclei (AGN) can provide otherwise inaccessible knowledge about physics Beyond the Standard Model (BSM), and may even lead to its discovery. Realizing this potential hinges on two parallel efforts: advancing our understanding of AGN and of the dark matter around them, and identifying the BSM signatures that are at once promising and robust against the gaps in that understanding. These fields have attracted growing interest in recent years, also motivated by the IceCube association of neutrinos to individual AGN, yet we have only begun to explore their cross-fertilization. This white paper offers a new perspective on this interdisciplinary endeavor. It concisely reviews the state of the art in each field and at their interface, and identifies the key open questions that must be addressed to strengthen our prospects for learning about BSM physics with AGN.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.22890</id>
-<title>Scalar inelastic scattering of pseudo-Majorana dark matter through a radion portal</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.22890"/>
-<updated>2026-11-18T00:00:00Z</updated>
-<author><name>Ruifeng Leng</name></author>
-<author><name>Kirtimaan A. Mohan</name></author>
-<author><name>Keping Xie et al.</name></author>
-<category term="hep-ph"/>
-<category term="hep-ex"/>
-<category term="hep-th"/>
-<summary type="text">We investigate a radion portal for pseudo-Majorana dark matter as an interpretation of the high-recoil event LZ230616. In contrast to the familiar pseudo-Dirac regime, the pseudo-Majorana structure allows a dominant scalar transition while suppressing elastic scattering. Endothermic kinematics remove low-energy recoils, while the nuclear response shapes the surviving high-recoil spectrum. Combining the accepted LZ event count with the Born-level thermal relic abundance yields a reference solution with $m_\chi=1$ TeV, $\delta=340$ keV, and $m_r=30$ GeV. This solution lies within the published LZ spin-independent $\mathcal{O}_1^s$ interval and remains compatible with existing OPAL and CMS constraints, while a simplified HL-LHC diphoton projection could probe it. Solar neutrino searches offer a complementary test. The benchmark's energetic-daughter proxy rates are comparable in magnitude to the rate scales reconstructed from IceCube's direct $b\bar{b}$ and $\tau^+\tau^-$ templates. An illustrative IceCube-Gen2 rescaling suggests future sensitivity, while a model-specific assessment requires the radion-cascade neutrino spectra and detector response.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.23020</id>
-<title>Loop-induced $gg\to ZH$ at NLO+PS for LHC simulations: exact, fast scale and PDF event weights, theory uncertainties, and the limits of rescaled LO+PS</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.23020"/>
-<updated>2026-11-18T00:00:00Z</updated>
-<author><name>Licheng Zhang</name></author>
-<author><name>Christopher Palmer</name></author>
-<category term="hep-ph"/>
-<category term="hep-ex"/>
-<summary type="text">We study loop-induced $gg\to ZH$ production with charged-lepton and neutrino $Z$ decays at next-to-leading order (NLO) in QCD matched to parton showers, using public software at $\sqrt{s}=13$ and 13.6 TeV. An exact loop-amplitude cache reduces event-generation time by a factor of 26 with 450 scale and PDF weights, while Born suppression improves boosted-event statistics without changing the weighted prediction. We present inclusive results for both channels and charged-lepton differential and STXS Stage 1.3 predictions with theory uncertainties. At 13.6 TeV, fixed-order top-quark mass-scheme variations transferred to NLO+PS dominate the statistically precise central-Higgs STXS bins for $p_\mathrm{T}^V\ge150$ GeV, reaching 32-50%. An inclusive $K$ factor does not reproduce the boosted and jet-dependent NLO+PS spectra of the tested LO+PS samples, and the differences depend strongly on the shower prescription. For specified CMS- and ATLAS-style vetoed sources at 13.6 TeV, we construct separate charged-lepton and neutrino corrections using ensembles of gradient-boosted classifiers, with calibration, target-theory variations and transfer uncertainties. Independent tests show …</summary>
+<summary type="text">We present a modular-invariant supersymmetric model of flavour for quark masses and mixing, based on the group $Γ_2\cong S_3$. Hierarchies in the quark sector follow from the symmetric structure of the model, as they are generated by modular forms of different weights in the mass matrices, and no severe tuning of free superpotential coefficients is needed. Moreover, no flavons are employed besides the modulus $τ$ which is, given the gCP symmetry imposed on the model, the only source of CP violation. 8 dimensionless observables (4 mass ratios and 4 CKM parameters) are reproduced by making use of 10 free model parameters (including real and imaginary part of the modulus) within the $1σ$ range making our model, to the best of our knowledge, the $S_3$ modular model for quarks with the fewest free parameters.</summary>
 </entry>
 </feed>
