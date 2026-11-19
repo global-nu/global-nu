@@ -5,7 +5,7 @@
 <subtitle>Neutrino preprints ranked by relevance, rebuilt every morning. Selected by keyword score; no model involved.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/digest.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/digest.atom"/>
-<updated>2026-11-17T00:00:00Z</updated>
+<updated>2026-11-18T00:00:00Z</updated>
 <author><name>global-nu.org, Bari group</name></author>
 <entry>
 <id>https://arxiv.org/abs/2611.18824</id>
@@ -50,6 +50,17 @@
 <summary type="text">We present a comprehensive study linking the single-particle flavor entanglement of a \(ν_{e} \rightarrow ν_μ\) oscillation to CPT violation using the concurrence. In a two-flavor vacuum with CP-conserving mixing, CPT invariance strictly demands \(\mathcal{C}_ν(L) = \mathcal{C}_{\barν}(L)\), meaning any measured difference \(Δ\mathcal{C}_{\mathrm{CPT}} \equiv \mathcal{C}_ν - \mathcal{C}_{\barν}\) serves as a clean, background-free witness of CPT violation. We derive exact, first-order analytical relations connecting this entanglement asymmetry to the standard probability asymmetry, the baseline reflection sums, and the long-baseline decoherence floor. To rigorously test the experimental viability of this framework, we perform extensive numerical simulations. We demonstrate that the framework projects stringent sensitivity limits on Standard-Model Extension (SME) parameters at DUNE-like densities, isolate a coordinate-independent CPT invariant, and show that the signal remains robust across realistic, variable Earth matter density profiles. Crucially, we identify a distinct 24-hour sidereal modulation of the entanglement asymmetry, providing a definitive temporal "smoking gun" to …</summary>
 </entry>
 <entry>
+<id>https://arxiv.org/abs/2611.23978</id>
+<title>Geoneutrinos (and reactor neutrinos) do not visibly decay</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.23978"/>
+<updated>2026-11-18T00:00:00Z</updated>
+<author><name>Mauricio Bustamante</name></author>
+<category term="hep-ph"/>
+<category term="hep-ex"/>
+<category term="hep-th"/>
+<summary type="text">Neutrinos that decay on their way to a detector arrive depleted, more so at low energies, where time dilation lengthens their lifetime the least. Geoneutrinos---electron antineutrinos from the radioactive decay of uranium and thorium inside the Earth---have energies of a few MeV and travel up to the diameter of the Earth. We use them to test neutrino decay for the first time. We compute the geoneutrino signal at Borexino, KamLAND, SNO+, and JUNO for visible decay, in which the daughter neutrinos are themselves detected, and compare it against their published data. We find no evidence of decay that holds across Earth models. Combining the four experiments, we limit the decay $ν_1 \to ν_3$ in the inverted mass ordering at 90% C.L.: $τ_1/m_1 &gt; 3.7 \times 10^{-9}$ s eV$^{-1}$ when the radiogenic power of the Earth is left free and $τ_1/m_1 &gt; 4.4 \times 10^{-9}$ to $1.6 \times 10^{-8}$ s eV$^{-1}$ when it is taken from Earth models. With an Earth model assumed, the geoneutrinos set the limit; with the power free, the antineutrinos from nuclear reactors that the same experiments detect count as much as the geoneutrinos. These are the first terrestrial limits on the visible decay of …</summary>
+</entry>
+<entry>
 <id>https://arxiv.org/abs/2611.21729</id>
 <title>Supernova Bounds on Neutrino Dipole Moments from a Modern Perspective</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.21729"/>
@@ -71,6 +82,28 @@
 <author><name>Xubin Hu</name></author>
 <category term="hep-ph"/>
 <summary type="text">We consider seesaw models with hierarchical Dirac neutrino masses. We show that, barring well known fine-tuned crossing level solutions and given current low energy neutrino experimental data, these always lead to a very hierarchical heavy neutrino spectrum. If the Dirac neutrino masses are assumed not to significantly differ from the up-quark masses, then the intermediate seesaw neutrino ($N_2$) mass falls in the correct range for its decays to explain the matter-antimatter asymmetry of the universe via ($N_2$-)leptogenesis, while the lightest seesaw neutrino decays give a negligible contribution. We show that these conclusions are valid independently of any additional condition on the Dirac neutrino mass matrix. In this way we extend the usual $SO(10)$-inspired leptogenesis scenario, assuming the mismatch between neutrino and charged lepton Dirac mass matrices at the level of the CKM matrix. We find that solutions for inverted ordered neutrino masses become viable. We still find a lower bound on the lightest neutrino mass, $m_1 \gtrsim 10^{-5}\,{\rm eV}$, but this is relaxed by two orders of magnitude. We also consider the special subset of solutions realising strong thermal …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.23343</id>
+<title>An energy-dependent rescaling of the neutrino propagation Hamiltonian: Standard Model Extension identification, matter sector, and long-baseline degeneracy</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.23343"/>
+<updated>2026-11-17T00:00:00Z</updated>
+<author><name>Neda Razzaghi</name></author>
+<category term="hep-ph"/>
+<category term="hep-th"/>
+<summary type="text">We study the consequences of multiplying the neutrino propagation Hamiltonian by a real, energy-dependent scalar, $H_η(E)=f(E)H_0(E)$ with $f(E)=1-η_0(E/E_0)^2$, a minimal-length ansatz. Its vacuum part is a dimension-four, CPT-even Lorentz-violating term of the Standard Model Extension with coefficient $(\cL)_{ii}=-η_0(m_i^2-m_1^2)/(2E_0^2)$, diagonal in the mass basis and fixed by the mass matrix, hence removable by a reparametrization. The matter-potential rescaling has dimension-five behaviour and is CPT-odd. For $f=1-η_0(E/E_0)^p$ the vacuum term behaves as a dimension $p+2$ operator and the matter term as $p+3$, so only $p=2$ gives a marginal vacuum operator; $p=0$ is absorbed into the measured mass splittings, and non-integer $p$ admits no local operator. For $η_0=0.02$ at $E_0=2.5$~GeV we find $|(\cL)_{33}|\simeq4\times10^{-24}$, comparable to present atmospheric bounds, whereas a Planck-suppressed deformation with $β_0=\mathcal{O}(1)$ gives $3.2\times10^{-58}$. At constant density it is equivalent to $L\to f(E)L$: mixing angles and the Dirac phase are unchanged, the CP asymmetry is reparametrized rather than generated, and the leading observable is a rescaling of …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.23711</id>
+<title>Producing $μ$Bq/m3-level low-226Ra ultrapure water for the Jiangmen Underground Neutrino Observatory</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.23711"/>
+<updated>2026-11-18T00:00:00Z</updated>
+<author><name>Xi-Ting Xu</name></author>
+<author><name>Cong Guo</name></author>
+<author><name>Jin-Chang Liu et al.</name></author>
+<category term="physics.ins-det"/>
+<category term="hep-ex"/>
+<summary type="text">The Jiangmen Underground Neutrino Observatory (JUNO), a 20 kton low-background liquid-scintillator (LS) detector, was designed primarily to determine the neutrino mass ordering. JUNO requires ultrapure water (UPW) with a Ra concentration &lt; 50~$μ$Bq/m3 because of the direct liquid-liquid contact between LS and UPW during detector filling. To meet this stringent requirement, a high-sensitivity measurement system capable of detecting Ra in water down to 3.9 $μ$Bq/m3 was developed, and the 100 t/h UPW production process was optimized. By integrating selective ion-exchange resin with membrane-based separation technologies, the system consistently produced UPW with a Ra concentration of &lt;4$μ$Bq/m3, exceeding the JUNO specification and, to our knowledge, representing one of the lowest reported levels achieved at this engineering scale. This paper describes the design and implementation of JUNO's UPW system and the high-sensitivity Ra measurement platform, together with a systematic evaluation of Ra removal efficiencies across the purification train and validation of the final water quality.</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.23220</id>
@@ -95,6 +128,29 @@
 <category term="hep-ph"/>
 <category term="astro-ph.GA"/>
 <summary type="text">We derive new constraints on the interaction cross section between dark matter and neutrinos ($σ_{νχ}$) that improve upon existing limits. We adopt a mechanism where neutrinos emitted from core-collapse supernovae transfer their energy to the dark matter halo via elastic scattering, transitioning a centrally cusped profile to a flat-cored profile. We apply this mechanism to Low Surface Brightness Galaxies (LSBGs), which are characterized by their relatively large sizes, low stellar densities, and measurements of dark matter cores. We improve upon previous methods so that each dark matter particle is counted at most once, which weakens existing limits, e.g., from the Fornax dSph by a factor of $\sim 50$. Applying our new method to LSBGs, we derive an upper limit of $σ_{νχ}&lt; 8.5 \times 10^{-25}\,\rm cm^2$ for a dark matter mass of $m_χ=1\,\rm GeV$ at a typical supernova neutrino energy of $E_ν=15\,\rm MeV$. This constraint is approximately three orders of magnitude stronger than the Fornax limit derived with the same method and slightly stronger than the bound from the dark matter diffused supernova neutrino background (DMDSNB).</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.24674</id>
+<title>On the cosmic window for neutrino self-interactions</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.24674"/>
+<updated>2026-11-18T00:00:00Z</updated>
+<author><name>Ivan Pérez-Castro</name></author>
+<author><name>Jorge Venzor</name></author>
+<author><name>Josue De-Santiago et al.</name></author>
+<category term="hep-ph"/>
+<category term="astro-ph.CO"/>
+<summary type="text">Neutrino self-interactions ($ν$SI) beyond the Standard Model have arisen as a promising probe of new physics in cosmology. In this Letter, we show that $ν$SI emerging in the low-energy limit of renormalizable theories implies resonant mediator behavior. We identify two regions for $ν$SI: (i) neutrinos become tightly coupled with background evolution; for the first time, we establish how this evolution modifies the Boltzmann hierarchy equations (BHEs), and (ii) resonant $ν$SI dominates the dynamics with negligible background evolution, relevant for mediator masses $\sim 10^{-6}-1$ MeV. In region (i), before matter-radiation equality, neutrino free-streaming is determined by the effective four-fermion interaction, known as the heavy-mediator limit (HML); we explore the impact of background evolution on this scenario, and from our modified BHEs, we show that self-interacting dark radiation scenarios require larger couplings than previously estimated to mimic $ν$SI. Region (ii) shows that the simplest realization of $ν$SI mediated by a (pseudo)scalar particle leads to an extra radiation contribution of $ΔN_{\rm eff}^{\rm CMB} \approx 0$, instead of the commonly quoted $\simeq 0.12$ …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.24418</id>
+<title>A lepto-hadronic perspective on the properties of the candidate neutrino-emitter blazar 5BZQ J0808+4950</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.24418"/>
+<updated>2026-11-18T00:00:00Z</updated>
+<author><name>Margot Boughelilba</name></author>
+<author><name>Leonard Pfeiffer</name></author>
+<author><name>Jose Maria Sanchez Zaballa et al.</name></author>
+<category term="astro-ph.HE"/>
+<summary type="text">The role of active galactic nuclei in the production of high-energy neutrinos has been highlighted by the association of the blazar TXS 0506+056 and the Seyfert galaxy NGC 1068 with IceCube neutrino events. In particular, blazars, with their powerful jets, are potential sites of neutrino production via (photo-)hadronic interactions. The gamma-ray bright blazar 5BZQJ0808+4950 is consistent with a spatial anisotropy in the IceCube neutrino all-sky maps. An individual high-energy neutrino event, IC110929A, was also reported in the direction of this blazar. Although the correlation between the gamma-ray bright blazars and the neutrino production remains inconclusive, 5BZQ J0808+4950, with a luminous accretion disk serving as a photon field for the photo-hadronic interactions, offers the opportunity to test the relation between neutrino production and the radiative output of the blazar jet. We compile available multi-wavelength data and analyze the gamma-ray light curve of 5BZQ J0808+4950, leading us to define six contemporaneous epochs to model the source's spectral energy distribution and its evolution over time. We use a lepto-hadronic, time-dependent framework to model 5BZQ …</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.21752</id>
@@ -130,64 +186,5 @@
 <category term="astro-ph.CO"/>
 <category term="hep-ph"/>
 <summary type="text">The dispersion-measure (DM)--redshift relation of fast radio bursts (FRBs) provides independent low-redshift cosmological information for neutrino-mass inference. In this work, we perform joint analyses with cosmic microwave background (CMB) data, using 120 localized FRBs with reliable host-galaxy redshifts and larger mock samples, to investigate the effects of sample size and the dark-energy model on constraints on the sum of neutrino masses, $\sum m_ν$. In the $Λ$CDM+$\sum m_ν$ model, CMB+FRB gives $\sum m_ν&lt;0.21\,\mathrm{eV}$, substantially relaxed relative to the current CMB+DESI result. With 1000 simulated events, CMB+FRB1(mock) gives an upper limit of $0.12\,\mathrm{eV}$, which decreases to $0.035\,\mathrm{eV}$ for CMB+FRB2(mock) with 10000 events. The latter is more stringent than the CMB+DESI limit, demonstrating the potential of large localized FRB samples to constrain neutrino mass. When the model is extended to $w_0w_a$CDM+$\sum m_ν$, both the observed and mock samples yield upper limits of approximately $0.3$--$0.4\,\mathrm{eV}$, indicating that the assumed dark-energy model remains a dominant factor in these constraints. As localized FRB samples grow and the modeling …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.17651</id>
-<title>$^8$B Solar Neutrino Measurements of Solar Core Size and Temperature from 5805 Days of Super-Kamiokande</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.17651"/>
-<updated>2026-11-13T00:00:00Z</updated>
-<author><name>The Super-Kamiokande Collaboration</name></author>
-<author><name>:</name></author>
-<author><name>Y. Jiang et al.</name></author>
-<category term="hep-ex"/>
-<category term="astro-ph.HE"/>
-<category term="astro-ph.SR"/>
-<summary type="text">The detection of solar neutrino provides direct evidence for on-going fusion in the core of the Sun and serve as a probe for that solar core. Production rate of $^8$B is sensitive to the solar core temperature. Adiabatic flavor conversion of $^8$B solar neutrinos depends on the local solar electron density. Combined with the roughly exponential decrease in solar electron density with increasing distance from the center of the solar sphere, the solar core size, density, and temperature are inferred. This article presents an outer bound on solar core size and measurements of the density and temperature in the solar core based on Super-Kamiokande phase I-IV solar neutrino data. An outer bound is set for the solar core at $90\%$ confidence level as $0.499R_\odot$ for the high metallicity B16+GS98 Standard Solar Model and $0.381R_\odot$ for K2-A09-MZvar-12 which includes protosolar accretion. A combined fit with the SNO polynomial coefficients improves the limit to $0.268R_\odot$ for B16+GS98 and $0.215R_\odot$ for K2-A09-MZvar-12. Results for other metallicity cases are also reported. In the high metallicity scenario assuming nominal solar core density and solar core size, temperature …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.16807</id>
-<title>Solar Neutrinos at the ESSnuSB experiment</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.16807"/>
-<updated>2026-11-17T00:00:00Z</updated>
-<author><name>ESSnuSB Collaboration</name></author>
-<author><name>J. Aguilar</name></author>
-<author><name>D. Barčot et al.</name></author>
-<category term="hep-ph"/>
-<category term="hep-ex"/>
-<summary type="text">We investigate the sensitivity of the ESSnuSB large underground water-Cherenkov (WC) detector to two key solar neutrino signatures: the MSW spectral upturn in the $^8$B electron neutrino survival probability $P_{ee}(E_ν)$, and the first direct observation of the rare hep neutrino flux. The analysis incorporates detector systematic uncertainties (energy resolution and flux normalization) and models environmental backgrounds from cosmic-ray muon spallation and $^{222}$Rn contamination. We adopt a shape-driven analysis strategy with a floating overall normalization, so that the discovery power relies on the spectral distortion rather than on the absolute event rate. In a realistic scenario with 90% spallation rejection efficiency, informed by the Super-Kamiokande experience and recent JUNO analyses, residual spallation backgrounds prevent either signal from reaching $5σ$ significance within 20 years of exposure. For the hep flux, we present a detailed sensitivity study to both its discovery and its precision, and quantify how the required spallation veto efficiency and recoil energy threshold jointly determine the achievable significance for both signals. At the adopted thresholds …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.16715</id>
-<title>Resolving Radiogenic Heterogeneity in the Earth's Mantle with Multi-Site Geo-neutrino Measurements</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.16715"/>
-<updated>2026-11-13T00:00:00Z</updated>
-<author><name>Michael Leyton</name></author>
-<author><name>Stephen T. Dye</name></author>
-<category term="physics.geo-ph"/>
-<category term="astro-ph.EP"/>
-<category term="hep-ex"/>
-<summary type="text">We present a global fit to geo-neutrino measurements at four underground sites (Kamioka, Gran Sasso, Sudbury, Jiangmen), combining signal rates with site-specific predictions of the lithospheric contribution to constrain the quantity and distribution of radioactivity in the Earth's mantle. Assuming a uniform distribution of radioactivity in the mantle, we find a geo-neutrino rate of $S_\text{mantle} = 14.8 \pm 4.5$ NIU when the lithospheric predictions are allowed to vary within their uncertainties. This uniform-mantle signal rate corresponds to radiogenic heating of $18.5 \pm 5.6$ TW. Although the uniform-mantle signal is resolved at $\sim3.2σ$, there is noticeable tension between the inferred mantle signals at Jiangmen and Kamioka, which may indicate non-uniform geo-neutrino production in the mantle. We explore six families of models to describe the heterogeneous spatial distribution of radiogenic elements in the Earth's mantle. Each model contains anomalous bodies or reservoirs carrying an excess of heat-producing elements over a depleted mantle (DM) background, with total inventory set by bulk-silicate-Earth mass balance and by a geochemical Th/U constraint. For each model, we …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.17604</id>
-<title>Resonant Trapping of Neutrinophilic Dark Matter in Supernovae</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.17604"/>
-<updated>2026-11-13T00:00:00Z</updated>
-<author><name>Christopher V. Cappiello</name></author>
-<author><name>P. S. Bhupal Dev</name></author>
-<author><name>Amol V. Patwardhan</name></author>
-<category term="hep-ph"/>
-<category term="astro-ph.HE"/>
-<summary type="text">Supernova cooling provides some of the strongest constraints on light particles beyond the Standard Model, including sub-GeV dark matter (DM). While sufficiently large couplings to the Standard Model sector can trap these particles inside the supernova or cause them to decay before escaping, there typically exists an intermediate range of couplings in which their efficient production and subsequent escape lead to excessive energy loss, resulting in stringent constraints on new light particles. In this work, we demonstrate for the first time that, for certain types of DM-neutrino interactions, resonantly enhanced $s$-channel scattering with neutrinos can efficiently trap DM inside the supernova and can fundamentally alter the conventional supernova cooling constraints. In particular, we show that for mediator masses comparable to the supernova core temperature, this resonant scattering can prevent a substantial fraction of the produced DM from freely escaping, thereby significantly weakening, or even evading, the usual supernova cooling constraints on such models.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.16545</id>
-<title>A perturbative construction of a modular $S_3$ model for quarks</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.16545"/>
-<updated>2026-11-12T00:00:00Z</updated>
-<author><name>Gabriele Battimelli</name></author>
-<author><name>Davide Meloni</name></author>
-<category term="hep-ph"/>
-<summary type="text">We present a modular-invariant supersymmetric model of flavour for quark masses and mixing, based on the group $Γ_2\cong S_3$. Hierarchies in the quark sector follow from the symmetric structure of the model, as they are generated by modular forms of different weights in the mass matrices, and no severe tuning of free superpotential coefficients is needed. Moreover, no flavons are employed besides the modulus $τ$ which is, given the gCP symmetry imposed on the model, the only source of CP violation. 8 dimensionless observables (4 mass ratios and 4 CKM parameters) are reproduced by making use of 10 free model parameters (including real and imaginary part of the modulus) within the $1σ$ range making our model, to the best of our knowledge, the $S_3$ modular model for quarks with the fewest free parameters.</summary>
 </entry>
 </feed>
