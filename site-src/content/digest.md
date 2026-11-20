@@ -24,7 +24,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors.</b>
-<span class="stamp">Last successful update: 20 November 2026, 07:47 CET</span></div>
+<span class="stamp">Last successful update: 20 November 2026, 12:31 CET</span></div>
 </div>
 <p class="digest-dates small"><b>This edition:</b> preprints first submitted 13 Nov 2026 – 19 Nov 2026. Each entry gives its own dates: first submission, latest update when there is one, and announcement when the source states it. arXiv announces submissions on its own schedule, so the newest of these may not have been announced yet.</p>
 <!-- QUIET:BEGIN -->
@@ -58,9 +58,9 @@ and may contain errors.</b>
 <li><b><a href="https://arxiv.org/abs/2611.23343">An energy-dependent rescaling of the neutrino propagation Hamiltonian: Standard Model Extension identification, matter sector, and long-baseline degeneracy</a></b><span>Neda Razzaghi · first submitted 17 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-th</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.26549">Refractive Neutrino Mass: Effects of Fluctuations of the Dark Matter Field</a></b><span>Soham Sahasrabuddhe, Manibrata Sen, Alexei Y. Smirnov · first submitted 19 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.23220">Complete Cosmological Collider Signatures from Right-handed Neutrino Loops</a></b><span>Linghao Song, Jingtao You, Ming Cheng et al. · first submitted 17 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span><span class="tag">hep-th</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2611.17922">Improved Bounds on the Dark Matter-Neutrino Cross Section using LSBGs</a></b><span>Akari Suezaki, Shunsaku Horiuchi · first submitted 13 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.GA</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.24674">On the cosmic window for neutrino self-interactions</a></b><span>Ivan Pérez-Castro, Jorge Venzor, Josue De-Santiago et al. · first submitted 18 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.24418">A lepto-hadronic perspective on the properties of the candidate neutrino-emitter blazar 5BZQ J0808+4950</a></b><span>Margot Boughelilba, Leonard Pfeiffer, Jose Maria Sanchez Zaballa et al. · first submitted 18 Nov 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2611.21752">Mapping the multimessenger horizon for γ-ray counterparts of cosmic neutrinos</a></b><span>Tianyi Ding, Jose Alonso Carpio, Ali Kheirandish et al. · first submitted 16 Nov 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span></span></li>
 </ul>
 
 
