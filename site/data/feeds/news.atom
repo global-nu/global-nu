@@ -5,111 +5,118 @@
 <subtitle>Summaries written automatically with AI from fetched sources; each links to its source.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/news.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/news.atom"/>
-<updated>2026-11-20T11:31:53+00:00</updated>
+<updated>2026-11-20T12:21:12+00:00</updated>
 <author><name>global-nu.org, Bari group</name></author>
 <entry>
-<id>https://global-nu.org/news/1937bdad62294570</id>
-<title>Prizes for IceCube and MicroBooNE</title>
+<id>https://global-nu.org/news/a3deb2b7bbb330d2</id>
+<title>Nobel and Panofsky prizes</title>
 <link rel="alternate" href="https://cerncourier.com/a/francis-halzen-wins-the-nobel-prize/"/>
-<updated>2026-11-20T11:31:53+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. Francis Halzen was awarded the 2026 Nobel Prize in Physics for his decisive contributions to the IceCube Neutrino Observatory. Separately, Sam Zeller was awarded the W.K.H. Panofsky Prize for co-leadership of MicroBooNE at Fermilab, which advanced next-generation liquid-argon time projection chamber technology for neutrino detection.</summary>
+<updated>2026-11-20T12:21:12+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. Francis Halzen was awarded the 2026 Nobel Prize in Physics for his decisive contributions to the IceCube Neutrino Observatory, according to CERN Courier. Separately, Fermilab reports that Sam Zeller received the W.K.H. Panofsky Prize for co-leading MicroBooNE, which advanced next-generation liquid-argon time projection chamber technology for neutrino detection.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/cad27fc4fef4748e</id>
+<id>https://global-nu.org/news/4384b2ff23d96461</id>
 <title>DUNE construction</title>
 <link rel="alternate" href="https://www.bhpioneer.com/local_news/dune-construction-begins/article_601a4c0b-b7c9-4d01-af3f-473a9dfa65dd.html"/>
-<updated>2026-11-20T11:31:53+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. Fermilab, CERN and SURF crews have started building the first of two large cryostats, insulated containers designed to hold liquid argon at very low temperature for DUNE. Fermilab News also reports a construction milestone for the project, with Colorado State University and the University of Texas at Arlington among the institutions contributing to detector development and components such as the field cage.</summary>
+<updated>2026-11-20T12:21:12+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. Fermilab, CERN and SURF crews have started building the first of two cryostats, the large insulated containers that will hold liquid argon for DUNE. Fermilab news items describe the start of construction of the underground detector in South Dakota. They also note the contributions of Colorado State University, a founding member, and of the University of Texas at Arlington, which is working on the field cage and other detector components.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/27072ff33680aaa2</id>
+<id>https://global-nu.org/news/22cafe74a46d1171</id>
+<title>KM3NeT/ARCA diffuse flux</title>
+<link rel="alternate" href="https://www.km3net.org/all-sky-and-galactic-ridge-neutrino-emission/"/>
+<updated>2026-11-20T12:21:12+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. KM3NeT announced a search for an all-sky and a Galactic Ridge diffuse neutrino emission using the first two years of ARCA data. The published analysis uses the first ARCA configurations, with 6, 8, 19 and 21 detection units and a total livetime of 640 days. For the all-sky fit under a single power law, the paper reports a spectral index of 3.00 with uncertainties of +0.30 and -0.35 at 68% credible level.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/e2b355ac9cf8598d</id>
 <title>SBND cross sections</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.25098"/>
-<updated>2026-11-20T11:31:53+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. SBND reported measurements of the total and single-differential inclusive electron-neutrino charged-current cross sections on argon. The sample is 95.2% electron neutrinos and 4.8% electron antineutrinos, and the authors describe it as the highest-statistics measurement of this channel on argon to date and the first using the Booster Neutrino Beam. Such measurements matter for electron-neutrino appearance searches in both long- and short-baseline experiments.</summary>
+<updated>2026-11-20T12:21:12+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. SBND has measured total and single-differential inclusive electron-neutrino charged-current cross sections on argon. The authors describe it as the highest-statistics inclusive measurement of this channel on argon to date and the first using the Booster Neutrino Beam. They stress that such direct measurements matter for long- and short-baseline oscillation studies based on electron-neutrino appearance.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/465072fd95a302c7</id>
-<title>JUNO ultrapure water</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.23711"/>
-<updated>2026-11-20T11:31:53+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. JUNO needs ultrapure water with a radium concentration below 50 μBq/m3 because the water is in direct contact with the liquid scintillator during detector filling. A new paper describes a measurement system able to detect radium in water down to 3.9 μBq/m3 and an optimised 100 t/h production process that combines selective ion-exchange resin with membrane separation.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/58a7b406d7b0f367</id>
-<title>Geoneutrinos and decay</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.23978"/>
-<updated>2026-11-20T11:31:53+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. A new analysis uses geoneutrinos, which have energies of a few MeV and cross up to the Earth's diameter, to test neutrino decay for the first time. The signal at Borexino, KamLAND, SNO+ and JUNO was computed for visible decay and compared with published data. The author finds no evidence of decay that holds across Earth models.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/baa84281f6b6e1ff</id>
-<title>ProtoDUNE muon seasonality</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.18997"/>
-<updated>2026-11-20T11:31:53+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The DUNE Collaboration measured seasonal variation of the cosmic-ray muon rate with the ProtoDUNE single-phase detector at the CERN Neutrino Platform, using data from December 2018 to July 2020. The modulation has a significance of 4σ against no seasonal variation, with a maximum in winter, consistent with other surface experiments with a low muon-energy threshold.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/e6c26446de0f73be</id>
-<title>SHiP two-baseline sensitivity</title>
+<id>https://global-nu.org/news/a3e378b5856ec558</id>
+<title>SHiP sterile sensitivity</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.18824"/>
-<updated>2026-11-20T11:31:53+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The SHiP Collaboration shows that its baseline detector configuration forms a two-baseline experiment for oscillations induced by a sterile neutrino. Neutrino interactions are recorded in the scattering and neutrino detector and, about 70 m further downstream, in the calorimeter system. The study uses a Geant4 simulation of Genie-generated interactions to derive the energy response and the separation of electron-neutrino events from neutral-current pi-zero background.</summary>
+<updated>2026-11-20T12:21:12+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The SHiP Collaboration studies a facility approved for the beam-dump area at the CERN SPS North Area. It argues that the baseline detector configuration is a two-baseline experiment for sterile-neutrino-induced oscillations. Neutrino interactions are recorded in the scattering and neutrino detector and, about 70 m further downstream, in the calorimeter system.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/8c5c9adb4ce1711a</id>
-<title>MINERvA open-data surrogate</title>
+<id>https://global-nu.org/news/875d9d646f13bca9</id>
+<title>JUNO preparation</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.23711"/>
+<updated>2026-11-20T12:21:12+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. JUNO requires ultrapure water with a radium concentration below 50 μBq/m3, because the liquid scintillator is in direct contact with the water during filling. A new paper describes a measurement system sensitive down to 3.9 μBq/m3 and an optimised 100 t/h water production process. A separate study considers a movable reactor antineutrino source placed within about 3 km of the JUNO detector, aimed at precision on the reactor mixing angle.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/7ec22030f407ec9d</id>
+<title>ProtoDUNE-SP muon seasons</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.18997"/>
+<updated>2026-11-20T12:21:12+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The DUNE Collaboration reports a seasonal modulation of the cosmic-ray muon rate in the ProtoDUNE single-phase detector at the CERN Neutrino Platform. The data span December 2018 to July 2020. The modulation has a significance of 4σ against the null hypothesis, with the rate highest in winter, consistent with other surface experiments with a low muon-energy threshold.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/bd609ed45e024897</id>
+<title>IceCube neutral currents</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.20887"/>
+<updated>2026-11-20T12:21:12+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. A phenomenological study asks how well IceCube can constrain the neutral-current neutrino–nucleon cross section with 12 years of data. It considers two strategies: neutrino absorption and regeneration in the Earth, and the track-to-cascade event ratio. The authors note that, unlike the charged-current cross section, neutral-current interactions at high energy remain largely unexplored experimentally.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/b650b8a80cbdc774</id>
+<title>CYGNO directionality</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.20754"/>
+<updated>2026-11-20T12:21:12+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The CYGNO collaboration studies the reconstruction of the initial direction of low-energy electron recoils in its 50 L LIME prototype, which uses an optical time-projection chamber with a sCMOS readout. Electron-recoil directionality could help separate solar-neutrino interactions from backgrounds. The algorithm infers the direction from the early part of the ionization trail, before multiple scattering erases the directional information.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/7b2ae7fda90d6d07</id>
+<title>MINERvA surrogate model</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.26271"/>
-<updated>2026-11-20T11:31:53+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. A probabilistic surrogate of the MINERvA detector response was trained on an open simulation dataset. It maps generator-level final-state particles and interaction geometry to reconstructed observables, which the authors say previously required computationally intensive methods inaccessible outside the original collaborations.</summary>
+<updated>2026-11-20T12:21:12+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. A new probabilistic surrogate of the MINERvA detector response is trained on the open simulation dataset. It maps generator-level final-state particles and interaction geometry to reconstructed observables. The aim is to let people outside the original collaboration compare interaction models with open neutrino data without computationally intensive methods.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/7368f12148165830</id>
-<title>Movable reactor at JUNO</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.26418"/>
-<updated>2026-11-20T11:31:53+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. A phenomenology study considers a movable reactor antineutrino source placed within about 3 km of the JUNO detector, with the aim of improving on Daya Bay's precision on theta-13. It considers a microreactor of order 20 MW thermal and argues that JUNO's large fiducial mass would give a statistically significant event count over a few years.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/882cc2c66637d289</id>
-<title>The paper computes the neutrino emissivity of Δ-direct-Urca processes in neutron-star matter containing Δ isob</title>
+<id>https://global-nu.org/news/3427bcc17d379c8c</id>
+<title>The paper computes the contribution of Δ-direct-Urca processes to neutrino emissivity in neutron stars contain</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3211621"/>
-<updated>2026-11-20T11:31:53+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The paper computes the neutrino emissivity of Δ-direct-Urca processes in neutron-star matter containing Δ isobars. Its contribution had not been explicitly evaluated before, and it bears on neutron-star cooling, where Urca processes are dominant mechanisms.</summary>
+<updated>2026-11-20T12:21:12+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper computes the contribution of Δ-direct-Urca processes to neutrino emissivity in neutron stars containing Δ isobars, which had not been treated explicitly before. It matters for neutrino physicists because Urca processes are among the dominant neutrino-driven cooling mechanisms of neutron stars.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/75332d9c0c86a03e</id>
-<title>The authors assess whether kiloton-scale detectors such as Hyper-Kamiokande could determine the primary cosmic</title>
+<id>https://global-nu.org/news/fa197d99178dc653</id>
+<title>The authors examine whether kiloton-scale detectors such as Hyper-Kamiokande could constrain the primary cosmi</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3220874"/>
-<updated>2026-11-20T11:31:53+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The authors assess whether kiloton-scale detectors such as Hyper-Kamiokande could determine the primary cosmic-ray spectrum from the atmospheric neutrino flux. They find that future detectors can distinguish between cosmic-ray models with high statistical significance, even with uncertainties in cross sections and hadronic interactions.</summary>
+<updated>2026-11-20T12:21:12+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The authors examine whether kiloton-scale detectors such as Hyper-Kamiokande could constrain the primary cosmic-ray spectrum through the atmospheric neutrino flux. They find that future detectors can distinguish between cosmic-ray models with high statistical significance, even allowing for uncertainties in cross sections and hadronic interactions. This links atmospheric-neutrino measurements to a flux input that is usually taken from satellite and balloon data.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/6774b7d48d210cc1</id>
-<title>The paper uses a model-independent, multimessenger-constrained inference, with Latin hypercube sampling of the</title>
+<id>https://global-nu.org/news/563b47e55e972887</id>
+<title>Motivated by updated IceCube data for NGC 1068 down to about 0.2 TeV, the paper calculates neutrino and cascad</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3215537"/>
-<updated>2026-11-20T11:31:53+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The paper uses a model-independent, multimessenger-constrained inference, with Latin hypercube sampling of the parameter space, to study neutrino production near the supermassive black hole in NGC 1068. It is motivated by updated IceCube data down to about 0.2 TeV.</summary>
+<updated>2026-11-20T12:21:12+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. Motivated by updated IceCube data for NGC 1068 down to about 0.2 TeV, the paper calculates neutrino and cascade gamma-ray production from hadronic channels. It explores the parameter space with Latin hypercube sampling, constrained by the multimessenger data. The result bears on what physical conditions are needed near the supermassive black hole of an established neutrino source.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/67d6384fd08ab8e7</id>
-<title>The authors study neutrino oscillations in a self-gravitating spacetime supported by ultrarelativistic matter,</title>
-<link rel="alternate" href="https://inspirehep.net/literature/3212900"/>
-<updated>2026-11-20T11:31:53+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The authors study neutrino oscillations in a self-gravitating spacetime supported by ultrarelativistic matter, computing the eikonal and spinoptics oscillation phases analytically. They state that this combination had not been considered previously.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/5ae1e45c1a234695</id>
-<title>The paper derives exclusion limits on anomaly-free dark photon models from solar neutrino-electron scattering </title>
-<link rel="alternate" href="https://inspirehep.net/literature/3211628"/>
-<updated>2026-11-20T11:31:53+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The paper derives exclusion limits on anomaly-free dark photon models from solar neutrino-electron scattering data of PandaX-4T and XENONnT. It finds that the stringency of the limits correlates with the leptonic charge assignments of the six benchmark models, and gives model-independent limits as well.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/d550624bdd01a944</id>
-<title>The paper proves a no-go theorem: any completely positive trace-preserving evolution covariant under rotations</title>
+<id>https://global-nu.org/news/274637be5f1a4c47</id>
+<title>The paper proves that every completely positive trace-preserving evolution covariant under rotations of the ma</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3217753"/>
-<updated>2026-11-20T11:31:53+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The paper proves a no-go theorem: any completely positive trace-preserving evolution covariant under rotations of the mass-coherence plane is blind to a Majorana phase in open two-flavour oscillations. It also identifies when a rate anisotropy in unital decoherence supplies a phase reference.</summary>
+<updated>2026-11-20T12:21:12+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper proves that every completely positive trace-preserving evolution covariant under rotations of the mass-coherence plane is exactly blind to a Majorana phase in two-flavour oscillations. It also shows that a rate anisotropy can supply an environmental phase reference. This clarifies when decoherence could in principle reveal a Majorana phase.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/87ec978ed25e6392</id>
+<title>The authors present semianalytic approximations for the quasisteady outcome of slow and fast flavour conversio</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3188570"/>
+<updated>2026-11-20T12:21:12+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The authors present semianalytic approximations for the quasisteady outcome of slow and fast flavour conversions in quasihomogeneous neutrino ensembles. They report excellent agreement with multiangle and multienergy solutions of the kinetic equations, independent of mass ordering. Such subgrid schemes are needed because supernova hydrodynamic simulations cannot include neutrino quantum kinetics.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/9a4867cf5a926067</id>
+<title>The paper uses low-energy solar neutrino–electron scattering data from PandaX-4T and XENONnT to constrain anom</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3211628"/>
+<updated>2026-11-20T12:21:12+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper uses low-energy solar neutrino–electron scattering data from PandaX-4T and XENONnT to constrain anomaly-free U(1)_X dark photon models with kinetic and mass mixing. It derives exclusion limits for six benchmark models and finds that their stringency correlates with the leptonic charge assignments. It also gives model-independent limits for pure kinetic and pure mass mixing.</summary>
 </entry>
 </feed>
