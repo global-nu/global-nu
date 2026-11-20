@@ -155,17 +155,6 @@
 <summary type="text">We study the complete cosmological collider (CC) signatures from right-handed neutrino loops with chemical-potential enhancement. These CC signals are induced by the inflaton-right-handed-neutrino interaction and can be extracted in the collinear squeezed configuration, which allows the right-handed-neutrino triangle loop to be factorized into the hard and soft parts. We precisely compute the soft part of the fermion loop for the first time by using the complete mode functions and the full loop integral, and treat the hard part as a tree-level subdiagram. We subtract the large-momentum asymptotic terms of the soft loop integrand and retain their finite contributions to the oscillation. We then evaluate the full spinor-helicity and Schwinger-Keldysh sums to obtain a finite, closed analytic formula for the complex clock coefficient. We further derive a compact formula for the leading CC signals in the large-chemical-potential expansion. We analyze the structure of the soft-part contribution by examining the sum of residues of the Mellin poles of the fermion propagators. For this, we demonstrate that the first local pole on each soft line contributes half of the asymptotic …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.17922</id>
-<title>Improved Bounds on the Dark Matter-Neutrino Cross Section using LSBGs</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.17922"/>
-<updated>2026-11-13T00:00:00Z</updated>
-<author><name>Akari Suezaki</name></author>
-<author><name>Shunsaku Horiuchi</name></author>
-<category term="hep-ph"/>
-<category term="astro-ph.GA"/>
-<summary type="text">We derive new constraints on the interaction cross section between dark matter and neutrinos ($σ_{νχ}$) that improve upon existing limits. We adopt a mechanism where neutrinos emitted from core-collapse supernovae transfer their energy to the dark matter halo via elastic scattering, transitioning a centrally cusped profile to a flat-cored profile. We apply this mechanism to Low Surface Brightness Galaxies (LSBGs), which are characterized by their relatively large sizes, low stellar densities, and measurements of dark matter cores. We improve upon previous methods so that each dark matter particle is counted at most once, which weakens existing limits, e.g., from the Fornax dSph by a factor of $\sim 50$. Applying our new method to LSBGs, we derive an upper limit of $σ_{νχ}&lt; 8.5 \times 10^{-25}\,\rm cm^2$ for a dark matter mass of $m_χ=1\,\rm GeV$ at a typical supernova neutrino energy of $E_ν=15\,\rm MeV$. This constraint is approximately three orders of magnitude stronger than the Fornax limit derived with the same method and slightly stronger than the bound from the dark matter diffused supernova neutrino background (DMDSNB).</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2611.24674</id>
 <title>On the cosmic window for neutrino self-interactions</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.24674"/>
@@ -187,5 +176,17 @@
 <author><name>Jose Maria Sanchez Zaballa et al.</name></author>
 <category term="astro-ph.HE"/>
 <summary type="text">The role of active galactic nuclei in the production of high-energy neutrinos has been highlighted by the association of the blazar TXS 0506+056 and the Seyfert galaxy NGC 1068 with IceCube neutrino events. In particular, blazars, with their powerful jets, are potential sites of neutrino production via (photo-)hadronic interactions. The gamma-ray bright blazar 5BZQJ0808+4950 is consistent with a spatial anisotropy in the IceCube neutrino all-sky maps. An individual high-energy neutrino event, IC110929A, was also reported in the direction of this blazar. Although the correlation between the gamma-ray bright blazars and the neutrino production remains inconclusive, 5BZQ J0808+4950, with a luminous accretion disk serving as a photon field for the photo-hadronic interactions, offers the opportunity to test the relation between neutrino production and the radiative output of the blazar jet. We compile available multi-wavelength data and analyze the gamma-ray light curve of 5BZQ J0808+4950, leading us to define six contemporaneous epochs to model the source's spectral energy distribution and its evolution over time. We use a lepto-hadronic, time-dependent framework to model 5BZQ …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.21752</id>
+<title>Mapping the multimessenger horizon for $γ$-ray counterparts of cosmic neutrinos</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.21752"/>
+<updated>2026-11-16T00:00:00Z</updated>
+<author><name>Tianyi Ding</name></author>
+<author><name>Jose Alonso Carpio</name></author>
+<author><name>Ali Kheirandish et al.</name></author>
+<category term="astro-ph.HE"/>
+<category term="hep-ph"/>
+<summary type="text">The joint detection of high-energy neutrinos and $γ$-rays offers a powerful probe of the most energetic astrophysical accelerators, linking hadronic interactions to observable signatures across cosmic distances. Understanding the conditions under which these two messengers can be simultaneously observed is essential for identifying and characterizing the sources of cosmic neutrinos. In this work, we examine the detectability of $γ$-ray cascades associated with neutrino production in source environments that are gamma-ray transparent, focusing on how electromagnetic cascades evolve as $γ$-rays propagate through intergalactic space. By modeling photon interactions with the extragalactic background light and deflections in intergalactic magnetic fields, we determine the minimum neutrino fluence for transient emission and neutrino flux for steady emission required to produce a $γ$-ray counterpart detectable by $γ$-ray observatories, such as Fermi-LAT, HAWC, or LHAASO. This defines a ``multimessenger horizon" -- the region in flux-distance parameter space where neutrinos and $γ$-rays are jointly observable. We consider both energy-binned injection tied to IceCube's sensitivity and a …</summary>
 </entry>
 </feed>
