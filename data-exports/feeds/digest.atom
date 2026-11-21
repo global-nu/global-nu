@@ -8,15 +8,6 @@
 <updated>2026-11-19T00:00:00Z</updated>
 <author><name>global-nu.org, Bari group</name></author>
 <entry>
-<id>https://arxiv.org/abs/2611.18824</id>
-<title>Sensitivity of the SHiP experiment at CERN to sterile-neutrino-induced oscillations</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.18824"/>
-<updated>2026-11-13T00:00:00Z</updated>
-<author><name>SHiP Collaboration</name></author>
-<category term="hep-ex"/>
-<summary type="text">The SHiP experiment, approved for the high-intensity beam-dump facility in the ECN3 hall at the CERN SPS in the North Area, will record neutrino interactions both in its scattering and neutrino detector (SND) and, about \SI{70}{m} further downstream, in its calorimeter system. We show that the baseline SHiP detector configuration therefore forms a two-baseline experiment for oscillations induced by a sterile neutrino. From a \textsc{Geant4} simulation of \textsc{Genie}-generated interactions we derive the energy response of both stations to $\nue$ and $\numu$ charged-current (CC) interactions and the separation of $\nue$~CC events from the neutral-current $\pizero$ background, and fold them into a near/far disappearance analysis with a $20\%$ flux-shape uncertainty and a $1\%$ far/near normalisation uncertainty. For $6\times10^{20}$ protons on target, the projected $95\%$~CL median sensitivities are $\Umufour\simeq\UmuLimit$ at $\mfour\simeq\UmuLimitMass$~eV and $\Uefour\simeq\UeLimit$ at $\mfour\simeq\UeLimitMass$~eV. In the muon channel this lies below existing $\numu$-disappearance limits for $\DnineLow\lesssim\mfour\lesssim\DnineHigh$~eV.</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2611.21252</id>
 <title>Phenomenology of neutrino mass ordering synergies in reactor, accelerator, and atmospheric neutrino experiments, and the role of the detector response</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.21252"/>
@@ -188,5 +179,16 @@
 <category term="astro-ph.HE"/>
 <category term="hep-ph"/>
 <summary type="text">The joint detection of high-energy neutrinos and $γ$-rays offers a powerful probe of the most energetic astrophysical accelerators, linking hadronic interactions to observable signatures across cosmic distances. Understanding the conditions under which these two messengers can be simultaneously observed is essential for identifying and characterizing the sources of cosmic neutrinos. In this work, we examine the detectability of $γ$-ray cascades associated with neutrino production in source environments that are gamma-ray transparent, focusing on how electromagnetic cascades evolve as $γ$-rays propagate through intergalactic space. By modeling photon interactions with the extragalactic background light and deflections in intergalactic magnetic fields, we determine the minimum neutrino fluence for transient emission and neutrino flux for steady emission required to produce a $γ$-ray counterpart detectable by $γ$-ray observatories, such as Fermi-LAT, HAWC, or LHAASO. This defines a ``multimessenger horizon" -- the region in flux-distance parameter space where neutrinos and $γ$-rays are jointly observable. We consider both energy-binned injection tied to IceCube's sensitivity and a …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.20887</id>
+<title>Inferring the neutral-current neutrino--nucleon cross section from IceCube data</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.20887"/>
+<updated>2026-11-16T00:00:00Z</updated>
+<author><name>Reinaldo Francener</name></author>
+<author><name>Victor P. Goncalves</name></author>
+<category term="hep-ph"/>
+<category term="hep-ex"/>
+<summary type="text">Neutrinos interact only via the weak force, through the exchange of $W^{\pm}$ and $Z^{0}$ bosons in charged-current and neutral-current interactions, respectively. Recent experiments have measured the charged-current cross section at high energies, whereas neutral-current interactions remain largely unexplored experimentally. In this work, we investigate the sensitivity of the IceCube Neutrino Observatory to the neutral-current neutrino--nucleon cross section using 12 years of data. We consider two strategies to constrain this quantity: $(i)$ leveraging neutrino absorption and regeneration as neutrinos traverse the Earth; and $(ii)$ using the track-to-cascade event ratio. We find that current IceCube data can set only an upper limit on the neutral-current neutrino--nucleon cross section. We further show that IceCube-Gen2 should be able to constrain the neutral-current cross section with both methods considered here.</summary>
 </entry>
 </feed>

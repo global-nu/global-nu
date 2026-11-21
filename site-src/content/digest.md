@@ -24,17 +24,16 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors.</b>
-<span class="stamp">Last successful update: 20 November 2026, 13:21 CET</span></div>
+<span class="stamp">Last successful update: 21 November 2026, 07:46 CET</span></div>
 </div>
-<p class="digest-dates small"><b>This edition:</b> preprints first submitted 13 Nov 2026 – 19 Nov 2026. Each entry gives its own dates: first submission, latest update when there is one, and announcement when the source states it. arXiv announces submissions on its own schedule, so the newest of these may not have been announced yet.</p>
+<p class="digest-dates small"><b>This edition:</b> preprints first submitted 16 Nov 2026 – 19 Nov 2026. Each entry gives its own dates: first submission, latest update when there is one, and announcement when the source states it. arXiv announces submissions on its own schedule, so the newest of these may not have been announced yet.</p>
 <!-- QUIET:BEGIN -->
 <!-- QUIET:END -->
 
 <div class="section-head"><h2>Experimental</h2>
-<p>3 preprints</p></div>
+<p>2 preprints</p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2611.18824">Sensitivity of the SHiP experiment at CERN to sterile-neutrino-induced oscillations</a></b><span>SHiP Collaboration · first submitted 13 Nov 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.25098">Measurements of the total and differential inclusive electron neutrino charged-current cross sections on argon with SBND</a></b><span>L. Aliaga-Soplin, D. Andrade Aldana, C. Andreopoulos et al. · first submitted 18 Nov 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.23711">Producing μBq/m3-level low-226Ra ultrapure water for the Jiangmen Underground Neutrino Observatory</a></b><span>Xi-Ting Xu, Cong Guo, Jin-Chang Liu et al. · first submitted 18 Nov 2026</span><span class="tags"><span class="tag">physics.ins-det</span><span class="tag">hep-ex</span></span><span class="cites"><a href="https://doi.org/10.1007/s41365-026-02086-y">DOI</a></span></li>
 </ul>
@@ -45,7 +44,7 @@ and may contain errors.</b>
 ::: section alt
 
 <div class="section-head"><h2>Theory</h2>
-<p>13 preprints</p></div>
+<p>14 preprints</p></div>
 
 <ul class="list list--news">
 <li><b><a href="https://arxiv.org/abs/2611.21252">Phenomenology of neutrino mass ordering synergies in reactor, accelerator, and atmospheric neutrino experiments, and the role of the detector response</a></b><span>Vanessa Cerrone, Marco Grassi · first submitted 16 Nov 2026 · updated 19 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
@@ -61,6 +60,7 @@ and may contain errors.</b>
 <li><b><a href="https://arxiv.org/abs/2611.24674">On the cosmic window for neutrino self-interactions</a></b><span>Ivan Pérez-Castro, Jorge Venzor, Josue De-Santiago et al. · first submitted 18 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.24418">A lepto-hadronic perspective on the properties of the candidate neutrino-emitter blazar 5BZQ J0808+4950</a></b><span>Margot Boughelilba, Leonard Pfeiffer, Jose Maria Sanchez Zaballa et al. · first submitted 18 Nov 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.21752">Mapping the multimessenger horizon for γ-ray counterparts of cosmic neutrinos</a></b><span>Tianyi Ding, Jose Alonso Carpio, Ali Kheirandish et al. · first submitted 16 Nov 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2611.20887">Inferring the neutral-current neutrino--nucleon cross section from IceCube data</a></b><span>Reinaldo Francener, Victor P. Goncalves · first submitted 16 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
 </ul>
 
 
