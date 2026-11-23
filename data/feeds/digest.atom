@@ -5,7 +5,7 @@
 <subtitle>Neutrino preprints ranked by relevance, rebuilt every morning. Selected by keyword score; no model involved.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/digest.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/digest.atom"/>
-<updated>2026-11-19T00:00:00Z</updated>
+<updated>2026-11-20T00:00:00Z</updated>
 <author><name>global-nu.org, Bari group</name></author>
 <entry>
 <id>https://arxiv.org/abs/2611.21252</id>
@@ -99,6 +99,17 @@
 <summary type="text">We study the consequences of multiplying the neutrino propagation Hamiltonian by a real, energy-dependent scalar, $H_η(E)=f(E)H_0(E)$ with $f(E)=1-η_0(E/E_0)^2$, a minimal-length ansatz. Its vacuum part is a dimension-four, CPT-even Lorentz-violating term of the Standard Model Extension with coefficient $(\cL)_{ii}=-η_0(m_i^2-m_1^2)/(2E_0^2)$, diagonal in the mass basis and fixed by the mass matrix, hence removable by a reparametrization. The matter-potential rescaling has dimension-five behaviour and is CPT-odd. For $f=1-η_0(E/E_0)^p$ the vacuum term behaves as a dimension $p+2$ operator and the matter term as $p+3$, so only $p=2$ gives a marginal vacuum operator; $p=0$ is absorbed into the measured mass splittings, and non-integer $p$ admits no local operator. For $η_0=0.02$ at $E_0=2.5$~GeV we find $|(\cL)_{33}|\simeq4\times10^{-24}$, comparable to present atmospheric bounds, whereas a Planck-suppressed deformation with $β_0=\mathcal{O}(1)$ gives $3.2\times10^{-58}$. At constant density it is equivalent to $L\to f(E)L$: mixing angles and the Dirac phase are unchanged, the CP asymmetry is reparametrized rather than generated, and the leading observable is a rescaling of …</summary>
 </entry>
 <entry>
+<id>https://arxiv.org/abs/2611.27456</id>
+<title>Flavor-Modulated Neutrino Communication: Channel Model, Modulation Schemes, and Link Budget for Through-Earth Links</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.27456"/>
+<updated>2026-11-20T00:00:00Z</updated>
+<author><name>Bipin Singh Koranga</name></author>
+<author><name>Biswmkwr Boro</name></author>
+<author><name>Imran Khan et al.</name></author>
+<category term="hep-ph"/>
+<summary type="text">We investigate the physical limits of transmitting information through the Earth using neutrinos, modeling the link as a discrete-input, Poisson-output classical channel whose crosstalk is set by the three-flavor evolution operator in a layered, matter-filled Earth. For the maximum-likelihood receiver, we derive closed-form Bhattacharyya and Chernoff error exponents for Poisson counts, accurate to within 0.4\% of the exact Chernoff limit. We examine three modulation schemes: source-flavor keying (SFK), oscillation-phase keying (OPK), and matter-path keying (MPK). For an Earth-diameter link with a neutrino-factory-class source (\(3 \times 10^{13}\) decays/s) and a 200 kt detector, the mean charged-current event rate is \(1.31 \times 10^{-2}\,\mathrm{s^{-1}}\), yet the information rate is only \(1.36 \times 10^{-4}\) bit/s for SFK and \(5.2 \times 10^{-6}\) bit/s for OPK. This reduction occurs because at \(E \simeq 25\) GeV the first oscillation maximum nearly fully relabels \(ν_μ\to ν_τ\) (\(T_{μτ} \simeq 0.98\)); SFK relies mainly on a count-based \(e\)-like channel, while OPK suffers from suppressed appearance probabilities. For DUNE and T2HK with horn-polarity keying, assuming …</summary>
+</entry>
+<entry>
 <id>https://arxiv.org/abs/2611.26549</id>
 <title>Refractive Neutrino Mass: Effects of Fluctuations of the Dark Matter Field</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.26549"/>
@@ -146,6 +157,29 @@
 <summary type="text">We study the complete cosmological collider (CC) signatures from right-handed neutrino loops with chemical-potential enhancement. These CC signals are induced by the inflaton-right-handed-neutrino interaction and can be extracted in the collinear squeezed configuration, which allows the right-handed-neutrino triangle loop to be factorized into the hard and soft parts. We precisely compute the soft part of the fermion loop for the first time by using the complete mode functions and the full loop integral, and treat the hard part as a tree-level subdiagram. We subtract the large-momentum asymptotic terms of the soft loop integrand and retain their finite contributions to the oscillation. We then evaluate the full spinor-helicity and Schwinger-Keldysh sums to obtain a finite, closed analytic formula for the complex clock coefficient. We further derive a compact formula for the leading CC signals in the large-chemical-potential expansion. We analyze the structure of the soft-part contribution by examining the sum of residues of the Mellin poles of the fermion propagators. For this, we demonstrate that the first local pole on each soft line contributes half of the asymptotic …</summary>
 </entry>
 <entry>
+<id>https://arxiv.org/abs/2611.27985</id>
+<title>Is Neutrino Disappearance Sensitive to T-Violation for Asymmetric Matter Profiles ?</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.27985"/>
+<updated>2026-11-20T00:00:00Z</updated>
+<author><name>Gabriela Barenboim</name></author>
+<author><name>Stephen J. Parke</name></author>
+<author><name>Alberto Sánchez Vargas</name></author>
+<category term="hep-ph"/>
+<category term="hep-ex"/>
+<summary type="text">It is commonly stated in the literature that T violation is zero in neutrino disappearance channels. We show this claim is not general: it holds only for symmetric matter profiles or when the T/CP-violating phase ($δ$) is 0 or $π$, that is, when the Jarlskog invariant is zero. The $ν_μ$ and $ν_τ$, but not the $ν_e$, survival probabilities carry a $\sinδ$-dependent term that is non-zero in asymmetric matter and constitutes a genuine T asymmetry. The confusion arises from an improper T test that subtracts a probability from itself: a mathematical identity, not a physics result. In this paper, we clarify the distinctions between a proper and an improper T test as well as the proper and improper CP and CPT tests, for a general, arbitrary matter profile. For a toy model consisting of two different layers of constant density, we find that the maximum T-violation is obtained when one layer is close to the solar resonance, and the other is close to the atmospheric resonance. We address whether the matter asymmetry for DUNE and Hyper-Kamiokande experiments is sufficiently large to allow the $\sinδ$ dependence to be probed in $ν_μ$ survival probability. We also discuss future experimental …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.27549</id>
+<title>nuSTORM: a unique GeV electron-(anti)neutrino machine</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.27549"/>
+<updated>2026-11-20T00:00:00Z</updated>
+<author><name>Xianguo Lu</name></author>
+<category term="physics.acc-ph"/>
+<category term="hep-ex"/>
+<category term="nucl-ex"/>
+<summary type="text">In this conference contribution, I briefly review current experimental programmes measuring the Dirac CP phase δCP using accelerator neutrinos. I argue that the nuSTORM concept---neutrino beams from a muon storage ring---could provide high-quality electron-(anti)neutrino beams needed for the cross-section inputs to δCP measurements.</summary>
+</entry>
+<entry>
 <id>https://arxiv.org/abs/2611.24674</id>
 <title>On the cosmic window for neutrino self-interactions</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.24674"/>
@@ -156,39 +190,5 @@
 <category term="hep-ph"/>
 <category term="astro-ph.CO"/>
 <summary type="text">Neutrino self-interactions ($ν$SI) beyond the Standard Model have arisen as a promising probe of new physics in cosmology. In this Letter, we show that $ν$SI emerging in the low-energy limit of renormalizable theories implies resonant mediator behavior. We identify two regions for $ν$SI: (i) neutrinos become tightly coupled with background evolution; for the first time, we establish how this evolution modifies the Boltzmann hierarchy equations (BHEs), and (ii) resonant $ν$SI dominates the dynamics with negligible background evolution, relevant for mediator masses $\sim 10^{-6}-1$ MeV. In region (i), before matter-radiation equality, neutrino free-streaming is determined by the effective four-fermion interaction, known as the heavy-mediator limit (HML); we explore the impact of background evolution on this scenario, and from our modified BHEs, we show that self-interacting dark radiation scenarios require larger couplings than previously estimated to mimic $ν$SI. Region (ii) shows that the simplest realization of $ν$SI mediated by a (pseudo)scalar particle leads to an extra radiation contribution of $ΔN_{\rm eff}^{\rm CMB} \approx 0$, instead of the commonly quoted $\simeq 0.12$ …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.24418</id>
-<title>A lepto-hadronic perspective on the properties of the candidate neutrino-emitter blazar 5BZQ J0808+4950</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.24418"/>
-<updated>2026-11-18T00:00:00Z</updated>
-<author><name>Margot Boughelilba</name></author>
-<author><name>Leonard Pfeiffer</name></author>
-<author><name>Jose Maria Sanchez Zaballa et al.</name></author>
-<category term="astro-ph.HE"/>
-<summary type="text">The role of active galactic nuclei in the production of high-energy neutrinos has been highlighted by the association of the blazar TXS 0506+056 and the Seyfert galaxy NGC 1068 with IceCube neutrino events. In particular, blazars, with their powerful jets, are potential sites of neutrino production via (photo-)hadronic interactions. The gamma-ray bright blazar 5BZQJ0808+4950 is consistent with a spatial anisotropy in the IceCube neutrino all-sky maps. An individual high-energy neutrino event, IC110929A, was also reported in the direction of this blazar. Although the correlation between the gamma-ray bright blazars and the neutrino production remains inconclusive, 5BZQ J0808+4950, with a luminous accretion disk serving as a photon field for the photo-hadronic interactions, offers the opportunity to test the relation between neutrino production and the radiative output of the blazar jet. We compile available multi-wavelength data and analyze the gamma-ray light curve of 5BZQ J0808+4950, leading us to define six contemporaneous epochs to model the source's spectral energy distribution and its evolution over time. We use a lepto-hadronic, time-dependent framework to model 5BZQ …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.21752</id>
-<title>Mapping the multimessenger horizon for $γ$-ray counterparts of cosmic neutrinos</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.21752"/>
-<updated>2026-11-16T00:00:00Z</updated>
-<author><name>Tianyi Ding</name></author>
-<author><name>Jose Alonso Carpio</name></author>
-<author><name>Ali Kheirandish et al.</name></author>
-<category term="astro-ph.HE"/>
-<category term="hep-ph"/>
-<summary type="text">The joint detection of high-energy neutrinos and $γ$-rays offers a powerful probe of the most energetic astrophysical accelerators, linking hadronic interactions to observable signatures across cosmic distances. Understanding the conditions under which these two messengers can be simultaneously observed is essential for identifying and characterizing the sources of cosmic neutrinos. In this work, we examine the detectability of $γ$-ray cascades associated with neutrino production in source environments that are gamma-ray transparent, focusing on how electromagnetic cascades evolve as $γ$-rays propagate through intergalactic space. By modeling photon interactions with the extragalactic background light and deflections in intergalactic magnetic fields, we determine the minimum neutrino fluence for transient emission and neutrino flux for steady emission required to produce a $γ$-ray counterpart detectable by $γ$-ray observatories, such as Fermi-LAT, HAWC, or LHAASO. This defines a ``multimessenger horizon" -- the region in flux-distance parameter space where neutrinos and $γ$-rays are jointly observable. We consider both energy-binned injection tied to IceCube's sensitivity and a …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.20887</id>
-<title>Inferring the neutral-current neutrino--nucleon cross section from IceCube data</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.20887"/>
-<updated>2026-11-16T00:00:00Z</updated>
-<author><name>Reinaldo Francener</name></author>
-<author><name>Victor P. Goncalves</name></author>
-<category term="hep-ph"/>
-<category term="hep-ex"/>
-<summary type="text">Neutrinos interact only via the weak force, through the exchange of $W^{\pm}$ and $Z^{0}$ bosons in charged-current and neutral-current interactions, respectively. Recent experiments have measured the charged-current cross section at high energies, whereas neutral-current interactions remain largely unexplored experimentally. In this work, we investigate the sensitivity of the IceCube Neutrino Observatory to the neutral-current neutrino--nucleon cross section using 12 years of data. We consider two strategies to constrain this quantity: $(i)$ leveraging neutrino absorption and regeneration as neutrinos traverse the Earth; and $(ii)$ using the track-to-cascade event ratio. We find that current IceCube data can set only an upper limit on the neutral-current neutrino--nucleon cross section. We further show that IceCube-Gen2 should be able to constrain the neutral-current cross section with both methods considered here.</summary>
 </entry>
 </feed>
