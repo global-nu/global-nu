@@ -24,15 +24,10 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors.</b>
-<span class="stamp">Last successful update: 22 November 2026, 07:46 CET</span></div>
+<span class="stamp">Last successful update: 23 November 2026, 07:47 CET</span></div>
 </div>
-<p class="digest-dates small"><b>This edition:</b> preprints first submitted 16 Nov 2026 – 19 Nov 2026. Each entry gives its own dates: first submission, latest update when there is one, and announcement when the source states it. arXiv announces submissions on its own schedule, so the newest of these may not have been announced yet.</p>
+<p class="digest-dates small"><b>This edition:</b> preprints first submitted 16 Nov 2026 – 20 Nov 2026. Each entry gives its own dates: first submission, latest update when there is one, and announcement when the source states it. arXiv announces submissions on its own schedule, so the newest of these may not have been announced yet.</p>
 <!-- QUIET:BEGIN -->
-<p class="small muted"><b>arXiv made no announcement for
-22 November 2026.</b> Its listing feeds are empty, as they are at weekends and on
-<a href="https://info.arxiv.org/help/availability.html">arXiv's announcement
-holidays</a>, so nothing below is new today: the list will change with the
-next announcement.</p>
 <!-- QUIET:END -->
 
 <div class="section-head"><h2>Experimental</h2>
@@ -60,12 +55,12 @@ next announcement.</p>
 <li><b><a href="https://arxiv.org/abs/2611.21729">Supernova Bounds on Neutrino Dipole Moments from a Modern Perspective</a></b><span>Damiano F. G. Fiorillo, Martina La Rosa, Federico Testagrossa et al. · first submitted 16 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span><span class="tag">astro-ph.HE</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.26418">Future avenues for precision oscillation measurements with compact movable reactors</a></b><span>Matheus Hostert, Stephan A. Meighen-Berger, Maxim Pospelov · first submitted 19 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span><span class="tag">physics.ins-det</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.23343">An energy-dependent rescaling of the neutrino propagation Hamiltonian: Standard Model Extension identification, matter sector, and long-baseline degeneracy</a></b><span>Neda Razzaghi · first submitted 17 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-th</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2611.27456">Flavor-Modulated Neutrino Communication: Channel Model, Modulation Schemes, and Link Budget for Through-Earth Links</a></b><span>Bipin Singh Koranga, Biswmkwr Boro, Imran Khan et al. · first submitted 20 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.26549">Refractive Neutrino Mass: Effects of Fluctuations of the Dark Matter Field</a></b><span>Soham Sahasrabuddhe, Manibrata Sen, Alexei Y. Smirnov · first submitted 19 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.23220">Complete Cosmological Collider Signatures from Right-handed Neutrino Loops</a></b><span>Linghao Song, Jingtao You, Ming Cheng et al. · first submitted 17 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span><span class="tag">hep-th</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2611.27985">Is Neutrino Disappearance Sensitive to T-Violation for Asymmetric Matter Profiles ?</a></b><span>Gabriela Barenboim, Stephen J. Parke, Alberto Sánchez Vargas · first submitted 20 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2611.27549">nuSTORM: a unique GeV electron-(anti)neutrino machine</a></b><span>Xianguo Lu · first submitted 20 Nov 2026</span><span class="tags"><span class="tag">physics.acc-ph</span><span class="tag">hep-ex</span><span class="tag">nucl-ex</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.24674">On the cosmic window for neutrino self-interactions</a></b><span>Ivan Pérez-Castro, Jorge Venzor, Josue De-Santiago et al. · first submitted 18 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2611.24418">A lepto-hadronic perspective on the properties of the candidate neutrino-emitter blazar 5BZQ J0808+4950</a></b><span>Margot Boughelilba, Leonard Pfeiffer, Jose Maria Sanchez Zaballa et al. · first submitted 18 Nov 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2611.21752">Mapping the multimessenger horizon for γ-ray counterparts of cosmic neutrinos</a></b><span>Tianyi Ding, Jose Alonso Carpio, Ali Kheirandish et al. · first submitted 16 Nov 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">hep-ph</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2611.20887">Inferring the neutral-current neutrino--nucleon cross section from IceCube data</a></b><span>Reinaldo Francener, Victor P. Goncalves · first submitted 16 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>
 </ul>
 
 
@@ -87,6 +82,7 @@ still appears under theory.</p>
 
 <!-- ARCHIVE:BEGIN -->
 <ul class="archive">
+  <li><time datetime="2026-11-20">20 November 2026</time><a href="digest/2026-11-20.html">Digest of 2026-11-20</a><span class="count">3 papers</span></li>
   <li><time datetime="2026-11-19">19 November 2026</time><a href="digest/2026-11-19.html">Digest of 2026-11-19</a><span class="count">3 papers</span></li>
   <li><time datetime="2026-11-18">18 November 2026</time><a href="digest/2026-11-18.html">Digest of 2026-11-18</a><span class="count">16 papers</span></li>
   <li><time datetime="2026-11-17">17 November 2026</time><a href="digest/2026-11-17.html">Digest of 2026-11-17</a><span class="count">3 papers</span></li>
@@ -96,8 +92,7 @@ still appears under theory.</p>
   <li><time datetime="2026-11-12">12 November 2026</time><a href="digest/2026-11-12.html">Digest of 2026-11-12</a><span class="count">5 papers</span></li>
   <li><time datetime="2026-11-11">11 November 2026</time><a href="digest/2026-11-11.html">Digest of 2026-11-11</a><span class="count">2 papers</span></li>
   <li><time datetime="2026-11-10">10 November 2026</time><a href="digest/2026-11-10.html">Digest of 2026-11-10</a><span class="count">9 papers</span></li>
-  <li><time datetime="2026-11-09">9 November 2026</time><a href="digest/2026-11-09.html">Digest of 2026-11-09</a><span class="count">4 papers</span></li>
-  <li><time datetime="2026-11">November 2026</time><a href="digest/2026-11.html">All of November 2026</a><span class="count">87 papers</span></li>
+  <li><time datetime="2026-11">November 2026</time><a href="digest/2026-11.html">All of November 2026</a><span class="count">90 papers</span></li>
   <li><time datetime="2026-10">October 2026</time><a href="digest/2026-10.html">All of October 2026</a><span class="count">121 papers</span></li>
   <li><time datetime="2026-09">September 2026</time><a href="digest/2026-09.html">All of September 2026</a><span class="count">137 papers</span></li>
   <li><time datetime="2026-08">August 2026</time><a href="digest/2026-08.html">All of August 2026</a><span class="count">76 papers</span></li>
