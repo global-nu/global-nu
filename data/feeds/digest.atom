@@ -5,17 +5,18 @@
 <subtitle>Neutrino preprints ranked by relevance, rebuilt every morning. Selected by keyword score; no model involved.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/digest.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/digest.atom"/>
-<updated>2026-11-20T00:00:00Z</updated>
+<updated>2026-11-23T00:00:00Z</updated>
 <author><name>global-nu.org, Bari group</name></author>
 <entry>
-<id>https://arxiv.org/abs/2611.21252</id>
-<title>Phenomenology of neutrino mass ordering synergies in reactor, accelerator, and atmospheric neutrino experiments, and the role of the detector response</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.21252"/>
-<updated>2026-11-19T00:00:00Z</updated>
-<author><name>Vanessa Cerrone</name></author>
-<author><name>Marco Grassi</name></author>
+<id>https://arxiv.org/abs/2611.28224</id>
+<title>TeV-Scale Leptogenesis in the Linear Seesaw Framework</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.28224"/>
+<updated>2026-11-20T00:00:00Z</updated>
+<author><name>A. E. Cárcamo Hernández</name></author>
+<author><name>J. Echeverria-Puentes</name></author>
+<author><name>Stephen F. King et al.</name></author>
 <category term="hep-ph"/>
-<summary type="text">The neutrino mass ordering is one of the main open questions of neutrino physics, addressed by reactor, accelerator, and atmospheric experiments and by their combination. When the data are fitted under the wrong ordering, each experiment returns its own value of $Δm^2_{31}$, its wrong-ordering solution. We show that this solution is a weighted average of the values preferred by the individual bins of the measured event spectra, in reconstructed energy and, for atmospheric neutrinos, also zenith angle, with weights set by their statistical precision. Both the values and the weights depend on the detector response. In the plane of $Δm^2_{31}$ fitted under the two orderings, the solutions lie on lines of slope close to $-1$, so that each experiment is described by one intercept. The weighted bin average extends the mass ordering sum rule to any oscillation experiment, including atmospheric neutrinos in Earth matter. It recovers the known closed forms for short-baseline reactors and for accelerators in vacuum, and for JUNO it equals a closed form evaluated at one effective energy, which depends on the energy resolution. Above the MSW resonance the frequency of atmospheric $ν_μ$ …</summary>
+<summary type="text">The linear seesaw mechanism relates the smallness of neutrino masses to the mass splitting within a quasi-Dirac pair of heavy neutrinos, thereby providing a natural framework for realising resonant leptogenesis at low energies. We investigate this possibility within its simplest effective realisation, in which neutrino masses are mediated by a quasi-Dirac pair at the TeV scale. We estimate the generation of the baryon asymmetry in the purely flavoured and strong-washout regimes, identifying phenomenologically viable parameter regions and benchmark scenarios in which the heavy-neutrino decays are dominated either by the SM Higgs doublet or by a second, leptophilic scalar doublet responsible for neutrino mass generation. We find viable leptogenesis solutions both near and away from the resonant maximum and discuss complementary phenomenological probes of the framework.</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.25795</id>
@@ -29,15 +30,16 @@
 <summary type="text">In a four-fermion-interaction scenario beyond the Standard Model (SM), in which right-handed (sterile) neutrinos take part in TeV-scale composite dynamics, the $Z$ boson acquires an energy-dependent right-handed coupling $\GR(q^2)$ that is expected to vanish at low energies and to restore parity symmetry at high energies. We derive the contribution of $\GR$ to neutral-current parity-violating observables. At first order in $\GR$, every low-energy parity-violating coupling is obtained from its SM value by the replacement $\sin^2θ_W\to\sin^2θ_W(1-\GR)$; in particular the nuclear weak charge is shifted by $ΔQ_W=4\sin^2θ_W\,Z\,\GR$, while the $Z$-pole effective mixing angle is shifted by $-\tfrac12(1-2\sin^2θ_W)\GR$. Using atomic parity violation in cesium, parity-violating electron scattering and $Z$-pole determinations of $\sin^2θ_{\rm eff}$, we extract $\GR$ at each momentum transfer. All data are consistent with $\GR=0$; at the $Z$ pole we find $\GR(m_Z) 3.8$, $2.1$ and $1.7$~TeV for $n=1,2,3$. Future MOLLER, P2 and HL-LHC data will improve these bounds.</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.22237</id>
-<title>Flavor Entanglement as a CPT Violation Witness in Neutrino Oscillations</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.22237"/>
-<updated>2026-11-17T00:00:00Z</updated>
-<author><name>Bipin Singh Koranga</name></author>
-<author><name>Biswmkwr Boro</name></author>
-<author><name>Vivek Kumar Nautiyal</name></author>
+<id>https://arxiv.org/abs/2611.30780</id>
+<title>Light on GeV-scale seesaw</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.30780"/>
+<updated>2026-11-23T00:00:00Z</updated>
+<author><name>Enrico Bertuzzo</name></author>
+<author><name>Michele Frigerio</name></author>
+<author><name>Salvador Urrea</name></author>
 <category term="hep-ph"/>
-<summary type="text">We present a comprehensive study linking the single-particle flavor entanglement of a \(ν_{e} \rightarrow ν_μ\) oscillation to CPT violation using the concurrence. In a two-flavor vacuum with CP-conserving mixing, CPT invariance strictly demands \(\mathcal{C}_ν(L) = \mathcal{C}_{\barν}(L)\), meaning any measured difference \(Δ\mathcal{C}_{\mathrm{CPT}} \equiv \mathcal{C}_ν - \mathcal{C}_{\barν}\) serves as a clean, background-free witness of CPT violation. We derive exact, first-order analytical relations connecting this entanglement asymmetry to the standard probability asymmetry, the baseline reflection sums, and the long-baseline decoherence floor. To rigorously test the experimental viability of this framework, we perform extensive numerical simulations. We demonstrate that the framework projects stringent sensitivity limits on Standard-Model Extension (SME) parameters at DUNE-like densities, isolate a coordinate-independent CPT invariant, and show that the signal remains robust across realistic, variable Earth matter density profiles. Crucially, we identify a distinct 24-hour sidereal modulation of the entanglement asymmetry, providing a definitive temporal "smoking gun" to …</summary>
+<category term="hep-ex"/>
+<summary type="text">The next generation of beam-dump and accelerator-neutrino experiments will probe GeV-scale sterile neutrinos with unprecedented sensitivity. However, the tiny active-sterile mixing predicted by the minimal seesaw mechanism is expected to remain out of reach. Oscillation data require at least two sterile neutrinos, $N_1$ and $N_2$, which may couple to the photon through a transition dipole. Such a coupling can radically change the picture, both by strongly enhancing sterile-neutrino production and by opening new decay channels. We identify charged-lepton pairs produced by an off-shell photon as the most promising experimental signature. We show that the seesaw band can be probed by the T2K near detector for sterile-neutrino masses $m_N\lesssim 500$ MeV, and by SHiP for $m_N\lesssim 5$ GeV. For a sufficiently large dipole, $d\gtrsim (10~\mathrm{TeV})^{-1}$, SHiP can selectively measure decay channels that require nonzero active-sterile mixing. This would give rise to a distinctive hierarchy of signatures, providing a direct test of the seesaw mechanism.</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.25029</id>
@@ -63,19 +65,6 @@
 <summary type="text">Neutrinos that decay on their way to a detector arrive depleted, more so at low energies, where time dilation lengthens their lifetime the least. Geoneutrinos---electron antineutrinos from the radioactive decay of uranium and thorium inside the Earth---have energies of a few MeV and travel up to the diameter of the Earth. We use them to test neutrino decay for the first time. We compute the geoneutrino signal at Borexino, KamLAND, SNO+, and JUNO for visible decay, in which the daughter neutrinos are themselves detected, and compare it against their published data. We find no evidence of decay that holds across Earth models. Combining the four experiments, we limit the decay $ν_1 \to ν_3$ in the inverted mass ordering at 90% C.L.: $τ_1/m_1 &gt; 3.7 \times 10^{-9}$ s eV$^{-1}$ when the radiogenic power of the Earth is left free and $τ_1/m_1 &gt; 4.4 \times 10^{-9}$ to $1.6 \times 10^{-8}$ s eV$^{-1}$ when it is taken from Earth models. With an Earth model assumed, the geoneutrinos set the limit; with the power free, the antineutrinos from nuclear reactors that the same experiments detect count as much as the geoneutrinos. These are the first terrestrial limits on the visible decay of …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.21729</id>
-<title>Supernova Bounds on Neutrino Dipole Moments from a Modern Perspective</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.21729"/>
-<updated>2026-11-16T00:00:00Z</updated>
-<author><name>Damiano F. G. Fiorillo</name></author>
-<author><name>Martina La Rosa</name></author>
-<author><name>Federico Testagrossa et al.</name></author>
-<category term="hep-ph"/>
-<category term="astro-ph.CO"/>
-<category term="astro-ph.HE"/>
-<summary type="text">Neutrinos may have nonstandard magnetic dipole moments $μ_ν$. In the dense cores of supernovae (SNe), these would convert part of the neutrinos into sterile, right-handed states through the electromagnetic fluctuations of the charged plasma. The streaming sterile neutrinos with 100-MeV energies can convert back to standard neutrinos in the Galactic magnetic field, leading to a high-energy neutrino flux unobserved from the historical SN 1987A. We reassess the production rates, including scattering on both protons and electrons, and, building upon advances in SN simulations and in the description of the Milky Way magnetic field, we revisit the bounds on magnetic dipole moments. We find for Dirac electron neutrinos $μ_{ν_e} \lesssim 4.8 \times 10^{-13} μ_B$, superseding all existing terrestrial and astrophysical constraints.</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2611.26418</id>
 <title>Future avenues for precision oscillation measurements with compact movable reactors</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.26418"/>
@@ -97,6 +86,28 @@
 <category term="hep-ph"/>
 <category term="hep-th"/>
 <summary type="text">We study the consequences of multiplying the neutrino propagation Hamiltonian by a real, energy-dependent scalar, $H_η(E)=f(E)H_0(E)$ with $f(E)=1-η_0(E/E_0)^2$, a minimal-length ansatz. Its vacuum part is a dimension-four, CPT-even Lorentz-violating term of the Standard Model Extension with coefficient $(\cL)_{ii}=-η_0(m_i^2-m_1^2)/(2E_0^2)$, diagonal in the mass basis and fixed by the mass matrix, hence removable by a reparametrization. The matter-potential rescaling has dimension-five behaviour and is CPT-odd. For $f=1-η_0(E/E_0)^p$ the vacuum term behaves as a dimension $p+2$ operator and the matter term as $p+3$, so only $p=2$ gives a marginal vacuum operator; $p=0$ is absorbed into the measured mass splittings, and non-integer $p$ admits no local operator. For $η_0=0.02$ at $E_0=2.5$~GeV we find $|(\cL)_{33}|\simeq4\times10^{-24}$, comparable to present atmospheric bounds, whereas a Planck-suppressed deformation with $β_0=\mathcal{O}(1)$ gives $3.2\times10^{-58}$. At constant density it is equivalent to $L\to f(E)L$: mixing angles and the Dirac phase are unchanged, the CP asymmetry is reparametrized rather than generated, and the leading observable is a rescaling of …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.30799</id>
+<title>Fermionic dark linear seesaw with an anomalous Majoron</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.30799"/>
+<updated>2026-11-23T00:00:00Z</updated>
+<author><name>A. Batra</name></author>
+<author><name>H. B. Câmara</name></author>
+<author><name>F. R. Joaquim</name></author>
+<category term="hep-ph"/>
+<summary type="text">We propose a minimal fermionic realisation of the $\textit{dark}$ linear seesaw with spontaneous breaking of lepton number. The small lepton-number-violating parameter responsible for linear-seesaw neutrino masses is generated radiatively by a $\textit{dark}$ sector consisting of a singlet and a doublet fermion, together with scalar singlets. The global U(1)$_L$ symmetry is broken to a residual $\mathcal{Z}_2$ under which the $\textit{dark}$ sector is odd. This breaking yields a Majoron $J$ and makes the lightest $\textit{dark}$ particle stable. The charged $\textit{dark}$ fermion acquires its mass solely from U(1)$_L$ breaking and thus induces an anomalous Majoron coupling to photons. Current bounds on this coupling exclude a massless Majoron for TeV-scale U(1)$_L$ breaking. We add a linear term that breaks lepton number softly and gives the Majoron a GeV-scale mass. Such a Majoron decays into two photons and can be probed at beam-dump experiments. We study the dark matter phenomenology, focusing on the case where the stable particle is a fermionic weakly interacting massive particle. We analyse how the framework can be tested through charged-lepton flavour-violating decays such …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.29570</id>
+<title>Finite-temperature quark dynamics in proto-neutron stars: Maximum baryonic mass and radial oscillations</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.29570"/>
+<updated>2026-11-22T00:00:00Z</updated>
+<author><name>Xuefeng Ma</name></author>
+<author><name>Jingdong Shao</name></author>
+<author><name>Kun Xu et al.</name></author>
+<category term="astro-ph.HE"/>
+<summary type="text">Finite-temperature quark dynamics can significantly alter proto-neutron star evolution even when the cold equation of state remains unchanged. We quantify this sensitivity by comparing a purely hadronic baseline with two hybrid models incorporating quark matter via the Polyakov-Nambu-Jona-Lasinio (PNJL) framework and its entanglement extension (EPNJL), which isolates the role of finite-temperature chiral-deconfinement coupling. Employing bulk Gibbs constructions for both nuclear liquid-gas and hadron-quark phase coexistence, we compute equilibrium configurations across hot neutrino-trapped, hot neutrino-free, and cold stages, alongside linear radial oscillations of selected hot neutrino-free stars. Introducing quarks lowers the maximum baryonic mass at every stage and reverses its evolutionary ordering: whereas the maximum baryonic mass increases toward the cold limit in the purely hadronic model, it decreases progressively in both hybrid models, opening mass windows for delayed collapse. Crucially, despite sharing the same cold limit, PNJL and EPNJL yield distinct baryonic-mass intervals for mixed-core survival across stages: only EPNJL permits configurations that retain mixed …</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.27456</id>
@@ -157,6 +168,19 @@
 <summary type="text">We study the complete cosmological collider (CC) signatures from right-handed neutrino loops with chemical-potential enhancement. These CC signals are induced by the inflaton-right-handed-neutrino interaction and can be extracted in the collinear squeezed configuration, which allows the right-handed-neutrino triangle loop to be factorized into the hard and soft parts. We precisely compute the soft part of the fermion loop for the first time by using the complete mode functions and the full loop integral, and treat the hard part as a tree-level subdiagram. We subtract the large-momentum asymptotic terms of the soft loop integrand and retain their finite contributions to the oscillation. We then evaluate the full spinor-helicity and Schwinger-Keldysh sums to obtain a finite, closed analytic formula for the complex clock coefficient. We further derive a compact formula for the leading CC signals in the large-chemical-potential expansion. We analyze the structure of the soft-part contribution by examining the sum of residues of the Mellin poles of the fermion propagators. For this, we demonstrate that the first local pole on each soft line contributes half of the asymptotic …</summary>
 </entry>
 <entry>
+<id>https://arxiv.org/abs/2611.29122</id>
+<title>Measuring the Neutrino Mass with $^{241}$Pu</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.29122"/>
+<updated>2026-11-22T00:00:00Z</updated>
+<author><name>Mustafa Anaam</name></author>
+<author><name>Nicolo de Groot</name></author>
+<author><name>Inge van Rens</name></author>
+<category term="nucl-ex"/>
+<category term="hep-ex"/>
+<category term="hep-ph"/>
+<summary type="text">Tritium has long been the isotope of choice for measurements of the absolute neutrino mass. Its low nuclear mass leads to substantial recoil energy, limiting measurements with both molecular tritium ($T_2$) and atomic tritium bound to a substrate. With a beta-decay endpoint energy and half-life similar to those of tritium, but a much larger nuclear mass, $^{241}$Pu may offer an interesting alternative. Its principal challenge is background from the beta decay of $^{237}$U. We discuss strategies for suppressing this background and compare the projected neutrino-mass sensitivities of $^{241}$Pu and tritium as a function of the background suppression.</summary>
+</entry>
+<entry>
 <id>https://arxiv.org/abs/2611.27985</id>
 <title>Is Neutrino Disappearance Sensitive to T-Violation for Asymmetric Matter Profiles ?</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.27985"/>
@@ -167,28 +191,5 @@
 <category term="hep-ph"/>
 <category term="hep-ex"/>
 <summary type="text">It is commonly stated in the literature that T violation is zero in neutrino disappearance channels. We show this claim is not general: it holds only for symmetric matter profiles or when the T/CP-violating phase ($δ$) is 0 or $π$, that is, when the Jarlskog invariant is zero. The $ν_μ$ and $ν_τ$, but not the $ν_e$, survival probabilities carry a $\sinδ$-dependent term that is non-zero in asymmetric matter and constitutes a genuine T asymmetry. The confusion arises from an improper T test that subtracts a probability from itself: a mathematical identity, not a physics result. In this paper, we clarify the distinctions between a proper and an improper T test as well as the proper and improper CP and CPT tests, for a general, arbitrary matter profile. For a toy model consisting of two different layers of constant density, we find that the maximum T-violation is obtained when one layer is close to the solar resonance, and the other is close to the atmospheric resonance. We address whether the matter asymmetry for DUNE and Hyper-Kamiokande experiments is sufficiently large to allow the $\sinδ$ dependence to be probed in $ν_μ$ survival probability. We also discuss future experimental …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.27549</id>
-<title>nuSTORM: a unique GeV electron-(anti)neutrino machine</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.27549"/>
-<updated>2026-11-20T00:00:00Z</updated>
-<author><name>Xianguo Lu</name></author>
-<category term="physics.acc-ph"/>
-<category term="hep-ex"/>
-<category term="nucl-ex"/>
-<summary type="text">In this conference contribution, I briefly review current experimental programmes measuring the Dirac CP phase δCP using accelerator neutrinos. I argue that the nuSTORM concept---neutrino beams from a muon storage ring---could provide high-quality electron-(anti)neutrino beams needed for the cross-section inputs to δCP measurements.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.24674</id>
-<title>On the cosmic window for neutrino self-interactions</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.24674"/>
-<updated>2026-11-18T00:00:00Z</updated>
-<author><name>Ivan Pérez-Castro</name></author>
-<author><name>Jorge Venzor</name></author>
-<author><name>Josue De-Santiago et al.</name></author>
-<category term="hep-ph"/>
-<category term="astro-ph.CO"/>
-<summary type="text">Neutrino self-interactions ($ν$SI) beyond the Standard Model have arisen as a promising probe of new physics in cosmology. In this Letter, we show that $ν$SI emerging in the low-energy limit of renormalizable theories implies resonant mediator behavior. We identify two regions for $ν$SI: (i) neutrinos become tightly coupled with background evolution; for the first time, we establish how this evolution modifies the Boltzmann hierarchy equations (BHEs), and (ii) resonant $ν$SI dominates the dynamics with negligible background evolution, relevant for mediator masses $\sim 10^{-6}-1$ MeV. In region (i), before matter-radiation equality, neutrino free-streaming is determined by the effective four-fermion interaction, known as the heavy-mediator limit (HML); we explore the impact of background evolution on this scenario, and from our modified BHEs, we show that self-interacting dark radiation scenarios require larger couplings than previously estimated to mimic $ν$SI. Region (ii) shows that the simplest realization of $ν$SI mediated by a (pseudo)scalar particle leads to an extra radiation contribution of $ΔN_{\rm eff}^{\rm CMB} \approx 0$, instead of the commonly quoted $\simeq 0.12$ …</summary>
 </entry>
 </feed>
