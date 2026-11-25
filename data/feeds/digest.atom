@@ -5,8 +5,17 @@
 <subtitle>Neutrino preprints ranked by relevance, rebuilt every morning. Selected by keyword score; no model involved.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/digest.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/digest.atom"/>
-<updated>2026-11-23T00:00:00Z</updated>
+<updated>2026-11-24T00:00:00Z</updated>
 <author><name>global-nu.org, Bari group</name></author>
+<entry>
+<id>https://arxiv.org/abs/2611.32106</id>
+<title>Updated T2K measurement of neutrino oscillation parameters with the first data from the Gadolinium-loaded far detector</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.32106"/>
+<updated>2026-11-24T00:00:00Z</updated>
+<author><name>The T2K collaboration</name></author>
+<category term="hep-ex"/>
+<summary type="text">The T2K experiment presents updated measurements of neutrino oscillation parameters using $21.4(16.3)\times10^{20}$ protons on target (POT) in (anti-)neutrino mode at the far detector, Super-Kamiokande. This analysis uses an additional neutrino dataset of $1.7 \times 10^{20}$ POT compared to the previous result, and for the very first time, data collected with Super-Kamiokande doped with Gadolinium (Gd). Significant improvements were introduced in the far detector selection and systematic error treatment. Both semi-frequentist and Bayesian analyses are presented, including results on $\sin^{2} θ_{23}$, $Δm^2_{32} $, $\sin^{2} θ_{13}$ and $δ_{CP}$. Both analyses favor normal mass ordering with a nearly maximal CP-violating phase and are compatible with neutrino maximal mixing, slightly favouring the upper $θ_{23}$ octant.</summary>
+</entry>
 <entry>
 <id>https://arxiv.org/abs/2611.28224</id>
 <title>TeV-Scale Leptogenesis in the Linear Seesaw Framework</title>
@@ -17,6 +26,15 @@
 <author><name>Stephen F. King et al.</name></author>
 <category term="hep-ph"/>
 <summary type="text">The linear seesaw mechanism relates the smallness of neutrino masses to the mass splitting within a quasi-Dirac pair of heavy neutrinos, thereby providing a natural framework for realising resonant leptogenesis at low energies. We investigate this possibility within its simplest effective realisation, in which neutrino masses are mediated by a quasi-Dirac pair at the TeV scale. We estimate the generation of the baryon asymmetry in the purely flavoured and strong-washout regimes, identifying phenomenologically viable parameter regions and benchmark scenarios in which the heavy-neutrino decays are dominated either by the SM Higgs doublet or by a second, leptophilic scalar doublet responsible for neutrino mass generation. We find viable leptogenesis solutions both near and away from the resonant maximum and discuss complementary phenomenological probes of the framework.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.32481</id>
+<title>On the effective atmospheric-scale $Δm^2$ in neutrino oscillation</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.32481"/>
+<updated>2026-11-24T00:00:00Z</updated>
+<author><name>Hisakazu Minakata</name></author>
+<category term="hep-ph"/>
+<summary type="text">We discuss an effective two-frequency description of the three-generation neutrino oscillation with the key quantity $Δm^2_{ \text{effective} }$, which unifies the effects of atmospheric-scale $Δm^2_{31}$-$Δm^2_{32}$ driven oscillations. As a solution to the minimization problem in vacuum, Nunokawa {\it et al.} obtained $Δm^2_{ \text{effective} } = Δm^2_{31} - (2E / L) \arctan \left\{ r_{2} \sin 2Δ_{21} / ( r_{1} + r_{2} \cos 2Δ_{21} ) \right\}$, where $Δ_{21} \equiv Δm^2_{21} L / (4 E)$ and $r_{i}$ are the mixing-angle dependent constants. Despite the skepticism for the $L/E$ dependence in this formula, we show, in fact, that this is an exact expression, which renders the probability formula also exact. We offer an appealing-to-intuition physical explanation for the $L/E$ dependence that it originates from the nature-designed three generation neutrinos. The way it is buried into $Δm^2_{ \text{effective} }$ is through the solar-effect renormalization to this quantity. With the physical interpretation of $Δm^2_{ \text{effective} }$ at hand, we aim at resolving the existing controversies on $Δm^2_{ \text{effective} }$ in this paper.</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.25795</id>
@@ -78,16 +96,6 @@
 <summary type="text">No planned neutrino experiment is expected to surpass Daya Bay's precision on $\thone$. Doing so requires innovative strategies to reduce statistical and systematic uncertainties. In this study, we consider a futuristic program with a movable reactor antineutrino source placed within short distances ($L\lesssim 3\,\km$) from the Jiangmen Underground Neutrino Observatory (JUNO) detector. Due to the large fiducial mass of JUNO, even a relatively small reactor can produce a statistically significant number of events over a few years to probe the $\lesssim 8.7\% \,\nuebar$ disappearance set by $\thone$. We consider two possibilities: a $\mathcal{O}(20\mwth)$ microreactor in alcoves of the access tunnel to the underground laboratory, and a $\mathcal{O}(400 \mwth)$ unit on the surface. In both cases the reactor is observed by a small flux monitor detector near the source, while JUNO measures the antineutrino flux at two baselines, suppressing correlated flux and detector systematics. Using the measured Daya Bay per-isotope spectra and its covariance, we model a high-assay low-enriched uranium (HALEU) core for the microreactor and a low-enriched uranium (LEU) core for the surface unit …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.23343</id>
-<title>An energy-dependent rescaling of the neutrino propagation Hamiltonian: Standard Model Extension identification, matter sector, and long-baseline degeneracy</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.23343"/>
-<updated>2026-11-17T00:00:00Z</updated>
-<author><name>Neda Razzaghi</name></author>
-<category term="hep-ph"/>
-<category term="hep-th"/>
-<summary type="text">We study the consequences of multiplying the neutrino propagation Hamiltonian by a real, energy-dependent scalar, $H_η(E)=f(E)H_0(E)$ with $f(E)=1-η_0(E/E_0)^2$, a minimal-length ansatz. Its vacuum part is a dimension-four, CPT-even Lorentz-violating term of the Standard Model Extension with coefficient $(\cL)_{ii}=-η_0(m_i^2-m_1^2)/(2E_0^2)$, diagonal in the mass basis and fixed by the mass matrix, hence removable by a reparametrization. The matter-potential rescaling has dimension-five behaviour and is CPT-odd. For $f=1-η_0(E/E_0)^p$ the vacuum term behaves as a dimension $p+2$ operator and the matter term as $p+3$, so only $p=2$ gives a marginal vacuum operator; $p=0$ is absorbed into the measured mass splittings, and non-integer $p$ admits no local operator. For $η_0=0.02$ at $E_0=2.5$~GeV we find $|(\cL)_{33}|\simeq4\times10^{-24}$, comparable to present atmospheric bounds, whereas a Planck-suppressed deformation with $β_0=\mathcal{O}(1)$ gives $3.2\times10^{-58}$. At constant density it is equivalent to $L\to f(E)L$: mixing angles and the Dirac phase are unchanged, the CP asymmetry is reparametrized rather than generated, and the leading observable is a rescaling of …</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2611.30799</id>
 <title>Fermionic dark linear seesaw with an anomalous Majoron</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.30799"/>
@@ -97,6 +105,29 @@
 <author><name>F. R. Joaquim</name></author>
 <category term="hep-ph"/>
 <summary type="text">We propose a minimal fermionic realisation of the $\textit{dark}$ linear seesaw with spontaneous breaking of lepton number. The small lepton-number-violating parameter responsible for linear-seesaw neutrino masses is generated radiatively by a $\textit{dark}$ sector consisting of a singlet and a doublet fermion, together with scalar singlets. The global U(1)$_L$ symmetry is broken to a residual $\mathcal{Z}_2$ under which the $\textit{dark}$ sector is odd. This breaking yields a Majoron $J$ and makes the lightest $\textit{dark}$ particle stable. The charged $\textit{dark}$ fermion acquires its mass solely from U(1)$_L$ breaking and thus induces an anomalous Majoron coupling to photons. Current bounds on this coupling exclude a massless Majoron for TeV-scale U(1)$_L$ breaking. We add a linear term that breaks lepton number softly and gives the Majoron a GeV-scale mass. Such a Majoron decays into two photons and can be probed at beam-dump experiments. We study the dark matter phenomenology, focusing on the case where the stable particle is a fermionic weakly interacting massive particle. We analyse how the framework can be tested through charged-lepton flavour-violating decays such …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.32905</id>
+<title>TeV Gamma-Ray Transparency Bounds on Neutrinos and Axions</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.32905"/>
+<updated>2026-11-24T00:00:00Z</updated>
+<author><name>Shengyi Liu</name></author>
+<author><name>Hyeonseok Seong</name></author>
+<author><name>Chen Sun et al.</name></author>
+<category term="hep-ph"/>
+<category term="astro-ph.CO"/>
+<category term="astro-ph.HE"/>
+<summary type="text">Multi-TeV gamma rays propagating over cosmological distances measure the extragalactic background light (EBL) through attenuation by electron--positron pair production. This is particularly valuable in the infrared, where the EBL is difficult to measure directly. Since the growing sample of observed multi-TeV photons provides tight constraints on the EBL photon intensity, this, in turn, constrains new particles that radiatively decay into meV--eV photons. We set the first TeV-transparency bounds on active-neutrino electromagnetic transition moments, obtain new constraints on radiatively decaying sterile neutrinos, and derive competitive limits on the axion--photon coupling.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.31348</id>
+<title>Flavor Alignment and Operator Sensitivity in a Left--Right Universal-Seesaw Model</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.31348"/>
+<updated>2026-11-23T00:00:00Z</updated>
+<author><name>Claudio Coriano</name></author>
+<author><name>Paul H. Frampton</name></author>
+<category term="hep-ph"/>
+<summary type="text">We analyse the flavour structure and low-energy operator sensitivity of a parity-related doublet universal-seesaw model with an imposed lepton triality. Degenerate bare singlet masses permit a basis in which light-light tree neutral flavour transitions vanish; the physical heavy masses remain nondegenerate. We connect this alignment property to the axial and scalar differences measured by $B_{d,s}^0\toμ^+μ^-$ and reproduce the six-state charged-vector mixing amplitudes for five reference masses. The reference analysis identifies kaon CP violation as the more sensitive flavour probe. Historical kaon data disfavour the lower reference masses, while estimates suggest that dimuon and radiative $B$-decay effects are harder to resolve at present precision. These comparisons use the specified reference spectrum and historical inputs. We also compare charged and neutral resonance rates with published search benchmarks. The vacuum hierarchy entails a cancellation of about $5\times10^{-6}$ at $M_{W_R}=80\,\mathrm{TeV}$. The initially thermal Dirac-neutrino branch has a dataset-dependent extra-radiation tension, strengthened in an illustrative mass-dependent decoupling estimate. For dimuon …</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.29570</id>
@@ -143,53 +174,15 @@
 <summary type="text">This work presents measurements of the total and single-differential electron neutrino charged-current cross sections on argon using the Short-Baseline Near Detector (SBND) at Fermilab. We present the highest statistics inclusive $ν_e + \bar ν_e$ (95.2% $ν_e$ and 4.8% $\barν_e$) charged-current cross section measurement on argon to date and the first inclusive $ν_e + \bar ν_e$ cross section measurement using the Booster Neutrino Beam. Direct measurements of this channel are crucial for future studies of both long- and short-baseline neutrino oscillations through electron neutrino appearance, which in turn are vital for answering open questions in neutrino phenomenology and searching for beyond the Standard Model physics at the intensity frontier. The data used for this work were collected with an exposure of $8.81 \times10^{19}$ protons on target, and 729 candidate events are selected with a minimum electron energy of 500 MeV. The single-differential cross sections are extracted in electron energy and angle with respect to the beam axis. The flux-averaged total cross section is measured to be $σ= [3.90 \pm 0.18\,\text{(stat)} \pm 0.41\,\text{(syst)}] \times 10^{-39}$ …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.23711</id>
-<title>Producing $μ$Bq/m3-level low-226Ra ultrapure water for the Jiangmen Underground Neutrino Observatory</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.23711"/>
-<updated>2026-11-18T00:00:00Z</updated>
-<author><name>Xi-Ting Xu</name></author>
-<author><name>Cong Guo</name></author>
-<author><name>Jin-Chang Liu et al.</name></author>
-<category term="physics.ins-det"/>
-<category term="hep-ex"/>
-<summary type="text">The Jiangmen Underground Neutrino Observatory (JUNO), a 20 kton low-background liquid-scintillator (LS) detector, was designed primarily to determine the neutrino mass ordering. JUNO requires ultrapure water (UPW) with a Ra concentration &lt; 50~$μ$Bq/m3 because of the direct liquid-liquid contact between LS and UPW during detector filling. To meet this stringent requirement, a high-sensitivity measurement system capable of detecting Ra in water down to 3.9 $μ$Bq/m3 was developed, and the 100 t/h UPW production process was optimized. By integrating selective ion-exchange resin with membrane-based separation technologies, the system consistently produced UPW with a Ra concentration of &lt;4$μ$Bq/m3, exceeding the JUNO specification and, to our knowledge, representing one of the lowest reported levels achieved at this engineering scale. This paper describes the design and implementation of JUNO's UPW system and the high-sensitivity Ra measurement platform, together with a systematic evaluation of Ra removal efficiencies across the purification train and validation of the final water quality.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.23220</id>
-<title>Complete Cosmological Collider Signatures from Right-handed Neutrino Loops</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.23220"/>
-<updated>2026-11-17T00:00:00Z</updated>
-<author><name>Linghao Song</name></author>
-<author><name>Jingtao You</name></author>
-<author><name>Ming Cheng et al.</name></author>
-<category term="hep-ph"/>
-<category term="astro-ph.CO"/>
-<category term="hep-th"/>
-<summary type="text">We study the complete cosmological collider (CC) signatures from right-handed neutrino loops with chemical-potential enhancement. These CC signals are induced by the inflaton-right-handed-neutrino interaction and can be extracted in the collinear squeezed configuration, which allows the right-handed-neutrino triangle loop to be factorized into the hard and soft parts. We precisely compute the soft part of the fermion loop for the first time by using the complete mode functions and the full loop integral, and treat the hard part as a tree-level subdiagram. We subtract the large-momentum asymptotic terms of the soft loop integrand and retain their finite contributions to the oscillation. We then evaluate the full spinor-helicity and Schwinger-Keldysh sums to obtain a finite, closed analytic formula for the complex clock coefficient. We further derive a compact formula for the leading CC signals in the large-chemical-potential expansion. We analyze the structure of the soft-part contribution by examining the sum of residues of the Mellin poles of the fermion propagators. For this, we demonstrate that the first local pole on each soft line contributes half of the asymptotic …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.29122</id>
-<title>Measuring the Neutrino Mass with $^{241}$Pu</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.29122"/>
-<updated>2026-11-22T00:00:00Z</updated>
-<author><name>Mustafa Anaam</name></author>
-<author><name>Nicolo de Groot</name></author>
-<author><name>Inge van Rens</name></author>
+<id>https://arxiv.org/abs/2611.31837</id>
+<title>Background characterization in the PIKACHU Phase 1 search for two-neutrino double-beta decay of $^{160}$Gd</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.31837"/>
+<updated>2026-11-24T00:00:00Z</updated>
+<author><name>T. Omori</name></author>
+<author><name>T. Iida</name></author>
+<author><name>A. Gando et al.</name></author>
 <category term="nucl-ex"/>
 <category term="hep-ex"/>
-<category term="hep-ph"/>
-<summary type="text">Tritium has long been the isotope of choice for measurements of the absolute neutrino mass. Its low nuclear mass leads to substantial recoil energy, limiting measurements with both molecular tritium ($T_2$) and atomic tritium bound to a substrate. With a beta-decay endpoint energy and half-life similar to those of tritium, but a much larger nuclear mass, $^{241}$Pu may offer an interesting alternative. Its principal challenge is background from the beta decay of $^{237}$U. We discuss strategies for suppressing this background and compare the projected neutrino-mass sensitivities of $^{241}$Pu and tritium as a function of the background suppression.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.27985</id>
-<title>Is Neutrino Disappearance Sensitive to T-Violation for Asymmetric Matter Profiles ?</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.27985"/>
-<updated>2026-11-20T00:00:00Z</updated>
-<author><name>Gabriela Barenboim</name></author>
-<author><name>Stephen J. Parke</name></author>
-<author><name>Alberto Sánchez Vargas</name></author>
-<category term="hep-ph"/>
-<category term="hep-ex"/>
-<summary type="text">It is commonly stated in the literature that T violation is zero in neutrino disappearance channels. We show this claim is not general: it holds only for symmetric matter profiles or when the T/CP-violating phase ($δ$) is 0 or $π$, that is, when the Jarlskog invariant is zero. The $ν_μ$ and $ν_τ$, but not the $ν_e$, survival probabilities carry a $\sinδ$-dependent term that is non-zero in asymmetric matter and constitutes a genuine T asymmetry. The confusion arises from an improper T test that subtracts a probability from itself: a mathematical identity, not a physics result. In this paper, we clarify the distinctions between a proper and an improper T test as well as the proper and improper CP and CPT tests, for a general, arbitrary matter profile. For a toy model consisting of two different layers of constant density, we find that the maximum T-violation is obtained when one layer is close to the solar resonance, and the other is close to the atmospheric resonance. We address whether the matter asymmetry for DUNE and Hyper-Kamiokande experiments is sufficiently large to allow the $\sinδ$ dependence to be probed in $ν_μ$ survival probability. We also discuss future experimental …</summary>
+<summary type="text">We report a background characterization for the search for two-neutrino double-beta ($2\nu2β$) decay of $^{160}$Gd using Ce:Gd$_3$Al$_2$Ga$_3$O$_{12}$ scintillators in the PIKACHU experiment Phase 1 at the Kamioka underground laboratory. The experimental backgrounds were investigated through delayed-coincidence analysis and spectral fitting based on GEANT4 simulations. In particular, surface contamination of the crystal was identified through the characteristic distortion of the $^{214}$Po $α$-ray spectrum, leading to an improved background model that reproduces the observed energy spectra. No significant excess attributable to $^{160}$Gd $2\nu2β$ decay was observed, yielding a lower limit of $T^{2ν}_{1/2} \geq 2.32 \times 10^{19}$ yr at 90\% C.L. The established background model and analysis framework provide a foundation for future PIKACHU phases aiming to discover $^{160}$Gd $2\nu2β$ decay.</summary>
 </entry>
 </feed>
