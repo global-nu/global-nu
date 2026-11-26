@@ -5,104 +5,69 @@
 <subtitle>Summaries written automatically with AI from fetched sources; each links to its source.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/news.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/news.atom"/>
-<updated>2026-11-25T06:46:30+00:00</updated>
+<updated>2026-11-26T06:46:29+00:00</updated>
 <author><name>global-nu.org, Bari group</name></author>
 <entry>
-<id>https://global-nu.org/news/b5e1f3e101019119</id>
-<title>Panofsky Prize for Zeller</title>
-<link rel="alternate" href="https://news.fnal.gov/2026/11/fermilabs-sam-zeller-awarded-w-k-h-panofsky-prize/"/>
-<updated>2026-11-25T06:46:30+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. Sam Zeller was awarded the W.K.H. Panofsky Prize. Fermilab News says the award honours her co-leadership of MicroBooNE, which advanced next-generation liquid-argon time projection chamber technology for neutrino detection.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/5e07971102d8ceec</id>
-<title>DUNE construction</title>
-<link rel="alternate" href="https://www.bhpioneer.com/local_news/dune-construction-begins/article_601a4c0b-b7c9-4d01-af3f-473a9dfa65dd.html"/>
-<updated>2026-11-25T06:46:30+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. Fermilab, CERN and SURF crews have started building the first of two cryostats, the insulated containers that will hold liquid argon for DUNE. Fermilab News also reports that construction of the underground detector has begun in South Dakota, with the University of Texas at Arlington working on the field cage and other components. At a progress meeting at the Sanford Lab visitor centre, Fermilab leaders discussed the project, hiring and the infrastructure for the caverns.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/b96db625b9076cb4</id>
+<id>https://global-nu.org/news/bd6fc6ed9425b297</id>
 <title>T2K with gadolinium</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.32106"/>
-<updated>2026-11-25T06:46:30+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. T2K presented updated oscillation parameter measurements that include, for the first time, data taken with gadolinium-doped Super-Kamiokande. The analysis adds neutrino data relative to the previous result and has an improved far-detector selection and systematic treatment. Both the semi-frequentist and the Bayesian analyses favour normal mass ordering. They report results on sin²θ23, Δm²32, sin²θ13 and δCP.</summary>
+<updated>2026-11-26T06:46:29+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. T2K reports updated oscillation parameters using 21.4 (16.3) x 10^20 protons on target in neutrino (antineutrino) mode, including 1.7 x 10^20 more neutrino-mode POT than the previous result. For the first time the sample includes data taken with gadolinium-doped Super-Kamiokande. The far-detector selection and the systematic error treatment were improved, and both the semi-frequentist and the Bayesian analyses favour normal mass ordering.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/af0d34f6b05bea90</id>
-<title>KM3NeT/ARCA diffuse flux</title>
-<link rel="alternate" href="https://www.km3net.org/all-sky-and-galactic-ridge-neutrino-emission/"/>
-<updated>2026-11-25T06:46:30+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. KM3NeT searched for an all-sky and a Galactic Ridge diffuse neutrino flux in the first 2 years of ARCA data. The dataset comes from detector configurations with 6, 8, 19 and 21 detection units and has a livetime of 640 days. Under a single power-law assumption, the all-sky fit gives a spectral index of 3.00 with an asymmetric uncertainty of +0.30 and -0.35 at 68% credible level.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/128f233c6e815641</id>
-<title>KM3NeT/ARCA stacking</title>
-<link rel="alternate" href="https://www.km3net.org/stacking-search-for-extreme-objects-in-the-universe/"/>
-<updated>2026-11-25T06:46:30+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. KM3NeT/ARCA also published a stacking search for high-energy neutrino point sources. It targets ultra-luminous infrared galaxies and blazars. In a stacking search, the signals from several astronomical objects are combined.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/ac03369649540a88</id>
-<title>SBND electron neutrinos</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.25098"/>
-<updated>2026-11-25T06:46:30+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. SBND measured the total and single-differential inclusive electron neutrino charged-current cross sections on argon. The sample is 95.2% νe and 4.8% antiνe. The collaboration describes it as the highest-statistics inclusive νe + antiνe measurement on argon to date and the first one with the Booster Neutrino Beam. The channel feeds future electron-neutrino appearance studies in long- and short-baseline oscillation analyses.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/9381432cab55b258</id>
-<title>PIKACHU background study</title>
+<id>https://global-nu.org/news/a0d13bdb2e819edd</id>
+<title>PIKACHU Phase 1</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.31837"/>
-<updated>2026-11-25T06:46:30+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The PIKACHU Phase 1 search for two-neutrino double-beta decay of 160Gd uses Ce:GAGG scintillators at the Kamioka underground laboratory. The new paper characterises the backgrounds with delayed-coincidence analysis and GEANT4-based spectral fits. Surface contamination of the crystal, seen as a distortion of the 214Po alpha spectrum, led to an improved background model. No significant excess from 160Gd 2ν2β decay was observed.</summary>
+<updated>2026-11-26T06:46:29+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. PIKACHU searches at Kamioka for two-neutrino double-beta decay of 160Gd using Ce:GAGG scintillators. The new paper characterises the backgrounds through delayed-coincidence analysis and GEANT4-based spectral fits. Surface contamination of the crystal, identified from the distortion of the 214Po alpha spectrum, led to an improved background model. No significant excess from 160Gd decay was observed.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/a716983c346b4559</id>
-<title>NνDEx simulation study</title>
+<id>https://global-nu.org/news/7cdff9f44f99cae4</id>
+<title>NuDEx reconstruction study</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.32277"/>
-<updated>2026-11-25T06:46:30+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. NνDEx plans a search for neutrinoless double-beta decay of 82Se in a high-pressure 82SeF6 negative-ion time projection chamber. A new simulation study compares FFT deconvolution with direct waveform fitting for reconstructing the arrival-time separation of SeF5⁻ and SeF6⁻ ions, which estimates the longitudinal coordinate without an external trigger. Direct fitting accepted 873 and FFT accepted 855 of 873 geometry-selected single depositions. On the 855 common events the arrival-time separation RMSEs were 0.180 and 0.222 ms respectively.</summary>
+<updated>2026-11-26T06:46:29+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. NuDEx plans a search for neutrinoless double-beta decay of 82Se with a high-pressure SeF6 negative-ion time projection chamber. A simulation study compares FFT deconvolution with direct waveform fitting for reconstructing the longitudinal coordinate from the arrival-time separation of SeF5- and SeF6-. On 855 events common to both methods, the separation RMSEs were 0.180 ms (direct fit) and 0.222 ms (FFT).</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/a962b83e29d2ab94</id>
-<title>The paper revisits the 7Li recoil-peak measurement after 7Be electron capture reported by Smolsky et al</title>
-<link rel="alternate" href="https://inspirehep.net/literature/3232939"/>
-<updated>2026-11-25T06:46:30+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The paper revisits the 7Li recoil-peak measurement after 7Be electron capture reported by Smolsky et al. It takes the measured width (FWHM = 6.7 eV, σE = 2.9 eV) to infer the spatial extent of the neutrino wave packet, and ties that extent to the production mechanism and to decoherence. It bears on how wave-packet size is constrained by laboratory data.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/e8f6c2c2dd741e02</id>
-<title>The author proves a no-go theorem for observing a Majorana phase in open two-flavour neutrino oscillations</title>
-<link rel="alternate" href="https://inspirehep.net/literature/3217753"/>
-<updated>2026-11-25T06:46:30+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The author proves a no-go theorem for observing a Majorana phase in open two-flavour neutrino oscillations. Every completely positive trace-preserving evolution that is covariant under rotations of the mass-coherence plane is exactly blind to the phase, including the standard nonunital phase-covariant qubit semigroups. Within the unital Pauli-GKSL class, a rate anisotropy between the two transverse rates supplies an environmental phase reference.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/ca771dee402fbbc1</id>
-<title>The authors compute the neutrino emissivity of Δ-direct-Urca processes in neutron-star matter containing Δ iso</title>
+<id>https://global-nu.org/news/c7df0f15e5b0f4f1</id>
+<title>The paper computes the contribution of the Δ-direct-Urca process to neutrino emissivity in neutron stars conta</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3211621"/>
-<updated>2026-11-25T06:46:30+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The authors compute the neutrino emissivity of Δ-direct-Urca processes in neutron-star matter containing Δ isobars. The record says the specific contribution of these processes to the emissivity had not been explicitly determined, while nucleonic and hyperonic Urca processes are already known as dominant cooling mechanisms. The result enters thermal-evolution models of massive neutron stars.</summary>
+<updated>2026-11-26T06:46:29+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper computes the contribution of the Δ-direct-Urca process to neutrino emissivity in neutron stars containing Δ isobars, which the authors say had not been evaluated explicitly. It matters for neutron-star cooling, where nucleonic and hyperonic Urca processes are the dominant neutrino-emitting channels.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/7870dc536331c076</id>
-<title>The paper gives semianalytic approximations for the quasisteady outcome of slow and fast flavour conversion in</title>
+<id>https://global-nu.org/news/d6c75af480540756</id>
+<title>The authors revisit the published 7Be K-capture measurement of the 7Li recoil peak by Smolsky et al</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3232939"/>
+<updated>2026-11-26T06:46:29+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The authors revisit the published 7Be K-capture measurement of the 7Li recoil peak by Smolsky et al. They use its measured width (FWHM = 6.7 eV, sigma_E = 2.9 eV) to determine the spatial extent of the neutrino wave packet. This gives a direct experimental handle on a quantity usually treated only theoretically.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/8298de0b26d86713</id>
+<title>The paper proves that every completely positive trace-preserving evolution covariant under rotations of the ma</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3217753"/>
+<updated>2026-11-26T06:46:29+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper proves that every completely positive trace-preserving evolution covariant under rotations of the mass-coherence plane is blind to a Majorana phase in two-flavour oscillations. A rate anisotropy in the environment can supply a phase reference, and the paper gives the resulting time dependence. It states when decoherence can and cannot make a Majorana phase visible in oscillations.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/7cc69746984ab320</id>
+<title>The authors give semianalytic approximations for the outcome of slow and fast flavour conversion in quasihomog</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3188570"/>
-<updated>2026-11-25T06:46:30+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The paper gives semianalytic approximations for the quasisteady outcome of slow and fast flavour conversion in quasihomogeneous neutrino ensembles. The authors state that the ansatz agrees well with multiangle and multienergy solutions of the kinetic equations, independent of the mass ordering. The goal is a subgrid scheme for supernova simulations that cannot include neutrino quantum kinetics.</summary>
+<updated>2026-11-26T06:46:29+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The authors give semianalytic approximations for the outcome of slow and fast flavour conversion in quasihomogeneous neutrino ensembles. They report good agreement with multiangle and multienergy solutions of the kinetic equations, independent of mass ordering. Such prescriptions can serve as subgrid schemes in supernova simulations that cannot include neutrino quantum kinetics.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/85499a93f932fda5</id>
-<title>The authors study the su(n) Hamiltonian governing collective neutrino oscillations and other many-body systems</title>
-<link rel="alternate" href="https://inspirehep.net/literature/3184925"/>
-<updated>2026-11-25T06:46:30+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The authors study the su(n) Hamiltonian governing collective neutrino oscillations and other many-body systems. Truncating the BBGKY hierarchy gives a systematic way to go beyond mean field, with polynomial scaling on a classical computer.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/f86d428d7448239e</id>
-<title>The paper asks how well kiloton-scale detectors such as Hyper-Kamiokande could determine the primary cosmic-ra</title>
+<id>https://global-nu.org/news/1f9fb2ed34151798</id>
+<title>The paper studies how well kiloton-scale detectors such as Hyper-Kamiokande could measure the primary cosmic-r</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3220874"/>
-<updated>2026-11-25T06:46:30+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The paper asks how well kiloton-scale detectors such as Hyper-Kamiokande could determine the primary cosmic-ray spectrum from the atmospheric neutrino flux. The authors find that future detectors can distinguish between cosmic-ray models with high statistical significance, including uncertainties in neutrino cross sections and hadronic interactions. They also introduce a technique for reconstructing the primary spectrum.</summary>
+<updated>2026-11-26T06:46:29+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper studies how well kiloton-scale detectors such as Hyper-Kamiokande could measure the primary cosmic-ray spectrum from the atmospheric neutrino flux. It finds that different cosmic-ray models can be distinguished with high statistical significance, including uncertainties in neutrino cross sections and hadronic interactions. The result turns the atmospheric neutrino sample into a full-sky, long-term cosmic-ray monitor.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/97666c89ceb28758</id>
+<title>The authors study an su(n) Hamiltonian with one- and two-body terms, which describes collective neutrino oscil</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3184925"/>
+<updated>2026-11-26T06:46:29+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The authors study an su(n) Hamiltonian with one- and two-body terms, which describes collective neutrino oscillations among other systems. By truncating the BBGKY hierarchy they obtain a systematic way to go beyond mean field, with polynomial scaling on a classical computer.</summary>
 </entry>
 </feed>
