@@ -5,7 +5,7 @@
 <subtitle>Neutrino preprints ranked by relevance, rebuilt every morning. Selected by keyword score; no model involved.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/digest.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/digest.atom"/>
-<updated>2026-11-24T00:00:00Z</updated>
+<updated>2026-11-25T00:00:00Z</updated>
 <author><name>global-nu.org, Bari group</name></author>
 <entry>
 <id>https://arxiv.org/abs/2611.32106</id>
@@ -48,6 +48,18 @@
 <summary type="text">In a four-fermion-interaction scenario beyond the Standard Model (SM), in which right-handed (sterile) neutrinos take part in TeV-scale composite dynamics, the $Z$ boson acquires an energy-dependent right-handed coupling $\GR(q^2)$ that is expected to vanish at low energies and to restore parity symmetry at high energies. We derive the contribution of $\GR$ to neutral-current parity-violating observables. At first order in $\GR$, every low-energy parity-violating coupling is obtained from its SM value by the replacement $\sin^2θ_W\to\sin^2θ_W(1-\GR)$; in particular the nuclear weak charge is shifted by $ΔQ_W=4\sin^2θ_W\,Z\,\GR$, while the $Z$-pole effective mixing angle is shifted by $-\tfrac12(1-2\sin^2θ_W)\GR$. Using atomic parity violation in cesium, parity-violating electron scattering and $Z$-pole determinations of $\sin^2θ_{\rm eff}$, we extract $\GR$ at each momentum transfer. All data are consistent with $\GR=0$; at the $Z$ pole we find $\GR(m_Z) 3.8$, $2.1$ and $1.7$~TeV for $n=1,2,3$. Future MOLLER, P2 and HL-LHC data will improve these bounds.</summary>
 </entry>
 <entry>
+<id>https://arxiv.org/abs/2611.34475</id>
+<title>Conditional multiparameter thermometry with neutrino oscillations: MSW energy diversity and a plasma-noise benchmark</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.34475"/>
+<updated>2026-11-25T00:00:00Z</updated>
+<author><name>Jilali Loulijat</name></author>
+<author><name>Abdallah Slaoui</name></author>
+<author><name>El Hassan Saidi et al.</name></author>
+<category term="hep-ph"/>
+<category term="quant-ph"/>
+<summary type="text">We address temperature-parameter inference in a restricted two-flavor neutrino dephasing model with fixed mean electron densities. When two zone temperatures enter the propagated state via a single accumulated dephasing exponent, the single-energy quantum Fisher information matrix has rank at most 1. Independent, energy-resolved samples restore regular local identifiability when their thermal-sensitivity vectors are noncollinear. Matter-dependent mixing provides distinct weights in an illustrative two-zone model. A separate two-probe benchmark shows how complementary Bell sectors can distinguish temperature from spatial noise correlations. An electron-only Debye-cell estimate gives a conditional longitudinal quantum signal-to-noise ratio of approximately $3.1\times10^{-13}$ at 10 MeV for a uniform central-density medium over one solar radius. This estimate is not a microscopic upper bound or a detector sensitivity forecast. Complete phase averaging removes temperature information carried solely by longitudinal coherence damping; to retain solar sensitivity, a separate calculation of population, refractive, or production effects is required. The results distinguish conditional …</summary>
+</entry>
+<entry>
 <id>https://arxiv.org/abs/2611.30780</id>
 <title>Light on GeV-scale seesaw</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.30780"/>
@@ -58,29 +70,6 @@
 <category term="hep-ph"/>
 <category term="hep-ex"/>
 <summary type="text">The next generation of beam-dump and accelerator-neutrino experiments will probe GeV-scale sterile neutrinos with unprecedented sensitivity. However, the tiny active-sterile mixing predicted by the minimal seesaw mechanism is expected to remain out of reach. Oscillation data require at least two sterile neutrinos, $N_1$ and $N_2$, which may couple to the photon through a transition dipole. Such a coupling can radically change the picture, both by strongly enhancing sterile-neutrino production and by opening new decay channels. We identify charged-lepton pairs produced by an off-shell photon as the most promising experimental signature. We show that the seesaw band can be probed by the T2K near detector for sterile-neutrino masses $m_N\lesssim 500$ MeV, and by SHiP for $m_N\lesssim 5$ GeV. For a sufficiently large dipole, $d\gtrsim (10~\mathrm{TeV})^{-1}$, SHiP can selectively measure decay channels that require nonzero active-sterile mixing. This would give rise to a distinctive hierarchy of signatures, providing a direct test of the seesaw mechanism.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.25029</id>
-<title>Dirac leptogenesis with charged leptons</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.25029"/>
-<updated>2026-11-18T00:00:00Z</updated>
-<author><name>Juan P. Garcés</name></author>
-<author><name>Florian Goertz</name></author>
-<author><name>Maya Hager</name></author>
-<category term="hep-ph"/>
-<category term="astro-ph.CO"/>
-<summary type="text">Popular frameworks that explain the baryon asymmetry of the Universe (BAU) are electroweak baryogenesis, requiring a first-order phase transition, and Majorana leptogenesis, which relies on lepton number violation in the neutrino sector. Dirac leptogenesis offers an alternative mechanism that avoids both requirements, instead allowing the BAU to follow from previously generated chiral asymmetries that remain out of equilibrium in the early Universe. Conventional realizations of this scenario typically invoke ultra-light Dirac neutrinos. In this work, we generalize the mechanism to include Standard Model charged leptons by assuming that their mass-generating interactions have a UV origin and arise from higher-dimensional operators. For concreteness, the analysis is performed within a Froggatt-Nielsen setup, which allows us to naturally address fermionic mass hierarchies, too, now linked to the BAU, and we show that the proposed mechanism is viable by supercooling the flavon phase transition. The framework predicts a flavon with a (1.7-50) GeV mass, bounded by the non-observation of lepton flavor violation and the requirement for the Universe to not reheat above sphaleron …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.23978</id>
-<title>Geoneutrinos (and reactor neutrinos) do not visibly decay</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.23978"/>
-<updated>2026-11-18T00:00:00Z</updated>
-<author><name>Mauricio Bustamante</name></author>
-<category term="hep-ph"/>
-<category term="hep-ex"/>
-<category term="hep-th"/>
-<summary type="text">Neutrinos that decay on their way to a detector arrive depleted, more so at low energies, where time dilation lengthens their lifetime the least. Geoneutrinos---electron antineutrinos from the radioactive decay of uranium and thorium inside the Earth---have energies of a few MeV and travel up to the diameter of the Earth. We use them to test neutrino decay for the first time. We compute the geoneutrino signal at Borexino, KamLAND, SNO+, and JUNO for visible decay, in which the daughter neutrinos are themselves detected, and compare it against their published data. We find no evidence of decay that holds across Earth models. Combining the four experiments, we limit the decay $ν_1 \to ν_3$ in the inverted mass ordering at 90% C.L.: $τ_1/m_1 &gt; 3.7 \times 10^{-9}$ s eV$^{-1}$ when the radiogenic power of the Earth is left free and $τ_1/m_1 &gt; 4.4 \times 10^{-9}$ to $1.6 \times 10^{-8}$ s eV$^{-1}$ when it is taken from Earth models. With an Earth model assumed, the geoneutrinos set the limit; with the power free, the antineutrinos from nuclear reactors that the same experiments detect count as much as the geoneutrinos. These are the first terrestrial limits on the visible decay of …</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.26418</id>
@@ -105,6 +94,26 @@
 <author><name>F. R. Joaquim</name></author>
 <category term="hep-ph"/>
 <summary type="text">We propose a minimal fermionic realisation of the $\textit{dark}$ linear seesaw with spontaneous breaking of lepton number. The small lepton-number-violating parameter responsible for linear-seesaw neutrino masses is generated radiatively by a $\textit{dark}$ sector consisting of a singlet and a doublet fermion, together with scalar singlets. The global U(1)$_L$ symmetry is broken to a residual $\mathcal{Z}_2$ under which the $\textit{dark}$ sector is odd. This breaking yields a Majoron $J$ and makes the lightest $\textit{dark}$ particle stable. The charged $\textit{dark}$ fermion acquires its mass solely from U(1)$_L$ breaking and thus induces an anomalous Majoron coupling to photons. Current bounds on this coupling exclude a massless Majoron for TeV-scale U(1)$_L$ breaking. We add a linear term that breaks lepton number softly and gives the Majoron a GeV-scale mass. Such a Majoron decays into two photons and can be probed at beam-dump experiments. We study the dark matter phenomenology, focusing on the case where the stable particle is a fermionic weakly interacting massive particle. We analyse how the framework can be tested through charged-lepton flavour-violating decays such …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.34504</id>
+<title>Majorana Neutrino Exchange in Free-Baryon $B_1B_2\to ppe^-e^-$ Reactions</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.34504"/>
+<updated>2026-11-25T00:00:00Z</updated>
+<author><name>Yuan-Guo Xu</name></author>
+<author><name>Bo Lan</name></author>
+<author><name>Ben-Hou Xiang et al.</name></author>
+<category term="hep-ph"/>
+<summary type="text">The free-baryon reactions $B_1B_2\to pp e^-e^-$ are studied for six nonstrange and strange initial states, with light- and heavy-Majorana-neutrino exchange treated in the same baryon-level framework. For light-neutrino exchange, the cross sections scale with the square of the effective Majorana mass $m_{ββ}$. The calculated cross sections increase as the off-shell cutoff $Δq^2$ is reduced, especially near threshold and in the hyperon channels, because more of the phase-space region where the squared four-momentum of the exchanged neutrino is close to zero is retained. At $\sqrt{s}=5.1~\mathrm{GeV}$, the six light-neutrino cross sections span $9.28\times10^{-49}$--$1.78\times10^{-45}~\mathrm{GeV}^{-2}$ for $m_{ββ}=30~\mathrm{meV}$ and $Δq^2=10^{-2}~\mathrm{GeV}^2$. For heavy-neutrino exchange, the cross sections scale with $η_N^2$, where $η_N=|U_{eN}|^2/m_N$. The leading propagator correction remains below one percent for $m_N\gtrsim50~\mathrm{GeV}$ over the phase-space region considered. At $\sqrt{s}=5.1~\mathrm{GeV}$, the heavy-neutrino cross sections span $7.55\times10^{-45}$--$1.98\times10^{-41}~\mathrm{GeV}^{-2}$ for $η_N=4.0\times10^{-9}~\mathrm{GeV}^{-1}$. At higher …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.33862</id>
+<title>Origin of flavour cancellations in thermal leptogenesis</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.33862"/>
+<updated>2026-11-25T00:00:00Z</updated>
+<author><name>Teruyuki Kitabayashi</name></author>
+<category term="hep-ph"/>
+<summary type="text">In thermal leptogenesis with three hierarchical heavy neutrinos $N_1$, $N_2$ and $N_3$, the baryon asymmetry can be the small remainder of large contributions that cancel. Interference terms in the CP asymmetry are known to contribute to the final asymmetry through flavour-dependent washout. However, it remains unclear where the cancellation occurs, how large the interference contribution is, and how the accuracy of approximate equations changes when this information is lost. We split the CP asymmetry into diagonal and off-diagonal parts in the charged-lepton basis and evolve them with Standard Model transport equations. We find that the cancellation occurs mainly between the diagonal and off-diagonal parts of the same heavy neutrino, and that it is caused by flavour-dependent washout. We also find that the interference between the lepton state produced in the decay and the states orthogonal to it typically accounts for most of the $N_2$ and $N_3$ contribution. Approximations that reduce the CP asymmetry to flavour populations turn out to miss most of this contribution, whereas density-matrix equations with the full CP-asymmetry matrix agree much better.</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.32905</id>
@@ -163,26 +172,14 @@
 <summary type="text">Observed neutrino oscillations can be reproduced by a refractive neutrino mass-squared arising from interactions with ultralight scalar dark matter (ULDM). The wave behaviour of the scalar field gives rise to a fluctuating interference pattern, inducing spatial and temporal variations in the refractive mass that can distort neutrino oscillation probabilities. We simulate the interference patterns of the scalar field in the presence of self-interactions. Using results of these simulations, the oscillation probabilities for JUNO and T2K experiments are computed. We find that the refractive mass scenario remains viable for the complex scalar field without self-coupling for $m_φ\lesssim 10^{-16}~\mathrm{eV}$. For $m_φ\gtrsim10^{-16}~\mathrm{eV}$, repulsive self-interactions narrow the density distribution, reducing the deviation of the survival probability at the first minimum to $ΔP \approx 0.07$ for an appropriate self-interaction coupling. In contrast, for a real scalar field, rapid oscillations with the Compton frequency distort the probabilities for scalar masses $ 10^{-22}~\mathrm{eV} \lesssim m_φ\lesssim 10^{-10} ~\mathrm{eV}$, and self-interactions do not remove this …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.25098</id>
-<title>Measurements of the total and differential inclusive electron neutrino charged-current cross sections on argon with SBND</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.25098"/>
-<updated>2026-11-18T00:00:00Z</updated>
-<author><name>L. Aliaga-Soplin</name></author>
-<author><name>D. Andrade Aldana</name></author>
-<author><name>C. Andreopoulos et al.</name></author>
+<id>https://arxiv.org/abs/2611.34797</id>
+<title>Measuring the flavor composition of high-energy neutrinos from the Milky Way</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.34797"/>
+<updated>2026-11-25T00:00:00Z</updated>
+<author><name>Mauricio Bustamante</name></author>
+<category term="astro-ph.HE"/>
 <category term="hep-ex"/>
-<summary type="text">This work presents measurements of the total and single-differential electron neutrino charged-current cross sections on argon using the Short-Baseline Near Detector (SBND) at Fermilab. We present the highest statistics inclusive $ν_e + \bar ν_e$ (95.2% $ν_e$ and 4.8% $\barν_e$) charged-current cross section measurement on argon to date and the first inclusive $ν_e + \bar ν_e$ cross section measurement using the Booster Neutrino Beam. Direct measurements of this channel are crucial for future studies of both long- and short-baseline neutrino oscillations through electron neutrino appearance, which in turn are vital for answering open questions in neutrino phenomenology and searching for beyond the Standard Model physics at the intensity frontier. The data used for this work were collected with an exposure of $8.81 \times10^{19}$ protons on target, and 729 candidate events are selected with a minimum electron energy of 500 MeV. The single-differential cross sections are extracted in electron energy and angle with respect to the beam axis. The flux-averaged total cross section is measured to be $σ= [3.90 \pm 0.18\,\text{(stat)} \pm 0.41\,\text{(syst)}] \times 10^{-39}$ …</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.31837</id>
-<title>Background characterization in the PIKACHU Phase 1 search for two-neutrino double-beta decay of $^{160}$Gd</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.31837"/>
-<updated>2026-11-24T00:00:00Z</updated>
-<author><name>T. Omori</name></author>
-<author><name>T. Iida</name></author>
-<author><name>A. Gando et al.</name></author>
-<category term="nucl-ex"/>
-<category term="hep-ex"/>
-<summary type="text">We report a background characterization for the search for two-neutrino double-beta ($2\nu2β$) decay of $^{160}$Gd using Ce:Gd$_3$Al$_2$Ga$_3$O$_{12}$ scintillators in the PIKACHU experiment Phase 1 at the Kamioka underground laboratory. The experimental backgrounds were investigated through delayed-coincidence analysis and spectral fitting based on GEANT4 simulations. In particular, surface contamination of the crystal was identified through the characteristic distortion of the $^{214}$Po $α$-ray spectrum, leading to an improved background model that reproduces the observed energy spectra. No significant excess attributable to $^{160}$Gd $2\nu2β$ decay was observed, yielding a lower limit of $T^{2ν}_{1/2} \geq 2.32 \times 10^{19}$ yr at 90\% C.L. The established background model and analysis framework provide a foundation for future PIKACHU phases aiming to discover $^{160}$Gd $2\nu2β$ decay.</summary>
+<category term="hep-ph"/>
+<summary type="text">The origin of the Milky Way's high-energy neutrinos is debated. Their flavor composition reflects how they are made and could help settle it, but remains to be measured. We show that IceCube and KM3NeT, which see the inner Galaxy in complementary ways from opposite hemispheres, could start resolving its flavor composition in about a decade. With upcoming telescopes, they would infer the $ν_e$ fraction at the sources to within 27%. A first comparison of Galactic and extragalactic flavor compositions could reveal strong magnetic fields in extragalactic sources or neutrino decay.</summary>
 </entry>
 </feed>
