@@ -126,17 +126,6 @@
 <summary type="text">Finite-temperature quark dynamics can significantly alter proto-neutron star evolution even when the cold equation of state remains unchanged. We quantify this sensitivity by comparing a purely hadronic baseline with two hybrid models incorporating quark matter via the Polyakov-Nambu-Jona-Lasinio (PNJL) framework and its entanglement extension (EPNJL), which isolates the role of finite-temperature chiral-deconfinement coupling. Employing bulk Gibbs constructions for both nuclear liquid-gas and hadron-quark phase coexistence, we compute equilibrium configurations across hot neutrino-trapped, hot neutrino-free, and cold stages, alongside linear radial oscillations of selected hot neutrino-free stars. Introducing quarks lowers the maximum baryonic mass at every stage and reverses its evolutionary ordering: whereas the maximum baryonic mass increases toward the cold limit in the purely hadronic model, it decreases progressively in both hybrid models, opening mass windows for delayed collapse. Crucially, despite sharing the same cold limit, PNJL and EPNJL yield distinct baryonic-mass intervals for mixed-core survival across stages: only EPNJL permits configurations that retain mixed …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.27456</id>
-<title>Flavor-Modulated Neutrino Communication: Channel Model, Modulation Schemes, and Link Budget for Through-Earth Links</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.27456"/>
-<updated>2026-11-20T00:00:00Z</updated>
-<author><name>Bipin Singh Koranga</name></author>
-<author><name>Biswmkwr Boro</name></author>
-<author><name>Imran Khan et al.</name></author>
-<category term="hep-ph"/>
-<summary type="text">We investigate the physical limits of transmitting information through the Earth using neutrinos, modeling the link as a discrete-input, Poisson-output classical channel whose crosstalk is set by the three-flavor evolution operator in a layered, matter-filled Earth. For the maximum-likelihood receiver, we derive closed-form Bhattacharyya and Chernoff error exponents for Poisson counts, accurate to within 0.4\% of the exact Chernoff limit. We examine three modulation schemes: source-flavor keying (SFK), oscillation-phase keying (OPK), and matter-path keying (MPK). For an Earth-diameter link with a neutrino-factory-class source (\(3 \times 10^{13}\) decays/s) and a 200 kt detector, the mean charged-current event rate is \(1.31 \times 10^{-2}\,\mathrm{s^{-1}}\), yet the information rate is only \(1.36 \times 10^{-4}\) bit/s for SFK and \(5.2 \times 10^{-6}\) bit/s for OPK. This reduction occurs because at \(E \simeq 25\) GeV the first oscillation maximum nearly fully relabels \(ν_μ\to ν_τ\) (\(T_{μτ} \simeq 0.98\)); SFK relies mainly on a count-based \(e\)-like channel, while OPK suffers from suppressed appearance probabilities. For DUNE and T2HK with horn-polarity keying, assuming …</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2611.34797</id>
 <title>Measuring the flavor composition of high-energy neutrinos from the Milky Way</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.34797"/>
@@ -180,5 +169,18 @@
 <category term="hep-ph"/>
 <category term="astro-ph.HE"/>
 <summary type="text">Self-interacting neutrino gases exhibit collective behavior, in which additional incoherent collisions can induce collisional neutrino-flavor instability. We investigate the effects of energy dependence, anisotropy, and spatial inhomogeneity on the resulting flavor conversion through linear stability analysis and nonlinear quantum kinetic simulations. We find contrasting wavenumber dependences for the near/gapless and far/gapped branches, with maximum growth rates at collision-scale shifted wavenumbers and at collective-scale wavenumbers, respectively. Their eigenvectors reveal distinct energy and angular structures, which are reflected in the subsequent establishment of flavor swap and equipartition. The nonlinear evolution also features secondary flavor growth associated with changes in the stability of collective modes as the neutrino background evolves. Despite the spreading of flavor coherence across spatial scales due to nonlinear mode coupling, collisional decoherence tends to limit the development of spatial inhomogeneities, leaving the neutrino populations nearly homogeneous. These findings represent a step towards understanding and predicting the nonlinear flavor …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.33324</id>
+<title>NuSrcAgent: An AI Agent for High-Energy Neutrino Source Searches</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.33324"/>
+<updated>2026-11-24T00:00:00Z</updated>
+<author><name>Bei Zhou</name></author>
+<author><name>Po-Wen Chang</name></author>
+<author><name>Kohta Murase</name></author>
+<category term="astro-ph.HE"/>
+<category term="hep-ex"/>
+<category term="hep-ph"/>
+<summary type="text">Identifying the sources of high-energy cosmic neutrinos is crucial for understanding cosmic particle accelerators and probing new physics. IceCube provides public data that allow researchers to search independently for neutrino sources, but these analyses require substantial technical expertise and careful scientific choices. We present \system, the first publicly available AI agent for high-energy neutrino source searches. Compared to public likelihood codes, \system is easier to install and use, and supports more analysis types. To start an analysis, users need only specify a source or catalog. The agent takes natural-language requests, runs likelihood analyses on public IceCube event data, and saves the settings and calculation records so users can repeat the analyses. We demonstrate \system through single-source and catalog stacking analyses, obtaining results consistent with IceCube results. These examples also show its ability to search the literature, analyze non-power-law spectra using user-provided model code, and develop new analysis functions, such as signal-injection simulations. \system is also a powerful tool for improving and testing existing analysis code, as we …</summary>
 </entry>
 </feed>
