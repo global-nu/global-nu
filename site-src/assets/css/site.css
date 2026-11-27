@@ -1565,18 +1565,17 @@ a.srcbadge:hover{text-decoration:none;border-color:var(--accent);color:var(--acc
 :root[data-theme="light"] .relpanel:has(.relgrid--curves){--gl-no:#1f4dbf;--gl-io:#c81919}
 /* The wave of the home logo draws itself once, left to right, each
    segment faster than the one before — the oscillation damping out. The ν
-   stays put. With reduced motion the logo is simply there. */
-@keyframes logo-wave{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+   stays put. The wave is one tapered shape, so a mask tracing its centre
+   line uncovers it; the keyframes fall where the wave's five arcs meet
+   (offsets = remaining fraction of its length). With reduced motion the
+   logo is simply there. */
+@keyframes logo-wave{0%{stroke-dashoffset:1}28.6%{stroke-dashoffset:.6894}51.4%{stroke-dashoffset:.4545}
+  69.5%{stroke-dashoffset:.2714}84.8%{stroke-dashoffset:.1235}100%{stroke-dashoffset:0}}
 @media (prefers-reduced-motion:no-preference){
-  .hero-logo .hero-logo__wave{stroke-dasharray:1;stroke-dashoffset:1;
-    animation:logo-wave .34s cubic-bezier(.33,0,.2,1) forwards}
-  .hero-logo .hero-logo__wave:nth-child(2){animation-delay:.15s}
-  .hero-logo .hero-logo__wave:nth-child(3){animation-delay:.45s;animation-duration:.28s}
-  .hero-logo .hero-logo__wave:nth-child(4){animation-delay:.69s;animation-duration:.23s}
-  .hero-logo .hero-logo__wave:nth-child(5){animation-delay:.88s;animation-duration:.19s}
-  .hero-logo .hero-logo__wave:nth-child(6){animation-delay:1.04s;animation-duration:.16s}
+  .hero-logo .hero-logo__reveal{stroke-dasharray:1 2;stroke-dashoffset:1;
+    animation:logo-wave 1.05s cubic-bezier(.33,0,.2,1) .15s both}
 }
-@media (prefers-reduced-motion:reduce){.hero-logo .hero-logo__wave{animation:none;stroke-dasharray:none;stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.hero-logo .hero-logo__reveal{animation:none;stroke-dasharray:none;stroke-dashoffset:0}}
 /* Home panel with curves: numbers on the left, the Nσ curve on the right,
    tall enough for the IO curve, which starts near 4σ, to keep its shape. */
 .relgrid--curves .relcell{display:grid;grid-template-columns:minmax(6.5rem,auto) 1fr;
