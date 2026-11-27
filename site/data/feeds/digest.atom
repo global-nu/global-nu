@@ -37,17 +37,6 @@
 <summary type="text">We discuss an effective two-frequency description of the three-generation neutrino oscillation with the key quantity $Δm^2_{ \text{effective} }$, which unifies the effects of atmospheric-scale $Δm^2_{31}$-$Δm^2_{32}$ driven oscillations. As a solution to the minimization problem in vacuum, Nunokawa {\it et al.} obtained $Δm^2_{ \text{effective} } = Δm^2_{31} - (2E / L) \arctan \left\{ r_{2} \sin 2Δ_{21} / ( r_{1} + r_{2} \cos 2Δ_{21} ) \right\}$, where $Δ_{21} \equiv Δm^2_{21} L / (4 E)$ and $r_{i}$ are the mixing-angle dependent constants. Despite the skepticism for the $L/E$ dependence in this formula, we show, in fact, that this is an exact expression, which renders the probability formula also exact. We offer an appealing-to-intuition physical explanation for the $L/E$ dependence that it originates from the nature-designed three generation neutrinos. The way it is buried into $Δm^2_{ \text{effective} }$ is through the solar-effect renormalization to this quantity. With the physical interpretation of $Δm^2_{ \text{effective} }$ at hand, we aim at resolving the existing controversies on $Δm^2_{ \text{effective} }$ in this paper.</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.25795</id>
-<title>Parity restoration in a sterile-neutrino scenario: bounds from atomic parity violation to the LHC</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.25795"/>
-<updated>2026-11-19T00:00:00Z</updated>
-<author><name>Iman Motie</name></author>
-<author><name>She-Sheng Xue</name></author>
-<author><name>Alain Blanchard</name></author>
-<category term="hep-ph"/>
-<summary type="text">In a four-fermion-interaction scenario beyond the Standard Model (SM), in which right-handed (sterile) neutrinos take part in TeV-scale composite dynamics, the $Z$ boson acquires an energy-dependent right-handed coupling $\GR(q^2)$ that is expected to vanish at low energies and to restore parity symmetry at high energies. We derive the contribution of $\GR$ to neutral-current parity-violating observables. At first order in $\GR$, every low-energy parity-violating coupling is obtained from its SM value by the replacement $\sin^2θ_W\to\sin^2θ_W(1-\GR)$; in particular the nuclear weak charge is shifted by $ΔQ_W=4\sin^2θ_W\,Z\,\GR$, while the $Z$-pole effective mixing angle is shifted by $-\tfrac12(1-2\sin^2θ_W)\GR$. Using atomic parity violation in cesium, parity-violating electron scattering and $Z$-pole determinations of $\sin^2θ_{\rm eff}$, we extract $\GR$ at each momentum transfer. All data are consistent with $\GR=0$; at the $Z$ pole we find $\GR(m_Z) 3.8$, $2.1$ and $1.7$~TeV for $n=1,2,3$. Future MOLLER, P2 and HL-LHC data will improve these bounds.</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2611.34475</id>
 <title>Conditional multiparameter thermometry with neutrino oscillations: MSW energy diversity and a plasma-noise benchmark</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.34475"/>
@@ -70,19 +59,6 @@
 <category term="hep-ph"/>
 <category term="hep-ex"/>
 <summary type="text">The next generation of beam-dump and accelerator-neutrino experiments will probe GeV-scale sterile neutrinos with unprecedented sensitivity. However, the tiny active-sterile mixing predicted by the minimal seesaw mechanism is expected to remain out of reach. Oscillation data require at least two sterile neutrinos, $N_1$ and $N_2$, which may couple to the photon through a transition dipole. Such a coupling can radically change the picture, both by strongly enhancing sterile-neutrino production and by opening new decay channels. We identify charged-lepton pairs produced by an off-shell photon as the most promising experimental signature. We show that the seesaw band can be probed by the T2K near detector for sterile-neutrino masses $m_N\lesssim 500$ MeV, and by SHiP for $m_N\lesssim 5$ GeV. For a sufficiently large dipole, $d\gtrsim (10~\mathrm{TeV})^{-1}$, SHiP can selectively measure decay channels that require nonzero active-sterile mixing. This would give rise to a distinctive hierarchy of signatures, providing a direct test of the seesaw mechanism.</summary>
-</entry>
-<entry>
-<id>https://arxiv.org/abs/2611.26418</id>
-<title>Future avenues for precision oscillation measurements with compact movable reactors</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.26418"/>
-<updated>2026-11-19T00:00:00Z</updated>
-<author><name>Matheus Hostert</name></author>
-<author><name>Stephan A. Meighen-Berger</name></author>
-<author><name>Maxim Pospelov</name></author>
-<category term="hep-ph"/>
-<category term="hep-ex"/>
-<category term="physics.ins-det"/>
-<summary type="text">No planned neutrino experiment is expected to surpass Daya Bay's precision on $\thone$. Doing so requires innovative strategies to reduce statistical and systematic uncertainties. In this study, we consider a futuristic program with a movable reactor antineutrino source placed within short distances ($L\lesssim 3\,\km$) from the Jiangmen Underground Neutrino Observatory (JUNO) detector. Due to the large fiducial mass of JUNO, even a relatively small reactor can produce a statistically significant number of events over a few years to probe the $\lesssim 8.7\% \,\nuebar$ disappearance set by $\thone$. We consider two possibilities: a $\mathcal{O}(20\mwth)$ microreactor in alcoves of the access tunnel to the underground laboratory, and a $\mathcal{O}(400 \mwth)$ unit on the surface. In both cases the reactor is observed by a small flux monitor detector near the source, while JUNO measures the antineutrino flux at two baselines, suppressing correlated flux and detector systematics. Using the measured Daya Bay per-isotope spectra and its covariance, we model a high-assay low-enriched uranium (HALEU) core for the microreactor and a low-enriched uranium (LEU) core for the surface unit …</summary>
 </entry>
 <entry>
 <id>https://arxiv.org/abs/2611.30799</id>
@@ -161,17 +137,6 @@
 <summary type="text">We investigate the physical limits of transmitting information through the Earth using neutrinos, modeling the link as a discrete-input, Poisson-output classical channel whose crosstalk is set by the three-flavor evolution operator in a layered, matter-filled Earth. For the maximum-likelihood receiver, we derive closed-form Bhattacharyya and Chernoff error exponents for Poisson counts, accurate to within 0.4\% of the exact Chernoff limit. We examine three modulation schemes: source-flavor keying (SFK), oscillation-phase keying (OPK), and matter-path keying (MPK). For an Earth-diameter link with a neutrino-factory-class source (\(3 \times 10^{13}\) decays/s) and a 200 kt detector, the mean charged-current event rate is \(1.31 \times 10^{-2}\,\mathrm{s^{-1}}\), yet the information rate is only \(1.36 \times 10^{-4}\) bit/s for SFK and \(5.2 \times 10^{-6}\) bit/s for OPK. This reduction occurs because at \(E \simeq 25\) GeV the first oscillation maximum nearly fully relabels \(ν_μ\to ν_τ\) (\(T_{μτ} \simeq 0.98\)); SFK relies mainly on a count-based \(e\)-like channel, while OPK suffers from suppressed appearance probabilities. For DUNE and T2HK with horn-polarity keying, assuming …</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.26549</id>
-<title>Refractive Neutrino Mass: Effects of Fluctuations of the Dark Matter Field</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.26549"/>
-<updated>2026-11-19T00:00:00Z</updated>
-<author><name>Soham Sahasrabuddhe</name></author>
-<author><name>Manibrata Sen</name></author>
-<author><name>Alexei Y. Smirnov</name></author>
-<category term="hep-ph"/>
-<summary type="text">Observed neutrino oscillations can be reproduced by a refractive neutrino mass-squared arising from interactions with ultralight scalar dark matter (ULDM). The wave behaviour of the scalar field gives rise to a fluctuating interference pattern, inducing spatial and temporal variations in the refractive mass that can distort neutrino oscillation probabilities. We simulate the interference patterns of the scalar field in the presence of self-interactions. Using results of these simulations, the oscillation probabilities for JUNO and T2K experiments are computed. We find that the refractive mass scenario remains viable for the complex scalar field without self-coupling for $m_φ\lesssim 10^{-16}~\mathrm{eV}$. For $m_φ\gtrsim10^{-16}~\mathrm{eV}$, repulsive self-interactions narrow the density distribution, reducing the deviation of the survival probability at the first minimum to $ΔP \approx 0.07$ for an appropriate self-interaction coupling. In contrast, for a real scalar field, rapid oscillations with the Compton frequency distort the probabilities for scalar masses $ 10^{-22}~\mathrm{eV} \lesssim m_φ\lesssim 10^{-10} ~\mathrm{eV}$, and self-interactions do not remove this …</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2611.34797</id>
 <title>Measuring the flavor composition of high-energy neutrinos from the Milky Way</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.34797"/>
@@ -181,5 +146,39 @@
 <category term="hep-ex"/>
 <category term="hep-ph"/>
 <summary type="text">The origin of the Milky Way's high-energy neutrinos is debated. Their flavor composition reflects how they are made and could help settle it, but remains to be measured. We show that IceCube and KM3NeT, which see the inner Galaxy in complementary ways from opposite hemispheres, could start resolving its flavor composition in about a decade. With upcoming telescopes, they would infer the $ν_e$ fraction at the sources to within 27%. A first comparison of Galactic and extragalactic flavor compositions could reveal strong magnetic fields in extragalactic sources or neutrino decay.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.34525</id>
+<title>Confronting $b \to (s, d)μ^+ μ^-$ and $\mathcal{L}_{K^{*}\bar{K}^{*}}$ puzzle in a $U(1)_{B-3L_μ}$ framework with neutrino phenomenology</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.34525"/>
+<updated>2026-11-25T00:00:00Z</updated>
+<author><name>Dhiren Panda</name></author>
+<author><name>Priya Mishra</name></author>
+<author><name>Manas Kumar Mohapatra et al.</name></author>
+<category term="hep-ph"/>
+<summary type="text">Current data on several observables in $b \to (s,d)$ $μ^+ μ^-$ transitions reveal certain discrepancies with Standard Model (SM) predictions. Considering the possibility that these deviations stem from new physics, we explore a $Z^{\prime}$ framework based on $U(1)_{B-3L_μ}$ model. The parameter space is examined in light of existing constraints from $b \to (s,d)$ $μ^+ μ^-$ transitions. Within this framework, we show that the quark couplings accommodating $b \to (s,d)$ $μ^+ μ^-$ anomalies, imprint correlated signatures on the non-leptonic puzzles $\mathcal{L}_{K^{*}\bar{K}^{*}}$ in $B_{s(d)} \to K^{*}\bar{K}^{*}$ decays. We find that the scenario with both vector and axial-vector contributions of opposite sign is favored by the data compared to pure vector contribution, offering a correlated probe of the underlying new-physics scenario. We further explore the neutrino phenomenology within the same framework in light of current data.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.34213</id>
+<title>Lower Bound on the Lightest Neutrino Mass with Resonant Neutrino Self-Interactions</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.34213"/>
+<updated>2026-11-25T00:00:00Z</updated>
+<author><name>Shao-Feng Ge</name></author>
+<author><name>Joao Paulo Pinheiro</name></author>
+<author><name>Shaoyang Qin et al.</name></author>
+<category term="hep-ph"/>
+<category term="astro-ph.HE"/>
+<category term="hep-ex"/>
+<summary type="text">We show the possibility of using the resonant $s$-channel scattering of ultra high energy astrophysical neutrinos with the low energy cosmic neutrino background to put a lower bound on the lightest neutrino mass. This can be realized and illustrated by neutrino self-interactions with a light scalar mediator of $\mathcal O(1)$ MeV mass. After analyzing the kinematics and cross section features of the $s$-channel resonance, we derive from first principles the double transport equations with double regeneration terms for the coupled evolution of neutrinos and anti-neutrinos. The simulated event spectrum is then compared with the HESE 7.5 year data observed at IceCube to give a clear lower bound on the lightest neutrino mass.</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.33815</id>
+<title>Collisional dynamics of neutrino flavor conversion: angular structures, inhomogeneity, and decoherence</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.33815"/>
+<updated>2026-11-25T00:00:00Z</updated>
+<author><name>Masamichi Zaizen</name></author>
+<category term="hep-ph"/>
+<category term="astro-ph.HE"/>
+<summary type="text">Self-interacting neutrino gases exhibit collective behavior, in which additional incoherent collisions can induce collisional neutrino-flavor instability. We investigate the effects of energy dependence, anisotropy, and spatial inhomogeneity on the resulting flavor conversion through linear stability analysis and nonlinear quantum kinetic simulations. We find contrasting wavenumber dependences for the near/gapless and far/gapped branches, with maximum growth rates at collision-scale shifted wavenumbers and at collective-scale wavenumbers, respectively. Their eigenvectors reveal distinct energy and angular structures, which are reflected in the subsequent establishment of flavor swap and equipartition. The nonlinear evolution also features secondary flavor growth associated with changes in the stability of collective modes as the neutrino background evolves. Despite the spreading of flavor coherence across spatial scales due to nonlinear mode coupling, collisional decoherence tends to limit the development of spatial inhomogeneities, leaving the neutrino populations nearly homogeneous. These findings represent a step towards understanding and predicting the nonlinear flavor …</summary>
 </entry>
 </feed>

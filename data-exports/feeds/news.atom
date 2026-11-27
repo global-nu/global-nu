@@ -5,69 +5,83 @@
 <subtitle>Summaries written automatically with AI from fetched sources; each links to its source.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/news.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/news.atom"/>
-<updated>2026-11-26T06:46:29+00:00</updated>
+<updated>2026-11-27T06:46:18+00:00</updated>
 <author><name>global-nu.org, Bari group</name></author>
 <entry>
-<id>https://global-nu.org/news/bd6fc6ed9425b297</id>
+<id>https://global-nu.org/news/2657046ba14e3598</id>
+<title>DUNE construction</title>
+<link rel="alternate" href="https://www.bhpioneer.com/local_news/dune-construction-begins/article_601a4c0b-b7c9-4d01-af3f-473a9dfa65dd.html"/>
+<updated>2026-11-27T06:46:18+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. Fermilab, CERN and SURF crews have started building the first of two cryostats, the insulated containers that will hold liquid argon for the experiment. Fermilab News also reports that construction has begun on the detector in South Dakota. At a progress report at the Sanford Lab, Fermilab leaders discussed the project, future hiring and the work to outfit the caverns with infrastructure.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/12f40b801d6d2c78</id>
 <title>T2K with gadolinium</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.32106"/>
-<updated>2026-11-26T06:46:29+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. T2K reports updated oscillation parameters using 21.4 (16.3) x 10^20 protons on target in neutrino (antineutrino) mode, including 1.7 x 10^20 more neutrino-mode POT than the previous result. For the first time the sample includes data taken with gadolinium-doped Super-Kamiokande. The far-detector selection and the systematic error treatment were improved, and both the semi-frequentist and the Bayesian analyses favour normal mass ordering.</summary>
+<updated>2026-11-27T06:46:18+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. T2K presented updated oscillation measurements using 21.4 (16.3) x 10^20 protons on target in neutrino (antineutrino) mode, including 1.7 x 10^20 POT more neutrino data than the previous result. For the first time the analysis includes data taken with Super-Kamiokande doped with gadolinium. The far-detector selection and the systematic error treatment were improved, and both semi-frequentist and Bayesian analyses favour normal mass ordering.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/a0d13bdb2e819edd</id>
-<title>PIKACHU Phase 1</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.31837"/>
-<updated>2026-11-26T06:46:29+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. PIKACHU searches at Kamioka for two-neutrino double-beta decay of 160Gd using Ce:GAGG scintillators. The new paper characterises the backgrounds through delayed-coincidence analysis and GEANT4-based spectral fits. Surface contamination of the crystal, identified from the distortion of the 214Po alpha spectrum, led to an improved background model. No significant excess from 160Gd decay was observed.</summary>
+<id>https://global-nu.org/news/1aa4bbe0bd5e716e</id>
+<title>KM3NeT/ARCA searches</title>
+<link rel="alternate" href="https://www.km3net.org/all-sky-and-galactic-ridge-neutrino-emission/"/>
+<updated>2026-11-27T06:46:18+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. KM3NeT announced two papers based on ARCA data. One is a search for diffuse neutrino emission from the whole sky and from the Galactic Ridge, using the first two years of data and comparing theoretical predictions with the measurements. The other is a stacking search for point sources, which combines signals from ultra-luminous infrared galaxies and from blazars.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/7cdff9f44f99cae4</id>
-<title>NuDEx reconstruction study</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.32277"/>
-<updated>2026-11-26T06:46:29+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. NuDEx plans a search for neutrinoless double-beta decay of 82Se with a high-pressure SeF6 negative-ion time projection chamber. A simulation study compares FFT deconvolution with direct waveform fitting for reconstructing the longitudinal coordinate from the arrival-time separation of SeF5- and SeF6-. On 855 events common to both methods, the separation RMSEs were 0.180 ms (direct fit) and 0.222 ms (FFT).</summary>
+<id>https://global-nu.org/news/68870da3fb826d20</id>
+<title>IceCube and the Nobel Prize</title>
+<link rel="alternate" href="https://cerncourier.com/a/francis-halzen-wins-the-nobel-prize/"/>
+<updated>2026-11-27T06:46:18+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. CERN Courier reports that Francis Halzen was awarded the 2026 Nobel Prize in Physics for his decisive contributions to the IceCube Neutrino Observatory.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/c7df0f15e5b0f4f1</id>
-<title>The paper computes the contribution of the Δ-direct-Urca process to neutrino emissivity in neutron stars conta</title>
+<id>https://global-nu.org/news/df32e9f3a38b800a</id>
+<title>MicroBooNE prize</title>
+<link rel="alternate" href="https://news.fnal.gov/2026/11/fermilabs-sam-zeller-awarded-w-k-h-panofsky-prize/"/>
+<updated>2026-11-27T06:46:18+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. Fermilab's Sam Zeller was awarded the W.K.H. Panofsky Prize. The citation is for co-leadership of MicroBooNE, which advanced liquid-argon time projection chamber technology for neutrino detection.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/d788149eebb1ac27</id>
+<title>The paper studies neutrino emission from Δ-direct-Urca processes in neutron-star cores containing Δ isobars, a</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3211621"/>
-<updated>2026-11-26T06:46:29+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The paper computes the contribution of the Δ-direct-Urca process to neutrino emissivity in neutron stars containing Δ isobars, which the authors say had not been evaluated explicitly. It matters for neutron-star cooling, where nucleonic and hyperonic Urca processes are the dominant neutrino-emitting channels.</summary>
+<updated>2026-11-27T06:46:18+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper studies neutrino emission from Δ-direct-Urca processes in neutron-star cores containing Δ isobars, a contribution the abstract says had not been explicitly evaluated. It matters for the thermal evolution of neutron stars, where nucleonic and hyperonic Urca processes are the dominant cooling mechanisms.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/d6c75af480540756</id>
-<title>The authors revisit the published 7Be K-capture measurement of the 7Li recoil peak by Smolsky et al</title>
+<id>https://global-nu.org/news/cdd3000201d100b8</id>
+<title>The authors use the measured width of the 7Li recoil peak after 7Be K-electron capture (Smolsky et al.) to det</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3232939"/>
-<updated>2026-11-26T06:46:29+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The authors revisit the published 7Be K-capture measurement of the 7Li recoil peak by Smolsky et al. They use its measured width (FWHM = 6.7 eV, sigma_E = 2.9 eV) to determine the spatial extent of the neutrino wave packet. This gives a direct experimental handle on a quantity usually treated only theoretically.</summary>
+<updated>2026-11-27T06:46:18+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The authors use the measured width of the 7Li recoil peak after 7Be K-electron capture (Smolsky et al.) to determine the spatial extent of the neutrino wave packet. The approach ties the wave packet to its production mechanism and to decoherence, which sets a common energy uncertainty for the emitted particles.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/8298de0b26d86713</id>
-<title>The paper proves that every completely positive trace-preserving evolution covariant under rotations of the ma</title>
+<id>https://global-nu.org/news/168986839b1e2654</id>
+<title>The paper shows that the 2025 KM3NeT/ARCA data from the first configurations (6 to 21 detection units, 640 day</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3188206"/>
+<updated>2026-11-27T06:46:18+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper shows that the 2025 KM3NeT/ARCA data from the first configurations (6 to 21 detection units, 640 days of livetime) were used to fit a single-flavour diffuse astrophysical flux. The all-sky fit gives a spectral index of 3.00 with asymmetric uncertainties at 68% credible level, and the Galactic Ridge fit does not yield a result in the excerpt shown.</summary>
+</entry>
+<entry>
+<id>https://global-nu.org/news/6ab9c9d6516825ba</id>
+<title>The paper proves a no-go theorem: any completely positive trace-preserving evolution that is covariant under r</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3217753"/>
-<updated>2026-11-26T06:46:29+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The paper proves that every completely positive trace-preserving evolution covariant under rotations of the mass-coherence plane is blind to a Majorana phase in two-flavour oscillations. A rate anisotropy in the environment can supply a phase reference, and the paper gives the resulting time dependence. It states when decoherence can and cannot make a Majorana phase visible in oscillations.</summary>
+<updated>2026-11-27T06:46:18+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper proves a no-go theorem: any completely positive trace-preserving evolution that is covariant under rotations of the mass-coherence plane is blind to a Majorana phase in two-flavour oscillations. A rate anisotropy in the environment can supply a phase reference, which is the condition under which decoherence could reveal the phase.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/7cc69746984ab320</id>
-<title>The authors give semianalytic approximations for the outcome of slow and fast flavour conversion in quasihomog</title>
+<id>https://global-nu.org/news/a5e1e65b6a5854c8</id>
+<title>The authors derive semianalytic approximations for the quasisteady outcome of slow and fast flavour conversion</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3188570"/>
-<updated>2026-11-26T06:46:29+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The authors give semianalytic approximations for the outcome of slow and fast flavour conversion in quasihomogeneous neutrino ensembles. They report good agreement with multiangle and multienergy solutions of the kinetic equations, independent of mass ordering. Such prescriptions can serve as subgrid schemes in supernova simulations that cannot include neutrino quantum kinetics.</summary>
+<updated>2026-11-27T06:46:18+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The authors derive semianalytic approximations for the quasisteady outcome of slow and fast flavour conversion in quasihomogeneous neutrino ensembles. They report agreement with multiangle and multienergy solutions of the kinetic equations independent of mass ordering, which offers a subgrid scheme for supernova simulations that cannot include neutrino quantum kinetics.</summary>
 </entry>
 <entry>
-<id>https://global-nu.org/news/1f9fb2ed34151798</id>
-<title>The paper studies how well kiloton-scale detectors such as Hyper-Kamiokande could measure the primary cosmic-r</title>
-<link rel="alternate" href="https://inspirehep.net/literature/3220874"/>
-<updated>2026-11-26T06:46:29+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The paper studies how well kiloton-scale detectors such as Hyper-Kamiokande could measure the primary cosmic-ray spectrum from the atmospheric neutrino flux. It finds that different cosmic-ray models can be distinguished with high statistical significance, including uncertainties in neutrino cross sections and hadronic interactions. The result turns the atmospheric neutrino sample into a full-sky, long-term cosmic-ray monitor.</summary>
-</entry>
-<entry>
-<id>https://global-nu.org/news/97666c89ceb28758</id>
-<title>The authors study an su(n) Hamiltonian with one- and two-body terms, which describes collective neutrino oscil</title>
-<link rel="alternate" href="https://inspirehep.net/literature/3184925"/>
-<updated>2026-11-26T06:46:29+00:00</updated>
-<summary type="text">AI-generated summary of the linked source; may contain errors. The authors study an su(n) Hamiltonian with one- and two-body terms, which describes collective neutrino oscillations among other systems. By truncating the BBGKY hierarchy they obtain a systematic way to go beyond mean field, with polynomial scaling on a classical computer.</summary>
+<id>https://global-nu.org/news/baeb47e9701ba72b</id>
+<title>The paper uses solar neutrino-electron scattering data from PandaX-4T and XENONnT to set exclusion limits on a</title>
+<link rel="alternate" href="https://inspirehep.net/literature/3211628"/>
+<updated>2026-11-27T06:46:18+00:00</updated>
+<summary type="text">AI-generated summary of the linked source; may contain errors. The paper uses solar neutrino-electron scattering data from PandaX-4T and XENONnT to set exclusion limits on anomaly-free U(1)_X dark photon models with kinetic and mass mixing. The limits depend on the leptonic charge assignment of each model, and model-independent limits are given for pure kinetic and pure mass mixing.</summary>
 </entry>
 </feed>
