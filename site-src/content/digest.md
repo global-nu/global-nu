@@ -24,7 +24,7 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors.</b>
-<span class="stamp">Last successful update: 27 November 2026, 07:46 CET</span></div>
+<span class="stamp">Last successful update: 27 November 2026, 19:32 CET</span></div>
 </div>
 <p class="digest-dates small"><b>This edition:</b> preprints first submitted 20 Nov 2026 – 25 Nov 2026. Each entry gives its own dates: first submission, latest update when there is one, and announcement when the source states it. arXiv announces submissions on its own schedule, so the newest of these may not have been announced yet.</p>
 <!-- QUIET:BEGIN -->
@@ -61,11 +61,11 @@ next announcement.</p>
 <li><b><a href="https://arxiv.org/abs/2611.32905">TeV Gamma-Ray Transparency Bounds on Neutrinos and Axions</a></b><span>Shengyi Liu, Hyeonseok Seong, Chen Sun et al. · first submitted 24 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.CO</span><span class="tag">astro-ph.HE</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.31348">Flavor Alignment and Operator Sensitivity in a Left--Right Universal-Seesaw Model</a></b><span>Claudio Coriano, Paul H. Frampton · first submitted 23 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.29570">Finite-temperature quark dynamics in proto-neutron stars: Maximum baryonic mass and radial oscillations</a></b><span>Xuefeng Ma, Jingdong Shao, Kun Xu et al. · first submitted 22 Nov 2026</span><span class="tags"><span class="tag">astro-ph.HE</span></span></li>
-<li><b><a href="https://arxiv.org/abs/2611.27456">Flavor-Modulated Neutrino Communication: Channel Model, Modulation Schemes, and Link Budget for Through-Earth Links</a></b><span>Bipin Singh Koranga, Biswmkwr Boro, Imran Khan et al. · first submitted 20 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.34797">Measuring the flavor composition of high-energy neutrinos from the Milky Way</a></b><span>Mauricio Bustamante · first submitted 25 Nov 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">hep-ex</span><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.34525">Confronting b →(s, d)μ⁺ μ⁻ and L_K^*K̄^* puzzle in a U(1)_B-3L_μ framework with neutrino phenomenology</a></b><span>Dhiren Panda, Priya Mishra, Manas Kumar Mohapatra et al. · first submitted 25 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.34213">Lower Bound on the Lightest Neutrino Mass with Resonant Neutrino Self-Interactions</a></b><span>Shao-Feng Ge, Joao Paulo Pinheiro, Shaoyang Qin et al. · first submitted 25 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span><span class="tag">hep-ex</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.33815">Collisional dynamics of neutrino flavor conversion: angular structures, inhomogeneity, and decoherence</a></b><span>Masamichi Zaizen · first submitted 25 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">astro-ph.HE</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2611.33324">NuSrcAgent: An AI Agent for High-Energy Neutrino Source Searches</a></b><span>Bei Zhou, Po-Wen Chang, Kohta Murase · first submitted 24 Nov 2026</span><span class="tags"><span class="tag">astro-ph.HE</span><span class="tag">hep-ex</span><span class="tag">hep-ph</span></span></li>
 </ul>
 
 
@@ -88,7 +88,7 @@ still appears under theory.</p>
 <!-- ARCHIVE:BEGIN -->
 <ul class="archive">
   <li><time datetime="2026-11-25">25 November 2026</time><a href="digest/2026-11-25.html">Digest of 2026-11-25</a><span class="count">7 papers</span></li>
-  <li><time datetime="2026-11-24">24 November 2026</time><a href="digest/2026-11-24.html">Digest of 2026-11-24</a><span class="count">4 papers</span></li>
+  <li><time datetime="2026-11-24">24 November 2026</time><a href="digest/2026-11-24.html">Digest of 2026-11-24</a><span class="count">5 papers</span></li>
   <li><time datetime="2026-11-23">23 November 2026</time><a href="digest/2026-11-23.html">Digest of 2026-11-23</a><span class="count">3 papers</span></li>
   <li><time datetime="2026-11-22">22 November 2026</time><a href="digest/2026-11-22.html">Digest of 2026-11-22</a><span class="count">2 papers</span></li>
   <li><time datetime="2026-11-20">20 November 2026</time><a href="digest/2026-11-20.html">Digest of 2026-11-20</a><span class="count">4 papers</span></li>
@@ -97,7 +97,7 @@ still appears under theory.</p>
   <li><time datetime="2026-11-17">17 November 2026</time><a href="digest/2026-11-17.html">Digest of 2026-11-17</a><span class="count">3 papers</span></li>
   <li><time datetime="2026-11-16">16 November 2026</time><a href="digest/2026-11-16.html">Digest of 2026-11-16</a><span class="count">11 papers</span></li>
   <li><time datetime="2026-11-14">14 November 2026</time><a href="digest/2026-11-14.html">Digest of 2026-11-14</a><span class="count">1 paper</span></li>
-  <li><time datetime="2026-11">November 2026</time><a href="digest/2026-11.html">All of November 2026</a><span class="count">107 papers</span></li>
+  <li><time datetime="2026-11">November 2026</time><a href="digest/2026-11.html">All of November 2026</a><span class="count">108 papers</span></li>
   <li><time datetime="2026-10">October 2026</time><a href="digest/2026-10.html">All of October 2026</a><span class="count">121 papers</span></li>
   <li><time datetime="2026-09">September 2026</time><a href="digest/2026-09.html">All of September 2026</a><span class="count">137 papers</span></li>
   <li><time datetime="2026-08">August 2026</time><a href="digest/2026-08.html">All of August 2026</a><span class="count">76 papers</span></li>

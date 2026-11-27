@@ -12,7 +12,7 @@
    - other hosts (INSPIRE, arXiv, the analytics counter): not touched. */
 "use strict";
 
-var VERSION = "36bd1317b9";
+var VERSION = "5ca11683cd";
 var PRECACHE = [
     "./",
     "index.html",
@@ -20,7 +20,7 @@ var PRECACHE = [
     "manifest.webmanifest",
     "assets/css/explorer.css?v=ea0ffdb6",
     "assets/css/search.css?v=68b37779",
-    "assets/css/site.css?v=6f84bde2",
+    "assets/css/site.css?v=030cf88d",
     "assets/js/chi2.js?v=fc43978c",
     "assets/js/confilter.js?v=f7bc4f35",
     "assets/js/confmap.js?v=c8b857a5",
