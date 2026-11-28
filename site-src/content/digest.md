@@ -24,22 +24,23 @@ katex: false
 <span aria-hidden="true">⚠</span>
 <div><b>This page is generated automatically by a script from the arXiv API,
 and may contain errors.</b>
-<span class="stamp">Last successful update: 27 November 2026, 19:32 CET</span></div>
+<span class="stamp">Last successful update: 28 November 2026, 07:46 CET</span></div>
 </div>
-<p class="digest-dates small"><b>This edition:</b> preprints first submitted 20 Nov 2026 – 25 Nov 2026. Each entry gives its own dates: first submission, latest update when there is one, and announcement when the source states it. arXiv announces submissions on its own schedule, so the newest of these may not have been announced yet.</p>
+<p class="digest-dates small"><b>This edition:</b> preprints first submitted 22 Nov 2026 – 25 Nov 2026. Each entry gives its own dates: first submission, latest update when there is one, and announcement when the source states it. arXiv announces submissions on its own schedule, so the newest of these may not have been announced yet.</p>
 <!-- QUIET:BEGIN -->
 <p class="small muted"><b>arXiv made no announcement for
-27 November 2026.</b> Its listing feeds are empty, as they are at weekends and on
+28 November 2026.</b> Its listing feeds are empty, as they are at weekends and on
 <a href="https://info.arxiv.org/help/availability.html">arXiv's announcement
 holidays</a>, so nothing below is new today: the list will change with the
 next announcement.</p>
 <!-- QUIET:END -->
 
 <div class="section-head"><h2>Experimental</h2>
-<p>1 preprint</p></div>
+<p>2 preprints</p></div>
 
 <ul class="list list--news">
 <li><b><a href="https://arxiv.org/abs/2611.32106">Updated T2K measurement of neutrino oscillation parameters with the first data from the Gadolinium-loaded far detector</a></b><span>The T2K collaboration · first submitted 24 Nov 2026</span><span class="tags"><span class="tag">hep-ex</span></span></li>
+<li><b><a href="https://arxiv.org/abs/2611.31837">Background characterization in the PIKACHU Phase 1 search for two-neutrino double-beta decay of ¹⁶⁰Gd</a></b><span>T. Omori, T. Iida, A. Gando et al. · first submitted 24 Nov 2026</span><span class="tags"><span class="tag">nucl-ex</span><span class="tag">hep-ex</span></span></li>
 </ul>
 
 
@@ -48,10 +49,9 @@ next announcement.</p>
 ::: section alt
 
 <div class="section-head"><h2>Theory</h2>
-<p>15 preprints</p></div>
+<p>14 preprints</p></div>
 
 <ul class="list list--news">
-<li><b><a href="https://arxiv.org/abs/2611.28224">TeV-Scale Leptogenesis in the Linear Seesaw Framework</a></b><span>A. E. Cárcamo Hernández, J. Echeverria-Puentes, Stephen F. King et al. · first submitted 20 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.32481">On the effective atmospheric-scale Δm² in neutrino oscillation</a></b><span>Hisakazu Minakata · first submitted 24 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.34475">Conditional multiparameter thermometry with neutrino oscillations: MSW energy diversity and a plasma-noise benchmark</a></b><span>Jilali Loulijat, Abdallah Slaoui, El Hassan Saidi et al. · first submitted 25 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">quant-ph</span></span></li>
 <li><b><a href="https://arxiv.org/abs/2611.30780">Light on GeV-scale seesaw</a></b><span>Enrico Bertuzzo, Michele Frigerio, Salvador Urrea · first submitted 23 Nov 2026</span><span class="tags"><span class="tag">hep-ph</span><span class="tag">hep-ex</span></span></li>

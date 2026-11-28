@@ -17,17 +17,6 @@
 <summary type="text">The T2K experiment presents updated measurements of neutrino oscillation parameters using $21.4(16.3)\times10^{20}$ protons on target (POT) in (anti-)neutrino mode at the far detector, Super-Kamiokande. This analysis uses an additional neutrino dataset of $1.7 \times 10^{20}$ POT compared to the previous result, and for the very first time, data collected with Super-Kamiokande doped with Gadolinium (Gd). Significant improvements were introduced in the far detector selection and systematic error treatment. Both semi-frequentist and Bayesian analyses are presented, including results on $\sin^{2} θ_{23}$, $Δm^2_{32} $, $\sin^{2} θ_{13}$ and $δ_{CP}$. Both analyses favor normal mass ordering with a nearly maximal CP-violating phase and are compatible with neutrino maximal mixing, slightly favouring the upper $θ_{23}$ octant.</summary>
 </entry>
 <entry>
-<id>https://arxiv.org/abs/2611.28224</id>
-<title>TeV-Scale Leptogenesis in the Linear Seesaw Framework</title>
-<link rel="alternate" href="https://arxiv.org/abs/2611.28224"/>
-<updated>2026-11-20T00:00:00Z</updated>
-<author><name>A. E. Cárcamo Hernández</name></author>
-<author><name>J. Echeverria-Puentes</name></author>
-<author><name>Stephen F. King et al.</name></author>
-<category term="hep-ph"/>
-<summary type="text">The linear seesaw mechanism relates the smallness of neutrino masses to the mass splitting within a quasi-Dirac pair of heavy neutrinos, thereby providing a natural framework for realising resonant leptogenesis at low energies. We investigate this possibility within its simplest effective realisation, in which neutrino masses are mediated by a quasi-Dirac pair at the TeV scale. We estimate the generation of the baryon asymmetry in the purely flavoured and strong-washout regimes, identifying phenomenologically viable parameter regions and benchmark scenarios in which the heavy-neutrino decays are dominated either by the SM Higgs doublet or by a second, leptophilic scalar doublet responsible for neutrino mass generation. We find viable leptogenesis solutions both near and away from the resonant maximum and discuss complementary phenomenological probes of the framework.</summary>
-</entry>
-<entry>
 <id>https://arxiv.org/abs/2611.32481</id>
 <title>On the effective atmospheric-scale $Δm^2$ in neutrino oscillation</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.32481"/>
@@ -182,5 +171,17 @@
 <category term="hep-ex"/>
 <category term="hep-ph"/>
 <summary type="text">Identifying the sources of high-energy cosmic neutrinos is crucial for understanding cosmic particle accelerators and probing new physics. IceCube provides public data that allow researchers to search independently for neutrino sources, but these analyses require substantial technical expertise and careful scientific choices. We present \system, the first publicly available AI agent for high-energy neutrino source searches. Compared to public likelihood codes, \system is easier to install and use, and supports more analysis types. To start an analysis, users need only specify a source or catalog. The agent takes natural-language requests, runs likelihood analyses on public IceCube event data, and saves the settings and calculation records so users can repeat the analyses. We demonstrate \system through single-source and catalog stacking analyses, obtaining results consistent with IceCube results. These examples also show its ability to search the literature, analyze non-power-law spectra using user-provided model code, and develop new analysis functions, such as signal-injection simulations. \system is also a powerful tool for improving and testing existing analysis code, as we …</summary>
+</entry>
+<entry>
+<id>https://arxiv.org/abs/2611.31837</id>
+<title>Background characterization in the PIKACHU Phase 1 search for two-neutrino double-beta decay of $^{160}$Gd</title>
+<link rel="alternate" href="https://arxiv.org/abs/2611.31837"/>
+<updated>2026-11-24T00:00:00Z</updated>
+<author><name>T. Omori</name></author>
+<author><name>T. Iida</name></author>
+<author><name>A. Gando et al.</name></author>
+<category term="nucl-ex"/>
+<category term="hep-ex"/>
+<summary type="text">We report a background characterization for the search for two-neutrino double-beta ($2\nu2β$) decay of $^{160}$Gd using Ce:Gd$_3$Al$_2$Ga$_3$O$_{12}$ scintillators in the PIKACHU experiment Phase 1 at the Kamioka underground laboratory. The experimental backgrounds were investigated through delayed-coincidence analysis and spectral fitting based on GEANT4 simulations. In particular, surface contamination of the crystal was identified through the characteristic distortion of the $^{214}$Po $α$-ray spectrum, leading to an improved background model that reproduces the observed energy spectra. No significant excess attributable to $^{160}$Gd $2\nu2β$ decay was observed, yielding a lower limit of $T^{2ν}_{1/2} \geq 2.32 \times 10^{19}$ yr at 90\% C.L. The established background model and analysis framework provide a foundation for future PIKACHU phases aiming to discover $^{160}$Gd $2\nu2β$ decay.</summary>
 </entry>
 </feed>

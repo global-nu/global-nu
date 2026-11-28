@@ -5,104 +5,104 @@
 <subtitle>Summaries written automatically with AI from fetched sources; each links to its source.</subtitle>
 <link rel="alternate" type="text/html" href="https://global-nu.org/news.html"/>
 <link rel="self" type="application/atom+xml" href="https://global-nu.org/data/feeds/news.atom"/>
-<updated>2026-11-27T18:32:00+00:00</updated>
+<updated>2026-11-27T19:31:54+01:00</updated>
 <author><name>global-nu.org, Bari group</name></author>
 <entry>
 <id>https://global-nu.org/news/a464abe30c97f48c</id>
 <title>DUNE construction</title>
 <link rel="alternate" href="https://www.bhpioneer.com/local_news/dune-construction-begins/article_601a4c0b-b7c9-4d01-af3f-473a9dfa65dd.html"/>
-<updated>2026-11-27T18:32:00+00:00</updated>
+<updated>2026-11-27T19:31:54+01:00</updated>
 <summary type="text">AI-generated summary of the linked source; may contain errors. Fermilab, CERN and SURF crews have started building the first of two cryostats, the insulated containers that will hold liquid argon for the experiment. Fermilab News describes DUNE activity at SURF as significantly increasing, and a progress report at the Sanford Lab visitor centre covered hiring opportunities and outfitting the caverns with infrastructure.</summary>
 </entry>
 <entry>
 <id>https://global-nu.org/news/7511d7ac25a18fed</id>
 <title>T2K with gadolinium</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.32106"/>
-<updated>2026-11-27T18:32:00+00:00</updated>
+<updated>2026-11-27T19:31:54+01:00</updated>
 <summary type="text">AI-generated summary of the linked source; may contain errors. T2K released updated oscillation measurements using 21.4 (16.3) x 10^20 protons on target in neutrino (antineutrino) mode. The analysis adds 1.7 x 10^20 POT to the previous result and, for the first time, includes data taken with gadolinium-doped Super-Kamiokande. It reports sin^2 theta_23, Delta m^2_32, sin^2 theta_13 and delta_CP from both semi-frequentist and Bayesian fits, and both favour normal mass ordering.</summary>
 </entry>
 <entry>
 <id>https://global-nu.org/news/95fcde0aee9f6fed</id>
 <title>KM3NeT Lorentz test</title>
 <link rel="alternate" href="https://physicsworld.com/a/underwater-neutrino-detector-sets-new-limits-on-einsteins-special-relativity/"/>
-<updated>2026-11-27T18:32:00+00:00</updated>
+<updated>2026-11-27T19:31:54+01:00</updated>
 <summary type="text">AI-generated summary of the linked source; may contain errors. Physics World reports that the KM3NeT collaboration has set new limits on Lorentz invariance violation using its underwater detector. No violation was found. The record gives no limit values.</summary>
 </entry>
 <entry>
 <id>https://global-nu.org/news/0da5197aa16463c6</id>
 <title>KM3NeT/ARCA diffuse flux</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3188206"/>
-<updated>2026-11-27T18:32:00+00:00</updated>
+<updated>2026-11-27T19:31:54+01:00</updated>
 <summary type="text">AI-generated summary of the linked source; may contain errors. KM3NeT published a search for all-sky and Galactic Ridge diffuse neutrino emission with the first ARCA configurations (6, 8, 19 and 21 detection units, 640 days of livetime). The all-sky fit under a single power law gives a spectral index of 3.00 with an asymmetric uncertainty of +0.30 and -0.35 at 68% credible level, with a single-flavour normalisation at 100 TeV of 3.0 (+2.1, -2.0) x 10^-18 GeV^-1 cm^-2 s^-1 sr^-1.</summary>
 </entry>
 <entry>
 <id>https://global-nu.org/news/233c23bc2f57df37</id>
 <title>KM3NeT source stacking</title>
 <link rel="alternate" href="https://www.km3net.org/stacking-search-for-extreme-objects-in-the-universe/"/>
-<updated>2026-11-27T18:32:00+00:00</updated>
+<updated>2026-11-27T19:31:54+01:00</updated>
 <summary type="text">AI-generated summary of the linked source; may contain errors. A new KM3NeT/ARCA paper searches for high-energy neutrino emission from ultra-luminous infrared galaxies and blazars. It uses a stacking approach, in which signals from several astronomical objects are combined. The news post gives no result.</summary>
 </entry>
 <entry>
 <id>https://global-nu.org/news/413d2e37f3ba0f85</id>
 <title>MicroBooNE prize</title>
 <link rel="alternate" href="https://news.fnal.gov/2026/11/fermilabs-sam-zeller-awarded-w-k-h-panofsky-prize/"/>
-<updated>2026-11-27T18:32:00+00:00</updated>
+<updated>2026-11-27T19:31:54+01:00</updated>
 <summary type="text">AI-generated summary of the linked source; may contain errors. Sam Zeller of Fermilab was awarded the W.K.H. Panofsky Prize. The citation is for co-leading MicroBooNE, which advanced liquid-argon time projection chamber technology for neutrino detection.</summary>
 </entry>
 <entry>
 <id>https://global-nu.org/news/45f407790fd355a1</id>
 <title>PIKACHU Phase 1</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.31837"/>
-<updated>2026-11-27T18:32:00+00:00</updated>
+<updated>2026-11-27T19:31:54+01:00</updated>
 <summary type="text">AI-generated summary of the linked source; may contain errors. PIKACHU Phase 1 searches for two-neutrino double-beta decay of 160Gd with Ce:GAGG scintillators at Kamioka. A background study using delayed coincidences and GEANT4-based spectral fits identified surface contamination of the crystal through the distortion of the 214Po alpha spectrum. The improved background model reproduces the observed spectra, and no significant excess from 160Gd decay was seen.</summary>
 </entry>
 <entry>
 <id>https://global-nu.org/news/2af29003ef6ca3b5</id>
 <title>NuDEx time reconstruction</title>
 <link rel="alternate" href="https://arxiv.org/abs/2611.32277"/>
-<updated>2026-11-27T18:32:00+00:00</updated>
+<updated>2026-11-27T19:31:54+01:00</updated>
 <summary type="text">AI-generated summary of the linked source; may contain errors. NuDEx plans a neutrinoless double-beta decay search in 82Se with a high-pressure 82SeF6 negative-ion time projection chamber. A simulation study compares FFT deconvolution with direct waveform fitting to reconstruct the longitudinal coordinate from the arrival-time separation of SeF5- and SeF6- ions. Fitting accepted 873 of 873 selected single depositions and FFT accepted 855. On the 855 common events the RMS errors were 0.180 ms and 0.222 ms respectively.</summary>
 </entry>
 <entry>
 <id>https://global-nu.org/news/9fd735bb29002085</id>
 <title>The paper proves that any completely positive trace-preserving evolution of two-flavour oscillations that is c</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3217753"/>
-<updated>2026-11-27T18:32:00+00:00</updated>
+<updated>2026-11-27T19:31:54+01:00</updated>
 <summary type="text">AI-generated summary of the linked source; may contain errors. The paper proves that any completely positive trace-preserving evolution of two-flavour oscillations that is covariant under rotations of the mass-coherence plane cannot show a Majorana phase. A rate anisotropy between the transverse decoherence rates can supply a phase reference. This sets what an open-system oscillation analysis can and cannot say about the Majorana phase.</summary>
 </entry>
 <entry>
 <id>https://global-nu.org/news/14e5a0857493f59a</id>
 <title>The authors re-examine the measured 7Li recoil peak after 7Be electron capture (FWHM = 6.7 eV, sigma_E = 2.9 e</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3232939"/>
-<updated>2026-11-27T18:32:00+00:00</updated>
+<updated>2026-11-27T19:31:54+01:00</updated>
 <summary type="text">AI-generated summary of the linked source; may contain errors. The authors re-examine the measured 7Li recoil peak after 7Be electron capture (FWHM = 6.7 eV, sigma_E = 2.9 eV) to determine the spatial extent of the neutrino wave packet. The paper treats the emitted particles as entangled before decoherence, with the decoherence timescale setting a common energy uncertainty. It ties a wave-packet property that is usually assumed in oscillation theory to a laboratory measurement.</summary>
 </entry>
 <entry>
 <id>https://global-nu.org/news/48fbb8850d36e0da</id>
 <title>The paper gives semianalytic approximations for the outcome of slow and fast flavour conversion in quasihomoge</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3188570"/>
-<updated>2026-11-27T18:32:00+00:00</updated>
+<updated>2026-11-27T19:31:54+01:00</updated>
 <summary type="text">AI-generated summary of the linked source; may contain errors. The paper gives semianalytic approximations for the outcome of slow and fast flavour conversion in quasihomogeneous neutrino ensembles with periodic boundary conditions. The authors report good agreement with multiangle and multienergy solutions of the kinetic equations, independent of mass ordering. Such approximations are what supernova hydrodynamic simulations need as subgrid inputs, since they cannot evolve neutrino quantum kinetics.</summary>
 </entry>
 <entry>
 <id>https://global-nu.org/news/5d382322e99fb0c0</id>
 <title>The authors study what kiloton-scale detectors such as Hyper-Kamiokande could learn about the primary cosmic-r</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3220874"/>
-<updated>2026-11-27T18:32:00+00:00</updated>
+<updated>2026-11-27T19:31:54+01:00</updated>
 <summary type="text">AI-generated summary of the linked source; may contain errors. The authors study what kiloton-scale detectors such as Hyper-Kamiokande could learn about the primary cosmic-ray spectrum from the atmospheric neutrino flux. They find that future detectors can distinguish between cosmic-ray models with high statistical significance, even with uncertainties in cross sections and hadronic interactions. They also introduce a technique for reconstructing the primary spectrum. This connects the atmospheric neutrino flux, usually a background or a systematic uncertainty, to a measurement.</summary>
 </entry>
 <entry>
 <id>https://global-nu.org/news/5345ea1a77098e2a</id>
 <title>The paper uses low-energy solar neutrino-electron scattering data from PandaX-4T and XENONnT to constrain anom</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3211628"/>
-<updated>2026-11-27T18:32:00+00:00</updated>
+<updated>2026-11-27T19:31:54+01:00</updated>
 <summary type="text">AI-generated summary of the linked source; may contain errors. The paper uses low-energy solar neutrino-electron scattering data from PandaX-4T and XENONnT to constrain anomaly-free U(1)_X dark photon models with kinetic and mass mixing. It derives exclusion limits for six benchmark models and model-independent limits for the pure kinetic and pure mass mixing cases. Dark matter detectors thus become probes of neutrino couplings to light mediators.</summary>
 </entry>
 <entry>
 <id>https://global-nu.org/news/1f4b89d82cf8a143</id>
 <title>The paper studies neutrino mass and thermal leptogenesis in the Babu-Nandi-Tavartkiladze model, which has a sc</title>
 <link rel="alternate" href="https://inspirehep.net/literature/3186500"/>
-<updated>2026-11-27T18:32:00+00:00</updated>
+<updated>2026-11-27T19:31:54+01:00</updated>
 <summary type="text">AI-generated summary of the linked source; may contain errors. The paper studies neutrino mass and thermal leptogenesis in the Babu-Nandi-Tavartkiladze model, which has a scalar quadruplet and two vectorlike fermion triplets. Neutrino masses come from a dimension-7 operator at tree level and a dimension-5 operator at one loop, which allows sub-eV masses with new physics at the TeV scale. The authors examine whether thermal leptogenesis works in this setting, where it differs from canonical seesaw leptogenesis.</summary>
 </entry>
 </feed>
